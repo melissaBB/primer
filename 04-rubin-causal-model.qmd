@@ -1113,11 +1113,10 @@ The best way to ensure unconfoundedness is to randomize the treatment across uni
 
 -   A **Potential Outcome** is the outcome for an individual depending on if they receive the treatment or not.
 
--   **Causal Effect** is the difference between potential outcomes.
+-   A **Causal Effect** is the difference between two potential outcomes.
 
 -   The **Fundamental Problem of Causal Inference** is that it is impossible to observe the causal effect on a single unit. We must make assumptions in order to estimate causal effects.
 
--   
 :::
 
 The fundamental components of every problem in causal inference are units, treatments and outcomes. The units are the rows in the table. The treatments are (some of) the columns. The outcomes are the values under the treatment columns. (There are also covariate columns and the values within them.) Whenever you confront a problem in causal inference, start by identifying the units, treatments and outcomes.
