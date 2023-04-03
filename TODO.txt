@@ -1,3 +1,18 @@
+# Models and Inference
+
+
+Idea is that it would be nice to teach 6 week version of the course which would allow the students to make a model and discuss it. Weeks 1 to 3 would be the same as now. We rework Chapter 4. New title is "Models." Includes current sections 4.1, 4.2, 4.4, 5.1, 5.2, 5.7, and 5.8. (We could move the cut sections to a new Appendix.)
+
+Then, we have the (unwritten) chapter 5, titled "Inference," which would be assigned for week 5. Then, week 6 is like the current week 4, all about Quarto websites and getting their presentations ready for Demo Day. (Maybe we also assign some final project presentation milestones in weeks 3 through 5? Maybe construct them as tutorials?)
+
+Structure for the chapter would be 2 or 3 examples which go through the cardinal virtues. In this way, the structure is very similar to the structure of the later chapters of the book already. 
+
+Let's use tthe trains data from chapter 8. Note that it provides for examples that are both causal and non-causal. It also has some 0/1 variables. Maybe the whole chapter would do this data. Might be easiest to have just one data set which we introduce. Chapter 8 provides a nice discussion.
+
+Note that, even with one data set, we would still do the entire Cardinal Virtues routine three times, even the parts that used to seem repetitive, like the EDA, won't really be that way since, for each example, we need to EDA some different data. (We might also vary the questions a bit. Do some stretching so that validity/representativeness and so are tricky to assume.) We would do three examples. Two normal (one causal and one not) and one 0/1 (predictive), just like the current examples.
+
+
+
 # Sections to swap out for R4DS sections:
 
 Chapter 2
@@ -30,6 +45,8 @@ Hierarchical Data covers JSON, and mentions APIs
 
 
 # Priorities
+
+Use of _ in pipes in R 4.3.0.
 
 -3) Update Trump/Biden data in chapter 1.
 

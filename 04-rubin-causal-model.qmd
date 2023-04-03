@@ -16,7 +16,6 @@ library(gtsummary)
 
 <!-- For MH: -->
 
-<!-- Add two more rows from the Preceptor Table to the first Population Table, at least one with a missing outcome. MH: Done-->
 
 <!-- Write a bunch of comments about the issue of the Preceptor Table being, or not being, a subset of the Population Table, following our discussion. -->
 
@@ -28,7 +27,6 @@ library(gtsummary)
 
 <!-- In the Data source rows never show data that we can't possibly have, like both the treated and control outcomes. Same rule for the Preceptor Table? Not sure! -->
 
-<!-- Can't we make math text bolded, and thereby get Y_t(U) on the same level as "Source" and "ID"? If so, fix all the later tables. MH: Math text cannot be bolded-->
 
 <!-- The column names which require math text, like Y_t, do not line up with the column names which don't use math, like gender. They should look the same. Maybe we use $$\text{gender}$$ to achieve that? -->
 
@@ -260,7 +258,10 @@ Using the response variable --- the actual symbol rather than a written descript
 
 ```{r}
 #| echo: false
-# First, we create a tibble with the values we want for the table
+# First, we create a tibble with the values we want for the table.
+
+# Note that math text can not be bolded, so we are stuck with terms like $$Y_t$$
+# unbolded.
 
 tibble(subject = "Yao",
        ytreat = "13",
