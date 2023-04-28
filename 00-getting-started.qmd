@@ -169,8 +169,6 @@ library(remotes)
 
 After running this code, a blinking cursor should appear next to the `>` symbol. (The `>` is the "prompt.") This means you were successful and the **remotes** package is now loaded and ready to use. However, you might get a red "error message" which reads:
 
-<!-- DK: Make this text, and other error messages, red. -->
-
 <span style="color: red;">Error in library(remotes) : there is no package called 'remotes'</span>
 
 This error message means that you haven't successfully installed the package. If you get this error message, make sure to install the **remotes** package before proceeding.
@@ -187,23 +185,34 @@ R will occasionally ask you if you want to install some packages. You almost alw
 
 This is a different error message than the one you just saw about a package not having been installed yet. R is telling you that you are trying to use a function in a package that has not yet been loaded. R doesn't know where to "find" the function you want to use.
 
-Let's install a package that is not available from CRAN: **all.primer.tutorials**. Copy and paste the following to the R Console:
+Let's install two packages that is not available from CRAN: **r4ds.tutorials** and **all.primer.tutorials**. Copy and paste the following to the R Console:
 
 ```{r}
 #| output: false
 
 library(remotes)
-install_github("PPBDS/all.primer.tutorials")
+install_github("PPBDS/r4ds.tutorials")
 ```
 
-Many other new packages will be installed, including **primer.data**, which provides the data sets we use in the *Primer*. It may take a few minutes. If something gets messed up, it is often useful to read the error messages and see if a specific package is at fault. If so, use the `remove.packages()` function to remove the problematic package and then install it again.
+This package is fairly simple and should install without any problems. Many other new packages will be installed as well. Copy and paste the following to the R Console:
+
+
+
+```{r}
+#| output: false
+remotes::install_github("PPBDS/all.primer.tutorials")
+```
+
+Instead of loading the **remotes** package explicitly, we used the double colon notation --- `::` --- to refer directly to the `install_github()` function which resides in the **remotes** package.
+
+Other new packages will be installed, including **primer.data**, which provides the data sets we use in the *Primer*. It may take a few minutes. If something gets messed up, it is often useful to read the error messages and see if a specific package is at fault. If so, use the `remove.packages()` function to remove the problematic package and then install it again.
 
 Once you have **primer.tutorials** installed, run these commands.
 
 ```{r}
 #| eval: false
 
-library(all.primer.tutorials)
+library(r4ds.tutorials)
 prep_rstudio_settings()
 ```
 
@@ -214,7 +223,7 @@ The `prep_rstudio_settings()` function sets various R/RStudio options to conveni
 
 <!-- DK: Is this really necessary? I think that you get all the tutorials for free? That is, you don't need to load them explicitly. They are just found by the Tutorial pane. -->
 
-For each chapter of the textbook, there are one or more tutorials available in the **all.primer.tutorials** package. In order to access these tutorials, you should run `library(all.primer.tutorials)` in the R Console.
+For each chapter of the textbook, there are one or more tutorials available in the **r4ds.tutorials** or **all.primer.tutorials** package. In order to access these tutorials, you should run `library(r4ds.tutorials)` or `library(all.primer.tutorials)` in the R Console.
 
 ```{r}
 #| echo: false
