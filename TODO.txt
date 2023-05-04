@@ -46,6 +46,8 @@ Hierarchical Data covers JSON, and mentions APIs
 
 # Priorities
 
+rayimage and friends are now on CRAN
+
 Use of _ in pipes in R 4.3.0.
 
 -3) Update Trump/Biden data in chapter 1.
