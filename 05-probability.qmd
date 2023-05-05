@@ -22,6 +22,9 @@ library(gtsummary)
 library(patchwork)
 ```
 
+<!-- I am concerned that rayshader is not actively maintained and that, therefore, we should not rely on it to create the cool graphics. Is there a more mainstream package which we could use instead? -->
+
+
 <!-- Perhaps change the joint and conditional distribution section to use gender/height from NHANES? It is true that this is a discrete and continuous joint distribution, but that is probably fine. Certainly connects nicely with the male height example. Certainly works well with the joint and conditional together. Certainly would be nice to do the empirical/mathematical/posterior trypycht as in the first three examples. Posterior could be for a WNBA practice session. Most of the women will be tall, but the men will be of more typical height. -->
 
 <!-- Shouldn't we have a question which we anwer with a dgm for each distribution example, as we do with three heads in a row? -->
