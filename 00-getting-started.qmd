@@ -1,6 +1,6 @@
 # Getting Started {.unnumbered}
 
-<!-- We do not run prep_rstudio_settings() because this function only works with an associated RStudio instance. There is no such instance when you render a qmd file, even if you render that file from within RStudio. (I think!) We do, however, run the install code for the packages. We do this in order to ensure that the code works when students try to run it, even though this is somewhat aggresive from the point of view of our co-authors. -->
+<!-- We do not run set_rstudio_settings() and set_binary_only_in_r_profile() because these functions only work with an associated RStudio instance. There is no such instance when you render a qmd file, even if you render that file from within RStudio. (I think!) We do, however, run the install code for the packages. We do this in order to ensure that the code works when students try to run it, even though this is somewhat aggressive from the point of view of our co-authors. -->
 
 
 The world confronts us. Make decisions we must.
@@ -28,7 +28,7 @@ Download and install R and RStudio (Desktop version) on your computer.
 
 <!-- DK: Sure would be nice if this was not necessary. Maybe R-universe would make it so? -->
 
-If you are using Windows, [download and install R Tools](https://cran.r-project.org/bin/windows/Rtools/rtools42/rtools.html). Again, this is only for Windows users. The Rtools42 installer is what you want. The link is in the fifth paragraph of [that page](https://cran.r-project.org/bin/windows/Rtools/rtools42/rtools.html).
+If you are using Windows, [download and install R Tools](https://cran.r-project.org/bin/windows/Rtools). Again, this is only for Windows users. The Rtools43 installer is what you want. The link is in the sixth paragraph of [this page](https://cran.r-project.org/bin/windows/Rtools/rtools43/rtools.html).
 
 If you are using a Chromebook, follow [this advice](https://levente.littvay.hu/chromebook/).
 
@@ -41,6 +41,8 @@ If you are using a Chromebook, follow [this advice](https://levente.littvay.hu/c
 #| fig.cap: Icons of R versus RStudio on your computer.
 knitr::include_graphics("00-getting-started/images/R_vs_RStudio.png")
 ```
+
+<!-- DK: Can we make more use of the RStudio Guide here? Hate to have to maintain all this myself. -->
 
 Much as we don't drive a car by interacting directly with the engine but rather by interacting with elements on the car's dashboard, we won't be using R directly. Instead, we will use RStudio's interface. After you install R and RStudio on your computer, you'll have two new *programs* (also called *applications*) you can open. Always work in RStudio and not directly in the R application.
 
@@ -77,7 +79,7 @@ The main two tabs we will be using are Environment and Git (which is not yet vis
 x <- 5
 ```
 
-This assigned the value 5 to an object, `x`. `<-` is the operator used to assign values to objects in R. Now, hit return/enter and you should see a variable `x` equal to 5 in your Environment tab. You must always hit return/enter after typing a command, otherwise RStudio will not realize that you want R to execute the command.
+This code assigns the value 5 to an object, `x`. `<-` is the operator used to assign values to objects in R. Now, hit return/enter and you should see a variable `x` equal to 5 in your Environment tab. You must always hit return/enter after typing a command, otherwise RStudio will not realize that you want R to execute the command.
 
 Look at the bottom right pane:
 
@@ -177,6 +179,29 @@ For historical reasons, *packages* are also known as *libraries*, which is why t
 
 R will occasionally ask you if you want to install some packages. You almost always want to, otherwise R would not be asking you.
 
+Let's install another package:
+
+```{r}
+#| output: false
+
+install.packages("tutorial.helpers")
+```
+
+This package provides infrastructure for doing tutorials, a common apprach for learning R.
+
+Once you have **tutorial.helpers** installed, run these commands.
+
+```{r}
+#| eval: false
+
+library(tutorial.helpers)
+set_rstudio_settings()
+set_binary_only_in_r_profile()
+```
+
+These functions set various R/RStudio options to convenient values.
+
+
 ### Package use {.unnumbered}
 
 *You have to load each package you want to use every time you start RStudio.* If you don't load a package before attempting to use one of its features, you will see an error message like:
@@ -194,8 +219,9 @@ library(remotes)
 install_github("PPBDS/r4ds.tutorials")
 ```
 
-This package is fairly simple and should install without any problems. Many other new packages will be installed as well. Copy and paste the following to the R Console:
+This package is fairly simple and should install without any problems. Many other new packages will be installed as well. 
 
+Copy and paste the following to the R Console:
 
 
 ```{r}
@@ -207,17 +233,7 @@ Instead of loading the **remotes** package explicitly, we used the double colon 
 
 Other new packages will be installed, including **primer.data**, which provides the data sets we use in the *Primer*. It may take a few minutes. If something gets messed up, it is often useful to read the error messages and see if a specific package is at fault. If so, use the `remove.packages()` function to remove the problematic package and then install it again.
 
-Once you have **primer.tutorials** installed, run these commands.
-
-```{r}
-#| eval: false
-
-library(r4ds.tutorials)
-prep_rstudio_settings()
-```
-
-The `prep_rstudio_settings()` function sets various R/RStudio options to convenient values.
-
+If **all.primer.tutorials** does not install correctly, don't worry about it. This package is much less important than **r4ds.tutorials**.
 
 ### Tutorials {.unnumbered}
 
@@ -283,10 +299,19 @@ You should have done the following:
 options(pkgType = "binary")
 ```
 
-  - Installed, from Github, the **all.primer.tutorials** package:
+  - Installed, from CRAN, the **remotes** and **tutorial.helpers** packages:
 
 ```{r}
 #| eval: false
+install.packages("remotes")
+install.packages("tutorial.helpers")
+```
+
+  - Installed, from Github, the **r4ds.tutorials.** and **all.primer.tutorials** packages:
+
+```{r}
+#| eval: false
+remotes::install_github("PPBDS/r4ds.tutorials")
 remotes::install_github("PPBDS/all.primer.tutorials")
 ```
 
@@ -294,7 +319,8 @@ remotes::install_github("PPBDS/all.primer.tutorials")
   
 ```{r}
 #| eval: false
-all.primer.tutorials::prep_rstudio_settings()
+tutorial.helpers::set_rstudio_settings()
+tutorial.helpers::set_binary_only_in_r_profile()
 ``` 
 
   - Learned some basic terminology that will help you when you read the rest of the *Primer*.
