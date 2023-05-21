@@ -1,3 +1,20 @@
+# Getting ready for the bootcamp
+
+Think hard about just deleting chapters 1 through 3. Bite the bullet!
+
+Remove R code stuff from Chapter 5. That material is (?) covered in the Iteration chapter.
+
+Start Iteration tutorial. Move material from chapter 5 overview tutorial to it.
+
+Move statistical functions info from chapter 2 to, maybe, chapter 5. Update Overview tutorial for chapter 5 to review that information.
+
+Clean up first three chapters. Publish them. Add them to bootcamp schedule?
+
+Looking at Data section of Visualization: Overview seems useful. Maybe it goes with Chapter 1 of R4DS. Or maybe we just kill it. Or maybe the whole tutorial is useful somehow . . . Delete it once you grab what is useful.
+
+
+Review Set Up chapter, add r4ds.tutorials reference explicitly.
+
 # Models and Inference
 
 
@@ -7,7 +24,7 @@ Then, we have the (unwritten) chapter 5, titled "Inference," which would be assi
 
 Structure for the chapter would be 2 or 3 examples which go through the cardinal virtues. In this way, the structure is very similar to the structure of the later chapters of the book already. 
 
-Let's use tthe trains data from chapter 8. Note that it provides for examples that are both causal and non-causal. It also has some 0/1 variables. Maybe the whole chapter would do this data. Might be easiest to have just one data set which we introduce. Chapter 8 provides a nice discussion.
+Let's use the trains data from chapter 8. Note that it provides for examples that are both causal and non-causal. It also has some 0/1 variables. Maybe the whole chapter would do this data. Might be easiest to have just one data set which we introduce. Chapter 8 provides a nice discussion.
 
 Note that, even with one data set, we would still do the entire Cardinal Virtues routine three times, even the parts that used to seem repetitive, like the EDA, won't really be that way since, for each example, we need to EDA some different data. (We might also vary the questions a bit. Do some stretching so that validity/representativeness and so are tricky to assume.) We would do three examples. Two normal (one causal and one not) and one 0/1 (predictive), just like the current examples.
 

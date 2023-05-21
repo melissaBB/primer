@@ -7,6 +7,8 @@ The world confronts us. Make decisions we must.
 
 ### Installing R and RStudio {.unnumbered}
 
+<!-- DK: Maybe don't need to set options to binary explicitly anymore, now that we have set_binary function, which we could just call. -->
+
 <!-- Update all the images. -->
 
 <!-- Change the graphic so that the words are the top are: "R is like a car's engine." and "RStudio is like a car's dashboard." -->

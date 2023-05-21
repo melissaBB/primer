@@ -947,7 +947,7 @@ tibble(source = c("Population", "Population", "...",
             locations = cells_column_labels())         
 ```
 
-The rows from our data have covariates and one potential outcome. (By definition, no real data can include more than one potential outcome.) The rows from the Preceptor Table include covariates, but not outcomes. The rows from our greater population include no data, as we know nothing about these units.
+The rows from our data have covariates and two potential outcomes. (By definition, we only know the value for one of the potential outcomes for each unit.) The rows from the Preceptor Table include covariates, but not outcomes. (We have no outcome data for 2022, but we will, in theory, be given the sex of any units about whom we need to make inferences.) The rows from our greater population include no data, as we know nothing about these units.
 
 <!-- More detail here? Calling it a Population Table and having only some rows with "Population" as a source seems suspect. -->
 
@@ -996,7 +996,7 @@ tibble(subject = c("Yao", "Emma", "Cassidy", "Tahmid", "Diego"),
 
 Certain units heard the Spanish-speakers at higher volumes than other units. And it is entirely possible that the volume of the speech affects the outcome. There is also the issue of the time spent on the platform. Maybe Yao tends to run late, and only hears the Spanish-speakers for thirty seconds. Emma, on the other hand, arrives early. She hears the Spanish-speakers for fifteen minutes before the train arrives! Thus, despite the fact that Emma and Yao are in the same treatment --- that is, hearing Spanish on the platform --- they had very different versions of that treatment.
 
-Indeed, there are an infinite number of possible treatments. Indeed, it is a virtual certainty that *every treated unit received a different treatment.* However, *validity*, if reasonable assumption in this specific example, allows us to pretend/assume that Yao, Emma and Diego all received the same treatment. We place all their treated outcomes in the same column. Only if this is true (or true'ish) can we estimate an average treatment effect.
+Indeed, there are an infinite number of possible treatments. Indeed, it is a virtual certainty that *every treated unit received a different treatment.* However, *validity*, if a reasonable assumption in this specific example, allows us to pretend/assume that Yao, Emma and Diego all received the same treatment. We place all their treated outcomes in the same column. Only if this is true (or true'ish) can we estimate an average treatment effect.
 
 More commonly, we simply assume that all treated units received the same treatment. *Validity allows us to ignore variation in treatment.* In fact, concerns about validity apply to all the variables (covariates and outcomes), not just the treatments. If the columns in the data are not the same thing as the columns in the Preceptor Table, you have a problem. Validity is the assumption which allows us to create the Population Table.
 
@@ -1018,7 +1018,7 @@ When we are confronted with this uncertainty, we can consider making our timefra
 
 <!-- Subtle issue is that problems can arise because the data is not representative of either the Preceptor Table or the population. Hmmm. Is that really true? -->
 
-Representativeness, or the lack thereof, is the relationship between the rows in the Population Table with our data and the other rows. Ideally, we would like our data to be a random sample from the population. Sadly, this is almost never the case.
+Representativeness, or the lack thereof, is the relationship, among the rows in the Population Table, between our data and the other rows. Ideally, we would like our data to be a random sample from the population. Sadly, this is almost never the case.
 
 Does the train experiment allow us to calculate a causal effect for people who commute by cars? Can we calculate the causal effect for people in New York City? Before we generalize to broader populations we have to consider if our experimental estimates are applicable beyond our experiment. Maybe we think that commuters in Boston and New York are similar enough to generalize our findings. We could also conclude that people who commute by car are fundamentally different than people who commute by train. If that was true, then we could not say our estimate is true for all commuters because our sample does not accurately *represent* the broader group we want to generalize to.
 
