@@ -31,9 +31,6 @@ book:
     - index.qmd
     - preamble.qmd
     - 00-getting-started.qmd
-    - 01-visualization.qmd
-    - 02-wrangling.qmd
-    - 03-data.qmd
     - 04-rubin-causal-model.qmd
     - 05-probability.qmd
     - 06-one-parameter.qmd

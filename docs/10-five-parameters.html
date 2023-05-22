@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.2.269">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>Preceptor’s Primer for Bayesian Data Science: Using the Cardinal Virtues for Inference - 10&nbsp; Five Parameters</title>
+<title>Preceptor’s Primer for Bayesian Data Science: Using the Cardinal Virtues for Inference - 7&nbsp; Five Parameters</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -142,7 +142,7 @@ div.csl-indent {
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }"><div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Five Parameters</span></h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Five Parameters</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -196,57 +196,42 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./01-visualization.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Visualization</span></a>
+  <a href="./04-rubin-causal-model.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Rubin Causal Model</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02-wrangling.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Wrangling</span></a>
+  <a href="./05-probability.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Probability</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./03-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data</span></a>
+  <a href="./06-one-parameter.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">One Parameter</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04-rubin-causal-model.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Rubin Causal Model</span></a>
+  <a href="./07-two-parameters.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Two Parameters</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./05-probability.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Probability</span></a>
+  <a href="./08-three-parameters.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Three Parameters</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./06-one-parameter.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">One Parameter</span></a>
+  <a href="./09-four-parameters.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Four Parameters</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07-two-parameters.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Two Parameters</span></a>
+  <a href="./10-five-parameters.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Five Parameters</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./08-three-parameters.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Three Parameters</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./09-four-parameters.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Four Parameters</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./10-five-parameters.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Five Parameters</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./11-n-parameters.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">N Parameters</span></a>
+  <a href="./11-n-parameters.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">N Parameters</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -271,47 +256,47 @@ div.csl-indent {
    
   <ul>
 <li>
-<a href="#wisdom" id="toc-wisdom" class="nav-link active" data-scroll-target="#wisdom"><span class="toc-section-number">10.1</span>  Wisdom</a>
+<a href="#wisdom" id="toc-wisdom" class="nav-link active" data-scroll-target="#wisdom"><span class="toc-section-number">7.1</span>  Wisdom</a>
   <ul class="collapse">
-<li><a href="#the-preceptor-table" id="toc-the-preceptor-table" class="nav-link" data-scroll-target="#the-preceptor-table"><span class="toc-section-number">10.1.1</span>  The Preceptor Table</a></li>
-  <li><a href="#eda-of-governors" id="toc-eda-of-governors" class="nav-link" data-scroll-target="#eda-of-governors"><span class="toc-section-number">10.1.2</span>  EDA of <code>governors</code></a></li>
-  <li><a href="#population" id="toc-population" class="nav-link" data-scroll-target="#population"><span class="toc-section-number">10.1.3</span>  Population</a></li>
+<li><a href="#the-preceptor-table" id="toc-the-preceptor-table" class="nav-link" data-scroll-target="#the-preceptor-table"><span class="toc-section-number">7.1.1</span>  The Preceptor Table</a></li>
+  <li><a href="#eda-of-governors" id="toc-eda-of-governors" class="nav-link" data-scroll-target="#eda-of-governors"><span class="toc-section-number">7.1.2</span>  EDA of <code>governors</code></a></li>
+  <li><a href="#population" id="toc-population" class="nav-link" data-scroll-target="#population"><span class="toc-section-number">7.1.3</span>  Population</a></li>
   </ul>
 </li>
   <li>
-<a href="#justice" id="toc-justice" class="nav-link" data-scroll-target="#justice"><span class="toc-section-number">10.2</span>  Justice</a>
+<a href="#justice" id="toc-justice" class="nav-link" data-scroll-target="#justice"><span class="toc-section-number">7.2</span>  Justice</a>
   <ul class="collapse">
-<li><a href="#population-table" id="toc-population-table" class="nav-link" data-scroll-target="#population-table"><span class="toc-section-number">10.2.1</span>  Population Table</a></li>
-  <li><a href="#validity" id="toc-validity" class="nav-link" data-scroll-target="#validity"><span class="toc-section-number">10.2.2</span>  Validity</a></li>
-  <li><a href="#stability" id="toc-stability" class="nav-link" data-scroll-target="#stability"><span class="toc-section-number">10.2.3</span>  Stability</a></li>
-  <li><a href="#representativeness" id="toc-representativeness" class="nav-link" data-scroll-target="#representativeness"><span class="toc-section-number">10.2.4</span>  Representativeness</a></li>
+<li><a href="#population-table" id="toc-population-table" class="nav-link" data-scroll-target="#population-table"><span class="toc-section-number">7.2.1</span>  Population Table</a></li>
+  <li><a href="#validity" id="toc-validity" class="nav-link" data-scroll-target="#validity"><span class="toc-section-number">7.2.2</span>  Validity</a></li>
+  <li><a href="#stability" id="toc-stability" class="nav-link" data-scroll-target="#stability"><span class="toc-section-number">7.2.3</span>  Stability</a></li>
+  <li><a href="#representativeness" id="toc-representativeness" class="nav-link" data-scroll-target="#representativeness"><span class="toc-section-number">7.2.4</span>  Representativeness</a></li>
   </ul>
 </li>
   <li>
-<a href="#courage" id="toc-courage" class="nav-link" data-scroll-target="#courage"><span class="toc-section-number">10.3</span>  Courage</a>
+<a href="#courage" id="toc-courage" class="nav-link" data-scroll-target="#courage"><span class="toc-section-number">7.3</span>  Courage</a>
   <ul class="collapse">
-<li><a href="#sex" id="toc-sex" class="nav-link" data-scroll-target="#sex"><span class="toc-section-number">10.3.1</span>  sex</a></li>
-  <li><a href="#election_age" id="toc-election_age" class="nav-link" data-scroll-target="#election_age"><span class="toc-section-number">10.3.2</span>  election_age</a></li>
-  <li><a href="#election_age-and-sex" id="toc-election_age-and-sex" class="nav-link" data-scroll-target="#election_age-and-sex"><span class="toc-section-number">10.3.3</span>  election_age and sex</a></li>
-  <li><a href="#election_age-sex-and-election_agesex" id="toc-election_age-sex-and-election_agesex" class="nav-link" data-scroll-target="#election_age-sex-and-election_agesex"><span class="toc-section-number">10.3.4</span>  election_age, sex and election_age*sex</a></li>
-  <li><a href="#interaction-model" id="toc-interaction-model" class="nav-link" data-scroll-target="#interaction-model"><span class="toc-section-number">10.3.5</span>  Interaction model</a></li>
+<li><a href="#sex" id="toc-sex" class="nav-link" data-scroll-target="#sex"><span class="toc-section-number">7.3.1</span>  sex</a></li>
+  <li><a href="#election_age" id="toc-election_age" class="nav-link" data-scroll-target="#election_age"><span class="toc-section-number">7.3.2</span>  election_age</a></li>
+  <li><a href="#election_age-and-sex" id="toc-election_age-and-sex" class="nav-link" data-scroll-target="#election_age-and-sex"><span class="toc-section-number">7.3.3</span>  election_age and sex</a></li>
+  <li><a href="#election_age-sex-and-election_agesex" id="toc-election_age-sex-and-election_agesex" class="nav-link" data-scroll-target="#election_age-sex-and-election_agesex"><span class="toc-section-number">7.3.4</span>  election_age, sex and election_age*sex</a></li>
+  <li><a href="#interaction-model" id="toc-interaction-model" class="nav-link" data-scroll-target="#interaction-model"><span class="toc-section-number">7.3.5</span>  Interaction model</a></li>
   </ul>
 </li>
   <li>
-<a href="#temperance" id="toc-temperance" class="nav-link" data-scroll-target="#temperance"><span class="toc-section-number">10.4</span>  Temperance</a>
+<a href="#temperance" id="toc-temperance" class="nav-link" data-scroll-target="#temperance"><span class="toc-section-number">7.4</span>  Temperance</a>
   <ul class="collapse">
-<li><a href="#expected-values" id="toc-expected-values" class="nav-link" data-scroll-target="#expected-values"><span class="toc-section-number">10.4.1</span>  Expected values</a></li>
-  <li><a href="#individual-predictions" id="toc-individual-predictions" class="nav-link" data-scroll-target="#individual-predictions"><span class="toc-section-number">10.4.2</span>  Individual predictions</a></li>
-  <li><a href="#expectation-versus-individual-variation" id="toc-expectation-versus-individual-variation" class="nav-link" data-scroll-target="#expectation-versus-individual-variation"><span class="toc-section-number">10.4.3</span>  Expectation versus individual variation</a></li>
-  <li><a href="#testing" id="toc-testing" class="nav-link" data-scroll-target="#testing"><span class="toc-section-number">10.4.4</span>  Testing</a></li>
+<li><a href="#expected-values" id="toc-expected-values" class="nav-link" data-scroll-target="#expected-values"><span class="toc-section-number">7.4.1</span>  Expected values</a></li>
+  <li><a href="#individual-predictions" id="toc-individual-predictions" class="nav-link" data-scroll-target="#individual-predictions"><span class="toc-section-number">7.4.2</span>  Individual predictions</a></li>
+  <li><a href="#expectation-versus-individual-variation" id="toc-expectation-versus-individual-variation" class="nav-link" data-scroll-target="#expectation-versus-individual-variation"><span class="toc-section-number">7.4.3</span>  Expectation versus individual variation</a></li>
+  <li><a href="#testing" id="toc-testing" class="nav-link" data-scroll-target="#testing"><span class="toc-section-number">7.4.4</span>  Testing</a></li>
   </ul>
 </li>
-  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="toc-section-number">10.5</span>  Summary</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="toc-section-number">7.5</span>  Summary</a></li>
   </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/PPBDS/primer/edit/main/10-five-parameters.qmd" class="toc-action">Edit this page</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
-<h1 class="title"><span id="sec-five-parameters" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Five Parameters</span></span></h1>
+<h1 class="title"><span id="sec-five-parameters" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Five Parameters</span></span></h1>
 </div>
 
 
@@ -342,8 +327,8 @@ div.csl-indent {
 <p>Consider the following questions:</p>
 <p><em>How many years would we expect two gubernatorial candidates — one male and one female, both 10 years older than the average candidate — to live after the election? How different will their lifespans be? More broadly, how long do candidates, in general, live after the election? Does winning the election affect their longevity?</em></p>
 <p>Note how far we have come in the <em>Primer</em>. These are difficult questions, involving issues of both prediction and causation. Yet, if we follow the Cardinal Virtues, we can provide sophisticated answers.</p>
-<section id="wisdom" class="level2" data-number="10.1"><h2 data-number="10.1" class="anchored" data-anchor-id="wisdom">
-<span class="header-section-number">10.1</span> Wisdom</h2>
+<section id="wisdom" class="level2" data-number="7.1"><h2 data-number="7.1" class="anchored" data-anchor-id="wisdom">
+<span class="header-section-number">7.1</span> Wisdom</h2>
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -354,8 +339,8 @@ div.csl-indent {
 </div>
 </div>
 <p>Recall the most important aspects of Wisdom: the Preceptor Table, the EDA (exploratory data analysis), the population, and the Population Table. As always, we start with the Preceptor Table — the table of data that would make all of our questions answerable with mere arithmetic (no inferences).</p>
-<section id="the-preceptor-table" class="level3" data-number="10.1.1"><h3 data-number="10.1.1" class="anchored" data-anchor-id="the-preceptor-table">
-<span class="header-section-number">10.1.1</span> The Preceptor Table</h3>
+<section id="the-preceptor-table" class="level3" data-number="7.1.1"><h3 data-number="7.1.1" class="anchored" data-anchor-id="the-preceptor-table">
+<span class="header-section-number">7.1.1</span> The Preceptor Table</h3>
 <p>To create our Preceptor Table, we must first revisit our questions:</p>
 <p><em>How many years would we expect two gubernatorial candidates — one male and one female, both 10 years older than the average candidate — to live after the election? How different will their lifespans be? More broadly, how long do candidates, in general, live after the election? Does winning the election affect their longevity?</em></p>
 <p>What (imagined) dataset would make all of these questions easy to solve with a little bit of math? Well, we obviously need data on all gubernatorial candidate elections in the United States. We also need to know their dates of birth, age at time of election, age at time of death, and data for age at time of death minus age at time of election. With these pieces of information, we could answer all of our questions with simple math.</p>
@@ -364,23 +349,23 @@ div.csl-indent {
 <div class="cell" data-layout-align="left">
 <div class="cell-output-display">
 
-<div id="apegsyzsai" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#apegsyzsai table {
+<div id="bduhtrmiqm" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#bduhtrmiqm table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#apegsyzsai thead, #apegsyzsai tbody, #apegsyzsai tfoot, #apegsyzsai tr, #apegsyzsai td, #apegsyzsai th {
+#bduhtrmiqm thead, #bduhtrmiqm tbody, #bduhtrmiqm tfoot, #bduhtrmiqm tr, #bduhtrmiqm td, #bduhtrmiqm th {
   border-style: none;
 }
 
-#apegsyzsai p {
+#bduhtrmiqm p {
   margin: 0;
   padding: 0;
 }
 
-#apegsyzsai .gt_table {
+#bduhtrmiqm .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -406,12 +391,12 @@ div.csl-indent {
   border-left-color: #D3D3D3;
 }
 
-#apegsyzsai .gt_caption {
+#bduhtrmiqm .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#apegsyzsai .gt_title {
+#bduhtrmiqm .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -423,7 +408,7 @@ div.csl-indent {
   border-bottom-width: 0;
 }
 
-#apegsyzsai .gt_subtitle {
+#bduhtrmiqm .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -435,7 +420,7 @@ div.csl-indent {
   border-top-width: 0;
 }
 
-#apegsyzsai .gt_heading {
+#bduhtrmiqm .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -447,13 +432,13 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#apegsyzsai .gt_bottom_border {
+#bduhtrmiqm .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#apegsyzsai .gt_col_headings {
+#bduhtrmiqm .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -468,7 +453,7 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#apegsyzsai .gt_col_heading {
+#bduhtrmiqm .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -488,7 +473,7 @@ div.csl-indent {
   overflow-x: hidden;
 }
 
-#apegsyzsai .gt_column_spanner_outer {
+#bduhtrmiqm .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -500,15 +485,15 @@ div.csl-indent {
   padding-right: 4px;
 }
 
-#apegsyzsai .gt_column_spanner_outer:first-child {
+#bduhtrmiqm .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#apegsyzsai .gt_column_spanner_outer:last-child {
+#bduhtrmiqm .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#apegsyzsai .gt_column_spanner {
+#bduhtrmiqm .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -520,11 +505,11 @@ div.csl-indent {
   width: 100%;
 }
 
-#apegsyzsai .gt_spanner_row {
+#bduhtrmiqm .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#apegsyzsai .gt_group_heading {
+#bduhtrmiqm .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -550,7 +535,7 @@ div.csl-indent {
   text-align: left;
 }
 
-#apegsyzsai .gt_empty_group_heading {
+#bduhtrmiqm .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -565,15 +550,15 @@ div.csl-indent {
   vertical-align: middle;
 }
 
-#apegsyzsai .gt_from_md > :first-child {
+#bduhtrmiqm .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#apegsyzsai .gt_from_md > :last-child {
+#bduhtrmiqm .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#apegsyzsai .gt_row {
+#bduhtrmiqm .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -592,7 +577,7 @@ div.csl-indent {
   overflow-x: hidden;
 }
 
-#apegsyzsai .gt_stub {
+#bduhtrmiqm .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -605,7 +590,7 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#apegsyzsai .gt_stub_row_group {
+#bduhtrmiqm .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -619,15 +604,15 @@ div.csl-indent {
   vertical-align: top;
 }
 
-#apegsyzsai .gt_row_group_first td {
+#bduhtrmiqm .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#apegsyzsai .gt_row_group_first th {
+#bduhtrmiqm .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#apegsyzsai .gt_summary_row {
+#bduhtrmiqm .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -637,16 +622,16 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#apegsyzsai .gt_first_summary_row {
+#bduhtrmiqm .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#apegsyzsai .gt_first_summary_row.thick {
+#bduhtrmiqm .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#apegsyzsai .gt_last_summary_row {
+#bduhtrmiqm .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -656,7 +641,7 @@ div.csl-indent {
   border-bottom-color: #D3D3D3;
 }
 
-#apegsyzsai .gt_grand_summary_row {
+#bduhtrmiqm .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -666,7 +651,7 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#apegsyzsai .gt_first_grand_summary_row {
+#bduhtrmiqm .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -676,7 +661,7 @@ div.csl-indent {
   border-top-color: #D3D3D3;
 }
 
-#apegsyzsai .gt_last_grand_summary_row_top {
+#bduhtrmiqm .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -686,11 +671,11 @@ div.csl-indent {
   border-bottom-color: #D3D3D3;
 }
 
-#apegsyzsai .gt_striped {
+#bduhtrmiqm .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#apegsyzsai .gt_table_body {
+#bduhtrmiqm .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -699,7 +684,7 @@ div.csl-indent {
   border-bottom-color: #D3D3D3;
 }
 
-#apegsyzsai .gt_footnotes {
+#bduhtrmiqm .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -713,7 +698,7 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#apegsyzsai .gt_footnote {
+#bduhtrmiqm .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -722,7 +707,7 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#apegsyzsai .gt_sourcenotes {
+#bduhtrmiqm .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -736,7 +721,7 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#apegsyzsai .gt_sourcenote {
+#bduhtrmiqm .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -744,63 +729,63 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#apegsyzsai .gt_left {
+#bduhtrmiqm .gt_left {
   text-align: left;
 }
 
-#apegsyzsai .gt_center {
+#bduhtrmiqm .gt_center {
   text-align: center;
 }
 
-#apegsyzsai .gt_right {
+#bduhtrmiqm .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#apegsyzsai .gt_font_normal {
+#bduhtrmiqm .gt_font_normal {
   font-weight: normal;
 }
 
-#apegsyzsai .gt_font_bold {
+#bduhtrmiqm .gt_font_bold {
   font-weight: bold;
 }
 
-#apegsyzsai .gt_font_italic {
+#bduhtrmiqm .gt_font_italic {
   font-style: italic;
 }
 
-#apegsyzsai .gt_super {
+#bduhtrmiqm .gt_super {
   font-size: 65%;
 }
 
-#apegsyzsai .gt_footnote_marks {
+#bduhtrmiqm .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#apegsyzsai .gt_asterisk {
+#bduhtrmiqm .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#apegsyzsai .gt_indent_1 {
+#bduhtrmiqm .gt_indent_1 {
   text-indent: 5px;
 }
 
-#apegsyzsai .gt_indent_2 {
+#bduhtrmiqm .gt_indent_2 {
   text-indent: 10px;
 }
 
-#apegsyzsai .gt_indent_3 {
+#bduhtrmiqm .gt_indent_3 {
   text-indent: 15px;
 }
 
-#apegsyzsai .gt_indent_4 {
+#bduhtrmiqm .gt_indent_4 {
   text-indent: 20px;
 }
 
-#apegsyzsai .gt_indent_5 {
+#bduhtrmiqm .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -836,8 +821,8 @@ div.csl-indent {
 </div>
 </div>
 <p>We would have rows for <em>every</em> gubernatorial election candidate in U.S. history. We may want further details, such as election year. This is merely a sketch of our ideal dataset. Now that we know our “perfect” reality, what data do we actually have to work with?</p>
-</section><section id="eda-of-governors" class="level3" data-number="10.1.2"><h3 data-number="10.1.2" class="anchored" data-anchor-id="eda-of-governors">
-<span class="header-section-number">10.1.2</span> EDA of <code>governors</code>
+</section><section id="eda-of-governors" class="level3" data-number="7.1.2"><h3 data-number="7.1.2" class="anchored" data-anchor-id="eda-of-governors">
+<span class="header-section-number">7.1.2</span> EDA of <code>governors</code>
 </h3>
 
 <!-- We discuss below that we only have data for people who are already dead. That is an interesting restriction, and effects the Preceptor Table in interesting ways. Or is such a discussion too advanced? -->
@@ -1145,8 +1130,8 @@ $ lived_after  &lt;dbl&gt; 41.043121, 2.116359, 14.562628, 13.336071, 33.043121,
 </div>
 </div>
 <p>This plot shows that men live much longer, on average, than women after the election. Is there an intuitive explanation for why this might be?</p>
-</section><section id="population" class="level3" data-number="10.1.3"><h3 data-number="10.1.3" class="anchored" data-anchor-id="population">
-<span class="header-section-number">10.1.3</span> Population</h3>
+</section><section id="population" class="level3" data-number="7.1.3"><h3 data-number="7.1.3" class="anchored" data-anchor-id="population">
+<span class="header-section-number">7.1.3</span> Population</h3>
 <p>The concept of the “population” is subtle and important. <em>The population is not the set of candidates for which we have data.</em> That is the dataset. The population is the larger — potentially much larger — set of individuals about whom we want to make inferences. <em>The parameters in our models refer to the population, not to the dataset.</em></p>
 <p>Consider a simple example. Define <span class="math inline">\(\mu\)</span> as the average number of years lived by candidates for governor after Election Day. Can we calculate <span class="math inline">\(\mu\)</span> from our data? No! There are many candidates for governor who are still alive, who are not included in our data even though they are part of the “population” we want to study. <span class="math inline">\(\mu\)</span> can not be <em>calculated.</em> It can only be <em>estimated.</em></p>
 <p>Another problem is that we would like to estimate the effect of winning on lifespan in <em>present day</em>. Because our data excludes the most recent candidates (since they are still alive), our predictions will not mirror the future as well as we may hope.</p>
@@ -1156,8 +1141,8 @@ $ lived_after  &lt;dbl&gt; 41.043121, 2.116359, 14.562628, 13.336071, 33.043121,
 <p>Of course, this is not always true. If we wanted to predict lifespans of gubernatorial candidates in the U.S., and our data was from lifespans of presidential candidates in France… we would be better off not making any predictions at all. If the data won’t help, don’t use the data.</p>
 
 <!-- DK: Add more? Connect to Preceptor Table. -->
-</section></section><section id="justice" class="level2" data-number="10.2"><h2 data-number="10.2" class="anchored" data-anchor-id="justice">
-<span class="header-section-number">10.2</span> Justice</h2>
+</section></section><section id="justice" class="level2" data-number="7.2"><h2 data-number="7.2" class="anchored" data-anchor-id="justice">
+<span class="header-section-number">7.2</span> Justice</h2>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -1175,8 +1160,8 @@ $ lived_after  &lt;dbl&gt; 41.043121, 2.116359, 14.562628, 13.336071, 33.043121,
 <li>Is the meaning of the columns consistent, i.e., can we assume validity? We then make an assumption about the data generating mechanism.</li>
 </ul>
 <p>We inspect both representativeness and validity through our Population Table. Representativeness focuses on the rows of the table, while validity focuses on the columns.</p>
-<section id="population-table" class="level3" data-number="10.2.1"><h3 data-number="10.2.1" class="anchored" data-anchor-id="population-table">
-<span class="header-section-number">10.2.1</span> Population Table</h3>
+<section id="population-table" class="level3" data-number="7.2.1"><h3 data-number="7.2.1" class="anchored" data-anchor-id="population-table">
+<span class="header-section-number">7.2.1</span> Population Table</h3>
 <p>By determining that the data is drawn from the same population which we are analyzing, we can go on to produce a Population Table.</p>
 <p>The Population Table shows rows from three sources: the <strong>Preceptor Table</strong>, the <strong>actual data</strong>, and the <strong>population</strong> (outside of the data).</p>
 <p>Our <strong>Preceptor Table</strong> rows contain the information that we would <em>want</em> to know in order to answer our questions. These rows contain entries for our covariates (sex, election_age, year elected) but they do not contain any outcome results (lived_after). We are trying to answer questions about the train commuter population in 2021, so our year entries of these rows will read “2021”.</p>
@@ -1772,8 +1757,8 @@ $ lived_after  &lt;dbl&gt; 41.043121, 2.116359, 14.562628, 13.336071, 33.043121,
 </div>
 </div>
 <p>Again, the Population Table shows the more expansive population for which we are making assumptions — this includes data from our “population”, our actual data, and the Preceptor Table.</p>
-</section><section id="validity" class="level3" data-number="10.2.2"><h3 data-number="10.2.2" class="anchored" data-anchor-id="validity">
-<span class="header-section-number">10.2.2</span> Validity</h3>
+</section><section id="validity" class="level3" data-number="7.2.2"><h3 data-number="7.2.2" class="anchored" data-anchor-id="validity">
+<span class="header-section-number">7.2.2</span> Validity</h3>
 <p>Validity, on the other hand, involves our columns. To put it simply, does the column for lifespan in our Preceptor Table equate to the column for lifespan from our dataset. Again, we look to the source of our data: <span class="citation" data-cites="barfort2020">Barfort, Klemmensen, and Larsen (<a href="references.html#ref-barfort2020" role="doc-biblioref">2020</a>)</span>.</p>
 <p>The collection of birth and death dates for <em>winning</em> candidates is well documented. The birth and death dates for losing candidates, however, is not as easily gathered. In fact, <span class="citation" data-cites="barfort2020">Barfort, Klemmensen, and Larsen (<a href="references.html#ref-barfort2020" role="doc-biblioref">2020</a>)</span> had to perform independent research for this information:</p>
 <blockquote class="blockquote">
@@ -1785,22 +1770,22 @@ $ lived_after  &lt;dbl&gt; 41.043121, 2.116359, 14.562628, 13.336071, 33.043121,
 </blockquote>
 <p>For these candidates, then, our estimate for longevity will be inaccurate. We also have to <em>hope</em> that the birth and death dates listed on unreliable internet sources are accurate. It is possible that they are not, especially for older candidates.</p>
 <p>The mission of this exploration is to ensure validity as much as possible — that is, to equate our columns when they are not equated themselves. In this case, because we cannot fix the issues with data collection, we accept that our estimates may be slightly skewed.</p>
-</section><section id="stability" class="level3" data-number="10.2.3"><h3 data-number="10.2.3" class="anchored" data-anchor-id="stability">
-<span class="header-section-number">10.2.3</span> Stability</h3>
+</section><section id="stability" class="level3" data-number="7.2.3"><h3 data-number="7.2.3" class="anchored" data-anchor-id="stability">
+<span class="header-section-number">7.2.3</span> Stability</h3>
 <p>Stability means that the relationship between the columns is the same for three categories of rows: the data, the Preceptor table, and the larger population from which both are drawn.</p>
 <p>With an outcome variable such as height, it is easier to assume stability over a greater period of time. Changes in global height occur extremely slowly, so height being stable across a span of 20 years is reasonable to assume. Can we say the same for this example, where we are looking at years lived post-election?</p>
 <p>Lifespan changes over time. In fact, between 1960 and 2015, life expectancy for the total population in the United States increased by almost 10 years from 69.7 years in 1960 to 79.4 years in 2015. Therefore, our estimates for the future may need some adjustment — that is, to add years to our predicted life expectancy to account for a global change in lifespan over time.</p>
 <p>When we are confronted with this uncertainty, we can consider making our timeframe smaller. After all, if we confined the data to candidates post-1980, we would expect more stability in lifespan. This modification may be appropriate, but it limits our data. Stability, in essence, allows us to ignore the issue of time.</p>
 <p>Alternatively, if we believe that it is unlikely that our columns are stable, we have two choices. First, we abandon the experiment. If we believe our data is useless, so is our experiment. Second, we can choose to provide a sort of warning message with our conclusions: <em>this is based on data from ten years ago, but that was the most recent data available to us.</em></p>
-</section><section id="representativeness" class="level3" data-number="10.2.4"><h3 data-number="10.2.4" class="anchored" data-anchor-id="representativeness">
-<span class="header-section-number">10.2.4</span> Representativeness</h3>
+</section><section id="representativeness" class="level3" data-number="7.2.4"><h3 data-number="7.2.4" class="anchored" data-anchor-id="representativeness">
+<span class="header-section-number">7.2.4</span> Representativeness</h3>
 <p>The external validity of a study is often directly related to the representativeness of our sample. Representativeness has to do with how well our sample represents the larger population we are interested in generalizing to.</p>
 <p>After looking at <span class="citation" data-cites="barfort2020">Barfort, Klemmensen, and Larsen (<a href="references.html#ref-barfort2020" role="doc-biblioref">2020</a>)</span>, the source for our dataset, we see that:</p>
 <p>“We collect data… for all candidates running in a gubernatorial election from 1945 to 2012. We limit attention to the two candidates who received the highest number of votes.”</p>
 <p>This data is, then, <em>highly</em> representative of gubernatorial candidates, as it includes every candidate from 1945 to 2012. However, there is one large caveat: only the two candidates with the most votes are included in the dataset. This is unfortunate, as we would ideally look at all gubernatorial candidates (regardless of votes). Regardless, we still deem the dataset to be representative enough of our larger population.</p>
 <p>Generally: <em>if there was no chance that a certain type of person would have been in this experiment, we cannot make an assumption for that person</em>.</p>
-</section></section><section id="courage" class="level2" data-number="10.3"><h2 data-number="10.3" class="anchored" data-anchor-id="courage">
-<span class="header-section-number">10.3</span> Courage</h2>
+</section></section><section id="courage" class="level2" data-number="7.3"><h2 data-number="7.3" class="anchored" data-anchor-id="courage">
+<span class="header-section-number">7.3</span> Courage</h2>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -1810,8 +1795,8 @@ $ lived_after  &lt;dbl&gt; 41.043121, 2.116359, 14.562628, 13.336071, 33.043121,
 </div>
 </div>
 </div>
-<section id="sex" class="level3" data-number="10.3.1"><h3 data-number="10.3.1" class="anchored" data-anchor-id="sex">
-<span class="header-section-number">10.3.1</span> sex</h3>
+<section id="sex" class="level3" data-number="7.3.1"><h3 data-number="7.3.1" class="anchored" data-anchor-id="sex">
+<span class="header-section-number">7.3.1</span> sex</h3>
 <p>Let’s regress <code>lived_after</code> on <code>sex</code> to see how candidates’ post-election lifespans differ by sex.</p>
 <div class="cell">
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/rstanarm/reference/stan_glm.html">stan_glm</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">ch10</span>,</span>
@@ -1890,8 +1875,8 @@ sigma 13.3    0.3  </code></pre>
 </div>
 </div>
 <p>We see that the expected lifespan post-election is significantly lower for female candidates, with the average being around 15 years.</p>
-</section><section id="election_age" class="level3" data-number="10.3.2"><h3 data-number="10.3.2" class="anchored" data-anchor-id="election_age">
-<span class="header-section-number">10.3.2</span> election_age</h3>
+</section><section id="election_age" class="level3" data-number="7.3.2"><h3 data-number="7.3.2" class="anchored" data-anchor-id="election_age">
+<span class="header-section-number">7.3.2</span> election_age</h3>
 <p>To begin, let’s model candidate lifespan after the election as a function of candidate lifespan prior to the election. The data:</p>
 <div class="cell">
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ch10</span> <span class="op">|&gt;</span> </span>
@@ -1923,7 +1908,7 @@ sigma 13.3    0.3  </code></pre>
 <!-- DK: Better words needed. -->
 <p>Either way, <span class="math inline">\(\beta_0\)</span> is the “intercept” of the regression, the average value for the population of <span class="math inline">\(lived\_after\)</span>, among those for whom <span class="math inline">\(election\_age = 0\)</span>.</p>
 <p><span class="math inline">\(\beta_1\)</span> is the “coefficient” of <span class="math inline">\(election\_age\)</span>. When comparing two individuals, the first with an <span class="math inline">\(election\_age\)</span> one year older than the second, we expect the first to have a <span class="math inline">\(lived\_after\)</span> value <span class="math inline">\(\beta_1\)</span> different from the second. In other words, we expect the older to have fewer years remaining, because <span class="math inline">\(\beta_1\)</span> is negative. Again, this is the value for the population from which our data is drawn.</p>
-<p>There are three unknown parameters — <span class="math inline">\(\beta_0\)</span>, <span class="math inline">\(\beta_1\)</span> and <span class="math inline">\(\sigma\)</span> — just as with the models we used in <a href="08-three-parameters.html"><span>Chapter&nbsp;8</span></a>. Before we get to the five parameter case, it is useful to review this earlier material.</p>
+<p>There are three unknown parameters — <span class="math inline">\(\beta_0\)</span>, <span class="math inline">\(\beta_1\)</span> and <span class="math inline">\(\sigma\)</span> — just as with the models we used in <a href="08-three-parameters.html"><span>Chapter&nbsp;5</span></a>. Before we get to the five parameter case, it is useful to review this earlier material.</p>
 <p>You may recall from middle school algebra that the equation of a line is <span class="math inline">\(y = m x + b\)</span>. There are two parameters: <span class="math inline">\(m\)</span> and <span class="math inline">\(b\)</span>. The intercept <span class="math inline">\(b\)</span> is the value of <span class="math inline">\(y\)</span> when <span class="math inline">\(x = 0\)</span>. The slope coefficient <span class="math inline">\(m\)</span> for <span class="math inline">\(x\)</span> is the increase in <span class="math inline">\(y\)</span> for every one unit increase in <span class="math inline">\(x\)</span>. When defining a regression line, we use slightly different notation but the fundamental relationship is the same.</p>
 <p>Rather repeat the process in Chapter 8, we will look at the resulting plot using a model that predicts years lived after as a factor of age at election.</p>
 <div class="cell">
@@ -1935,9 +1920,9 @@ sigma 13.3    0.3  </code></pre>
 <p><img src="10-five-parameters_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>As we discussed in <a href="08-three-parameters.html"><span>Chapter&nbsp;8</span></a>, the most common term for a model like this is a “regression.” We have “regressed” <code>lived_after</code>, our dependent variable, on <code>election_age</code>, our (only) independent variable.</p>
+<p>As we discussed in <a href="08-three-parameters.html"><span>Chapter&nbsp;5</span></a>, the most common term for a model like this is a “regression.” We have “regressed” <code>lived_after</code>, our dependent variable, on <code>election_age</code>, our (only) independent variable.</p>
 <p>Consider someone who is about 40 years old on Election Day. We have a score or more data points for candidates around that age. This area is highlighted by the red box on our plot. As we can see, two died soon after the election. Some of them lived for 50 or more years after the election. <em>Variation fills the world.</em> However, the fitted line tells us that, on average, we would expect a candidate that age to live about 37 years after the election.</p>
-<p>This is a descriptive model, not a causal model. Remember our motto from Chapter <a href="04-rubin-causal-model.html"><span>Chapter&nbsp;4</span></a>: <em>No causation without manipulation.</em> There is no way, for person <span class="math inline">\(i\)</span>, to change the years that she has been alive on Election Day. On the day of this election, she is X years old. So, there are not two (or more) potential outcomes. Without more than one potential outcome, there can not be a causal effect.</p>
+<p>This is a descriptive model, not a causal model. Remember our motto from Chapter <a href="04-rubin-causal-model.html"><span>Chapter&nbsp;1</span></a>: <em>No causation without manipulation.</em> There is no way, for person <span class="math inline">\(i\)</span>, to change the years that she has been alive on Election Day. On the day of this election, she is X years old. So, there are not two (or more) potential outcomes. Without more than one potential outcome, there can not be a causal effect.</p>
 <p>Given that, it is important to monitor our language. We do not believe that that changes in <code>election_age</code> “cause” changes in <code>lived_after</code>. That is obvious. But there are some words and phrases — like “associated with” and “change by” — which are too close to causal. (And which we are guilty of using just a few paragraphs ago!) Be wary of their use. <em>Always think in terms of comparisons when using a predictive model.</em> We can’t change <code>election_age</code> for an individual candidate. We can only compare two candidates (or two groups of candidates).</p>
 <!-- DK: THis is a critical point. Maybe give a precise example? Go through the math slowly, like ModernDive does? Highlight this somehow? At the very least, we should emphasize the point for each model going forward. -->
 <p>Let’s look at the posterior of <span class="math inline">\(\beta_1\)</span>, the coefficient of <span class="math inline">\(election\_age_i\)</span>:</p>
@@ -1961,9 +1946,9 @@ sigma 13.3    0.3  </code></pre>
 <!-- DK: Priority is to add a graphic which shows the "cloud" of possible regression lines, consistent with the posterior for beta_1.  -->
 <!-- DK: Would using 50-year-old be better? -->
 <!-- DK: Fix. -->
-</section><section id="election_age-and-sex" class="level3" data-number="10.3.3"><h3 data-number="10.3.3" class="anchored" data-anchor-id="election_age-and-sex">
-<span class="header-section-number">10.3.3</span> election_age and sex</h3>
-<p>In this model, our outcome variable continues to be <code>lived_after</code>, but now we will have two different explanatory variables: <code>election_age</code> and <code>sex</code>. Note that <code>sex</code> is a categorical explanatory variable and <code>election_age</code> is a continuous explanatory variable. This is the same type of model — parallel slopes — as we saw in <a href="09-four-parameters.html"><span>Chapter&nbsp;9</span></a>.</p>
+</section><section id="election_age-and-sex" class="level3" data-number="7.3.3"><h3 data-number="7.3.3" class="anchored" data-anchor-id="election_age-and-sex">
+<span class="header-section-number">7.3.3</span> election_age and sex</h3>
+<p>In this model, our outcome variable continues to be <code>lived_after</code>, but now we will have two different explanatory variables: <code>election_age</code> and <code>sex</code>. Note that <code>sex</code> is a categorical explanatory variable and <code>election_age</code> is a continuous explanatory variable. This is the same type of model — parallel slopes — as we saw in <a href="09-four-parameters.html"><span>Chapter&nbsp;6</span></a>.</p>
 <p>Math:</p>
 <p><span class="math display">\[ lived\_after_i =  \beta_0 + \beta_1 male_i + \beta_2 c\_election\_age_i + \epsilon_i \]</span></p>
 <p>But wait! The variable name is <code>sex</code>, not <code>male</code>. Where does <code>male</code> come from?</p>
@@ -2018,8 +2003,8 @@ sigma 11.1    0.2  </code></pre>
 </div>
 </div>
 <!-- MF: NEED TO ADD COMMENTARY -->
-</section><section id="election_age-sex-and-election_agesex" class="level3" data-number="10.3.4"><h3 data-number="10.3.4" class="anchored" data-anchor-id="election_age-sex-and-election_agesex">
-<span class="header-section-number">10.3.4</span> election_age, sex and election_age*sex</h3>
+</section><section id="election_age-sex-and-election_agesex" class="level3" data-number="7.3.4"><h3 data-number="7.3.4" class="anchored" data-anchor-id="election_age-sex-and-election_agesex">
+<span class="header-section-number">7.3.4</span> election_age, sex and election_age*sex</h3>
 <p>Let’s create another model. This time, however, the numeric outcome variable of <code>lived_after</code> is a function of the two explanatory variables we used above, <code>election_age</code> and <code>sex</code>, and of their interaction. To look at interactions, we need 5 parameters, which is why we needed to wait until this chapter to introduce the concept.</p>
 <p>Math:</p>
 <p><span class="math display">\[ lived\_after_i =  \beta_0 + \beta_1 male_i + \beta_2 c\_election\_age_i + \\ \beta_3 male_i *  c\_election\_age_i + \epsilon_i \]</span></p>
@@ -2114,9 +2099,9 @@ sigma 11.1    0.2  </code></pre>
 </div>
 </div>
 <p>This posterior distribution shows the average slope values for men and women. You can see that men have a steeper slope, while the slope for women is practically 0! <em>If you are trying to forecast the number of years that a women will live after the election, you may ignore the number of years that she has already lived.</em> This is definitely not true for men. Why the difference?</p>
-</section><section id="interaction-model" class="level3" data-number="10.3.5"><h3 data-number="10.3.5" class="anchored" data-anchor-id="interaction-model">
-<span class="header-section-number">10.3.5</span> Interaction model</h3>
-<p>Recall the parallel slopes model that we created in <a href="09-four-parameters.html"><span>Chapter&nbsp;9</span></a>. Another visualization we can create, one that also uses slopes and intercepts for our model, is the interaction model. In this model, the slopes for our two groups <strong>are different</strong>, creating a non-parallel visualization.</p>
+</section><section id="interaction-model" class="level3" data-number="7.3.5"><h3 data-number="7.3.5" class="anchored" data-anchor-id="interaction-model">
+<span class="header-section-number">7.3.5</span> Interaction model</h3>
+<p>Recall the parallel slopes model that we created in <a href="09-four-parameters.html"><span>Chapter&nbsp;6</span></a>. Another visualization we can create, one that also uses slopes and intercepts for our model, is the interaction model. In this model, the slopes for our two groups <strong>are different</strong>, creating a non-parallel visualization.</p>
 <p>The process for creating the interaction model is similar to creating the parallel slopes model. Let us begin the same way — by tidying our data and inspecting it.</p>
 <div class="cell">
 <div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># First, we will tidy the data from our model and select the term and estimate.</span></span>
@@ -2137,7 +2122,7 @@ sigma 11.1    0.2  </code></pre>
 4 sexMale:election_age  -0.781 </code></pre>
 </div>
 </div>
-<p>After tidying our data, we will extract values and assign sensible names for later use. Note that this is identical to the process from <a href="09-four-parameters.html"><span>Chapter&nbsp;9</span></a>, with the addition of a fourth term (the interaction term):</p>
+<p>After tidying our data, we will extract values and assign sensible names for later use. Note that this is identical to the process from <a href="09-four-parameters.html"><span>Chapter&nbsp;6</span></a>, with the addition of a fourth term (the interaction term):</p>
 <div class="cell">
 <div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Extract and name the columns of our tidy object. By calling tidy$estimate[1],</span></span>
 <span><span class="co"># we are telling R to extract the first value from the estimate column in our</span></span>
@@ -2217,8 +2202,8 @@ sigma 11.1    0.2  </code></pre>
 <p>This is our final interaction model! There are some interesting takeaways. First, we may note that there are far fewer data points for female candidates — a concern we previously mentioned. It makes sense, then, that the slope would be less dramatic when compared with male candidates. We also see that most female candidates run when they are older, as compared with male candidates. This might explain why our intercept for years lived post-election is lower for female candidates.</p>
 <p>The male line seems more sensible, as we might expect with far more datapoints. For male candidates, we see a clear (logical) pattern: the older candidates are at the time of election, the less years post-election they live. This makes sense, as we are limited by the human lifespan.</p>
 <!-- DK: Answer this question!  -->
-</section></section><section id="temperance" class="level2" data-number="10.4"><h2 data-number="10.4" class="anchored" data-anchor-id="temperance">
-<span class="header-section-number">10.4</span> Temperance</h2>
+</section></section><section id="temperance" class="level2" data-number="7.4"><h2 data-number="7.4" class="anchored" data-anchor-id="temperance">
+<span class="header-section-number">7.4</span> Temperance</h2>
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -2230,11 +2215,11 @@ sigma 11.1    0.2  </code></pre>
 </div>
 <p>Recall the questions with which we began the chapter:</p>
 <p><em>How long will two political candidates — one male and one female, both 10 years older than the average candidate — live after the election? How different will their lifespans be?</em></p>
-<p>These questions are, purposely, less precise than the ones we tackled in Chapters <a href="07-two-parameters.html"><span>Chapter&nbsp;7</span></a> and <a href="08-three-parameters.html"><span>Chapter&nbsp;8</span></a>, written more in a conversational style. This is how normal people talk.</p>
+<p>These questions are, purposely, less precise than the ones we tackled in Chapters <a href="07-two-parameters.html"><span>Chapter&nbsp;4</span></a> and <a href="08-three-parameters.html"><span>Chapter&nbsp;5</span></a>, written more in a conversational style. This is how normal people talk.</p>
 <p>However, as data scientists, our job is to bring precision to these questions. There are two commonsense interpretations. First, we could be curious about the <em>expected values</em> for these questions. If we averaged the data for a thousand candidates like these, what would the answer be? Second, we could be curious about two specific individuals. How long will they live? <em>Averages involve questions about parameters. The fates of individuals require predictions.</em> Those are general claims, violated too often to be firm rules. Yet, they highlight a key point: <em>expected values are less variable than individual predictions</em>.</p>
 <p>To calculate expected values, use <code><a href="https://mc-stan.org/rstantools/reference/posterior_epred.html">posterior_epred()</a></code>. To forecast for individuals, use <code><a href="https://mc-stan.org/rstantools/reference/posterior_predict.html">posterior_predict()</a></code>.</p>
-<section id="expected-values" class="level3" data-number="10.4.1"><h3 data-number="10.4.1" class="anchored" data-anchor-id="expected-values">
-<span class="header-section-number">10.4.1</span> Expected values</h3>
+<section id="expected-values" class="level3" data-number="7.4.1"><h3 data-number="7.4.1" class="anchored" data-anchor-id="expected-values">
+<span class="header-section-number">7.4.1</span> Expected values</h3>
 <p>Consider the “on average” interpretation first. The answer begins with the posterior distributions of the parameters in <code>fit_4</code>.</p>
 <!-- DK: We need to walk through the math. Start with the original formula. Replace the x's with the values for this person. Simplify. Plug in the parameters, which are distributions. This gives us the answer. It goes too fast to just go straight for the code. -->
 <div class="cell">
@@ -2299,8 +2284,8 @@ sigma 11.1    0.2  </code></pre>
 </div>
 <p>The average value of the <em>difference</em> in years-to-live is probably positive, with the most likely value being around 45 years. But there still a 1% chance the true value is less than zero, i.e., that we should expect female candidates to live longer.</p>
 <p>Instead of using <code><a href="https://mc-stan.org/rstantools/reference/posterior_epred.html">posterior_epred()</a></code>, we could have answered these questions by using the posterior probability distributions for the parameters in the model, along with some simple math. Don’t do this! First, you are much more likely to make a mistake. Second, this approach does not generalize well to complex models with scores of parameters and their interactions.</p>
-</section><section id="individual-predictions" class="level3" data-number="10.4.2"><h3 data-number="10.4.2" class="anchored" data-anchor-id="individual-predictions">
-<span class="header-section-number">10.4.2</span> Individual predictions</h3>
+</section><section id="individual-predictions" class="level3" data-number="7.4.2"><h3 data-number="7.4.2" class="anchored" data-anchor-id="individual-predictions">
+<span class="header-section-number">7.4.2</span> Individual predictions</h3>
 <p>If, instead, we interpret the question as asking for a prediction for a small number of individuals, then we need to use <code><a href="https://mc-stan.org/rstantools/reference/posterior_predict.html">posterior_predict()</a></code>.</p>
 <!-- DK: Try again to explain what a posterior prediction is. -->
 <p>Use <code><a href="https://mc-stan.org/rstantools/reference/posterior_predict.html">posterior_predict()</a></code> to create draws from the posterior probability distribution for our prediction for these cases. <code><a href="https://mc-stan.org/rstantools/reference/posterior_predict.html">posterior_predict()</a></code> takes two arguments: the model for which the simulations should be run, and a tibble indicating the covariate values for the individual(s) we want to predict. In this case, we are using the <code>fit_4</code> model and the tibble is the one we just created above. In other words, the inputs for <code><a href="https://mc-stan.org/rstantools/reference/posterior_predict.html">posterior_predict()</a></code> and <code><a href="https://mc-stan.org/rstantools/reference/posterior_epred.html">posterior_epred()</a></code> are identical.</p>
@@ -2392,8 +2377,8 @@ sigma 11.1    0.2  </code></pre>
 </div>
 <p>In fact, there is a 4 in 10 chance that the female candidate lives longer.</p>
 <p><em>Note what is the same and what is different when we move from a question about averages to a question about individuals.</em> In both cases, the most likely value is about the same. That is, the average behavior is the same as our expected value for any given individual. But the uncertainty is much greater for an individual prediction. The chance of the true average for male candidates being less than that for female candidates is low. Yet, for any individual pair of candidates, it would not even be slightly surprising for the female candidate to outlive the male candidate. Individuals vary. Averages never tell the whole story.</p>
-</section><section id="expectation-versus-individual-variation" class="level3" data-number="10.4.3"><h3 data-number="10.4.3" class="anchored" data-anchor-id="expectation-versus-individual-variation">
-<span class="header-section-number">10.4.3</span> Expectation versus individual variation</h3>
+</section><section id="expectation-versus-individual-variation" class="level3" data-number="7.4.3"><h3 data-number="7.4.3" class="anchored" data-anchor-id="expectation-versus-individual-variation">
+<span class="header-section-number">7.4.3</span> Expectation versus individual variation</h3>
 <p>Let’s compare the results from <code><a href="https://mc-stan.org/rstantools/reference/posterior_epred.html">posterior_epred()</a></code> and <code><a href="https://mc-stan.org/rstantools/reference/posterior_predict.html">posterior_predict()</a></code> for this scenario directly. Most of this code is the same as what we have shown you above, but we think it is useful to look at everything together.</p>
 <div class="cell">
 <div class="sourceCode" id="cb44"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">newobs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>sex <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Male"</span>, <span class="st">"Female"</span><span class="op">)</span>,</span>
@@ -2434,8 +2419,8 @@ sigma 11.1    0.2  </code></pre>
 <p>Expected values vary much less than predictions. The above chart makes that easy to see. We are somewhat sure that the true underlying average for the numbers of years that male candidates live post-election is more than female candidates. But, for any two individual candidates, there is a good chance that that the female candidate will live longer. We can not ignore <span class="math inline">\(\epsilon\)</span> when predicting the outcome for individuals. When estimating expected values or long-run averages, the <span class="math inline">\(\epsilon\)</span>’s cancel out.</p>
 <!-- DK: Discuss the substantive issue? How can it be that Washington candidates live longer? Also, compare these estimates to what naive lm() would tell us. -->
 <!-- DK: Finish with Temperance/population/exchangability discussion. -->
-</section><section id="testing" class="level3" data-number="10.4.4"><h3 data-number="10.4.4" class="anchored" data-anchor-id="testing">
-<span class="header-section-number">10.4.4</span> Testing</h3>
+</section><section id="testing" class="level3" data-number="7.4.4"><h3 data-number="7.4.4" class="anchored" data-anchor-id="testing">
+<span class="header-section-number">7.4.4</span> Testing</h3>
 <p>“Tests,” “testing,” “hypothesis tests,” “tests of significance,” and “null hypothesis significance testing” all refer to the same concept. We will refer to this collection of approaches as NHST, a common abbreviation derived from the initials of the last phrase. Wikipedia provides an <a href="https://en.wikipedia.org/wiki/Statistical_hypothesis_testing">overview</a>.</p>
 <p>In hypothesis testing, we have a null hypothesis — this hypothesis represents a particular probability model. We also have an alternative hypothesis, which is typically the alternative to the null hypothesis. Let’s look at an example that is unrelated to statistics first.</p>
 <p>Imagine a criminal trial held in the United States. Our criminal justice system assumes “the defendant is innocent until proven guilty.” That is, our initial assumption is that the defendant is innocent.</p>
@@ -2452,8 +2437,8 @@ sigma 11.1    0.2  </code></pre>
 <p>A Yes/No question throws away too much information to (almost) ever be useful. There is no reason to <em>test</em> when you can <em>summarize</em> by providing the full posterior probability distribution.</p>
 <p>The same arguments apply in the case of “insignificant” results when we can’t “reject” the null hypothesis. In simple terms: who cares!? We have the full posterior probability distribution for that prediction — also known as the posterior predictive distribution — as graphed above. The fact that result is not “significant” has no relevance to how we use the posterior to make decisions.</p>
 <p>The same reasoning applies to every parameter we estimate, to every prediction we make. Never test — unless your boss demands a test. <em>Use your judgment, make your models, summarize your knowledge of the world, and use that summary to make decisions.</em></p>
-</section></section><section id="summary" class="level2" data-number="10.5"><h2 data-number="10.5" class="anchored" data-anchor-id="summary">
-<span class="header-section-number">10.5</span> Summary</h2>
+</section></section><section id="summary" class="level2" data-number="7.5"><h2 data-number="7.5" class="anchored" data-anchor-id="summary">
+<span class="header-section-number">7.5</span> Summary</h2>
 <p><em>The major part of Wisdom is deciding what questions you can’t answer because of the data you don’t have.</em></p>
 <p><em>Avoid answering questions by working with parameters directly. Use <code><a href="https://mc-stan.org/rstantools/reference/posterior_epred.html">posterior_epred()</a></code> instead.</em></p>
 <p><em>Good data science involves an intelligent tour of the space of possible models.</em></p>
@@ -2600,12 +2585,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
       <a href="./09-four-parameters.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Four Parameters</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Four Parameters</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./11-n-parameters.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">N Parameters</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">N Parameters</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

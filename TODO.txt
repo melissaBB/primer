@@ -4,9 +4,9 @@ Think hard about just deleting chapters 1 through 3. Bite the bullet!
 
 Remove R code stuff from Chapter 5. That material is (?) covered in the Iteration chapter.
 
-Start Iteration tutorial. Move material from chapter 5 overview tutorial to it.
 
-Move statistical functions info from chapter 2 to, maybe, chapter 5. Update Overview tutorial for chapter 5 to review that information.
+
+
 
 Clean up first three chapters. Publish them. Add them to bootcamp schedule?
 

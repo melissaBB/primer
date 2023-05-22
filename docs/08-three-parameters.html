@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.2.269">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>Preceptor’s Primer for Bayesian Data Science: Using the Cardinal Virtues for Inference - 8&nbsp; Three Parameters</title>
+<title>Preceptor’s Primer for Bayesian Data Science: Using the Cardinal Virtues for Inference - 5&nbsp; Three Parameters</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -142,7 +142,7 @@ div.csl-indent {
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }"><div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Three Parameters</span></h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Three Parameters</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -196,57 +196,42 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./01-visualization.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Visualization</span></a>
+  <a href="./04-rubin-causal-model.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Rubin Causal Model</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02-wrangling.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Wrangling</span></a>
+  <a href="./05-probability.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Probability</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./03-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data</span></a>
+  <a href="./06-one-parameter.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">One Parameter</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04-rubin-causal-model.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Rubin Causal Model</span></a>
+  <a href="./07-two-parameters.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Two Parameters</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./05-probability.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Probability</span></a>
+  <a href="./08-three-parameters.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Three Parameters</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./06-one-parameter.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">One Parameter</span></a>
+  <a href="./09-four-parameters.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Four Parameters</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07-two-parameters.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Two Parameters</span></a>
+  <a href="./10-five-parameters.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Five Parameters</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./08-three-parameters.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Three Parameters</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./09-four-parameters.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Four Parameters</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./10-five-parameters.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Five Parameters</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./11-n-parameters.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">N Parameters</span></a>
+  <a href="./11-n-parameters.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">N Parameters</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -271,53 +256,53 @@ div.csl-indent {
    
   <ul>
 <li>
-<a href="#wisdom" id="toc-wisdom" class="nav-link active" data-scroll-target="#wisdom"><span class="toc-section-number">8.1</span>  Wisdom</a>
+<a href="#wisdom" id="toc-wisdom" class="nav-link active" data-scroll-target="#wisdom"><span class="toc-section-number">5.1</span>  Wisdom</a>
   <ul class="collapse">
-<li><a href="#preceptor-table" id="toc-preceptor-table" class="nav-link" data-scroll-target="#preceptor-table"><span class="toc-section-number">8.1.1</span>  Preceptor Table</a></li>
-  <li><a href="#eda-for-trains" id="toc-eda-for-trains" class="nav-link" data-scroll-target="#eda-for-trains"><span class="toc-section-number">8.1.2</span>  EDA for <code>trains</code></a></li>
-  <li><a href="#population" id="toc-population" class="nav-link" data-scroll-target="#population"><span class="toc-section-number">8.1.3</span>  Population</a></li>
-  <li><a href="#population-table" id="toc-population-table" class="nav-link" data-scroll-target="#population-table"><span class="toc-section-number">8.1.4</span>  Population Table</a></li>
+<li><a href="#preceptor-table" id="toc-preceptor-table" class="nav-link" data-scroll-target="#preceptor-table"><span class="toc-section-number">5.1.1</span>  Preceptor Table</a></li>
+  <li><a href="#eda-for-trains" id="toc-eda-for-trains" class="nav-link" data-scroll-target="#eda-for-trains"><span class="toc-section-number">5.1.2</span>  EDA for <code>trains</code></a></li>
+  <li><a href="#population" id="toc-population" class="nav-link" data-scroll-target="#population"><span class="toc-section-number">5.1.3</span>  Population</a></li>
+  <li><a href="#population-table" id="toc-population-table" class="nav-link" data-scroll-target="#population-table"><span class="toc-section-number">5.1.4</span>  Population Table</a></li>
   </ul>
 </li>
   <li>
-<a href="#age-party" id="toc-age-party" class="nav-link" data-scroll-target="#age-party"><span class="toc-section-number">8.2</span>  age ~ party</a>
+<a href="#age-party" id="toc-age-party" class="nav-link" data-scroll-target="#age-party"><span class="toc-section-number">5.2</span>  age ~ party</a>
   <ul class="collapse">
-<li><a href="#justice" id="toc-justice" class="nav-link" data-scroll-target="#justice"><span class="toc-section-number">8.2.1</span>  Justice</a></li>
-  <li><a href="#courage" id="toc-courage" class="nav-link" data-scroll-target="#courage"><span class="toc-section-number">8.2.2</span>  Courage</a></li>
-  <li><a href="#temperance" id="toc-temperance" class="nav-link" data-scroll-target="#temperance"><span class="toc-section-number">8.2.3</span>  Temperance</a></li>
-  <li><a href="#addendum" id="toc-addendum" class="nav-link" data-scroll-target="#addendum"><span class="toc-section-number">8.2.4</span>  Addendum</a></li>
+<li><a href="#justice" id="toc-justice" class="nav-link" data-scroll-target="#justice"><span class="toc-section-number">5.2.1</span>  Justice</a></li>
+  <li><a href="#courage" id="toc-courage" class="nav-link" data-scroll-target="#courage"><span class="toc-section-number">5.2.2</span>  Courage</a></li>
+  <li><a href="#temperance" id="toc-temperance" class="nav-link" data-scroll-target="#temperance"><span class="toc-section-number">5.2.3</span>  Temperance</a></li>
+  <li><a href="#addendum" id="toc-addendum" class="nav-link" data-scroll-target="#addendum"><span class="toc-section-number">5.2.4</span>  Addendum</a></li>
   </ul>
 </li>
   <li>
-<a href="#att_end-treatment" id="toc-att_end-treatment" class="nav-link" data-scroll-target="#att_end-treatment"><span class="toc-section-number">8.3</span>  att_end ~ treatment</a>
+<a href="#att_end-treatment" id="toc-att_end-treatment" class="nav-link" data-scroll-target="#att_end-treatment"><span class="toc-section-number">5.3</span>  att_end ~ treatment</a>
   <ul class="collapse">
-<li><a href="#justice-1" id="toc-justice-1" class="nav-link" data-scroll-target="#justice-1"><span class="toc-section-number">8.3.1</span>  Justice</a></li>
-  <li><a href="#courage-1" id="toc-courage-1" class="nav-link" data-scroll-target="#courage-1"><span class="toc-section-number">8.3.2</span>  Courage</a></li>
-  <li><a href="#temperance-1" id="toc-temperance-1" class="nav-link" data-scroll-target="#temperance-1"><span class="toc-section-number">8.3.3</span>  Temperance</a></li>
+<li><a href="#justice-1" id="toc-justice-1" class="nav-link" data-scroll-target="#justice-1"><span class="toc-section-number">5.3.1</span>  Justice</a></li>
+  <li><a href="#courage-1" id="toc-courage-1" class="nav-link" data-scroll-target="#courage-1"><span class="toc-section-number">5.3.2</span>  Courage</a></li>
+  <li><a href="#temperance-1" id="toc-temperance-1" class="nav-link" data-scroll-target="#temperance-1"><span class="toc-section-number">5.3.3</span>  Temperance</a></li>
   </ul>
 </li>
   <li>
-<a href="#income-age" id="toc-income-age" class="nav-link" data-scroll-target="#income-age"><span class="toc-section-number">8.4</span>  income ~ age</a>
+<a href="#income-age" id="toc-income-age" class="nav-link" data-scroll-target="#income-age"><span class="toc-section-number">5.4</span>  income ~ age</a>
   <ul class="collapse">
-<li><a href="#justice-2" id="toc-justice-2" class="nav-link" data-scroll-target="#justice-2"><span class="toc-section-number">8.4.1</span>  Justice</a></li>
-  <li><a href="#courage-2" id="toc-courage-2" class="nav-link" data-scroll-target="#courage-2"><span class="toc-section-number">8.4.2</span>  Courage</a></li>
-  <li><a href="#temperance-2" id="toc-temperance-2" class="nav-link" data-scroll-target="#temperance-2"><span class="toc-section-number">8.4.3</span>  Temperance</a></li>
+<li><a href="#justice-2" id="toc-justice-2" class="nav-link" data-scroll-target="#justice-2"><span class="toc-section-number">5.4.1</span>  Justice</a></li>
+  <li><a href="#courage-2" id="toc-courage-2" class="nav-link" data-scroll-target="#courage-2"><span class="toc-section-number">5.4.2</span>  Courage</a></li>
+  <li><a href="#temperance-2" id="toc-temperance-2" class="nav-link" data-scroll-target="#temperance-2"><span class="toc-section-number">5.4.3</span>  Temperance</a></li>
   </ul>
 </li>
   <li>
-<a href="#liberal-income" id="toc-liberal-income" class="nav-link" data-scroll-target="#liberal-income"><span class="toc-section-number">8.5</span>  liberal ~ income</a>
+<a href="#liberal-income" id="toc-liberal-income" class="nav-link" data-scroll-target="#liberal-income"><span class="toc-section-number">5.5</span>  liberal ~ income</a>
   <ul class="collapse">
-<li><a href="#justice-3" id="toc-justice-3" class="nav-link" data-scroll-target="#justice-3"><span class="toc-section-number">8.5.1</span>  Justice</a></li>
-  <li><a href="#courage-3" id="toc-courage-3" class="nav-link" data-scroll-target="#courage-3"><span class="toc-section-number">8.5.2</span>  Courage</a></li>
-  <li><a href="#temperance-3" id="toc-temperance-3" class="nav-link" data-scroll-target="#temperance-3"><span class="toc-section-number">8.5.3</span>  Temperance</a></li>
+<li><a href="#justice-3" id="toc-justice-3" class="nav-link" data-scroll-target="#justice-3"><span class="toc-section-number">5.5.1</span>  Justice</a></li>
+  <li><a href="#courage-3" id="toc-courage-3" class="nav-link" data-scroll-target="#courage-3"><span class="toc-section-number">5.5.2</span>  Courage</a></li>
+  <li><a href="#temperance-3" id="toc-temperance-3" class="nav-link" data-scroll-target="#temperance-3"><span class="toc-section-number">5.5.3</span>  Temperance</a></li>
   </ul>
 </li>
-  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="toc-section-number">8.6</span>  Summary</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="toc-section-number">5.6</span>  Summary</a></li>
   </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/PPBDS/primer/edit/main/08-three-parameters.qmd" class="toc-action">Edit this page</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
-<h1 class="title"><span id="sec-three-parameters" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Three Parameters</span></span></h1>
+<h1 class="title"><span id="sec-three-parameters" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Three Parameters</span></span></h1>
 </div>
 
 
@@ -350,11 +335,11 @@ div.csl-indent {
 <!-- Well, if age is your outcome, then you have one sort of problem. You want the distribution of the outcome variables in the sample to match the distribution in the population. Note the sloppiness here. Am I worried about the distribution of the data from the point in time from when the sample comes from? Or am I interested in the distribution of the outcome from the whole population? Answer: They are the same thing (I think). -->
 <!-- Third case: What if the sampling mechanism goes a bias among the independent variables? -->
 <!-- Even if the two outcome distributions are the same, then a second problem could be that the parameters of the model are different for different ranges of the independent variable.  (Grumpy people versus  non-grumpy people.) -->
-<p>Models have parameters. In <a href="06-one-parameter.html"><span>Chapter&nbsp;6</span></a> we created models with a single parameter <span class="math inline">\(p\)</span>, the proportion of red beads in an urn. In <a href="07-two-parameters.html"><span>Chapter&nbsp;7</span></a>, we used models with two parameters: <span class="math inline">\(\mu\)</span> (the average height in the population, generically known as a model “intercept”) and <span class="math inline">\(\sigma\)</span> (the variation in height in the population). Here — can you guess where this is going? — we will build models with three parameters: <span class="math inline">\(\sigma\)</span> (which serves the same role throughout the book) and two “coefficients.” In models which relate a continuous predictor to the outcome, those two parameters will be labeled <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span>. In models which estimate two averages, the parameters will be <span class="math inline">\(\beta_1\)</span> and <span class="math inline">\(\beta_2\)</span>. All this notation is confusing, not least because different academic fields use inconsistent schemes. Follow the Cardinal Virtues and tackle your problem step by step.</p>
-<section id="wisdom" class="level2" data-number="8.1"><h2 data-number="8.1" class="anchored" data-anchor-id="wisdom">
-<span class="header-section-number">8.1</span> Wisdom</h2>
-<section id="preceptor-table" class="level3" data-number="8.1.1"><h3 data-number="8.1.1" class="anchored" data-anchor-id="preceptor-table">
-<span class="header-section-number">8.1.1</span> Preceptor Table</h3>
+<p>Models have parameters. In <a href="06-one-parameter.html"><span>Chapter&nbsp;3</span></a> we created models with a single parameter <span class="math inline">\(p\)</span>, the proportion of red beads in an urn. In <a href="07-two-parameters.html"><span>Chapter&nbsp;4</span></a>, we used models with two parameters: <span class="math inline">\(\mu\)</span> (the average height in the population, generically known as a model “intercept”) and <span class="math inline">\(\sigma\)</span> (the variation in height in the population). Here — can you guess where this is going? — we will build models with three parameters: <span class="math inline">\(\sigma\)</span> (which serves the same role throughout the book) and two “coefficients.” In models which relate a continuous predictor to the outcome, those two parameters will be labeled <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span>. In models which estimate two averages, the parameters will be <span class="math inline">\(\beta_1\)</span> and <span class="math inline">\(\beta_2\)</span>. All this notation is confusing, not least because different academic fields use inconsistent schemes. Follow the Cardinal Virtues and tackle your problem step by step.</p>
+<section id="wisdom" class="level2" data-number="5.1"><h2 data-number="5.1" class="anchored" data-anchor-id="wisdom">
+<span class="header-section-number">5.1</span> Wisdom</h2>
+<section id="preceptor-table" class="level3" data-number="5.1.1"><h3 data-number="5.1.1" class="anchored" data-anchor-id="preceptor-table">
+<span class="header-section-number">5.1.1</span> Preceptor Table</h3>
 <p>Wisdom begins with considering the questions we desire to answer and the data set we are given. In this chapter, we are going to ask a series of questions involving train commuters’ ages, party affiliations, incomes, and political ideology, as well as the causal effect of exposure to Spanish-speakers on their attitude toward immigration. These questions will pertain to all train commuters in the US today. Given these types of questions, the Preceptor Table would be:</p>
 <div class="cell">
 
@@ -362,23 +347,23 @@ div.csl-indent {
 <div class="cell">
 <div class="cell-output-display">
 
-<div id="hodquyeepb" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#hodquyeepb table {
+<div id="xtxpyogjbx" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#xtxpyogjbx table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#hodquyeepb thead, #hodquyeepb tbody, #hodquyeepb tfoot, #hodquyeepb tr, #hodquyeepb td, #hodquyeepb th {
+#xtxpyogjbx thead, #xtxpyogjbx tbody, #xtxpyogjbx tfoot, #xtxpyogjbx tr, #xtxpyogjbx td, #xtxpyogjbx th {
   border-style: none;
 }
 
-#hodquyeepb p {
+#xtxpyogjbx p {
   margin: 0;
   padding: 0;
 }
 
-#hodquyeepb .gt_table {
+#xtxpyogjbx .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -404,12 +389,12 @@ div.csl-indent {
   border-left-color: #D3D3D3;
 }
 
-#hodquyeepb .gt_caption {
+#xtxpyogjbx .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#hodquyeepb .gt_title {
+#xtxpyogjbx .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -421,7 +406,7 @@ div.csl-indent {
   border-bottom-width: 0;
 }
 
-#hodquyeepb .gt_subtitle {
+#xtxpyogjbx .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -433,7 +418,7 @@ div.csl-indent {
   border-top-width: 0;
 }
 
-#hodquyeepb .gt_heading {
+#xtxpyogjbx .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -445,13 +430,13 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#hodquyeepb .gt_bottom_border {
+#xtxpyogjbx .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#hodquyeepb .gt_col_headings {
+#xtxpyogjbx .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -466,7 +451,7 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#hodquyeepb .gt_col_heading {
+#xtxpyogjbx .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -486,7 +471,7 @@ div.csl-indent {
   overflow-x: hidden;
 }
 
-#hodquyeepb .gt_column_spanner_outer {
+#xtxpyogjbx .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -498,15 +483,15 @@ div.csl-indent {
   padding-right: 4px;
 }
 
-#hodquyeepb .gt_column_spanner_outer:first-child {
+#xtxpyogjbx .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#hodquyeepb .gt_column_spanner_outer:last-child {
+#xtxpyogjbx .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#hodquyeepb .gt_column_spanner {
+#xtxpyogjbx .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -518,11 +503,11 @@ div.csl-indent {
   width: 100%;
 }
 
-#hodquyeepb .gt_spanner_row {
+#xtxpyogjbx .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#hodquyeepb .gt_group_heading {
+#xtxpyogjbx .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -548,7 +533,7 @@ div.csl-indent {
   text-align: left;
 }
 
-#hodquyeepb .gt_empty_group_heading {
+#xtxpyogjbx .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -563,15 +548,15 @@ div.csl-indent {
   vertical-align: middle;
 }
 
-#hodquyeepb .gt_from_md > :first-child {
+#xtxpyogjbx .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#hodquyeepb .gt_from_md > :last-child {
+#xtxpyogjbx .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#hodquyeepb .gt_row {
+#xtxpyogjbx .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -590,7 +575,7 @@ div.csl-indent {
   overflow-x: hidden;
 }
 
-#hodquyeepb .gt_stub {
+#xtxpyogjbx .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -603,7 +588,7 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#hodquyeepb .gt_stub_row_group {
+#xtxpyogjbx .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -617,15 +602,15 @@ div.csl-indent {
   vertical-align: top;
 }
 
-#hodquyeepb .gt_row_group_first td {
+#xtxpyogjbx .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#hodquyeepb .gt_row_group_first th {
+#xtxpyogjbx .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#hodquyeepb .gt_summary_row {
+#xtxpyogjbx .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -635,16 +620,16 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#hodquyeepb .gt_first_summary_row {
+#xtxpyogjbx .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#hodquyeepb .gt_first_summary_row.thick {
+#xtxpyogjbx .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#hodquyeepb .gt_last_summary_row {
+#xtxpyogjbx .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -654,7 +639,7 @@ div.csl-indent {
   border-bottom-color: #D3D3D3;
 }
 
-#hodquyeepb .gt_grand_summary_row {
+#xtxpyogjbx .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -664,7 +649,7 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#hodquyeepb .gt_first_grand_summary_row {
+#xtxpyogjbx .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -674,7 +659,7 @@ div.csl-indent {
   border-top-color: #D3D3D3;
 }
 
-#hodquyeepb .gt_last_grand_summary_row_top {
+#xtxpyogjbx .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -684,11 +669,11 @@ div.csl-indent {
   border-bottom-color: #D3D3D3;
 }
 
-#hodquyeepb .gt_striped {
+#xtxpyogjbx .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#hodquyeepb .gt_table_body {
+#xtxpyogjbx .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -697,7 +682,7 @@ div.csl-indent {
   border-bottom-color: #D3D3D3;
 }
 
-#hodquyeepb .gt_footnotes {
+#xtxpyogjbx .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -711,7 +696,7 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#hodquyeepb .gt_footnote {
+#xtxpyogjbx .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -720,7 +705,7 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#hodquyeepb .gt_sourcenotes {
+#xtxpyogjbx .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -734,7 +719,7 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#hodquyeepb .gt_sourcenote {
+#xtxpyogjbx .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -742,63 +727,63 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#hodquyeepb .gt_left {
+#xtxpyogjbx .gt_left {
   text-align: left;
 }
 
-#hodquyeepb .gt_center {
+#xtxpyogjbx .gt_center {
   text-align: center;
 }
 
-#hodquyeepb .gt_right {
+#xtxpyogjbx .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#hodquyeepb .gt_font_normal {
+#xtxpyogjbx .gt_font_normal {
   font-weight: normal;
 }
 
-#hodquyeepb .gt_font_bold {
+#xtxpyogjbx .gt_font_bold {
   font-weight: bold;
 }
 
-#hodquyeepb .gt_font_italic {
+#xtxpyogjbx .gt_font_italic {
   font-style: italic;
 }
 
-#hodquyeepb .gt_super {
+#xtxpyogjbx .gt_super {
   font-size: 65%;
 }
 
-#hodquyeepb .gt_footnote_marks {
+#xtxpyogjbx .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#hodquyeepb .gt_asterisk {
+#xtxpyogjbx .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#hodquyeepb .gt_indent_1 {
+#xtxpyogjbx .gt_indent_1 {
   text-indent: 5px;
 }
 
-#hodquyeepb .gt_indent_2 {
+#xtxpyogjbx .gt_indent_2 {
   text-indent: 10px;
 }
 
-#hodquyeepb .gt_indent_3 {
+#xtxpyogjbx .gt_indent_3 {
   text-indent: 15px;
 }
 
-#hodquyeepb .gt_indent_4 {
+#xtxpyogjbx .gt_indent_4 {
   text-indent: 20px;
 }
 
-#hodquyeepb .gt_indent_5 {
+#xtxpyogjbx .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -964,10 +949,10 @@ div.csl-indent {
 <p>Recall: a Preceptor Table is the smallest possible table such that, if there is no missing data, all our questions are easy to answer. To answer questions — like “What is, today, the average age of train commuters in the US?” — we need a row for every train commuter.</p>
 <p>Notice that one of our questions is about a causal effect: What change in immigration attitudes is caused by being exposed to Spanish-speakers? Answering causal questions requires (at least) two potential outcomes: immigration attitude for those who receive the treatment of being exposed to Spanish-speakers and for those who do not.</p>
 <p>Having created the Preceptor Table, we now look at the data we have: the <code>trains</code> data set from the <strong>primer.data</strong> package.</p>
-</section><section id="eda-for-trains" class="level3" data-number="8.1.2"><h3 data-number="8.1.2" class="anchored" data-anchor-id="eda-for-trains">
-<span class="header-section-number">8.1.2</span> EDA for <code>trains</code>
+</section><section id="eda-for-trains" class="level3" data-number="5.1.2"><h3 data-number="5.1.2" class="anchored" data-anchor-id="eda-for-trains">
+<span class="header-section-number">5.1.2</span> EDA for <code>trains</code>
 </h3>
-<p><em>Always explore your data.</em> Recall the discussion from <a href="04-rubin-causal-model.html"><span>Chapter&nbsp;4</span></a>. <span class="citation" data-cites="enos2014">Enos (<a href="references.html#ref-enos2014" role="doc-biblioref">2014</a>)</span> randomly placed Spanish-speaking confederates on nine train platforms around Boston, Massachusetts. Exposure to Spanish-speakers – the <code>treatment</code> – influenced attitudes toward immigration. These reactions were measured through changes in answers to three survey questions. Load the necessary libraries and look at the data.</p>
+<p><em>Always explore your data.</em> Recall the discussion from <a href="04-rubin-causal-model.html"><span>Chapter&nbsp;1</span></a>. <span class="citation" data-cites="enos2014">Enos (<a href="references.html#ref-enos2014" role="doc-biblioref">2014</a>)</span> randomly placed Spanish-speaking confederates on nine train platforms around Boston, Massachusetts. Exposure to Spanish-speakers – the <code>treatment</code> – influenced attitudes toward immigration. These reactions were measured through changes in answers to three survey questions. Load the necessary libraries and look at the data.</p>
 <div class="cell">
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">primer.data</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://mc-stan.org/rstanarm/">rstanarm</a></span><span class="op">)</span></span>
@@ -1009,11 +994,11 @@ $ ideology_end   &lt;int&gt; 3, 4, 2, 4, 2, 5, 5, 4, 3, 4, 3, 4, 4, 1, 2, 3, 3, 
 <pre><code># A tibble: 5 × 6
     age att_end party    income treatment liberal
   &lt;int&gt;   &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt; &lt;fct&gt;     &lt;lgl&gt;  
-1    36      11 Democrat 135000 Treated   FALSE  
-2    35      14 Democrat 105000 Treated   FALSE  
-3    52      13 Democrat 135000 Treated   FALSE  
-4    50      13 Democrat 105000 Treated   TRUE   
-5    42       9 Democrat  87500 Control   FALSE  </code></pre>
+1    46      12 Democrat 250000 Control   FALSE  
+2    30      14 Democrat 105000 Treated   FALSE  
+3    20      10 Democrat 135000 Treated   TRUE   
+4    48       5 Democrat  42500 Control   FALSE  
+5    52       7 Democrat  23500 Control   TRUE   </code></pre>
 </div>
 </div>
 <p><code>att_end</code> is a measure of person’s attitude toward immigration. A higher number means more conservative, i.e., a more exclusionary stance toward immigration into the United States.</p>
@@ -1235,8 +1220,8 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
 </div>
 </div>
 <p><code><a href="https://docs.ropensci.org/skimr/reference/skim.html">skim()</a></code> shows us what the different values of <code>treatment</code> are because it is a factor. Unfortunately, it does not do the same for character variables like <code>party</code>. The ranges for <code>age</code> and <code>att_end</code> seem reasonable. Recall that participants were asked three questions about immigration issues, each of which allowed for an answer indicated strength of agreement on a scale form 1 to 5, with higher values indicating more agreement with conservative viewpoints. <code>att_end</code> is the sum of the responses to the three questions, so the most liberal possible value is 3 and the most conservative is 15.</p>
-</section><section id="population" class="level3" data-number="8.1.3"><h3 data-number="8.1.3" class="anchored" data-anchor-id="population">
-<span class="header-section-number">8.1.3</span> Population</h3>
+</section><section id="population" class="level3" data-number="5.1.3"><h3 data-number="5.1.3" class="anchored" data-anchor-id="population">
+<span class="header-section-number">5.1.3</span> Population</h3>
 <!-- Combo of old things from different sections and new explanations, need to combine and clarify -->
 <!-- One of the key jobs of a data scientist is to guide people --- our colleagues, bosses and clients --- toward asking precise questions. We must help them to translate English into inference. That translation requires precision. -->
 <p>The data that we have are very limited. There are only 115 observations, all from 2012 and involving train commuters to Boston. <em>Can we assume that the the data we have and the data in our Preceptor Table are drawn from the same population?</em> Only your judgment, along with advice from your colleagues, can guide you.</p>
@@ -1244,8 +1229,8 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
 <p>The Preceptor Table is all US train commuters today. However, the data we have involves train commuters in the Boston area in 2012. So, what we must ask ourselves is if this data from Boston in 2012 can be drawn from the same population as all train commuters in the US today.</p>
 <p>The key concept is the idea of a “population.” From which larger population is the data we have being (conceptually) drawn? If we were only interested in the age of individuals in our data set, we would have no need for inference. <em>We know everyone’s ages already.</em> We only need tools like <code><a href="https://mc-stan.org/rstanarm/reference/stan_glm.html">stan_glm()</a></code> if we seek to understand individuals not in our data.</p>
 <p>The issue is always: Do the data we have and the data we want to have come from the same population? If there is no connection between the two, progress is impossible. But, in this case, if we are willing to consider the population to be US residents over the last decade (including today), and if we are willing to assume that there is a single population from which the Preceptor Table and our data set is drawn, then we can use our data to create a model to answer our questions.</p>
-</section><section id="population-table" class="level3" data-number="8.1.4"><h3 data-number="8.1.4" class="anchored" data-anchor-id="population-table">
-<span class="header-section-number">8.1.4</span> Population Table</h3>
+</section><section id="population-table" class="level3" data-number="5.1.4"><h3 data-number="5.1.4" class="anchored" data-anchor-id="population-table">
+<span class="header-section-number">5.1.4</span> Population Table</h3>
 <p>Having determined that the Preceptor Table and the data were drawn from the same population, we can produce a Population Table.</p>
 <p>The Population Table includes rows from three sources: the <strong>Preceptor Table</strong>, the <strong>actual data</strong>, and all <em>other</em> members of the population.</p>
 <p>The rows in the <strong>Preceptor Table</strong> contain the information that we would <em>want</em> to know in order to answer our questions. These rows contain entries for our covariates (city and year) but they do not contain any outcome results. We are trying to answer questions about the train commuter population in 2021, so our city entries for these rows will vary and our year entries of these rows will read “2021”.</p>
@@ -1255,23 +1240,23 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
 <div class="cell">
 <div class="cell-output-display">
 
-<div id="cmzvovgjhh" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#cmzvovgjhh table {
+<div id="ziehaztioo" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ziehaztioo table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#cmzvovgjhh thead, #cmzvovgjhh tbody, #cmzvovgjhh tfoot, #cmzvovgjhh tr, #cmzvovgjhh td, #cmzvovgjhh th {
+#ziehaztioo thead, #ziehaztioo tbody, #ziehaztioo tfoot, #ziehaztioo tr, #ziehaztioo td, #ziehaztioo th {
   border-style: none;
 }
 
-#cmzvovgjhh p {
+#ziehaztioo p {
   margin: 0;
   padding: 0;
 }
 
-#cmzvovgjhh .gt_table {
+#ziehaztioo .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1297,12 +1282,12 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
   border-left-color: #D3D3D3;
 }
 
-#cmzvovgjhh .gt_caption {
+#ziehaztioo .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#cmzvovgjhh .gt_title {
+#ziehaztioo .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1314,7 +1299,7 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
   border-bottom-width: 0;
 }
 
-#cmzvovgjhh .gt_subtitle {
+#ziehaztioo .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1326,7 +1311,7 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
   border-top-width: 0;
 }
 
-#cmzvovgjhh .gt_heading {
+#ziehaztioo .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1338,13 +1323,13 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
   border-right-color: #D3D3D3;
 }
 
-#cmzvovgjhh .gt_bottom_border {
+#ziehaztioo .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#cmzvovgjhh .gt_col_headings {
+#ziehaztioo .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1359,7 +1344,7 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
   border-right-color: #D3D3D3;
 }
 
-#cmzvovgjhh .gt_col_heading {
+#ziehaztioo .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1379,7 +1364,7 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
   overflow-x: hidden;
 }
 
-#cmzvovgjhh .gt_column_spanner_outer {
+#ziehaztioo .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1391,15 +1376,15 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
   padding-right: 4px;
 }
 
-#cmzvovgjhh .gt_column_spanner_outer:first-child {
+#ziehaztioo .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#cmzvovgjhh .gt_column_spanner_outer:last-child {
+#ziehaztioo .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#cmzvovgjhh .gt_column_spanner {
+#ziehaztioo .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1411,11 +1396,11 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
   width: 100%;
 }
 
-#cmzvovgjhh .gt_spanner_row {
+#ziehaztioo .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#cmzvovgjhh .gt_group_heading {
+#ziehaztioo .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1441,7 +1426,7 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
   text-align: left;
 }
 
-#cmzvovgjhh .gt_empty_group_heading {
+#ziehaztioo .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1456,15 +1441,15 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
   vertical-align: middle;
 }
 
-#cmzvovgjhh .gt_from_md > :first-child {
+#ziehaztioo .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#cmzvovgjhh .gt_from_md > :last-child {
+#ziehaztioo .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#cmzvovgjhh .gt_row {
+#ziehaztioo .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1483,7 +1468,7 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
   overflow-x: hidden;
 }
 
-#cmzvovgjhh .gt_stub {
+#ziehaztioo .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1496,7 +1481,7 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
   padding-right: 5px;
 }
 
-#cmzvovgjhh .gt_stub_row_group {
+#ziehaztioo .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1510,15 +1495,15 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
   vertical-align: top;
 }
 
-#cmzvovgjhh .gt_row_group_first td {
+#ziehaztioo .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#cmzvovgjhh .gt_row_group_first th {
+#ziehaztioo .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#cmzvovgjhh .gt_summary_row {
+#ziehaztioo .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1528,16 +1513,16 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
   padding-right: 5px;
 }
 
-#cmzvovgjhh .gt_first_summary_row {
+#ziehaztioo .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#cmzvovgjhh .gt_first_summary_row.thick {
+#ziehaztioo .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#cmzvovgjhh .gt_last_summary_row {
+#ziehaztioo .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1547,7 +1532,7 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
   border-bottom-color: #D3D3D3;
 }
 
-#cmzvovgjhh .gt_grand_summary_row {
+#ziehaztioo .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1557,7 +1542,7 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
   padding-right: 5px;
 }
 
-#cmzvovgjhh .gt_first_grand_summary_row {
+#ziehaztioo .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1567,7 +1552,7 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
   border-top-color: #D3D3D3;
 }
 
-#cmzvovgjhh .gt_last_grand_summary_row_top {
+#ziehaztioo .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1577,11 +1562,11 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
   border-bottom-color: #D3D3D3;
 }
 
-#cmzvovgjhh .gt_striped {
+#ziehaztioo .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#cmzvovgjhh .gt_table_body {
+#ziehaztioo .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1590,7 +1575,7 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
   border-bottom-color: #D3D3D3;
 }
 
-#cmzvovgjhh .gt_footnotes {
+#ziehaztioo .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1604,7 +1589,7 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
   border-right-color: #D3D3D3;
 }
 
-#cmzvovgjhh .gt_footnote {
+#ziehaztioo .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1613,7 +1598,7 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
   padding-right: 5px;
 }
 
-#cmzvovgjhh .gt_sourcenotes {
+#ziehaztioo .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1627,7 +1612,7 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
   border-right-color: #D3D3D3;
 }
 
-#cmzvovgjhh .gt_sourcenote {
+#ziehaztioo .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1635,63 +1620,63 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
   padding-right: 5px;
 }
 
-#cmzvovgjhh .gt_left {
+#ziehaztioo .gt_left {
   text-align: left;
 }
 
-#cmzvovgjhh .gt_center {
+#ziehaztioo .gt_center {
   text-align: center;
 }
 
-#cmzvovgjhh .gt_right {
+#ziehaztioo .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#cmzvovgjhh .gt_font_normal {
+#ziehaztioo .gt_font_normal {
   font-weight: normal;
 }
 
-#cmzvovgjhh .gt_font_bold {
+#ziehaztioo .gt_font_bold {
   font-weight: bold;
 }
 
-#cmzvovgjhh .gt_font_italic {
+#ziehaztioo .gt_font_italic {
   font-style: italic;
 }
 
-#cmzvovgjhh .gt_super {
+#ziehaztioo .gt_super {
   font-size: 65%;
 }
 
-#cmzvovgjhh .gt_footnote_marks {
+#ziehaztioo .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#cmzvovgjhh .gt_asterisk {
+#ziehaztioo .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#cmzvovgjhh .gt_indent_1 {
+#ziehaztioo .gt_indent_1 {
   text-indent: 5px;
 }
 
-#cmzvovgjhh .gt_indent_2 {
+#ziehaztioo .gt_indent_2 {
   text-indent: 10px;
 }
 
-#cmzvovgjhh .gt_indent_3 {
+#ziehaztioo .gt_indent_3 {
   text-indent: 15px;
 }
 
-#cmzvovgjhh .gt_indent_4 {
+#ziehaztioo .gt_indent_4 {
   text-indent: 20px;
 }
 
-#cmzvovgjhh .gt_indent_5 {
+#ziehaztioo .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -2125,8 +2110,8 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
 </div>
 </div>
 <p>Our Preceptor Table rows are chronologically ordered. The “other” rows our greater population for which we are making assumptions — this is why the year at the start is earlier than our data and the year at the end is later than our Preceptor Table. This shows the more expansive population that we are inferring about.</p>
-</section></section><section id="age-party" class="level2" data-number="8.2"><h2 data-number="8.2" class="anchored" data-anchor-id="age-party">
-<span class="header-section-number">8.2</span> age ~ party</h2>
+</section></section><section id="age-party" class="level2" data-number="5.2"><h2 data-number="5.2" class="anchored" data-anchor-id="age-party">
+<span class="header-section-number">5.2</span> age ~ party</h2>
 <!-- No need to repeat the questions. You can make reference to them, and then just conclude that we are using party to model age. -->
 <p>We want to build a model and then use that model to make claims about the world. Our questions about the relationship between <code>age</code> and <code>party</code> are the following:</p>
 <p><em>What is the expected age of a Democrat at the train station?</em></p>
@@ -2136,8 +2121,8 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
 
 <!-- Discuss whether the data comes from the same population as Preceptor Table -->
 <!-- This sections ends with the Population  Table. -->
-<section id="justice" class="level3" data-number="8.2.1"><h3 data-number="8.2.1" class="anchored" data-anchor-id="justice">
-<span class="header-section-number">8.2.1</span> Justice</h3>
+<section id="justice" class="level3" data-number="5.2.1"><h3 data-number="5.2.1" class="anchored" data-anchor-id="justice">
+<span class="header-section-number">5.2.1</span> Justice</h3>
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -2156,27 +2141,27 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
 <p>We can also consider the type of DGM. Any DGM with age as its dependent variable will be predictive, not causal, for the simple reason that nothing, other than time, can change your age. You are X years old. It would not matter if you changed your party registration from Democrat to Republican or vice versa. Your age is your age. When dealing with a non-causal DGM, the focus is on predicting things. The underlying mechanism which connects age with party is less important than the brute statistical fact that there is a connection. <em>Predictive models care little about causality.</em></p>
 
 <!-- Preceptor Tables should be laid out like the formula: outcome on left, predictors on right. -->
-<p>A good way at looking at this is with a Preceptor Table, as seen below. Unlike the previous table in <a href="07-two-parameters.html"><span>Chapter&nbsp;7</span></a>, we now have two columns in addition to ID. Since our data does not include all Republicans and Democrats in the world, not every row is filled in.</p>
+<p>A good way at looking at this is with a Preceptor Table, as seen below. Unlike the previous table in <a href="07-two-parameters.html"><span>Chapter&nbsp;4</span></a>, we now have two columns in addition to ID. Since our data does not include all Republicans and Democrats in the world, not every row is filled in.</p>
 <div class="cell">
 <div class="cell-output-display">
 
-<div id="jdqqlnrxft" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#jdqqlnrxft table {
+<div id="kiyiznbyzq" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#kiyiznbyzq table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#jdqqlnrxft thead, #jdqqlnrxft tbody, #jdqqlnrxft tfoot, #jdqqlnrxft tr, #jdqqlnrxft td, #jdqqlnrxft th {
+#kiyiznbyzq thead, #kiyiznbyzq tbody, #kiyiznbyzq tfoot, #kiyiznbyzq tr, #kiyiznbyzq td, #kiyiznbyzq th {
   border-style: none;
 }
 
-#jdqqlnrxft p {
+#kiyiznbyzq p {
   margin: 0;
   padding: 0;
 }
 
-#jdqqlnrxft .gt_table {
+#kiyiznbyzq .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -2202,12 +2187,12 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
   border-left-color: #D3D3D3;
 }
 
-#jdqqlnrxft .gt_caption {
+#kiyiznbyzq .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#jdqqlnrxft .gt_title {
+#kiyiznbyzq .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2219,7 +2204,7 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
   border-bottom-width: 0;
 }
 
-#jdqqlnrxft .gt_subtitle {
+#kiyiznbyzq .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2231,7 +2216,7 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
   border-top-width: 0;
 }
 
-#jdqqlnrxft .gt_heading {
+#kiyiznbyzq .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2243,13 +2228,13 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
   border-right-color: #D3D3D3;
 }
 
-#jdqqlnrxft .gt_bottom_border {
+#kiyiznbyzq .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#jdqqlnrxft .gt_col_headings {
+#kiyiznbyzq .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2264,7 +2249,7 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
   border-right-color: #D3D3D3;
 }
 
-#jdqqlnrxft .gt_col_heading {
+#kiyiznbyzq .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2284,7 +2269,7 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
   overflow-x: hidden;
 }
 
-#jdqqlnrxft .gt_column_spanner_outer {
+#kiyiznbyzq .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2296,15 +2281,15 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
   padding-right: 4px;
 }
 
-#jdqqlnrxft .gt_column_spanner_outer:first-child {
+#kiyiznbyzq .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#jdqqlnrxft .gt_column_spanner_outer:last-child {
+#kiyiznbyzq .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#jdqqlnrxft .gt_column_spanner {
+#kiyiznbyzq .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2316,11 +2301,11 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
   width: 100%;
 }
 
-#jdqqlnrxft .gt_spanner_row {
+#kiyiznbyzq .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#jdqqlnrxft .gt_group_heading {
+#kiyiznbyzq .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2346,7 +2331,7 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
   text-align: left;
 }
 
-#jdqqlnrxft .gt_empty_group_heading {
+#kiyiznbyzq .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2361,15 +2346,15 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
   vertical-align: middle;
 }
 
-#jdqqlnrxft .gt_from_md > :first-child {
+#kiyiznbyzq .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#jdqqlnrxft .gt_from_md > :last-child {
+#kiyiznbyzq .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#jdqqlnrxft .gt_row {
+#kiyiznbyzq .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2388,7 +2373,7 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
   overflow-x: hidden;
 }
 
-#jdqqlnrxft .gt_stub {
+#kiyiznbyzq .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2401,7 +2386,7 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
   padding-right: 5px;
 }
 
-#jdqqlnrxft .gt_stub_row_group {
+#kiyiznbyzq .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2415,15 +2400,15 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
   vertical-align: top;
 }
 
-#jdqqlnrxft .gt_row_group_first td {
+#kiyiznbyzq .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#jdqqlnrxft .gt_row_group_first th {
+#kiyiznbyzq .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#jdqqlnrxft .gt_summary_row {
+#kiyiznbyzq .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2433,16 +2418,16 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
   padding-right: 5px;
 }
 
-#jdqqlnrxft .gt_first_summary_row {
+#kiyiznbyzq .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#jdqqlnrxft .gt_first_summary_row.thick {
+#kiyiznbyzq .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#jdqqlnrxft .gt_last_summary_row {
+#kiyiznbyzq .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2452,7 +2437,7 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
   border-bottom-color: #D3D3D3;
 }
 
-#jdqqlnrxft .gt_grand_summary_row {
+#kiyiznbyzq .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2462,7 +2447,7 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
   padding-right: 5px;
 }
 
-#jdqqlnrxft .gt_first_grand_summary_row {
+#kiyiznbyzq .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2472,7 +2457,7 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
   border-top-color: #D3D3D3;
 }
 
-#jdqqlnrxft .gt_last_grand_summary_row_top {
+#kiyiznbyzq .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2482,11 +2467,11 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
   border-bottom-color: #D3D3D3;
 }
 
-#jdqqlnrxft .gt_striped {
+#kiyiznbyzq .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#jdqqlnrxft .gt_table_body {
+#kiyiznbyzq .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2495,7 +2480,7 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
   border-bottom-color: #D3D3D3;
 }
 
-#jdqqlnrxft .gt_footnotes {
+#kiyiznbyzq .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2509,7 +2494,7 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
   border-right-color: #D3D3D3;
 }
 
-#jdqqlnrxft .gt_footnote {
+#kiyiznbyzq .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2518,7 +2503,7 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
   padding-right: 5px;
 }
 
-#jdqqlnrxft .gt_sourcenotes {
+#kiyiznbyzq .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2532,7 +2517,7 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
   border-right-color: #D3D3D3;
 }
 
-#jdqqlnrxft .gt_sourcenote {
+#kiyiznbyzq .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2540,63 +2525,63 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
   padding-right: 5px;
 }
 
-#jdqqlnrxft .gt_left {
+#kiyiznbyzq .gt_left {
   text-align: left;
 }
 
-#jdqqlnrxft .gt_center {
+#kiyiznbyzq .gt_center {
   text-align: center;
 }
 
-#jdqqlnrxft .gt_right {
+#kiyiznbyzq .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#jdqqlnrxft .gt_font_normal {
+#kiyiznbyzq .gt_font_normal {
   font-weight: normal;
 }
 
-#jdqqlnrxft .gt_font_bold {
+#kiyiznbyzq .gt_font_bold {
   font-weight: bold;
 }
 
-#jdqqlnrxft .gt_font_italic {
+#kiyiznbyzq .gt_font_italic {
   font-style: italic;
 }
 
-#jdqqlnrxft .gt_super {
+#kiyiznbyzq .gt_super {
   font-size: 65%;
 }
 
-#jdqqlnrxft .gt_footnote_marks {
+#kiyiznbyzq .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#jdqqlnrxft .gt_asterisk {
+#kiyiznbyzq .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#jdqqlnrxft .gt_indent_1 {
+#kiyiznbyzq .gt_indent_1 {
   text-indent: 5px;
 }
 
-#jdqqlnrxft .gt_indent_2 {
+#kiyiznbyzq .gt_indent_2 {
   text-indent: 10px;
 }
 
-#jdqqlnrxft .gt_indent_3 {
+#kiyiznbyzq .gt_indent_3 {
   text-indent: 15px;
 }
 
-#jdqqlnrxft .gt_indent_4 {
+#kiyiznbyzq .gt_indent_4 {
   text-indent: 20px;
 }
 
-#jdqqlnrxft .gt_indent_5 {
+#kiyiznbyzq .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -2694,10 +2679,10 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
 <ul>
 <li><p>The small <span class="math inline">\(i\)</span>’s are an index to number the observations. It is equivalent to the “ID” column in our Preceptor Table and simply states that the outcome for person <span class="math inline">\(i\)</span> is explained by the modeled and non-modeled factors for person <span class="math inline">\(i\)</span>.</p></li>
 <li><p>The model is a claim about how the world works, not just for the 115 individuals for which we have data but for the all the people in the population for which we seek to draw inferences.</p></li>
-<li><p>Although terminology differs across academic fields, the most common term to describe a model like this is a “regression.” We are “regressing” <code>age</code> on <code>party</code> in order to see if they are associated with each other. The formula above is a “regression formula”, and the model is a “regression model.” This terminology would also apply to our model of <code>height</code> in <a href="07-two-parameters.html"><span>Chapter&nbsp;7</span></a>.</p></li>
-<li><p>The model in <a href="07-two-parameters.html"><span>Chapter&nbsp;7</span></a> is sometimes called “intercept-only” because the only (interesting) parameter is the intercept. Here we have a “two intercept” model because, instead of estimating an average for the whole population, we are estimating two averages.</p></li>
-</ul></section><section id="courage" class="level3" data-number="8.2.2"><h3 data-number="8.2.2" class="anchored" data-anchor-id="courage">
-<span class="header-section-number">8.2.2</span> Courage</h3>
+<li><p>Although terminology differs across academic fields, the most common term to describe a model like this is a “regression.” We are “regressing” <code>age</code> on <code>party</code> in order to see if they are associated with each other. The formula above is a “regression formula”, and the model is a “regression model.” This terminology would also apply to our model of <code>height</code> in <a href="07-two-parameters.html"><span>Chapter&nbsp;4</span></a>.</p></li>
+<li><p>The model in <a href="07-two-parameters.html"><span>Chapter&nbsp;4</span></a> is sometimes called “intercept-only” because the only (interesting) parameter is the intercept. Here we have a “two intercept” model because, instead of estimating an average for the whole population, we are estimating two averages.</p></li>
+</ul></section><section id="courage" class="level3" data-number="5.2.2"><h3 data-number="5.2.2" class="anchored" data-anchor-id="courage">
+<span class="header-section-number">5.2.2</span> Courage</h3>
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -2708,7 +2693,7 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
 </div>
 </div>
 <p>Courage allows us to translate math to code.</p>
-<p>To get posterior distributions for our three parameters, we will again use <code><a href="https://mc-stan.org/rstanarm/reference/stan_glm.html">stan_glm()</a></code>, just as we did in <a href="07-two-parameters.html"><span>Chapter&nbsp;7</span></a>.</p>
+<p>To get posterior distributions for our three parameters, we will again use <code><a href="https://mc-stan.org/rstanarm/reference/stan_glm.html">stan_glm()</a></code>, just as we did in <a href="07-two-parameters.html"><span>Chapter&nbsp;4</span></a>.</p>
 <div class="cell">
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/rstanarm/reference/stan_glm.html">stan_glm</a></span><span class="op">(</span><span class="va">age</span> <span class="op">~</span> <span class="va">party</span> <span class="op">-</span> <span class="fl">1</span>, </span>
 <span>                    data <span class="op">=</span> <span class="va">trains</span>, </span>
@@ -2773,7 +2758,7 @@ sigma 12.3    0.8
 <p>The unknown parameters <span class="math inline">\(\beta_1\)</span> (partyDemocrat) and <span class="math inline">\(\beta_2\)</span> (partyRepublican) are still unknown. We can never know the true average age of all Democrats in the population. But we can calculate a posterior probability distribution for each parameter. Comments:</p>
 <ul>
 <li><p>Democrats seem slightly older than Republicans. That was true in the sample and so, almost (but not quite!) by definition, it will be true in our the posterior probability distributions.</p></li>
-<li><p>Our estimate for the average age of Democrats in the population is much more precise than that for Republicans because we have five times as many Democrats as Republicans in our sample. A central lesson from <a href="06-one-parameter.html"><span>Chapter&nbsp;6</span></a> is that the more data you have related to a parameter, the narrower your posterior distribution will be.</p></li>
+<li><p>Our estimate for the average age of Democrats in the population is much more precise than that for Republicans because we have five times as many Democrats as Republicans in our sample. A central lesson from <a href="06-one-parameter.html"><span>Chapter&nbsp;3</span></a> is that the more data you have related to a parameter, the narrower your posterior distribution will be.</p></li>
 <li><p>There is a great deal of overlap between the two distributions. Would we be surprised if, in truth, the average age of Republicans in the population was greater than that for Democrats? Not really. We don’t have enough data to be sure either way.</p></li>
 <li><p>The phrase “in the population” is doing a great deal of work because we have not said what, precisely, we mean by the “population.” Is it the set of people on those commuter platforms on those days in 2012 when the experiment was done? Is it the set of people on all platforms, including ones never visited? Is it the set of all Boston commuter? All Massachusetts residents? All US residents? Does it include people today, or can we only draw inferences for 2012? We will explore these questions in every model we create.</p></li>
 <li><p>The parameters <span class="math inline">\(\beta_1\)</span> and <span class="math inline">\(\beta_2\)</span> can be interpreted in two ways. First, like all parameters, they are a part of the model. We need to estimate them. But, in many cases, we don’t really care what the value of the parameter is. The exact value of <span class="math inline">\(\sigma\)</span>, for example, does not really matter. Second, some parameters have a substantive interpretaion, as with <span class="math inline">\(\beta_1\)</span> and <span class="math inline">\(\beta_2\)</span> being the average ages in the population. But this will often not be the case! Fortunately, with such models, we can use functions like <code><a href="https://mc-stan.org/rstantools/reference/posterior_epred.html">posterior_epred()</a></code> and <code><a href="https://mc-stan.org/rstantools/reference/posterior_predict.html">posterior_predict()</a></code> to answer our questions.</p></li>
@@ -2782,23 +2767,23 @@ sigma 12.3    0.8
 <div class="cell">
 <div class="cell-output-display">
 
-<div id="zpmnsuutix" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#zpmnsuutix table {
+<div id="atkpqcqdbk" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#atkpqcqdbk table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#zpmnsuutix thead, #zpmnsuutix tbody, #zpmnsuutix tfoot, #zpmnsuutix tr, #zpmnsuutix td, #zpmnsuutix th {
+#atkpqcqdbk thead, #atkpqcqdbk tbody, #atkpqcqdbk tfoot, #atkpqcqdbk tr, #atkpqcqdbk td, #atkpqcqdbk th {
   border-style: none;
 }
 
-#zpmnsuutix p {
+#atkpqcqdbk p {
   margin: 0;
   padding: 0;
 }
 
-#zpmnsuutix .gt_table {
+#atkpqcqdbk .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -2824,12 +2809,12 @@ sigma 12.3    0.8
   border-left-color: #D3D3D3;
 }
 
-#zpmnsuutix .gt_caption {
+#atkpqcqdbk .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#zpmnsuutix .gt_title {
+#atkpqcqdbk .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2841,7 +2826,7 @@ sigma 12.3    0.8
   border-bottom-width: 0;
 }
 
-#zpmnsuutix .gt_subtitle {
+#atkpqcqdbk .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2853,7 +2838,7 @@ sigma 12.3    0.8
   border-top-width: 0;
 }
 
-#zpmnsuutix .gt_heading {
+#atkpqcqdbk .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2865,13 +2850,13 @@ sigma 12.3    0.8
   border-right-color: #D3D3D3;
 }
 
-#zpmnsuutix .gt_bottom_border {
+#atkpqcqdbk .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#zpmnsuutix .gt_col_headings {
+#atkpqcqdbk .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2886,7 +2871,7 @@ sigma 12.3    0.8
   border-right-color: #D3D3D3;
 }
 
-#zpmnsuutix .gt_col_heading {
+#atkpqcqdbk .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2906,7 +2891,7 @@ sigma 12.3    0.8
   overflow-x: hidden;
 }
 
-#zpmnsuutix .gt_column_spanner_outer {
+#atkpqcqdbk .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2918,15 +2903,15 @@ sigma 12.3    0.8
   padding-right: 4px;
 }
 
-#zpmnsuutix .gt_column_spanner_outer:first-child {
+#atkpqcqdbk .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#zpmnsuutix .gt_column_spanner_outer:last-child {
+#atkpqcqdbk .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#zpmnsuutix .gt_column_spanner {
+#atkpqcqdbk .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2938,11 +2923,11 @@ sigma 12.3    0.8
   width: 100%;
 }
 
-#zpmnsuutix .gt_spanner_row {
+#atkpqcqdbk .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#zpmnsuutix .gt_group_heading {
+#atkpqcqdbk .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2968,7 +2953,7 @@ sigma 12.3    0.8
   text-align: left;
 }
 
-#zpmnsuutix .gt_empty_group_heading {
+#atkpqcqdbk .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2983,15 +2968,15 @@ sigma 12.3    0.8
   vertical-align: middle;
 }
 
-#zpmnsuutix .gt_from_md > :first-child {
+#atkpqcqdbk .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#zpmnsuutix .gt_from_md > :last-child {
+#atkpqcqdbk .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#zpmnsuutix .gt_row {
+#atkpqcqdbk .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3010,7 +2995,7 @@ sigma 12.3    0.8
   overflow-x: hidden;
 }
 
-#zpmnsuutix .gt_stub {
+#atkpqcqdbk .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3023,7 +3008,7 @@ sigma 12.3    0.8
   padding-right: 5px;
 }
 
-#zpmnsuutix .gt_stub_row_group {
+#atkpqcqdbk .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3037,15 +3022,15 @@ sigma 12.3    0.8
   vertical-align: top;
 }
 
-#zpmnsuutix .gt_row_group_first td {
+#atkpqcqdbk .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#zpmnsuutix .gt_row_group_first th {
+#atkpqcqdbk .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#zpmnsuutix .gt_summary_row {
+#atkpqcqdbk .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3055,16 +3040,16 @@ sigma 12.3    0.8
   padding-right: 5px;
 }
 
-#zpmnsuutix .gt_first_summary_row {
+#atkpqcqdbk .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#zpmnsuutix .gt_first_summary_row.thick {
+#atkpqcqdbk .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#zpmnsuutix .gt_last_summary_row {
+#atkpqcqdbk .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3074,7 +3059,7 @@ sigma 12.3    0.8
   border-bottom-color: #D3D3D3;
 }
 
-#zpmnsuutix .gt_grand_summary_row {
+#atkpqcqdbk .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3084,7 +3069,7 @@ sigma 12.3    0.8
   padding-right: 5px;
 }
 
-#zpmnsuutix .gt_first_grand_summary_row {
+#atkpqcqdbk .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3094,7 +3079,7 @@ sigma 12.3    0.8
   border-top-color: #D3D3D3;
 }
 
-#zpmnsuutix .gt_last_grand_summary_row_top {
+#atkpqcqdbk .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3104,11 +3089,11 @@ sigma 12.3    0.8
   border-bottom-color: #D3D3D3;
 }
 
-#zpmnsuutix .gt_striped {
+#atkpqcqdbk .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#zpmnsuutix .gt_table_body {
+#atkpqcqdbk .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3117,7 +3102,7 @@ sigma 12.3    0.8
   border-bottom-color: #D3D3D3;
 }
 
-#zpmnsuutix .gt_footnotes {
+#atkpqcqdbk .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3131,7 +3116,7 @@ sigma 12.3    0.8
   border-right-color: #D3D3D3;
 }
 
-#zpmnsuutix .gt_footnote {
+#atkpqcqdbk .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -3140,7 +3125,7 @@ sigma 12.3    0.8
   padding-right: 5px;
 }
 
-#zpmnsuutix .gt_sourcenotes {
+#atkpqcqdbk .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3154,7 +3139,7 @@ sigma 12.3    0.8
   border-right-color: #D3D3D3;
 }
 
-#zpmnsuutix .gt_sourcenote {
+#atkpqcqdbk .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -3162,63 +3147,63 @@ sigma 12.3    0.8
   padding-right: 5px;
 }
 
-#zpmnsuutix .gt_left {
+#atkpqcqdbk .gt_left {
   text-align: left;
 }
 
-#zpmnsuutix .gt_center {
+#atkpqcqdbk .gt_center {
   text-align: center;
 }
 
-#zpmnsuutix .gt_right {
+#atkpqcqdbk .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#zpmnsuutix .gt_font_normal {
+#atkpqcqdbk .gt_font_normal {
   font-weight: normal;
 }
 
-#zpmnsuutix .gt_font_bold {
+#atkpqcqdbk .gt_font_bold {
   font-weight: bold;
 }
 
-#zpmnsuutix .gt_font_italic {
+#atkpqcqdbk .gt_font_italic {
   font-style: italic;
 }
 
-#zpmnsuutix .gt_super {
+#atkpqcqdbk .gt_super {
   font-size: 65%;
 }
 
-#zpmnsuutix .gt_footnote_marks {
+#atkpqcqdbk .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#zpmnsuutix .gt_asterisk {
+#atkpqcqdbk .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#zpmnsuutix .gt_indent_1 {
+#atkpqcqdbk .gt_indent_1 {
   text-indent: 5px;
 }
 
-#zpmnsuutix .gt_indent_2 {
+#atkpqcqdbk .gt_indent_2 {
   text-indent: 10px;
 }
 
-#zpmnsuutix .gt_indent_3 {
+#atkpqcqdbk .gt_indent_3 {
   text-indent: 15px;
 }
 
-#zpmnsuutix .gt_indent_4 {
+#atkpqcqdbk .gt_indent_4 {
   text-indent: 20px;
 }
 
-#zpmnsuutix .gt_indent_5 {
+#atkpqcqdbk .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -3325,8 +3310,8 @@ sigma 12.3    0.8
 <li><p>The middle plot for the fitted values shows only two adjacent spikes, which represent the estimates for Democrats and Republicans.</p></li>
 <li><p>Since the residuals plot represents the difference between the other two plots, its distribution looks like the first plot.</p></li>
 </ul>
-<!-- All unclear and would benefit from clean up. --><!-- DK: Add discussion of posterior predictive check. Discuss the DGM. How can we check that the DGM is ok? Answer: By creating some fake data sets, and making sure that our real data set "looks like" the fake ones. --></section><section id="temperance" class="level3" data-number="8.2.3"><h3 data-number="8.2.3" class="anchored" data-anchor-id="temperance">
-<span class="header-section-number">8.2.3</span> Temperance</h3>
+<!-- All unclear and would benefit from clean up. --><!-- DK: Add discussion of posterior predictive check. Discuss the DGM. How can we check that the DGM is ok? Answer: By creating some fake data sets, and making sure that our real data set "looks like" the fake ones. --></section><section id="temperance" class="level3" data-number="5.2.3"><h3 data-number="5.2.3" class="anchored" data-anchor-id="temperance">
+<span class="header-section-number">5.2.3</span> Temperance</h3>
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -3341,7 +3326,7 @@ sigma 12.3    0.8
 <li>What is the probability that, if a Democrat shows up at the train station, he will be over 50 years old?</li>
 </ul>
 <p>So far we have only tried our model on people from our data set whose real age we already knew. This is helpful to understand the model, but our ultimate goal is to understand more about the real world, about people we don’t yet know much about. Temperance guides us to make meaningful predictions and to become aware of their known and unknown limitations.</p>
-<p>Start with a simple question, what are the chances that a random Democrat is over 50 years old? First, we create a tibble with the desired input for our model. In our case the tibble has a variable named “party” which contains a single observation with the value “Democrat”. This is a bit different than <a href="07-two-parameters.html"><span>Chapter&nbsp;7</span></a>.</p>
+<p>Start with a simple question, what are the chances that a random Democrat is over 50 years old? First, we create a tibble with the desired input for our model. In our case the tibble has a variable named “party” which contains a single observation with the value “Democrat”. This is a bit different than <a href="07-two-parameters.html"><span>Chapter&nbsp;4</span></a>.</p>
 <div class="cell">
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">new_obs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>party <span class="op">=</span> <span class="st">"Democrat"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -3357,16 +3342,16 @@ sigma 12.3    0.8
 <pre><code># A tibble: 10 × 1
      `1`
    &lt;dbl&gt;
- 1  55.9
- 2  26.7
- 3  43.7
- 4  55.5
- 5  27.6
- 6  59.4
- 7  43.2
- 8  46.3
- 9  43.1
-10  64.2</code></pre>
+ 1  36.2
+ 2  23.3
+ 3  26.2
+ 4  47.1
+ 5  37.5
+ 6  49.5
+ 7  37.8
+ 8  49.3
+ 9  55.5
+10  36.7</code></pre>
 </div>
 </div>
 <p>The result are draws from the posterior distribution of the age of a Democrat. It is important to understand that this is not a concrete person from the <code>trains</code> dataset - the algorithm in <code><a href="https://mc-stan.org/rstantools/reference/posterior_predict.html">posterior_predict()</a></code> simply uses the existing data from <code>trains</code> to estimate this posterior distribution.</p>
@@ -3389,7 +3374,7 @@ sigma 12.3    0.8
 <div class="cell">
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">pp</span><span class="op">$</span><span class="va">`1`</span> <span class="op">&gt;</span> <span class="fl">50</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">pp</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.274</code></pre>
+<pre><code>[1] 0.27475</code></pre>
 </div>
 </div>
 <p>Recall the second question:</p>
@@ -3407,16 +3392,16 @@ sigma 12.3    0.8
 <pre><code># A tibble: 4,000 × 6
      `1`   `2`   `3`   `4`   `5`   `6`
    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
- 1  38.8  49.0  22.3  36.8  50.2  50.7
- 2  22.3  40.8  38.1  36.5  26.7  75.6
- 3  47.1  50.6  54.9  60.0  56.3  29.7
- 4  52.9  58.4  42.4  49.0  31.6  51.7
- 5  52.9  57.1  42.9  30.8  33.9  36.3
- 6  28.2  61.2  36.9  43.0  46.5  44.0
- 7  30.7  32.0  42.4  48.3  56.9  37.7
- 8  52.7  42.5  34.9  30.1  48.1  47.4
- 9  75.6  26.5  20.8  32.9  26.5  72.5
-10  34.5  36.5  34.9  41.8  33.9  29.2
+ 1  23.9  44.3 51.0   52.2  47.4  54.8
+ 2  19.3  74.5 66.1   40.9  62.8  42.0
+ 3  34.0  41.1 57.2   38.1  43.3  36.2
+ 4  32.5  44.3 42.0   20.8  45.8  22.6
+ 5  48.5  42.1 52.9   39.3  34.0  34.0
+ 6  35.6  43.9 60.7   24.9  23.2  57.9
+ 7  55.3  38.6 47.1   46.9  45.8  44.7
+ 8  35.3  45.5 42.0   36.3  37.3  39.7
+ 9  32.4  59.4 44.6   58.8  33.2  64.1
+10  43.6  63.2  8.57  38.9  44.7  49.1
 # ℹ 3,990 more rows</code></pre>
 </div>
 </div>
@@ -3451,16 +3436,16 @@ sigma 12.3    0.8
 # Rowwise: 
    dem_1 dem_2 dem_3 rep_1 rep_2 rep_3 dems_oldest reps_youngest age_diff
    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;       &lt;dbl&gt;         &lt;dbl&gt;    &lt;dbl&gt;
- 1  61.7  58.9  50.6  47.3  38.2  55.4        61.7          38.2    23.5 
- 2  43.7  33.7  32.3  24.5  46.1  49.4        43.7          24.5    19.1 
- 3  19.5  45.5  48.9  35.5  27.9  58.2        48.9          27.9    21.0 
- 4  35.2  45.7  18.1  36.9  63.4  24.2        45.7          24.2    21.5 
- 5  52.7  26.1  49.6  40.1  47.9  22.3        52.7          22.3    30.5 
- 6  57.7  48.4  20.9  41.5  49.3  56.0        57.7          41.5    16.2 
- 7  32.1  36.2  30.4  33.5  52.8  31.2        36.2          31.2     5.01
- 8  56.3  55.8  40.5  34.9  43.0  52.6        56.3          34.9    21.5 
- 9  35.7  33.5  47.0  34.1  52.3  41.4        47.0          34.1    12.9 
-10  45.4  39.2  55.1  47.6  53.0  59.4        55.1          47.6     7.51
+ 1  47.4  43.1  49.6  33.6  62.8  73.2        49.6          33.6    16.0 
+ 2  51.1  36.5  46.8  49.5  39.4  31.7        51.1          31.7    19.4 
+ 3  41.2  64.3  54.8  39.1  37.8  41.1        64.3          37.8    26.5 
+ 4  39.0  45.4  43.0  31.3  40.5  47.3        45.4          31.3    14.1 
+ 5  26.7  40.6  44.7  28.1  35.5  26.8        44.7          26.8    18.0 
+ 6  19.7  32.6  33.4  49.5  38.7  44.1        33.4          38.7    -5.32
+ 7  54.6  45.3  31.4  42.5  56.9  34.8        54.6          34.8    19.9 
+ 8  49.6  27.9  42.0  24.7  41.2  37.5        49.6          24.7    24.9 
+ 9  28.3  35.9  46.1  62.1  69.0  37.3        46.1          37.3     8.77
+10  27.4  24.5  33.9  53.8  36.4  51.8        33.9          36.4    -2.45
 # ℹ 3,990 more rows</code></pre>
 </div>
 </div>
@@ -3481,8 +3466,8 @@ sigma 12.3    0.8
 </div>
 </div>
 <p>In words, we would expect the oldest Democrat to be about 22 years older than the youngest Republican, but we would not be too surprised if the oldest Democrat was actually younger than the youngest Republican in a group of 6.</p>
-</section><section id="addendum" class="level3" data-number="8.2.4"><h3 data-number="8.2.4" class="anchored" data-anchor-id="addendum">
-<span class="header-section-number">8.2.4</span> Addendum</h3>
+</section><section id="addendum" class="level3" data-number="5.2.4"><h3 data-number="5.2.4" class="anchored" data-anchor-id="addendum">
+<span class="header-section-number">5.2.4</span> Addendum</h3>
 <p>Instead of parameterizing this model without an intercept, we could have used one. In that case, the math would be:</p>
 <p><span class="math display">\[ y_i = \beta_0  + \beta_1 democratic_i + \epsilon_i\]</span> The interpretations of the parameters are different from the prior model. <span class="math inline">\(\beta_0\)</span> is now the average age of Republicans. This is the same interpretation as <span class="math inline">\(\beta_1\)</span> in the original set up. <span class="math inline">\(\beta_1\)</span> is now the difference between the the average age of Republicans and that of Democrats.</p>
 <p>To fit this model, we use the exact same code as before, except without the <code>-1</code> in the <code>formula</code> argument.</p>
@@ -3514,14 +3499,14 @@ sigma 12.3    0.8
 <p>The intercept, 42.6, is the same as the <code>partyDemocrat</code> estimate in the first model. The <code>partyRepublican</code> estimate, which was previously 41.0, is now -1.5, meaning it is the difference (allowing for rounding) between the average age of Democrats and Republicans.</p>
 <p>Little else about the models will be different. They will have the same fitted values and residuals. <code><a href="https://mc-stan.org/rstantools/reference/posterior_predict.html">posterior_predict()</a></code> will generate the same posterior predictive probabilty distributions. Which parameterization we use does not matter much. But you should be able to interpret the meaning of the coefficients in both.</p>
 <!-- Need more here? -->
-</section></section><section id="att_end-treatment" class="level2" data-number="8.3"><h2 data-number="8.3" class="anchored" data-anchor-id="att_end-treatment">
-<span class="header-section-number">8.3</span> att_end ~ treatment</h2>
+</section></section><section id="att_end-treatment" class="level2" data-number="5.3"><h2 data-number="5.3" class="anchored" data-anchor-id="att_end-treatment">
+<span class="header-section-number">5.3</span> att_end ~ treatment</h2>
 <p>Above, we created a predictive model: with someone’s party affiliation, we can make a better guess as to what their age is than we could have in the absence of information about their party. There was nothing causal about that model. Changing someone’s party registration can not change their age. In this example, we build a causal model. Consider these two questions:</p>
 <p><em>What is the average treatment effect, of exposing people to Spanish-speakers, on their attitudes toward immigration?</em></p>
 <p><em>What is the largest causal effect which still has a 1 in 10 chance of occurring?</em></p>
 <p>Models help us answer questions better than we could without those models, but only if we follow the Cardinal Virtues.</p>
-<section id="justice-1" class="level3" data-number="8.3.1"><h3 data-number="8.3.1" class="anchored" data-anchor-id="justice-1">
-<span class="header-section-number">8.3.1</span> Justice</h3>
+<section id="justice-1" class="level3" data-number="5.3.1"><h3 data-number="5.3.1" class="anchored" data-anchor-id="justice-1">
+<span class="header-section-number">5.3.1</span> Justice</h3>
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -3552,8 +3537,8 @@ sigma 12.3    0.8
 </ul>
 <!-- DK: Above is not overly clear. --><ul>
 <li>The small <span class="math inline">\(i\)</span>’s are an index for the data set. It is equivalent to the “ID” column in our Preceptor Table and simply states that the outcome for person <span class="math inline">\(i\)</span> is explained by the predictor variables (<span class="math inline">\(treatment\)</span> and <span class="math inline">\(control\)</span>) for person <span class="math inline">\(i\)</span>, along with an error term.</li>
-</ul></section><section id="courage-1" class="level3" data-number="8.3.2"><h3 data-number="8.3.2" class="anchored" data-anchor-id="courage-1">
-<span class="header-section-number">8.3.2</span> Courage</h3>
+</ul></section><section id="courage-1" class="level3" data-number="5.3.2"><h3 data-number="5.3.2" class="anchored" data-anchor-id="courage-1">
+<span class="header-section-number">5.3.2</span> Courage</h3>
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -3629,8 +3614,8 @@ sigma 2.8    0.2
 </div>
 <p>The smaller the spread of the residuals, the better a job the model is doing of explaining the outcomes.</p>
 <!-- dd explanation of fit similar to how it was done previously. Can go faster, because we do not need to repeat everything.  -->
-</section><section id="temperance-1" class="level3" data-number="8.3.3"><h3 data-number="8.3.3" class="anchored" data-anchor-id="temperance-1">
-<span class="header-section-number">8.3.3</span> Temperance</h3>
+</section><section id="temperance-1" class="level3" data-number="5.3.3"><h3 data-number="5.3.3" class="anchored" data-anchor-id="temperance-1">
+<span class="header-section-number">5.3.3</span> Temperance</h3>
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -3644,7 +3629,7 @@ sigma 2.8    0.2
 <ul>
 <li>What is the average treatment effect, of exposing people to Spanish-speakers, on their attitudes toward immigration?</li>
 </ul>
-<!-- DK: Below is also not clear. --><p>Chapter <a href="04-rubin-causal-model.html"><span>Chapter&nbsp;4</span></a> defined the <em>average treatment effect</em>. One simple estimator of the average treatment effect is the difference between <span class="math inline">\(\beta_1\)</span> and <span class="math inline">\(\beta_2\)</span>. After all, the definition of <span class="math inline">\(\beta_1\)</span> is the average attitude toward immigration, of the population, for anyone, under exposure to the treatment. So, <span class="math inline">\(\beta_1 - \beta_2\)</span> is the average treatment effect for the population, roughly 1.5. However, estimating the posterior probability distribution for this parameter is tricky, unless we make use of the posterior distributions of <span class="math inline">\(\beta_1\)</span> and <span class="math inline">\(\beta_2\)</span>. With that information, the problem is simple:</p>
+<!-- DK: Below is also not clear. --><p>Chapter <a href="04-rubin-causal-model.html"><span>Chapter&nbsp;1</span></a> defined the <em>average treatment effect</em>. One simple estimator of the average treatment effect is the difference between <span class="math inline">\(\beta_1\)</span> and <span class="math inline">\(\beta_2\)</span>. After all, the definition of <span class="math inline">\(\beta_1\)</span> is the average attitude toward immigration, of the population, for anyone, under exposure to the treatment. So, <span class="math inline">\(\beta_1 - \beta_2\)</span> is the average treatment effect for the population, roughly 1.5. However, estimating the posterior probability distribution for this parameter is tricky, unless we make use of the posterior distributions of <span class="math inline">\(\beta_1\)</span> and <span class="math inline">\(\beta_2\)</span>. With that information, the problem is simple:</p>
 <div class="cell">
 <div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_2</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
@@ -3725,16 +3710,16 @@ sigma 2.8    0.2
 <pre><code># A tibble: 4,000 × 3
      `1`   `2`     te
    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
- 1  9.14  9.48 -0.337
- 2  9.30 11.4  -2.09 
- 3 14.4   4.54  9.83 
- 4 10.5   9.18  1.31 
- 5  7.49 11.7  -4.23 
- 6  9.83 12.3  -2.49 
- 7  9.65  5.82  3.84 
- 8  6.69  8.47 -1.78 
- 9  8.40  2.45  5.94 
-10 12.8  12.5   0.358
+ 1  7.77  9.49 -1.72 
+ 2 16.0   7.64  8.34 
+ 3  7.32  9.80 -2.49 
+ 4 10.4   5.77  4.67 
+ 5 11.4  12.2  -0.842
+ 6  8.28  7.00  1.28 
+ 7 13.1  12.8   0.332
+ 8 12.7  11.5   1.16 
+ 9  9.86  5.04  4.81 
+10  7.93  5.69  2.23 
 # ℹ 3,990 more rows</code></pre>
 </div>
 </div>
@@ -3760,16 +3745,16 @@ sigma 2.8    0.2
 <div class="sourceCode" id="cb38"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">pp</span><span class="op">$</span><span class="va">te</span>, prob <span class="op">=</span> <span class="fl">0.9</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     90% 
-6.578743 </code></pre>
+6.966187 </code></pre>
 </div>
 </div>
 <p>We would not expect a treatment effect of this magnitude to be common, but, at the same time, effects this big and bigger will occur about 10% of the time.</p>
-</section></section><section id="income-age" class="level2" data-number="8.4"><h2 data-number="8.4" class="anchored" data-anchor-id="income-age">
-<span class="header-section-number">8.4</span> income ~ age</h2>
+</section></section><section id="income-age" class="level2" data-number="5.4"><h2 data-number="5.4" class="anchored" data-anchor-id="income-age">
+<span class="header-section-number">5.4</span> income ~ age</h2>
 <p>So far, we have only created models in which the predictor variable is discrete, with two possible values. <code>party</code> is either “Democrat” or “Republican”. <code>treatment</code> is either “Treated” or “Control”. Often times, however, the predictor variable will be continuous. Fortunately, the exact same approach works in this case. Consider:</p>
 <p><em>What would you expect the income to be for a 40-year old?</em></p>
-<section id="justice-2" class="level3" data-number="8.4.1"><h3 data-number="8.4.1" class="anchored" data-anchor-id="justice-2">
-<span class="header-section-number">8.4.1</span> Justice</h3>
+<section id="justice-2" class="level3" data-number="5.4.1"><h3 data-number="5.4.1" class="anchored" data-anchor-id="justice-2">
+<span class="header-section-number">5.4.1</span> Justice</h3>
 <p>Once again, in Justice, we must consider validity, stability, representativeness, and the data generating mechanism.</p>
 <p>Let’s look at the validity of <code>age</code> and <code>income</code>. Recall that validity refers to whether or not we can consider the columns <code>age</code> and <code>income</code> to have the same meaning in our data set of 2012 Boston train commuters and in our Preceptor Table. While <code>age</code> doesn’t really change meaning over time, <code>income</code> can be impacted by inflation. After all, $100,000 in 2012 doesn’t have the same worth as $100,000 now due to inflation and now would have less purchasing power. This would result in income being underestimated within our model. However, since there hasn’t been drastic inflation that dramatically changed the buying power, we will consider income to be valid. If there had been like 300% inflation, however, our conclusion would probably be different.</p>
 <p>Now, let’s consider the stability of our model and if we believe that our relationship between age and income has changed between 2012 and now. Once again, let’s consider inflation and how that could impact income. If incomes were to increase at the rate of inflation, then the income distribution would be different than that of 2012. However, wages don’t tend to change as quickly as inflation does, so they likely did not change significantly and we can consider this model to be stable.</p>
@@ -3798,8 +3783,8 @@ y_1 - y_2 = \beta_1 (1)\\
 y_1 - y_2 = \beta_1\]</span></p>
 <p>The algebra demonstrates that <span class="math inline">\(\beta_1\)</span> is the same for all ages. The difference in expected income between two people aged 23 and 24 is the same as the difference between two people aged 80 and 81. Is that plausible? Maybe. <em>The algebra does not lie.</em> When we create a model like this, this is the assumption we are making.</p>
 <p>Note how careful we are not to imply that increasing age by one year “causes” an increase in income. That is nonsense! <em>No causation without manipulation.</em> Since it is impossible to change someone’s age, there is only one potential outcome. With only one potential outcome, a causal effect is not defined.</p>
-</section><section id="courage-2" class="level3" data-number="8.4.2"><h3 data-number="8.4.2" class="anchored" data-anchor-id="courage-2">
-<span class="header-section-number">8.4.2</span> Courage</h3>
+</section><section id="courage-2" class="level3" data-number="5.4.2"><h3 data-number="5.4.2" class="anchored" data-anchor-id="courage-2">
+<span class="header-section-number">5.4.2</span> Courage</h3>
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -3854,8 +3839,8 @@ sigma 74121.3  4897.0
 <p>There are scores of different fitted values. Indeed, there are a greater number of different fitted values than there are different outcome values! This is often true for models which have continuous predictor variables, we have here with <code>age</code>.</p>
 <!-- DK: Next step: A scatter plot with the fitted line drawn through it and a residual highlighted. Some more discussion! And some plots. Explain what the residuals are. And predicted values! Talk about sigma. More could be done. -->
 <!-- MM: Agree, some discussion could possibly be one earlier with residuals and predicted values and reinforced throughout -->
-</section><section id="temperance-2" class="level3" data-number="8.4.3"><h3 data-number="8.4.3" class="anchored" data-anchor-id="temperance-2">
-<span class="header-section-number">8.4.3</span> Temperance</h3>
+</section><section id="temperance-2" class="level3" data-number="5.4.3"><h3 data-number="5.4.3" class="anchored" data-anchor-id="temperance-2">
+<span class="header-section-number">5.4.3</span> Temperance</h3>
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -3910,28 +3895,28 @@ sigma 74121.3  4897.0
 </div>
 </div>
 <!-- More discussion! -->
-</section></section><section id="liberal-income" class="level2" data-number="8.5"><h2 data-number="8.5" class="anchored" data-anchor-id="liberal-income">
-<span class="header-section-number">8.5</span> liberal ~ income</h2>
+</section></section><section id="liberal-income" class="level2" data-number="5.5"><h2 data-number="5.5" class="anchored" data-anchor-id="liberal-income">
+<span class="header-section-number">5.5</span> liberal ~ income</h2>
 <p>So far in this chapter, we have only considered <em>continuous</em> outcome variables. <code>age</code>, <code>att_end</code> and <code>income</code> all take on a variety of values. None of them are, truly, continuous, of course. <code>age</code> is only reported as an integer value. <code>att_end</code> can only, by definition, take on 13 distinct values. However, from a modeling perspective, what matters is that they have more than 2 possible values.</p>
 <p><code>liberal</code>, however, only takes on two values: TRUE and FALSE. In order to model it, we must use the <code>binomial</code> family. We begin, as always, with some questions:</p>
 <p><em>Among all people who have an income $100,000, what proportion are liberal?</em></p>
 <p><em>Assume we have a group of eight people, two of whom make $100,000, two $200,000, two $300,000 and two $400,000. How many will be liberal?</em></p>
-<section id="justice-3" class="level3" data-number="8.5.1"><h3 data-number="8.5.1" class="anchored" data-anchor-id="justice-3">
-<span class="header-section-number">8.5.1</span> Justice</h3>
+<section id="justice-3" class="level3" data-number="5.5.1"><h3 data-number="5.5.1" class="anchored" data-anchor-id="justice-3">
+<span class="header-section-number">5.5.1</span> Justice</h3>
 <p>Let’s now consider Justice for our relationship between <code>liberal</code> and <code>income</code>.</p>
 <p>First, let’s look at validity, especially pertaining to <code>liberal</code>. As we know, this column has the values “Liberal” and “Not Liberal” to convey the political ideology of the train commuters. What we must determine if the column <code>liberal</code> and therefore the meaning of being liberal is the same in Boston in 2012 and Boston in 2021. If we can determine these to be the same, then we can assume validity, and in this case, because the core beliefs of being liberal have not changed very much between 2012 and 2021, we can determine that the data is valid.</p>
 <p>Now, let’s consider stability. To do so, we must look at the relationship between <code>liberal</code> and <code>income</code> and determine whether or not we believe that this relationship has changed between 2012 and 2021. With our knowledge of the world, do we have any reason to believe that this has changed? What if between 2012 and 2021, income increased for those who are liberal? Well, then our model for the the relationship between <code>income</code> and <code>liberal</code> would have changed over the years, and therefore so would the model. However, since with our knowledge of the world we have no reason to believe that something of the sorts happened to affect this relationship, we can consider our model to be stable.</p>
 <p>In our past three models, we have considered 3 possible issues that we could have with the representativeness of our model, such as the difference between Boston and other cities, problems with random sampling, and bias in those who respond, and we will now consider how in this survey there were surveys given before and after treatment, and some people may have filled out only one of the surveys. People who only filled out one of the surveys could affect the representativeness of the data because they could not be included in the data and if those who only filled out one survey tended to be liberal, then this would affect our data because it would underestimate the amount of liberals in the survey. This is something we must consider when looking at representativeness, since we could otherwise not determine if this data from train commuters in Boston in 2012 is representative enough of train commuters in the US now to continue using our data.</p>
 <p>Let’s consider whether this model is linear or logistic. Unlike our previous models this chapter, the outcome variable, <code>liberal</code>, for this model, only has two options, “Liberal” or “Not Liberal”. Therefore, this will be logistic because there are only 2 possible outcomes and the outcome variable isn’t continuous.</p>
-<p>Recall the discussion in <a href="07-two-parameters.html#sec-zero-one-outcomes"><span>Section&nbsp;7.5</span></a> about the logistic regression model which we use whenever the outcome or dependent variable is binary/logical. The math is there, if you care about math. We don’t, at least not too much. Reminder:</p>
+<p>Recall the discussion in <a href="07-two-parameters.html#sec-zero-one-outcomes"><span>Section&nbsp;4.5</span></a> about the logistic regression model which we use whenever the outcome or dependent variable is binary/logical. The math is there, if you care about math. We don’t, at least not too much. Reminder:</p>
 <p><span class="math display">\[p(\text{Liberal}_i = \text{TRUE}) = \frac{\text{exp}(\beta_0 + \beta_1 \text{income}_i)}{1 + \text{exp}(\beta_0 + \beta_1 \text{income}_i)}\]</span></p>
 <p>This model only has two parameters, <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span>. But these parameters do not have simple interpretations, unlike the parameters in a linear (or gaussian) model.</p>
 <p>Recall the fundamental structure of all data science problems:</p>
 <p><span class="math display">\[\text{outcome} = \text{model} + \text{what is not in the model}\]</span> The exact mathematics of the model — the parameters, their interpretations — are all just <a href="https://en.wikipedia.org/wiki/Dross">dross</a> in the foundry of our inferences: unavoidable but not worth too much of our time.</p>
 <p>Even if the math is ignorable, the causal versus predictive nature of the model is not. Is this a causal model or a predictive model? It depends! It could be causal if you assume that we can <em>manipulate</em> someone’s income, if, that is, there are at least two potential outcomes: person <span class="math inline">\(i\)</span>’s liberal status if she makes X dollars and person <span class="math inline">\(i\)</span>’s liberal status if she makes Y dollars. Remember: <em>No causation without manipulation</em>. The definition of a causal effect is the difference between two potential outcomes. If you only have one outcome, then your model can not be causal.</p>
 <p>In many circumstances, we don’t really care if a model is causal or not. We might only want to forecast/predict/explain the outcome variable. In that case, whether we can interpret the influence of a variable as causal is irrelevant to our use of that variable.</p>
-</section><section id="courage-3" class="level3" data-number="8.5.2"><h3 data-number="8.5.2" class="anchored" data-anchor-id="courage-3">
-<span class="header-section-number">8.5.2</span> Courage</h3>
+</section><section id="courage-3" class="level3" data-number="5.5.2"><h3 data-number="5.5.2" class="anchored" data-anchor-id="courage-3">
+<span class="header-section-number">5.5.2</span> Courage</h3>
 <p>Fitting a logistic model is easy. We use all the same arguments as usual, but with <code>family = binomial</code> added.</p>
 <div class="cell">
 <div class="sourceCode" id="cb45"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/rstanarm/reference/stan_glm.html">stan_glm</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">ch8</span>,</span>
@@ -3959,10 +3944,10 @@ income      -0.000006  0.000003
 * For info on the priors used see ?prior_summary.stanreg</code></pre>
 </div>
 </div>
-<p>Fitted models tell us about the posterior distributions for the parameters in the formula which defines the model we have estimated. <em>We are assuming that the model is true.</em> And, as discussed in <a href="06-one-parameter.html"><span>Chapter&nbsp;6</span></a>, that assumption is always false! Our model is never a perfectly accurate representation of reality. But, if it were perfect, then the posterior distributions which we have created for <span class="math inline">\(\beta_0\)</span>, <span class="math inline">\(\beta_1\)</span>, and so on would be perfect as well.</p>
+<p>Fitted models tell us about the posterior distributions for the parameters in the formula which defines the model we have estimated. <em>We are assuming that the model is true.</em> And, as discussed in <a href="06-one-parameter.html"><span>Chapter&nbsp;3</span></a>, that assumption is always false! Our model is never a perfectly accurate representation of reality. But, if it were perfect, then the posterior distributions which we have created for <span class="math inline">\(\beta_0\)</span>, <span class="math inline">\(\beta_1\)</span>, and so on would be perfect as well.</p>
 <p>When working with a linear model, we will often interpret the meaning of the parameters, as we have already done in the first three sections of this chapter. Such interpretations are much harder with logistic models because the math is much less convenient. So, we won’t even bother to try to understand the meaning of these parameters. However, we can note that <span class="math inline">\(\beta_1\)</span> is negative, suggesting that people with higher incomes are less likely to be liberal.</p>
-</section><section id="temperance-3" class="level3" data-number="8.5.3"><h3 data-number="8.5.3" class="anchored" data-anchor-id="temperance-3">
-<span class="header-section-number">8.5.3</span> Temperance</h3>
+</section><section id="temperance-3" class="level3" data-number="5.5.3"><h3 data-number="5.5.3" class="anchored" data-anchor-id="temperance-3">
+<span class="header-section-number">5.5.3</span> Temperance</h3>
 <p><em>Among all people who have an income $100,000, what proportion are liberal?</em></p>
 <p>Although our model is now logistic, all the steps in answering a question like this are the same as with a linear/guassian model.</p>
 <div class="cell">
@@ -4018,22 +4003,22 @@ Caused by warning:
 # Rowwise: 
      `1`   `2`   `3`   `4`   `5`   `6`   `7`   `8` total
    &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;
- 1     1     0     0     0     0     0     0     0     1
- 2     0     1     0     1     0     0     1     0     3
- 3     0     1     0     0     0     0     0     0     1
- 4     1     0     0     1     0     0     0     0     2
- 5     1     1     0     0     0     1     0     0     3
- 6     0     0     1     0     1     1     0     0     3
- 7     1     0     1     0     1     0     1     0     4
- 8     0     0     0     0     1     1     1     0     3
- 9     0     1     1     1     0     0     0     1     4
-10     1     1     0     1     0     0     0     1     4
+ 1     1     1     0     0     0     1     0     0     3
+ 2     0     1     1     1     0     0     0     0     3
+ 3     0     1     0     0     0     0     0     1     2
+ 4     0     1     0     1     0     0     0     1     3
+ 5     0     0     0     0     1     0     0     0     1
+ 6     1     1     0     1     1     0     0     1     5
+ 7     0     0     1     1     1     1     0     0     4
+ 8     0     0     0     1     0     0     0     0     1
+ 9     1     1     0     1     0     0     0     0     3
+10     1     1     0     0     0     0     0     0     2
 # ℹ 3,990 more rows</code></pre>
 </div>
 </div>
 <p>Study the <code>pp</code> tibble. Understand its component parts. The first column, for example, is 4,000 draws from the posterior distribution for the liberal status of a random person with an income of $100,000. Note how all the draws are zeroes or ones. That is very different from the draws we have seen before! But it also makes sense. We are making a prediction about a binary variable, a variable which only have two possible values: zero or one. So, any (reasonable!) predictions will only be zero or one.</p>
 <p>The second column is the same thing as the first column. Both are 4,000 draws from the posterior distribution for the liberal status of a random person with an income of $100,000. Yet they also have different values. They are both the same thing and different things, in the same way that <code>rnorm(10)</code> and <code>rnorm(10)</code> are the same thing — both are 10 draws from the standard normal distribution — and different things in that the values vary.</p>
-<p>The third and fourth columns are different from the first two columns. They are both 4,000 draws from the posterior distribution for the liberal status of a random person with an income of $200,000. And so on for later columns. We can answer very difficult questions by putting together simple building blocks, each of them a set of draws from a posterior distribution. Recall the discussion in <a href="05-probability.html#sec-distributions"><span>Section&nbsp;5.1</span></a>.</p>
+<p>The third and fourth columns are different from the first two columns. They are both 4,000 draws from the posterior distribution for the liberal status of a random person with an income of $200,000. And so on for later columns. We can answer very difficult questions by putting together simple building blocks, each of them a set of draws from a posterior distribution. Recall the discussion in <a href="05-probability.html#sec-distributions"><span>Section&nbsp;2.1</span></a>.</p>
 <p>The <code>total</code> column is simply the sum of the first eight columns. Having created the building blocks with 8 columns of draws from four different posterior distributions, we can switch our focus to each row. Consider row 2. It has a vector of 8 numbers: <code>1 1 1 0 0 1 0 0</code>. We can treat that vector as a unit of analysis. This is what might happen with our 8 people. The first three might be liberal, the fourth not liberal and so on. This row is just one example of what might happen, one draw from the posterior distribution of possible outcomes for groups of eight people with these incomes.</p>
 <p>We can simplify this draw by taking the sum, or doing anything else which might answer the question with which we are confronted. Posterior distributions are as flexible as individual numbers. We can, more or less, just use algebra to work with them.</p>
 <p>Graphically we have:</p>
@@ -4056,8 +4041,8 @@ Caused by warning:
 <p>As always, there is some <em>truth</em>. If, tomorrow, we were to meet 8 new people, with the specified incomes, a certain number of them would be liberal. If we had the ideal Preceptor Table, we could just look up that number. No data science required. Alas, we don’t know the truth. The bets we can do is to create a posterior distribution for that unknown value, as we have done here. We then need to translate that posterior into English — “The most likely number of liberals is 2 or 3, but a total as low as zero or as high as 5 is also plausible. Having 6 liberals would be really surprising. Having 7 or 8 is almost impossible.”</p>
 <p>Are these two posterior probability distributions perfect? No! This is the central message of the virtue of Temperance. We must demonstrate our humility when we use our models. Recall the distinction between the <em>unknown true distribution</em> and the <em>estimated distribution</em>. The first is the posterior distribution we would create of we understood every detail of the process and could accurately model it. We would still not know the true unknown number, but our posterior distribution for that number would be perfect. Yet, our model is never perfect. We are making all sorts of assumptions behind the scenes. Some of those assumptions are plausible. Others are less so. Either way, the <em>estimated distribution</em> is what we have graphed above.</p>
 <p>The central lesson of Temperance is: Don’t confuse the <em>estimated</em> posterior (which is what you have) with the <em>true</em> posterior (which is what you want). Recognize the unavoidable imperfections in the process. You can still use your estimated posterior — what choice do you have? — but be cautious and humble in doing so. The more that you suspect that your estimated posterior differs from the true posterior, the more humble and cautious you should be.</p>
-</section></section><section id="summary" class="level2" data-number="8.6"><h2 data-number="8.6" class="anchored" data-anchor-id="summary">
-<span class="header-section-number">8.6</span> Summary</h2>
+</section></section><section id="summary" class="level2" data-number="5.6"><h2 data-number="5.6" class="anchored" data-anchor-id="summary">
+<span class="header-section-number">5.6</span> Summary</h2>
 <p>In this chapter, we explored relationships between different variables in the <code>trains</code> data set. We built three predictive models and one causal model.</p>
 <p>Similar to previous chapters, our first task is to use <em>Wisdom</em> . We judge how relevant our data is to the questions we ask. Is it reasonable to consider the data we have (e.g., income and age data from Boston commuters in 2012) as being drawn from the same population as the data we want to have (e.g., income and age data from today for the entire US)? Probably?</p>
 <p><em>Justice</em> is necessary to decide the best way to represent the models we make. A little math won’t kill you. We use <em>Courage</em> to translate our models into code. Our goal is to understand, generate posterior distributions for the parameters, and interpret their meaning. <em>Temperance</em> leads us to the final stage, using our models to answer our questions.</p>
@@ -4220,12 +4205,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
       <a href="./07-two-parameters.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Two Parameters</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Two Parameters</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./09-four-parameters.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Four Parameters</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Four Parameters</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

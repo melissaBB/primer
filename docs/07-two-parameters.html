@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.2.269">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>Preceptor’s Primer for Bayesian Data Science: Using the Cardinal Virtues for Inference - 7&nbsp; Two Parameters</title>
+<title>Preceptor’s Primer for Bayesian Data Science: Using the Cardinal Virtues for Inference - 4&nbsp; Two Parameters</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -123,7 +123,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }"><div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Two Parameters</span></h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Two Parameters</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -177,57 +177,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./01-visualization.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Visualization</span></a>
+  <a href="./04-rubin-causal-model.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Rubin Causal Model</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02-wrangling.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Wrangling</span></a>
+  <a href="./05-probability.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Probability</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./03-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data</span></a>
+  <a href="./06-one-parameter.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">One Parameter</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04-rubin-causal-model.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Rubin Causal Model</span></a>
+  <a href="./07-two-parameters.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Two Parameters</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./05-probability.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Probability</span></a>
+  <a href="./08-three-parameters.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Three Parameters</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./06-one-parameter.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">One Parameter</span></a>
+  <a href="./09-four-parameters.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Four Parameters</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07-two-parameters.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Two Parameters</span></a>
+  <a href="./10-five-parameters.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Five Parameters</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./08-three-parameters.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Three Parameters</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./09-four-parameters.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Four Parameters</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./10-five-parameters.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Five Parameters</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./11-n-parameters.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">N Parameters</span></a>
+  <a href="./11-n-parameters.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">N Parameters</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -252,45 +237,45 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
    
   <ul>
 <li>
-<a href="#wisdom" id="toc-wisdom" class="nav-link active" data-scroll-target="#wisdom"><span class="toc-section-number">7.1</span>  Wisdom</a>
+<a href="#wisdom" id="toc-wisdom" class="nav-link active" data-scroll-target="#wisdom"><span class="toc-section-number">4.1</span>  Wisdom</a>
   <ul class="collapse">
-<li><a href="#preceptor-table" id="toc-preceptor-table" class="nav-link" data-scroll-target="#preceptor-table"><span class="toc-section-number">7.1.1</span>  Preceptor Table</a></li>
-  <li><a href="#eda-for-nhanes" id="toc-eda-for-nhanes" class="nav-link" data-scroll-target="#eda-for-nhanes"><span class="toc-section-number">7.1.2</span>  EDA for <code>nhanes</code></a></li>
-  <li><a href="#population" id="toc-population" class="nav-link" data-scroll-target="#population"><span class="toc-section-number">7.1.3</span>  Population</a></li>
+<li><a href="#preceptor-table" id="toc-preceptor-table" class="nav-link" data-scroll-target="#preceptor-table"><span class="toc-section-number">4.1.1</span>  Preceptor Table</a></li>
+  <li><a href="#eda-for-nhanes" id="toc-eda-for-nhanes" class="nav-link" data-scroll-target="#eda-for-nhanes"><span class="toc-section-number">4.1.2</span>  EDA for <code>nhanes</code></a></li>
+  <li><a href="#population" id="toc-population" class="nav-link" data-scroll-target="#population"><span class="toc-section-number">4.1.3</span>  Population</a></li>
   </ul>
 </li>
   <li>
-<a href="#justice" id="toc-justice" class="nav-link" data-scroll-target="#justice"><span class="toc-section-number">7.2</span>  Justice</a>
+<a href="#justice" id="toc-justice" class="nav-link" data-scroll-target="#justice"><span class="toc-section-number">4.2</span>  Justice</a>
   <ul class="collapse">
-<li><a href="#the-population-table" id="toc-the-population-table" class="nav-link" data-scroll-target="#the-population-table"><span class="toc-section-number">7.2.1</span>  The Population Table</a></li>
-  <li><a href="#representativeness" id="toc-representativeness" class="nav-link" data-scroll-target="#representativeness"><span class="toc-section-number">7.2.2</span>  Representativeness</a></li>
-  <li><a href="#validity" id="toc-validity" class="nav-link" data-scroll-target="#validity"><span class="toc-section-number">7.2.3</span>  Validity</a></li>
-  <li><a href="#functional-form" id="toc-functional-form" class="nav-link" data-scroll-target="#functional-form"><span class="toc-section-number">7.2.4</span>  Functional form</a></li>
+<li><a href="#the-population-table" id="toc-the-population-table" class="nav-link" data-scroll-target="#the-population-table"><span class="toc-section-number">4.2.1</span>  The Population Table</a></li>
+  <li><a href="#representativeness" id="toc-representativeness" class="nav-link" data-scroll-target="#representativeness"><span class="toc-section-number">4.2.2</span>  Representativeness</a></li>
+  <li><a href="#validity" id="toc-validity" class="nav-link" data-scroll-target="#validity"><span class="toc-section-number">4.2.3</span>  Validity</a></li>
+  <li><a href="#functional-form" id="toc-functional-form" class="nav-link" data-scroll-target="#functional-form"><span class="toc-section-number">4.2.4</span>  Functional form</a></li>
   </ul>
 </li>
   <li>
-<a href="#courage" id="toc-courage" class="nav-link" data-scroll-target="#courage"><span class="toc-section-number">7.3</span>  Courage</a>
+<a href="#courage" id="toc-courage" class="nav-link" data-scroll-target="#courage"><span class="toc-section-number">4.3</span>  Courage</a>
   <ul class="collapse">
-<li><a href="#testing" id="toc-testing" class="nav-link" data-scroll-target="#testing"><span class="toc-section-number">7.3.1</span>  Testing</a></li>
+<li><a href="#testing" id="toc-testing" class="nav-link" data-scroll-target="#testing"><span class="toc-section-number">4.3.1</span>  Testing</a></li>
   </ul>
 </li>
   <li>
-<a href="#temperance" id="toc-temperance" class="nav-link" data-scroll-target="#temperance"><span class="toc-section-number">7.4</span>  Temperance</a>
+<a href="#temperance" id="toc-temperance" class="nav-link" data-scroll-target="#temperance"><span class="toc-section-number">4.4</span>  Temperance</a>
   <ul class="collapse">
-<li><a href="#question-1" id="toc-question-1" class="nav-link" data-scroll-target="#question-1"><span class="toc-section-number">7.4.1</span>  Question 1</a></li>
-  <li><a href="#question-2" id="toc-question-2" class="nav-link" data-scroll-target="#question-2"><span class="toc-section-number">7.4.2</span>  Question 2</a></li>
-  <li><a href="#question-3" id="toc-question-3" class="nav-link" data-scroll-target="#question-3"><span class="toc-section-number">7.4.3</span>  Question 3</a></li>
-  <li><a href="#question-4" id="toc-question-4" class="nav-link" data-scroll-target="#question-4"><span class="toc-section-number">7.4.4</span>  Question 4</a></li>
-  <li><a href="#three-levels-of-knowledge" id="toc-three-levels-of-knowledge" class="nav-link" data-scroll-target="#three-levels-of-knowledge"><span class="toc-section-number">7.4.5</span>  Three Levels of Knowledge</a></li>
+<li><a href="#question-1" id="toc-question-1" class="nav-link" data-scroll-target="#question-1"><span class="toc-section-number">4.4.1</span>  Question 1</a></li>
+  <li><a href="#question-2" id="toc-question-2" class="nav-link" data-scroll-target="#question-2"><span class="toc-section-number">4.4.2</span>  Question 2</a></li>
+  <li><a href="#question-3" id="toc-question-3" class="nav-link" data-scroll-target="#question-3"><span class="toc-section-number">4.4.3</span>  Question 3</a></li>
+  <li><a href="#question-4" id="toc-question-4" class="nav-link" data-scroll-target="#question-4"><span class="toc-section-number">4.4.4</span>  Question 4</a></li>
+  <li><a href="#three-levels-of-knowledge" id="toc-three-levels-of-knowledge" class="nav-link" data-scroll-target="#three-levels-of-knowledge"><span class="toc-section-number">4.4.5</span>  Three Levels of Knowledge</a></li>
   </ul>
 </li>
-  <li><a href="#sec-zero-one-outcomes" id="toc-sec-zero-one-outcomes" class="nav-link" data-scroll-target="#sec-zero-one-outcomes"><span class="toc-section-number">7.5</span>  0/1 Outcomes</a></li>
-  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="toc-section-number">7.6</span>  Summary</a></li>
+  <li><a href="#sec-zero-one-outcomes" id="toc-sec-zero-one-outcomes" class="nav-link" data-scroll-target="#sec-zero-one-outcomes"><span class="toc-section-number">4.5</span>  0/1 Outcomes</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="toc-section-number">4.6</span>  Summary</a></li>
   </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/PPBDS/primer/edit/main/07-two-parameters.qmd" class="toc-action">Edit this page</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
-<h1 class="title"><span id="sec-two-parameters" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Two Parameters</span></span></h1>
+<h1 class="title"><span id="sec-two-parameters" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Two Parameters</span></span></h1>
 </div>
 
 
@@ -311,12 +296,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <!-- Take ownership of Temperance section. There is some sloppy writing there! Own it. -->
 <!-- Show posterior_interval() -->
 <!-- Chapter 7 should introduce, gently, the concept of in-sample and out-of-sample. As well as predictive accuracy as being a good way to judge how good your model is. What are some useful measures of predictive accuracy? Discuss our objective functions; minimize what? when would median be better than mean? Find a skewed data set and show how guessing the median works better than guessing the mean, if you care about absolute difference. (Can we estimate the median with stan_glm()?) Bias/Variance == Underfitting/Overfitting -->
-<p>In <a href="05-probability.html"><span>Chapter&nbsp;5</span></a>, we learned how to do inference. We created a joint distribution of the models under consideration and the data which might be observed. Once we observed the data, we went from the joint distribution to the conditional distribution of possible models given the data which we did, in fact, observe. That conditional distribution, suitably normalized, was our posterior probability distribution over the space of possible models. With that distribution, we can answer any question we might (reasonably) ask.</p>
+<p>In <a href="05-probability.html"><span>Chapter&nbsp;2</span></a>, we learned how to do inference. We created a joint distribution of the models under consideration and the data which might be observed. Once we observed the data, we went from the joint distribution to the conditional distribution of possible models given the data which we did, in fact, observe. That conditional distribution, suitably normalized, was our posterior probability distribution over the space of possible models. With that distribution, we can answer any question we might (reasonably) ask.</p>
 <!-- Need a gif here. Like Hunger Games in Chapter 6. -->
 <p><em>But what a pain in the ass that whole process was!</em> Do professionals actually go through all those steps every time they work on a data science problem? No! That would be absurd. Instead, professionals use standard tools which, in an automated fashion, take care of those steps, taking us directly from assumptions and data to the posterior:</p>
 <p><span class="math display">\[\text{Prob}(\text{models} | \text{data} = \text{data we observed})\]</span></p>
 <p>Even then, however, the relative likelihood of different models is not that important. Models are invisible, mental entities with no more physical presence than unicorns or leprechauns. In the world itself, we make and test predictions. <em>People with better models make better predictions. That is what matters.</em></p>
-<p><a href="06-one-parameter.html"><span>Chapter&nbsp;6</span></a> used models with just one parameter: the number of red beads, which we can also transform into a parameter, <span class="math inline">\(p\)</span>, the number of red beads divided by the total number of beads in the bowl. The model in <a href="06-one-parameter.html"><span>Chapter&nbsp;6</span></a> was binomial, and there is only one unknown parameter <span class="math inline">\(p\)</span> in such models. In this chapter, we have two unknown parameters: the mean <span class="math inline">\(\mu\)</span> height in the US and the standard deviation, <span class="math inline">\(\sigma\)</span>, of the normally distributed error term.</p>
+<p><a href="06-one-parameter.html"><span>Chapter&nbsp;3</span></a> used models with just one parameter: the number of red beads, which we can also transform into a parameter, <span class="math inline">\(p\)</span>, the number of red beads divided by the total number of beads in the bowl. The model in <a href="06-one-parameter.html"><span>Chapter&nbsp;3</span></a> was binomial, and there is only one unknown parameter <span class="math inline">\(p\)</span> in such models. In this chapter, we have two unknown parameters: the mean <span class="math inline">\(\mu\)</span> height in the US and the standard deviation, <span class="math inline">\(\sigma\)</span>, of the normally distributed error term.</p>
 <p>The reason for making models is not, primarily, that making models is fun – although it is! The reason is that, when confronted with a question, we face decisions. We must decide between options X or Y. We must choose from actions A, B and C. Confronted by a decision, we need to make a model of the world to help us.</p>
 <!-- Add back reference to ch 12 when it shows up again. -->
 <p>The real world is complex. Any substantive decision problem includes a great deal of complexity and requires even more context. We do not have the time to get into that level of detail now. So, we simplify. We are going to create a model of height for adult men. We will then use that model to answer four questions:</p>
@@ -333,10 +318,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p>Data science is ultimately a moral act, so we will use the four <a href="https://en.wikipedia.org/wiki/Cardinal_virtues">Cardinal Virtues</a> — Wisdom, Justice, Courage and Temperance — to organize our approach.</p>
-<section id="wisdom" class="level2" data-number="7.1"><h2 data-number="7.1" class="anchored" data-anchor-id="wisdom">
-<span class="header-section-number">7.1</span> Wisdom</h2>
-<section id="preceptor-table" class="level3" data-number="7.1.1"><h3 data-number="7.1.1" class="anchored" data-anchor-id="preceptor-table">
-<span class="header-section-number">7.1.1</span> Preceptor Table</h3>
+<section id="wisdom" class="level2" data-number="4.1"><h2 data-number="4.1" class="anchored" data-anchor-id="wisdom">
+<span class="header-section-number">4.1</span> Wisdom</h2>
+<section id="preceptor-table" class="level3" data-number="4.1.1"><h3 data-number="4.1.1" class="anchored" data-anchor-id="preceptor-table">
+<span class="header-section-number">4.1.1</span> Preceptor Table</h3>
 <div class="cell">
 <div class="cell-output-display">
 <p><img src="other/images/Wisdom.jpg" class="img-fluid" width="1280"></p>
@@ -350,23 +335,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell" data-layout-align="left">
 <div class="cell-output-display">
 
-<div id="fcjrrerlca" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#fcjrrerlca table {
+<div id="ccttkhufbo" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ccttkhufbo table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#fcjrrerlca thead, #fcjrrerlca tbody, #fcjrrerlca tfoot, #fcjrrerlca tr, #fcjrrerlca td, #fcjrrerlca th {
+#ccttkhufbo thead, #ccttkhufbo tbody, #ccttkhufbo tfoot, #ccttkhufbo tr, #ccttkhufbo td, #ccttkhufbo th {
   border-style: none;
 }
 
-#fcjrrerlca p {
+#ccttkhufbo p {
   margin: 0;
   padding: 0;
 }
 
-#fcjrrerlca .gt_table {
+#ccttkhufbo .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -392,12 +377,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-left-color: #D3D3D3;
 }
 
-#fcjrrerlca .gt_caption {
+#ccttkhufbo .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#fcjrrerlca .gt_title {
+#ccttkhufbo .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -409,7 +394,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-bottom-width: 0;
 }
 
-#fcjrrerlca .gt_subtitle {
+#ccttkhufbo .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -421,7 +406,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-top-width: 0;
 }
 
-#fcjrrerlca .gt_heading {
+#ccttkhufbo .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -433,13 +418,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-right-color: #D3D3D3;
 }
 
-#fcjrrerlca .gt_bottom_border {
+#ccttkhufbo .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#fcjrrerlca .gt_col_headings {
+#ccttkhufbo .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -454,7 +439,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-right-color: #D3D3D3;
 }
 
-#fcjrrerlca .gt_col_heading {
+#ccttkhufbo .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -474,7 +459,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   overflow-x: hidden;
 }
 
-#fcjrrerlca .gt_column_spanner_outer {
+#ccttkhufbo .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -486,15 +471,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 4px;
 }
 
-#fcjrrerlca .gt_column_spanner_outer:first-child {
+#ccttkhufbo .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#fcjrrerlca .gt_column_spanner_outer:last-child {
+#ccttkhufbo .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#fcjrrerlca .gt_column_spanner {
+#ccttkhufbo .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -506,11 +491,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   width: 100%;
 }
 
-#fcjrrerlca .gt_spanner_row {
+#ccttkhufbo .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#fcjrrerlca .gt_group_heading {
+#ccttkhufbo .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -536,7 +521,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   text-align: left;
 }
 
-#fcjrrerlca .gt_empty_group_heading {
+#ccttkhufbo .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -551,15 +536,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   vertical-align: middle;
 }
 
-#fcjrrerlca .gt_from_md > :first-child {
+#ccttkhufbo .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#fcjrrerlca .gt_from_md > :last-child {
+#ccttkhufbo .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#fcjrrerlca .gt_row {
+#ccttkhufbo .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -578,7 +563,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   overflow-x: hidden;
 }
 
-#fcjrrerlca .gt_stub {
+#ccttkhufbo .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -591,7 +576,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-#fcjrrerlca .gt_stub_row_group {
+#ccttkhufbo .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -605,15 +590,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   vertical-align: top;
 }
 
-#fcjrrerlca .gt_row_group_first td {
+#ccttkhufbo .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#fcjrrerlca .gt_row_group_first th {
+#ccttkhufbo .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#fcjrrerlca .gt_summary_row {
+#ccttkhufbo .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -623,16 +608,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-#fcjrrerlca .gt_first_summary_row {
+#ccttkhufbo .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#fcjrrerlca .gt_first_summary_row.thick {
+#ccttkhufbo .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#fcjrrerlca .gt_last_summary_row {
+#ccttkhufbo .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -642,7 +627,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-bottom-color: #D3D3D3;
 }
 
-#fcjrrerlca .gt_grand_summary_row {
+#ccttkhufbo .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -652,7 +637,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-#fcjrrerlca .gt_first_grand_summary_row {
+#ccttkhufbo .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -662,7 +647,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-top-color: #D3D3D3;
 }
 
-#fcjrrerlca .gt_last_grand_summary_row_top {
+#ccttkhufbo .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -672,11 +657,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-bottom-color: #D3D3D3;
 }
 
-#fcjrrerlca .gt_striped {
+#ccttkhufbo .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#fcjrrerlca .gt_table_body {
+#ccttkhufbo .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -685,7 +670,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-bottom-color: #D3D3D3;
 }
 
-#fcjrrerlca .gt_footnotes {
+#ccttkhufbo .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -699,7 +684,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-right-color: #D3D3D3;
 }
 
-#fcjrrerlca .gt_footnote {
+#ccttkhufbo .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -708,7 +693,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-#fcjrrerlca .gt_sourcenotes {
+#ccttkhufbo .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -722,7 +707,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-right-color: #D3D3D3;
 }
 
-#fcjrrerlca .gt_sourcenote {
+#ccttkhufbo .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -730,63 +715,63 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-#fcjrrerlca .gt_left {
+#ccttkhufbo .gt_left {
   text-align: left;
 }
 
-#fcjrrerlca .gt_center {
+#ccttkhufbo .gt_center {
   text-align: center;
 }
 
-#fcjrrerlca .gt_right {
+#ccttkhufbo .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#fcjrrerlca .gt_font_normal {
+#ccttkhufbo .gt_font_normal {
   font-weight: normal;
 }
 
-#fcjrrerlca .gt_font_bold {
+#ccttkhufbo .gt_font_bold {
   font-weight: bold;
 }
 
-#fcjrrerlca .gt_font_italic {
+#ccttkhufbo .gt_font_italic {
   font-style: italic;
 }
 
-#fcjrrerlca .gt_super {
+#ccttkhufbo .gt_super {
   font-size: 65%;
 }
 
-#fcjrrerlca .gt_footnote_marks {
+#ccttkhufbo .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#fcjrrerlca .gt_asterisk {
+#ccttkhufbo .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#fcjrrerlca .gt_indent_1 {
+#ccttkhufbo .gt_indent_1 {
   text-indent: 5px;
 }
 
-#fcjrrerlca .gt_indent_2 {
+#ccttkhufbo .gt_indent_2 {
   text-indent: 10px;
 }
 
-#fcjrrerlca .gt_indent_3 {
+#ccttkhufbo .gt_indent_3 {
   text-indent: 15px;
 }
 
-#fcjrrerlca .gt_indent_4 {
+#ccttkhufbo .gt_indent_4 {
   text-indent: 20px;
 }
 
-#fcjrrerlca .gt_indent_5 {
+#ccttkhufbo .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -833,8 +818,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p>This table would extend all the way until person 4 billion-and-something. If we had this table, all of our questions could be answered with simple math and/or simulations. No inference necessary. Now that we’ve seen our ideal dataset, what does our actual data look like?</p>
-</section><section id="eda-for-nhanes" class="level3" data-number="7.1.2"><h3 data-number="7.1.2" class="anchored" data-anchor-id="eda-for-nhanes">
-<span class="header-section-number">7.1.2</span> EDA for <code>nhanes</code>
+</section><section id="eda-for-nhanes" class="level3" data-number="4.1.2"><h3 data-number="4.1.2" class="anchored" data-anchor-id="eda-for-nhanes">
+<span class="header-section-number">4.1.2</span> EDA for <code>nhanes</code>
 </h3>
 <p>In our quest to find suitable data, consider the <code>nhanes</code> dataset from the National Health and Nutrition Examination Survey conducted from 2009 to 2011 by the Centers for Disease Control and Prevention.</p>
 <div class="cell">
@@ -892,11 +877,11 @@ $ sleep          &lt;int&gt; 4, 4, 4, NA, 8, NA, NA, 8, 8, 8, 7, 5, 4, NA, 5, 7,
 <pre><code># A tibble: 5 × 3
     age gender height
   &lt;int&gt; &lt;chr&gt;   &lt;dbl&gt;
-1    29 Female   172.
-2    52 Female   166 
-3    52 Male     171.
-4    32 Female   160.
-5     8 Female   124.</code></pre>
+1    46 Female   168.
+2     0 Female    NA 
+3     4 Female   101 
+4    40 Male     169.
+5    27 Male     176.</code></pre>
 </div>
 </div>
 <p>We think of both <code>age</code> and <code>height</code> as numbers. And they are numbers! But R distinguishes between “integers” and “doubles,” only the second of which allow for decimal values. In the <code>nhanes</code> data, <code>age</code> is an integer and <code>height</code> is a double.</p>
@@ -1096,8 +1081,8 @@ $ height &lt;dbl&gt; 164.7, 164.7, 164.7, 105.4, 168.4, 133.1, 130.6, 166.7, 166
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_sample</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">50</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>How will the data we have — which is only for a sample of adult American men more than a decade ago — allow us to answer our questions, however roughly? This is where the notion of <strong>population</strong> comes into play.</p>
-</section><section id="population" class="level3" data-number="7.1.3"><h3 data-number="7.1.3" class="anchored" data-anchor-id="population">
-<span class="header-section-number">7.1.3</span> Population</h3>
+</section><section id="population" class="level3" data-number="4.1.3"><h3 data-number="4.1.3" class="anchored" data-anchor-id="population">
+<span class="header-section-number">4.1.3</span> Population</h3>
 <!-- Spend more time here? -->
 <p>One of the most important components of Wisdom is the concept of the “population.”</p>
 <p>The population is not the set of people for which we have data — the participants in the CDC’s Health and Nutrition Examination Survey conducted from 2009 to 2011. This is the dataset. Nor is it the set of all the individuals about whom we would like to have data. Those are the rows in the Preceptor Table. The population is the larger — potentially much larger — set of individuals which include both the data we have and the data we want. Generally, <strong>the population will be much larger than either the data we have or the data we want.</strong> In fact, there is almost always a time dimension to consider. We also always want to make inferences about right now or the future. By definition, the data we have is always from the past.</p>
@@ -1108,8 +1093,8 @@ $ height &lt;dbl&gt; 164.7, 164.7, 164.7, 105.4, 168.4, 133.1, 130.6, 166.7, 166
 <p><em>Using not-perfect data is generally better than using no data at all.</em></p>
 <p>Is not-perfect data <em>always</em> better? No! If your problem is estimating the median height of 5th grade girls in Tokyo, we doubt that our data is at all relevant. Wisdom recognizes the danger of using non-relevant data to build a model and then mistakenly using that model in a way which will only make the situation worse. If the data won’t help, don’t use the data, don’t build a model. Better to just use your common sense and experience. Or find better data.</p>
 <p>For now, we will accept that our data works.</p>
-</section></section><section id="justice" class="level2" data-number="7.2"><h2 data-number="7.2" class="anchored" data-anchor-id="justice">
-<span class="header-section-number">7.2</span> Justice</h2>
+</section></section><section id="justice" class="level2" data-number="4.2"><h2 data-number="4.2" class="anchored" data-anchor-id="justice">
+<span class="header-section-number">4.2</span> Justice</h2>
 <div class="cell">
 <div class="cell-output-display">
 <p><img src="other/images/Justice.jpg" class="img-fluid" width="960"></p>
@@ -1123,8 +1108,8 @@ $ height &lt;dbl&gt; 164.7, 164.7, 164.7, 105.4, 168.4, 133.1, 130.6, 166.7, 166
 <li>Is the meaning of the columns consistent, i.e., can we assume validity? We then make an assumption about the data generating mechanism.</li>
 </ul>
 <p>We inspect both representativeness and validity through our Population Table. Representativeness focuses on the rows of the table, while validity focuses on the columns. Let’s explore what that means in more depth.</p>
-<section id="the-population-table" class="level3" data-number="7.2.1"><h3 data-number="7.2.1" class="anchored" data-anchor-id="the-population-table">
-<span class="header-section-number">7.2.1</span> The Population Table</h3>
+<section id="the-population-table" class="level3" data-number="4.2.1"><h3 data-number="4.2.1" class="anchored" data-anchor-id="the-population-table">
+<span class="header-section-number">4.2.1</span> The Population Table</h3>
 <p>The Population Table shows rows from three sources: the <strong>Preceptor Table</strong>, the <strong>actual data</strong>, and the <strong>population</strong> (outside of the data).</p>
 <p>Our <strong>Preceptor Table</strong> rows contain the information that we would <em>want</em> to know in order to answer our questions. These rows contain entries for our covariates (sex and year) but they do not contain any outcome results (height). We are trying to answer questions about the male population in 2021, so our sex entries for these rows will read “Male” and our year entries of these rows will read “2021”.</p>
 <p>Our <strong>actual data</strong> rows contain the information that we <em>do</em> know. These rows contain entries for both our covariates <em>and</em> the outcomes. In this case, the actual data comes from a study conducted on males in 2009-2011, so our sex entries for these rows will read “Male” and our year entries of these rows will either read “2009”, “2010”, or “2011”.</p>
@@ -1726,41 +1711,41 @@ $ height &lt;dbl&gt; 164.7, 164.7, 164.7, 105.4, 168.4, 133.1, 130.6, 166.7, 166
 </div>
 </div>
 </div>
-</section><section id="representativeness" class="level3" data-number="7.2.2"><h3 data-number="7.2.2" class="anchored" data-anchor-id="representativeness">
-<span class="header-section-number">7.2.2</span> Representativeness</h3>
+</section><section id="representativeness" class="level3" data-number="4.2.2"><h3 data-number="4.2.2" class="anchored" data-anchor-id="representativeness">
+<span class="header-section-number">4.2.2</span> Representativeness</h3>
 <p>As we’ve stated above, representativeness involves our rows. More specifically, are the rows that we <em>do</em> have data for representative of the rows for which we <em>do not</em> have data? Ideally, the data we have is a random, unbiased selection from our population, and so the answer to our question is yes.</p>
 <p>For our <code>nhanes</code> data, is this the case? It is time to investigate.</p>
 <p>According to the CDC, individuals are invited to participate in NHANES based on a randomized process. First, the United States is divided into a number of geographical groups (to ensure counties from all areas). From each of these groups, counties are randomly selected to participate. After a county has been randomly selected, members of the households in that county are notified of the upcoming survey, and must volunteer their time to participate. It is clear that this process goes through several layers of randomization (promising!). That being said, many counties are excluded by the end of the process. It is also possible for certain groups or communities to be less representative of the greater population, though we cannot know that for certain.</p>
 <p>There is also the fact that participation is voluntary. Perhaps certain individuals (immobile, elderly, anxious) are less likely to participate. Perhaps individuals that are hospitalized do not get the opportunity to participate. This impacts our data!</p>
 <p>Regardless, we can assume that this process ensures that all people in the United States have a somewhat equal chance of being surveyed. Thus, our data is representative of our population.</p>
-</section><section id="validity" class="level3" data-number="7.2.3"><h3 data-number="7.2.3" class="anchored" data-anchor-id="validity">
-<span class="header-section-number">7.2.3</span> Validity</h3>
+</section><section id="validity" class="level3" data-number="4.2.3"><h3 data-number="4.2.3" class="anchored" data-anchor-id="validity">
+<span class="header-section-number">4.2.3</span> Validity</h3>
 <p>Validity involves our columns. More specifically, whether our columns mean the same thing. Consider the following example: we are predicting height with two different datasets. Because both datasets measure height in centimeters, we may assume validity — that our columns are identical in meaning. However, validity is much more complex than it appears at first glance.</p>
 <p>Consider the method of measurements. In our first dataset, were participants asked to remove their shoes? Were they allowed to keep on thick socks? If this is not the case in our second dataset, our columns do <em>not</em> technically represent the same truth.</p>
 <p>There are even smaller differences that could impact validity. For instance, it is known that — over the course of a day — the average human’s spine compresses about an inch from the time we wake up until the time we go to sleep! If the first set of data was collected in the morning, while the second set of data was collected in the evening, our predictions may be off.</p>
 <p>As best we can, we need to investigate any possible reasons that we may not be able to say that our columns mean the same thing. If we find an issue, we may need to adjust one set of data to match the other. For instance, if we knew that height was taken in the evening for one sample (with the other measurements taken in the morning), we may add an inch of height to those findings. This would ensure validity.</p>
 <p><!-- Math is in Justice, but just the functional form, not the exact variables. Leave it to you to write about this sensibly. Focus on the functional form. We are choosing linear, not logistic. Why? --></p>
-</section><section id="functional-form" class="level3" data-number="7.2.4"><h3 data-number="7.2.4" class="anchored" data-anchor-id="functional-form">
-<span class="header-section-number">7.2.4</span> Functional form</h3>
+</section><section id="functional-form" class="level3" data-number="4.2.4"><h3 data-number="4.2.4" class="anchored" data-anchor-id="functional-form">
+<span class="header-section-number">4.2.4</span> Functional form</h3>
 <p>However, a little mathematical notation will make our modeling assumptions clear, will bring some precision to our approach. In this case:</p>
 <p><span class="math display">\[ y_i =  \mu + \epsilon_i \]</span> with <span class="math inline">\(\epsilon_i \sim N(0, \sigma^2)\)</span>. <span class="math inline">\(y_i\)</span> is the height of male <span class="math inline">\(i\)</span>. <span class="math inline">\(\mu\)</span> is the average height of all males in the population. <span class="math inline">\(\epsilon_i\)</span> is the “error term,” the difference between the height of male <span class="math inline">\(i\)</span> and the average height of all males.</p>
 <p><span class="math inline">\(\epsilon_i\)</span> is normally distributed with a mean of 0 and a standard deviation of <span class="math inline">\(\sigma\)</span>. The mean being 0 relates to our concept of <strong>accuracy</strong>; we are assuming that our data is representative enough to be accurate, and so we can expect our average error to be 0. The standard deviation, on the other hand, relates to our concept of <strong>precision</strong>; the smaller <span class="math inline">\(\sigma\)</span> is, the more precise our data is, and the larger <span class="math inline">\(\sigma\)</span> is, the less precise our data is.</p>
 <p>This is the simplest model we can construct. Note:</p>
 <ul>
-<li>The model has two unknown parameters: <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span>. Before we can do anything else we need to estimate the values of these parameters. Can we ever know their exact value? No! Perfection lies only in God’s own R code. But, by using a Bayesian approach similar to what we used in Chapters <a href="05-probability.html"><span>Chapter&nbsp;5</span></a> and <a href="06-one-parameter.html"><span>Chapter&nbsp;6</span></a>, we will be able to create a <em>posterior probability distribution</em> for each parameter.</li>
+<li>The model has two unknown parameters: <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span>. Before we can do anything else we need to estimate the values of these parameters. Can we ever know their exact value? No! Perfection lies only in God’s own R code. But, by using a Bayesian approach similar to what we used in Chapters <a href="05-probability.html"><span>Chapter&nbsp;2</span></a> and <a href="06-one-parameter.html"><span>Chapter&nbsp;3</span></a>, we will be able to create a <em>posterior probability distribution</em> for each parameter.</li>
 </ul>
 <!-- Add Dr. Box quote. All models are wrong, some are useful. And a photo. --><ul>
 <li><p>The model is wrong, as are all models.</p></li>
 <li><p>The parameter we most care about is <span class="math inline">\(\mu\)</span>. That is the parameter with a substantively meaningful interpretation. Not only is the meaning of <span class="math inline">\(\sigma\)</span> difficult to describe, we also don’t particular care about its value. Parameters like <span class="math inline">\(\sigma\)</span> in this context are <em>nuisance</em> or <em>auxiliary</em> parameters. We still estimate their posterior distributions, but we don’t really care what those posteriors look like.</p></li>
-<li><p><span class="math inline">\(\mu\)</span> is not the average height of the men in the sample. We can calculate that directly. It is 175.606. No estimation required! Instead, <span class="math inline">\(\mu\)</span> is the average height of men in the <em>population</em>. Recall from the discussions in <a href="06-one-parameter.html"><span>Chapter&nbsp;6</span></a> that the population is the universe of people/units/whatever about which we seek to draw conclusions. On some level, this seems simple. On a deeper level, it is very subtle. For example, if we are walking around Copenhagen, then the population we really care about, in order to answer our three questions, is the set of adult men which we might meet today. This is not the same as the population of adult men in the US in 2010. But is it close enough? Is it better than nothing? We want to assume that both men from <code>nhanes</code> (the data we have) and men we meet in Copenhagen today (the data we want to have) are drawn from the same <em>population</em>. Each case is a different and the details matter.</p></li>
+<li><p><span class="math inline">\(\mu\)</span> is not the average height of the men in the sample. We can calculate that directly. It is 175.606. No estimation required! Instead, <span class="math inline">\(\mu\)</span> is the average height of men in the <em>population</em>. Recall from the discussions in <a href="06-one-parameter.html"><span>Chapter&nbsp;3</span></a> that the population is the universe of people/units/whatever about which we seek to draw conclusions. On some level, this seems simple. On a deeper level, it is very subtle. For example, if we are walking around Copenhagen, then the population we really care about, in order to answer our three questions, is the set of adult men which we might meet today. This is not the same as the population of adult men in the US in 2010. But is it close enough? Is it better than nothing? We want to assume that both men from <code>nhanes</code> (the data we have) and men we meet in Copenhagen today (the data we want to have) are drawn from the same <em>population</em>. Each case is a different and the details matter.</p></li>
 <li><p><span class="math inline">\(\sigma\)</span> is an estimate for the standard deviation of the errors, i.e., variability in height after accounting for the mean.</p></li>
 </ul>
 <!-- You can show students the sample estimate of that with something like this (or sd(resid(fit_obj)) --><p>Consider:</p>
 <p><span class="math display">\[\text{outcome} = \text{model} + \text{what is not in the model}\]</span> In this case, the <em>outcome</em> is the height of an individual male. This variable, also called the “response,” is what we are trying to understand and/or explain and/or predict. The <em>model</em> is our creation, a mixture of data and parameters, an attempt to capture the underlying structure in the world which generates the outcome.</p>
 <!-- This may be of greater use earlier in the section. -->
 <p>What is the difference between the <em>outcome</em> and the <em>model</em>? By definition, it is <em>what is not in the model</em>, all the blooming and buzzing complexity of the real world. The model will always be incomplete in that it won’t capture everything. Whatever the model misses is thrown into the error term.</p>
-</section></section><section id="courage" class="level2" data-number="7.3"><h2 data-number="7.3" class="anchored" data-anchor-id="courage">
-<span class="header-section-number">7.3</span> Courage</h2>
+</section></section><section id="courage" class="level2" data-number="4.3"><h2 data-number="4.3" class="anchored" data-anchor-id="courage">
+<span class="header-section-number">4.3</span> Courage</h2>
 <!--  7.3 is by FAR the most confusing section. Code here needs to be better introduced (such as in the earlier chapters) and unfamiliar terms such as "predictors" need to be more clearly defined. I believe the majority of my work on the chapter will be in fixing this section. -->
 <div class="cell">
 <div class="cell-output-display">
@@ -1768,8 +1753,8 @@ $ height &lt;dbl&gt; 164.7, 164.7, 164.7, 105.4, 168.4, 133.1, 130.6, 166.7, 166
 </div>
 </div>
 <p>In data science, we deal with words, math, and code, but the most important of these is code. We need Courage to create the model, to take the leap of faith that we can make our ideas real.</p>
-<section id="stan_glm" class="level4" data-number="7.3.0.1"><h4 data-number="7.3.0.1" class="anchored" data-anchor-id="stan_glm">
-<span class="header-section-number">7.3.0.1</span> stan_glm</h4>
+<section id="stan_glm" class="level4" data-number="4.3.0.1"><h4 data-number="4.3.0.1" class="anchored" data-anchor-id="stan_glm">
+<span class="header-section-number">4.3.0.1</span> stan_glm</h4>
 <p>Bayesian models are not hard to create in R. The <strong>rstanarm</strong> package provides the tools we need, most importantly the function <code><a href="https://mc-stan.org/rstanarm/reference/stan_glm.html">stan_glm()</a></code>.</p>
 <div class="cell">
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://mc-stan.org/rstanarm/">rstanarm</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1789,11 +1774,11 @@ $ height &lt;dbl&gt; 164.7, 164.7, 164.7, 105.4, 168.4, 133.1, 130.6, 166.7, 166
 <li><p>If you don’t set <code>refresh = 0</code>, the model will puke out many lines of confusing output. You can learn more about that output by reading the help page for <code><a href="https://mc-stan.org/rstanarm/reference/stan_glm.html">stan_glm()</a></code>. The output provides details on the fitting process as it runs as well as diagnostics about the final result. All of those details are beyond the scope of this book.</p></li>
 <li><p>You should always assign the result of the call of <code><a href="https://mc-stan.org/rstanarm/reference/stan_glm.html">stan_glm()</a></code> to an object, as we do above. By convention, the name of that object will often include the word “fit” to indicate that it is a <em>fitted</em> model object.</p></li>
 <li><p>There is a direct connection between the mathematical form of the model created under Justice and the code we use to fit the model under Courage. <code>height ~ 1</code> is the code equivalent of <span class="math inline">\(y_i = \mu\)</span>.</p></li>
-<li><p>The default value for <code>family</code> is <code>gaussian</code>, so we did not need to include it in the call above. From the Justice section, the assumption that <span class="math inline">\(\epsilon_i \sim N(0, \sigma^2)\)</span> is equivalent to using <code>gaussian</code>. If <span class="math inline">\(\epsilon_i\)</span> had a different distribution, we would need to use a different <code>family</code>. We saw an example of such a situation at the end of <a href="06-one-parameter.html"><span>Chapter&nbsp;6</span></a> when we performed the urn analysis using <code><a href="https://mc-stan.org/rstanarm/reference/stan_glm.html">stan_glm()</a></code> and setting <code>family = binomial</code>.</p></li>
+<li><p>The default value for <code>family</code> is <code>gaussian</code>, so we did not need to include it in the call above. From the Justice section, the assumption that <span class="math inline">\(\epsilon_i \sim N(0, \sigma^2)\)</span> is equivalent to using <code>gaussian</code>. If <span class="math inline">\(\epsilon_i\)</span> had a different distribution, we would need to use a different <code>family</code>. We saw an example of such a situation at the end of <a href="06-one-parameter.html"><span>Chapter&nbsp;3</span></a> when we performed the urn analysis using <code><a href="https://mc-stan.org/rstanarm/reference/stan_glm.html">stan_glm()</a></code> and setting <code>family = binomial</code>.</p></li>
 <li><p>Although you can use the standalone function <code><a href="https://rdrr.io/r/base/Random.html">set.seed()</a></code> in order to make your code reproducible, it is more convenient to use the <code>seed</code> argument within <code><a href="https://mc-stan.org/rstanarm/reference/stan_glm.html">stan_glm()</a></code>. Even though the fitting process, unavoidably, contains a random component, you will get the exact same answer if we set <code>seed = 9</code> and rerun this code. It does not matter what number you use for the seed.</p></li>
 </ul>
-<section id="printed-model" class="level5" data-number="7.3.0.1.1"><h5 data-number="7.3.0.1.1" class="anchored" data-anchor-id="printed-model">
-<span class="header-section-number">7.3.0.1.1</span> Printed model</h5>
+<section id="printed-model" class="level5" data-number="4.3.0.1.1"><h5 data-number="4.3.0.1.1" class="anchored" data-anchor-id="printed-model">
+<span class="header-section-number">4.3.0.1.1</span> Printed model</h5>
 <p>There are several ways to examine the fitted model. The simplest is to print it. Recall that just typing <code>x</code> at the prompt is the same as writing <code>print(x)</code>.</p>
 <div class="cell">
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_obj</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1817,7 +1802,7 @@ sigma 8.5    0.9
 </div>
 </div>
 <p>The first line is telling us which model we used, in our case a <code><a href="https://mc-stan.org/rstanarm/reference/stan_glm.html">stan_glm()</a></code>.</p>
-<p>The second line tells us this model is using a Gaussian, or normal, distribution. We discussed this distribution in <a href="02-wrangling.html#sec-normal"><span>Section&nbsp;2.3.4</span></a>. We typically use this default unless we are working with a lefthand variable that is extremely non-normal, e.g., something which only takes two values like 0/1 or TRUE/FALSE. Since height is (very roughly) normally distributed, the Gaussian distribution is a good choice.</p>
+<p>The second line tells us this model is using a Gaussian, or normal, distribution. We discussed this distribution in <a href="05-probability.html#sec-normal"><span>Section&nbsp;2.7.2.1</span></a>. We typically use this default unless we are working with a lefthand variable that is extremely non-normal, e.g., something which only takes two values like 0/1 or TRUE/FALSE. Since height is (very roughly) normally distributed, the Gaussian distribution is a good choice.</p>
 <p>The third line gives us back the formula we provided. We are creating a model predicting height with a constant — which is just about the simplest model you can create. Formulas in R are constructed in two parts. First, on the left side of the tilde (the “~” symbol) is the “response” or “dependent” variable, the thing which we are trying to explain. Since this is a model about <code>height</code>, <code>height</code> goes on the lefthand side. Second, we have the “explanatory” or “independent” or “predictor” variables on the righthand side of the tilde. There will often be many such variables but in this, the simplest possible model, there is only one, a single constant. (The number <code>1</code> indicates that constant. It does not mean that we think that everyone is height <code>1</code>.)</p>
 <p>The fourth and fifth lines of the output tell us that we have 50 observations and that we only have one predictor (the constant). Again, the terminology is a bit confusing. What does it mean to suggest that <span class="math inline">\(\mu\)</span> is “constant?” It means that, although <span class="math inline">\(\mu\)</span>’s value is unknown, it is <em>fixed</em>. It does not change from person to person. The <code>1</code> in the formula corresponds to the parameter <span class="math inline">\(\mu\)</span> in our mathematical definition of the model.</p>
 <p>We knew all this information before we fit the model. R records it in the <code>fit_obj</code> because we don’t want to forget what we did. The second half of the display gives a summary of the parameter values. We can look at just the second half with the <code>detail</code> argument:</p>
@@ -1856,8 +1841,8 @@ sigma 8.5    0.9   </code></pre>
 
 </div>
 <p>The MAD SD for each parameter is a measure of the variability of our posterior distributions for that parameter. How spread out are they? Speaking roughly, 95% of the mass of a posterior probability distribution is located within +/- 2 MAD SDs from the median. For example, we would be about 95% confident that the true value of <span class="math inline">\(\mu\)</span> is somewhere between 173.2 and 178.</p>
-</section><section id="plotting-the-posterior-distributions" class="level5" data-number="7.3.0.1.2"><h5 data-number="7.3.0.1.2" class="anchored" data-anchor-id="plotting-the-posterior-distributions">
-<span class="header-section-number">7.3.0.1.2</span> Plotting the posterior distributions</h5>
+</section><section id="plotting-the-posterior-distributions" class="level5" data-number="4.3.0.1.2"><h5 data-number="4.3.0.1.2" class="anchored" data-anchor-id="plotting-the-posterior-distributions">
+<span class="header-section-number">4.3.0.1.2</span> Plotting the posterior distributions</h5>
 <p>Instead of doing this math in our heads, we can display both posterior probability distributions. <em>Pictures speak where math mumbles.</em> Fortunately, getting draws from those posteriors is easy:</p>
 <!-- as_tibble() is just trying to make things "pretty", for certain meanings of that word. This causes the decimals for the intercept to vanish when this chapter is knit. The decimals are present when I run it here. Worth worrying about? -->
 <div class="cell">
@@ -1931,21 +1916,21 @@ sigma 8.5    0.9   </code></pre>
 <!-- DK: Fun problem set exercise is to pull this data, pivot it, and then create one graphic with both distributions on the same scale. Then you could . . . -->
 
 <!-- DK: Is there other stuff to do within Courage? Might show how to make a regression table. Should discuss how there is only one model and that we have different views of that model by looking at the printed output, the posterior probability distributions of the parameters and graphics of the fitted values and residuals.  -->
-</section></section><section id="testing" class="level3" data-number="7.3.1"><h3 data-number="7.3.1" class="anchored" data-anchor-id="testing">
-<span class="header-section-number">7.3.1</span> Testing</h3>
+</section></section><section id="testing" class="level3" data-number="4.3.1"><h3 data-number="4.3.1" class="anchored" data-anchor-id="testing">
+<span class="header-section-number">4.3.1</span> Testing</h3>
 <!-- Discuss testing for the first time. Give simple example of how people test. Explain how people test. Null hypothesis, is that the average height of men is 173 cm. Alternative hypothesis is that it is not. Can I reject my null hypothesis, because 173 is more than two standard errors away from the mean of the data? REad the Open Intro explanation about what a hypothesis test is. Takes Courage to Not Test! Tetsing is stupid. -->
 <!-- Maybe do it by hand. The mean of the data is X. The standard deviation is Y. The standard error Z. Is H_0 more than two standard errors away from X. If it is, we reject. If it is not, we don't.  -->
 <!-- One paragraph about why that is stupid. Mainly, it throws away too much information. It is not interesting. It does not help us answer any of the "real" questions we started with.  -->
-</section></section><section id="temperance" class="level2" data-number="7.4"><h2 data-number="7.4" class="anchored" data-anchor-id="temperance">
-<span class="header-section-number">7.4</span> Temperance</h2>
+</section></section><section id="temperance" class="level2" data-number="4.4"><h2 data-number="4.4" class="anchored" data-anchor-id="temperance">
+<span class="header-section-number">4.4</span> Temperance</h2>
 <div class="cell">
 <div class="cell-output-display">
 <p><img src="other/images/Temperance.jpg" class="img-fluid" width="960"></p>
 </div>
 </div>
 <p>We have a model. What can we do with it? Let’s answer the four questions with which we started.</p>
-<section id="question-1" class="level3" data-number="7.4.1"><h3 data-number="7.4.1" class="anchored" data-anchor-id="question-1">
-<span class="header-section-number">7.4.1</span> Question 1</h3>
+<section id="question-1" class="level3" data-number="4.4.1"><h3 data-number="4.4.1" class="anchored" data-anchor-id="question-1">
+<span class="header-section-number">4.4.1</span> Question 1</h3>
 <!-- DK: Show how this posterior is the same as the posterior mu. They are the same thing. Discuss mapping from parameters to reality. The latter is easier and more general. The former is mostly useful in seminar rooms. -->
 <ul>
 <li>What is the average height of men?</li>
@@ -1999,8 +1984,8 @@ sigma 8.5    0.9   </code></pre>
 </div>
 <!-- DK: Remove mu above. -->
 <p>The rest of the <em>Primer</em> will be filled with graphics like this one. You will make dozens of them yourself. The fundamental structure for doing algebra is the real number. The fundamental structure for data science is the posterior probability distribution. You need to be able to create and interpret them.</p>
-</section><section id="question-2" class="level3" data-number="7.4.2"><h3 data-number="7.4.2" class="anchored" data-anchor-id="question-2">
-<span class="header-section-number">7.4.2</span> Question 2</h3>
+</section><section id="question-2" class="level3" data-number="4.4.2"><h3 data-number="4.4.2" class="anchored" data-anchor-id="question-2">
+<span class="header-section-number">4.4.2</span> Question 2</h3>
 <ul>
 <li>What is the probability that the next adult male we meet will be taller than 180 centimeters?</li>
 </ul>
@@ -2066,8 +2051,8 @@ sigma 8.5    0.9   </code></pre>
 <p>If 30% or so of the draws from the posterior probability distribution are greater than 180 cm, then there is about a 30% chance that the next individual will be taller than 180 cm.</p>
 <p>Again, the key conceptual difficulty is the population. The problem we actually have involves walking around London, or wherever, today. The data we have involve America in 2010. Those are not the same things! But they are not totally different. Knowing whether the data we have is “close enough” to the problem we want to solve is at the heart of Wisdom. Yet that was the decision we made at the start of the process, the decision to create a model in the first place. Now that we have created a model, we look to the virtue of Temperance for guidance in using that model. The data we have is never a perfect match for the world we face. We need to temper our confidence and act with humility. Our forecasts will never be as good as a naive use of the model might suggest. Reality will surprise us. We need to take the model’s claims with a family-sized portion of salt.</p>
 <!-- DK: More on temperance and the many ways that we should be less confident. Move material from Chapters 3 and 5 here? -->
-</section><section id="question-3" class="level3" data-number="7.4.3"><h3 data-number="7.4.3" class="anchored" data-anchor-id="question-3">
-<span class="header-section-number">7.4.3</span> Question 3</h3>
+</section><section id="question-3" class="level3" data-number="4.4.3"><h3 data-number="4.4.3" class="anchored" data-anchor-id="question-3">
+<span class="header-section-number">4.4.3</span> Question 3</h3>
 <!-- DK: Discuss how each row of pp is like a random draw from the scenario of 4 new men. So, we can look at each row without considering any other row. Makes simulation studies much easier. -->
 <ul>
 <li>What is the probability that, among the next 4 men we meet, the tallest is at least 10 cm taller than the shortest?</li>
@@ -2174,8 +2159,8 @@ Caused by warning:
 </div>
 </div>
 <!-- DK: Discuss all the reasons why this might not be true. Show how to give the exact answer. -->
-</section><section id="question-4" class="level3" data-number="7.4.4"><h3 data-number="7.4.4" class="anchored" data-anchor-id="question-4">
-<span class="header-section-number">7.4.4</span> Question 4</h3>
+</section><section id="question-4" class="level3" data-number="4.4.4"><h3 data-number="4.4.4" class="anchored" data-anchor-id="question-4">
+<span class="header-section-number">4.4.4</span> Question 4</h3>
 <ul>
 <li>What is our posterior probability distribution of the height of the 3rd tallest man out of the next 100 we meet?</li>
 </ul>
@@ -2206,28 +2191,28 @@ Caused by warning:
 <p><img src="07-two-parameters_files/figure-html/unnamed-chunk-38-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-</section><section id="three-levels-of-knowledge" class="level3" data-number="7.4.5"><h3 data-number="7.4.5" class="anchored" data-anchor-id="three-levels-of-knowledge">
-<span class="header-section-number">7.4.5</span> Three Levels of Knowledge</h3>
+</section><section id="three-levels-of-knowledge" class="level3" data-number="4.4.5"><h3 data-number="4.4.5" class="anchored" data-anchor-id="three-levels-of-knowledge">
+<span class="header-section-number">4.4.5</span> Three Levels of Knowledge</h3>
 <p>When answering questions as we have been, it can be easy to falsely believe that we are delivering <em>the truth</em>. This is not the case. In fact, there are three primary levels of knowledge which we need to understand in order to account for our uncertainty.</p>
 <p>The three primary levels of knowledge possible knowledge in our scenario include: the Truth (the Preceptor Table), the DGM Posterior, and Our Posterior.</p>
-<section id="the-truth" class="level4" data-number="7.4.5.1"><h4 data-number="7.4.5.1" class="anchored" data-anchor-id="the-truth">
-<span class="header-section-number">7.4.5.1</span> The Truth</h4>
+<section id="the-truth" class="level4" data-number="4.4.5.1"><h4 data-number="4.4.5.1" class="anchored" data-anchor-id="the-truth">
+<span class="header-section-number">4.4.5.1</span> The Truth</h4>
 <p>If we know the Truth (with a capital “T”), then we know the Preceptor Table. With that knowledge, we can directly answer our question precisely. We can calculate each individual’s height, and any summary measure we might be interested in, like the average height for different ages or countries.</p>
 <p>This level of knowledge is possible only under an omniscient power, one who can see every outcome in every individual under every treatment. The Truth would show, for any given individual, their actions under control, their actions under treatment, and each little factor that impacted those decisions.</p>
 <p>The Truth represents the highest level of knowledge one can have — with it, our questions merely require algebra. There is no need to estimate a treatment effect, or the different treatment effects for different groups of people. We would not need to predict at all — we would know.</p>
-</section><section id="dgm-posterior" class="level4" data-number="7.4.5.2"><h4 data-number="7.4.5.2" class="anchored" data-anchor-id="dgm-posterior">
-<span class="header-section-number">7.4.5.2</span> DGM posterior</h4>
+</section><section id="dgm-posterior" class="level4" data-number="4.4.5.2"><h4 data-number="4.4.5.2" class="anchored" data-anchor-id="dgm-posterior">
+<span class="header-section-number">4.4.5.2</span> DGM posterior</h4>
 <p>The DGM posterior is the next level of knowledge, which lacks the omniscient quality of The Truth. This posterior is the posterior we would calculate if we had perfect knowledge of the data generating mechanism, meaning we have the correct model structure and exact parameter values. This is often falsely conflated with “our posterior,” which is subject to error in model structure and parameter value estimations.</p>
 <p>What we do with the DGM posterior is the same as our posterior — we estimate parameters based on data and predict the future with the latest and most relevant information possible. The difference is that, when we calculate posteriors for an unknown value in the DGM posterior, we expect those posteriors to be perfect.</p>
-</section><section id="our-posterior" class="level4" data-number="7.4.5.3"><h4 data-number="7.4.5.3" class="anchored" data-anchor-id="our-posterior">
-<span class="header-section-number">7.4.5.3</span> Our posterior</h4>
+</section><section id="our-posterior" class="level4" data-number="4.4.5.3"><h4 data-number="4.4.5.3" class="anchored" data-anchor-id="our-posterior">
+<span class="header-section-number">4.4.5.3</span> Our posterior</h4>
 <p>Unfortunately, our posterior possesses even less certainty! In the real world, we don’t have perfect knowledge of the DGM: the model structure and the exact parameter values. What does this mean?</p>
 <p>When we go to our boss, we tell them that this is our best guess. It is an informed estimate based on the most relevant data possible. From that data, we have created a posterior for the average height of males.</p>
 <p>Does this mean we are certain that the average height lies is the most probable outcome in our posterior? Of course not! As we would tell our boss, it would not be shocking to find out that the actual average height was less or more than our estimate.</p>
 <p>This is because a lot of the assumptions we make during the process of building a model, the processes in Wisdom, are subject to error. Perhaps our data did not match the future as well as we had hoped. Ultimately, we try to account for our uncertainty in our estimates. Even with this safeguard, we aren’t surprised if we are a bit off.</p>
 <!-- DK: Need more text. Explain all the things that could be wrong with the model. Explain what is going on in different columns. Explain all the cool R code tricks. Discuss difference between predict and epred.  -->
-</section></section></section><section id="sec-zero-one-outcomes" class="level2" data-number="7.5"><h2 data-number="7.5" class="anchored" data-anchor-id="sec-zero-one-outcomes">
-<span class="header-section-number">7.5</span> 0/1 Outcomes</h2>
+</section></section></section><section id="sec-zero-one-outcomes" class="level2" data-number="4.5"><h2 data-number="4.5" class="anchored" data-anchor-id="sec-zero-one-outcomes">
+<span class="header-section-number">4.5</span> 0/1 Outcomes</h2>
 <p>Variables with well-behaved, continuous ranges are the easiest to handle. We started with <code>height</code> because it was simple. Sadly, however, many variables are not like <code>height</code>. Consider <code>gender</code>, a variable in <code>nhanes</code> which takes on two possible values: “Male” and “Female”. In the same way that we would like to construct a model which explains or predicts <code>height</code>, we would like to build a model which explains or predicts <code>gender</code>. We want to answer questions like:</p>
 <p><em>What is the probability that a random person who is 180 cm tall is female?</em></p>
 <p><em>Wisdom</em> suggests we start by looking at the data. Because models use numbers, we need to create a new variable, <code>female</code>, which is 1 for Females and 0 for Males.</p>
@@ -2457,8 +2442,8 @@ height      -0.257  0.006
 </div>
 </div>
 <p>That 5 or 6 women is the most likely number is very consistent with the answer to the first question. There we found that a random person who is 180 cm tall has a 5% or 6% chance of being female. So, with 100 such people, 5 or 6 seems a reasonable total. But the <em>expected value</em> from <code><a href="https://mc-stan.org/rstantools/reference/posterior_epred.html">posterior_epred()</a></code>, although it does provide a sense of where the center of the predictive distribution will be, does not tell us much about the range of possible outcomes. For that, we need <code><a href="https://mc-stan.org/rstantools/reference/posterior_predict.html">posterior_predict()</a></code>.</p>
-</section><section id="summary" class="level2" data-number="7.6"><h2 data-number="7.6" class="anchored" data-anchor-id="summary">
-<span class="header-section-number">7.6</span> Summary</h2>
+</section><section id="summary" class="level2" data-number="4.6"><h2 data-number="4.6" class="anchored" data-anchor-id="summary">
+<span class="header-section-number">4.6</span> Summary</h2>
 <!-- DK: Discuss meaning of "Posterior" in all plot titles. Show the key code examples. -->
 <p>The next five chapters will follow the same process we have just completed here. We start with a decision we have to make. With luck, we will have some data to guide us. (Without data, even the best data scientist will struggle to make progress.) <em>Wisdom</em> asks us: “Is the data we have close enough to the decision we face to make using that data helpful?” Often times, the answer is “No.”</p>
 <p>Once we start to build the model, <em>Justice</em> will guide us. Is the model descriptive or causal? What is the mathematical relationship between the dependent variable we are trying to explain and the independent variables we can use to explain it? What assumptions are we making about distribution of the error term?</p>
@@ -2609,12 +2594,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
       <a href="./06-one-parameter.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">One Parameter</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">One Parameter</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./08-three-parameters.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Three Parameters</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Three Parameters</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

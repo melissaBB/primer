@@ -81,7 +81,7 @@ create_from_github("PPBDS/primer",
                     protocol = "https")  
 ```
 
-That is the repo for working on the book. If you are working on **PPBDS/primer.data** or **PPBDS/all.primer.tutorials**, you need to `create_from_github()` using those repos. You must change `destdir` to be a location on your computer. Indeed, professionals will generally have several different RStudio sessions open, each working on a different R project/package, each of which is connected to its own Github repo.                     
+That is the repo for working on the book. If you are working on **PPBDS/r4ds.tutorials**, **PPBDS/primer.data**, **PPBDS/all.primer.tutorials**, or one of the other projects, you need to `create_from_github()` using those repos. You must change `destdir` to be a location on your computer. Indeed, professionals will generally have several different RStudio sessions open, each working on a different R project/package, each of which is connected to its own Github repo.                     
                     
 For your education, it is worth reading the help page for `create_from_github()`. The `fork`  and `protocal` arguments may not really be necessary and, obviously, you should place the project in the location on your computer in which your other projects live. The command first forks a copy of **PPBDS/primer** to your Github account and then clone/downloads that fork to your computer. 
 
