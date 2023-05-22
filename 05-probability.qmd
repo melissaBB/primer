@@ -1825,7 +1825,270 @@ As you may have noticed, if you calculated the value using the first method, you
 
 <!-- DK: Does this really belong here? Maybe at the end? Maybe after Height example above? -->
 
+### Random variables {#random-variables}
 
+#### `sample()`
+
+The most common distributions you will work with are *empirical* or *frequency* distributions, the values of `age` in the `trains` tibble, the values of `poverty` in the `kenya` tibble, and so on. But we can also create our own data by making "draws" from a distribution which we have concocted. 
+
+Consider the distribution of the possible values from rolling a fair die. We can use the `sample()` function to create draws from this distribution, meaning it will change (or sometimes stay the same) for every subsequent draw.
+
+```{r}
+#| echo: false
+set.seed(9)
+```
+
+
+```{r}
+die <- c(1, 2, 3, 4, 5, 6)
+
+sample(x = die, size = 1)
+```
+
+This produces one "draw" from the distribution of the possible values of one roll of fair six-sided die.
+
+Now, suppose we wanted to roll this die 10 times. One of the arguments of the `sample()` function is `replace`. We must specify it as `TRUE` if values can appear more than once. Since, when rolling a die 10 times, we expect that a value like 3 can appear more than once, we need to set `replace = TRUE`. 
+
+```{r}
+sample(x = die, size = 10, replace = TRUE)
+```
+
+In other words, rolling a 1 on the first roll should not preclude you from rolling a 1 on a later roll. 
+
+What if the die is not "fair," meaning that some sides are more likely to appear than others? The final argument of the `sample()` function is the `prob` argument. It takes a vector (of the same length as the initial vector `x`) that contains all of the probabilities of selecting each one of the elements of `x`. Suppose that the probability of rolling a 1 was 0.5, and the probability of rolling any other value is 0.1. (These probabilities should sum to 1. If they don't `sample()` will automatically re-scale them.) 
+
+```{r}
+sample(x = die, 
+       size = 10, 
+       replace = TRUE, 
+       prob = c(0.5, 0.1, 0.1, 0.1, 0.1, 0.1))
+```
+
+<!-- DK: Keep this big picture discussion? And after the plot? -->
+
+**Remember: There is no real data here.** We have not actually rolled a die. We have just made some assumptions about what would happen if we were to roll a die. With those assumptions we have built an urn --- a *data generating mechanism* --- from which we can draw as many values as we like. Let's roll the unfair die 10,000 times.
+
+```{r}
+tibble(result = sample(x = die, 
+                       size = 10000, 
+                       replace = TRUE, 
+                       prob = c(0.5, rep(0.1, 5)))) |> 
+  ggplot(aes(x = result)) +
+    geom_bar() +
+    labs(title = "Distribution of Results of an Unfair Die",
+         x = "Result of One Roll",
+         y = "Count") +
+    scale_x_continuous(breaks = 1:6,
+                       labels = as.character(1:6)) +
+    scale_y_continuous(labels = scales::comma_format())
+```
+
+
+
+`sample()` is just one of many functions for creating draws --- or, more colloquially, "drawing" --- from a distribution. Three of the most important functions are: `runif()`, `rbinom()`, and `rnorm()`.
+
+#### `runif()`
+
+Consider a "uniform" distribution. This is the case in which every outcome in the range of possible outcomes has the same chance of occurring.  The function `runif()` (spoken as "r-unif") enables us to draw from a uniform contribution. `runif()` has three arguments: `n`, `min`, and `max`. `runif()` will produce `n` draws from between `min` and `max`, with each value having an equal chance of occurring.
+
+```{r}
+runif(n = 10, min = 4, max = 6)
+```
+
+Mathematically, we would notate:
+
+$$y_i \sim U(4, 6)$$
+
+This means that the each value for $y$ is drawn from a uniform distribution between four and six.
+
+### `rbinom()`
+
+Consider binomial distribution, the case in which the probability of some Boolean variable (for instance success or failure) is calculated for repeated, independent trials. One common example would be the probability of flipping a coin and landing on heads. The function `rbinom()` allows us to draw from a binomial distribution. This function takes three arguments, `n`, `size`, and `prob`. 
+
+*`n` is the number of values we seek to draw. 
+*`size` is the number of trials for each `n`. 
+*`prob` is the probability of success on each trial. 
+
+Suppose we wanted to flip a fair coin one time, and let landing on heads represent success. 
+
+```{r}
+rbinom(n = 1 , size = 1, prob = 0.5)
+```
+
+Do the same thing 100 times:
+
+```{r}
+tibble(heads = rbinom(n = 100, size = 1, prob = 0.5)) |> 
+  ggplot(aes(x = heads)) +
+    geom_bar() +
+    labs(title = "Flipping a Fair Coin 100 Times",
+         x = "Result",
+         y = "Count") +
+    scale_x_continuous(breaks = c(0, 1),
+                       labels = c("Tails", "Heads"))
+```
+
+In our graph above, we use the function `scale_x_continuous()` because our x-axis variable is continuous, meaning it can take on any real values. The `breaks` argument to `scale_x_continuous()` converts our x-axis to having two different "tick marks". There is a fairly even distribution of Tails and Heads. More draws would typically result in an even more equal split. 
+
+Randomness creates (inevitable) tension between distribution as a "thing" and distribution as a vector of draws from that thing. In this case, the vector of draws is not balanced between Tails and Heads. Yet, we "know" that it should be since the coin is, by definition, fair. In a sense, the mathematics require an even split. Yet, randomness means that the vector of draws will rarely match the mathematically "true" result. And that is OK! First, randomness is an intrinsic property of the real world. Second, we can make the effect of randomness be as small as we want by increasing the number of draws. 
+
+<!-- DK: Could do a little example of that, showing the convergence to 50% as n increases. -->
+
+
+Suppose instead we wanted to simulate an unfair coin, where the probability of landing on Heads was 0.75 instead of 0.25. 
+
+```{r}
+tibble(heads = rbinom(n = 100, size = 1, prob = 0.75)) |> 
+  ggplot(aes(x = heads)) +
+    geom_bar() +
+    labs(title = "Flipping a Fair Coin 100 Times",
+         x = "Result",
+         y = "Count") +
+    scale_x_continuous(breaks = c(0, 1),
+                       labels = c("Tails", "Heads"))
+```
+
+The distribution --- the imaginary urn --- from which we draw the results of a coin flip for a fair coin is a different distribution --- a different imaginary urn --- from the distribution for a biased coin. In fact, there are an infinite number of distributions. *Yet as long as we can draw values from a distribution, we can work with it.* Mathematics:
+
+$$y_i \sim B(n, p)$$
+
+Each value for $y$ is drawn from a binomial distribution with parameters $n$ for the number of trials and $p$ for the probability of success. 
+
+Instead of each `n` consisting of a single trial, we could have situation in which we are, 10,000 times, flipping a coin 10 times and summing up, for each experiment, the number of heads. In that case:
+
+```{r}
+set.seed(9)
+tibble(heads = rbinom(n = 10000, size = 10, prob = 0.5)) |> 
+  ggplot(aes(x = heads)) +
+    geom_bar() +
+    labs(title = "Flipping a Fair Coin 10 Times",
+         subtitle = "Extreme results are possible with enough experiments",
+         x = "Total Number of Heads in Ten Flips",
+         y = "Count") +
+    scale_x_continuous(breaks = 0:10)
+```
+
+
+#### `rnorm()` {#sec-normal}
+
+
+The most important distribution is the *normal distribution*. Mathematics:
+
+$$y_i \sim N(\mu, \sigma^2)$$
+
+Each value $y_i$ is drawn from a normal distribution with parameters $\mu$ for the mean and $\sigma$ for the standard deviation. 
+
+
+This bell-shaped distribution is defined by two parameters: (1) the *mean* $\mu$ (spoken as "mu") which locates the center of the distribution and (2) the *standard deviation* $\sigma$ (spoken as "sigma") which determines the variation of values around that center. In the figure below, we plot three normal distributions where:
+
+1. The solid normal curve has mean $\mu = 5$ \& standard deviation $\sigma = 2$.
+1. The dotted normal curve has mean $\mu = 5$ \& standard deviation $\sigma = 5$.
+1. The dashed normal curve has mean $\mu = 15$ \& standard deviation $\sigma = 2$.
+
+```{r}
+#| echo: false
+#| fig.cap: Three normal distributions.
+
+library(ggrepel)
+
+all_points <- tibble(
+  domain = seq(from = -10, to = 25, by = 0.01),
+  `mu = 5, sigma = 2` = dnorm(x = domain, mean = 5, sd = 2),
+  `mu = 5, sigma = 5` = dnorm(x = domain, mean = 5, sd = 5),
+  `mu = 15, sigma = 2` = dnorm(x = domain, mean = 15, sd = 2)
+)  |>
+  pivot_longer(- domain, names_to = "Distribution", values_to = "value", ) |>
+  mutate(
+    Distribution = factor(
+      Distribution,
+      levels = c("mu = 5, sigma = 2",
+                 "mu = 5, sigma = 5",
+                 "mu = 15, sigma = 2")
+    )
+  )
+
+for_labels <- all_points |>
+  filter(between(domain, 3.795, 3.805) & Distribution == "mu = 5, sigma = 2" |
+           between(domain, 0.005, 0.0105) & Distribution == "mu = 5, sigma = 5" |
+           between(domain, 16.005, 16.015) & Distribution == "mu = 15, sigma = 2")
+
+all_points |>
+  ggplot(aes(x = domain, y = value, linetype = Distribution)) +
+  geom_line() +
+  geom_label_repel(data = for_labels, aes(label = Distribution),
+                            nudge_x = c(-1, -2.1, 1)) +
+  theme_light() +
+  scale_linetype_manual(values=c("solid", "dotted", "longdash")) +
+  theme(
+    axis.title.y = element_blank(),
+    axis.title.x = element_blank(),
+    axis.text.y = element_blank(),
+    axis.ticks.y = element_blank(),
+    legend.position = "none"
+  )
+```
+
+Notice how the solid and dotted line normal curves have the same center due to their common mean $\mu$ = 5. However, the dotted line normal curve is wider due to its larger standard deviation of $\sigma = 5$. On the other hand, the solid and dashed line normal curves have the same variation due to their common standard deviation $\sigma = 2$. However, they are centered at different locations. 
+
+When the mean $\mu = 0$ and the standard deviation $\sigma = 1$, the normal distribution has a special name. It's called the *standard normal distribution* or the *$z$-curve*.
+
+Furthermore, if a variable follows a normal curve, there are *three rules of thumb* we can use:
+
+1. 68% of values will lie within $\pm$ 1 standard deviation of the mean.
+1. 95% of values will lie within $\pm$ 1.96 $\approx$ 2 standard deviations of the mean.
+1. 99.7% of values will lie within $\pm$ 3 standard deviations of the mean.
+
+Let's illustrate this on a standard normal curve. The dashed lines are at -3, -1.96, -1, 0, 1, 1.96, and 3. These 7 lines cut up the x-axis into 8 segments. The areas under the normal curve for each of the 8 segments are marked and add up to 100%. For example:
+
+1. The middle two segments represent the interval -1 to 1. The shaded area above this interval represents 34% + 34% = 68% of the area under the curve. In other words, 68% of values. 
+1. The middle four segments represent the interval -1.96 to 1.96. The shaded area above this interval represents 13.5% + 34% + 34% + 13.5% = 95% of the area under the curve. In other words, 95% of values. 
+1. The middle six segments represent the interval -3 to 3. The shaded area above this interval represents 2.35% + 13.5% + 34% + 34% + 13.5% + 2.35% = 99.7% of the area under the curve. In other words, 99.7% of values. 
+
+```{r}
+#| echo: false
+#| fig.cap: Rules of thumb about areas under normal curves.
+shade_3_sd <- function(x) {
+  y <- dnorm(x, mean = 0, sd = 1)
+  y[x <= -3 | x >= 3] <- NA
+  return(y)
+}
+shade_2_sd <- function(x) {
+  y <- dnorm(x, mean = 0, sd = 1)
+  y[x <= -1.96 | x >= 1.96] <- NA
+  return(y)
+}
+shade_1_sd <- function(x) {
+  y <- dnorm(x, mean = 0, sd = 1)
+  y[x <= -1 | x >= 1] <- NA
+  return(y)
+}
+labels <- tibble(
+  x = c(-3.5, -2.5, -1.5, -0.5, 0.5, 1.5, 2.5, 3.5),
+  label = c("0.15%", "2.35%", "13.5%", "34%", "34%", "13.5%", "2.35%", "0.15%")
+) |> 
+  mutate(y = rep(0.3, times = n()))
+ggplot(data = tibble(x = c(-4, 4)), aes(x)) +
+  geom_text(data = labels, aes(y=y, label = label)) + 
+  # Trace normal curve
+  stat_function(fun = dnorm, args = list(mean = 0, sd = 1), n = 1000) + 
+  # Shade and delineate +/- 3 SD
+  stat_function(fun = shade_3_sd, geom = "area", fill = "black", alpha = 0.25, n = 1000) +
+  # annotate(geom = "segment", x = c(3, -3), xend = c(3, -3), y = 0, yend = dnorm(3, mean = 0, sd = 1)) +
+  # Shade and delineate +/- 2 SD
+  stat_function(fun = shade_2_sd, geom = "area", fill = "black", alpha = 0.25, n = 1000) +
+  # annotate(geom = "segment", x = c(1.96, -1.96), xend = c(1.96, -1.96), y = 0, yend = dnorm(1.96, mean = 0, sd = 1)) +
+  # Shade and delineate +/- 1 SD
+  stat_function(fun = shade_1_sd, geom = "area", fill = "black", alpha = 0.25, n = 1000) +
+  # annotate(geom = "segment", x = c(1, -1), xend = c(1, -1), y = 0, yend = dnorm(1, mean = 0, sd = 1)) + 
+  geom_vline(xintercept = c(-3, -1.96, -1, 0, 1, 1.96, 3), linetype = "dashed", alpha = 0.5) +
+  # Axes
+  scale_x_continuous(breaks = seq(from = -3, to = 3, by = 1)) +
+  labs(x = "z", y = "") +
+  theme(axis.title.y = element_blank(), axis.text.y = element_blank(), axis.ticks.y = element_blank())
+```
+
+
+### Summary statistics
 
 A probability distribution is not always easy to work with. It is a complex object. And, in many contexts, we don't really care about all that complexity. So, instead of providing the full probability distribution, we often just use a summary measure, a number or two or three which captures those aspects of the entire distribution which are relevant to the matter at hand. Let's explore these issues using the 538 posterior probability distribution, as of August 13, 2020, for the number of electoral votes which will be won by Joe Biden. Here is a tibble with 1,000,000 draws from that distribution:
 
