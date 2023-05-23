@@ -288,11 +288,11 @@ sqrt(64)
 
 Messages are similar. In both cases, you should fix the underlying issue until the error/warning/message goes away.
 
-### Go Read "R for Data Science" {.unnumbered}
+### Go Read *R for Data Science (2e)* {.unnumbered}
 
 Previous version of this textbook included three chapters which reviewed the use of R for data science. However, most of this material is covered, more competently, in [*R for Data Science (2e)*](https://r4ds.hadley.nz/) by Hadley Wickham, Mine Çetinkaya-Rundel, and Garrett Grolemund. Go read that book now. Even better, complete the [associated tutorials](https://ppbds.github.io/r4ds.tutorials/).
 
-Once you have done so, or if you already know R, you can start to learn from data science.
+Once you have done so, or if you already know R, you can start to learn about data science.
 
 ## Summary {.unnumbered}
 

@@ -1,64 +1,16 @@
 # Getting ready for the bootcamp
 
-Think hard about just deleting chapters 1 through 3. Bite the bullet!
 
-Remove R code stuff from Chapter 5. That material is (?) covered in the Iteration chapter.
-
-
-
-
-
-Clean up first three chapters. Publish them. Add them to bootcamp schedule?
+Remove R code stuff from Chapter 5? That material is (?) covered in the Iteration chapter.
 
 Looking at Data section of Visualization: Overview seems useful. Maybe it goes with Chapter 1 of R4DS. Or maybe we just kill it. Or maybe the whole tutorial is useful somehow . . . Delete it once you grab what is useful.
 
 
 Review Set Up chapter, add r4ds.tutorials reference explicitly.
 
-# Models and Inference
+Maybe Getting Started chapter is drastically shortened, with all that material going to the first tutorial in R4DS?
 
-
-Idea is that it would be nice to teach 6 week version of the course which would allow the students to make a model and discuss it. Weeks 1 to 3 would be the same as now. We rework Chapter 4. New title is "Models." Includes current sections 4.1, 4.2, 4.4, 5.1, 5.2, 5.7, and 5.8. (We could move the cut sections to a new Appendix.)
-
-Then, we have the (unwritten) chapter 5, titled "Inference," which would be assigned for week 5. Then, week 6 is like the current week 4, all about Quarto websites and getting their presentations ready for Demo Day. (Maybe we also assign some final project presentation milestones in weeks 3 through 5? Maybe construct them as tutorials?)
-
-Structure for the chapter would be 2 or 3 examples which go through the cardinal virtues. In this way, the structure is very similar to the structure of the later chapters of the book already. 
-
-Let's use the trains data from chapter 8. Note that it provides for examples that are both causal and non-causal. It also has some 0/1 variables. Maybe the whole chapter would do this data. Might be easiest to have just one data set which we introduce. Chapter 8 provides a nice discussion.
-
-Note that, even with one data set, we would still do the entire Cardinal Virtues routine three times, even the parts that used to seem repetitive, like the EDA, won't really be that way since, for each example, we need to EDA some different data. (We might also vary the questions a bit. Do some stretching so that validity/representativeness and so are tricky to assume.) We would do three examples. Two normal (one causal and one not) and one 0/1 (predictive), just like the current examples.
-
-
-
-# Sections to swap out for R4DS sections:
-
-Chapter 2
-
-These are the (rough) matches for where material covered by the Primer appears in R4DS. But maybe we should reorganize the chapter to better match R4DS. Pull out the most important functions into the main text, and overview tutorial, and then have other tutorials which go into all the details.
-
-Indeed, why not start a collection of tutorials, like "R4DS: Logical vectors" which always begin with R4DS and then the chapter title. (No chapter number.) Then, teachers could assign them as they see fit. Once those are built, we can 
-
-
-* https://r4ds.hadley.nz/data-import.html#data-entry for 2.1 Tibbles
-
-* https://r4ds.hadley.nz/rectangling.html#lists for 2.2 Lists
-
-* https://r4ds.hadley.nz/strings.html#letters for 2.3 Characters (but there is a lot of other material there as well)
-
-
-* https://r4ds.hadley.nz/factors.html for 2.4 Factors (matches well)
-
-* https://r4ds.hadley.nz/datetimes.html for 2.5 Date-Times (matches well but could skip durations and tz)
-
-* https://r4ds.hadley.nz/joins.html for 2.6 Combining Data
-
-* https://r4ds.hadley.nz/data-tidy.html for 2.7 Tidy data
-
-Chapter 3
-Data Import (includes rds) for Reading and Writing Files
-Spreadsheets for Excel files
-Databases for Databases (seems quite different?)
-Hierarchical Data covers JSON, and mentions APIs
+Create a one sentence summary of each key term: everything from causal effect to Population Table to Courage to stability. These are the dozen concepts we want to drill into students' heads. There should be questions about them in every tutorial.
 
 
 # Priorities
@@ -67,7 +19,6 @@ rayimage and friends are now on CRAN
 
 Use of _ in pipes in R 4.3.0.
 
--3) Update Trump/Biden data in chapter 1.
 
 -2) https://mc-stan.org/rstanarm/reference/stan_polr.html Add some examples with ordinal dependent variables. Of course, what we really want is multinomial regression.
 
@@ -94,8 +45,6 @@ Is stan_polr(), which models ordinal data, the best third modeling function to a
 6) We need a one sentence summary of each virtue, a sentence we repeat each time we start to use that virtue. Chapter 6 wisdom is great example.
 
 Figure out what quarto.yml settings are defaults and get rid of those. Explain others.
-
-Shotcut key in tutorials produces %>% instead of |>
 
 Might be cool to figure out all the places which, implicitly, mention the current year (like 2022 in RCM chapter) as well as, implicitly, future years --- and then automatically generate them based on a default value given somewhere. Then, in four months, we change 2022 to 2023 --- maybe via "parameters" --- and everything just works.
 
@@ -131,10 +80,6 @@ https://tmb.njtierney.com/
 * Explore new render_book() improvements, Simplify the creation of the book. Make it a Github action upon pulling.
 
 * Use the ggdistribution package, perhaps. https://t.co/8ue1b7Drh2?amp=1
-
-* Should validity be moved to Wisdom? You need to establish valdity before you can presume to consider the Preceptor Table and the data to have come from the same population. Yes!
-
-* Add rowwise() and c_across() explanation to Chapter 2.
 
 * Check out Frank Herrell book: http://hbiostat.org/rflow/
 
