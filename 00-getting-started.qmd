@@ -1,13 +1,13 @@
 # Getting Started {.unnumbered}
 
+<!-- Need to think more clearly about what to require students install and when they install it. -->
+
 <!-- We do not run set_rstudio_settings() and set_binary_only_in_r_profile() because these functions only work with an associated RStudio instance. There is no such instance when you render a qmd file, even if you render that file from within RStudio. (I think!) We do, however, run the install code for the packages. We do this in order to ensure that the code works when students try to run it, even though this is somewhat aggressive from the point of view of our co-authors. -->
 
 
 The world confronts us. Make decisions we must.
 
 ### Installing R and RStudio {.unnumbered}
-
-<!-- DK: Maybe don't need to set options to binary explicitly anymore, now that we have set_binary function, which we could just call. -->
 
 <!-- Update all the images. -->
 
@@ -180,7 +180,7 @@ Let's install another package:
 install.packages("tutorial.helpers")
 ```
 
-This package provides infrastructure for doing tutorials, a common apprach for learning R.
+This package provides infrastructure for doing tutorials, a common approach for learning R.
 
 Once you have **tutorial.helpers** installed, run these commands.
 
@@ -203,7 +203,7 @@ These functions set various R/RStudio options to convenient values.
 
 This is a different error message than the one you just saw about a package not having been installed yet. R is telling you that you are trying to use a function in a package that has not yet been loaded. R doesn't know where to "find" the function you want to use.
 
-Let's install two packages that is not available from CRAN: **r4ds.tutorials** and **all.primer.tutorials**. Copy and paste the following to the R Console:
+Let's install two packages that are not available from CRAN: **r4ds.tutorials** and **all.primer.tutorials**. Copy and paste the following to the R Console:
 
 ```{r}
 #| output: false
@@ -212,20 +212,19 @@ library(remotes)
 install_github("PPBDS/r4ds.tutorials")
 ```
 
-This package is fairly simple and should install without any problems. Many other new packages will be installed as well. 
+This package is fairly simple and should install without any problems. Some other new packages will be installed as well, most importantly **primer.data**, which includes most of the data we use in the *Primer*.
 
 Copy and paste the following to the R Console:
 
 
 ```{r}
 #| output: false
-remotes::install_github("PPBDS/primer.data")
 remotes::install_github("PPBDS/all.primer.tutorials")
 ```
 
 Instead of loading the **remotes** package explicitly, we used the double colon notation --- `::` --- to refer directly to the `install_github()` function which resides in the **remotes** package.
 
-Other new packages will be installed, including **primer.data**, which provides the data sets we use in the *Primer*. It may take a few minutes. If something gets messed up, it is often useful to read the error messages and see if a specific package is at fault. If so, use the `remove.packages()` function to remove the problematic package and then install it again.
+Other new packages will be installed. It may take a few minutes. If something gets messed up, it is often useful to read the error messages and see if a specific package is at fault. If so, use the `remove.packages()` function to remove the problematic package and then install it again.
 
 If **all.primer.tutorials** does not install correctly, don't worry about it. This package is much less important than **r4ds.tutorials**.
 
@@ -253,11 +252,11 @@ You may notice that the Background Jobs tab in the Console pane will create outp
 
 **Your work will automatically be saved between RStudio sessions**. You can complete the tutorial in multiple sittings.
 
-There are two basic ways you can close out of a tutorial safely before quitting your RStudio session:
+There are two ways you can close out of a tutorial safely before quitting your RStudio session:
 
--   If you clicked "Show in new window" and were working on the tutorial in a pop-up window, simply close the pop-up window.
+  - If you clicked "Show in new window" and were working on the tutorial in a pop-up window, simply close the pop-up window.
 
--   If you were working on the tutorial inside the Tutorial pane of RStudio, simply press the red stop sign icon.
+  - If you were working on the tutorial inside the Tutorial pane of RStudio, simply press the red stop sign icon.
 
 ### Basic Commands {.unnumbered}
 
@@ -300,12 +299,11 @@ install.packages("remotes")
 install.packages("tutorial.helpers")
 ```
 
-  - Installed, from Github, the **r4ds.tutorials**, **primer.data**, and **all.primer.tutorials** packages:
+  - Installed, from Github, the **r4ds.tutorials** and **all.primer.tutorials** packages:
 
 ```{r}
 #| eval: false
 remotes::install_github("PPBDS/r4ds.tutorials")
-remotes::install_github("PPBDS/primer.data")
 remotes::install_github("PPBDS/all.primer.tutorials")
 ```
 
