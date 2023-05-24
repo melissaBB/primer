@@ -126,15 +126,6 @@ knitr::include_graphics("00-getting-started/images/install_vs_load.jpg")
 
 2.  *Load the package*: "Loading" a package is like opening an app on your phone. Packages are not loaded by default when you start RStudio. You need to load each package you want to use every time you restart RStudio.
 
-Before installing packages, issue this command:
-
-<!-- DK: Is this necessary? Is there a better way to handle it? -->
-
-```{r}
-options(pkgType = "binary")
-```
-
-Doing so just makes various errors less likely. Do NOT do this is if you are installing on a Linux machine, e.g., a Chromebook or on a service like [Posit Cloud](https://posit.cloud). 
 
 Let's install a useful package. At the Console pane within RStudio, type:
 
@@ -300,13 +291,6 @@ You should have done the following:
 
   - Installed the *latest* versions of R and RStudio.
   
-  - Run, from the Console:
-  
-```{r}
-#| eval: false
-options(pkgType = "binary")
-```
-
   - Installed, from CRAN, the **remotes** and **tutorial.helpers** packages:
 
 ```{r}
@@ -330,8 +314,6 @@ remotes::install_github("PPBDS/all.primer.tutorials")
 tutorial.helpers::set_rstudio_settings()
 tutorial.helpers::set_binary_only_in_r_profile()
 ``` 
-
-  - Learned some basic terminology that will help you when you read the rest of the *Primer*.
 
 Let's get started.
 
