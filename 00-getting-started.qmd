@@ -219,6 +219,7 @@ Copy and paste the following to the R Console:
 
 ```{r}
 #| output: false
+remotes::install_github("PPBDS/primer.data")
 remotes::install_github("PPBDS/all.primer.tutorials")
 ```
 
@@ -299,11 +300,12 @@ install.packages("remotes")
 install.packages("tutorial.helpers")
 ```
 
-  - Installed, from Github, the **r4ds.tutorials.** and **all.primer.tutorials** packages:
+  - Installed, from Github, the **r4ds.tutorials**, **primer.data**, and **all.primer.tutorials** packages:
 
 ```{r}
 #| eval: false
 remotes::install_github("PPBDS/r4ds.tutorials")
+remotes::install_github("PPBDS/primer.data")
 remotes::install_github("PPBDS/all.primer.tutorials")
 ```
 
