@@ -14,16 +14,9 @@ library(gtsummary)
 
 <!-- Link for MathJax: https://www.mathjax.org/#demo (good for testing if math stuff looks good)-->
 
-<!-- For MH: -->
-
-
-<!-- Write a bunch of comments about the issue of the Preceptor Table being, or not being, a subset of the Population Table, following our discussion. -->
-
-<!-- Reality Preceptor Tables and Fantasy Preceptor Tables. The former shows data that you might plausibly see. The latter is shows data which it is impossible for you to ever know for sure. When we are looking at Population Tables, should they include Reality Preceptor Tables or Fantasy Preceptor Tables? Or doesn't it matter?  -->
+<!-- Older comments: -->
 
 <!-- Change the Multiple Units Preceptor Table to only show reality. That means, for both Data and for Preceptor, we can only see one of treatment and control values and never the causal effect. -->
-
-<!-- Change (or delete) the -1 and the 2 for Cassidy since this score must be between 3 and 15. -->
 
 <!-- In the Data source rows never show data that we can't possibly have, like both the treated and control outcomes. Same rule for the Preceptor Table? Not sure! -->
 
@@ -34,11 +27,10 @@ library(gtsummary)
 
 <!-- Make all tables look the same. -->
 
-<!-- Reinforce the definitions of the Preceptor Table and the Population Table throughout. They are key! Note that the all the columns of the Preceptor Table fit within the Population Table. It is just that the Population Table also includes some extra columns, maining Source. -->
+<!-- Reinforce the definitions of the Preceptor Table and the Population Table throughout. They are key! Note that the all the columns of the Preceptor Table fit within the Population Table. It is just that the Population Table also includes some extra columns, both Source and Time. -->
 
-<!-- Assumptions section needs work, especially representativeness. Unconfoundedness is not great either. -->
 
-<!-- Maybe the whole chapter should begin with simple prediction, with only one possible outcome Y. Then, the step to mutiple potential outcomes is clearer. Might even explain mutiple units at the start. We already sort of do that with the height example. Just make it more explicit. All examples have a predictive version and a causal version. Start with Yao. We might just care about predicting Yao's attitude toward immigration, given that we know he did not receive the treatment. That is a predictive problem, like predicting Andy's height. Only after understanding that, do we try to look at the causal question. We do this a bit at the end of the Multiple Units section. -->
+<!-- Maybe the whole chapter should begin with simple prediction, with only one possible outcome Y. Then, the step to multiple potential outcomes is clearer. Might even explain multiple units at the start. We already sort of do that with the height example. Just make it more explicit. All examples have a predictive version and a causal version. Start with Yao. We might just care about predicting Yao's attitude toward immigration, given that we know he did not receive the treatment. That is a predictive problem, like predicting Andy's height. Only after understanding that, do we try to look at the causal question. We do this a bit at the end of the Multiple Units section. -->
 
 <!-- Does $\widehat{ATE}$ work? Shows up ugly in my Viewer. -->
 
@@ -52,8 +44,6 @@ library(gtsummary)
 
 <!-- You can use information from your data to fill in the missing rows of the Preceptor Table, or at least to make inferences about summary statistics from the Preceptor Table. You don't really need to know everyone's causal effect, if all you care about is the average causal effect. -->
 
-<!-- Put the Glossary at the start the summary. -->
-
 
 <!-- Clean up the weird text in some of the tables. See this
 
@@ -64,10 +54,6 @@ for discussion. I think that something like c("$$13 - \\tau_M$$") could become c
 
 
 <!-- Replace Sliding Doors in Summary with something from Wonderful Life that references "An angel gets his wings."  Every time a predictive model is interpreted causally, a devil gets his pitchfork. -->
-
-<!-- Confounding is done twice in Complications, once with noise and once with parties. Needs to be unified. -->
-
-<!-- The entire Complications sections is filled with good stuff. But it all needs to be re-organized and rewritten. Key idea: What are the 3 or 4 key items that we want students to get out of this? What are the key lessons/concerns? What themes do we expect to revisit in the Temperance sections of later chapters? These key points should also go in the Summary. -->
 
 <!-- Lots of useful material here: https://chabefer.github.io/STCI/. Raises the possibility of using $Y^{t}_i to indicate potential outcome under treatment for unit i. -->
 
@@ -83,15 +69,14 @@ Have you ever wondered what the world would be like without you?
 
 {{< video https://www.youtube.com/embed/cR7p-IB6INM >}}
 
-George Bailey, a character from the movie "It's a Wonderful Life," believes that his life has served no purpose. The movie follows George as he explores a world in which he was never born. It is clear that he had a profound impact on the lives of many people in his community. His actions mattered, more than he ever realized.
+George Bailey, a character from the movie "It's a Wonderful Life," believes that his existence has served no purpose. The movie follows George as he explores a world in which he was never born. It is clear that he had a profound impact on the lives of many people in his community. His actions mattered, more than he ever realized.
 
 By showing what the world would have been like without George, we get an idea of the *causal effect* of his life on his town and the people who live there. This chapter explains causation using the framework of *potential outcomes* and the *Rubin Causal Model* (RCM).
 
-<!-- Footnote: "The term Preceptor Table is, perhaps unsurprisingly, unique to this textbook. We hope you find it useful!" -->
 
 ## Preceptor Table
 
-A **Preceptor Table** is a table with rows and columns such that, if none of the data is missing, the thing we want to know is trivial to calculate. Preceptor Tables vary in the number of their rows and columns. We use question marks to indicate missing data in a Preceptor Table. The rows in the Preceptor Table are the *units* --- people, galaxies, oak trees --- which are the subjects of interest. Even the simplest Preceptor Table will have two columns. The first is an *ID* column which serves to label each unit. The second column is the *outcome* of interest, the variable we are trying to predict/understand/change.
+A **Preceptor Table** is a table with rows and columns such that, if none of the data is missing, the thing we want to know is trivial to calculate. Preceptor Tables^[The term Preceptor Table is, perhaps unsurprisingly, unique to this textbook. We hope you find it useful.] vary in the number of their rows and columns. We use question marks to indicate missing data in a Preceptor Table. The rows in the Preceptor Table are the *units* --- people, galaxies, oak trees --- which are the subjects of interest. Even the simplest Preceptor Table will have two columns. The first is an *ID* column which serves to label each unit. The second column is the *outcome* of interest, the variable we are trying to predict/understand/change.
 
 Assume that there are five adult brothers and you are given four of their heights. What is the average height of all five brothers? Consider a Preceptor Table for this problem:
 
@@ -153,11 +138,11 @@ tibble(ID = c("Student 1", "Student 2", "...", "Student 473", "Student 474",
 
 Again, are these 100 students randomly sampled? Could we estimate the 90th percentile of height in the student population? These questions are more complicated, and we might be less confident in our best guess. Note, also, that we will sometimes not know exactly how many rows there are in the Precptor Table. In that case, we would use "Student N" as the last ID, where N is the total number of students at Harvard.
 
-### Population Table
+## Population Table
 
-The *Population Table* is distinct from the Preceptor Table. The aim of the Population Table is to illustrate the broader population in which we are interested, while also including the data from our Preceptor Table and from our dataset. This table has three sources of data: the data for units we *want to have* (the Preceptor Table), the data for units which we *actually have* (our actual data), and the data for units we *do not care about* (the rest of the population, not included in the data or the Preceptor Table).
+The *Population Table* is distinct from the Preceptor Table. The aim of the Population Table^[The term Population Table is, perhaps unsurprisingly, unique to this textbook. We hope you find it useful.] is to illustrate the broader population in which we are interested, while also including the data from our Preceptor Table and from our dataset. This table has three sources of data: the data for units we *want to have* (the Preceptor Table), the data for units which we *actually have* (our actual data), and the data for units we *do not care about* (the rest of the population, not included in the data or the Preceptor Table).
 
-The rows in the Preceptor Table contain the information that we would want to know in order to answer our questions. These rows contain entries for our covariates (year and age) but they do not contain any outcome results (height). We are trying to answer questions about the height of Harvard students in 2022, so our Age column will read somewhere between 15 and 27 and our Year entries for these rows will read "2022."
+The rows in the Preceptor Table contain the information that we would want to know in order to answer our questions. These rows contain entries for our covariates (year and age) but they do not contain any outcome results (height). We are trying to answer questions about the height of Harvard students in 2023, so our Age column will read somewhere between 15 and 27 and our Year entries for these rows will read "2023."
 
 <!-- Sloppy use of both year (to mean the variable) and Year (to mean the column in the table). -->
 
@@ -171,11 +156,11 @@ Our Population rows contain no data. These are subjects which fall within our po
 
 ```{r}
 #| echo: false
-tibble(source = c("Population", "...",  "Data", "Data", 
-                  "...", "Population", "...", 
-                  "Preceptor Table", "...", "Population", "Preceptor Table", "Preceptor Table"),
+tibble(source = c("...", "...",  "Data", "Data", 
+                  "...", "...", "...", 
+                  "Preceptor Table", "...", "...", "Preceptor Table", "Preceptor Table"),
        year = c("2010", "...", "2015", "2015", 
-                "...","2018", "...", "2022", "...", "2025", "?", "?"),
+                "...","2018", "...", "2023", "...", "2025", "?", "?"),
        age = c("?", "...", "18", "23","...", "?","...","19", "...","?", "?", "?"),
        height = c("?", "...", "180", "163", "...", "?", "...","?", "...", "?", "172", "...")) |> 
   
@@ -196,7 +181,7 @@ tibble(source = c("Population", "...",  "Data", "Data",
   fmt_markdown(columns = everything())  
 ```
 
-Implicit in the Preceptor Table is a notion of time. Now that we can see our actual data compared with our greater population and our desired data, we must expand our observations. That is to say that, given our data is sourced from 2015 and our desired data is from 2022, we must include a greater time span in our population.
+Implicit in the Preceptor Table is a notion of time. Now that we can see our actual data compared with our greater population and our desired data, we must expand our observations. That is to say that, given our data is sourced from 2015 and our desired data is from 2023, we must include a greater time span in our population.
 
 <!-- AWK phrasing above and, even more, below. -->
 
@@ -423,14 +408,14 @@ Similar concepts can also be applied to the Population Table:
 
 ```{r}
 #| echo: false
-tibble(source = c("Population", "...",  "Data", "Data", 
-                  "...", "Population", "...", 
-                  "Preceptor Table", "...", "Population"),
+tibble(source = c("...", "...",  "Data", "Data", 
+                  "...", "...", "...", 
+                  "Preceptor Table", "...", "..."),
        year = c("2010", "...", "2015", "2015", 
-                "...","2018", "...", "2022", "...", "2025"),
+                "...","2018", "...", "2023", "...", "2025"),
        ID = c("?", "...", "Yao", "Cassidy","...", "?","...","Yao", "...","?"),
-       ytreated = c("?", "...", "5", "-1", "...", "?", "...","13", "...", "?"),
-       ycontroled = c("?", "...", "3", "2", "...", "?", "...","9", "...", "?"),
+       ytreated = c("?", "...", "5", "3", "...", "?", "...","13", "...", "?"),
+       ycontroled = c("?", "...", "3", "6", "...", "?", "...","9", "...", "?"),
        causaleffect = c("?", "...", "+2", "-3", "...", "?", "...","+4", "...", "?")) |> 
   
   gt() |>
@@ -467,6 +452,8 @@ What does our real-world Preceptor Table look like?
 
 <!-- Can't seem to make GT tables appear side by side, can only find working versions for Kable tables. Thoughts?  
 See: https://stackoverflow.com/questions/65835639/arrange-gt-tables-side-by-side-or-in-a-grid-or-table-of-tables -->
+
+<!-- Add another Preceptor Table row. -->
 
 ```{r}
 #| echo: false
@@ -891,7 +878,7 @@ In this example, there is indeed a constant treatment effect for everyone: $+3$.
 
 In this section, we will explore four topics: validity, stability, representativeness and unconfoundedness.
 
-Our earlier Population Table familiarized us with the three sources of data for which we are making inferences: the Preceptor Table, our data, the greater population from which both are drawn. Consider a new Population Table.
+Our earlier Population Table familiarized us with the three sources of data for which we are making inferences: the Preceptor Table, our data, and the greater population from which both are drawn. Consider a new Population Table.
 
 <!-- Seems like we should add ID and time columns, place them toward the left and then put year there. Year is *not* just another covariate. -->
 
@@ -899,13 +886,13 @@ Our earlier Population Table familiarized us with the three sources of data for 
 #| echo: false
 # First, we create a tibble with the values we want for the table
 
-tibble(source = c("Population", "Population", "...",
+tibble(source = c("...", "...", "...",
                   "Data", "Data", "...", 
                   "Preceptor Table", "Preceptor Table", "...",
-                  "Population", "Population"), 
+                  "...", "..."), 
        year = c("2012", "2012", "...",
                 "2014", "2014", "...",
-                "2022", "2022", "...",
+                "2023", "2023", "...",
                 "2023", "2023"),
        sex = c("?", "?", "...",
                "Male", "Female", "...",
@@ -947,7 +934,7 @@ tibble(source = c("Population", "Population", "...",
             locations = cells_column_labels())         
 ```
 
-The rows from our data have covariates and two potential outcomes. (By definition, we only know the value for one of the potential outcomes for each unit.) The rows from the Preceptor Table include covariates, but not outcomes. (We have no outcome data for 2022, but we will, in theory, be given the sex of any units about whom we need to make inferences.) The rows from our greater population include no data, as we know nothing about these units.
+The rows from our data have covariates and two potential outcomes. (By definition, we only know the value for one of the potential outcomes for each unit.) The rows from the Preceptor Table include covariates, but not outcomes. (We have no outcome data for 2023, but we will, in theory, be given the sex of any units about whom we need to make inferences.) The rows from our greater population include no data, as we know nothing about these units.
 
 <!-- More detail here? Calling it a Population Table and having only some rows with "Population" as a source seems suspect. -->
 
@@ -957,7 +944,7 @@ The rows from our data have covariates and two potential outcomes. (By definitio
 
 To understand *validity* in regards to the Population Table, we must first recognize an inherent flaw in any experiment design: *no two units receive exactly the same treatment*.
 
-If this doesn't ring true, consider our Spanish-speakers train experiment. The units on the Spanish-speaking platform received the same treatment, right? No, actually!
+Consider our Spanish-speakers train experiment. The units on the Spanish-speaking platform received the same treatment, right? No!
 
 Consider different volume levels, measured in decibels (dB), at which Spanish is being spoken.
 
@@ -994,11 +981,13 @@ tibble(subject = c("Yao", "Emma", "Cassidy", "Tahmid", "Diego"),
             locations = cells_column_labels())
 ```
 
-Certain units heard the Spanish-speakers at higher volumes than other units. And it is entirely possible that the volume of the speech affects the outcome. There is also the issue of the time spent on the platform. Maybe Yao tends to run late, and only hears the Spanish-speakers for thirty seconds. Emma, on the other hand, arrives early. She hears the Spanish-speakers for fifteen minutes before the train arrives! Thus, despite the fact that Emma and Yao are in the same treatment --- that is, hearing Spanish on the platform --- they had very different versions of that treatment.
+Certain units heard the Spanish-speakers at higher volumes than other units. And it is entirely possible that the volume of the speech affects the outcome. There is also the issue of the time spent on the platform. Maybe Yao tends to run late, and only hears the Spanish-speakers for thirty seconds. Emma, on the other hand, arrives early. She hears the Spanish-speakers for fifteen minutes before the train arrives. Thus, despite the fact that Emma and Yao are in the same treatment --- that is, hearing Spanish on the platform --- they had very different versions of that treatment.
 
-Indeed, there are an infinite number of possible treatments. Indeed, it is a virtual certainty that *every treated unit received a different treatment.* However, *validity*, if a reasonable assumption in this specific example, allows us to pretend/assume that Yao, Emma and Diego all received the same treatment. We place all their treated outcomes in the same column. Only if this is true (or true'ish) can we estimate an average treatment effect.
+There are an infinite number of possible treatments. Indeed, it is a virtual certainty that *every treated unit received a different treatment.* However, *validity*, if a reasonable assumption in this specific example, allows us to pretend/assume that Yao, Emma and Diego all received the same treatment. We place all their treated outcomes in the same column. Only if this is true (or true'ish) can we estimate an average treatment effect.
 
 More commonly, we simply assume that all treated units received the same treatment. *Validity allows us to ignore variation in treatment.* In fact, concerns about validity apply to all the variables (covariates and outcomes), not just the treatments. If the columns in the data are not the same thing as the columns in the Preceptor Table, you have a problem. Validity is the assumption which allows us to create the Population Table.
+
+The validity assumption is most important in that, if true, we can consider treatments and other variables to be similar (enough) across time that we can "stack" the data and the Preceptor Table into one, unified, Population Table. Validity means that "exposure to Spanish-speakers" in 2014 means the same thing as "exposure to Spanish-speakers" in 2023. Strictly speaking, this must be false! For example, we are unlikely to be able to hire the same Spanish speakers now as we did a decade ago. Moreover, it is impossible for them to say the exact same words *now*, at the exact same volume, as they did in 2014. Validity allows us to assume that the treatment, and other variables, are close enough.
 
 ### Stability
 
@@ -1008,7 +997,7 @@ Stability means that the relationship between the columns is the same for three 
 
 In our height example, it is much easier to assume stability over a greater period of time. Changes in global height occur extremely slowly, so height being stable across a span of 20 years is reasonable to assume. Can we say the same for this example, where we are looking at attitudes on immigration?
 
-With something like political ideology, it is much harder to assert that the relationships among the data collected in 2010 would be similar to the relationships among the data collected in 2025. Our data, for instance, was collected in 2014. We want to make predictions for 2022. And, frankly, it may be difficult to argue that our results would be stable if we re-conducted the experiment.
+With something like political ideology, it is much harder to assert that the relationships among the data collected in 2010 would be similar to the relationships among the data collected in 2025. Our data, for instance, was collected in 2014. We want to make predictions for 2023. And, frankly, it may be difficult to argue that our results would be stable if we re-conducted the experiment.
 
 When we are confronted with this uncertainty, we can consider making our timeframe smaller. However, we would still need to assume stability from 2014 (time of data collection) to today. *Stability allows us to ignore the passage of time.*
 
@@ -1098,14 +1087,14 @@ tibble(subject = c("Yao", "Emma", "Cassidy", "Tahmid", "Diego", "MEAN"),
 
 The true causal effect of the treatment, as we can see in the first table, is -8. In other words, the treatment lowers blood pressure on average. But, using just the data we have access to if the Perfect Doctor performs the treatment assignment, we would estimate --- if we mistakenly assume random assignment --- that the causal effect is positive, that treatment increases blood pressure.
 
-The best way to ensure unconfoundedness is to randomize the treatment across units. Don't let the doctor decide who gets the treatment and who gets the control. Randomize assignment. As long as you use randomization as your assignment mechanism, you're good. There is the possibility that you can't use pure randomization due to ethical or practical reasons, so we are forced to use non-random assignment mechanisms. Many statistical methods have been developed for causal inference when there is a non-random assignment mechanism. Those methods, however, are beyond the scope of this book.
+The best way to ensure unconfoundedness is to randomize the treatment across units. Don't let the doctor decide who gets the treatment and who gets the control. Randomize assignment. As long as you use randomization as your assignment mechanism, you're good. There is the possibility that you can't use pure randomization due to ethical or practical reasons, so we are forced to use non-random assignment mechanisms. Many statistical methods have been developed for causal inference when there is a non-random assignment mechanism. Those methods, however, are largely beyond the scope of this book.
 
 ## Summary
 
 ::: callout-tip
 ## Glossary
 
--   A **Preceptor Table** is a table that includes all rows and columns such that, if no data is missing, it is easy to calculate our quantity of interest. However there is always data missing.
+-   A **Preceptor Table** is a table that includes all rows and columns such that, if no data is missing, it is easy to calculate our quantity of interest. Unfortunately, there is always data missing.
 
 -   A **Population Table** has three sources of data: the Preceptor Table, the dataset, and the greater population from which both are drawn.
 
@@ -1113,7 +1102,7 @@ The best way to ensure unconfoundedness is to randomize the treatment across uni
 
 -   A **Causal Effect** is the difference between two potential outcomes.
 
--   The **Fundamental Problem of Causal Inference** is that it is impossible to observe the causal effect on a single unit. We must make assumptions in order to estimate causal effects.
+-   The **Fundamental Problem of Causal Inference** is that it is impossible to observe the causal effect on a single unit because we can never observe both potential outcomes for that unit. We must make assumptions in order to estimate causal effects.
 
 :::
 
