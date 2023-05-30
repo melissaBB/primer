@@ -2216,9 +2216,9 @@ Are we are modeling (just) for prediction or are we (also) modeling for causatio
 
 Every model is predictive, in the sense that, if we give you new data --- and it is drawn from the same population --- then you can create a predictive forecast. But only a subset of those models are causal, meaning that, *for a given individual*, you can change the value of one input and figure out what the new output would be and then, from that, calculate the causal effect by looking at the difference between two potential outcomes.
 
-With prediction, all we care about is forecasting Y given X on some as-yet-unseen data. But there is no notion of "manipulation" in such models. We don't pretend that, for Joe, we could turn variable X from a value of 5 to a value of 6 by just turning some knob and, by doing so, cause Joe's value of Y to change from 17 to 23. We can compare two people (or two groups of people), one with X equal to 5 and one with X equal to 6, and see how they differ in Y. The basic assumption of predictive models is that there is only one possible Y for Joe. There are not, by assumption, two possible values for Y, one if X equal 5 and another if X equals 6. The Preceptor Table has a single column under Y.
+With prediction, all we care about is forecasting $Y$ given $X$ on some as-yet-unseen data. But there is no notion of "manipulation" in such models. We don't pretend that, for Joe, we could turn variable $X$ from a value of $5$ to a value of $6$ by just turning some knob and, by doing so, cause Joe's value of $Y$ to change from $17$ to $23$. We can compare two people (or two groups of people), one with $X$ equal to $5$ and one with $X$ equal to $6$, and see how they differ in $Y$. The basic assumption of predictive models is that there is only one possible $Y$ for Joe. There are not, by assumption, two possible values for $Y$, one if $X$ equals $5$ and another if $X$ equals $6$. The Preceptor Table has a single column under $Y$.
 
-With causal inference, however, we can consider the case of Joe with $X = 5$ and Joe with $X = 6$. The same mathematical model can be used. And both models can be used for prediction, for estimating what the value of Y will be for a yet-unseen observation with a specified value for X. But, in this case, instead of only a single column in the Preceptor Table for Y, we have at least two (and possibly many) such columns, one for each of the potential outcomes under consideration.
+With causal inference, however, we can consider the case of Joe with $X = 5$ and Joe with $X = 6$. The same mathematical model can be used. And both models can be used for prediction, for estimating what the value of $Y$ will be for a yet-unseen observation with a specified value for $X$. But, in this case, instead of only a single column in the Preceptor Table for $Y$, we have at least two (and possibly many) such columns, one for each of the potential outcomes under consideration.
 
 *The difference between prediction models and causal models is that the former have one column for the outcome variable and the latter have more than one column.* 
 
@@ -2232,7 +2232,7 @@ Second, we look at the data we have and perform an **e**xploratory **d**ata **a*
 
 We care about other variables as well, especially those that are most correlated/connected with the outcome variable. The more time that we spend looking at these variables, the more likely we are to create a useful model.
 
-Third, the (almost always imaginary) *population* is key. We need the data we want --- the Preceptor Table --- and the data we have to be similar enough that we can consider them as all having come from the same statistical population. From [Wikipedia](https://en.wikipedia.org/wiki/Statistical_population):
+Third, the (almost always imaginary) *population* is key. We need the data we *want* --- the Preceptor Table --- and the data we *have* to be similar enough that we can consider them as all having come from the same statistical population. From [Wikipedia](https://en.wikipedia.org/wiki/Statistical_population):
 
 > In statistics, a population is a set of similar items or events which is of interest for some question or experiment. A statistical population can be a group of existing objects (e.g. the set of all stars within the Milky Way galaxy) or a hypothetical and potentially infinite group of objects conceived as a generalization from experience (e.g. the set of all opening hands in all the poker games in Las Vegas tomorrow).
 
@@ -2268,7 +2268,7 @@ The last step of Justice is to make an assumption about the structure of the dat
 
 *Justice requires math.* Consider a model of coin-tossing:
 
-$$ H_i  \sim B(\rho_H, n = 20) $$
+$$ H_i  \sim B(\rho_h, n = 20) $$
 
 The total number $H$ of Heads in experiment $i$ with 20 flips of a single coin, $H_i$, is distributed as a binomial with $n = 20$ and an unknown probability $\rho_h$ of the coin coming up Heads. 
  
@@ -2292,7 +2292,9 @@ knitr::include_graphics("other/images/Courage.jpg")
 
 <!-- Courage: For each model, write down the math, estimate the model, say something sensible about the regression table. Testing is stupid. -->
 
-*The three languages of data science are words, math and code, and the most important of these is code.* We need to explain the structure of our model using all three languages, but we need *Courage* to implement the model in code.
+*The three languages of data science are words, math and code, and the most important of these is code.* 
+
+We need to explain the structure of our model using all three languages, but we need *Courage* to implement the model in code.
 
 Courage requires us to take the general mathematical formula provide by Justice and then make it specific. Which variables should we include in the model and which do we exclude? Every data science project involves the creation of several models. For each, we specify the precise data generating mechanism. Using that formula, and some R code, we create a fitted model. All models have parameters. We can never know the true values of the parameters, but we can create, and explore, posterior distributions for those unknown true values.
 
@@ -2310,9 +2312,9 @@ Some of our uncertainty is driven by our ignorance about $\rho_h$.
 
 A parameter is something which does not exist in the real world. (If it did, or could, then it would be data.) Instead, a parameter is a mental abstraction, a building block which we will use to to help us accomplish our true goal: To replace at least some of the questions marks in the actual Preceptor Table. Since parameters are mental abstractions, we will always be uncertain as to their value, however much data we might collect.
 
-But some, often most, of the uncertainty comes from forces that are, by assumption, not in the model. For example, if the coin is fair, we expect $T_i$ to equal 10. But, often, it will be different, even if we are correct and $\rho_h$ equals exactly 0.5. 
+But some, often most, of the uncertainty comes from forces that are, by assumption, not in the model. For example, if the coin is fair, we expect $H_i$ to equal 10. But, often, it will be different, even if we are correct and $\rho_h$ equals exactly 0.5. 
 
-*Some randomness is intrinsic in this fallen world.* 
+*Randomness is intrinsic to this fallen world.* 
 
 ### Temperance
 
@@ -2347,11 +2349,11 @@ knitr::include_graphics("05-probability/images/donald_rumsfeld.jpg")
 What we really care about is data we haven't seen yet, mostly data from tomorrow. But what if the world changes, as it always does? If it doesn't change much, maybe we are OK. If it changes a lot, then what good will our model be? In general, the world changes some. That means that *our forecasts are more uncertain that a naive use of our model might suggest.* 
   
 
-We need temperance in order to study and understand the unknown unknowns in our data. Temperance is also important when we analyze the "realism" of our models. When we created the mathematical probability distribution for presidential elections, for instance, we assumed that the Democratic candidate would have a 50% chance of winning each vote in the electoral college. By comparing the mathematical model to our empirical cases, however, we recognize that the mathematical model is unlikely to be true. The mathematical model suggested that getting fewer than 100 votes is next to impossible, but many past Democratic candidates in the empirical distribution received less than 100 electoral votes.
+We need temperance in order to study and understand the unknown unknowns in our model. Temperance is also important when we analyze the "realism" of our models. When we created the mathematical probability distribution for presidential elections, for instance, we assumed that the Democratic candidate would have a 50% chance of winning each vote in the electoral college. By comparing the mathematical model to our empirical cases, however, we recognize that the mathematical model is unlikely to be true. The mathematical model suggested that getting fewer than 100 votes is next to impossible, but many past Democratic candidates in the empirical distribution received less than 100 electoral votes.
 
 In Temperance, the key distinction is between the *true* posterior distribution --- what we will call "Preceptor's Posterior" --- and the estimated posterior distribution. Recall our discussion from @sec-distributions. Imagine that every assumption we made in Wisdom and Justice were correct, that we correctly understand every aspect of how the world works. We still would not know the unknown value we are trying to estimate --- recall the Fundamental Problem of Causal Inference --- but the posterior we created would be perfect. That is Preceptor's Posterior. Sadly, even if our estimated posterior is, very close to Preceptor's Posterior, we can never be sure of that fact, because we can never know the truth, never be certain that all the assumptions we made are correct. 
 
-Even worse, we must always worry that our estimated posterior, despite all the work we put into creating it, is far from the truth. We, therefore, must be cautious in our use of that posterior, humble in our claims about its accuracy. Using our posterior, despite its fails, is better than not using it. Yet it is, as best, a distorted map of reality, a glass through which we must look darkly. Use your posterior with humility.
+Even worse, we must always worry that our estimated posterior, despite all the work we put into creating it, is far from the truth. We, therefore, must be cautious in our use of that posterior, humble in our claims about its accuracy. Using our posterior, despite its faults, is better than not using it. Yet it is, as best, a distorted map of reality, a glass through which we must look darkly. Use your posteriors with humility.
 
 
 
@@ -2366,10 +2368,7 @@ Even worse, we must always worry that our estimated posterior, despite all the w
 
 Throughout this Chapter, we spent time going through examples of conditional distributions. However, it's worth noting that all probability distributions are conditional on something. Even in the most simple examples, when we were flipping a coin multiple times, we were assuming that the probability of getting heads versus tails did not change between tosses.
 
-We also discussed the difference between empirical, mathematical, and posterior probability distributions. Even though we developed these heuristics to better understand distributions, every time we make a claim about the world, it is based on our beliefs - what we think about the world. We could be wrong. Our beliefs can differ. Two reasonable people can have conflicting beliefs about the fairness of a dice.
-
-At the start of this chapter we briefly discuss the definition of an random variable, yet we sort of let it go for the rest of the chapter, but it's hiding almost everywhere whenever we create an distribution. 
-For example, in two models we have two random variables, the have disease and the don't have disease, in three models we have three random variables, either to have 0 or 1 or 2 white marbles in bad. Essentially is just like the missing values in the Preceptor table *what random variables do you need to know the values of to answer the question? *
+We discussed the difference between empirical, mathematical, and posterior probability distributions. Even though we developed these heuristics to better understand distributions, every time we make a claim about the world, it is based on our beliefs - what we think about the world. We could be wrong. Two reasonable people can have conflicting beliefs about the fairness of a coin.
 
 It is useful to understand the three types of distributions and the concept of conditional distributions, but almost every probability distribution is conditional and posterior. We can leave out both words in future discussions, as we generally will in this book. They are implicit.
 
