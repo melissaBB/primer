@@ -36,6 +36,10 @@ If you are using Windows, [download and install R Tools](https://cran.r-project.
 
 If you are using a Chromebook, follow [this advice](https://levente.littvay.hu/chromebook/).
 
+If you are having trouble, just sign up for a free account on [Posit Cloud](https://posit.cloud/). This will give you 25 hours of usage, which should be enough to get started.
+
+<!-- DK: Should set up a robust Posit Cloud option. Indeed, might even make it the default for Day 1. -->
+
 <!-- DK: Could text like this be in a "More Detail" box which only appears when clicked?  If you want a slower introduction, check out the short (free) book, [*Getting Used to R, RStudio, and R Markdown*](https://rbasics.netlify.com/). @usedtor2016 include screencast recordings that you can follow along and pause as you learn. -->
 
 ### Using R via RStudio {.unnumbered}
@@ -70,7 +74,7 @@ We often use the phrase "run the following code." This means that you should typ
 
 <!-- DK: Redo this image by splitting it into two. First, show it as students see it, with nothing in the environment. Then, tell them to type x <- 5. Then, show them the image of what it looks like now. In neither case is there a data object. -->
 
-Look at the top right:
+Switch to the top right of your workspace:
 
 ```{r}
 #| echo: false
@@ -85,7 +89,7 @@ x <- 5
 
 This code assigns the value 5 to an object, `x`. `<-` is the operator used to assign values to objects in R. Now, hit return/enter and you should see a variable `x` equal to 5 in your Environment tab. You must always hit return/enter after typing a command, otherwise RStudio will not realize that you want R to execute the command.
 
-Look at the bottom right pane:
+Switch to the bottom right pane:
 
 ```{r}
 #| echo: false
@@ -124,12 +128,12 @@ The process is very similar for an R package. You need to:
 knitr::include_graphics("00-getting-started/images/install_vs_load.jpg")
 ```
 
-1.  *Install the package*: This is like installing an app on your phone. Most packages are not installed by default when you install R and RStudio. Thus if you want to use a package for the first time, you need to install it. Once you've installed a package, you likely won't install it again unless you want to update it to a newer version.
+1.  *Install the package*: This is like installing an app on your phone. Most packages are not installed by default when you put R and RStudio on your computer. Thus if you want to use a package for the first time, you need to install it. Once you've installed a package, you likely won't install it again unless you want to update it to a newer version.
 
 2.  *Load the package*: "Loading" a package is like opening an app on your phone. Packages are not loaded by default when you start RStudio. You need to load each package you want to use every time you restart RStudio.
 
 
-Let's install a useful package. At the Console pane within RStudio, type:
+Let's *install* a useful package. At the Console pane within RStudio, type:
 
 ```{r}
 #| output: false
@@ -177,7 +181,7 @@ R will occasionally ask you if you want to install some packages. You almost alw
 Let's install another package:
 
 ```{r}
-#| output: false
+#| eval: false
 
 install.packages("tutorial.helpers")
 ```
@@ -196,6 +200,15 @@ set_binary_only_in_r_profile()
 
 These functions set various R/RStudio options to convenient values.
 
+Let's install another package:
+
+```{r}
+#| eval: false
+
+install.packages("tidyverse")
+```
+
+This might take awhile since the "Tidyverse" includes so many [useful packages](https://www.tidyverse.org/).
 
 ### Package use {.unnumbered}
 
@@ -213,6 +226,8 @@ Let's install two packages that are not available from CRAN: **r4ds.tutorials** 
 library(remotes)
 install_github("PPBDS/r4ds.tutorials")
 ```
+
+<!-- DK: Will need to update this once we remove primer.data from the r4ds.tutorials package. But, even then, we will certainly need primer.data in the all.primer.tutorials package, so we will just be moving this discussion lower. -->
 
 This package is fairly simple and should install without any problems. Some other new packages will be installed as well, most importantly **primer.data**, which includes most of the data we use in the *Primer*.
 
@@ -234,7 +249,7 @@ If **all.primer.tutorials** does not install correctly, don't worry about it. Th
 
 <!-- DK: Is this really necessary? I think that you get all the tutorials for free? That is, you don't need to load them explicitly. They are just found by the Tutorial pane. -->
 
-For each chapter of the textbook, there are one or more tutorials available in the **r4ds.tutorials** or **all.primer.tutorials** package. In order to access these tutorials, you should run `library(r4ds.tutorials)` or `library(all.primer.tutorials)` in the R Console.
+There are many tutorials available in the **r4ds.tutorials** and **all.primer.tutorials** packages. In order to access these tutorials, you should run `library(r4ds.tutorials)` or `library(all.primer.tutorials)` in the R Console.
 
 ```{r}
 #| echo: false
@@ -299,6 +314,7 @@ You should have done the following:
 #| eval: false
 install.packages("remotes")
 install.packages("tutorial.helpers")
+install.packages("tidyverse")
 ```
 
   - Installed, from Github, the **r4ds.tutorials** and **all.primer.tutorials** packages:
@@ -309,7 +325,7 @@ remotes::install_github("PPBDS/r4ds.tutorials")
 remotes::install_github("PPBDS/all.primer.tutorials")
 ```
 
-  - Run this command to set some RStudio options:
+  - Run these commands to set some RStudio options:
   
 ```{r}
 #| eval: false
