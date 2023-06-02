@@ -262,7 +262,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </div>
   
 
-</header><!-- Maybe we can get rid of a lot of this material by creating am Introduction tutorial for the R4DS chapter 1. Then, this section could just give you enough to get started with that.  --><!-- Need to think more clearly about what to require students install and when they install it. --><!-- We do not run set_rstudio_settings() and set_binary_only_in_r_profile() because these functions only work with an associated RStudio instance. There is no such instance when you render a qmd file, even if you render that file from within RStudio. (I think!) We do, however, run the install code for the packages. We do this in order to ensure that the code works when students try to run it, even though this is somewhat aggressive from the point of view of our co-authors. --><p>The world confronts us. Make decisions we must.</p>
+</header><!-- Need to rethink how students start the process, combining this material with the tutorial.helpers Getting Started tutorial and then r4ds.tutorials Chapter 1. We would like this section to be as short as possible.  --><!-- We do not run set_rstudio_settings() and set_binary_only_in_r_profile() because these functions only work with an associated RStudio instance. There is no such instance when you render a qmd file, even if you render that file from within RStudio. (I think!) We do, however, run the install code for the packages. We do this in order to ensure that the code works when students try to run it, even though this is somewhat aggressive from the point of view of our co-authors. --><p><em>You can never look at the data too much.</em> – Mark Engerman</p>
+<p>The world confronts us. Make decisions we must.</p>
 <section id="installing-r-and-rstudio" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="installing-r-and-rstudio">Installing R and RStudio</h3>
 <!-- Update all the images. -->
 <!-- Change the graphic so that the words are the top are: "R is like a car's engine." and "RStudio is like a car's dashboard." -->
@@ -281,9 +282,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <!-- DK: Sure would be nice if this was not necessary. Maybe R-universe would make it so? --><p>If you are using Windows, <a href="https://cran.r-project.org/bin/windows/Rtools">download and install R Tools</a>. Again, this is only for Windows users. The Rtools43 installer is what you want. The link is in the sixth paragraph of <a href="https://cran.r-project.org/bin/windows/Rtools/rtools43/rtools.html">this page</a>.</p>
 <p>If you are using a Chromebook, follow <a href="https://levente.littvay.hu/chromebook/">this advice</a>.</p>
 <p>If you are having trouble, just sign up for a free account on <a href="https://posit.cloud/">Posit Cloud</a>. This will give you 25 hours of usage, which should be enough to get started.</p>
-<!-- DK: Should set up a robust Posit Cloud option. Indeed, might even make it the default for Day 1. -->
+<!-- DK: Should set up a robust Posit Cloud option. Indeed, might even make it the default for Day 1. Need to make sure that the instructions work for a default account. -->
 <!-- DK: Could text like this be in a "More Detail" box which only appears when clicked?  If you want a slower introduction, check out the short (free) book, [*Getting Used to R, RStudio, and R Markdown*](https://rbasics.netlify.com/). @usedtor2016 include screencast recordings that you can follow along and pause as you learn. -->
 </section><section id="using-r-via-rstudio" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="using-r-via-rstudio">Using R via RStudio</h3>
+<!-- DK: This section could be quicker if the material is covered elsewhere. -->
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -444,6 +446,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>If you clicked “Show in new window” and were working on the tutorial in a pop-up window, simply close the pop-up window.</p></li>
 <li><p>If you were working on the tutorial inside the Tutorial pane of RStudio, simply press the red stop sign icon.</p></li>
 </ul></section><section id="basic-commands" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="basic-commands">Basic Commands</h3>
+<!-- DK: Could cut this and put it in tutorial.helpers. -->
 <p>There are a few terms, tips, and tricks that you should know before getting started with R.</p>
 <ul>
 <li>
@@ -472,7 +475,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>You should have done the following:</p>
 <ul>
 <li><p>Installed the <em>latest</em> versions of R and RStudio.</p></li>
-<li><p>Installed, from CRAN, the <strong>remotes</strong> and <strong>tutorial.helpers</strong> packages:</p></li>
+<li><p>Installed, from CRAN, the <strong>remotes</strong>, <strong>tutorial.helpers</strong> and <strong>tidyverse</strong> packages:</p></li>
 </ul>
 <div class="cell">
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span></span>
@@ -499,10 +502,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="00-getting-started/images/ending.gif" class="img-fluid"></p>
 </div>
 </div>
-<!-- *Everyone loves visualizations.* -->
-<!-- *Data science is data cleaning.* -->
-<!-- *Real data is nasty.* -->
-<!-- *You can never look at the data too much.* -- Mark Engerman -->
 
 
 </section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">

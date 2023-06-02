@@ -15,9 +15,18 @@ Create a one sentence summary of each key term: everything from causal effect to
 
 # Priorities
 
+Think about using code chunk folding with:
+
+format:
+  html:
+    code-fold: true
+    code-tools: true
+
 rayimage and friends are now on CRAN
 
 Use of _ in pipes in R 4.3.0.
+
+I am really annoyed by the default number of columns in the displayed code block in Quarto. Look at what happens in Chapter 3, for example. The code comments, all of which are fewer than 80 characters per line (I assume) look great in the qmd file. But, when rendered, they don't fit in a line and so need to be split into two lines in a very ugly and unreadable fashion. How many columns are displayed by default, and how can we cause that number to be the default wide in qmd documents so that comment lines can be wrapped automatically with CNTRL-Shift-/?
 
 
 -2) https://mc-stan.org/rstanarm/reference/stan_polr.html Add some examples with ordinal dependent variables. Of course, what we really want is multinomial regression.

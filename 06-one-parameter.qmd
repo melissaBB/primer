@@ -14,6 +14,8 @@ library(patchwork)
 ```
 
 
+<!-- The boss move would be to delete 80% of this chapter. Cut all the sampling stuff. There is nothing wrong with it, per se, but the only reason we have it is that it was part of the Modern Dive book. It is not really necessary for the core Cardinal Virtues approach of the rest of the Primer. -->
+
 <!-- Case study of polls needs to be updated to use our language of validity and so on. -->
 
 <!-- There needs to be more explanation about confidence intervals!  -->
@@ -36,7 +38,9 @@ library(patchwork)
 
 *The Hunger Games* is a dystopian novel in which children are chosen via lottery to fight to the death. Primrose Everdeen is selected from the urn. Why does she have the misfortune of being selected? Or, as we data scientists say, *sampled*?
 
-In @sec-probability, we learned about probability, the framework for quantifying uncertainty. In this chapter, we will learn about *sampling*, the beginning of our journey toward inference. When we sample, we take some *units* from a *population*, calculate statistics based on those units, and make inferences about unknown *parameters* associated with the population. 
+<!-- DK: This paragraph could be improved to be more like other chapters. Shouldn't every introduction mention the key concepts of the book: the four Cardinal Virtues and the assumptions which link them together? -->
+
+In @sec-probability, we learned about probability, the framework for quantifying uncertainty. In this chapter, we will learn about *sampling*, the beginning of our journey toward inference. When we sample, we take some *units* from a *population*. With the data collected via sampling, we will create statistical models with just one unknown parameter. With such models, we can make inferences in order to answer questions. 
 
 The urn below has a certain number of red and a certain number of white beads all of equal size, mixed well together. What proportion, $\rho$, of this urn's beads are red? 
 
@@ -159,11 +163,16 @@ tactile_sample_urn
 
 For each `group`, we are given their names, the number of `red_beads` they obtained, and the corresponding proportion out of 50 beads that were red, called `prop_red`. We also have an `group_ID` variable which gives each of the 33 groups a unique identifier. Each row can be viewed as one instance of a replicated activity: using the shovel to remove 50 beads and computing the proportion of those beads that are red. 
 
-Let's visualize the distribution of these 33 proportions using `geom_histogram()` with `binwidth = 0.05`. This is a computerized and complete version of the partially completed hand-drawn histogram you saw earlier. Setting `boundary = 0.4` indicates that we want a binning scheme such that one of the bins' boundary is at 0.4. `color = "white"` modifies the color of the boundary for visual clarity. 
+Let's visualize the distribution of these 33 proportions using `geom_histogram()` with `binwidth = 0.05`. This is a computerized and complete version of the partially completed hand-drawn histogram you saw earlier. 
 
 ```{r}
 tactile_sample_urn |>
   ggplot(aes(x = prop_red)) +
+  
+  # Setting `boundary = 0.4` indicates that we want a binning scheme such that
+  # one of the bins' boundary is at 0.4. `color = "white"` modifies the color of
+  # the boundary for visual clarity.
+  
   geom_histogram(binwidth = 0.05, 
                  boundary = 0.4, 
                  color = "white") +
@@ -188,7 +197,7 @@ tactile_sample_urn |>
 
 What we just demonstrated in this activity is the statistical concept of **sampling**. We want to know the proportion of red beads in the urn, with the urn being our **population**. Performing an exhaustive count of the red and white beads would be too time-consuming. Therefore, it is much more practical to extract a *sample* of 50 beads using the shovel. Using this sample of 50 beads, we estimated the proportion of the urn's beads that are red to be about 34%.
 
-Moreover, because we mixed the beads before each use of the shovel, the samples were random and independent. Because each sample was drawn at random, the samples were different from each other. This is an example of  *sampling variation*. For example, what if instead of selecting 17 beads in our first sample we had selected just 11? Does that mean that the population proportion of the beads is 11/50 or 22%? No! Because we performed 33 trials we can look to our histogram, and see that the peak of the distribution occurs when $.35 < \hat{\rho} < .4$ , so it is *very likely* that the proportion of red beads in the entire population will also fall in or near this range. 
+Moreover, because we mixed the beads before each use of the shovel, the samples were random and independent. Because each sample was drawn at random, the samples were different from each other. This is an example of  *sampling variation*. For example, what if instead of selecting 17 beads in our first sample we had selected just 11? Does that mean that the population proportion of the beads is 11/50 or 22%? No! Because we performed 33 trials we can look to our histogram, and see that the peak of the distribution occurs when $.35 < \hat{\rho} < .4$ , so it is *likely* that the proportion of red beads in the entire population will also fall in or near this range. 
 
 ## Virtual sampling {#sec-virtual-sampling}
 
@@ -724,7 +733,7 @@ Third, a **census** is an exhaustive enumeration or counting of all $N$ units in
 
 Fourth, **sampling** is the act of collecting a sample from the population when we can not, or do not want to, perform a census. The sample size is lower case $n$, as opposed to upper case $N$ for the population's size. Typically the sample size $n$ is much smaller than the population size $N$. In our sampling activities, we used shovels with varying slots to extract samples of size $n$ = 1 through $n$ = 100. 
 
-Fifth, a **point estimate**, also known as a **sample statistic**, is a measure computed from a sample that *estimates* an unknown population parameter. In our sampling activities, recall that the unknown population parameter was the proportion of red beads and that this is mathematically denoted with $\rho$. Our point estimate is the *sample proportion*: the proportion of the shovel's beads that are red. In other words, it is our guess at the proportion of the urn's beads that are red. The point estimate of the parameter $\rho$ is $\hat{\rho}$. The "hat" on top of the $\rho$ indicates that it is an estimate of the unknown population proportion $\rho$. 
+Fifth, a **point estimate**, also known as a **sample statistic**, is a measure computed from a sample that *estimates* an unknown population parameter. In our sampling activities, recall that the unknown population parameter was the proportion of red beads and that this is mathematically denoted by $\rho$. Our point estimate is the *sample proportion*: the proportion of the shovel's beads that are red. In other words, it is our guess at the proportion of the urn's beads that are red. The point estimate of the parameter $\rho$ is $\hat{\rho}$. The "hat" on top of the $\rho$ indicates that it is an estimate of the unknown population proportion $\rho$. 
 
 <!-- RS: consider moving last 4 definitions to end discussion about sampling mechanisms, and first 4 definitions to the very start of the chapter. This vocab (with exception of point statistics) doesn't really have a purpose here, and should be used in a section where the words are actually used.  -->
 
