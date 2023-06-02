@@ -243,7 +243,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#package-use" id="toc-package-use" class="nav-link" data-scroll-target="#package-use">Package use</a></li>
   <li><a href="#tutorials" id="toc-tutorials" class="nav-link" data-scroll-target="#tutorials">Tutorials</a></li>
   <li><a href="#basic-commands" id="toc-basic-commands" class="nav-link" data-scroll-target="#basic-commands">Basic Commands</a></li>
-  <li><a href="#go-read-r-for-data-science-2e" id="toc-go-read-r-for-data-science-2e" class="nav-link" data-scroll-target="#go-read-r-for-data-science-2e">Go Read <em>R for Data Science (2e)</em></a></li>
+  <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps">Next Steps</a></li>
   <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
   </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/PPBDS/primer/edit/main/00-getting-started.qmd" class="toc-action">Edit this page</a></p></div></div></nav>
     </div>
@@ -364,15 +364,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p><em>Install the package</em>: This is like installing an app on your phone. Most packages are not installed by default when you put R and RStudio on your computer. Thus if you want to use a package for the first time, you need to install it. Once you’ve installed a package, you likely won’t install it again unless you want to update it to a newer version.</p></li>
 <li><p><em>Load the package</em>: “Loading” a package is like opening an app on your phone. Packages are not loaded by default when you start RStudio. You need to load each package you want to use every time you restart RStudio.</p></li>
 </ol>
+<p>Just for this chapter, execute this command in your R Console.</p>
+<div class="cell">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span><span class="st">"pkgType"</span> <span class="op">=</span> <span class="st">"binary"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This helps to ensure that package installation will go more smoothly.</p>
 <p>Let’s <em>install</em> a useful package. At the Console pane within RStudio, type:</p>
 <div class="cell">
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>And press return/enter on your keyboard. You must include the quotation marks around the name of the package. A package can depend on other packages, which will be automatically installed if needed.</p>
 <p>One tricky aspect of this process is that R will occasionally ask you:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Do</span> you want to install from sources the packages which </span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">need</span> compilation<span class="pp">?</span> <span class="er">(</span><span class="ex">Yes/no/cancel</span><span class="kw">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Do</span> you want to install from sources the packages which </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">need</span> compilation<span class="pp">?</span> <span class="er">(</span><span class="ex">Yes/no/cancel</span><span class="kw">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Unless you have a good reason not to, always answer “no” to this question.</p>
 <p>R packages generally live in one of two places:</p>
@@ -382,7 +387,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></section><section id="package-loading" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="package-loading">Package loading</h3>
 <p>After you install a package, you need to “load” it by using the <code><a href="https://rdrr.io/r/base/library.html">library()</a></code> command. To load the <strong>remotes</strong> package, run the following code in the Console.</p>
 <div class="cell">
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://remotes.r-lib.org">remotes</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://remotes.r-lib.org">remotes</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>After running this code, a blinking cursor should appear next to the <code>&gt;</code> symbol. (The <code>&gt;</code> is the “prompt.”) This means you were successful and the <strong>remotes</strong> package is now loaded and ready to use. However, you might get a red “error message” which reads:</p>
 <p><span style="color: red;">Error in library(remotes) : there is no package called ‘remotes’</span></p>
@@ -391,16 +396,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>R will occasionally ask you if you want to install some packages. You almost always want to, otherwise R would not be asking you.</p>
 <p>Let’s install another package:</p>
 <div class="cell">
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"tutorial.helpers"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"tutorial.helpers"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This package provides infrastructure for doing tutorials, a common approach for learning R.</p>
-<p>Once you have <strong>tutorial.helpers</strong> installed, run these commands.</p>
-<div class="cell">
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ppbds.github.io/tutorial.helpers/">tutorial.helpers</a></span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://ppbds.github.io/tutorial.helpers/reference/set_rstudio_settings.html">set_rstudio_settings</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://ppbds.github.io/tutorial.helpers/reference/set_binary_only_in_r_profile.html">set_binary_only_in_r_profile</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>These functions set various R/RStudio options to convenient values.</p>
 <p>Let’s install another package:</p>
 <div class="cell">
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"tidyverse"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -467,8 +465,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
 </ul>
 <p>Messages are similar. In both cases, you should fix the underlying issue until the error/warning/message goes away.</p>
-</section><section id="go-read-r-for-data-science-2e" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="go-read-r-for-data-science-2e">Go Read <em>R for Data Science (2e)</em>
-</h3>
+</section><section id="next-steps" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="next-steps">Next Steps</h3>
+<p>Complete the “Getting Started” tutorial from the <strong>tutorial.helpers</strong> package. This will ensures that your RStudio settings are sensible.</p>
 <p>Previous version of this textbook included three chapters which reviewed the use of R for data science. However, most of this material is covered, more competently, in <a href="https://r4ds.hadley.nz/"><em>R for Data Science (2e)</em></a> by Hadley Wickham, Mine Çetinkaya-Rundel, and Garrett Grolemund. Go read that book now. Even better, complete the <a href="https://ppbds.github.io/r4ds.tutorials/">associated tutorials</a>.</p>
 <p>Once you have done so, or if you already know R, you can start to learn about data science.</p>
 </section><section id="summary" class="level2 unnumbered"><h2 class="unnumbered anchored" data-anchor-id="summary">Summary</h2>
@@ -478,7 +476,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Installed, from CRAN, the <strong>remotes</strong>, <strong>tutorial.helpers</strong> and <strong>tidyverse</strong> packages:</p></li>
 </ul>
 <div class="cell">
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span><span class="st">"pkgType"</span> <span class="op">=</span> <span class="st">"binary"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"tutorial.helpers"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"tidyverse"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -488,13 +487,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell">
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"PPBDS/r4ds.tutorials"</span><span class="op">)</span></span>
 <span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"PPBDS/all.primer.tutorials"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ul>
-<li>Run these commands to set some RStudio options:</li>
-</ul>
-<div class="cell">
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">tutorial.helpers</span><span class="fu">::</span><span class="fu"><a href="https://ppbds.github.io/tutorial.helpers/reference/set_rstudio_settings.html">set_rstudio_settings</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="fu">tutorial.helpers</span><span class="fu">::</span><span class="fu"><a href="https://ppbds.github.io/tutorial.helpers/reference/set_binary_only_in_r_profile.html">set_binary_only_in_r_profile</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Let’s get started.</p>
 <div class="cell">
