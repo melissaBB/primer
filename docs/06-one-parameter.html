@@ -299,6 +299,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </header><div class="cell">
 
 </div>
+<!-- Highest priority: Did we really answer the two questions which we started with? -->
 <!-- The boss move would be to delete 80% of this chapter. Cut all the sampling stuff. There is nothing wrong with it, per se, but the only reason we have it is that it was part of the Modern Dive book. It is not really necessary for the core Cardinal Virtues approach of the rest of the Primer. -->
 <!-- Case study of polls needs to be updated to use our language of validity and so on. -->
 <!-- There needs to be more explanation about confidence intervals!  -->
@@ -408,16 +409,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code># A tibble: 33 × 4
    group           red_beads prop_red group_ID
    &lt;chr&gt;               &lt;dbl&gt;    &lt;dbl&gt;    &lt;int&gt;
- 1 Caroline, Edna         15     0.3         1
- 2 Ian, Iman              18     0.36        2
- 3 Ace, Chris             18     0.36        3
- 4 Claire, Cloud          16     0.32        4
- 5 Siobhan, Jane          11     0.22        5
- 6 Frank, Clara           21     0.42        6
- 7 Sanjana, Yuko          19     0.38        7
- 8 Damani, Melissa        15     0.3         8
- 9 Katie, Anthony         20     0.4         9
-10 Ellie, Terrance        17     0.34       10
+ 1 Ilyas, Yohan           21     0.42        1
+ 2 Ishan, Cass            15     0.3         2
+ 3 Sanjana, Yuko          19     0.38        3
+ 4 Yuki, Harry            21     0.42        4
+ 5 Griffin, Mary          18     0.36        5
+ 6 Ian, Iman              18     0.36        6
+ 7 Aaron, Mike            11     0.22        7
+ 8 Ellie, Terrance        17     0.34        8
+ 9 Claire, Cloud          16     0.32        9
+10 Frank, Clara           21     0.42       10
 # ℹ 23 more rows</code></pre>
 </div>
 </div>
@@ -2562,7 +2563,7 @@ $ st_dev_p_hat &lt;dbl&gt; 0.48436516, 0.34093399, 0.27629253, 0.24069833, 0.214
 <p>&nbsp;</p>
 <p>Again, there are, in truth, no ID numbers. But keeping track of which beads were in the sample and which beads were not is helpful.</p>
 <p>The last step of Wisdom is to decide whether or not we can consider the units from the Preceptor Table and the units from the data to have been drawn from the same <em>population</em>. In this case, as with many sampling scenarios, it is trivial that we may make this assumption. If all the rows from the data are also rows in the Preceptor Table, we may assume that they are drawn from the same distribution.</p>
-<!-- DK: Could expand on this point. -->
+<!-- DK: Could expand on this point, or move it to later. -->
 <p>We also consider why some beads do get sampled, while others do not. This is a consequence of the <em>sampling mechanism</em>. We hope that all members of the population have the same chance of being sampled, or else our data might be biased. Almost all samples have some bias, but we must make a judgement call to see if the data we have is close enough to the data we want (i.e., the Preceptor Table) that we can consider both as coming from the same population. Our sample of 50 beads is taken from a <em>mixed</em> urn, so hopefully there is a near equal chance of selecting each bead, and our samples are representative of the population.</p>
 <p><em>Validity</em> involves the columns of our data set. Is the meaning of our columns consistent across the different data sources? In our urn scenario, does bead color in our sampled data and bead color in our Preceptor Table mean the same thing? The answer is yes, and validity can be assumed very easily. If some beads in the urn are old and the color has worn off, it may be more difficult to conclude whether the color column always means the same thing.</p>
 <!-- DK: Don't use the word "representative" here! -->
@@ -3364,7 +3365,7 @@ $ st_dev_p_hat &lt;dbl&gt; 0.48436516, 0.34093399, 0.27629253, 0.24069833, 0.214
 </div>
 <p>&nbsp;</p>
 <p>Each specific row represents one subject, which are individual beads in our urn scenario. Because there could be thousands or even millions of beads, we provide 3 examples for each category, and use ellipses to denote that there are many more subjects that we have yet to record.</p>
-<p>Each Population Table will have a minimum of 3 types of columns: covariates, time, and outcome(s):</p>
+<p>Each Population Table will usually have several types of columns: id, time, covariates, and outcome(s):</p>
 <p>When we construct a Preceptor Table to answer our question, we must select some <em>covariates</em> that we <strong>want</strong> all of our subjects to have. Our urn scenario only has no covariates, however, so we will explore this issue in later chapters.</p>
 <ul>
 <li>Because we draw our sample from the exact same urn our question asks us about, the data we collect comes directly from the Preceptor Table, all subjects in our population have the same location (“Known, specific urn”). The Preceptor Table and Population categories are essentially identical. This is the perfect scenario for us, but this rarely occurs in real life.</li>
@@ -3377,14 +3378,14 @@ $ st_dev_p_hat &lt;dbl&gt; 0.48436516, 0.34093399, 0.27629253, 0.24069833, 0.214
 </section><section id="stability-and-representativeness" class="level4" data-number="3.4.2.2"><h4 data-number="3.4.2.2" class="anchored" data-anchor-id="stability-and-representativeness">
 <span class="header-section-number">3.4.2.2</span> Stability and representativeness</h4>
 <p>Now that we have created our Population Table, we can analyze the key assumptions of stability, representativeness and unconfoundedness.</p>
-<p><em>Stability</em> involves time. Is the model — meaning both the mathematical formula and the value of the parameters — stable over time? Realistically, an urn will be the same today, tomorrow or next year. However, what if someone dumps some red beads into the urn after we take our sample? Then we cannot assume stability, because the proportion of red beads in the urn, <span class="math inline">\(\rho\)</span>, the instant before the dump is different than the proportion red in the urn after. We will assume no one is tampering with our urn, and assert stability across time periods.</p>
-<p><em>Representativeness</em> involves the data rows, specifically the rows for which we <em>have data</em> versus the rows for which we <em>might have had data</em>. Are the rows that we do have data for representative of the rows for which we do not have data? For the sample proportion to be similar to the actual population proportion, we ideally want the data we have to be a random, unbiased selection from our population, using a considerable sample size. In the context of our problem, the sampling mechanism of using a shovel of size 50 to sample beads from an urn in which the beads are thoroughly mixed should be enough to consider our sample representative of the population, and we can move on.</p>
+<p><em>Stability</em> involves time. Is the model — meaning both the mathematical formula and the value of the parameters — stable over time? Realistically, an urn will be the same today, tomorrow or next year. However, what if someone dumps some red beads into the urn after we take our sample? Then we cannot assume stability, because the proportion of red beads in the urn, <span class="math inline">\(\rho\)</span>, the instant before the dump is different than the proportion red in the urn after. We will assume no one is tampering with our urn, and assume stability across time periods.</p>
+<p><em>Representativeness</em> involves the data rows, specifically the rows for which we <em>have data</em> versus the rows for which we <em>might have had data</em>. Are the rows that we do have data for representative of the rows for which we do not have data? For the sample proportion to be similar to the actual population proportion, we ideally want the data we have to be a random, unbiased selection from our population. In the context of our problem, the sampling mechanism of using a shovel of size 50 to sample beads from an urn in which the beads are thoroughly mixed should be enough to consider our sample representative of the population.</p>
 <p><em>Unconfoundedness</em> involves the potential correlation between treatment assignment and other variables. It is only a concern for causal models. Since this is a predictive model, we do not have to worry about unconfoundedness. There is no “treatment” which might be confounded with anything.</p>
 </section><section id="the-dgm" class="level4" data-number="3.4.2.3"><h4 data-number="3.4.2.3" class="anchored" data-anchor-id="the-dgm">
 <span class="header-section-number">3.4.2.3</span> The DGM</h4>
 <p>The final aspect of Justice is assuming/creating a mathematical formula — a <em>data generating mechanism</em>, or DGM — which mimics the process by which the data comes to us. The DGM for sampling scenarios with only two possible values is often denoted as follows:</p>
-<p><span class="math display">\[ T_i  \sim B(\rho, n = 50) \]</span></p>
-<p>The total number of red beads selected in a sample of 50 beads, <span class="math inline">\(T_i\)</span>, is equal to one draw from a binomial distribution with <span class="math inline">\(n = 50\)</span> observations and an unknown probability <span class="math inline">\(\rho\)</span> of the proportion of red beads in the urn.</p>
+<p><span class="math display">\[ R_i  \sim B(\rho, n = 50) \]</span></p>
+<p>The total number of red beads selected in a sample of 50 beads, <span class="math inline">\(R_i\)</span>, is equal to one draw from a binomial distribution with <span class="math inline">\(n = 50\)</span> observations and an unknown probability <span class="math inline">\(\rho\)</span> of the proportion of red beads in the urn.</p>
 </section></section><section id="courage" class="level3" data-number="3.4.3"><h3 data-number="3.4.3" class="anchored" data-anchor-id="courage">
 <span class="header-section-number">3.4.3</span> Courage</h3>
 <div class="cell">
@@ -3396,7 +3397,7 @@ $ st_dev_p_hat &lt;dbl&gt; 0.48436516, 0.34093399, 0.27629253, 0.24069833, 0.214
 <section id="bayesian-framework" class="level4" data-number="3.4.3.1"><h4 data-number="3.4.3.1" class="anchored" data-anchor-id="bayesian-framework">
 <span class="header-section-number">3.4.3.1</span> Bayesian framework</h4>
 <p>We are Bayesian statisticians who make Bayesian models. This means that we make specific assumptions and consider data to be fixed and parameters to be variable. One of the most important distinctions is that in Bayesian data science, <strong>we don’t know the values of our parameters</strong>. Consider the DGM created in Justice:</p>
-<p><span class="math display">\[ T_i  \sim B(\rho, n = 50) \]</span></p>
+<p><span class="math display">\[ R_i  \sim B(\rho, n = 50) \]</span></p>
 <!-- DK: Awkwardy written. Shorten. Cut? -->
 <p>Some non-Bayesian frameworks are concerned with the probability distribution of our observed data, but do not care much about the probability distribution for <span class="math inline">\(\rho\)</span> and assume it to be fixed. If <span class="math inline">\(\rho\)</span> is fixed, the equation above becomes one simple binomial distribution. Think of this as a standard 2 dimensional plot.</p>
 <p>We Bayesians consider our observed data to be fixed. We don’t consider alternate realities where our observed data is different due to sampling variation. Instead, we are concerned with the probability distribution of our parameter. In our urn scenario, <span class="math inline">\(\rho\)</span> is variable, so we have to create a separate binomial distribution for each possible value of <span class="math inline">\(\rho\)</span>. Think of this as a 3 dimensional joint distribution, as we created in <a href="05-probability.html#sec-n-models"><span>Section&nbsp;2.6</span></a>.</p>
@@ -3542,7 +3543,7 @@ $ st_dev_p_hat &lt;dbl&gt; 0.48436516, 0.34093399, 0.27629253, 0.24069833, 0.214
 <p><img src="other/images/Temperance.jpg" class="img-fluid" width="960"></p>
 </div>
 </div>
-<p>With the fitted model object <code>fit_1</code>, we can now make predictions into the future and answer our questions.</p>
+<p>With the fitted model object <code>fit_1</code>, we can answer our questions.</p>
 <p>Recall the second question we started with:</p>
 <blockquote class="blockquote">
 <p>What is the probability, using the same urn, that we will draw more than 8 red beads if we use a shovel of size 20?</p>
@@ -3642,7 +3643,7 @@ $ st_dev_p_hat &lt;dbl&gt; 0.48436516, 0.34093399, 0.27629253, 0.24069833, 0.214
 <span>                   bins <span class="op">=</span> <span class="fl">50</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Proportion red in urn"</span>,</span>
 <span>       y <span class="op">=</span> <span class="st">"Probability"</span><span class="op">)</span> <span class="op">+</span> </span>
-<span>  <span class="fu">plot_annotation</span><span class="op">(</span>title <span class="op">=</span> <span class="st">'Expected prediction for sample of size 20 on left, posterior on right.'</span>,</span>
+<span>  <span class="fu">plot_annotation</span><span class="op">(</span>title <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/expression.html">expression</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"Expected prediction for sample of size 20 on left, posterior distribution for "</span>, <span class="va">rho</span>, <span class="st">" on right."</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>                  subtitle <span class="op">=</span> <span class="st">"The two distributions have an identical shape."</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="06-one-parameter_files/figure-html/unnamed-chunk-62-1.png" class="img-fluid" width="672"></p>
@@ -3737,8 +3738,8 @@ $ st_dev_p_hat &lt;dbl&gt; 0.48436516, 0.34093399, 0.27629253, 0.24069833, 0.214
 <p>We have successfully answered our questions using the Cardinal Virtues, but we must also realize that there are limitations to our models. Earlier we claimed there is a 26% chance that we will draw more than 8 red beads out of a sample size of 20. However, we must be modest about our claims. Is this question about <em>this</em> particular urn, or all urns? Clearly, as our predictions are based upon the posterior from our specific urn, our conclusions can only be applied to <em>this particular urn</em>; our conclusions are not generalizable to all urns.</p>
 <p>Furthermore, how certain are we in our prediction from Temperance that 26% of samples out of a shovel size of 20 using our urn would produce more than 8 red beads?</p>
 <p>First let’s model our situation:</p>
-<p><span class="math display">\[ T_i  \sim B(\rho, n = 20) \]</span></p>
-<p>The total number of red beads selected in a sample of 20 beads, <span class="math inline">\(T_i\)</span>, is modeled by a binomial distribution with <span class="math inline">\(n = 20\)</span> observations and an unknown probability <span class="math inline">\(\rho\)</span> of the proportion of red beads in the urn.</p>
+<p><span class="math display">\[ R_i  \sim B(\rho, n = 20) \]</span></p>
+<p>The total number of red beads selected in a sample of 20 beads, <span class="math inline">\(R_i\)</span>, is modeled by a binomial distribution with <span class="math inline">\(n = 20\)</span> observations and an unknown probability <span class="math inline">\(\rho\)</span> of the proportion of red beads in the urn.</p>
 <p>We must realize that our 26% estimate is based on an entire posterior. We are uncertain about the exact value of <span class="math inline">\(\rho\)</span>, so <code><a href="https://mc-stan.org/rstantools/reference/posterior_predict.html">posterior_predict()</a></code> takes our uncertainty into account when creating the model. However, there is in fact some actual value for <span class="math inline">\(\rho\)</span>, even if we don’t know it.</p>
 <p>If the actual value of <span class="math inline">\(\rho\)</span> was 30%, we can calculate the <strong>correct</strong> answer to our question using the binomial probability distribution function:</p>
 <div class="cell">
@@ -3783,7 +3784,7 @@ $ st_dev_p_hat &lt;dbl&gt; 0.48436516, 0.34093399, 0.27629253, 0.24069833, 0.214
 <p>Let’s look at a possible hypothesis in our urn paradigm: there are equal number of red and white beads in the urn. The null hypothesis, denoted by <span class="math inline">\(H_0\)</span>, is the theory we are testing, while the alternative hypothesis, denoted by <span class="math inline">\(H_a\)</span>, represents the opposite of our theory. Therefore, our hypothesis is designed as such:</p>
 <p><span class="math inline">\(H_0\)</span>: There are an equal number of red and white beads in the urn.</p>
 <p><span class="math inline">\(H_a\)</span>: There are <em>not</em> an equal number of red and white beads in the urn.</p>
-<p>Can we reject that hypothesis? Convention: if the 95% confidence interval excludes the null hypothesis, then we reject it. Here, that would mean if our posterior estimate (plus or minus 2 standard errors) <em>excluded</em> the possibility of the red and white beads being equal (<span class="math inline">\(\rho = .5\)</span>) we can reject the null hypothesis. In the previous section we determined that the 95% confidence interval is between 21% and 47%. Because 50% is outside of this interval, we could reject the null hypothesis, and conclude that it is unlikely that the proportion of beads in the urn is 50%.</p>
+<p>Can we reject that hypothesis? Convention: if the 95% confidence interval excludes the null hypothesis, then we reject it. Here, that would mean if our estimate (plus or minus 2 standard errors) <em>excluded</em> the possibility of the red and white beads being equal (<span class="math inline">\(\rho = .5\)</span>) we can reject the null hypothesis. In the previous section we determined that the 95% confidence interval is between 21% and 47%. Because 50% is outside of this interval, we could reject the null hypothesis, and conclude that it is unlikely that the proportion of beads in the urn is 50%.</p>
 <p>If we were testing the theory that <span class="math inline">\(\rho = .45\)</span> instead, our null hypothesis would fall within the confidence interval. <strong>This does not mean that we accept the null hypothesis</strong>. Instead, we simply don’t reject it. In our scenario we only know that there is some possibility that <span class="math inline">\(\rho = .45\)</span>. We’re just back where we started! This is why we never test — unless your boss demands a test. <strong>Use your judgment, make your models, summarize your knowledge of the world, and use that summary to make decisions.</strong></p>
 </section></section></section><section id="sec-sampling-case-study" class="level2" data-number="3.5"><h2 data-number="3.5" class="anchored" data-anchor-id="sec-sampling-case-study">
 <span class="header-section-number">3.5</span> Case study: Polls</h2>
@@ -3872,7 +3873,7 @@ $ st_dev_p_hat &lt;dbl&gt; 0.48436516, 0.34093399, 0.27629253, 0.24069833, 0.214
 <p>In this chapter, we performed both tactile and virtual sampling exercises to make inferences about an unknown parameter: the proportion of red beads. We also presented a case study of sampling in real life with polls. In each case, we used the sample proportion <span class="math inline">\(\hat{\rho}\)</span> to estimate the true proportion <span class="math inline">\(\rho\)</span>. However, we are not just limited to scenarios related to proportions. We can use sampling to estimate other unknown quantities.</p>
 <p>There is a truth! There is a true value for <span class="math inline">\(\rho\)</span> which we do not know. We want to create a posterior probability distribution which summarizes our knowledge. We care about the posterior probability distribution of <span class="math inline">\(\rho\)</span>. The center of that distribution is around the mean or median of the proportion in your sample. The sd (or mad) of that posterior is the standard deviation divided by the square root of our sample size. Note that this is the same thing as the standard deviation of the repeated samples.</p>
 <p>We journey from reality, to our predictions, to the standard error of our predictions, to the posterior probability distribution for <span class="math inline">\(\rho\)</span>. This is our sequence:</p>
-<p><strong><span class="math inline">\(\rho\)</span> (the truth) <span class="math inline">\(\Rightarrow\)</span> <span class="math inline">\(\hat{\rho}\)</span> (my estimate) <span class="math inline">\(\Rightarrow\)</span> the standard error of <span class="math inline">\(\hat{\rho}\)</span> (black box of math mumbo jumbo and computer simulation magic) <span class="math inline">\(\Rightarrow\)</span> our posterior probability distribution for <span class="math inline">\(\rho\)</span> (our beliefs about the truth).</strong></p>
+<p><strong><span class="math inline">\(\rho\)</span> (i.e., the truth) <span class="math inline">\(\Rightarrow\)</span> <span class="math inline">\(\hat{\rho}\)</span> (i.e., my estimate) <span class="math inline">\(\Rightarrow\)</span> the standard error of <span class="math inline">\(\hat{\rho}\)</span> (i.e., black box of math mumbo jumbo and computer simulation magic) <span class="math inline">\(\Rightarrow\)</span> our posterior probability distribution for <span class="math inline">\(\rho\)</span> (i.e., our beliefs about the truth).</strong></p>
 <p>This journey shows how our beliefs about the truth develop through our work. We begin with <span class="math inline">\(\rho\)</span>; <span class="math inline">\(\rho\)</span> is the truth, the true but unknown value we are estimating. <span class="math inline">\(\hat{\rho}\)</span> is our estimate for <span class="math inline">\(\rho\)</span>. There can be millions and millions of <span class="math inline">\(\hat{\rho}\)</span>’s. Next, we must estimate the standard error of our estimates (our <span class="math inline">\(\hat{\rho}\)</span>’s) to account for the uncertainty of our predictions. Finally, we create a posterior probability distribution for <span class="math inline">\(\rho\)</span>. This distribution is used to answer any questions about <span class="math inline">\(\rho\)</span>.</p>
 <section id="other-highlights" class="level3" data-number="3.6.1"><h3 data-number="3.6.1" class="anchored" data-anchor-id="other-highlights">
 <span class="header-section-number">3.6.1</span> Other highlights</h3>
