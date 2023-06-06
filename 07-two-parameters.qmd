@@ -29,9 +29,9 @@ $$\text{Prob}(\text{models} | \text{data} = \text{data we observed})$$
 
 Even then, however, the relative likelihood of different models is not that important. Models are invisible, mental entities with no more physical presence than unicorns or leprechauns. In the world itself, we make and test predictions. *People with better models make better predictions. That is what matters.*
 
-@sec-one-parameter used models with just one parameter: the number of red beads, which we can also transform into a parameter, $p$, the number of red beads divided by the total number of beads in the bowl. The model in @sec-one-parameter was binomial, and there is only one unknown parameter $p$ in such models. In this chapter, we have two unknown parameters: the mean $\mu$ height in the US and the standard deviation, $\sigma$, of the normally distributed error term.
+@sec-one-parameter used models with just one parameter: the number of red beads, which we can also transform into, $\rho$, the number of red beads divided by the total number of beads in the bowl. The model in @sec-one-parameter was binomial, and there is only one unknown parameter $\rho$ in such models. In this chapter, we have two unknown parameters: the mean $\mu$ height in the US and the standard deviation, $\sigma$, of the normally distributed error term.
 
-The reason for making models is not, primarily, that making models is fun -- although it is! The reason is that, when confronted with a question, we face decisions. We must decide between options X or Y. We must choose from actions A, B and C. Confronted by a decision, we need to make a model of the world to help us. 
+The reason for making models is not, primarily, that making models is fun -- although it is! The reason is that the world confronts us. Make decisions we must. We must decide between options X or Y. We must choose from actions A, B and C. Confronted by a choice, we need to make a model of the world to help us choose wisely.
 
 <!-- Add back reference to ch 12 when it shows up again. -->
 
@@ -56,6 +56,8 @@ Data science is ultimately a moral act, so we will use the four [Cardinal Virtue
 
 ## Wisdom
 
+Wisdom begins with the Preceptor Table. What data would we, ideally, require to answer our questions? We then explore the data that we actually have. We apply the concept of *validity* to ensure that the data we *want* and the data we *have* are similar enough to allow the latter to inform us about the former. If so, we describe the *population* from which both the Preceptor Table and out data are drawn.
+
 ### Preceptor Table
 
 ```{r}
@@ -63,13 +65,13 @@ Data science is ultimately a moral act, so we will use the four [Cardinal Virtue
 knitr::include_graphics("other/images/Wisdom.jpg")
 ```
 
-What rows and columns of data do you need such that, if you had them all, the calculation of the number of interest would be trivial? If you want to know the average height of an adult in India, then the Preceptor Table would include a row for each adult in India and a column for their height. In this scenario, we want to know the average height for men, where "men" includes all males on Earth that are at least 18 years old. 
+What rows and columns of data do you need such that, if you had them all, the calculation of the quantity of interest would be trivial? If you want to know the average height of an adult in India, then the Preceptor Table would include a row for each adult in India and a column for their height. In this scenario, we want to know the average height for men, where "men" includes all males on Earth that are at least 18 years old. 
 
 One key aspect of this Preceptor Table is whether or not we need more than one potential outcome in order to calculate our estimand. Mainly: are we are modeling (just) for prediction or are we (also) modeling for causation? Do we need a causal model, one which estimates that attitude under both treatment and control? In a causal model, the Preceptor Table would require two columns for the outcome. In this case, we are not modeling for causation; thus, we do not need two outcome columns. 
 
 Predictive models care nothing about causation. Causal models are often also concerned with prediction, if only as a means of measuring the quality of the model. Here, we are looking at *prediction*. 
 
-So, what does our Preceptor Table look like? Assuming we are predicting height for every adult male on planet Earth at this moment in time, we would have height data for every male person at least 18 years of age. This means that we would have about 4 billion rows, one for each male person, along with a column for each individual's height.
+So, what does our Preceptor Table look like? Assuming we are predicting height for every adult male on planet Earth at this moment in time, we would have height data for every male at least 18 years of age. This means that we would have about 4 billion rows, one for each male, along with a column for each individual's height.
 
 Here are some rows from our Preceptor Table: 
 
@@ -98,7 +100,7 @@ tibble(ID = c("Person 1", "Person 2", "...", "Person 45000", "Person 45001", "..
                 height = "Height (cm)") 
 ```
 
-This table would extend all the way until person 4 billion-and-something. If we had this table, all of our questions could be answered with simple math and/or simulations. No inference necessary. Now that we've seen our ideal dataset, what does our actual data look like? 
+This table would extend all the way until person 4 billion-and-something. If we had this table, all of our questions could be answered with simple math and/or simulations. No inference necessary if we have a Preceptor Table. But what does our actual data look like? 
 
 ### EDA for `nhanes`
 
@@ -151,7 +153,7 @@ nhanes |>
 Interesting! There are `r sum(is.na(nhanes$height))` missing values of height in our subset of data. Just using `glimpse()` does not show us that.  Let's filter out the NA's using `drop_na()`. This will delete the rows in which the value of any variable is missing. Because we want to examine height in men (not boys, nor females), let's limit our data to only include adult males. 
 
 ```{r}
-ch7 <- nhanes |> 
+ch3 <- nhanes |> 
   filter(gender == "Male", age >= 18) |> 
   select(height) |> 
   drop_na()
@@ -164,7 +166,7 @@ Let's plot this data using `geom_histogram()`.
 
 
 ```{r}
-ch7 |>
+ch3 |>
   ggplot(aes(x = height)) + 
     geom_histogram(bins = 50) +
     labs(x = "Height (cm)",
@@ -179,7 +181,7 @@ For pedagogical purposes, we won't use all the NHANES data. Instead, we will ran
 ```{r}
 # We start by keeping all the adult males, just as we did above.
 
-ch7_all <- nhanes |>
+ch3_all <- nhanes |>
   filter(gender == "Male", age >= 18) |>
   select(height) |>
   drop_na() 
@@ -190,14 +192,21 @@ ch7_all <- nhanes |>
 set.seed(9)
 
 # Up till now, we have just been using pipes and then "spitting" out the result.
-# Now, we want to create a new object, `ch7`, which we will use for the rest of
+# Now, we want to create a new object, `ch3`, which we will use for the rest of
 # the chapter.
 
-ch7 <- ch7_all |> 
+ch3 <- ch3_all |> 
   slice_sample(n = 50)
 ```
 
-How will the data we have --- which is only for a sample of adult American men more than a decade ago --- allow us to answer our questions, however roughly? This is where the notion of **population** comes into play. 
+Will the data we have --- which is only for a sample of adult American men more than a decade ago --- allow us to answer our questions, however roughly? Only if the assumption of *validity* makes sense.
+
+### Validity
+
+Validity involves our columns. More specifically, whether our columns mean the same thing. Does "height" in our Preceptor Table mean the same thing as "height" in NHANES?
+
+
+
 
 ### Population
 
@@ -205,13 +214,11 @@ How will the data we have --- which is only for a sample of adult American men m
 
 One of the most important components of Wisdom is the concept of the “population.” 
 
-The population is not the set of people for which we have data --- the participants in the CDC's Health and Nutrition Examination Survey conducted from 2009 to 2011. This is the dataset. Nor is it the set of all the individuals about whom we would like to have data. Those are the rows in the Preceptor Table. The population is the larger — potentially much larger — set of individuals which include both the data we have and the data we want. Generally, **the population will be much larger than either the data we have or the data we want.** In fact, there is almost always a time dimension to consider. We also always want to make inferences about right now or the future. By definition, the data we have is always from the past.
+The population is not the set of people for which we have data --- the participants in the CDC's Health and Nutrition Examination Survey conducted from 2009 to 2011. This is the dataset. Nor is it the set of all the individuals about whom we would like to have data. Those are the rows in the Preceptor Table. The population is the larger — potentially much larger — set of individuals which include both the data we have and the data we want. Generally, **the population will be much larger than either the data we have or the data we want.** In fact, there is almost always a time dimension to consider. We generally want to make inferences about right now or the future. By definition, the data we have is always from the past.
 
 In this case, we want to predict average height for males *today*, not for people in 2009 -- 2011. We also want to predict height for males outside the United States, a group that is excluded from our dataset. Is it reasonable to generate conclusions for the world from this group? Maybe? We have limited data to work with and we have to determine how far we are willing to generalize to other groups.
 
 It is a judgment call, a matter of Wisdom, as to whether or not we may assume that the data we have and the data we want to have (i.e., the Preceptor Table) are drawn from the same population.
-
-Note that this judgement call differs from the discussion of representativeness in Justice. In Wisdom, we ask questions about how the data was collected, and what this says about our data. In Justice, we ask questions (already knowing how the data was collected) about whether or not inferences made using this data can apply to a broader scope of the population. Suppose, for instance, that the men sampled in NHANES were all NBA players. Wisdom would tell us that these heights are likely to be much greater than those of the average person. Justice asks whether or not this data is representative of the population which we are trying to understand, and what modifications could imposed to fix any potential bias.
 
 In the social sciences, *there is never a perfect relationship between the data you have and the question you are trying to answer.* Data for American males in the past is not the same thing as data for American males today. Nor is it the same as the data for men in France or Mexico. Yet, this data is relevant. Right? It is certainly better than nothing. 
 
@@ -219,7 +226,6 @@ In the social sciences, *there is never a perfect relationship between the data 
 
 Is not-perfect data *always* better? No! If your problem is estimating the median height of 5th grade girls in Tokyo, we doubt that our data is at all relevant. Wisdom recognizes the danger of using non-relevant data to build a model and then mistakenly using that model in a way which will only make the situation worse. If the data won't help, don't use the data, don't build a model. Better to just use your common sense and experience. Or find better data.
 
-For now, we will accept that our data works.
 
 ## Justice
 
@@ -234,10 +240,9 @@ Justice emphasizes a few key concepts:
 
 * The Population Table, a structure which includes a row for every unit in the population. We generally break the rows in the Population Table into three categories: the data for units we want to have (the Preceptor Table), the data for units which we actually have (our actual data), and the data for units we do not care about (the rest of the population, not included in the data or the Preceptor Table).
 * Is our data representative of the population?
-* Is the meaning of the columns consistent, i.e., can we assume validity?
-We then make an assumption about the data generating mechanism.
+* If the problem is causal, can we assume unconfoundedness?
 
-We inspect both representativeness and validity through our Population Table. Representativeness focuses on the rows of the table, while validity focuses on the columns. Let's explore what that means in more depth. 
+We then make an assumption about the data generating mechanism.
 
 ### The Population Table
 
@@ -295,15 +300,6 @@ There is also the fact that participation is voluntary. Perhaps certain individu
 
 Regardless, we can assume that this process ensures that all people in the United States have a somewhat equal chance of being surveyed. Thus, our data is representative of our population.
 
-### Validity
-
-Validity involves our columns. More specifically, whether our columns mean the same thing. Consider the following example: we are predicting height with two different datasets. Because both datasets measure height in centimeters, we may assume validity --- that our columns are identical in meaning. However, validity is much more complex than it appears at first glance. 
-
-Consider the method of measurements. In our first dataset, were participants asked to remove their shoes? Were they allowed to keep on thick socks? If this is not the case in our second dataset, our columns do *not* technically represent the same truth. 
-
-There are even smaller differences that could impact validity. For instance, it is known that --- over the course of a day --- the average human's spine compresses about an inch from the time we wake up until the time we go to sleep! If the first set of data was collected in the morning, while the second set of data was collected in the evening, our predictions may be off. 
-
-As best we can, we need to investigate any possible reasons that we may not be able to say that our columns mean the same thing. If we find an issue, we may need to adjust one set of data to match the other. For instance, if we knew that height was taken in the evening for one sample (with the other measurements taken in the morning), we may add an inch of height to those findings. This would ensure validity. 
 
 
  <!-- Math is in Justice, but just the functional form, not the exact variables. Leave it to you to write about this sensibly. Focus on the functional form. We are choosing linear, not logistic. Why? --> 
@@ -328,7 +324,7 @@ This is the simplest model we can construct. Note:
 
 * The parameter we most care about is $\mu$. That is the parameter with a substantively meaningful interpretation. Not only is the meaning of $\sigma$ difficult to describe, we also don't particular care about its value. Parameters like $\sigma$ in this context are *nuisance* or *auxiliary* parameters. We still estimate their posterior distributions, but we don't really care what those posteriors look like.
 
-* $\mu$ is not the average height of the men in the sample. We can calculate that directly. It is `r mean(ch7$height)`. No estimation required! Instead, $\mu$ is the average height of men in the *population*. Recall from the discussions in @sec-one-parameter that the population is the universe of people/units/whatever about which we seek to draw conclusions. On some level, this seems simple. On a deeper level, it is very subtle. For example, if we are walking around Copenhagen, then the population we really care about, in order to answer our three questions, is the set of adult men which we might meet today. This is not the same as the population of adult men in the US in 2010. But is it close enough? Is it better than nothing? We want to assume that both men from `nhanes` (the data we have) and men we meet in Copenhagen today (the data we want to have) are drawn from the same *population*. Each case is a different and the details matter.
+* $\mu$ is not the average height of the men in the sample. We can calculate that directly. It is `r mean(ch3$height)`. No estimation required! Instead, $\mu$ is the average height of men in the *population*. Recall from the discussions in @sec-one-parameter that the population is the universe of people/units/whatever about which we seek to draw conclusions. On some level, this seems simple. On a deeper level, it is very subtle. For example, if we are walking around Copenhagen, then the population we really care about, in order to answer our three questions, is the set of adult men which we might meet today. This is not the same as the population of adult men in the US in 2010. But is it close enough? Is it better than nothing? We want to assume that both men from `nhanes` (the data we have) and men we meet in Copenhagen today (the data we want to have) are drawn from the same *population*. Each case is a different and the details matter.
 
 * $\sigma$ is an estimate for the standard deviation of the errors,  i.e., variability in height after accounting for the mean.
 
@@ -364,12 +360,12 @@ Bayesian models are not hard to create in R. The **rstanarm** package provides t
 library(rstanarm)
 ```
 
-The first argument in `stan_glm()` is `data`, which in our case is the filtered `ch7` tibble which contains 50 observations. The only other mandatory argument is the `formula` that we want to use to build the model. In this case, since we have no predictor variables, our formula is `height ~ 1`. 
+The first argument in `stan_glm()` is `data`, which in our case is the filtered `ch3` tibble which contains 50 observations. The only other mandatory argument is the `formula` that we want to use to build the model. In this case, since we have no predictor variables, our formula is `height ~ 1`. 
 
 
 ```{r}
 #| cache: true
-fit_obj <- stan_glm(data = ch7, 
+fit_obj <- stan_glm(data = ch3, 
                     formula = height ~ 1, 
                     family = gaussian, 
                     refresh = 0,
@@ -801,18 +797,18 @@ Variables with well-behaved, continuous ranges are the easiest to handle. We sta
 
 
 ```{r}
-ch7_b <- nhanes |> 
+ch3_b <- nhanes |> 
   select(age, gender, height) |>
   mutate(female = ifelse(gender == "Female", 1, 0)) |> 
   filter(age >= 18) |> 
   select(female, height) |> 
   drop_na()
 
-ch7_b
+ch3_b
 ```
 
 ```{r}
-ch7_b |> 
+ch3_b |> 
   ggplot(aes(x = height, y = female)) +
   geom_jitter(height = 0.1, alpha = 0.05) +
   labs(title = "Gender and Height",
@@ -827,7 +823,7 @@ ch7_b |>
 Why not just fit a linear model, as we did above? Consider:
 
 ```{r}
-fit_gender_linear <- stan_glm(data = ch7_b,
+fit_gender_linear <- stan_glm(data = ch3_b,
                               formula = female ~ height,
                               family = gaussian,
                               refresh = 0,
@@ -843,7 +839,7 @@ print(fit_gender_linear, digits = 2)
 Comparing two individuals who differ in `height` by 1 cm, we expect the taller individual to have a 3% lower probability of being female. That is not unreasonable. The problems show up at the extremes. Consider the fitted values across the range of our data.
 
 ```{r}
-ch7_b |> 
+ch3_b |> 
   ggplot(aes(x = height, y = female)) +
   geom_jitter(height = 0.1, alpha = 0.05) +
   geom_smooth(aes(y = fitted(fit_gender_linear)),
@@ -879,7 +875,7 @@ Whenever you have two categories as the outcome, you should use `family = binomi
 
 
 ```{r}
-fit_2 <- stan_glm(data = ch7_b,
+fit_2 <- stan_glm(data = ch3_b,
                   formula = female ~ height,
                   family = binomial,
                   refresh = 0,
