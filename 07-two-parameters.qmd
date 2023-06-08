@@ -203,9 +203,7 @@ Will the data we have --- which is only for a sample of adult American men more 
 
 ### Validity
 
-Validity involves our columns. More specifically, whether our columns mean the same thing. Does "height" in our Preceptor Table mean the same thing as "height" in NHANES?
-
-
+Validity involves our columns. More specifically, whether our columns mean the same thing. Does "height" in our Preceptor Table mean the same thing as "height" in NHANES? Almost certainly. Of course, we need to be careful about mistakes like measurement differences, like centimeters in one and inches in the other. And there can be issues like: Are measurements taken with shoes on or shoes off? But, for the most part, the "height" variable in NHANES in 2010 is a *valid* proxy for the "height" of individuals today. We can stack the two data sets together and consider them to have come from the same population. 
 
 
 ### Population
@@ -214,7 +212,7 @@ Validity involves our columns. More specifically, whether our columns mean the s
 
 One of the most important components of Wisdom is the concept of the “population.” 
 
-The population is not the set of people for which we have data --- the participants in the CDC's Health and Nutrition Examination Survey conducted from 2009 to 2011. This is the dataset. Nor is it the set of all the individuals about whom we would like to have data. Those are the rows in the Preceptor Table. The population is the larger — potentially much larger — set of individuals which include both the data we have and the data we want. Generally, **the population will be much larger than either the data we have or the data we want.** In fact, there is almost always a time dimension to consider. We generally want to make inferences about right now or the future. By definition, the data we have is always from the past.
+The population is not the set of people for which we have data --- the participants in the CDC's Health and Nutrition Examination Survey conducted from 2009 to 2011. This is the dataset. Nor is it the set of all the individuals about whom we would like to have data. Those are the rows in the Preceptor Table. The population is the larger — potentially much larger — set of individuals which include both the data we *have* and the data we *want*. Generally, **the population will be much larger than either the data we have or the data we want.** In fact, there is almost always a time dimension to consider. We generally want to make inferences about right now or about the future. By definition, the data we have is always from the past.
 
 In this case, we want to predict average height for males *today*, not for people in 2009 -- 2011. We also want to predict height for males outside the United States, a group that is excluded from our dataset. Is it reasonable to generate conclusions for the world from this group? Maybe? We have limited data to work with and we have to determine how far we are willing to generalize to other groups.
 

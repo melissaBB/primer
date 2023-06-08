@@ -231,7 +231,16 @@ install_github("PPBDS/r4ds.tutorials")
 
 This package is fairly simple and should install without any problems. Some other new packages will be installed as well, most importantly **primer.data**, which includes most of the data we use in the *Primer*.
 
-Copy and paste the following to the R Console:
+If the download fails, try
+
+```{r}
+#| eval: false
+options("timeout" = 600)
+```
+
+This gives the download more time to complete. Try `install_github("PPBDS/r4ds.tutorials")` again.
+
+Next, copy and paste the following to the R Console:
 
 
 ```{r}
