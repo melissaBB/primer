@@ -39,6 +39,7 @@ book:
     - 09-four-parameters.qmd
     - 10-five-parameters.qmd
     - 11-n-parameters.qmd
+    - glossary.qmd
     - set-up.qmd
     - style-guide.qmd 
     - references.qmd
