@@ -1,19 +1,17 @@
 # Getting ready for the bootcamp
 
 
+
 Remove R code stuff from Chapter 5? That material is (?) covered in the Iteration chapter.
 
-Looking at Data section of Visualization: Overview seems useful. Maybe it goes with Chapter 1 of R4DS. Or maybe we just kill it. Or maybe the whole tutorial is useful somehow . . . Delete it once you grab what is useful.
-
-
-Review Set Up chapter, add r4ds.tutorials reference explicitly.
 
 Maybe Getting Started chapter is drastically shortened, with all that material going to the first tutorial in R4DS?
 
-Create a one sentence summary of each key term: everything from causal effect to Population Table to Courage to stability. These are the dozen concepts we want to drill into students' heads. There should be questions about them in every tutorial.
 
 
 # Priorities
+
+Fix 3d plots in chapter 5.
 
 Think about using code chunk folding with:
 

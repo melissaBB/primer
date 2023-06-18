@@ -897,23 +897,23 @@ mtplot <-  ggplot(mydata) +
 # Step 3: Turn it into a 3D plot. This takes a bit of time and
 # will open an interactive "RGL Device" window with the plot.
 
-plot_gg(mtplot,
-         width = 3.5, # Plot width
-         zoom = 0.65, # How close view on plot should be (1=normal, <1=closer)
-         theta = 25, # From which direction to view plot (0-360°)
-         phi = 30, # How "steep" view on plot should be (0-90°)
-         sunangle = 225, # Angle of sunshine for shadows (0-360°)
-         soliddepth = -0.5, # Thickness of pane (always <0, the smaller the thicker)
-         windowsize = c(2048,1536)) # Resolution
- 
-# # Step 4: Embed plot in Rmd file.
-
-rglwidget()
-
-# # Step 5: Close the "RGL Device" window by running this command. Do
-# # this EVERY time before you try to create a new 3D plot.
-
-rgl.close()
+# plot_gg(mtplot,
+#          width = 3.5, # Plot width
+#          zoom = 0.65, # How close view on plot should be (1=normal, <1=closer)
+#          theta = 25, # From which direction to view plot (0-360°)
+#          phi = 30, # How "steep" view on plot should be (0-90°)
+#          sunangle = 225, # Angle of sunshine for shadows (0-360°)
+#          soliddepth = -0.5, # Thickness of pane (always <0, the smaller the thicker)
+#          windowsize = c(2048,1536)) # Resolution
+#  
+# # # Step 4: Embed plot in Rmd file.
+# 
+# rglwidget()
+# 
+# # # Step 5: Close the "RGL Device" window by running this command. Do
+# # # this EVERY time before you try to create a new 3D plot.
+# 
+# close3d()
 ```
 
 
@@ -1162,18 +1162,18 @@ jd_disease_plot <- jd_disease |>
           axis.text.x = element_text(size = 7),
           axis.text.y = element_text(size = 7))
 
- plot_gg(jd_disease_plot,
-         width = 3.5,
-         zoom = 0.65,
-         theta = 25,
-         phi = 30,
-         sunangle = 225,
-         soliddepth = -0.5,
-         windowsize = c(2048, 1536))
-
-rglwidget()
-
-rgl.close()
+#  plot_gg(jd_disease_plot,
+#          width = 3.5,
+#          zoom = 0.65,
+#          theta = 25,
+#          phi = 30,
+#          sunangle = 225,
+#          soliddepth = -0.5,
+#          windowsize = c(2048, 1536))
+# 
+# rglwidget()
+# 
+# close3d()
 ```
 
 <!-- DK: Insert the sliced rayshader distribution here, and discuss. Then, below, we do the same thing by hand. Then, use this text: -->
@@ -1381,19 +1381,19 @@ jd_marbles_plot <- jd_marbles |>
     axis.text.x = element_text(size = 6),
     axis.text.y = element_text(size = 6))
 
-plot_gg(jd_marbles_plot,
-         width = 4,
-         zoom = 0.75,
-         theta = 25,
-         phi = 30,
-         sunangle = 225,
-         soliddepth = -0.5,
-         raytrace = FALSE,
-         windowsize = c(2048,1536))
-
-rglwidget()
-
-rgl.close()
+# plot_gg(jd_marbles_plot,
+#          width = 4,
+#          zoom = 0.75,
+#          theta = 25,
+#          phi = 30,
+#          sunangle = 225,
+#          soliddepth = -0.5,
+#          raytrace = FALSE,
+#          windowsize = c(2048,1536))
+# 
+# rglwidget()
+# 
+# close3d()
 ```
 
 
@@ -1568,19 +1568,19 @@ jd_coin_plot <- jd_coin |>
           axis.title.y = element_text(size = 7),
           legend.position = "none")
 
-plot_gg(jd_coin_plot,
-       width = 3.5,
-         zoom = 0.65,
-         theta = 25,
-         phi = 30,
-         sunangle = 225,
-         soliddepth = -0.5,
-         raytrace = FALSE,
-         windowsize = c(2048,1536))
- 
- rglwidget()
- 
- rgl.close()
+# plot_gg(jd_coin_plot,
+#        width = 3.5,
+#          zoom = 0.65,
+#          theta = 25,
+#          phi = 30,
+#          sunangle = 225,
+#          soliddepth = -0.5,
+#          raytrace = FALSE,
+#          windowsize = c(2048,1536))
+#  
+#  rglwidget()
+#  
+#  close3d()
 ```
 
 In both of these diagrams, we see 11 models and 21 outcomes. We don't really care about the p($models$, $data$), the joint distribution of the models-which-might-be-true and the data-which-our-experiment-might-generate. Instead, we want to estimate $p$, the unknown parameter which determines the probability that this coin will come up heads when tossed. The joint distribution alone can't tell us that. We *created* the joint distribution before we had even conducted the experiment. It is our creation, a tool which we use to make inferences. Instead, we want the conditional distribution, p($models$ | $data = 8$). We have the results of the experiment. What do those results tell us about the probability distribution of $p$? 
