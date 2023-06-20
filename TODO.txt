@@ -1,14 +1,3 @@
-# Getting ready for the bootcamp
-
-
-
-Remove R code stuff from Chapter 5? That material is (?) covered in the Iteration chapter.
-
-
-Maybe Getting Started chapter is drastically shortened, with all that material going to the first tutorial in R4DS?
-
-
-
 # Priorities
 
 Fix 3d plots in chapter 5.
@@ -26,6 +15,21 @@ Use of _ in pipes in R 4.3.0.
 
 I am really annoyed by the default number of columns in the displayed code block in Quarto. Look at what happens in Chapter 3, for example. The code comments, all of which are fewer than 80 characters per line (I assume) look great in the qmd file. But, when rendered, they don't fit in a line and so need to be split into two lines in a very ugly and unreadable fashion. How many columns are displayed by default, and how can we cause that number to be the default wide in qmd documents so that comment lines can be wrapped automatically with CNTRL-Shift-/?
 
+
+Think more about whether not "mechanism" discussion could unify our discussion of potential problems. What is the sampling mechanism, the assignment mechanism and the missing data mechanism? Representativeness is about the sampling mechanism. Unconfoundedness is about the assignment mechanism. Hmmm. If your sampling mechanism creates a correlation between your outcome variable and other stuff, then you may have a problem.
+
+Think about the different categories of correlations (is this the right word?) which can arise. Example: the sampling mechanism of surveys, which old people don't like to fill out, means that old people are less likely to be in the sample. So what?
+
+Well, if age is your outcome, then you have one sort of problem. You want the distribution of the outcome variables in the sample to match the distribution in the population. Note the sloppiness here. Am I worried about the distribution of the data from the point in time from when the sample comes from? Or am I interested in the distribution of the outcome from the whole population? Answer: They are the same thing (I think).
+
+Third case: What if the sampling mechanism goes a bias among the independent variables?
+
+
+Even if the two outcome distributions are the same, then a second problem could be that the parameters of the model are different for different ranges of the independent variable.  (Grumpy people versus  non-grumpy people.)
+
+Need posterior predictive checks! Connect to the data generating mechanism.
+
+Difficult to understand what a geom_density shows, especially the meaning of the y-axis. Maybe we should have a section which walks students through the concepts of a distribution, ending with a smooth probability distribution. First, start with a geom_histogram example, but which looks like a standard plot. Or, maybe just use facet_wrap, stack them on top of each other. Raw counts of things are important. Second, use the same data, turns it into percentages using the after_stat() trickery. Third plot, use the same data, does this with geom_density(). Just an easier way of showing those shapes. Fourth plot, same data, use stat_slab().  BL: Is this already done?
 
 -2) https://mc-stan.org/rstanarm/reference/stan_polr.html Add some examples with ordinal dependent variables. Of course, what we really want is multinomial regression.
 
@@ -50,6 +54,14 @@ Is stan_polr(), which models ordinal data, the best third modeling function to a
 5) Note that the Preceptor Table always has an implicit time column, as does, usually explicitly, the Population Table.
 
 6) We need a one sentence summary of each virtue, a sentence we repeat each time we start to use that virtue. Chapter 6 wisdom is great example.
+
+Let's start using "data generating mechanism" everywhere. Maybe the DGM abbreviation is useful. The end of Justice is where we decide on  the "structure" (or "form") of the DGM. Right now, there are just two choices possible: gaussian or binary. (Note that there are many other possible structures. Take future courses to learn about them.) And, for now, we make our choice on the basis of the outcome variable. If it is continuous, we just linear, and if it is binary, we choose logistic.  Maybe show the formula each time? Or maybe this is where Courage starts, with the formula? 
+
+Concerns about representativeness and validity may cause us to make adjustments in our final posteriors in an ad hoc --- but still useful! --- manner, or they may cause us to make changes in our actual models.
+
+In functional form section, emphasize that we mostly choose our functional form on the basis of the left hand side variable. If it is continuous, we go linear. If it is 0/1, we go logistic. (May add one other option later.)
+
+Show posterior_interval()
 
 Figure out what quarto.yml settings are defaults and get rid of those. Explain others.
 

@@ -236,7 +236,7 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./glossary.html" class="sidebar-item-text sidebar-link">Glossary</a>
+  <a href="./glossary.html" class="sidebar-item-text sidebar-link">Key Concepts</a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -324,23 +324,11 @@ div.csl-indent {
 
 </div>
 
-<!-- MF: Population Table modified. Validity, representativness, and stability also modified. -->
-<!-- Let's start using "data generating mechanism" everywhere. Maybe the DGM abbreviation is useful. The end of Justice is where we decide on  the "structure" (or "form") of the DGM. Right now, there are just two choices possible: gaussian or binary. (Note that there are many other possible structures. Take future courses to learn about them.) And, for now, we make our choice on the basis of the outcome variable. If it is continuous, we just linear, and if it is binary, we choose logistic.  Maybe show the formula each time? Or maybe this is where Courage starts, with the formula? -->
-<!-- ?family -->
-<!-- Justice gives to Courage, the data and the structure. -->
-<!-- Courage gives to Temperance, the fitted model object. -->
-
-<!-- Each new model starts with Justice, nodding toward the one true population table. Then discussion of representativeness and validity. -->
 <!-- Need a table which shows all 4 (?) languages for describing a model together: English, math, code, output. ? -->
 <!-- DK: Clean up these residuals plots to be similar across chapters! Also, we should ensure that the width of 10 units is the same in each plot. Or does that already happen? Want the intuition that, the more predictive the model, the smaller the remaining variation in the residuals. The below is from chapter 7. -->
-<!-- DK: Posterior predictive checks! Connect to the data generating mechanism. -->
-<!-- Come up with common ways in which a lack of representativeness causes problems. This is a list of things that we can check each time when we are interrograting a data science problem. Key issue is the correlation, if anything, between the "assignment mechanism" or "sampling mechanism" and other variables. Discuss sampling mechanism in all cases except att_end ~ treatment. For that, use "assignment mechanism." -->
-<!-- If your sampling mechanism creates a correlation between your outcome variable and other stuff, then you may have a problem. -->
-<!-- Think about the different categories of correlations (is this the right word?) which can arise. Example: the sampling mechanism of surveys, which old people don't like to fill out, means that old people are less likely to be in the sample. So what?  -->
-<!-- Well, if age is your outcome, then you have one sort of problem. You want the distribution of the outcome variables in the sample to match the distribution in the population. Note the sloppiness here. Am I worried about the distribution of the data from the point in time from when the sample comes from? Or am I interested in the distribution of the outcome from the whole population? Answer: They are the same thing (I think). -->
-<!-- Third case: What if the sampling mechanism goes a bias among the independent variables? -->
-<!-- Even if the two outcome distributions are the same, then a second problem could be that the parameters of the model are different for different ranges of the independent variable.  (Grumpy people versus  non-grumpy people.) -->
+<!-- Come up with common ways in which a lack of representativeness causes problems. This is a list of things that we can check each time when we are interrogating a data science problem. Key issue is the correlation, if anything, between the "assignment mechanism" or "sampling mechanism" and other variables. Discuss sampling mechanism in all cases except att_end ~ treatment. For that, use "assignment mechanism." -->
 <p>Models have parameters. In <a href="06-one-parameter.html"><span>Chapter&nbsp;3</span></a> we created models with a single parameter <span class="math inline">\(p\)</span>, the proportion of red beads in an urn. In <a href="07-two-parameters.html"><span>Chapter&nbsp;4</span></a>, we used models with two parameters: <span class="math inline">\(\mu\)</span> (the average height in the population, generically known as a model “intercept”) and <span class="math inline">\(\sigma\)</span> (the variation in height in the population). Here — can you guess where this is going? — we will build models with three parameters: <span class="math inline">\(\sigma\)</span> (which serves the same role throughout the book) and two “coefficients.” In models which relate a continuous predictor to the outcome, those two parameters will be labeled <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span>. In models which estimate two averages, the parameters will be <span class="math inline">\(\beta_1\)</span> and <span class="math inline">\(\beta_2\)</span>. All this notation is confusing, not least because different academic fields use inconsistent schemes. Follow the Cardinal Virtues and tackle your problem step by step.</p>
+<p>Perhaps more importantly, a focus on parameters is less relevant now than it was decades ago, when computational limitations made answering our actual questions harder. <em>Parameters are imaginary.</em> They don’t exist. They, in general, are not the answer to an real world question. They are tools, along with the models of which they are a part, we use to answer questions.</p>
 <section id="wisdom" class="level2" data-number="5.1"><h2 data-number="5.1" class="anchored" data-anchor-id="wisdom">
 <span class="header-section-number">5.1</span> Wisdom</h2>
 <section id="preceptor-table" class="level3" data-number="5.1.1"><h3 data-number="5.1.1" class="anchored" data-anchor-id="preceptor-table">
@@ -352,23 +340,23 @@ div.csl-indent {
 <div class="cell">
 <div class="cell-output-display">
 
-<div id="pagofmftkp" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#pagofmftkp table {
+<div id="zfatfbvexy" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#zfatfbvexy table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#pagofmftkp thead, #pagofmftkp tbody, #pagofmftkp tfoot, #pagofmftkp tr, #pagofmftkp td, #pagofmftkp th {
+#zfatfbvexy thead, #zfatfbvexy tbody, #zfatfbvexy tfoot, #zfatfbvexy tr, #zfatfbvexy td, #zfatfbvexy th {
   border-style: none;
 }
 
-#pagofmftkp p {
+#zfatfbvexy p {
   margin: 0;
   padding: 0;
 }
 
-#pagofmftkp .gt_table {
+#zfatfbvexy .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -394,12 +382,12 @@ div.csl-indent {
   border-left-color: #D3D3D3;
 }
 
-#pagofmftkp .gt_caption {
+#zfatfbvexy .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#pagofmftkp .gt_title {
+#zfatfbvexy .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -411,7 +399,7 @@ div.csl-indent {
   border-bottom-width: 0;
 }
 
-#pagofmftkp .gt_subtitle {
+#zfatfbvexy .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -423,7 +411,7 @@ div.csl-indent {
   border-top-width: 0;
 }
 
-#pagofmftkp .gt_heading {
+#zfatfbvexy .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -435,13 +423,13 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#pagofmftkp .gt_bottom_border {
+#zfatfbvexy .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#pagofmftkp .gt_col_headings {
+#zfatfbvexy .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -456,7 +444,7 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#pagofmftkp .gt_col_heading {
+#zfatfbvexy .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -476,7 +464,7 @@ div.csl-indent {
   overflow-x: hidden;
 }
 
-#pagofmftkp .gt_column_spanner_outer {
+#zfatfbvexy .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -488,15 +476,15 @@ div.csl-indent {
   padding-right: 4px;
 }
 
-#pagofmftkp .gt_column_spanner_outer:first-child {
+#zfatfbvexy .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#pagofmftkp .gt_column_spanner_outer:last-child {
+#zfatfbvexy .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#pagofmftkp .gt_column_spanner {
+#zfatfbvexy .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -508,11 +496,11 @@ div.csl-indent {
   width: 100%;
 }
 
-#pagofmftkp .gt_spanner_row {
+#zfatfbvexy .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#pagofmftkp .gt_group_heading {
+#zfatfbvexy .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -538,7 +526,7 @@ div.csl-indent {
   text-align: left;
 }
 
-#pagofmftkp .gt_empty_group_heading {
+#zfatfbvexy .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -553,15 +541,15 @@ div.csl-indent {
   vertical-align: middle;
 }
 
-#pagofmftkp .gt_from_md > :first-child {
+#zfatfbvexy .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#pagofmftkp .gt_from_md > :last-child {
+#zfatfbvexy .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#pagofmftkp .gt_row {
+#zfatfbvexy .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -580,7 +568,7 @@ div.csl-indent {
   overflow-x: hidden;
 }
 
-#pagofmftkp .gt_stub {
+#zfatfbvexy .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -593,7 +581,7 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#pagofmftkp .gt_stub_row_group {
+#zfatfbvexy .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -607,15 +595,15 @@ div.csl-indent {
   vertical-align: top;
 }
 
-#pagofmftkp .gt_row_group_first td {
+#zfatfbvexy .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#pagofmftkp .gt_row_group_first th {
+#zfatfbvexy .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#pagofmftkp .gt_summary_row {
+#zfatfbvexy .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -625,16 +613,16 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#pagofmftkp .gt_first_summary_row {
+#zfatfbvexy .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#pagofmftkp .gt_first_summary_row.thick {
+#zfatfbvexy .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#pagofmftkp .gt_last_summary_row {
+#zfatfbvexy .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -644,7 +632,7 @@ div.csl-indent {
   border-bottom-color: #D3D3D3;
 }
 
-#pagofmftkp .gt_grand_summary_row {
+#zfatfbvexy .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -654,7 +642,7 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#pagofmftkp .gt_first_grand_summary_row {
+#zfatfbvexy .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -664,7 +652,7 @@ div.csl-indent {
   border-top-color: #D3D3D3;
 }
 
-#pagofmftkp .gt_last_grand_summary_row_top {
+#zfatfbvexy .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -674,11 +662,11 @@ div.csl-indent {
   border-bottom-color: #D3D3D3;
 }
 
-#pagofmftkp .gt_striped {
+#zfatfbvexy .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#pagofmftkp .gt_table_body {
+#zfatfbvexy .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -687,7 +675,7 @@ div.csl-indent {
   border-bottom-color: #D3D3D3;
 }
 
-#pagofmftkp .gt_footnotes {
+#zfatfbvexy .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -701,7 +689,7 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#pagofmftkp .gt_footnote {
+#zfatfbvexy .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -710,7 +698,7 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#pagofmftkp .gt_sourcenotes {
+#zfatfbvexy .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -724,7 +712,7 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#pagofmftkp .gt_sourcenote {
+#zfatfbvexy .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -732,63 +720,63 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#pagofmftkp .gt_left {
+#zfatfbvexy .gt_left {
   text-align: left;
 }
 
-#pagofmftkp .gt_center {
+#zfatfbvexy .gt_center {
   text-align: center;
 }
 
-#pagofmftkp .gt_right {
+#zfatfbvexy .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#pagofmftkp .gt_font_normal {
+#zfatfbvexy .gt_font_normal {
   font-weight: normal;
 }
 
-#pagofmftkp .gt_font_bold {
+#zfatfbvexy .gt_font_bold {
   font-weight: bold;
 }
 
-#pagofmftkp .gt_font_italic {
+#zfatfbvexy .gt_font_italic {
   font-style: italic;
 }
 
-#pagofmftkp .gt_super {
+#zfatfbvexy .gt_super {
   font-size: 65%;
 }
 
-#pagofmftkp .gt_footnote_marks {
+#zfatfbvexy .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#pagofmftkp .gt_asterisk {
+#zfatfbvexy .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#pagofmftkp .gt_indent_1 {
+#zfatfbvexy .gt_indent_1 {
   text-indent: 5px;
 }
 
-#pagofmftkp .gt_indent_2 {
+#zfatfbvexy .gt_indent_2 {
   text-indent: 10px;
 }
 
-#pagofmftkp .gt_indent_3 {
+#zfatfbvexy .gt_indent_3 {
   text-indent: 15px;
 }
 
-#pagofmftkp .gt_indent_4 {
+#zfatfbvexy .gt_indent_4 {
   text-indent: 20px;
 }
 
-#pagofmftkp .gt_indent_5 {
+#zfatfbvexy .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -952,16 +940,15 @@ div.csl-indent {
 </div>
 </div>
 <p>Recall: a Preceptor Table is the smallest possible table such that, if there is no missing data, all our questions are easy to answer. To answer questions — like “What is, today, the average age of train commuters in the US?” — we need a row for every train commuter.</p>
-<p>Notice that one of our questions is about a causal effect: What change in immigration attitudes is caused by being exposed to Spanish-speakers? Answering causal questions requires (at least) two potential outcomes: immigration attitude for those who receive the treatment of being exposed to Spanish-speakers and for those who do not.</p>
+<p>Notice that one of our questions is about a causal effect: What change in immigration attitudes is caused by being exposed to Spanish-speakers? Answering causal questions requires (at least) two potential outcomes: immigration attitudes when people receive the treatment of being exposed to Spanish-speakers and immigration attitudes, for those same people, when they don’t receive the treatment.</p>
 <p>Having created the Preceptor Table, we now look at the data we have: the <code>trains</code> data set from the <strong>primer.data</strong> package.</p>
 </section><section id="eda-for-trains" class="level3" data-number="5.1.2"><h3 data-number="5.1.2" class="anchored" data-anchor-id="eda-for-trains">
 <span class="header-section-number">5.1.2</span> EDA for <code>trains</code>
 </h3>
-<p><em>Always explore your data.</em> Recall the discussion from <a href="04-rubin-causal-model.html"><span>Chapter&nbsp;1</span></a>. <span class="citation" data-cites="enos2014">Enos (<a href="references.html#ref-enos2014" role="doc-biblioref">2014</a>)</span> randomly placed Spanish-speaking confederates on nine train platforms around Boston, Massachusetts. Exposure to Spanish-speakers – the <code>treatment</code> – influenced attitudes toward immigration. These reactions were measured through changes in answers to three survey questions. Load the necessary libraries and look at the data.</p>
+<p><em>Always explore your data.</em> Recall the discussion from <a href="04-rubin-causal-model.html"><span>Chapter&nbsp;1</span></a>. <span class="citation" data-cites="enos2014">Enos (<a href="references.html#ref-enos2014" role="doc-biblioref">2014</a>)</span> randomly placed Spanish-speaking confederates on nine train platforms around Boston, Massachusetts. Exposure to Spanish-speakers – the <code>treatment</code> – (potentially) influenced attitudes toward immigration. These reactions were measured through changes in answers to three survey questions. Load the necessary libraries and look at the data.</p>
 <div class="cell">
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">primer.data</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://mc-stan.org/rstanarm/">rstanarm</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://docs.ropensci.org/skimr/">skimr</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
@@ -986,29 +973,29 @@ $ ideology_end   &lt;int&gt; 3, 4, 2, 4, 2, 5, 5, 4, 3, 4, 3, 4, 4, 1, 2, 3, 3, 
 </div>
 </div>
 <p>The data include information about each respondent’s gender, political affiliations, age, income and so on. <code>treatment</code> indicates whether a subject was in the control or treatment group. The key outcomes are their attitudes toward immigration both before (<code>att_start</code>) and after (<code>att_end</code>) the experiment. Type <code><a href="https://rdrr.io/pkg/primer.data/man/trains.html">?trains</a></code> to read the help page for more information about each variable.</p>
-<p>Let’s restrict attention to a subset of the variables we need to answer our questions, as specified in the Preceptor Table. <code>age</code> is the age of the respondent; <code>party</code> is their political party affiliation; <code>liberal</code> is whether they are liberal or not; <code>income</code> is the income of the respondent; <code>treatment</code> specifies whether the respondent was given the treatment of being exposed to Spanish-speakers in the train station; and <code>att_end</code> tell us about the respondent’s attitude on immigration after the treatment, .</p>
+<p>Let’s restrict attention to a subset of the variables we need to answer our questions, as specified in the Preceptor Table. <code>age</code> is the age of the respondent; <code>party</code> is their political party affiliation; <code>liberal</code> is whether they are liberal or not; <code>income</code> is the income of the respondent; <code>treatment</code> specifies whether the respondent was given the treatment of being exposed to Spanish-speakers in the train station; and <code>att_end</code> tell us about the respondent’s attitude toward immigration after the experiment.</p>
 <div class="cell">
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ch8</span> <span class="op">&lt;-</span> <span class="va">trains</span> <span class="op">|&gt;</span> </span>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ch5</span> <span class="op">&lt;-</span> <span class="va">trains</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">age</span>, <span class="va">att_end</span>, <span class="va">party</span>, <span class="va">income</span>, <span class="va">treatment</span>, <span class="va">liberal</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>It is always smart to look at a some random slices of the data:</p>
 <div class="cell">
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ch8</span> <span class="op">|&gt;</span> </span>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ch5</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_sample</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 6
-    age att_end party      income treatment liberal
-  &lt;int&gt;   &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt; &lt;fct&gt;     &lt;lgl&gt;  
-1    37       7 Republican 105000 Control   FALSE  
-2    60       9 Democrat    87500 Control   TRUE   
-3    28       7 Democrat   105000 Control   FALSE  
-4    35      14 Democrat   105000 Treated   FALSE  
-5    55       8 Democrat   105000 Control   TRUE   </code></pre>
+    age att_end party    income treatment liberal
+  &lt;int&gt;   &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt; &lt;fct&gt;     &lt;lgl&gt;  
+1    32       9 Democrat 250000 Treated   TRUE   
+2    35      14 Democrat 105000 Treated   FALSE  
+3    41      12 Democrat  62500 Treated   TRUE   
+4    67       9 Democrat 135000 Control   TRUE   
+5    37      13 Democrat  87500 Treated   FALSE  </code></pre>
 </div>
 </div>
 <p><code>att_end</code> is a measure of person’s attitude toward immigration. A higher number means more conservative, i.e., a more exclusionary stance toward immigration into the United States.</p>
 <div class="cell">
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ch8</span> <span class="op">|&gt;</span> </span>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ch5</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 115
@@ -1023,245 +1010,68 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
 </div>
 <p>Pay attention to the variable types. Do they make sense? Perhaps. But there are certainly grounds for suspicion. Why is <code>att_end</code> a double rather than an integer? All the values in the data appear to be integers, so there is no benefit to having these variables be doubles. Why is <code>party</code> a character variable and <code>treatment</code> a factor variable? It could be that these are intentional choices made by the creator of the tibble, i.e., us. Or, these could be mistakes. Most likely, these choices are a mixture of sensible and arbitrary. Regardless, it is your responsibility to notice them. You can’t make a good model without looking closely at the data which you are using.</p>
 <div class="cell">
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ch8</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://docs.ropensci.org/skimr/reference/skim.html">skim</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<table class="table table-sm table-striped">
-<caption>Data summary</caption>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Name</td>
-<td style="text-align: left;">ch8</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Number of rows</td>
-<td style="text-align: left;">115</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Number of columns</td>
-<td style="text-align: left;">6</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">_______________________</td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Column type frequency:</td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">character</td>
-<td style="text-align: left;">1</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">factor</td>
-<td style="text-align: left;">1</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">logical</td>
-<td style="text-align: left;">1</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">numeric</td>
-<td style="text-align: left;">3</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">________________________</td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Group variables</td>
-<td style="text-align: left;">None</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Variable type: character</strong></p>
-<table class="table table-sm table-striped">
-<colgroup>
-<col style="width: 19%">
-<col style="width: 13%">
-<col style="width: 19%">
-<col style="width: 5%">
-<col style="width: 5%">
-<col style="width: 8%">
-<col style="width: 12%">
-<col style="width: 15%">
-</colgroup>
-<thead><tr class="header">
-<th style="text-align: left;">skim_variable</th>
-<th style="text-align: right;">n_missing</th>
-<th style="text-align: right;">complete_rate</th>
-<th style="text-align: right;">min</th>
-<th style="text-align: right;">max</th>
-<th style="text-align: right;">empty</th>
-<th style="text-align: right;">n_unique</th>
-<th style="text-align: right;">whitespace</th>
-</tr></thead>
-<tbody><tr class="odd">
-<td style="text-align: left;">party</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">8</td>
-<td style="text-align: right;">10</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: right;">0</td>
-</tr></tbody>
-</table>
-<p><strong>Variable type: factor</strong></p>
-<table class="table table-sm table-striped">
-<colgroup>
-<col style="width: 19%">
-<col style="width: 13%">
-<col style="width: 19%">
-<col style="width: 11%">
-<col style="width: 12%">
-<col style="width: 23%">
-</colgroup>
-<thead><tr class="header">
-<th style="text-align: left;">skim_variable</th>
-<th style="text-align: right;">n_missing</th>
-<th style="text-align: right;">complete_rate</th>
-<th style="text-align: left;">ordered</th>
-<th style="text-align: right;">n_unique</th>
-<th style="text-align: left;">top_counts</th>
-</tr></thead>
-<tbody><tr class="odd">
-<td style="text-align: left;">treatment</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">FALSE</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: left;">Con: 64, Tre: 51</td>
-</tr></tbody>
-</table>
-<p><strong>Variable type: logical</strong></p>
-<table class="table table-sm table-striped">
-<thead><tr class="header">
-<th style="text-align: left;">skim_variable</th>
-<th style="text-align: right;">n_missing</th>
-<th style="text-align: right;">complete_rate</th>
-<th style="text-align: right;">mean</th>
-<th style="text-align: left;">count</th>
-</tr></thead>
-<tbody><tr class="odd">
-<td style="text-align: left;">liberal</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0.44</td>
-<td style="text-align: left;">FAL: 64, TRU: 51</td>
-</tr></tbody>
-</table>
-<p><strong>Variable type: numeric</strong></p>
-<table class="table table-sm table-striped">
-<colgroup>
-<col style="width: 14%">
-<col style="width: 10%">
-<col style="width: 14%">
-<col style="width: 10%">
-<col style="width: 9%">
-<col style="width: 6%">
-<col style="width: 6%">
-<col style="width: 7%">
-<col style="width: 7%">
-<col style="width: 7%">
-<col style="width: 6%">
-</colgroup>
-<thead><tr class="header">
-<th style="text-align: left;">skim_variable</th>
-<th style="text-align: right;">n_missing</th>
-<th style="text-align: right;">complete_rate</th>
-<th style="text-align: right;">mean</th>
-<th style="text-align: right;">sd</th>
-<th style="text-align: right;">p0</th>
-<th style="text-align: right;">p25</th>
-<th style="text-align: right;">p50</th>
-<th style="text-align: right;">p75</th>
-<th style="text-align: right;">p100</th>
-<th style="text-align: left;">hist</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">age</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">42.37</td>
-<td style="text-align: right;">12.20</td>
-<td style="text-align: right;">20</td>
-<td style="text-align: right;">33</td>
-<td style="text-align: right;">43</td>
-<td style="text-align: right;">52</td>
-<td style="text-align: right;">68</td>
-<td style="text-align: left;">▆▇▇▇▃</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">att_end</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">9.14</td>
-<td style="text-align: right;">2.87</td>
-<td style="text-align: right;">3</td>
-<td style="text-align: right;">7</td>
-<td style="text-align: right;">9</td>
-<td style="text-align: right;">11</td>
-<td style="text-align: right;">15</td>
-<td style="text-align: left;">▂▃▇▃▃</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">income</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">141813.04</td>
-<td style="text-align: right;">74476.64</td>
-<td style="text-align: right;">23500</td>
-<td style="text-align: right;">87500</td>
-<td style="text-align: right;">135000</td>
-<td style="text-align: right;">135000</td>
-<td style="text-align: right;">300000</td>
-<td style="text-align: left;">▅▇▇▁▆</td>
-</tr>
-</tbody>
-</table>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ch5</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      age           att_end          party               income      
+ Min.   :20.00   Min.   : 3.000   Length:115         Min.   : 23500  
+ 1st Qu.:33.00   1st Qu.: 7.000   Class :character   1st Qu.: 87500  
+ Median :43.00   Median : 9.000   Mode  :character   Median :135000  
+ Mean   :42.37   Mean   : 9.139                      Mean   :141813  
+ 3rd Qu.:52.00   3rd Qu.:11.000                      3rd Qu.:135000  
+ Max.   :68.00   Max.   :15.000                      Max.   :300000  
+   treatment   liberal       
+ Treated:51   Mode :logical  
+ Control:64   FALSE:64       
+              TRUE :51       
+                             
+                             
+                             </code></pre>
 </div>
 </div>
-<p><code><a href="https://docs.ropensci.org/skimr/reference/skim.html">skim()</a></code> shows us what the different values of <code>treatment</code> are because it is a factor. Unfortunately, it does not do the same for character variables like <code>party</code>. The ranges for <code>age</code> and <code>att_end</code> seem reasonable. Recall that participants were asked three questions about immigration issues, each of which allowed for an answer indicated strength of agreement on a scale form 1 to 5, with higher values indicating more agreement with conservative viewpoints. <code>att_end</code> is the sum of the responses to the three questions, so the most liberal possible value is 3 and the most conservative is 15.</p>
+<p><code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code> shows us what the different values of <code>treatment</code> are because it is a factor. Unfortunately, it does not do the same for character variables like <code>party</code>. The ranges for <code>age</code> and <code>att_end</code> seem reasonable. Recall that participants were asked three questions about immigration issues, each of which allowed for an answer indicated strength of agreement on a scale form 1 to 5, with higher values indicating more agreement with conservative viewpoints. <code>att_end</code> is the sum of the responses to the three questions, so the most liberal possible value is 3 and the most conservative is 15.</p>
 </section><section id="population" class="level3" data-number="5.1.3"><h3 data-number="5.1.3" class="anchored" data-anchor-id="population">
 <span class="header-section-number">5.1.3</span> Population</h3>
 <!-- Combo of old things from different sections and new explanations, need to combine and clarify -->
 <!-- One of the key jobs of a data scientist is to guide people --- our colleagues, bosses and clients --- toward asking precise questions. We must help them to translate English into inference. That translation requires precision. -->
 <p>The data that we have are very limited. There are only 115 observations, all from 2012 and involving train commuters to Boston. <em>Can we assume that the the data we have and the data in our Preceptor Table are drawn from the same population?</em> Only your judgment, along with advice from your colleagues, can guide you.</p>
 <p>There is no <strong>truth</strong> here. The data is real enough, but you created the Preceptor Table. Whether or not there is a population from which you can assume both the data and the Preceptor Table might have been drawn is not a TRUE/FALSE question.</p>
-<p>The Preceptor Table is all US train commuters today. However, the data we have involves train commuters in the Boston area in 2012. So, what we must ask ourselves is if this data from Boston in 2012 can be drawn from the same population as all train commuters in the US today.</p>
+<p>The Preceptor Table is all US train commuters today. However, the data we have involves train commuters in the Boston area in 2012. Can we assume the this data from Boston in 2012 is drawn from the same population as all train commuters in the US today?</p>
 <p>The key concept is the idea of a “population.” From which larger population is the data we have being (conceptually) drawn? If we were only interested in the age of individuals in our data set, we would have no need for inference. <em>We know everyone’s ages already.</em> We only need tools like <code><a href="https://mc-stan.org/rstanarm/reference/stan_glm.html">stan_glm()</a></code> if we seek to understand individuals not in our data.</p>
-<p>The issue is always: Do the data we have and the data we want to have come from the same population? If there is no connection between the two, progress is impossible. But, in this case, if we are willing to consider the population to be US residents over the last decade (including today), and if we are willing to assume that there is a single population from which the Preceptor Table and our data set is drawn, then we can use our data to create a model to answer our questions.</p>
+<p>The issue is always: Do the data we have and the data we want to have come from the same population? If there is no connection between the two, progress is impossible. But, in this case, if we are willing to consider the population to be US train commuters over the last decade (including today), and if we are willing to assume that there is a single population from which the Preceptor Table and our data set is drawn, then we can use our data to create a model to answer our questions.</p>
+<p><em>Validity</em> is the assumption which allows us to consider the Preceptor Table and our data to have been drawn from the same population.</p>
+<p>Consider the treatment variable. What does it mean for somebody to receive the treatment? Let’s say somebody was running late on their way to the train in the morning. Well, this person may have heard the Spanish-speakers for a shorter amount of time than a commuter who arrived earlier. Similarly, some Spanish-speakers may have been speaking louder than others or some commuters may have been closer to the speakers than other commuters. Therefore, these commuters would hear the treatment of being exposed to Spanish-speakers less loudly than the other commuters. Additionally, the Spanish-speakers weren’t the same for every train station in our 2012 data and if we were to get data for now, we wouldn’t be able to hire the exact same Spanish-speakers. When considering validity with reference to treatments, what we must determine is if we can assume that the treatments of being exposed to Spanish-speakers that each commuter may experience a bit differently can be assumed to be the same.</p>
+<p>Consider the validity of <code>age</code> and <code>income</code>. Recall that validity refers to whether or not we can consider the columns <code>age</code> and <code>income</code> to have the same meaning in our data set of 2012 Boston train commuters and in our Preceptor Table. While <code>age</code> doesn’t really change meaning over time, <code>income</code> can be impacted by inflation. After all, $100,000 in 2012 doesn’t have the same worth as $100,000 now due to inflation and now would have less purchasing power. This would result in income being underestimated within our model. However, since there hasn’t been drastic inflation that dramatically changed the buying power, we will consider income to be valid. If there had been like 300% inflation, however, our conclusion would probably be different.</p>
+<p>Look at the validity of the <code>liberal</code> variable. This column has the values “Liberal” and “Not Liberal” to convey the political ideology of the train commuters. We must determine if the column <code>liberal</code>, and therefore the meaning of being liberal, is the same in Boston in 2012 as in the US in 2023. If we can determine these to be the same, then we can assume validity, and in this case, because the core beliefs of being liberal have not changed very much between 2012 and 2023, we can determine that the data is valid.</p>
+<p>Overall, the assumption of <em>validity</em> seems reasonable. <code>age</code>, <code>treatment</code> and other variables are similar enough between our data and The Preceptor Table that we can “stack” them on top of each other. We can assume that both are drawn from the same population.</p>
 </section><section id="population-table" class="level3" data-number="5.1.4"><h3 data-number="5.1.4" class="anchored" data-anchor-id="population-table">
 <span class="header-section-number">5.1.4</span> Population Table</h3>
 <p>Having determined that the Preceptor Table and the data were drawn from the same population, we can produce a Population Table.</p>
 <p>The Population Table includes rows from three sources: the <strong>Preceptor Table</strong>, the <strong>actual data</strong>, and all <em>other</em> members of the population.</p>
-<p>The rows in the <strong>Preceptor Table</strong> contain the information that we would <em>want</em> to know in order to answer our questions. These rows contain entries for our covariates (city and year) but they do not contain any outcome results. We are trying to answer questions about the train commuter population in 2021, so our city entries for these rows will vary and our year entries of these rows will read “2021”.</p>
+<p>The rows in the <strong>Preceptor Table</strong> contain the information that we would <em>want</em> to know in order to answer our questions. These rows contain entries for our covariates but they do not contain any outcome results. We are trying to answer questions about the train commuter population in 2023, so our city entries for these rows will vary and our year entries of these rows will read “2023”.</p>
 <p>Our <strong>actual data</strong> rows contain the information that we <em>do</em> know. These rows contain entries for both our covariates <em>and</em> the outcomes. In this case, the actual data comes from a study conducted on train commuters around Boston, MA in 2012, so our city entries for these rows will read “Boston, MA” and our year entries of these rows will read “2012”.</p>
-<p>Our <strong>other</strong> rows contain no data. These are subjects which are members of our desired population, but for which we have no data. As such, all outcomes and covariates are missing. The “Other” rows his may include, for example, data from a range of years before and after 2012, since we considered little change overtime, so we would also consider this data to be representative and drawn from the larger population of train commuters in years near 2012.</p>
-<p>The population table includes commuters from our Preceptor Table with the information that we would ideally have to answer the questions and those from the data we have that is specific to Boston, MA. Additionally, the population table also includes the groups of people within the population from which both the data we have and the Preceptor table is drawn from that we don’t have.</p>
+<p>Our <strong>other</strong> rows contain no data. These are subjects which are members of our assumed population, but for which we have no data. As such, all outcomes and covariates are missing. The “Other” rows may include, for example, data from a range of years before and after 2012, since we considered little change overtime, so we would also consider this data to be representative and drawn from the larger population of train commuters in years near 2012.</p>
+<p>The Population Table includes commuters from our Preceptor Table with the information that we would ideally have to answer the questions and those from the data we have that is specific to Boston, MA. Additionally, the Population Table also includes the groups of people within the population from which both the data we have and the Preceptor table is drawn from that we don’t have.</p>
 <div class="cell">
 <div class="cell-output-display">
 
-<div id="demyijjols" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#demyijjols table {
+<div id="zjsocfukfu" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#zjsocfukfu table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#demyijjols thead, #demyijjols tbody, #demyijjols tfoot, #demyijjols tr, #demyijjols td, #demyijjols th {
+#zjsocfukfu thead, #zjsocfukfu tbody, #zjsocfukfu tfoot, #zjsocfukfu tr, #zjsocfukfu td, #zjsocfukfu th {
   border-style: none;
 }
 
-#demyijjols p {
+#zjsocfukfu p {
   margin: 0;
   padding: 0;
 }
 
-#demyijjols .gt_table {
+#zjsocfukfu .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1287,12 +1097,12 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
   border-left-color: #D3D3D3;
 }
 
-#demyijjols .gt_caption {
+#zjsocfukfu .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#demyijjols .gt_title {
+#zjsocfukfu .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1304,7 +1114,7 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
   border-bottom-width: 0;
 }
 
-#demyijjols .gt_subtitle {
+#zjsocfukfu .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1316,7 +1126,7 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
   border-top-width: 0;
 }
 
-#demyijjols .gt_heading {
+#zjsocfukfu .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1328,13 +1138,13 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
   border-right-color: #D3D3D3;
 }
 
-#demyijjols .gt_bottom_border {
+#zjsocfukfu .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#demyijjols .gt_col_headings {
+#zjsocfukfu .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1349,7 +1159,7 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
   border-right-color: #D3D3D3;
 }
 
-#demyijjols .gt_col_heading {
+#zjsocfukfu .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1369,7 +1179,7 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
   overflow-x: hidden;
 }
 
-#demyijjols .gt_column_spanner_outer {
+#zjsocfukfu .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1381,15 +1191,15 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
   padding-right: 4px;
 }
 
-#demyijjols .gt_column_spanner_outer:first-child {
+#zjsocfukfu .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#demyijjols .gt_column_spanner_outer:last-child {
+#zjsocfukfu .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#demyijjols .gt_column_spanner {
+#zjsocfukfu .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1401,11 +1211,11 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
   width: 100%;
 }
 
-#demyijjols .gt_spanner_row {
+#zjsocfukfu .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#demyijjols .gt_group_heading {
+#zjsocfukfu .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1431,7 +1241,7 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
   text-align: left;
 }
 
-#demyijjols .gt_empty_group_heading {
+#zjsocfukfu .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1446,15 +1256,15 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
   vertical-align: middle;
 }
 
-#demyijjols .gt_from_md > :first-child {
+#zjsocfukfu .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#demyijjols .gt_from_md > :last-child {
+#zjsocfukfu .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#demyijjols .gt_row {
+#zjsocfukfu .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1473,7 +1283,7 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
   overflow-x: hidden;
 }
 
-#demyijjols .gt_stub {
+#zjsocfukfu .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1486,7 +1296,7 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
   padding-right: 5px;
 }
 
-#demyijjols .gt_stub_row_group {
+#zjsocfukfu .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1500,15 +1310,15 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
   vertical-align: top;
 }
 
-#demyijjols .gt_row_group_first td {
+#zjsocfukfu .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#demyijjols .gt_row_group_first th {
+#zjsocfukfu .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#demyijjols .gt_summary_row {
+#zjsocfukfu .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1518,16 +1328,16 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
   padding-right: 5px;
 }
 
-#demyijjols .gt_first_summary_row {
+#zjsocfukfu .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#demyijjols .gt_first_summary_row.thick {
+#zjsocfukfu .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#demyijjols .gt_last_summary_row {
+#zjsocfukfu .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1537,7 +1347,7 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
   border-bottom-color: #D3D3D3;
 }
 
-#demyijjols .gt_grand_summary_row {
+#zjsocfukfu .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1547,7 +1357,7 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
   padding-right: 5px;
 }
 
-#demyijjols .gt_first_grand_summary_row {
+#zjsocfukfu .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1557,7 +1367,7 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
   border-top-color: #D3D3D3;
 }
 
-#demyijjols .gt_last_grand_summary_row_top {
+#zjsocfukfu .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1567,11 +1377,11 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
   border-bottom-color: #D3D3D3;
 }
 
-#demyijjols .gt_striped {
+#zjsocfukfu .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#demyijjols .gt_table_body {
+#zjsocfukfu .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1580,7 +1390,7 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
   border-bottom-color: #D3D3D3;
 }
 
-#demyijjols .gt_footnotes {
+#zjsocfukfu .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1594,7 +1404,7 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
   border-right-color: #D3D3D3;
 }
 
-#demyijjols .gt_footnote {
+#zjsocfukfu .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1603,7 +1413,7 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
   padding-right: 5px;
 }
 
-#demyijjols .gt_sourcenotes {
+#zjsocfukfu .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1617,7 +1427,7 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
   border-right-color: #D3D3D3;
 }
 
-#demyijjols .gt_sourcenote {
+#zjsocfukfu .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1625,63 +1435,63 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
   padding-right: 5px;
 }
 
-#demyijjols .gt_left {
+#zjsocfukfu .gt_left {
   text-align: left;
 }
 
-#demyijjols .gt_center {
+#zjsocfukfu .gt_center {
   text-align: center;
 }
 
-#demyijjols .gt_right {
+#zjsocfukfu .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#demyijjols .gt_font_normal {
+#zjsocfukfu .gt_font_normal {
   font-weight: normal;
 }
 
-#demyijjols .gt_font_bold {
+#zjsocfukfu .gt_font_bold {
   font-weight: bold;
 }
 
-#demyijjols .gt_font_italic {
+#zjsocfukfu .gt_font_italic {
   font-style: italic;
 }
 
-#demyijjols .gt_super {
+#zjsocfukfu .gt_super {
   font-size: 65%;
 }
 
-#demyijjols .gt_footnote_marks {
+#zjsocfukfu .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#demyijjols .gt_asterisk {
+#zjsocfukfu .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#demyijjols .gt_indent_1 {
+#zjsocfukfu .gt_indent_1 {
   text-indent: 5px;
 }
 
-#demyijjols .gt_indent_2 {
+#zjsocfukfu .gt_indent_2 {
   text-indent: 10px;
 }
 
-#demyijjols .gt_indent_3 {
+#zjsocfukfu .gt_indent_3 {
   text-indent: 15px;
 }
 
-#demyijjols .gt_indent_4 {
+#zjsocfukfu .gt_indent_4 {
   text-indent: 20px;
 }
 
-#demyijjols .gt_indent_5 {
+#zjsocfukfu .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -1972,7 +1782,7 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
 <p>Wilmington, DE</p>
 </div></td>
 <td headers="year" class="gt_row gt_center"><div class="gt_from_md">
-<p>2021</p>
+<p>2023</p>
 </div></td>
 <td headers="age" class="gt_row gt_center"><div class="gt_from_md">
 <p>45</p>
@@ -2001,7 +1811,7 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
 <p>Atlanta, GA</p>
 </div></td>
 <td headers="year" class="gt_row gt_center"><div class="gt_from_md">
-<p>2021</p>
+<p>2023</p>
 </div></td>
 <td headers="age" class="gt_row gt_center"><div class="gt_from_md">
 <p>65</p>
@@ -2059,7 +1869,7 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
 <p>?</p>
 </div></td>
 <td headers="year" class="gt_row gt_center"><div class="gt_from_md">
-<p>2025</p>
+<p>2030</p>
 </div></td>
 <td headers="age" class="gt_row gt_center"><div class="gt_from_md">
 <p>?</p>
@@ -2088,7 +1898,7 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
 <p>?</p>
 </div></td>
 <td headers="year" class="gt_row gt_center"><div class="gt_from_md">
-<p>2027</p>
+<p>2032</p>
 </div></td>
 <td headers="age" class="gt_row gt_center"><div class="gt_from_md">
 <p>?</p>
@@ -2114,7 +1924,7 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
 </div>
 </div>
 </div>
-<p>Our Preceptor Table rows are chronologically ordered. The “other” rows our greater population for which we are making assumptions — this is why the year at the start is earlier than our data and the year at the end is later than our Preceptor Table. This shows the more expansive population that we are inferring about.</p>
+<p>Our Preceptor Table rows are chronologically ordered. The “other” rows are our greater population for which we are making assumptions — this is why the year at the start is earlier than our data and the year at the end is later than our Preceptor Table. This shows the more expansive population about which we are making inferences.</p>
 </section></section><section id="age-party" class="level2" data-number="5.2"><h2 data-number="5.2" class="anchored" data-anchor-id="age-party">
 <span class="header-section-number">5.2</span> age ~ party</h2>
 <!-- No need to repeat the questions. You can make reference to them, and then just conclude that we are using party to model age. -->
@@ -2137,9 +1947,8 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
 </div>
 </div>
 </div>
-<p>Justice consists of four topics: validity, stability, representativeness, and the data generating mechanism (DGM).</p>
-<p>To understand validity in regards to the Population Table, we must first recognize an inherent flaw in any experiment design: <em>no two units receive exactly the same treatment</em>. If this doesn’t ring true, consider our Spanish speaking train experiment. The units on the Spanish-speaking platform received the same treatment, right? No, actually! Every unit heard Spanish at a different decibel level. Every unit also heard Spanish for a different amount of time, depending on when they arrived to the station. Thus, two units can have the same treatment — that is, hearing Spanish on the platform — while having very different versions of that treatment. This is why it is crucial to define one’s estimand precisely: if we are interested in the difference in potential outcomes between Spanish being spoken for 10 minutes at a 60 dB versus control, we can ignore all the other possible columns in the Population Table.</p>
-<p>We then must consider the stability of our model. Stability means that the relationship between the columns is the same for three categories of rows: the data, the Preceptor table, and the larger population from which both are drawn. With something like height, it is much easier to assume stability over a greater period of time. Changes in global height occur extremely slowly, so height being stable across a span of 20 years is reasonable to assume. With something like political ideology, it is much harder to make the assertion that data collected in 2010 would be stable to data collected in 2025. When we are confronted with this uncertainty, we can consider making our timeframe smaller. However, we would still need to assume stability from 2014 (time of data collection) to today. Stability allows us to ignore the issue of time.</p>
+<p>Justice concerns four topics: stability, representativeness, unconfoundedness and the mathematical structure of the model.</p>
+<p>We then must consider the stability of our model. Stability means that the relationship between the columns is the same for three categories of rows: the data, the Preceptor table, and the larger population from which both are drawn. With something like height, it is much easier to assume stability over a greater period of time. Changes in global height occur extremely slowly, so height being stable across a span of 20 years is reasonable to assume. With something like political ideology, it is much harder to make the assertion that data collected in 2010 would be stable to data collected in 2030. When we are confronted with this uncertainty, we can consider making our timeframe smaller. However, we would still need to assume stability from 2014 (time of data collection) to today. Stability allows us to ignore the issue of time.</p>
 <p>Next, let’s consider representativeness. Representativeness has to do with how well our sample represents the larger population we are interested in generalizing to. Does the train experiment allow us to calculate a causal effect for people who commute by cars? Can we calculate the causal effect for people in New York City? Before we generalize to broader populations we have to consider if our experimental estimates are applicable beyond our experiment. Generally: <em>if there was no chance that a certain type of person would have been in this experiment, we cannot make an assumption for that person</em>.</p>
 <!-- MM: kind of DGM should be discussing linear or logistic -->
 <p>Now let’s discuss the kind of DGM we will be using. For our purposes, we will be choosing between linear or logistic, however, there are several different types of distributions which we will not be dealing with at the moment. Let’s recall the difference between linear and logistic models, which is dependent upon the outcome variable. If the outcome variable is continuous, we will use the a linear model, and when the outcome variable is binary, or only has two options, we will use a logistic model. In this case, our outcome variable is age which is continous, so it is a linear model.</p>
@@ -2150,23 +1959,23 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
 <div class="cell">
 <div class="cell-output-display">
 
-<div id="fmdplrsypr" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#fmdplrsypr table {
+<div id="xbpymlbvvi" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#xbpymlbvvi table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#fmdplrsypr thead, #fmdplrsypr tbody, #fmdplrsypr tfoot, #fmdplrsypr tr, #fmdplrsypr td, #fmdplrsypr th {
+#xbpymlbvvi thead, #xbpymlbvvi tbody, #xbpymlbvvi tfoot, #xbpymlbvvi tr, #xbpymlbvvi td, #xbpymlbvvi th {
   border-style: none;
 }
 
-#fmdplrsypr p {
+#xbpymlbvvi p {
   margin: 0;
   padding: 0;
 }
 
-#fmdplrsypr .gt_table {
+#xbpymlbvvi .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -2192,12 +2001,12 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
   border-left-color: #D3D3D3;
 }
 
-#fmdplrsypr .gt_caption {
+#xbpymlbvvi .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#fmdplrsypr .gt_title {
+#xbpymlbvvi .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2209,7 +2018,7 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
   border-bottom-width: 0;
 }
 
-#fmdplrsypr .gt_subtitle {
+#xbpymlbvvi .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2221,7 +2030,7 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
   border-top-width: 0;
 }
 
-#fmdplrsypr .gt_heading {
+#xbpymlbvvi .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2233,13 +2042,13 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
   border-right-color: #D3D3D3;
 }
 
-#fmdplrsypr .gt_bottom_border {
+#xbpymlbvvi .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#fmdplrsypr .gt_col_headings {
+#xbpymlbvvi .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2254,7 +2063,7 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
   border-right-color: #D3D3D3;
 }
 
-#fmdplrsypr .gt_col_heading {
+#xbpymlbvvi .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2274,7 +2083,7 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
   overflow-x: hidden;
 }
 
-#fmdplrsypr .gt_column_spanner_outer {
+#xbpymlbvvi .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2286,15 +2095,15 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
   padding-right: 4px;
 }
 
-#fmdplrsypr .gt_column_spanner_outer:first-child {
+#xbpymlbvvi .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#fmdplrsypr .gt_column_spanner_outer:last-child {
+#xbpymlbvvi .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#fmdplrsypr .gt_column_spanner {
+#xbpymlbvvi .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2306,11 +2115,11 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
   width: 100%;
 }
 
-#fmdplrsypr .gt_spanner_row {
+#xbpymlbvvi .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#fmdplrsypr .gt_group_heading {
+#xbpymlbvvi .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2336,7 +2145,7 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
   text-align: left;
 }
 
-#fmdplrsypr .gt_empty_group_heading {
+#xbpymlbvvi .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2351,15 +2160,15 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
   vertical-align: middle;
 }
 
-#fmdplrsypr .gt_from_md > :first-child {
+#xbpymlbvvi .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#fmdplrsypr .gt_from_md > :last-child {
+#xbpymlbvvi .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#fmdplrsypr .gt_row {
+#xbpymlbvvi .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2378,7 +2187,7 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
   overflow-x: hidden;
 }
 
-#fmdplrsypr .gt_stub {
+#xbpymlbvvi .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2391,7 +2200,7 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
   padding-right: 5px;
 }
 
-#fmdplrsypr .gt_stub_row_group {
+#xbpymlbvvi .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2405,15 +2214,15 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
   vertical-align: top;
 }
 
-#fmdplrsypr .gt_row_group_first td {
+#xbpymlbvvi .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#fmdplrsypr .gt_row_group_first th {
+#xbpymlbvvi .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#fmdplrsypr .gt_summary_row {
+#xbpymlbvvi .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2423,16 +2232,16 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
   padding-right: 5px;
 }
 
-#fmdplrsypr .gt_first_summary_row {
+#xbpymlbvvi .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#fmdplrsypr .gt_first_summary_row.thick {
+#xbpymlbvvi .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#fmdplrsypr .gt_last_summary_row {
+#xbpymlbvvi .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2442,7 +2251,7 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
   border-bottom-color: #D3D3D3;
 }
 
-#fmdplrsypr .gt_grand_summary_row {
+#xbpymlbvvi .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2452,7 +2261,7 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
   padding-right: 5px;
 }
 
-#fmdplrsypr .gt_first_grand_summary_row {
+#xbpymlbvvi .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2462,7 +2271,7 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
   border-top-color: #D3D3D3;
 }
 
-#fmdplrsypr .gt_last_grand_summary_row_top {
+#xbpymlbvvi .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2472,11 +2281,11 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
   border-bottom-color: #D3D3D3;
 }
 
-#fmdplrsypr .gt_striped {
+#xbpymlbvvi .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#fmdplrsypr .gt_table_body {
+#xbpymlbvvi .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2485,7 +2294,7 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
   border-bottom-color: #D3D3D3;
 }
 
-#fmdplrsypr .gt_footnotes {
+#xbpymlbvvi .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2499,7 +2308,7 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
   border-right-color: #D3D3D3;
 }
 
-#fmdplrsypr .gt_footnote {
+#xbpymlbvvi .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2508,7 +2317,7 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
   padding-right: 5px;
 }
 
-#fmdplrsypr .gt_sourcenotes {
+#xbpymlbvvi .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2522,7 +2331,7 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
   border-right-color: #D3D3D3;
 }
 
-#fmdplrsypr .gt_sourcenote {
+#xbpymlbvvi .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2530,63 +2339,63 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
   padding-right: 5px;
 }
 
-#fmdplrsypr .gt_left {
+#xbpymlbvvi .gt_left {
   text-align: left;
 }
 
-#fmdplrsypr .gt_center {
+#xbpymlbvvi .gt_center {
   text-align: center;
 }
 
-#fmdplrsypr .gt_right {
+#xbpymlbvvi .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#fmdplrsypr .gt_font_normal {
+#xbpymlbvvi .gt_font_normal {
   font-weight: normal;
 }
 
-#fmdplrsypr .gt_font_bold {
+#xbpymlbvvi .gt_font_bold {
   font-weight: bold;
 }
 
-#fmdplrsypr .gt_font_italic {
+#xbpymlbvvi .gt_font_italic {
   font-style: italic;
 }
 
-#fmdplrsypr .gt_super {
+#xbpymlbvvi .gt_super {
   font-size: 65%;
 }
 
-#fmdplrsypr .gt_footnote_marks {
+#xbpymlbvvi .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#fmdplrsypr .gt_asterisk {
+#xbpymlbvvi .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#fmdplrsypr .gt_indent_1 {
+#xbpymlbvvi .gt_indent_1 {
   text-indent: 5px;
 }
 
-#fmdplrsypr .gt_indent_2 {
+#xbpymlbvvi .gt_indent_2 {
   text-indent: 10px;
 }
 
-#fmdplrsypr .gt_indent_3 {
+#xbpymlbvvi .gt_indent_3 {
   text-indent: 15px;
 }
 
-#fmdplrsypr .gt_indent_4 {
+#xbpymlbvvi .gt_indent_4 {
   text-indent: 20px;
 }
 
-#fmdplrsypr .gt_indent_5 {
+#xbpymlbvvi .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -2700,7 +2509,7 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
 <p>Courage allows us to translate math to code.</p>
 <p>To get posterior distributions for our three parameters, we will again use <code><a href="https://mc-stan.org/rstanarm/reference/stan_glm.html">stan_glm()</a></code>, just as we did in <a href="07-two-parameters.html"><span>Chapter&nbsp;4</span></a>.</p>
 <div class="cell">
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/rstanarm/reference/stan_glm.html">stan_glm</a></span><span class="op">(</span><span class="va">age</span> <span class="op">~</span> <span class="va">party</span> <span class="op">-</span> <span class="fl">1</span>, </span>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/rstanarm/reference/stan_glm.html">stan_glm</a></span><span class="op">(</span><span class="va">age</span> <span class="op">~</span> <span class="va">party</span> <span class="op">-</span> <span class="fl">1</span>, </span>
 <span>                    data <span class="op">=</span> <span class="va">trains</span>, </span>
 <span>                    family <span class="op">=</span> <span class="va">gaussian</span>,</span>
 <span>                    seed <span class="op">=</span> <span class="fl">17</span>,</span>
@@ -2714,7 +2523,7 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
 </ul>
 <p>The resulting output:</p>
 <div class="cell">
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>stan_glm
  family:       gaussian [identity]
@@ -2738,7 +2547,7 @@ sigma 12.3    0.8
 <p><code>partyDemocrat</code> corresponds to <span class="math inline">\(\beta_1\)</span>, the average age of Democrats in the population. <code>partyRepublican</code> corresponds to <span class="math inline">\(\beta_2\)</span>, the average age of Republicans in the population. Since we don’t really care about the posterior distribution for <span class="math inline">\(\sigma\)</span>, we won’t discuss it here. Graphically:</p>
 <!-- Lots to clean up about this plot! -->
 <div class="cell">
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_1</span> <span class="op">|&gt;</span> </span>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_1</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">sigma</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Democrat <span class="op">=</span> <span class="va">partyDemocrat</span>, Republican <span class="op">=</span> <span class="va">partyRepublican</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -2765,30 +2574,30 @@ sigma 12.3    0.8
 <li><p>Democrats seem slightly older than Republicans. That was true in the sample and so, almost (but not quite!) by definition, it will be true in our the posterior probability distributions.</p></li>
 <li><p>Our estimate for the average age of Democrats in the population is much more precise than that for Republicans because we have five times as many Democrats as Republicans in our sample. A central lesson from <a href="06-one-parameter.html"><span>Chapter&nbsp;3</span></a> is that the more data you have related to a parameter, the narrower your posterior distribution will be.</p></li>
 <li><p>There is a great deal of overlap between the two distributions. Would we be surprised if, in truth, the average age of Republicans in the population was greater than that for Democrats? Not really. We don’t have enough data to be sure either way.</p></li>
-<li><p>The phrase “in the population” is doing a great deal of work because we have not said what, precisely, we mean by the “population.” Is it the set of people on those commuter platforms on those days in 2012 when the experiment was done? Is it the set of people on all platforms, including ones never visited? Is it the set of all Boston commuter? All Massachusetts residents? All US residents? Does it include people today, or can we only draw inferences for 2012? We will explore these questions in every model we create.</p></li>
+<li><p>The phrase “in the population” is doing a great deal of work because we have not said what, precisely, we mean by the “population.” Is it the set of people on those commuter platforms on those days in 2012 when the experiment was done? Is it the set of people on all platforms, including ones never visited? Is it the set of all Boston commuters? All Massachusetts residents? All US residents? Does it include people today, or can we only draw inferences for 2012? We should explore these questions in every model we create.</p></li>
 <li><p>The parameters <span class="math inline">\(\beta_1\)</span> and <span class="math inline">\(\beta_2\)</span> can be interpreted in two ways. First, like all parameters, they are a part of the model. We need to estimate them. But, in many cases, we don’t really care what the value of the parameter is. The exact value of <span class="math inline">\(\sigma\)</span>, for example, does not really matter. Second, some parameters have a substantive interpretaion, as with <span class="math inline">\(\beta_1\)</span> and <span class="math inline">\(\beta_2\)</span> being the average ages in the population. But this will often not be the case! Fortunately, with such models, we can use functions like <code><a href="https://mc-stan.org/rstantools/reference/posterior_epred.html">posterior_epred()</a></code> and <code><a href="https://mc-stan.org/rstantools/reference/posterior_predict.html">posterior_predict()</a></code> to answer our questions.</p></li>
 </ul>
 <p>Consider a table which shows a sample of 8 individuals.</p>
 <div class="cell">
 <div class="cell-output-display">
 
-<div id="qmcahhwidk" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#qmcahhwidk table {
+<div id="gdxafehbps" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#gdxafehbps table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#qmcahhwidk thead, #qmcahhwidk tbody, #qmcahhwidk tfoot, #qmcahhwidk tr, #qmcahhwidk td, #qmcahhwidk th {
+#gdxafehbps thead, #gdxafehbps tbody, #gdxafehbps tfoot, #gdxafehbps tr, #gdxafehbps td, #gdxafehbps th {
   border-style: none;
 }
 
-#qmcahhwidk p {
+#gdxafehbps p {
   margin: 0;
   padding: 0;
 }
 
-#qmcahhwidk .gt_table {
+#gdxafehbps .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -2814,12 +2623,12 @@ sigma 12.3    0.8
   border-left-color: #D3D3D3;
 }
 
-#qmcahhwidk .gt_caption {
+#gdxafehbps .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#qmcahhwidk .gt_title {
+#gdxafehbps .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2831,7 +2640,7 @@ sigma 12.3    0.8
   border-bottom-width: 0;
 }
 
-#qmcahhwidk .gt_subtitle {
+#gdxafehbps .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2843,7 +2652,7 @@ sigma 12.3    0.8
   border-top-width: 0;
 }
 
-#qmcahhwidk .gt_heading {
+#gdxafehbps .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2855,13 +2664,13 @@ sigma 12.3    0.8
   border-right-color: #D3D3D3;
 }
 
-#qmcahhwidk .gt_bottom_border {
+#gdxafehbps .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#qmcahhwidk .gt_col_headings {
+#gdxafehbps .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2876,7 +2685,7 @@ sigma 12.3    0.8
   border-right-color: #D3D3D3;
 }
 
-#qmcahhwidk .gt_col_heading {
+#gdxafehbps .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2896,7 +2705,7 @@ sigma 12.3    0.8
   overflow-x: hidden;
 }
 
-#qmcahhwidk .gt_column_spanner_outer {
+#gdxafehbps .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2908,15 +2717,15 @@ sigma 12.3    0.8
   padding-right: 4px;
 }
 
-#qmcahhwidk .gt_column_spanner_outer:first-child {
+#gdxafehbps .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#qmcahhwidk .gt_column_spanner_outer:last-child {
+#gdxafehbps .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#qmcahhwidk .gt_column_spanner {
+#gdxafehbps .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2928,11 +2737,11 @@ sigma 12.3    0.8
   width: 100%;
 }
 
-#qmcahhwidk .gt_spanner_row {
+#gdxafehbps .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#qmcahhwidk .gt_group_heading {
+#gdxafehbps .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2958,7 +2767,7 @@ sigma 12.3    0.8
   text-align: left;
 }
 
-#qmcahhwidk .gt_empty_group_heading {
+#gdxafehbps .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2973,15 +2782,15 @@ sigma 12.3    0.8
   vertical-align: middle;
 }
 
-#qmcahhwidk .gt_from_md > :first-child {
+#gdxafehbps .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#qmcahhwidk .gt_from_md > :last-child {
+#gdxafehbps .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#qmcahhwidk .gt_row {
+#gdxafehbps .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3000,7 +2809,7 @@ sigma 12.3    0.8
   overflow-x: hidden;
 }
 
-#qmcahhwidk .gt_stub {
+#gdxafehbps .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3013,7 +2822,7 @@ sigma 12.3    0.8
   padding-right: 5px;
 }
 
-#qmcahhwidk .gt_stub_row_group {
+#gdxafehbps .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3027,15 +2836,15 @@ sigma 12.3    0.8
   vertical-align: top;
 }
 
-#qmcahhwidk .gt_row_group_first td {
+#gdxafehbps .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#qmcahhwidk .gt_row_group_first th {
+#gdxafehbps .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#qmcahhwidk .gt_summary_row {
+#gdxafehbps .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3045,16 +2854,16 @@ sigma 12.3    0.8
   padding-right: 5px;
 }
 
-#qmcahhwidk .gt_first_summary_row {
+#gdxafehbps .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#qmcahhwidk .gt_first_summary_row.thick {
+#gdxafehbps .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#qmcahhwidk .gt_last_summary_row {
+#gdxafehbps .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3064,7 +2873,7 @@ sigma 12.3    0.8
   border-bottom-color: #D3D3D3;
 }
 
-#qmcahhwidk .gt_grand_summary_row {
+#gdxafehbps .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3074,7 +2883,7 @@ sigma 12.3    0.8
   padding-right: 5px;
 }
 
-#qmcahhwidk .gt_first_grand_summary_row {
+#gdxafehbps .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3084,7 +2893,7 @@ sigma 12.3    0.8
   border-top-color: #D3D3D3;
 }
 
-#qmcahhwidk .gt_last_grand_summary_row_top {
+#gdxafehbps .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3094,11 +2903,11 @@ sigma 12.3    0.8
   border-bottom-color: #D3D3D3;
 }
 
-#qmcahhwidk .gt_striped {
+#gdxafehbps .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#qmcahhwidk .gt_table_body {
+#gdxafehbps .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3107,7 +2916,7 @@ sigma 12.3    0.8
   border-bottom-color: #D3D3D3;
 }
 
-#qmcahhwidk .gt_footnotes {
+#gdxafehbps .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3121,7 +2930,7 @@ sigma 12.3    0.8
   border-right-color: #D3D3D3;
 }
 
-#qmcahhwidk .gt_footnote {
+#gdxafehbps .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -3130,7 +2939,7 @@ sigma 12.3    0.8
   padding-right: 5px;
 }
 
-#qmcahhwidk .gt_sourcenotes {
+#gdxafehbps .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3144,7 +2953,7 @@ sigma 12.3    0.8
   border-right-color: #D3D3D3;
 }
 
-#qmcahhwidk .gt_sourcenote {
+#gdxafehbps .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -3152,63 +2961,63 @@ sigma 12.3    0.8
   padding-right: 5px;
 }
 
-#qmcahhwidk .gt_left {
+#gdxafehbps .gt_left {
   text-align: left;
 }
 
-#qmcahhwidk .gt_center {
+#gdxafehbps .gt_center {
   text-align: center;
 }
 
-#qmcahhwidk .gt_right {
+#gdxafehbps .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#qmcahhwidk .gt_font_normal {
+#gdxafehbps .gt_font_normal {
   font-weight: normal;
 }
 
-#qmcahhwidk .gt_font_bold {
+#gdxafehbps .gt_font_bold {
   font-weight: bold;
 }
 
-#qmcahhwidk .gt_font_italic {
+#gdxafehbps .gt_font_italic {
   font-style: italic;
 }
 
-#qmcahhwidk .gt_super {
+#gdxafehbps .gt_super {
   font-size: 65%;
 }
 
-#qmcahhwidk .gt_footnote_marks {
+#gdxafehbps .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#qmcahhwidk .gt_asterisk {
+#gdxafehbps .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#qmcahhwidk .gt_indent_1 {
+#gdxafehbps .gt_indent_1 {
   text-indent: 5px;
 }
 
-#qmcahhwidk .gt_indent_2 {
+#gdxafehbps .gt_indent_2 {
   text-indent: 10px;
 }
 
-#qmcahhwidk .gt_indent_3 {
+#gdxafehbps .gt_indent_3 {
   text-indent: 15px;
 }
 
-#qmcahhwidk .gt_indent_4 {
+#gdxafehbps .gt_indent_4 {
   text-indent: 20px;
 }
 
-#qmcahhwidk .gt_indent_5 {
+#gdxafehbps .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -3283,7 +3092,7 @@ sigma 12.3    0.8
 <p>The fitted values are the same for all Republicans and for all Democrats, as the model produces one fitted value for each condition. This table shows how just a sample of 8 individuals captures a wide range of residuals, making it difficult to predict the age of a new individual. We can get a better picture of the unmodeled variation in our sample if we plot these three variables for all the individuals in our data.</p>
 <p>The following three histograms show the actual outcomes, fitted values, and residuals of all people in <code>trains</code>:</p>
 <div class="cell">
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">outcome</span> <span class="op">&lt;-</span> <span class="va">ch8</span> <span class="op">|&gt;</span> </span>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">outcome</span> <span class="op">&lt;-</span> <span class="va">ch5</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">age</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>bins <span class="op">=</span> <span class="fl">100</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Age"</span>,</span>
@@ -3331,15 +3140,15 @@ sigma 12.3    0.8
 <li>What is the probability that, if a Democrat shows up at the train station, he will be over 50 years old?</li>
 </ul>
 <p>So far we have only tried our model on people from our data set whose real age we already knew. This is helpful to understand the model, but our ultimate goal is to understand more about the real world, about people we don’t yet know much about. Temperance guides us to make meaningful predictions and to become aware of their known and unknown limitations.</p>
-<p>Start with a simple question, what are the chances that a random Democrat is over 50 years old? First, we create a tibble with the desired input for our model. In our case the tibble has a variable named “party” which contains a single observation with the value “Democrat”. This is a bit different than <a href="07-two-parameters.html"><span>Chapter&nbsp;4</span></a>.</p>
+<p>Start with a simple question, what are the chances that a random Democrat is over 50 years old? First, we create a tibble with the assumed input for our model. In our case the tibble has a variable named “party” which contains a single observation with the value “Democrat”. This is a bit different than <a href="07-two-parameters.html"><span>Chapter&nbsp;4</span></a>.</p>
 <div class="cell">
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">new_obs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>party <span class="op">=</span> <span class="st">"Democrat"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">new_obs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>party <span class="op">=</span> <span class="st">"Democrat"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <!-- Does this D_age work? If so, similar discussion should be used more broadly. Also discuss R_age. Even Person_age for a random person, an analysis which accounts for the mix of Rs and Ds in the sample/population. -->
 <p>Use <code><a href="https://mc-stan.org/rstantools/reference/posterior_predict.html">posterior_predict()</a></code> to create draws from the posterior for this scenario. Note that we have a new posterior distribution under consideration here. The unknown parameter, call it <span class="math inline">\(D_{age}\)</span>, is the age of a Democrat. This could be the age of a randomly selected Democrat from the population or of the next Democrat we meet or of the next Democrat we interview on the train platform. The definition of “population” determines the appropriate interpretation. Yet, regardless, <span class="math inline">\(D_{age}\)</span> is an unknown parameter. But it is not one — like <span class="math inline">\(\beta_1\)</span>, <span class="math inline">\(\beta_2\)</span>, or <span class="math inline">\(\sigma\)</span> — for which we have already created a posterior probability distribution. That is why we need <code><a href="https://mc-stan.org/rstantools/reference/posterior_predict.html">posterior_predict()</a></code>.</p>
 <p><code><a href="https://mc-stan.org/rstantools/reference/posterior_predict.html">posterior_predict()</a></code> takes two arguments: the model for which the simulations should be run, and a tibble indicating for which and how many parameters we want to run these simulations. In this case, the model is the one from Courage and the tibble is the one we just created.</p>
 <div class="cell">
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/rstantools/reference/posterior_predict.html">posterior_predict</a></span><span class="op">(</span><span class="va">fit_1</span>, newdata <span class="op">=</span> <span class="va">new_obs</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/rstantools/reference/posterior_predict.html">posterior_predict</a></span><span class="op">(</span><span class="va">fit_1</span>, newdata <span class="op">=</span> <span class="va">new_obs</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="op">)</span> </span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">pp</span>, <span class="fl">10</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -3347,21 +3156,21 @@ sigma 12.3    0.8
 <pre><code># A tibble: 10 × 1
      `1`
    &lt;dbl&gt;
- 1  46.6
- 2  58.1
- 3  37.8
- 4  52.6
- 5  56.5
- 6  33.4
- 7  25.6
- 8  42.6
- 9  52.2
-10  27.0</code></pre>
+ 1  31.3
+ 2  72.8
+ 3  55.7
+ 4  10.3
+ 5  35.7
+ 6  52.7
+ 7  45.1
+ 8  53.1
+ 9  44.4
+10  39.2</code></pre>
 </div>
 </div>
 <p>The result are draws from the posterior distribution of the age of a Democrat. It is important to understand that this is not a concrete person from the <code>trains</code> dataset - the algorithm in <code><a href="https://mc-stan.org/rstantools/reference/posterior_predict.html">posterior_predict()</a></code> simply uses the existing data from <code>trains</code> to estimate this posterior distribution.</p>
 <div class="cell">
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pp</span> <span class="op">|&gt;</span> </span>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pp</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">`1`</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes_eval.html">after_stat</a></span><span class="op">(</span><span class="va">count</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">count</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>                   bins <span class="op">=</span> <span class="fl">100</span><span class="op">)</span>  <span class="op">+</span></span>
@@ -3377,36 +3186,36 @@ sigma 12.3    0.8
 </div>
 <p>Once we have the posterior distribution, we can answer (almost) any reasonable question. In this case, the probability that the next Democrat will be over 50 is around 28%.</p>
 <div class="cell">
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">pp</span><span class="op">$</span><span class="va">`1`</span> <span class="op">&gt;</span> <span class="fl">50</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">pp</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">pp</span><span class="op">$</span><span class="va">`1`</span> <span class="op">&gt;</span> <span class="fl">50</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">pp</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.28575</code></pre>
+<pre><code>[1] 0.269</code></pre>
 </div>
 </div>
 <p>Recall the second question:</p>
 <ul>
 <li>In a group of three Democrats and three Republicans, what will the age difference be between the oldest Democrat and the youngest Republican?</li>
 </ul>
-<p>As before we start by creating a tibble with the desired input. Note that the name of the column (“party”) and the observations (“Democrat”, “Republican”) must always be <em>exactly</em> as they are in the original data set. This tibble as well as our model can then be used as arguments for <code><a href="https://mc-stan.org/rstantools/reference/posterior_predict.html">posterior_predict()</a></code>:</p>
+<p>As before we start by creating a tibble with the assumed input. Note that the name of the column (“party”) and the observations (“Democrat”, “Republican”) must always be <em>exactly</em> as they are in the original data set. This tibble as well as our model can then be used as arguments for <code><a href="https://mc-stan.org/rstantools/reference/posterior_predict.html">posterior_predict()</a></code>:</p>
 <div class="cell">
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">newobs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>party <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Democrat"</span>, <span class="st">"Democrat"</span>, <span class="st">"Democrat"</span>, </span>
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">newobs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>party <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Democrat"</span>, <span class="st">"Democrat"</span>, <span class="st">"Democrat"</span>, </span>
 <span>                        <span class="st">"Republican"</span>, <span class="st">"Republican"</span>,<span class="st">"Republican"</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://mc-stan.org/rstantools/reference/posterior_predict.html">posterior_predict</a></span><span class="op">(</span><span class="va">fit_1</span>, newdata <span class="op">=</span> <span class="va">newobs</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="op">)</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4,000 × 6
-     `1`   `2`   `3`   `4`   `5`   `6`
-   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
- 1 44.3   28.7 46.3   49.1  17.7  46.6
- 2 40.3   44.0 41.9   45.1  32.7  25.7
- 3 -3.17  56.0 48.0   38.9  29.2  28.4
- 4 51.7   41.5 60.0   39.6  44.2  42.1
- 5 34.7   36.2 56.9   42.4  49.4  31.6
- 6 41.5   26.8 24.8   54.9  63.8  61.1
- 7 52.3   38.9 50.5   27.5  22.9  40.7
- 8 39.6   42.8  9.91  40.8  26.9  33.3
- 9 55.4   62.0 46.2   41.6  44.9  38.6
-10 26.7   26.3 54.2   60.6  36.0  35.9
+     `1`   `2`   `3`    `4`   `5`   `6`
+   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+ 1  46.1  43.0  63.8 58.5    32.8  36.8
+ 2  46.1  22.6  54.1 34.8    39.1  42.8
+ 3  48.8  39.6  57.5 -0.329  37.7  32.8
+ 4  47.3  29.4  29.5 37.6    42.6  20.4
+ 5  36.3  61.5  28.1 49.7    36.4  34.3
+ 6  41.0  52.5  50.5 59.6    41.5  34.2
+ 7  45.4  27.6  50.6 56.7    46.8  22.7
+ 8  39.4  43.3  34.4 26.9    33.1  43.1
+ 9  75.5  55.1  47.7 57.9    46.5  11.0
+10  57.9  36.7  46.4 45.6    27.4  40.9
 # ℹ 3,990 more rows</code></pre>
 </div>
 </div>
@@ -3415,7 +3224,7 @@ sigma 12.3    0.8
 <!-- DK: I am unsure about this code. Would c() in place of c_across() work as well? -->
 <!-- DK: This works without mutate(all...), but it takes much more time than it should because the the pp object still has every column as a ppd object, even after as_tibble(). The rest of the code still works, but takes a 100x longer than it should. Maybe that is a better approach for handling the ppd problem? Just ignore it and take the time hit? -->
 <div class="cell">
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/rstantools/reference/posterior_predict.html">posterior_predict</a></span><span class="op">(</span><span class="va">fit_1</span>, newdata <span class="op">=</span> <span class="va">newobs</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/rstantools/reference/posterior_predict.html">posterior_predict</a></span><span class="op">(</span><span class="va">fit_1</span>, newdata <span class="op">=</span> <span class="va">newobs</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span></span>
 <span>    <span class="co"># We don't need to rename the columns, but doing so makes the subsequest</span></span>
@@ -3441,22 +3250,22 @@ sigma 12.3    0.8
 # Rowwise: 
    dem_1 dem_2 dem_3 rep_1 rep_2 rep_3 dems_oldest reps_youngest age_diff
    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;       &lt;dbl&gt;         &lt;dbl&gt;    &lt;dbl&gt;
- 1  27.6  31.4  62.8  49.1  33.7  31.1        62.8          31.1    31.8 
- 2  42.9  39.2  35.0  39.9  52.9  45.2        42.9          39.9     2.98
- 3  55.2  19.5  57.1  59.8  27.0  47.4        57.1          27.0    30.1 
- 4  23.5  36.6  41.3  18.5  59.5  45.3        41.3          18.5    22.8 
- 5  27.9  53.4  21.7  46.0  59.9  30.6        53.4          30.6    22.9 
- 6  31.3  43.3  44.7  56.0  51.2  22.8        44.7          22.8    21.9 
- 7  60.5  63.1  50.2  43.2  22.3  24.3        63.1          22.3    40.8 
- 8  28.5  56.1  18.6  54.4  34.2  32.1        56.1          32.1    24.0 
- 9  39.8  32.1  49.5  43.6  38.9  69.6        49.5          38.9    10.6 
-10  45.9  45.6  47.6  45.7  61.8  39.7        47.6          39.7     7.94
+ 1  57.3  67.0  34.7  46.6  55.8  36.8        67.0          36.8     30.2
+ 2  28.5  51.7  47.0  27.3  56.3  54.9        51.7          27.3     24.5
+ 3  43.2  53.9  28.5  44.5  29.5  45.1        53.9          29.5     24.3
+ 4  40.2  31.3  21.0  48.0  29.3  38.0        40.2          29.3     10.9
+ 5  41.7  30.2  29.0  28.4  29.9  27.3        41.7          27.3     14.4
+ 6  44.7  41.4  51.9  39.6  24.0  36.1        51.9          24.0     27.9
+ 7  33.5  46.1  22.8  33.6  28.1  51.0        46.1          28.1     18.0
+ 8  38.3  53.0  35.7  30.2  48.9  46.3        53.0          30.2     22.8
+ 9  46.3  17.9  72.9  39.5  32.5  62.6        72.9          32.5     40.5
+10  46.6  16.5  34.7  51.3  39.0  34.0        46.6          34.0     12.5
 # ℹ 3,990 more rows</code></pre>
 </div>
 </div>
 <p>The plotting code is similar to what we have seen before:</p>
 <div class="cell">
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pp</span> <span class="op">|&gt;</span>  </span>
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pp</span> <span class="op">|&gt;</span>  </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">age_diff</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes_eval.html">after_stat</a></span><span class="op">(</span><span class="va">count</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">count</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>                   bins <span class="op">=</span> <span class="fl">100</span><span class="op">)</span> <span class="op">+</span></span>
@@ -3477,7 +3286,7 @@ sigma 12.3    0.8
 <p><span class="math display">\[ y_i = \beta_0  + \beta_1 democratic_i + \epsilon_i\]</span> The interpretations of the parameters are different from the prior model. <span class="math inline">\(\beta_0\)</span> is now the average age of Republicans. This is the same interpretation as <span class="math inline">\(\beta_1\)</span> in the original set up. <span class="math inline">\(\beta_1\)</span> is now the difference between the the average age of Republicans and that of Democrats.</p>
 <p>To fit this model, we use the exact same code as before, except without the <code>-1</code> in the <code>formula</code> argument.</p>
 <div class="cell">
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://mc-stan.org/rstanarm/reference/stan_glm.html">stan_glm</a></span><span class="op">(</span><span class="va">age</span> <span class="op">~</span> <span class="va">party</span>, </span>
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://mc-stan.org/rstanarm/reference/stan_glm.html">stan_glm</a></span><span class="op">(</span><span class="va">age</span> <span class="op">~</span> <span class="va">party</span>, </span>
 <span>         data <span class="op">=</span> <span class="va">trains</span>, </span>
 <span>         seed <span class="op">=</span> <span class="fl">98</span>,</span>
 <span>         refresh <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -3521,9 +3330,8 @@ sigma 12.3    0.8
 </div>
 </div>
 </div>
-<p>The four elements of Justice in a data science project remain the same: validity, stability, representativeness, and the model.</p>
-<p>First, we must consider the validity of the model, and to do so, let’s look at our treatment variable. What does it mean for somebody to receive the treatment? Let’s say somebody was running late on their way to the train in the morning. Well, this person may have heard the Spanish-speakers for a shorter amount of time than a commuter who arrived earlier. Similarly, some Spanish-speakers may have been speaking louder than others or some commuters may have been closer to the speakers than other commuters. Therefore, these commuters would hear the treatment of being exposed to Spanish-speakers less loudly than the other commuters. Additionally, the Spanish-speakers weren’t the same for every train station in our 2012 data and if we were to get data for now, we wouldn’t be able to hire the exact same Spanish-speakers. When considering validity with reference to treatments, what we must determine is if we can assume that the treatments of being exposed to Spanish-speakers that each commuter may experience a bit differently can be assumed to be the same.</p>
-<p>Next, we must consider the stability of our model for the relationship between <code>att_end</code> and <code>treatment</code> between 2012 and 2021. Is this relationship from 2012, four years before Donald Trump’s election as president, still the same? While we might not know for sure, we have to consider this in order to continue and make assumptions with our data. For our purposes, we will consider the relationship to be stable. Even though we know that there may have been some changes, we will consider the model to be the same in both years.</p>
+<p>The four concerns of Justice in a data science project remain the same: stability, representativeness, unconfoundedness and the mathematical structure of the model.</p>
+<p>Consider the stability of our model for the relationship between <code>att_end</code> and <code>treatment</code> between 2012 and 2023. Is this relationship from 2012, four years before Donald Trump’s election as president, still the same? While we might not know for sure, we have to consider this in order to continue and make assumptions with our data. For our purposes, we will consider the relationship to be stable. Even though we know that there may have been some changes, we will consider the model to be the same in both years.</p>
 <p>Let’s now once again consider whether the data from 2012 train commuters around Boston is representative of 2012 train commuters in the US. In our last model, we discussed the issue about how Boston may be different from other cities and therefore not representative of the US, and we will now consider the issue of random sampling that may lead to representativeness issues.</p>
 <p>Let’s say that even though Boston is different from other US cities, we considered Boston to be perfectly representative of the US. Great, but this 2012 data could still not be representative. This is because there could be bias within those who are chosen to give the survey, in that the commuters who are approached and receive the surveys may not be random or representative. What if the individuals giving out the surveys were younger and also tended to choose people to approach with a survey that were similar in age to them? A scenario like this could end up overestimating younger train commuters in the population, which could influence our answers to any of our questions. Specifically, when considering the relationship between <code>att_end</code> and <code>treatment</code>, this could influence the results of the model because younger individuals may have similar attitudes on immigration.</p>
 
@@ -3555,7 +3363,7 @@ sigma 12.3    0.8
 </div>
 <p>With Justice satisfied, we gather our Courage and fit the model. Note that, except for the change in variable names, the code is exactly the same as it was above, in our predictive model for age. <em>Predictive models and causal models use the same math and the same code.</em> The differences, and they are very important, lie in the interpretation of the results, not in their creation.</p>
 <div class="cell">
-<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/rstanarm/reference/stan_glm.html">stan_glm</a></span><span class="op">(</span><span class="va">att_end</span> <span class="op">~</span> <span class="va">treatment</span> <span class="op">-</span> <span class="fl">1</span>, </span>
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/rstanarm/reference/stan_glm.html">stan_glm</a></span><span class="op">(</span><span class="va">att_end</span> <span class="op">~</span> <span class="va">treatment</span> <span class="op">-</span> <span class="fl">1</span>, </span>
 <span>                      data <span class="op">=</span> <span class="va">trains</span>, </span>
 <span>                      seed <span class="op">=</span> <span class="fl">45</span>,</span>
 <span>                      refresh <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span>
@@ -3589,7 +3397,7 @@ sigma 2.8    0.2
 <p>Let’s look at the full posteriors for both <span class="math inline">\(\beta_1\)</span> and <span class="math inline">\(\beta_2\)</span>.</p>
 <!-- DK: Change Parameter levels to something nice. -->
 <div class="cell">
-<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_2</span> <span class="op">|&gt;</span> </span>
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_2</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">sigma</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span>cols <span class="op">=</span> <span class="va">treatmentTreated</span><span class="op">:</span><span class="va">treatmentControl</span>,</span>
@@ -3636,7 +3444,7 @@ sigma 2.8    0.2
 </ul>
 <!-- DK: Below is also not clear. --><p>Chapter <a href="04-rubin-causal-model.html"><span>Chapter&nbsp;1</span></a> defined the <em>average treatment effect</em>. One simple estimator of the average treatment effect is the difference between <span class="math inline">\(\beta_1\)</span> and <span class="math inline">\(\beta_2\)</span>. After all, the definition of <span class="math inline">\(\beta_1\)</span> is the average attitude toward immigration, of the population, for anyone, under exposure to the treatment. So, <span class="math inline">\(\beta_1 - \beta_2\)</span> is the average treatment effect for the population, roughly 1.5. However, estimating the posterior probability distribution for this parameter is tricky, unless we make use of the posterior distributions of <span class="math inline">\(\beta_1\)</span> and <span class="math inline">\(\beta_2\)</span>. With that information, the problem is simple:</p>
 <div class="cell">
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_2</span> <span class="op">|&gt;</span> </span>
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_2</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>ate <span class="op">=</span> <span class="va">treatmentTreated</span> <span class="op">-</span> <span class="va">treatmentControl</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">ate</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
@@ -3656,7 +3464,7 @@ sigma 2.8    0.2
 <!-- Establish that approximate 1.5 difference can be seen by the attitude posterior from courage -->
 <p>We can use <code><a href="https://mc-stan.org/rstantools/reference/posterior_epred.html">posterior_epred()</a></code> to answer this question. Create a tibble and use it as we have done before:</p>
 <div class="cell">
-<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">newobs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>treatment <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Treated"</span>, <span class="st">"Control"</span><span class="op">)</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">newobs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>treatment <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Treated"</span>, <span class="st">"Control"</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">pe</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/rstantools/reference/posterior_epred.html">posterior_epred</a></span><span class="op">(</span><span class="va">fit_2</span>, <span class="va">newobs</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>    <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
@@ -3682,7 +3490,7 @@ sigma 2.8    0.2
 </div>
 <p>The posterior probability distribution created with <code><a href="https://mc-stan.org/rstantools/reference/posterior_epred.html">posterior_epred()</a></code> is the same as the one produced by manipulating the parameters directly.</p>
 <div class="cell">
-<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pe</span> <span class="op">|&gt;</span> </span>
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pe</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">ate</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes_eval.html">after_stat</a></span><span class="op">(</span><span class="va">count</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">count</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>                   bins <span class="op">=</span> <span class="fl">100</span><span class="op">)</span> <span class="op">+</span></span>
@@ -3705,7 +3513,7 @@ sigma 2.8    0.2
 <p>Consider the result of <code><a href="https://mc-stan.org/rstantools/reference/posterior_predict.html">posterior_predict()</a></code> for two people, one treated and one control. Take the difference.</p>
 <!-- DK: This goes a bit fast. Slow down. -->
 <div class="cell">
-<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/rstantools/reference/posterior_predict.html">posterior_predict</a></span><span class="op">(</span><span class="va">fit_2</span>, </span>
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/rstantools/reference/posterior_predict.html">posterior_predict</a></span><span class="op">(</span><span class="va">fit_2</span>, </span>
 <span>                        newdata <span class="op">=</span> <span class="va">newobs</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>te <span class="op">=</span> <span class="va">`1`</span> <span class="op">-</span> <span class="va">`2`</span><span class="op">)</span></span>
@@ -3713,24 +3521,24 @@ sigma 2.8    0.2
 <span><span class="va">pp</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4,000 × 3
-     `1`   `2`      te
-   &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;
- 1 11.4   9.52  1.89  
- 2  6.03  7.64 -1.61  
- 3  8.87  4.81  4.06  
- 4 12.7   8.01  4.64  
- 5 12.6  10.1   2.53  
- 6 12.7   9.13  3.57  
- 7 10.5   7.87  2.60  
- 8 10.2  10.3  -0.0966
- 9  6.62 12.3  -5.70  
-10  9.28  7.33  1.96  
+     `1`   `2`     te
+   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
+ 1  9.40 12.6  -3.22 
+ 2  9.73  4.52  5.22 
+ 3  7.86  9.41 -1.56 
+ 4  8.38 12.2  -3.80 
+ 5 10.6   7.24  3.31 
+ 6  7.48  6.45  1.03 
+ 7 11.3   5.83  5.47 
+ 8 12.7   5.06  7.60 
+ 9  7.33  9.41 -2.09 
+10  8.39  8.04  0.350
 # ℹ 3,990 more rows</code></pre>
 </div>
 </div>
 <p>Create a graphic:</p>
 <div class="cell">
-<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pp</span> <span class="op">|&gt;</span> </span>
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pp</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">te</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes_eval.html">after_stat</a></span><span class="op">(</span><span class="va">count</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">count</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>                   bins <span class="op">=</span> <span class="fl">100</span><span class="op">)</span>  <span class="op">+</span></span>
@@ -3747,10 +3555,10 @@ sigma 2.8    0.2
 <p>In this case, we are looking at the distribution of the treatment effect for a single individual. This is very different than the <em>average</em> treatment effect. In particular, it is much more variable. We are looking at one row in the Preceptor Table. For a single individual, <code>att_end</code> can be anywhere from 3 to 15, both under treatment and under control. The causal effect — the difference between the two potential outcomes can, in theory, be anywhere from -12 to +12. Such extreme values are rare, but not impossible.</p>
 <p>The question, however, was interested in the value at the 90th percentile.</p>
 <div class="cell">
-<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">pp</span><span class="op">$</span><span class="va">te</span>, prob <span class="op">=</span> <span class="fl">0.9</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">pp</span><span class="op">$</span><span class="va">te</span>, prob <span class="op">=</span> <span class="fl">0.9</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>    90% 
-6.62477 </code></pre>
+<pre><code>     90% 
+6.539346 </code></pre>
 </div>
 </div>
 <p>We would not expect a treatment effect of this magnitude to be common, but, at the same time, effects this big and bigger will occur about 10% of the time.</p>
@@ -3760,9 +3568,8 @@ sigma 2.8    0.2
 <p><em>What would you expect the income to be for a 40-year old?</em></p>
 <section id="justice-2" class="level3" data-number="5.4.1"><h3 data-number="5.4.1" class="anchored" data-anchor-id="justice-2">
 <span class="header-section-number">5.4.1</span> Justice</h3>
-<p>Once again, in Justice, we must consider validity, stability, representativeness, and the data generating mechanism.</p>
-<p>Let’s look at the validity of <code>age</code> and <code>income</code>. Recall that validity refers to whether or not we can consider the columns <code>age</code> and <code>income</code> to have the same meaning in our data set of 2012 Boston train commuters and in our Preceptor Table. While <code>age</code> doesn’t really change meaning over time, <code>income</code> can be impacted by inflation. After all, $100,000 in 2012 doesn’t have the same worth as $100,000 now due to inflation and now would have less purchasing power. This would result in income being underestimated within our model. However, since there hasn’t been drastic inflation that dramatically changed the buying power, we will consider income to be valid. If there had been like 300% inflation, however, our conclusion would probably be different.</p>
-<p>Now, let’s consider the stability of our model and if we believe that our relationship between age and income has changed between 2012 and now. Once again, let’s consider inflation and how that could impact income. If incomes were to increase at the rate of inflation, then the income distribution would be different than that of 2012. However, wages don’t tend to change as quickly as inflation does, so they likely did not change significantly and we can consider this model to be stable.</p>
+<p>Once again, in Justice, we must consider stability, representativeness, unconfoundedness, and the data generating mechanism.</p>
+<p>Consider the stability of our model and if we believe that our relationship between age and income has changed between 2012 and now. Once again, let’s consider inflation and how that could impact income. If incomes were to increase at the rate of inflation, then the income distribution would be different than that of 2012. However, wages don’t tend to change as quickly as inflation does, so they likely did not change significantly and we can consider this model to be stable.</p>
 <p>Next, let’s consider another issue that we may have with representativeness. What if we were now to assume that Boston train commuters are perfectly representative of US train commuters AND those who were approached to respond to the survey were also random? Even if this were true, we could still not assume representativeness because those who actually complete and submit the survey are not random. Instead of having more young people chosen to respond by those handing out surveys like we discussed in our last model, what if were to assume that when the surveys are handed out randomly, younger people tended to fill out and submit them more than those who are older? Well, this would still skew the age distribution and overestimate younger people in the population, and if younger people also tend to have a lower income than older people, this could also alter our answers to our current questions.</p>
 <p>If we had reason to believe this is true, one way that we could fix this issue of representativeness is to alter our population to be train commuters in the US who would respond to the survey. In doing so, our population would then accommodate for the skewed age distribution under the assumption that younger individuals tend to respond to surveys at higher rates than older people.</p>
 <div class="cell">
@@ -3801,7 +3608,7 @@ y_1 - y_2 = \beta_1\]</span></p>
 </div>
 <p>The use of <code><a href="https://mc-stan.org/rstanarm/reference/stan_glm.html">stan_glm()</a></code> is the same as usual.</p>
 <div class="cell">
-<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/rstanarm/reference/stan_glm.html">stan_glm</a></span><span class="op">(</span><span class="va">income</span> <span class="op">~</span> <span class="va">age</span>, </span>
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/rstanarm/reference/stan_glm.html">stan_glm</a></span><span class="op">(</span><span class="va">income</span> <span class="op">~</span> <span class="va">age</span>, </span>
 <span>                  data <span class="op">=</span> <span class="va">trains</span>, </span>
 <span>                  seed <span class="op">=</span> <span class="fl">28</span>,</span>
 <span>                  refresh <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span>
@@ -3859,7 +3666,7 @@ sigma 74121.3  4897.0
 <p><em>What would you expect the income to be for a random 40 year old?</em></p>
 <p>Given that we are looking for an expected value, we use <code><a href="https://mc-stan.org/rstantools/reference/posterior_epred.html">posterior_epred()</a></code>.</p>
 <div class="cell">
-<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">newobs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>age <span class="op">=</span> <span class="fl">40</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">newobs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>age <span class="op">=</span> <span class="fl">40</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">pe</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/rstantools/reference/posterior_epred.html">posterior_epred</a></span><span class="op">(</span><span class="va">fit_3</span>, newdata <span class="op">=</span> <span class="va">newobs</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="op">)</span> </span>
@@ -3884,7 +3691,7 @@ sigma 74121.3  4897.0
 </div>
 <p>Plotting is the same as always.</p>
 <div class="cell">
-<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pe</span> <span class="op">|&gt;</span> </span>
+<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pe</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">`1`</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes_eval.html">after_stat</a></span><span class="op">(</span><span class="va">count</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">count</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>                   bins <span class="op">=</span> <span class="fl">100</span><span class="op">)</span>  <span class="op">+</span></span>
@@ -3908,9 +3715,8 @@ sigma 74121.3  4897.0
 <p><em>Assume we have a group of eight people, two of whom make $100,000, two $200,000, two $300,000 and two $400,000. How many will be liberal?</em></p>
 <section id="justice-3" class="level3" data-number="5.5.1"><h3 data-number="5.5.1" class="anchored" data-anchor-id="justice-3">
 <span class="header-section-number">5.5.1</span> Justice</h3>
-<p>Let’s now consider Justice for our relationship between <code>liberal</code> and <code>income</code>.</p>
-<p>First, let’s look at validity, especially pertaining to <code>liberal</code>. As we know, this column has the values “Liberal” and “Not Liberal” to convey the political ideology of the train commuters. What we must determine if the column <code>liberal</code> and therefore the meaning of being liberal is the same in Boston in 2012 and Boston in 2021. If we can determine these to be the same, then we can assume validity, and in this case, because the core beliefs of being liberal have not changed very much between 2012 and 2021, we can determine that the data is valid.</p>
-<p>Now, let’s consider stability. To do so, we must look at the relationship between <code>liberal</code> and <code>income</code> and determine whether or not we believe that this relationship has changed between 2012 and 2021. With our knowledge of the world, do we have any reason to believe that this has changed? What if between 2012 and 2021, income increased for those who are liberal? Well, then our model for the the relationship between <code>income</code> and <code>liberal</code> would have changed over the years, and therefore so would the model. However, since with our knowledge of the world we have no reason to believe that something of the sorts happened to affect this relationship, we can consider our model to be stable.</p>
+<p>Let’s now consider Justice for the relationship between <code>liberal</code> and <code>income</code>.</p>
+<p>Consider stability. To do so, we must look at the relationship between <code>liberal</code> and <code>income</code> and determine whether or not we believe that this relationship has changed between 2012 and 2023. With our knowledge of the world, do we have any reason to believe that this has changed? What if between 2012 and 2023, income increased for those who are liberal? Well, then our model for the the relationship between <code>income</code> and <code>liberal</code> would have changed over the years, and therefore so would the model. However, since with our knowledge of the world we have no reason to believe that something of the sorts happened to affect this relationship, we can consider our model to be stable.</p>
 <p>In our past three models, we have considered 3 possible issues that we could have with the representativeness of our model, such as the difference between Boston and other cities, problems with random sampling, and bias in those who respond, and we will now consider how in this survey there were surveys given before and after treatment, and some people may have filled out only one of the surveys. People who only filled out one of the surveys could affect the representativeness of the data because they could not be included in the data and if those who only filled out one survey tended to be liberal, then this would affect our data because it would underestimate the amount of liberals in the survey. This is something we must consider when looking at representativeness, since we could otherwise not determine if this data from train commuters in Boston in 2012 is representative enough of train commuters in the US now to continue using our data.</p>
 <p>Let’s consider whether this model is linear or logistic. Unlike our previous models this chapter, the outcome variable, <code>liberal</code>, for this model, only has two options, “Liberal” or “Not Liberal”. Therefore, this will be logistic because there are only 2 possible outcomes and the outcome variable isn’t continuous.</p>
 <p>Recall the discussion in <a href="07-two-parameters.html#sec-zero-one-outcomes"><span>Section&nbsp;4.5</span></a> about the logistic regression model which we use whenever the outcome or dependent variable is binary/logical. The math is there, if you care about math. We don’t, at least not too much. Reminder:</p>
@@ -3924,7 +3730,7 @@ sigma 74121.3  4897.0
 <span class="header-section-number">5.5.2</span> Courage</h3>
 <p>Fitting a logistic model is easy. We use all the same arguments as usual, but with <code>family = binomial</code> added.</p>
 <div class="cell">
-<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/rstanarm/reference/stan_glm.html">stan_glm</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">ch8</span>,</span>
+<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/rstanarm/reference/stan_glm.html">stan_glm</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">ch5</span>,</span>
 <span>                  formula <span class="op">=</span> <span class="va">liberal</span> <span class="op">~</span> <span class="va">income</span>,</span>
 <span>                  family <span class="op">=</span> <span class="va">binomial</span>,</span>
 <span>                  refresh <span class="op">=</span> <span class="fl">0</span>,</span>
@@ -3932,7 +3738,7 @@ sigma 74121.3  4897.0
 </div>
 <p>Having fit the model, we can look at a printed summary. Note the use of the <code>digits</code> argument to display more digits in the printout.</p>
 <div class="cell">
-<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">fit_4</span>, digits <span class="op">=</span> <span class="fl">6</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">fit_4</span>, digits <span class="op">=</span> <span class="fl">6</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>stan_glm
  family:       binomial [logit]
@@ -3956,7 +3762,7 @@ income      -0.000006  0.000003
 <p><em>Among all people who have an income $100,000, what proportion are liberal?</em></p>
 <p>Although our model is now logistic, all the steps in answering a question like this are the same as with a linear/guassian model.</p>
 <div class="cell">
-<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">newobs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>income <span class="op">=</span> <span class="fl">100000</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">newobs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>income <span class="op">=</span> <span class="fl">100000</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">pe</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/rstantools/reference/posterior_epred.html">posterior_epred</a></span><span class="op">(</span><span class="va">fit_4</span>, </span>
 <span>                      newdata <span class="op">=</span> <span class="va">newobs</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
@@ -3964,7 +3770,7 @@ income      -0.000006  0.000003
 </div>
 <p><code>pe</code> is a tibble with a single vector. That vector is 4,000 draws from the posterior distribution of proportion of people, among those who make $100,000, who are liberal. The population proportion is the same thing as the probability for any single individual.</p>
 <div class="cell">
-<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pe</span> <span class="op">|&gt;</span> </span>
+<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pe</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">`1`</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes_eval.html">after_stat</a></span><span class="op">(</span><span class="va">count</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">count</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>                   bins <span class="op">=</span> <span class="fl">100</span><span class="op">)</span>  <span class="op">+</span></span>
@@ -3983,7 +3789,7 @@ income      -0.000006  0.000003
 <p><em>Assume we have a group of eight people, two of whom make $100,000, two $200,000, two $300,000 and two $400,000. How many will be liberal?</em></p>
 <p>Because we are trying to predict the outcome for a small number of units, we use <code><a href="https://mc-stan.org/rstantools/reference/posterior_predict.html">posterior_predict()</a></code>. The more complex the questions we ask, the more care we need to devote to making the <code>newobs</code> tibble. We use the same <code><a href="https://dplyr.tidyverse.org/reference/rowwise.html">rowwise()</a></code> and <code><a href="https://dplyr.tidyverse.org/reference/c_across.html">c_across()</a></code> tricks as earlier in the chapter.</p>
 <div class="cell">
-<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">newobs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>income <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">100000</span>, <span class="fl">2</span><span class="op">)</span>,</span>
+<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">newobs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>income <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">100000</span>, <span class="fl">2</span><span class="op">)</span>,</span>
 <span>                            <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">200000</span>, <span class="fl">2</span><span class="op">)</span>,</span>
 <span>                            <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">300000</span>, <span class="fl">2</span><span class="op">)</span>,</span>
 <span>                            <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">400000</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
@@ -4002,22 +3808,22 @@ Caused by warning:
 ! Using `c_across()` without supplying `cols` was deprecated in dplyr 1.1.0.
 ℹ Please supply `cols` instead.</code></pre>
 </div>
-<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pp</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pp</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4,000 × 9
 # Rowwise: 
      `1`   `2`   `3`   `4`   `5`   `6`   `7`   `8` total
    &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;
- 1     1     0     0     0     0     0     1     0     2
- 2     0     1     0     0     1     0     0     0     2
- 3     0     1     0     1     0     0     1     0     3
- 4     0     0     1     1     1     0     0     0     3
- 5     0     1     0     1     0     0     0     0     2
- 6     0     1     0     0     0     0     0     0     1
- 7     1     0     0     0     0     0     0     1     2
- 8     1     0     0     0     0     1     0     0     2
- 9     0     0     0     0     0     0     0     0     0
-10     1     1     0     0     1     0     0     0     3
+ 1     1     1     1     0     0     0     0     0     3
+ 2     1     0     1     1     0     0     0     0     3
+ 3     1     1     0     0     0     0     1     0     3
+ 4     0     0     1     1     0     0     1     0     3
+ 5     1     1     1     0     0     0     0     0     3
+ 6     1     1     0     0     0     0     0     1     3
+ 7     0     1     1     1     0     1     1     0     5
+ 8     0     1     1     0     1     0     0     0     3
+ 9     0     0     0     1     0     0     0     0     1
+10     0     1     0     1     0     1     0     0     3
 # ℹ 3,990 more rows</code></pre>
 </div>
 </div>
@@ -4028,7 +3834,7 @@ Caused by warning:
 <p>We can simplify this draw by taking the sum, or doing anything else which might answer the question with which we are confronted. Posterior distributions are as flexible as individual numbers. We can, more or less, just use algebra to work with them.</p>
 <p>Graphically we have:</p>
 <div class="cell">
-<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pp</span> <span class="op">|&gt;</span> </span>
+<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pp</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">total</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes_eval.html">after_stat</a></span><span class="op">(</span><span class="va">count</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">count</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>                   bins <span class="op">=</span> <span class="fl">100</span><span class="op">)</span>  <span class="op">+</span></span>
@@ -4049,7 +3855,7 @@ Caused by warning:
 </section></section><section id="summary" class="level2" data-number="5.6"><h2 data-number="5.6" class="anchored" data-anchor-id="summary">
 <span class="header-section-number">5.6</span> Summary</h2>
 <p>In this chapter, we explored relationships between different variables in the <code>trains</code> data set. We built three predictive models and one causal model.</p>
-<p>Similar to previous chapters, our first task is to use <em>Wisdom</em> . We judge how relevant our data is to the questions we ask. Is it reasonable to consider the data we have (e.g., income and age data from Boston commuters in 2012) as being drawn from the same population as the data we want to have (e.g., income and age data from today for the entire US)? Probably?</p>
+<p>Similar to previous chapters, our first task is to use <em>Wisdom</em>. We judge how relevant our data is to the questions we ask. Is it reasonable to consider the data we have (e.g., income and age data from Boston commuters in 2012) as being drawn from the same population as the data we want to have (e.g., income and age data from today for the entire US)? Probably?</p>
 <p><em>Justice</em> is necessary to decide the best way to represent the models we make. A little math won’t kill you. We use <em>Courage</em> to translate our models into code. Our goal is to understand, generate posterior distributions for the parameters, and interpret their meaning. <em>Temperance</em> leads us to the final stage, using our models to answer our questions.</p>
 <p><em>Key commands:</em></p>
 <ul>

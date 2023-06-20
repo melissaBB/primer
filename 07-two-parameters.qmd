@@ -9,15 +9,8 @@ library(gt)
 library(gtsummary)
 ```
 
-<!-- Concerns about representativeness and validity may cause us to make adjustments in our final posteriors in an ad hoc --- but still useful! --- manner, or they may cause us to make changes in our actual models.  -->
 
-<!-- In functional form section, emphasize that we mostly choose our functional form on the basis of the left hand side variable. If it is continuous, we go linear. If it is 0/1, we go logistic. (May add one other option later.) -->
-
-<!-- Take ownership of Temperance section. There is some sloppy writing there! Own it. -->
-
-<!-- Show posterior_interval() -->
-
-<!-- Chapter 7 should introduce, gently, the concept of in-sample and out-of-sample. As well as predictive accuracy as being a good way to judge how good your model is. What are some useful measures of predictive accuracy? Discuss our objective functions; minimize what? when would median be better than mean? Find a skewed data set and show how guessing the median works better than guessing the mean, if you care about absolute difference. (Can we estimate the median with stan_glm()?) Bias/Variance == Underfitting/Overfitting -->
+<!-- Perhaps this chapter should introduce, gently, the concept of in-sample and out-of-sample. As well as predictive accuracy as being a good way to judge how good your model is. What are some useful measures of predictive accuracy? Discuss our objective functions; minimize what? when would median be better than mean? Find a skewed data set and show how guessing the median works better than guessing the mean, if you care about absolute difference. (Can we estimate the median with stan_glm()?) Bias/Variance == Underfitting/Overfitting -->
 
 In @sec-probability, we learned how to do inference. We created a joint distribution of the models under consideration and the data which might be observed. Once we observed the data, we went from the joint distribution to the conditional distribution of possible models given the data which we did, in fact, observe. That conditional distribution, suitably normalized, was our posterior probability distribution over the space of possible models. With that distribution, we can answer any question we might (reasonably) ask.
 

@@ -1,6 +1,6 @@
-# Glossary {-}
+# Key Concepts {-}
 
-These are the key concepts from the *Primer*. You should apply them whenever you face a choice. The world confronts us. Makes decisions we must.
+These are the key concepts from the *Primer*. You should apply them whenever you face a choice, and some data to help you make it. The world confronts us. Makes decisions we must.
 
 **Quantity of Interest** is the number which you want to estimate. You will almost always calculate a posterior probability distribution for your Quantity of Interest since, in the real world, it is almost always impossible to determine your QoI precisely.
 
@@ -28,9 +28,9 @@ These are the key concepts from the *Primer*. You should apply them whenever you
 
 **Unconfoundedness** means that the treatment assignment is independent of the potential outcomes, when we condition on pre-treatment covariates. This assumption is only relevant for causal models. We write that a model is "confounded" if this is not true. The easiest way to ensure unconfoundedness is to randonly assign treatment.
 
-**Courage** is the third [Cardinal Virtue](https://en.wikipedia.org/wiki/Cardinal_virtues) in data science. It allows us to explore different models. Even though Justice has provided the basic mathematical structure of the model, we still need to decide which variables to include and to estimate the values of unknown parameters. We avoid hypothesis tests. We check our models for consistency with the data we have. We select one model.
+**Courage** is the third [Cardinal Virtue](https://en.wikipedia.org/wiki/Cardinal_virtues) in data science. Justice gave us the data and the structure of the model. Courage allows us to explore different models. Even though Justice has provided the basic mathematical structure of the model, we still need to decide which variables to include and to estimate the values of unknown parameters. We avoid hypothesis tests. We check our models for consistency with the data we have. We select one model.
 
-**Temperance** is the fourth [Cardinal Virtue](https://en.wikipedia.org/wiki/Cardinal_virtues) in data science. It guides us in the use of the model we have created to answer the questions we began with. We create posteriors of quantities of interest. We should be modest in the claims we make. The posteriors we create are never the “truth.” The assumptions we made to create the model are never perfect. Yet decisions made with flawed posteriors are almost always better than decisions made without them.
+**Temperance** is the fourth [Cardinal Virtue](https://en.wikipedia.org/wiki/Cardinal_virtues) in data science. Courage gave us the fitted model. Temperance guides us in the use of the model we have created to answer the questions we began with. We create posteriors of the quantities of interest. We should be modest in the claims we make. The posteriors we create are never the “truth.” The assumptions we made to create the model are never perfect. Yet decisions made with flawed posteriors are almost always better than decisions made without them.
 
 
 

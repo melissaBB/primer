@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Preceptor’s Primer for Bayesian Data Science: Using the Cardinal Virtues for Inference - Glossary</title>
+<title>Preceptor’s Primer for Bayesian Data Science: Using the Cardinal Virtues for Inference - Key Concepts</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -70,7 +70,7 @@ ul.task-list li input[type="checkbox"] {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Glossary</h1>
+      <h1 class="quarto-secondary-nav-title">Key Concepts</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -168,7 +168,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./glossary.html" class="sidebar-item-text sidebar-link active">Glossary</a>
+  <a href="./glossary.html" class="sidebar-item-text sidebar-link active">Key Concepts</a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -198,7 +198,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">Glossary</h1>
+<h1 class="title d-none d-lg-block">Key Concepts</h1>
 </div>
 
 
@@ -213,7 +213,7 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>These are the key concepts from the <em>Primer</em>. You should apply them whenever you face a choice. The world confronts us. Makes decisions we must.</p>
+<p>These are the key concepts from the <em>Primer</em>. You should apply them whenever you face a choice, and some data to help you make it. The world confronts us. Makes decisions we must.</p>
 <p><strong>Quantity of Interest</strong> is the number which you want to estimate. You will almost always calculate a posterior probability distribution for your Quantity of Interest since, in the real world, it is almost always impossible to determine your QoI precisely.</p>
 <p><strong>Preceptor Table</strong> is a table of data with rows and columns such that, if there is no missing data, it is easy to estimate the quantity of interest.</p>
 <p><a href="https://www.econometrics-with-r.org/13-1-poceaie.html"><strong>Potential Outcome</strong></a> is the outcome for an individual under a potential treatment.</p>
@@ -227,8 +227,8 @@ ul.task-list li input[type="checkbox"] {
 <p><strong>Stability</strong> means that the relationship between the columns in the Population Table is the same for three categories of rows: the data, the Preceptor Table, and the larger population from which both are drawn.</p>
 <p><strong>Repsentativeness</strong> or the lack thereof, is the relationship, among the rows in the Population Table, between our data and the other rows. Ideally, we would like our data to be a random sample from the population. Sadly, this is almost never the case.</p>
 <p><strong>Unconfoundedness</strong> means that the treatment assignment is independent of the potential outcomes, when we condition on pre-treatment covariates. This assumption is only relevant for causal models. We write that a model is “confounded” if this is not true. The easiest way to ensure unconfoundedness is to randonly assign treatment.</p>
-<p><strong>Courage</strong> is the third <a href="https://en.wikipedia.org/wiki/Cardinal_virtues">Cardinal Virtue</a> in data science. It allows us to explore different models. Even though Justice has provided the basic mathematical structure of the model, we still need to decide which variables to include and to estimate the values of unknown parameters. We avoid hypothesis tests. We check our models for consistency with the data we have. We select one model.</p>
-<p><strong>Temperance</strong> is the fourth <a href="https://en.wikipedia.org/wiki/Cardinal_virtues">Cardinal Virtue</a> in data science. It guides us in the use of the model we have created to answer the questions we began with. We create posteriors of quantities of interest. We should be modest in the claims we make. The posteriors we create are never the “truth.” The assumptions we made to create the model are never perfect. Yet decisions made with flawed posteriors are almost always better than decisions made without them.</p>
+<p><strong>Courage</strong> is the third <a href="https://en.wikipedia.org/wiki/Cardinal_virtues">Cardinal Virtue</a> in data science. Justice gave us the data and the structure of the model. Courage allows us to explore different models. Even though Justice has provided the basic mathematical structure of the model, we still need to decide which variables to include and to estimate the values of unknown parameters. We avoid hypothesis tests. We check our models for consistency with the data we have. We select one model.</p>
+<p><strong>Temperance</strong> is the fourth <a href="https://en.wikipedia.org/wiki/Cardinal_virtues">Cardinal Virtue</a> in data science. Courage gave us the fitted model. Temperance guides us in the use of the model we have created to answer the questions we began with. We create posteriors of the quantities of interest. We should be modest in the claims we make. The posteriors we create are never the “truth.” The assumptions we made to create the model are never perfect. Yet decisions made with flawed posteriors are almost always better than decisions made without them.</p>
 
 
 
