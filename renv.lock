@@ -2116,13 +2116,8 @@
     "rayimage": {
       "Package": "rayimage",
       "Version": "0.9.1",
-      "Source": "GitHub",
-      "RemoteType": "github",
-      "RemoteHost": "api.github.com",
-      "RemoteRepo": "rayimage",
-      "RemoteUsername": "tylermorganwall",
-      "RemoteRef": "HEAD",
-      "RemoteSha": "0d24441243d6fb53fb62f6796a3ae4229bca72c8",
+      "Source": "Repository",
+      "Repository": "CRAN",
       "Requirements": [
         "R",
         "Rcpp",
@@ -2134,19 +2129,13 @@
         "png",
         "progress"
       ],
-      "Hash": "dd387b5b2db683bac7728bc0033cdb5b"
+      "Hash": "a7dda9cf19d4278c2e91a0c5702dbbf3"
     },
     "rayrender": {
       "Package": "rayrender",
-      "Version": "0.29.5",
-      "Source": "GitHub",
-      "Remotes": "tylermorganwall/rayimage",
-      "RemoteType": "github",
-      "RemoteHost": "api.github.com",
-      "RemoteRepo": "rayrender",
-      "RemoteUsername": "tylermorganwall",
-      "RemoteRef": "HEAD",
-      "RemoteSha": "2da2f5b14da79816026d30151c1f1c98d9f3b09b",
+      "Version": "0.29.6",
+      "Source": "Repository",
+      "Repository": "CRAN",
       "Requirements": [
         "R",
         "Rcpp",
@@ -2162,19 +2151,13 @@
         "spacefillr",
         "stats"
       ],
-      "Hash": "3cea36e06693316c47cd200cdb60d2ef"
+      "Hash": "c34a49fd4c21e304fe3b748005855a1d"
     },
     "rayshader": {
       "Package": "rayshader",
-      "Version": "0.35.1",
-      "Source": "GitHub",
-      "Remotes": "tylermorganwall/rayimage, tylermorganwall/rayrender, tylermorganwall/rayvertex, dmurdoch/rgl",
-      "RemoteType": "github",
-      "RemoteHost": "api.github.com",
-      "RemoteRepo": "rayshader",
-      "RemoteUsername": "tylermorganwall",
-      "RemoteRef": "HEAD",
-      "RemoteSha": "6332d91a9ba38a5cc29d5ee920eb7574fe4e5141",
+      "Version": "0.35.7",
+      "Source": "Repository",
+      "Repository": "CRAN",
       "Requirements": [
         "R",
         "Rcpp",
@@ -2197,7 +2180,7 @@
         "terrainmeshr",
         "utils"
       ],
-      "Hash": "f0e925dbd2d1ee0eaf15fb853b59a822"
+      "Hash": "a15a69c6faaf99f88a2ea54c1073b9dd"
     },
     "rayvertex": {
       "Package": "rayvertex",
@@ -3066,7 +3049,7 @@
     },
     "vctrs": {
       "Package": "vctrs",
-      "Version": "0.6.2",
+      "Version": "0.6.3",
       "Source": "Repository",
       "Repository": "CRAN",
       "Requirements": [
@@ -3076,7 +3059,7 @@
         "lifecycle",
         "rlang"
       ],
-      "Hash": "a745bda7aff4734c17294bb41d4e4607"
+      "Hash": "d0ef2856b83dc33ea6e255caf6229ee2"
     },
     "viridisLite": {
       "Package": "viridisLite",
