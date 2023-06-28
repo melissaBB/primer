@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.269">
+<meta name="generator" content="quarto-1.3.361">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>Preceptor’s Primer for Bayesian Data Science: Using the Cardinal Virtues for Inference - 7&nbsp; Five Parameters</title>
 <style>
@@ -14,9 +14,10 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -43,48 +44,19 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
-    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+/* CSS for citations */
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
 }
-.hanging div.csl-entry {
+.hanging-indent div.csl-entry {
   margin-left:2em;
   text-indent:-2em;
 }
@@ -98,8 +70,7 @@ div.csl-right-inline {
 }
 div.csl-indent {
   margin-left: 2em;
-}
-</style>
+}</style>
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
@@ -134,174 +105,199 @@ div.csl-indent {
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
-}</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+}</script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 </head>
 <body class="nav-sidebar floating">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }"><div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Five Parameters</span></h1>
-      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
-        <i class="bi bi-chevron-right"></i>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./10-five-parameters.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Five Parameters</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
       </button>
     </div>
   </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Preceptor’s Primer for Bayesian Data Science: Using the Cardinal Virtues for Inference</a> 
         <div class="sidebar-tools-main">
-    <a href="https://github.com/PPBDS/primer/" title="Source Code" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
-    <a href="" title="Download" id="sidebar-tool-dropdown-0" class="sidebar-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-download"></i></a>
-    <ul class="dropdown-menu" aria-labelledby="sidebar-tool-dropdown-0">
+    <a href="https://github.com/PPBDS/primer/" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <div class="dropdown">
+      <a href="" title="Download" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download"><i class="bi bi-download"></i></a>
+      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
 <li>
-          <a class="dropdown-item sidebar-tools-main-item" href="./Preceptor-s-Primer-for-Bayesian-Data-Science--Using-the-Cardinal-Virtues-for-Inference.pdf">
-            <i class="bi bi-bi-file-pdf pe-1"></i>
-          Download PDF
-          </a>
-        </li>
-        <li>
-          <a class="dropdown-item sidebar-tools-main-item" href="./Preceptor-s-Primer-for-Bayesian-Data-Science--Using-the-Cardinal-Virtues-for-Inference.epub">
-            <i class="bi bi-bi-journal pe-1"></i>
-          Download ePub
-          </a>
-        </li>
-    </ul>
+            <a class="dropdown-item sidebar-tools-main-item" href="./Preceptor-s-Primer-for-Bayesian-Data-Science--Using-the-Cardinal-Virtues-for-Inference.pdf">
+              <i class="bi bi-bi-file-pdf pe-1"></i>
+            Download PDF
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="./Preceptor-s-Primer-for-Bayesian-Data-Science--Using-the-Cardinal-Virtues-for-Inference.epub">
+              <i class="bi bi-bi-journal pe-1"></i>
+            Download ePub
+            </a>
+          </li>
+      </ul>
+</div>
 </div>
     </div>
       </div>
-      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
         </div>
-      </div>
+        </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">Welcome</a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Welcome</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./preamble.html" class="sidebar-item-text sidebar-link">Preamble</a>
+  <a href="./preamble.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preamble</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./00-getting-started.html" class="sidebar-item-text sidebar-link">Getting Started</a>
+  <a href="./00-getting-started.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Getting Started</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04-rubin-causal-model.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Rubin Causal Model</span></a>
+  <a href="./04-rubin-causal-model.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Rubin Causal Model</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./05-probability.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Probability</span></a>
+  <a href="./05-probability.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Probability</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./06-one-parameter.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">One Parameter</span></a>
+  <a href="./06-one-parameter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">One Parameter</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07-two-parameters.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Two Parameters</span></a>
+  <a href="./07-two-parameters.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Two Parameters</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./08-three-parameters.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Three Parameters</span></a>
+  <a href="./08-three-parameters.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Three Parameters</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./09-four-parameters.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Four Parameters</span></a>
+  <a href="./09-four-parameters.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Four Parameters</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./10-five-parameters.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Five Parameters</span></a>
+  <a href="./10-five-parameters.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Five Parameters</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./11-n-parameters.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">N Parameters</span></a>
+  <a href="./11-n-parameters.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">N Parameters</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./glossary.html" class="sidebar-item-text sidebar-link">Key Concepts</a>
+  <a href="./glossary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Key Concepts</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./set-up.html" class="sidebar-item-text sidebar-link">Set Up for Working on The Primer</a>
+  <a href="./set-up.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Set Up for Working on The Primer</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./style-guide.html" class="sidebar-item-text sidebar-link">Style Guide</a>
+  <a href="./style-guide.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Style Guide</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">References</a>
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
   </div>
 </li>
     </ul>
 </div>
-</nav><!-- margin-sidebar --><div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+</nav><div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
    
   <ul>
 <li>
-<a href="#wisdom" id="toc-wisdom" class="nav-link active" data-scroll-target="#wisdom"><span class="toc-section-number">7.1</span>  Wisdom</a>
+<a href="#wisdom" id="toc-wisdom" class="nav-link active" data-scroll-target="#wisdom"><span class="header-section-number">7.1</span> Wisdom</a>
   <ul class="collapse">
-<li><a href="#the-preceptor-table" id="toc-the-preceptor-table" class="nav-link" data-scroll-target="#the-preceptor-table"><span class="toc-section-number">7.1.1</span>  The Preceptor Table</a></li>
-  <li><a href="#eda-of-governors" id="toc-eda-of-governors" class="nav-link" data-scroll-target="#eda-of-governors"><span class="toc-section-number">7.1.2</span>  EDA of <code>governors</code></a></li>
-  <li><a href="#population" id="toc-population" class="nav-link" data-scroll-target="#population"><span class="toc-section-number">7.1.3</span>  Population</a></li>
+<li><a href="#the-preceptor-table" id="toc-the-preceptor-table" class="nav-link" data-scroll-target="#the-preceptor-table"><span class="header-section-number">7.1.1</span> The Preceptor Table</a></li>
+  <li><a href="#eda-of-governors" id="toc-eda-of-governors" class="nav-link" data-scroll-target="#eda-of-governors"><span class="header-section-number">7.1.2</span> EDA of <code>governors</code></a></li>
+  <li><a href="#population" id="toc-population" class="nav-link" data-scroll-target="#population"><span class="header-section-number">7.1.3</span> Population</a></li>
   </ul>
 </li>
   <li>
-<a href="#justice" id="toc-justice" class="nav-link" data-scroll-target="#justice"><span class="toc-section-number">7.2</span>  Justice</a>
+<a href="#justice" id="toc-justice" class="nav-link" data-scroll-target="#justice"><span class="header-section-number">7.2</span> Justice</a>
   <ul class="collapse">
-<li><a href="#population-table" id="toc-population-table" class="nav-link" data-scroll-target="#population-table"><span class="toc-section-number">7.2.1</span>  Population Table</a></li>
-  <li><a href="#validity" id="toc-validity" class="nav-link" data-scroll-target="#validity"><span class="toc-section-number">7.2.2</span>  Validity</a></li>
-  <li><a href="#stability" id="toc-stability" class="nav-link" data-scroll-target="#stability"><span class="toc-section-number">7.2.3</span>  Stability</a></li>
-  <li><a href="#representativeness" id="toc-representativeness" class="nav-link" data-scroll-target="#representativeness"><span class="toc-section-number">7.2.4</span>  Representativeness</a></li>
+<li><a href="#population-table" id="toc-population-table" class="nav-link" data-scroll-target="#population-table"><span class="header-section-number">7.2.1</span> Population Table</a></li>
+  <li><a href="#validity" id="toc-validity" class="nav-link" data-scroll-target="#validity"><span class="header-section-number">7.2.2</span> Validity</a></li>
+  <li><a href="#stability" id="toc-stability" class="nav-link" data-scroll-target="#stability"><span class="header-section-number">7.2.3</span> Stability</a></li>
+  <li><a href="#representativeness" id="toc-representativeness" class="nav-link" data-scroll-target="#representativeness"><span class="header-section-number">7.2.4</span> Representativeness</a></li>
   </ul>
 </li>
   <li>
-<a href="#courage" id="toc-courage" class="nav-link" data-scroll-target="#courage"><span class="toc-section-number">7.3</span>  Courage</a>
+<a href="#courage" id="toc-courage" class="nav-link" data-scroll-target="#courage"><span class="header-section-number">7.3</span> Courage</a>
   <ul class="collapse">
-<li><a href="#sex" id="toc-sex" class="nav-link" data-scroll-target="#sex"><span class="toc-section-number">7.3.1</span>  sex</a></li>
-  <li><a href="#election_age" id="toc-election_age" class="nav-link" data-scroll-target="#election_age"><span class="toc-section-number">7.3.2</span>  election_age</a></li>
-  <li><a href="#election_age-and-sex" id="toc-election_age-and-sex" class="nav-link" data-scroll-target="#election_age-and-sex"><span class="toc-section-number">7.3.3</span>  election_age and sex</a></li>
-  <li><a href="#election_age-sex-and-election_agesex" id="toc-election_age-sex-and-election_agesex" class="nav-link" data-scroll-target="#election_age-sex-and-election_agesex"><span class="toc-section-number">7.3.4</span>  election_age, sex and election_age*sex</a></li>
-  <li><a href="#interaction-model" id="toc-interaction-model" class="nav-link" data-scroll-target="#interaction-model"><span class="toc-section-number">7.3.5</span>  Interaction model</a></li>
+<li><a href="#sex" id="toc-sex" class="nav-link" data-scroll-target="#sex"><span class="header-section-number">7.3.1</span> sex</a></li>
+  <li><a href="#election_age" id="toc-election_age" class="nav-link" data-scroll-target="#election_age"><span class="header-section-number">7.3.2</span> election_age</a></li>
+  <li><a href="#election_age-and-sex" id="toc-election_age-and-sex" class="nav-link" data-scroll-target="#election_age-and-sex"><span class="header-section-number">7.3.3</span> election_age and sex</a></li>
+  <li><a href="#election_age-sex-and-election_agesex" id="toc-election_age-sex-and-election_agesex" class="nav-link" data-scroll-target="#election_age-sex-and-election_agesex"><span class="header-section-number">7.3.4</span> election_age, sex and election_age*sex</a></li>
+  <li><a href="#interaction-model" id="toc-interaction-model" class="nav-link" data-scroll-target="#interaction-model"><span class="header-section-number">7.3.5</span> Interaction model</a></li>
   </ul>
 </li>
   <li>
-<a href="#temperance" id="toc-temperance" class="nav-link" data-scroll-target="#temperance"><span class="toc-section-number">7.4</span>  Temperance</a>
+<a href="#temperance" id="toc-temperance" class="nav-link" data-scroll-target="#temperance"><span class="header-section-number">7.4</span> Temperance</a>
   <ul class="collapse">
-<li><a href="#expected-values" id="toc-expected-values" class="nav-link" data-scroll-target="#expected-values"><span class="toc-section-number">7.4.1</span>  Expected values</a></li>
-  <li><a href="#individual-predictions" id="toc-individual-predictions" class="nav-link" data-scroll-target="#individual-predictions"><span class="toc-section-number">7.4.2</span>  Individual predictions</a></li>
-  <li><a href="#expectation-versus-individual-variation" id="toc-expectation-versus-individual-variation" class="nav-link" data-scroll-target="#expectation-versus-individual-variation"><span class="toc-section-number">7.4.3</span>  Expectation versus individual variation</a></li>
-  <li><a href="#testing" id="toc-testing" class="nav-link" data-scroll-target="#testing"><span class="toc-section-number">7.4.4</span>  Testing</a></li>
+<li><a href="#expected-values" id="toc-expected-values" class="nav-link" data-scroll-target="#expected-values"><span class="header-section-number">7.4.1</span> Expected values</a></li>
+  <li><a href="#individual-predictions" id="toc-individual-predictions" class="nav-link" data-scroll-target="#individual-predictions"><span class="header-section-number">7.4.2</span> Individual predictions</a></li>
+  <li><a href="#expectation-versus-individual-variation" id="toc-expectation-versus-individual-variation" class="nav-link" data-scroll-target="#expectation-versus-individual-variation"><span class="header-section-number">7.4.3</span> Expectation versus individual variation</a></li>
+  <li><a href="#testing" id="toc-testing" class="nav-link" data-scroll-target="#testing"><span class="header-section-number">7.4.4</span> Testing</a></li>
   </ul>
 </li>
-  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="toc-section-number">7.5</span>  Summary</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">7.5</span> Summary</a></li>
   </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/PPBDS/primer/edit/main/10-five-parameters.qmd" class="toc-action">Edit this page</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
-<h1 class="title"><span id="sec-five-parameters" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Five Parameters</span></span></h1>
+<h1 class="title"><span id="sec-five-parameters" class="quarto-section-identifier"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Five Parameters</span></span></h1>
 </div>
 
 
@@ -338,8 +334,7 @@ div.csl-indent {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="other/images/Wisdom.jpg" class="img-fluid figure-img" width="1280"></p>
-<p></p><figcaption class="figure-caption">Wisdom</figcaption><p></p>
-</figure>
+<figcaption class="figure-caption">Wisdom</figcaption></figure>
 </div>
 </div>
 </div>
@@ -354,23 +349,23 @@ div.csl-indent {
 <div class="cell" data-layout-align="left">
 <div class="cell-output-display">
 
-<div id="aljfrgnqyb" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#aljfrgnqyb table {
+<div id="ajtntntlnu" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ajtntntlnu table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#aljfrgnqyb thead, #aljfrgnqyb tbody, #aljfrgnqyb tfoot, #aljfrgnqyb tr, #aljfrgnqyb td, #aljfrgnqyb th {
+#ajtntntlnu thead, #ajtntntlnu tbody, #ajtntntlnu tfoot, #ajtntntlnu tr, #ajtntntlnu td, #ajtntntlnu th {
   border-style: none;
 }
 
-#aljfrgnqyb p {
+#ajtntntlnu p {
   margin: 0;
   padding: 0;
 }
 
-#aljfrgnqyb .gt_table {
+#ajtntntlnu .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -396,12 +391,12 @@ div.csl-indent {
   border-left-color: #D3D3D3;
 }
 
-#aljfrgnqyb .gt_caption {
+#ajtntntlnu .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#aljfrgnqyb .gt_title {
+#ajtntntlnu .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -413,7 +408,7 @@ div.csl-indent {
   border-bottom-width: 0;
 }
 
-#aljfrgnqyb .gt_subtitle {
+#ajtntntlnu .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -425,7 +420,7 @@ div.csl-indent {
   border-top-width: 0;
 }
 
-#aljfrgnqyb .gt_heading {
+#ajtntntlnu .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -437,13 +432,13 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#aljfrgnqyb .gt_bottom_border {
+#ajtntntlnu .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#aljfrgnqyb .gt_col_headings {
+#ajtntntlnu .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -458,7 +453,7 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#aljfrgnqyb .gt_col_heading {
+#ajtntntlnu .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -478,7 +473,7 @@ div.csl-indent {
   overflow-x: hidden;
 }
 
-#aljfrgnqyb .gt_column_spanner_outer {
+#ajtntntlnu .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -490,15 +485,15 @@ div.csl-indent {
   padding-right: 4px;
 }
 
-#aljfrgnqyb .gt_column_spanner_outer:first-child {
+#ajtntntlnu .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#aljfrgnqyb .gt_column_spanner_outer:last-child {
+#ajtntntlnu .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#aljfrgnqyb .gt_column_spanner {
+#ajtntntlnu .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -510,11 +505,11 @@ div.csl-indent {
   width: 100%;
 }
 
-#aljfrgnqyb .gt_spanner_row {
+#ajtntntlnu .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#aljfrgnqyb .gt_group_heading {
+#ajtntntlnu .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -540,7 +535,7 @@ div.csl-indent {
   text-align: left;
 }
 
-#aljfrgnqyb .gt_empty_group_heading {
+#ajtntntlnu .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -555,15 +550,15 @@ div.csl-indent {
   vertical-align: middle;
 }
 
-#aljfrgnqyb .gt_from_md > :first-child {
+#ajtntntlnu .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#aljfrgnqyb .gt_from_md > :last-child {
+#ajtntntlnu .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#aljfrgnqyb .gt_row {
+#ajtntntlnu .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -582,7 +577,7 @@ div.csl-indent {
   overflow-x: hidden;
 }
 
-#aljfrgnqyb .gt_stub {
+#ajtntntlnu .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -595,7 +590,7 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#aljfrgnqyb .gt_stub_row_group {
+#ajtntntlnu .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -609,15 +604,15 @@ div.csl-indent {
   vertical-align: top;
 }
 
-#aljfrgnqyb .gt_row_group_first td {
+#ajtntntlnu .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#aljfrgnqyb .gt_row_group_first th {
+#ajtntntlnu .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#aljfrgnqyb .gt_summary_row {
+#ajtntntlnu .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -627,16 +622,16 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#aljfrgnqyb .gt_first_summary_row {
+#ajtntntlnu .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#aljfrgnqyb .gt_first_summary_row.thick {
+#ajtntntlnu .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#aljfrgnqyb .gt_last_summary_row {
+#ajtntntlnu .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -646,7 +641,7 @@ div.csl-indent {
   border-bottom-color: #D3D3D3;
 }
 
-#aljfrgnqyb .gt_grand_summary_row {
+#ajtntntlnu .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -656,7 +651,7 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#aljfrgnqyb .gt_first_grand_summary_row {
+#ajtntntlnu .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -666,7 +661,7 @@ div.csl-indent {
   border-top-color: #D3D3D3;
 }
 
-#aljfrgnqyb .gt_last_grand_summary_row_top {
+#ajtntntlnu .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -676,11 +671,11 @@ div.csl-indent {
   border-bottom-color: #D3D3D3;
 }
 
-#aljfrgnqyb .gt_striped {
+#ajtntntlnu .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#aljfrgnqyb .gt_table_body {
+#ajtntntlnu .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -689,7 +684,7 @@ div.csl-indent {
   border-bottom-color: #D3D3D3;
 }
 
-#aljfrgnqyb .gt_footnotes {
+#ajtntntlnu .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -703,7 +698,7 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#aljfrgnqyb .gt_footnote {
+#ajtntntlnu .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -712,7 +707,7 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#aljfrgnqyb .gt_sourcenotes {
+#ajtntntlnu .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -726,7 +721,7 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#aljfrgnqyb .gt_sourcenote {
+#ajtntntlnu .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -734,63 +729,63 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#aljfrgnqyb .gt_left {
+#ajtntntlnu .gt_left {
   text-align: left;
 }
 
-#aljfrgnqyb .gt_center {
+#ajtntntlnu .gt_center {
   text-align: center;
 }
 
-#aljfrgnqyb .gt_right {
+#ajtntntlnu .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#aljfrgnqyb .gt_font_normal {
+#ajtntntlnu .gt_font_normal {
   font-weight: normal;
 }
 
-#aljfrgnqyb .gt_font_bold {
+#ajtntntlnu .gt_font_bold {
   font-weight: bold;
 }
 
-#aljfrgnqyb .gt_font_italic {
+#ajtntntlnu .gt_font_italic {
   font-style: italic;
 }
 
-#aljfrgnqyb .gt_super {
+#ajtntntlnu .gt_super {
   font-size: 65%;
 }
 
-#aljfrgnqyb .gt_footnote_marks {
+#ajtntntlnu .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#aljfrgnqyb .gt_asterisk {
+#ajtntntlnu .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#aljfrgnqyb .gt_indent_1 {
+#ajtntntlnu .gt_indent_1 {
   text-indent: 5px;
 }
 
-#aljfrgnqyb .gt_indent_2 {
+#ajtntntlnu .gt_indent_2 {
   text-indent: 10px;
 }
 
-#aljfrgnqyb .gt_indent_3 {
+#ajtntntlnu .gt_indent_3 {
   text-indent: 15px;
 }
 
-#aljfrgnqyb .gt_indent_4 {
+#ajtntntlnu .gt_indent_4 {
   text-indent: 20px;
 }
 
-#aljfrgnqyb .gt_indent_5 {
+#ajtntntlnu .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -880,9 +875,6 @@ $ lived_after  &lt;dbl&gt; 41.043121, 2.116359, 14.562628, 13.336071, 33.043121,
 <p>For now, we leave in multiple observations for a single person.</p>
 <p>First, let’s sample from our dataset.</p>
 <div class="cell">
-
-</div>
-<div class="cell">
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ch10</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_sample</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -900,7 +892,7 @@ $ lived_after  &lt;dbl&gt; 41.043121, 2.116359, 14.562628, 13.336071, 33.043121,
 <div class="cell">
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://docs.ropensci.org/skimr/reference/skim.html">skim</a></span><span class="op">(</span><span class="va">ch10</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<table class="table table-sm table-striped">
+<table class="table table-sm table-striped small">
 <caption>Data summary</caption>
 <tbody>
 <tr class="odd">
@@ -946,7 +938,7 @@ $ lived_after  &lt;dbl&gt; 41.043121, 2.116359, 14.562628, 13.336071, 33.043121,
 </tbody>
 </table>
 <p><strong>Variable type: character</strong></p>
-<table class="table table-sm table-striped">
+<table class="table table-sm table-striped small">
 <colgroup>
 <col style="width: 19%">
 <col style="width: 13%">
@@ -1001,7 +993,7 @@ $ lived_after  &lt;dbl&gt; 41.043121, 2.116359, 14.562628, 13.336071, 33.043121,
 </tbody>
 </table>
 <p><strong>Variable type: logical</strong></p>
-<table class="table table-sm table-striped">
+<table class="table table-sm table-striped small">
 <thead><tr class="header">
 <th style="text-align: left;">skim_variable</th>
 <th style="text-align: right;">n_missing</th>
@@ -1027,7 +1019,7 @@ $ lived_after  &lt;dbl&gt; 41.043121, 2.116359, 14.562628, 13.336071, 33.043121,
 </tbody>
 </table>
 <p><strong>Variable type: numeric</strong></p>
-<table class="table table-sm table-striped">
+<table class="table table-sm table-striped small">
 <colgroup>
 <col style="width: 14%">
 <col style="width: 10%">
@@ -1152,8 +1144,7 @@ $ lived_after  &lt;dbl&gt; 41.043121, 2.116359, 14.562628, 13.336071, 33.043121,
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="other/images/Justice.jpg" class="img-fluid figure-img" style="width:60.0%"></p>
-<p></p><figcaption class="figure-caption">Justice</figcaption><p></p>
-</figure>
+<figcaption class="figure-caption">Justice</figcaption></figure>
 </div>
 </div>
 </div>
@@ -1795,8 +1786,7 @@ $ lived_after  &lt;dbl&gt; 41.043121, 2.116359, 14.562628, 13.336071, 33.043121,
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="other/images/Courage.jpg" class="img-fluid figure-img" style="width:60.0%"></p>
-<p></p><figcaption class="figure-caption">Courage</figcaption><p></p>
-</figure>
+<figcaption class="figure-caption">Courage</figcaption></figure>
 </div>
 </div>
 </div>
@@ -1998,9 +1988,6 @@ sigma 11.1    0.2  </code></pre>
 2 sexMale         6.15 
 3 election_age   -0.847</code></pre>
 </div>
-</div>
-<div class="cell">
-
 </div>
 <div class="cell">
 <div class="cell-output-display">
@@ -2213,8 +2200,7 @@ sigma 11.1    0.2  </code></pre>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="other/images/Temperance.jpg" class="img-fluid figure-img" width="960"></p>
-<p></p><figcaption class="figure-caption">Temperance</figcaption><p></p>
-</figure>
+<figcaption class="figure-caption">Temperance</figcaption></figure>
 </div>
 </div>
 </div>
@@ -2451,8 +2437,8 @@ sigma 11.1    0.2  </code></pre>
 <p><em>Spend less time thinking about what parameters mean and more time using <code><a href="https://mc-stan.org/rstantools/reference/posterior_epred.html">posterior_epred()</a></code> and <code><a href="https://mc-stan.org/rstantools/reference/posterior_predict.html">posterior_predict()</a></code> to examine the implications of your models.</em></p>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography" style="display: none">
-<div id="ref-barfort2020" class="csl-entry" role="doc-biblioentry">
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-barfort2020" class="csl-entry" role="listitem">
 Barfort, Sebastian, Robert Klemmensen, and Erik Gahner Larsen. 2020. <span>“Longevity Returns to Political Office.”</span> <em>Political Science Research and Methods</em>. <a href="https://doi.org/10.1017/psrm.2019.63">https://doi.org/10.1017/psrm.2019.63</a>.
 </div>
 </div>
@@ -2483,9 +2469,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -2550,6 +2550,92 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {

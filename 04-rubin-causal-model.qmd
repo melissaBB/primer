@@ -1104,9 +1104,11 @@ The best way to ensure unconfoundedness is to randomize the treatment across uni
 
 -   The **Fundamental Problem of Causal Inference** is that it is impossible to observe the causal effect on a single unit because we can never observe both potential outcomes for that unit. We must make assumptions in order to estimate causal effects.
 
+- When confronting a causal question, first identify the **units**, **treatments** and **outcomes**.
+
 :::
 
-The fundamental components of every problem in causal inference are units, treatments and outcomes. The units are the rows in the table. The treatments are (some of) the columns. The outcomes are the values under the treatment columns. (There are also covariate columns and the values within them.) Whenever you confront a problem in causal inference, start by identifying the units, treatments and outcomes.
+The fundamental components of every problem in causal inference are units, treatments and outcomes. The units are the rows in the table. The treatments are (some of) the columns. The outcomes are the values under the treatment columns. (There are also covariate columns and the values within them.) **Whenever you confront a problem in causal inference, start by identifying the units, treatments and outcomes.**
 
 A causal effect is the difference between one potential outcome and another. How different would your life be if you missed the train?
 

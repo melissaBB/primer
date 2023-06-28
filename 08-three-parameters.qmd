@@ -10,6 +10,8 @@ library(gtsummary)
 library(patchwork)
 ```
 
+<!-- Need a separate Preceptor Table for each question. Should really do the whole cycle each time, doing an EDA of the variables you want to use for that question. -->
+
 
 <!-- Need a table which shows all 4 (?) languages for describing a model together: English, math, code, output. ? -->
 
