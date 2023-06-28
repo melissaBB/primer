@@ -109,14 +109,14 @@ To calculate the average height, we need to know Andy's height -- our missing da
 
 Implicitly in every Preceptor Table is a notion of time. When, exactly, are we making this prediction? Since heights of adults change very, very slowly, we can ignore for this problem whether or not we are making this prediction tomorrow or a year from now. But, if we really want to know the average height of the brothers 40 years from now, we would need to adjust our estimate since people shrink with age.
 
-### Harvard Height
+### New College Height
 
-Consider a more complex problem. We have the heights of 100 Harvard students, and from that we want to know the average height of all students in the school.
+Consider a more complex problem. We have the heights of 100 New College of Florida students, and from that we want to know the average height of all students in the school.
 
 ```{r}
 #| echo: false
-tibble(ID = c("Student 1", "Student 2", "...", "Student 473", "Student 474",
-              "...", "Student 3,258", "Student 3,259", "...", "Student 6,700"),
+tibble(ID = c("Student 1", "Student 2", "...", "Student 47", "Student 48",
+              "...", "Student 325", "Student 326", "...", "Student 670"),
        Heights = c("?", "?", "...", "172", "?", "...", "?", "162", "...", "?")) |>
   
   # Then, we use the gt function to make it pretty
@@ -136,33 +136,33 @@ tibble(ID = c("Student 1", "Student 2", "...", "Student 473", "Student 474",
             locations = cells_column_labels())
 ```
 
-Again, are these 100 students randomly sampled? Could we estimate the 90th percentile of height in the student population? These questions are more complicated, and we might be less confident in our best guess. Note, also, that we will sometimes not know exactly how many rows there are in the Precptor Table. In that case, we would use "Student N" as the last ID, where N is the total number of students at Harvard.
+Again, are these 100 students randomly sampled? Could we estimate the 90th percentile of height in the student population? These questions are more complicated, and we might be less confident in our best guess. Note, also, that we will sometimes not know exactly how many rows there are in the Preceptor Table. In that case, we would use "Student N" as the last ID, where N is the total number of students at New College.
 
 ## Population Table
 
 The *Population Table* is distinct from the Preceptor Table. The aim of the Population Table^[The term Population Table is, perhaps unsurprisingly, unique to this textbook. We hope you find it useful.] is to illustrate the broader population in which we are interested, while also including the data from our Preceptor Table and from our dataset. This table has three sources of data: the data for units we *want to have* (the Preceptor Table), the data for units which we *actually have* (our actual data), and the data for units we *do not care about* (the rest of the population, not included in the data or the Preceptor Table).
 
-The rows in the Preceptor Table contain the information that we would want to know in order to answer our questions. These rows contain entries for our covariates (year and age) but they do not contain any outcome results (height). We are trying to answer questions about the height of Harvard students in 2023, so our Age column will read somewhere between 15 and 27 and our Year entries for these rows will read "2023."
+The rows in the Preceptor Table contain the information that we would want to know in order to answer our questions. These rows contain entries for our covariates (year and age) but they do not contain any outcome results (height). We are trying to answer questions about the height of New College students in 2023, so our Age column will read somewhere between 15 and 27 and our Year entries for these rows will read "2023."
 
 <!-- Sloppy use of both year (to mean the variable) and Year (to mean the column in the table). -->
 
-Our actual data rows contain the information that we do know. These rows contain entries for both our covariates and the outcomes. In this case, the actual data comes from a survey of Harvard students in 2015, so Age value for those students --- none of whom are still at Harvard --- will be their ages in 2015, and the Year value for these rows will be "2015."
+Our actual data rows contain the information that we do know. These rows contain entries for both our covariates and the outcomes. In this case, the actual data comes from a survey of New College students in 2015, so Age value for those students --- none of whom are still at New College --- will be their ages in 2015, and the Year value for these rows will be "2015."
 
 <!-- Should we be quoting 2015? -->
 
 <!-- Do we need to add ID to this table? To any/all Population Tables? -->
 
-Our Population rows contain no data. These are subjects which fall within our population, but for which we have no data. As such, all values, other than year, are missing.
+Our population rows contain no data. These are subjects which fall within our population, but for which we have no data. As such, all values, other than year, are missing.
 
 ```{r}
 #| echo: false
 tibble(source = c("...", "...",  "Data", "Data", 
                   "...", "...", "...", 
-                  "Preceptor Table", "...", "...", "Preceptor Table", "Preceptor Table"),
+                  "Preceptor Table", "Preceptor Table", "...", "...", "..."),
        year = c("2010", "...", "2015", "2015", 
-                "...","2018", "...", "2023", "...", "2025", "?", "?"),
-       age = c("?", "...", "18", "23","...", "?","...","19", "...","?", "?", "?"),
-       height = c("?", "...", "180", "163", "...", "?", "...","?", "...", "?", "172", "...")) |> 
+                "...","2018", "...", "2023", "2023", "...", "2030", "2030"),
+       age = c("...", "...", "18", "23","...", "...","...","19", "21","...", "...", "..."),
+       height = c("...", "...", "180", "163", "...", "...", "...","?", "?", "...", "...", "...")) |> 
   
   # Then, we use the gt function to make it pretty
   
