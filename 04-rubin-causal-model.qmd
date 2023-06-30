@@ -185,7 +185,7 @@ Implicit in the Preceptor Table is a notion of time. Now that we can see our act
 
 <!-- AWK phrasing above and, even more, below. -->
 
-As such, we will see that rows from our larger population may include anywhere between 2010 and 2025. This is a ballpark range. Height is relatively stable, so it is reasonable to assume that the population is stable ove a longer time period.
+As such, we will see that rows from our larger population may include anywhere between 2010 and 2030. This is a ballpark range. Height is relatively stable, so it is reasonable to assume that the population is stable ove a longer time period.
 
 ## Causal effect
 
@@ -412,7 +412,7 @@ tibble(source = c("...", "...",  "Data", "Data",
                   "...", "...", "...", 
                   "Preceptor Table", "...", "..."),
        year = c("2010", "...", "2015", "2015", 
-                "...","2018", "...", "2023", "...", "2025"),
+                "...","2018", "...", "2023", "...", "2030"),
        ID = c("?", "...", "Yao", "Cassidy","...", "?","...","Yao", "...","?"),
        ytreated = c("?", "...", "5", "3", "...", "?", "...","13", "...", "?"),
        ycontroled = c("?", "...", "3", "6", "...", "?", "...","9", "...", "?"),
@@ -997,7 +997,7 @@ Stability means that the relationship between the columns is the same for three 
 
 In our height example, it is much easier to assume stability over a greater period of time. Changes in global height occur extremely slowly, so height being stable across a span of 20 years is reasonable to assume. Can we say the same for this example, where we are looking at attitudes on immigration?
 
-With something like political ideology, it is much harder to assert that the relationships among the data collected in 2010 would be similar to the relationships among the data collected in 2025. Our data, for instance, was collected in 2014. We want to make predictions for 2023. And, frankly, it may be difficult to argue that our results would be stable if we re-conducted the experiment.
+With something like political ideology, it is much harder to assert that the relationships among the data collected in 2010 would be similar to the relationships among the data collected in 2030. Our data, for instance, was collected in 2014. We want to make predictions for 2023. And, frankly, it may be difficult to argue that our results would be stable if we re-conducted the experiment.
 
 When we are confronted with this uncertainty, we can consider making our timeframe smaller. However, we would still need to assume stability from 2014 (time of data collection) to today. *Stability allows us to ignore the passage of time.*
 

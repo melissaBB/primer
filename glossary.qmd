@@ -26,7 +26,7 @@ These are the key concepts from the *Primer*. You should apply them whenever you
 
 **Stability** means that the relationship between the columns in the Population Table is the same for three categories of rows: the data, the Preceptor Table, and the larger population from which both are drawn.
 
-**Repsentativeness** or the lack thereof, is the relationship, among the rows in the Population Table, between our data and the other rows. Ideally, we would like our data to be a random sample from the population. Sadly, this is almost never the case.
+**Representativeness** or the lack thereof, is the relationship, among the rows in the Population Table, between our data and the other rows. Ideally, we would like our data to be a random sample from the population. Sadly, this is almost never the case.
 
 **Unconfoundedness** means that the treatment assignment is independent of the potential outcomes, when we condition on pre-treatment covariates. This assumption is only relevant for causal models. We write that a model is "confounded" if this is not true. The easiest way to ensure unconfoundedness is to randonly assign treatment.
 
