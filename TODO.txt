@@ -1,5 +1,7 @@
 # Priorities
 
+Different questions lead to different variables in the Preceptor Table, even for cases in which the outcome is the same.
+
 Fix 3d plots in chapter 5.
 
 Think about using code chunk folding with:

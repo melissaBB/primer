@@ -890,8 +890,8 @@ tibble(source = c("...", "...", "...",
                   "Data", "Data", "...", 
                   "Preceptor Table", "Preceptor Table", "...",
                   "...", "..."), 
-       year = c("2012", "2012", "...",
-                "2014", "2014", "...",
+       year = c("2010", "2010", "...",
+                "2012", "2012", "...",
                 "2023", "2023", "...",
                 "2023", "2023"),
        sex = c("?", "?", "...",
@@ -987,7 +987,7 @@ There are an infinite number of possible treatments. Indeed, it is a virtual cer
 
 More commonly, we simply assume that all treated units received the same treatment. *Validity allows us to ignore variation in treatment.* In fact, concerns about validity apply to all the variables (covariates and outcomes), not just the treatments. If the columns in the data are not the same thing as the columns in the Preceptor Table, you have a problem. Validity is the assumption which allows us to create the Population Table.
 
-The validity assumption is most important in that, if true, we can consider treatments and other variables to be similar (enough) across time that we can "stack" the data and the Preceptor Table into one, unified, Population Table. Validity means that "exposure to Spanish-speakers" in 2014 means the same thing as "exposure to Spanish-speakers" in 2023. Strictly speaking, this must be false! For example, we are unlikely to be able to hire the same Spanish speakers now as we did a decade ago. Moreover, it is impossible for them to say the exact same words *now*, at the exact same volume, as they did in 2014. Validity allows us to assume that the treatment, and other variables, are close enough.
+The validity assumption is most important in that, if true, we can consider treatments and other variables to be similar (enough) across time that we can "stack" the data and the Preceptor Table into one, unified, Population Table. Validity means that "exposure to Spanish-speakers" in 2012 means the same thing as "exposure to Spanish-speakers" in 2023. Strictly speaking, this must be false! For example, we are unlikely to be able to hire the same Spanish speakers now as we did a decade ago. Moreover, it is impossible for them to say the exact same words *now*, at the exact same volume, as they did in 2012. Validity allows us to assume that the treatment, and other variables, are close enough.
 
 ### Stability
 
@@ -997,9 +997,9 @@ Stability means that the relationship between the columns is the same for three 
 
 In our height example, it is much easier to assume stability over a greater period of time. Changes in global height occur extremely slowly, so height being stable across a span of 20 years is reasonable to assume. Can we say the same for this example, where we are looking at attitudes on immigration?
 
-With something like political ideology, it is much harder to assert that the relationships among the data collected in 2010 would be similar to the relationships among the data collected in 2030. Our data, for instance, was collected in 2014. We want to make predictions for 2023. And, frankly, it may be difficult to argue that our results would be stable if we re-conducted the experiment.
+With something like political ideology, it is much harder to assert that the relationships among the data collected in 2010 would be similar to the relationships among the data collected in 2030. Our data, for instance, was collected in 2012. We want to make predictions for 2023. And, frankly, it may be difficult to argue that our results would be stable if we re-conducted the experiment.
 
-When we are confronted with this uncertainty, we can consider making our timeframe smaller. However, we would still need to assume stability from 2014 (time of data collection) to today. *Stability allows us to ignore the passage of time.*
+When we are confronted with this uncertainty, we can consider making our timeframe smaller. However, we would still need to assume stability from 2012 (time of data collection) to today. *Stability allows us to ignore the passage of time.*
 
 ### Representativeness
 
