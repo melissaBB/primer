@@ -1005,11 +1005,9 @@ When we are confronted with this uncertainty, we can consider making our timefra
 
 <!-- Should we use the word unbiasedness instead? -->
 
-<!-- Subtle issue is that problems can arise because the data is not representative of either the Preceptor Table or the population. Hmmm. Is that really true? -->
+Representativeness, or the lack thereof, concerns two relationship, among the rows in the Population Table. The first is between the Precetor Table and the other rows. The second is between our data and the other rows. Ideally, we would like both the Precepor Table *and* our data to be random samples from the population. Sadly, this is almost never the case.
 
-Representativeness, or the lack thereof, is the relationship, among the rows in the Population Table, between our data and the other rows. Ideally, we would like our data to be a random sample from the population. Sadly, this is almost never the case.
-
-Does the train experiment allow us to calculate a causal effect for people who commute by cars? Can we calculate the causal effect for people in New York City? Before we generalize to broader populations we have to consider if our experimental estimates are applicable beyond our experiment. Maybe we think that commuters in Boston and New York are similar enough to generalize our findings. We could also conclude that people who commute by car are fundamentally different than people who commute by train. If that was true, then we could not say our estimate is true for all commuters because our sample does not accurately *represent* the broader group we want to generalize to.
+Does the train experiment allow us to calculate a causal effect for people who commute by cars? Can we calculate the causal effect for people in New York City? Before we generalize to broader populations we have to consider if our experimental estimates are applicable beyond our experiment. Maybe we think that commuters in Boston and New York are similar enough to generalize our findings. We could also conclude that people who commute by car are fundamentally different than people who commute by train. If that was true, then we could not say our estimate is true for all commuters because our sample does not accurately *represent* the broader group to which we want to generalize.
 
 <!-- Generally: *if there was no chance that a certain type of person would have been in this experiment, we cannot make an assumption for that person*. Hmm. Include this? -->
 

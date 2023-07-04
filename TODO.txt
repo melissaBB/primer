@@ -1,6 +1,28 @@
 # Priorities
 
+Representativeness is a concern for both the data and for the Preceptor Table. If you need data for an unrepresentative subset of the population, you might be in trouble.
+
+Get rid of graphs of parameters. Only confusing! Always use posterior_epred() and posterior_predict().
+
 Different questions lead to different variables in the Preceptor Table, even for cases in which the outcome is the same.
+
+Thoughts on best way to ask Cardinal Virtue questions.
+
+Begin with the question.
+
+Is this predictive or causal?
+
+What are the units?
+
+What are the outcomes? (If causal must have at least two potential outcomes.)
+
+What are the treatments? (There are no treatments in predictive models.)
+
+What are the covariates (which do not include the treatments).
+
+With all the above, describe the Preceptor Table.
+
+
 
 Fix 3d plots in chapter 5.
 
