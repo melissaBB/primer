@@ -6,6 +6,11 @@ Get rid of graphs of parameters. Only confusing! Always use posterior_epred() an
 
 Different questions lead to different variables in the Preceptor Table, even for cases in which the outcome is the same.
 
+
+## Discuss with Mann
+
+Note the updated definition of Representativeness. This means that we should always have two questions about how Representativeness fails. Examples: First, give an example of why the rows in the Preceptor Table may not be representative of the overall population. Second, give an example of why the rows in the data may not be representative of the overall population.
+
 Thoughts on best way to ask Cardinal Virtue questions.
 
 Begin with the question.
