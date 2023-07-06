@@ -4,6 +4,10 @@ These are the key concepts from the *Primer*. You should apply them whenever you
 
 **Quantity of Interest** is the number which you want to estimate. You will almost always calculate a posterior probability distribution for your Quantity of Interest since, in the real world, it is almost always impossible to determine your QoI precisely.
 
+**Predictive Models and Causal Models** are different because predictive models have only one outcome column. Causal models have more than one (potential) outcome column because we need more than one potential outcome in order to estimate a *causal effect*. The first step in a data science problem is to determine if your QoI requires a causal or a predictive model.
+
+**Units**, **outcomes** and **covariates** are important parts of every data science model. Causal, but not predictive, models also include **treatments**, which are just covariates which we can manipulate. The QoI determines the units and outcomes for your model.
+
 **Preceptor Table** is a table of data with rows and columns such that, if there is no missing data, it is easy to estimate the quantity of interest.
 
 [**Potential Outcome**](https://www.econometrics-with-r.org/13-1-poceaie.html) is the outcome for an individual under a potential treatment.
@@ -12,13 +16,9 @@ These are the key concepts from the *Primer*. You should apply them whenever you
 
 [**Rubin Causal Model**](https://en.wikipedia.org/wiki/Rubin_causal_model) is an approach to the statistical analysis of cause and effect based on the framework of potential outcomes.
 
-**Predictive Models and Causal Models** are different because predictive models have only one outcome column. Causal Models have more than one (potential) outcome columns because we need more than one potential outcome in order to estimate a *causal effect*.
+**Wisdom** is the first [Cardinal Virtue](https://en.wikipedia.org/wiki/Cardinal_virtues) in data science. Begin with the quantity of interest. Is that QoI a causal effect or simply a forecast? Which units and outcomes does it imply? What Preceptor Table would allow you to calculate your QoI easily? Perform an exploratory data analysis (EDA) on the data you have. Is it *valid* to consider the data you have and the (theoretical) data from the Preceptor Table to have arisen out of the same population? If so, you may continue. If not, your attempt to estimate your QoI ends now.
 
-**Units**, **outcomes** and **covariates** are important parts of every data science model. Causal, but not predictive, models also include **treatments**, which are just covariates which we can manipulate.
-
-**Wisdom** is the first [Cardinal Virtue](https://en.wikipedia.org/wiki/Cardinal_virtues) in data science. Begin with the quantity of interest. Is that QoI a causal effect or simply a forecast? What Preceptor Table would allow you to calculate your QoI easily? Perform an exploratory data analysis (EDA) on the data you have. Is it *valid* to consider the data you have and the (theoretical) data from the Preceptor Table to have arisen out of the same population? If so, you may continue. If not, your attempt to estimate your QoI ends now.
-
-**Validity** is the consistency, or lack there of, in the columns of our dataset and the corresponding columns in our Preceptor Table. In order to consider the two datasets to be drawn from the same population, the columns from one must be have a valid correspondence with the columns in the other. Validity, if true (or at least reasonable), allows us to construct the Population Table.
+**Validity** is the consistency, or lack there of, in the columns of our dataset and the corresponding columns in your Preceptor Table. In order to consider the two datasets to be drawn from the same population, the columns from one must be have a valid correspondence with the columns in the other. Validity, if true (or at least reasonable), allows us to construct the Population Table.
 
 **Population Table** can be constructed if the validity assumption is (mostly) true. It includes all the rows and columns from the Preceptor Table. It also includes the rows and columns from the data set. It generally has other rows as well, rows which represent unit/time combinations from other components of the population.
 
