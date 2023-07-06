@@ -45,7 +45,7 @@ Also, Tejas Mundhe, Jackson Roe, Varun Dommeti, Soham Gunturu and Felix Cai.
 knitr::include_graphics("other/images/summer-2023.png") 
 ```
 
-Also Melissa Ban, Yuhan Wu, Srihith Garlapati, Miriam Heiss, Matthew Ru, Mann Talati, Alex Kuai, Anish Bellamkonda, Krish Saluja, Aryan Kancherla, Zayan Farooq, and Pratham Kancherla.
+Also Melissa Ban, Srihith Garlapati, Miriam Heiss, Matthew Ru, Mann Talati, Alex Kuai, Anish Bellamkonda, Krish Saluja, Aryan Kancherla, Zayan Farooq, and Pratham Kancherla.
 
 I would like to gratefully acknowledge funding from [The Derek Bok Center for Teaching and Learning](https://bokcenter.harvard.edu/) at Harvard University, via its [Digital Teaching Fellows](https://bokcenter.harvard.edu/graduate-fellows-0) and [Learning Lab Undergraduate Fellows](https://bokcenter.harvard.edu/undergraduate-fellows) programs.
 
