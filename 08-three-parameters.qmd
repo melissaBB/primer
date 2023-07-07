@@ -785,7 +785,7 @@ Finally, do we have a treatment? Yes, treatments applies to this situation with 
 Now we can create our Preceptor Table:
 
 ```{r}
-tibble(ID = ID = c("1", "2", "...", "10", "11",
+tibble(ID = c("1", "2", "...", "10", "11",
                   "...", "20", "21", "...", "N"),
             treatment = c("Yes", "?", "No", "Yes", "Yes", "No", "?", "No", "...", "?"),
             attitude_after_control = c("...", "?", "7", "...", "...", "4", "?", "6", "...", "?"),
@@ -806,7 +806,7 @@ tibble(ID = ID = c("1", "2", "...", "10", "11",
   cols_align(align = "left", columns = c(ID)) |>
   fmt_markdown(columns = everything()) |>
   tab_spanner(label = "Predictor", columns = c(treatment)) |>
-  tab_spanner(label = "Outcomes", columns = c(attitude_after_control, attitude_after_treatment))
+  tab_spanner(label = "Outcomes", columns = c(attitude_after_control, attitude_after_treated))
 ```
 
 Recall: a Preceptor Table is table with rows and columns such that, if there is no missing data, all our questions are easy to answer. To answer questions — like “What is the average treatment effect, of exposing people to Spanish-speakers, on their attitudes toward immigration? and What is the largest causal effect which still has a 1 in 10 chance of occurring?” — we need a row for every individual at the station.
