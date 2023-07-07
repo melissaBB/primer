@@ -247,21 +247,13 @@ Our Preceptor Table rows are chronologically ordered. The "other" rows are our g
 
 ## age ~ party
 
-<!-- No need to repeat the questions. You can make reference to them, and then just conclude that we are using party to model age. -->
-
 We want to build a model and then use that model to make claims about the world. Our questions about the relationship between `age` and `party` are the following:
 
 *What is the probability that, if a Democrat shows up at the train station, he will be over 50 years old?*
 
 *In a group of three Democrats and three Republicans, what will the age difference be between the oldest Democrat and the youngest Republican?* 
 
-We can answer these and similar questions by creating a model that uses party affiliation to predict age
-
-<!-- Relate back to research questions and the population for them -->
-
-<!-- Discuss whether the data comes from the same population as Preceptor Table -->
-
-<!-- This sections ends with the Population  Table. -->
+We can answer these and similar questions by creating a model that uses party affiliation to predict age.
 
 
 ### Wisdom
@@ -297,7 +289,7 @@ tibble(ID = c("1", "2", "...", "473", "474",
   tab_spanner(label = "Outcome", columns = c(age))
 ```
 
-Recall: a Preceptor Table is the smallest possible table such that, if there is no missing data, all our questions are easy to answer. To answer questions — like “What is the probability that, if a Democrat shows up at the train station, he will be over 50 years old?” — we need a row for every party member.
+Recall: a Preceptor Table is table with rows and columns such that, if there is no missing data, all our questions are easy to answer. To answer questions — like “What is the probability that, if a Democrat shows up at the train station, he will be over 50 years old?” — we need a row for every individual at the station.
 
 In our predictive model above, do we have a treatment? No, treatments will only apply to the situations with causal models, however, we do have covariates which in this case is our party. Our covariate is party in this situation because it plays a huge role in being a predictor for our outcome for each separate ID.
 
