@@ -44,6 +44,7 @@ Use of _ in pipes in R 4.3.0.
 
 I am really annoyed by the default number of columns in the displayed code block in Quarto. Look at what happens in Chapter 3, for example. The code comments, all of which are fewer than 80 characters per line (I assume) look great in the qmd file. But, when rendered, they don't fit in a line and so need to be split into two lines in a very ugly and unreadable fashion. How many columns are displayed by default, and how can we cause that number to be the default wide in qmd documents so that comment lines can be wrapped automatically with CNTRL-Shift-/?
 
+Once we downweight the importance of parameters, it becomes silly to have our chapter organization be driven by the number of parameters. Wouldn't some other organization make more sense? But what? Maybe all chapters after 2 do the same data science thing, but they get more complex, on all dimensions of complexity, each time. For example, the current chapter 6 is all about making the Courage step much more complex.
 
 Think more about whether not "mechanism" discussion could unify our discussion of potential problems. What is the sampling mechanism, the assignment mechanism and the missing data mechanism? Representativeness is about the sampling mechanism. Unconfoundedness is about the assignment mechanism. Hmmm. If your sampling mechanism creates a correlation between your outcome variable and other stuff, then you may have a problem.
 
