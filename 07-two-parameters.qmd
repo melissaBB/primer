@@ -99,15 +99,13 @@ library(tidyverse)
 # First, we create a tibble with the values we want for the table
 
 
-tibble(ID = c("Person 1", "Person 2", "...", "Person 45000", "Person 45001", "..."),
-       sex = c("Male", "Male", "...", "Male", "Male", "..."),
+tibble(ID = c("Person 1", "Person 2", "...", "Person 45,000", "Person 45,001", "..."),
        height = c("150", "172", "...", "160", "142", "...")) |>
   
   # Then, we use the gt function to make it pretty
   
   gt() |>
   cols_label(ID = md("ID"),
-                sex = "Sex",
                 height = "Height (cm)") 
 ```
 
@@ -164,7 +162,7 @@ nhanes |>
 Interesting! There are `r sum(is.na(nhanes$height))` missing values of height in our subset of data. Just using `glimpse()` does not show us that.  Let's filter out the NA's using `drop_na()`. This will delete the rows in which the value of any variable is missing. Because we want to examine height in men (not boys, nor females), let's limit our data to only include adult males. 
 
 ```{r}
-ch3 <- nhanes |> 
+ch4 <- nhanes |> 
   filter(gender == "Male", age >= 18) |> 
   select(height) |> 
   drop_na()
@@ -177,7 +175,7 @@ Let's plot this data using `geom_histogram()`.
 
 
 ```{r}
-ch3 |>
+ch4 |>
   ggplot(aes(x = height)) + 
     geom_histogram(bins = 50) +
     labs(x = "Height (cm)",
@@ -192,7 +190,7 @@ For pedagogical purposes, we won't use all the NHANES data. Instead, we will ran
 ```{r}
 # We start by keeping all the adult males, just as we did above.
 
-ch3_all <- nhanes |>
+ch4_all <- nhanes |>
   filter(gender == "Male", age >= 18) |>
   select(height) |>
   drop_na() 
@@ -203,10 +201,10 @@ ch3_all <- nhanes |>
 set.seed(9)
 
 # Up till now, we have just been using pipes and then "spitting" out the result.
-# Now, we want to create a new object, `ch3`, which we will use for the rest of
+# Now, we want to create a new object, `ch4`, which we will use for the rest of
 # the chapter.
 
-ch3 <- ch3_all |> 
+ch4 <- ch4_all |> 
   slice_sample(n = 50)
 ```
 
@@ -249,11 +247,15 @@ Having looked at our data and decided that it is "close enough" to our questions
 
 Justice emphasizes a few key concepts:
 
-* The Population Table, a structure which includes a row for every unit in the population. We generally break the rows in the Population Table into three categories: the data for units we want to have (the Preceptor Table), the data for units which we actually have (our actual data), and the data for units we do not care about (the rest of the population, not included in the data or the Preceptor Table).
-* Is our data representative of the population?
-* If the problem is causal, can we assume unconfoundedness?
+* The *Population Table*, a structure which includes a row for every unit in the population. We generally break the rows in the Population Table into three categories: the data for units we want to have (the Preceptor Table), the data for units which we actually have (our actual data), and the data for units we do not care about (the rest of the population, not included in the data or the Preceptor Table).
 
-We then make an assumption about the data generating mechanism.
+* *Stability* means that the relationship between the columns in the Population Table is the same for three categories of rows: the data, the Preceptor Table, and the larger population from which both are drawn. 
+
+* *Representativeness*, or the lack thereof, concerns two relationship, among the rows in the Population Table. The first is between the Preceptor Table and the other rows. The second is between our data and the other rows. Ideally, we would like both the Preceptor Table and our data to be random samples from the population. Sadly, this is almost never the case. 
+
+* *Unconfoundedness* means that the treatment assignment is independent of the potential outcomes, when we condition on pre-treatment covariates. This assumption is only relevant for causal models. We write that a model is “confounded” if this is not true. The easiest way to ensure unconfoundedness is to randonly assign treatment.
+
+* The mathematical structure of the *Data Generating Mechanism*. Models require math, so we need to create a mathematical formula which connects our outcome to our covariates.
 
 ### The Population Table
 
@@ -300,7 +302,9 @@ tibble(source = c("Preceptor Table", "Preceptor Table", "...",
 
 ### Representativeness
 
-As we've stated above, representativeness involves our rows. More specifically, are the rows that we *do* have data for representative of the rows for which we *do not* have data? Ideally, the data we have is a random, unbiased selection from our population, and so the answer to our question is yes.
+*Representativeness involves the rows of the Population Table.* More specifically, are the rows that we *do* have data for representative of the rows for which we *do not* have data? Ideally, the data we have is a random, unbiased selection from our population, and so the answer to our question is yes.
+
+
 
 For our `nhanes` data, is this the case? It is time to investigate.
 
@@ -309,16 +313,10 @@ It is clear that this process goes through several layers of randomization (prom
 
 There is also the fact that participation is voluntary. Perhaps certain individuals (immobile, elderly, anxious) are less likely to participate. Perhaps individuals that are hospitalized do not get the opportunity to participate. This impacts our data! 
 
-Regardless, we can assume that this process ensures that all people in the United States have a somewhat equal chance of being surveyed. Thus, our data is representative of our population.
-
-
-
- <!-- Math is in Justice, but just the functional form, not the exact variables. Leave it to you to write about this sensibly. Focus on the functional form. We are choosing linear, not logistic. Why? --> 
  
- 
-### Functional form
+### Data Generating Mechanism
 
-However, a little mathematical notation will make our modeling assumptions clear, will bring some precision to our approach. In this case:
+
 
 $$ y_i =  \mu + \epsilon_i $$
 with $\epsilon_i \sim N(0, \sigma^2)$. $y_i$ is the height of male $i$. $\mu$ is the average height of all males in the population. $\epsilon_i$ is the "error term," the difference between the height of male $i$ and the average height of all males.
@@ -335,7 +333,7 @@ This is the simplest model we can construct. Note:
 
 * The parameter we most care about is $\mu$. That is the parameter with a substantively meaningful interpretation. Not only is the meaning of $\sigma$ difficult to describe, we also don't particular care about its value. Parameters like $\sigma$ in this context are *nuisance* or *auxiliary* parameters. We still estimate their posterior distributions, but we don't really care what those posteriors look like.
 
-* $\mu$ is not the average height of the men in the sample. We can calculate that directly. It is `r mean(ch3$height)`. No estimation required! Instead, $\mu$ is the average height of men in the *population*. Recall from the discussions in @sec-one-parameter that the population is the universe of people/units/whatever about which we seek to draw conclusions. On some level, this seems simple. On a deeper level, it is very subtle. For example, if we are walking around Copenhagen, then the population we really care about, in order to answer our three questions, is the set of adult men which we might meet today. This is not the same as the population of adult men in the US in 2010. But is it close enough? Is it better than nothing? We want to assume that both men from `nhanes` (the data we have) and men we meet in Copenhagen today (the data we want to have) are drawn from the same *population*. Each case is a different and the details matter.
+* $\mu$ is not the average height of the men in the sample. We can calculate that directly. It is `r mean(ch4$height)`. No estimation required! Instead, $\mu$ is the average height of men in the *population*. Recall from the discussions in @sec-one-parameter that the population is the universe of people/units/whatever about which we seek to draw conclusions. On some level, this seems simple. On a deeper level, it is very subtle. For example, if we are walking around Copenhagen, then the population we really care about, in order to answer our three questions, is the set of adult men which we might meet today. This is not the same as the population of adult men in the US in 2010. But is it close enough? Is it better than nothing? We want to assume that both men from `nhanes` (the data we have) and men we meet in Copenhagen today (the data we want to have) are drawn from the same *population*. Each case is a different and the details matter.
 
 * $\sigma$ is an estimate for the standard deviation of the errors,  i.e., variability in height after accounting for the mean.
 
@@ -344,6 +342,7 @@ This is the simplest model we can construct. Note:
 Consider:
 
 $$\text{outcome} = \text{model} + \text{what is not in the model}$$
+
 In this case, the *outcome* is the height of an individual male. This variable, also called the "response," is what we are trying to understand and/or explain and/or predict. The *model* is our creation, a mixture of data and parameters, an attempt to capture the underlying structure in the world which generates the outcome.
 
 <!-- This may be of greater use earlier in the section. -->
@@ -352,15 +351,12 @@ What is the difference between the *outcome* and the *model*? By definition, it 
 
 ## Courage
 
-<!--  7.3 is by FAR the most confusing section. Code here needs to be better introduced (such as in the earlier chapters) and unfamiliar terms such as "predictors" need to be more clearly defined. I believe the majority of my work on the chapter will be in fixing this section. -->
-
-
 ```{r}
 #| echo: false
 knitr::include_graphics("other/images/Courage.jpg")
 ```
 
-In data science, we deal with words, math, and code, but the most important of these is code. We need Courage to create the model, to take the leap of faith that we can make our ideas real. 
+In data science, *we deal with words, math, and code, but the most important of these is code.* We need Courage to create the model, to take the leap of faith that we can make our ideas real. 
 
 #### stan_glm
 
@@ -371,12 +367,12 @@ Bayesian models are not hard to create in R. The **rstanarm** package provides t
 library(rstanarm)
 ```
 
-The first argument in `stan_glm()` is `data`, which in our case is the filtered `ch3` tibble which contains 50 observations. The only other mandatory argument is the `formula` that we want to use to build the model. In this case, since we have no predictor variables, our formula is `height ~ 1`. 
+The first argument in `stan_glm()` is `data`, which in our case is the filtered `ch4` tibble which contains 50 observations. The only other mandatory argument is the `formula` that we want to use to build the model. In this case, since we have no predictor variables, our formula is `height ~ 1`. 
 
 
 ```{r}
 #| cache: true
-fit_obj <- stan_glm(data = ch3, 
+fit_obj <- stan_glm(data = ch4, 
                     formula = height ~ 1, 
                     family = gaussian, 
                     refresh = 0,
@@ -385,7 +381,7 @@ fit_obj <- stan_glm(data = ch3,
 
 Details:
 
-* This may take time. Bayesian models, especially ones with large amounts of data, can take longer than we might like. Indeed, computational limits were the main reason why Bayesian approaches were --- and, to some extent, still are --- little used. When creating your own models, you will often want to use the `cache = TRUE` code chunk option. This saves the result of the model so that you don't recalculate it every time you knit your document.
+* This may take time. Bayesian models, especially ones with large amounts of data, can take longer than we might like. Indeed, computational limits were the main reason why Bayesian approaches were --- and, to some extent, still are --- little used. When creating your own models, you will often want to use the `cache: TRUE` code chunk option. This saves the result of the model so that you don't recalculate it every time you render your document.
 
 * The `data` argument, like all such usage in R, is for the input data.
 
@@ -397,7 +393,7 @@ Details:
 
 * The default value for `family` is `gaussian`, so we did not need to include it in the call above. From the Justice section, the assumption that $\epsilon_i \sim N(0, \sigma^2)$ is equivalent to using `gaussian`. If $\epsilon_i$ had a different distribution, we would need to use a different `family`. We saw an example of such a situation at the end of @sec-one-parameter when we performed the urn analysis using `stan_glm()` and setting `family = binomial`.
 
-* Although you can use the standalone function `set.seed()` in order to make your code reproducible, it is more convenient to use the `seed` argument within `stan_glm()`. Even though the fitting process, unavoidably, contains a random component, you will get the exact same answer if we set `seed = 9` and rerun this code. It does not matter what number you use for the seed.
+* Although you can use the stand-alone function `set.seed()` in order to make your code reproducible, it is more convenient to use the `seed` argument within `stan_glm()`. Even though the fitting process, unavoidably, contains a random component, you will get the exact same answer if we set `seed = 9` and rerun this code. It does not matter what number you use for the seed.
 
 
 ##### Printed model
@@ -773,6 +769,7 @@ When answering questions as we have been, it can be easy to falsely believe that
 The three primary levels of knowledge possible knowledge in our scenario include: the Truth (the Preceptor Table), the DGM Posterior, and Our Posterior.
 
 #### The Truth
+
 If we know the Truth (with a capital “T”), then we know the Preceptor Table. With that knowledge, we can directly answer our question precisely. We can calculate each individual’s height, and any summary measure we might be interested in, like the average height for different ages or countries. 
 
 This level of knowledge is possible only under an omniscient power, one who can see every outcome in every individual under every treatment. The Truth would show, for any given individual, their actions under control, their actions under treatment, and each little factor that impacted those decisions.
@@ -808,18 +805,18 @@ Variables with well-behaved, continuous ranges are the easiest to handle. We sta
 
 
 ```{r}
-ch3_b <- nhanes |> 
+ch4_b <- nhanes |> 
   select(age, gender, height) |>
   mutate(female = ifelse(gender == "Female", 1, 0)) |> 
   filter(age >= 18) |> 
   select(female, height) |> 
   drop_na()
 
-ch3_b
+ch4_b
 ```
 
 ```{r}
-ch3_b |> 
+ch4_b |> 
   ggplot(aes(x = height, y = female)) +
   geom_jitter(height = 0.1, alpha = 0.05) +
   labs(title = "Gender and Height",
@@ -834,7 +831,7 @@ ch3_b |>
 Why not just fit a linear model, as we did above? Consider:
 
 ```{r}
-fit_gender_linear <- stan_glm(data = ch3_b,
+fit_gender_linear <- stan_glm(data = ch4_b,
                               formula = female ~ height,
                               family = gaussian,
                               refresh = 0,
@@ -850,7 +847,7 @@ print(fit_gender_linear, digits = 2)
 Comparing two individuals who differ in `height` by 1 cm, we expect the taller individual to have a 3% lower probability of being female. That is not unreasonable. The problems show up at the extremes. Consider the fitted values across the range of our data.
 
 ```{r}
-ch3_b |> 
+ch4_b |> 
   ggplot(aes(x = height, y = female)) +
   geom_jitter(height = 0.1, alpha = 0.05) +
   geom_smooth(aes(y = fitted(fit_gender_linear)),
@@ -878,7 +875,7 @@ This is an inverse logistic function, but don't worry about the details. Mathema
 
 Whenever you have two categories as the outcome, you should use `family = binomial`.
 
-<!-- DK: Footnote to discuss that often linear regression is used and also works. Show that you get the same answer for the 180 question, but not for 200! -->
+<!-- DK: Footnote to discuss that often linear regression is used and also works. Show that you get the same answer for the 180 question, but not for 200! This would make a good tutorial! -->
 
 
 
@@ -886,7 +883,7 @@ Whenever you have two categories as the outcome, you should use `family = binomi
 
 
 ```{r}
-fit_2 <- stan_glm(data = ch3_b,
+fit_2 <- stan_glm(data = ch4_b,
                   formula = female ~ height,
                   family = binomial,
                   refresh = 0,
