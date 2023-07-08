@@ -98,7 +98,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./07-two-parameters.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Two Parameters</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./08-three-parameters.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Three Parameters</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -289,7 +289,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
-</header><!-- Perhaps this chapter should introduce, gently, the concept of in-sample and out-of-sample. As well as predictive accuracy as being a good way to judge how good your model is. What are some useful measures of predictive accuracy? Discuss our objective functions; minimize what? when would median be better than mean? Find a skewed data set and show how guessing the median works better than guessing the mean, if you care about absolute difference. (Can we estimate the median with stan_glm()?) Bias/Variance == Underfitting/Overfitting --><p>In <a href="05-probability.html"><span>Chapter&nbsp;2</span></a>, we learned how to do inference. We created a joint distribution of the models under consideration and the data which might be observed. Once we observed the data, we went from the joint distribution to the conditional distribution of possible models given the data which we did, in fact, observe. That conditional distribution, suitably normalized, was our posterior probability distribution over the space of possible models. With that distribution, we can answer any question we might (reasonably) ask.</p>
+</header><!-- Perhaps this chapter should introduce, gently, the concept of in-sample and out-of-sample. As well as predictive accuracy as being a good way to judge how good your model is. What are some useful measures of predictive accuracy? Discuss our objective functions; minimize what? when would median be better than mean? Find a skewed data set and show how guessing the median works better than guessing the mean, if you care about absolute difference. (Can we estimate the median with stan_glm()?) Bias/Variance == Underfitting/Overfitting --><!-- Perhaps the above indicates the manner in which we might expand the Courage and Temperance sections? --><p>In <a href="05-probability.html"><span>Chapter&nbsp;2</span></a>, we learned how to do inference. We created a joint distribution of the models under consideration and the data which might be observed. Once we observed the data, we went from the joint distribution to the conditional distribution of possible models given the data which we did, in fact, observe. That conditional distribution, suitably normalized, was our posterior probability distribution over the space of possible models. With that distribution, we can answer any question we might (reasonably) ask.</p>
 <!-- Need a gif here. Like Hunger Games in Chapter 6. -->
 <p><em>But what a pain in the ass that whole process was!</em> Do professionals actually go through all those steps every time they work on a data science problem? No! That would be absurd. Instead, professionals use standard tools which, in an automated fashion, take care of those steps, taking us directly from assumptions and data to the posterior:</p>
 <p><span class="math display">\[\text{Prob}(\text{models} | \text{data} = \text{data we observed})\]</span></p>
@@ -321,31 +321,40 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Wisdom begins with the Preceptor Table. What data would we, ideally, require to answer our questions? We then explore the data that we actually have. We apply the concept of <em>validity</em> to ensure that the data we <em>want</em> and the data we <em>have</em> are similar enough to allow the latter to inform us about the former. If so, we describe the <em>population</em> from which both the Preceptor Table and out data are drawn.</p>
 <section id="preceptor-table" class="level3" data-number="4.1.1"><h3 data-number="4.1.1" class="anchored" data-anchor-id="preceptor-table">
 <span class="header-section-number">4.1.1</span> Preceptor Table</h3>
-<p>What rows and columns of data do you need such that, if you had them all, the calculation of the quantity of interest would be trivial? If you want to know the average height of an adult in India, then the Preceptor Table would include a row for each adult in India and a column for their height. In this scenario, we want to know the average height for men, where “men” includes all males on Earth that are at least 18 years old.</p>
-<p>One key aspect of this Preceptor Table is whether or not we need more than one potential outcome in order to calculate our estimand. Mainly: are we are modeling (just) for prediction or are we (also) modeling for causation? Do we need a causal model, one which estimates that attitude under both treatment and control? In a causal model, the Preceptor Table would require two columns for the outcome. In this case, we are not modeling for causation; thus, we do not need two outcome columns.</p>
+<p>What rows and columns of data do you need such that, if you had them all, the calculation of the quantity of interest would be trivial? The steps we usually take to construct the Preceptor Table include:</p>
+<ul>
+<li><p>Is the question <em>causal</em> or <em>predictive</em>? If it is causal, then the Preceptor Table will have (at least) two potential outcome columns. If it is predictive, there will just be one outcome column. All our questions are predictive, so there is only one outcome column.</p></li>
+<li><p>What is the <em>outcome</em>? This is the variable which we are trying to explain/understand/predict. This is <em>not</em> the same thing as the answer to the question we have been asked. The question might, as above, be about the height of the 3rd tallest man we meet out of the next 100. But the concepts of 3rd or 100 do not appear in the Preceptor Table. Instead, height is our outcome variable. But, if we can build a model which explains/understands/predicts height, we can use that model to answer our questions.</p></li>
+<li><p>What are the <em>units</em>? These are the rows in the Preceptor Table. Sometimes, as here, the units will be fairly obvious: all the men in the world, one row per man. Othertimes, however, we will need to think more deeply about the units to use so that we can most easily answer our question.</p></li>
+<li><p>What are the <em>covariates</em>? These are the variables, other than the outcome, about which we have information. In the case of causal models, one of the covariates is the <em>treatment</em>, the variable which we can, at least in theory, <em>manipulate</em> in order to observe the different potential outcomes. Predictive models, on the other hand, have no treatments, only covariates.</p></li>
+<li><p>When is the moment in <em>time</em> to which the Preceptor Table refers? This is often implicit in the question itself. One of our key roles as data scientists is to clarify the questions which we are asked. In this case, it seems clear that the questions refer to <em>now</em> but that won’t always be the case.</p></li>
+</ul>
+<p>In considering the appropriate <em>outcomes</em>, <em>units</em>, <em>covariates</em> and <em>time</em> for the Preceptor Table, we should keep in mind the data that we actually have to answer our questions. We must satisify the assumption of <em>validity</em> if we are to combine the Preceptor Table and our data into a Population Table.</p>
+<p>If you want to know the average height of an adult in India, then the Preceptor Table would include a row for each adult in India and a column for their height. Our actual questions above imply that we want to know the average height for men, where “men” includes all males on Earth that are at least 18 years old.</p>
+<p>One key aspect of this Preceptor Table is whether or not we need more than one potential outcome in order to calculate our estimand. Mainly: are we are modeling (just) for prediction or are we (also) modeling for causation? Do we need a causal model, one which estimates the outcome under both treatment and control? In a causal model, the Preceptor Table would require two columns for the outcome. In this case, we are not modeling for causation; thus, we do not need two outcome columns.</p>
 <p>Predictive models care nothing about causation. Causal models are often also concerned with prediction, if only as a means of measuring the quality of the model. Here, we are looking at <em>prediction</em>.</p>
 <p>So, what does our Preceptor Table look like? Assuming we are predicting height for every adult male on planet Earth at this moment in time, we would have height data for every male at least 18 years of age. This means that we would have about 4 billion rows, one for each male, along with a column for each individual’s height.</p>
 <p>Here are some rows from our Preceptor Table:</p>
 <div class="cell" data-layout-align="left">
 <div class="cell-output-display">
 
-<div id="ituecnegub" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#ituecnegub table {
+<div id="iqesjhclxq" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#iqesjhclxq table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#ituecnegub thead, #ituecnegub tbody, #ituecnegub tfoot, #ituecnegub tr, #ituecnegub td, #ituecnegub th {
+#iqesjhclxq thead, #iqesjhclxq tbody, #iqesjhclxq tfoot, #iqesjhclxq tr, #iqesjhclxq td, #iqesjhclxq th {
   border-style: none;
 }
 
-#ituecnegub p {
+#iqesjhclxq p {
   margin: 0;
   padding: 0;
 }
 
-#ituecnegub .gt_table {
+#iqesjhclxq .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -371,12 +380,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-left-color: #D3D3D3;
 }
 
-#ituecnegub .gt_caption {
+#iqesjhclxq .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#ituecnegub .gt_title {
+#iqesjhclxq .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -388,7 +397,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-width: 0;
 }
 
-#ituecnegub .gt_subtitle {
+#iqesjhclxq .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -400,7 +409,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-top-width: 0;
 }
 
-#ituecnegub .gt_heading {
+#iqesjhclxq .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -412,13 +421,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#ituecnegub .gt_bottom_border {
+#iqesjhclxq .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#ituecnegub .gt_col_headings {
+#iqesjhclxq .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -433,7 +442,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#ituecnegub .gt_col_heading {
+#iqesjhclxq .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -453,7 +462,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   overflow-x: hidden;
 }
 
-#ituecnegub .gt_column_spanner_outer {
+#iqesjhclxq .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -465,15 +474,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 4px;
 }
 
-#ituecnegub .gt_column_spanner_outer:first-child {
+#iqesjhclxq .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#ituecnegub .gt_column_spanner_outer:last-child {
+#iqesjhclxq .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#ituecnegub .gt_column_spanner {
+#iqesjhclxq .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -485,11 +494,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   width: 100%;
 }
 
-#ituecnegub .gt_spanner_row {
+#iqesjhclxq .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#ituecnegub .gt_group_heading {
+#iqesjhclxq .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -515,7 +524,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   text-align: left;
 }
 
-#ituecnegub .gt_empty_group_heading {
+#iqesjhclxq .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -530,15 +539,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   vertical-align: middle;
 }
 
-#ituecnegub .gt_from_md > :first-child {
+#iqesjhclxq .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#ituecnegub .gt_from_md > :last-child {
+#iqesjhclxq .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#ituecnegub .gt_row {
+#iqesjhclxq .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -557,7 +566,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   overflow-x: hidden;
 }
 
-#ituecnegub .gt_stub {
+#iqesjhclxq .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -570,7 +579,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#ituecnegub .gt_stub_row_group {
+#iqesjhclxq .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -584,15 +593,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   vertical-align: top;
 }
 
-#ituecnegub .gt_row_group_first td {
+#iqesjhclxq .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#ituecnegub .gt_row_group_first th {
+#iqesjhclxq .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#ituecnegub .gt_summary_row {
+#iqesjhclxq .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -602,16 +611,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#ituecnegub .gt_first_summary_row {
+#iqesjhclxq .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#ituecnegub .gt_first_summary_row.thick {
+#iqesjhclxq .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#ituecnegub .gt_last_summary_row {
+#iqesjhclxq .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -621,7 +630,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#ituecnegub .gt_grand_summary_row {
+#iqesjhclxq .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -631,7 +640,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#ituecnegub .gt_first_grand_summary_row {
+#iqesjhclxq .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -641,7 +650,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-top-color: #D3D3D3;
 }
 
-#ituecnegub .gt_last_grand_summary_row_top {
+#iqesjhclxq .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -651,11 +660,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#ituecnegub .gt_striped {
+#iqesjhclxq .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#ituecnegub .gt_table_body {
+#iqesjhclxq .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -664,7 +673,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#ituecnegub .gt_footnotes {
+#iqesjhclxq .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -678,7 +687,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#ituecnegub .gt_footnote {
+#iqesjhclxq .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -687,7 +696,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#ituecnegub .gt_sourcenotes {
+#iqesjhclxq .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -701,7 +710,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#ituecnegub .gt_sourcenote {
+#iqesjhclxq .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -709,63 +718,63 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#ituecnegub .gt_left {
+#iqesjhclxq .gt_left {
   text-align: left;
 }
 
-#ituecnegub .gt_center {
+#iqesjhclxq .gt_center {
   text-align: center;
 }
 
-#ituecnegub .gt_right {
+#iqesjhclxq .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#ituecnegub .gt_font_normal {
+#iqesjhclxq .gt_font_normal {
   font-weight: normal;
 }
 
-#ituecnegub .gt_font_bold {
+#iqesjhclxq .gt_font_bold {
   font-weight: bold;
 }
 
-#ituecnegub .gt_font_italic {
+#iqesjhclxq .gt_font_italic {
   font-style: italic;
 }
 
-#ituecnegub .gt_super {
+#iqesjhclxq .gt_super {
   font-size: 65%;
 }
 
-#ituecnegub .gt_footnote_marks {
+#iqesjhclxq .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#ituecnegub .gt_asterisk {
+#iqesjhclxq .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#ituecnegub .gt_indent_1 {
+#iqesjhclxq .gt_indent_1 {
   text-indent: 5px;
 }
 
-#ituecnegub .gt_indent_2 {
+#iqesjhclxq .gt_indent_2 {
   text-indent: 10px;
 }
 
-#ituecnegub .gt_indent_3 {
+#iqesjhclxq .gt_indent_3 {
   text-indent: 15px;
 }
 
-#ituecnegub .gt_indent_4 {
+#iqesjhclxq .gt_indent_4 {
   text-indent: 20px;
 }
 
-#ituecnegub .gt_indent_5 {
+#iqesjhclxq .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -841,7 +850,7 @@ $ pregnancies    &lt;int&gt; NA, NA, NA, NA, 2, NA, NA, 1, 1, 1, NA, NA, NA, NA,
 $ sleep          &lt;int&gt; 4, 4, 4, NA, 8, NA, NA, 8, 8, 8, 7, 5, 4, NA, 5, 7, NA,…</code></pre>
 </div>
 </div>
-<p><code>nhanes</code> includes 15 variables, including physical attributes like weight and height. Let’s restrict our attention to three varaibles: age, gender and height.</p>
+<p><code>nhanes</code> includes 15 variables, including physical attributes like weight and height. Let’s restrict our attention to three variables: <code>age</code>, <code>gender</code> and <code>height</code>.</p>
 <div class="cell">
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">nhanes</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">age</span>, <span class="va">gender</span>, <span class="va">height</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -871,11 +880,11 @@ $ sleep          &lt;int&gt; 4, 4, 4, NA, 8, NA, NA, 8, 8, 8, 7, 5, 4, NA, 5, 7,
 <pre><code># A tibble: 5 × 3
     age gender height
   &lt;int&gt; &lt;chr&gt;   &lt;dbl&gt;
-1    80 Female   152.
-2    77 Female   151.
-3    75 Female   149.
-4    31 Male     179.
-5    29 Male     173.</code></pre>
+1    18 Female   159.
+2    19 Female   163.
+3    64 Male     173.
+4    54 Male     176 
+5    15 Female   163.</code></pre>
 </div>
 </div>
 <p>We think of both <code>age</code> and <code>height</code> as numbers. And they are numbers! But R distinguishes between “integers” and “doubles,” only the second of which allow for decimal values. In the <code>nhanes</code> data, <code>age</code> is an integer and <code>height</code> is a double.</p>
@@ -1077,13 +1086,14 @@ $ height &lt;dbl&gt; 164.7, 164.7, 164.7, 105.4, 168.4, 133.1, 130.6, 166.7, 166
 <p>Will the data we have — which is only for a sample of adult American men more than a decade ago — allow us to answer our questions, however roughly? Only if the assumption of <em>validity</em> makes sense.</p>
 </section><section id="validity" class="level3" data-number="4.1.3"><h3 data-number="4.1.3" class="anchored" data-anchor-id="validity">
 <span class="header-section-number">4.1.3</span> Validity</h3>
-<p>Validity involves our columns. More specifically, whether our columns mean the same thing. Does “height” in our Preceptor Table mean the same thing as “height” in NHANES? Almost certainly. Of course, we need to be careful about mistakes like measurement differences, like centimeters in one and inches in the other. And there can be issues like: Are measurements taken with shoes on or shoes off? But, for the most part, the “height” variable in NHANES in 2010 is a <em>valid</em> proxy for the “height” of individuals today. We can stack the two data sets together and consider them to have come from the same population.</p>
+<p>Validity involves our columns. More specifically, whether our columns mean the same thing. Does “height” in our Preceptor Table mean the same thing as “height” in NHANES? Almost certainly. Of course, we need to be careful about mistakes like measurement units, like centimeters in one and inches in the other. And there can be issues like: Are measurements taken with shoes on or shoes off? But, for the most part, the “height” variable in NHANES in 2010 is a <em>valid</em> proxy for the “height” of individuals today. We can stack the two data sets together and consider them to have come from the same population.</p>
+<p>Since validity holds, we can combine the Preceptor Table and our data into a Population Table.</p>
 </section><section id="population" class="level3" data-number="4.1.4"><h3 data-number="4.1.4" class="anchored" data-anchor-id="population">
 <span class="header-section-number">4.1.4</span> Population</h3>
 <!-- Spend more time here? -->
 <p>One of the most important components of Wisdom is the concept of the “population.”</p>
 <p>The population is not the set of people for which we have data — the participants in the CDC’s Health and Nutrition Examination Survey conducted from 2009 to 2011. This is the dataset. Nor is it the set of all the individuals about whom we would like to have data. Those are the rows in the Preceptor Table. The population is the larger — potentially much larger — set of individuals which include both the data we <em>have</em> and the data we <em>want</em>. Generally, <strong>the population will be much larger than either the data we have or the data we want.</strong> In fact, there is almost always a time dimension to consider. We generally want to make inferences about right now or about the future. By definition, the data we have is always from the past.</p>
-<p>In this case, we want to predict average height for males <em>today</em>, not for people in 2009 – 2011. We also want to predict height for males outside the United States, a group that is excluded from our dataset. Is it reasonable to generate conclusions for the world from this group? Maybe? We have limited data to work with and we have to determine how far we are willing to generalize to other groups.</p>
+<p>In this case, we want to estimate average height for males <em>today</em>, not for people in 2009 – 2011. We also want to estimate height for males outside the United States, a group that is excluded from our dataset. Is it reasonable to generate conclusions for the world from this group? Maybe? We have limited data to work with and we have to determine how far we are willing to generalize to other groups.</p>
 <p>It is a judgment call, a matter of Wisdom, as to whether or not we may assume that the data we have and the data we want to have (i.e., the Preceptor Table) are drawn from the same population.</p>
 <p>In the social sciences, <em>there is never a perfect relationship between the data you have and the question you are trying to answer.</em> Data for American males in the past is not the same thing as data for American males today. Nor is it the same as the data for men in France or Mexico. Yet, this data is relevant. Right? It is certainly better than nothing.</p>
 <p><em>Using not-perfect data is generally better than using no data at all.</em></p>

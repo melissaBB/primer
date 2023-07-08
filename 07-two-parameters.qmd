@@ -12,6 +12,8 @@ library(gtsummary)
 
 <!-- Perhaps this chapter should introduce, gently, the concept of in-sample and out-of-sample. As well as predictive accuracy as being a good way to judge how good your model is. What are some useful measures of predictive accuracy? Discuss our objective functions; minimize what? when would median be better than mean? Find a skewed data set and show how guessing the median works better than guessing the mean, if you care about absolute difference. (Can we estimate the median with stan_glm()?) Bias/Variance == Underfitting/Overfitting -->
 
+<!-- Perhaps the above indicates the manner in which we might expand the Courage and Temperance sections? -->
+
 In @sec-probability, we learned how to do inference. We created a joint distribution of the models under consideration and the data which might be observed. Once we observed the data, we went from the joint distribution to the conditional distribution of possible models given the data which we did, in fact, observe. That conditional distribution, suitably normalized, was our posterior probability distribution over the space of possible models. With that distribution, we can answer any question we might (reasonably) ask.
 
 <!-- Need a gif here. Like Hunger Games in Chapter 6. -->
@@ -54,13 +56,29 @@ Data science is ultimately a moral act, so we will use the four [Cardinal Virtue
 knitr::include_graphics("other/images/Wisdom.jpg")
 ```
 
+
+
 Wisdom begins with the Preceptor Table. What data would we, ideally, require to answer our questions? We then explore the data that we actually have. We apply the concept of *validity* to ensure that the data we *want* and the data we *have* are similar enough to allow the latter to inform us about the former. If so, we describe the *population* from which both the Preceptor Table and out data are drawn.
 
 ### Preceptor Table
 
-What rows and columns of data do you need such that, if you had them all, the calculation of the quantity of interest would be trivial? If you want to know the average height of an adult in India, then the Preceptor Table would include a row for each adult in India and a column for their height. In this scenario, we want to know the average height for men, where "men" includes all males on Earth that are at least 18 years old. 
+What rows and columns of data do you need such that, if you had them all, the calculation of the quantity of interest would be trivial? The steps we usually take to construct the Preceptor Table include:
 
-One key aspect of this Preceptor Table is whether or not we need more than one potential outcome in order to calculate our estimand. Mainly: are we are modeling (just) for prediction or are we (also) modeling for causation? Do we need a causal model, one which estimates that attitude under both treatment and control? In a causal model, the Preceptor Table would require two columns for the outcome. In this case, we are not modeling for causation; thus, we do not need two outcome columns. 
+* Is the question *causal* or *predictive*? If it is causal, then the Preceptor Table will have (at least) two potential outcome columns. If it is predictive, there will just be one outcome column. All our questions are predictive, so there is only one outcome column.
+
+* What is the *outcome*? This is the variable which we are trying to explain/understand/predict. This is *not* the same thing as the answer to the question we have been asked. The question might, as above, be about the height of the 3rd tallest man we meet out of the next 100. But the concepts of 3rd or 100 do not appear in the Preceptor Table. Instead, height is our outcome variable. But, if we can build a model which explains/understands/predicts height, we can use that model to answer our questions.
+
+* What are the *units*? These are the rows in the Preceptor Table. Sometimes, as here, the units will be fairly obvious: all the men in the world, one row per man. Othertimes, however, we will need to think more deeply about the units to use so that we can most easily answer our question. 
+
+* What are the *covariates*? These are the variables, other than the outcome, about which we have information. In the case of causal models, one of the covariates is the *treatment*, the variable which we can, at least in theory, *manipulate* in order to observe the different potential outcomes. Predictive models, on the other hand, have no treatments, only covariates.
+
+* When is the moment in *time* to which the Preceptor Table refers? This is often implicit in the question itself. One of our key roles as data scientists is to clarify the questions which we are asked. In this case, it seems clear that the questions refer to *now* but that won't always be the case.
+
+In considering the appropriate *outcomes*, *units*, *covariates* and *time* for the Preceptor Table, we should keep in mind the data that we actually have to answer our questions. We must satisify the assumption of *validity* if we are to combine the Preceptor Table and our data into a Population Table.
+
+If you want to know the average height of an adult in India, then the Preceptor Table would include a row for each adult in India and a column for their height. Our actual questions above imply that we want to know the average height for men, where "men" includes all males on Earth that are at least 18 years old. 
+
+One key aspect of this Preceptor Table is whether or not we need more than one potential outcome in order to calculate our estimand. Mainly: are we are modeling (just) for prediction or are we (also) modeling for causation? Do we need a causal model, one which estimates the outcome under both treatment and control? In a causal model, the Preceptor Table would require two columns for the outcome. In this case, we are not modeling for causation; thus, we do not need two outcome columns. 
 
 Predictive models care nothing about causation. Causal models are often also concerned with prediction, if only as a means of measuring the quality of the model. Here, we are looking at *prediction*. 
 
@@ -107,7 +125,7 @@ library(skimr)
 glimpse(nhanes)
 ```
 
-`nhanes` includes `r ncol(nhanes)` variables, including physical attributes like weight and height. Let's restrict our attention to three varaibles: age, gender and height. 
+`nhanes` includes `r ncol(nhanes)` variables, including physical attributes like weight and height. Let's restrict our attention to three variables: `age`, `gender` and `height`. 
 
 ```{r}
 nhanes |> 
@@ -196,7 +214,9 @@ Will the data we have --- which is only for a sample of adult American men more 
 
 ### Validity
 
-Validity involves our columns. More specifically, whether our columns mean the same thing. Does "height" in our Preceptor Table mean the same thing as "height" in NHANES? Almost certainly. Of course, we need to be careful about mistakes like measurement differences, like centimeters in one and inches in the other. And there can be issues like: Are measurements taken with shoes on or shoes off? But, for the most part, the "height" variable in NHANES in 2010 is a *valid* proxy for the "height" of individuals today. We can stack the two data sets together and consider them to have come from the same population. 
+Validity involves our columns. More specifically, whether our columns mean the same thing. Does "height" in our Preceptor Table mean the same thing as "height" in NHANES? Almost certainly. Of course, we need to be careful about mistakes like measurement units, like centimeters in one and inches in the other. And there can be issues like: Are measurements taken with shoes on or shoes off? But, for the most part, the "height" variable in NHANES in 2010 is a *valid* proxy for the "height" of individuals today. We can stack the two data sets together and consider them to have come from the same population. 
+
+Since validity holds, we can combine the Preceptor Table and our data into a Population Table.
 
 
 ### Population
@@ -207,7 +227,7 @@ One of the most important components of Wisdom is the concept of the “populati
 
 The population is not the set of people for which we have data --- the participants in the CDC's Health and Nutrition Examination Survey conducted from 2009 to 2011. This is the dataset. Nor is it the set of all the individuals about whom we would like to have data. Those are the rows in the Preceptor Table. The population is the larger — potentially much larger — set of individuals which include both the data we *have* and the data we *want*. Generally, **the population will be much larger than either the data we have or the data we want.** In fact, there is almost always a time dimension to consider. We generally want to make inferences about right now or about the future. By definition, the data we have is always from the past.
 
-In this case, we want to predict average height for males *today*, not for people in 2009 -- 2011. We also want to predict height for males outside the United States, a group that is excluded from our dataset. Is it reasonable to generate conclusions for the world from this group? Maybe? We have limited data to work with and we have to determine how far we are willing to generalize to other groups.
+In this case, we want to estimate average height for males *today*, not for people in 2009 -- 2011. We also want to estimate height for males outside the United States, a group that is excluded from our dataset. Is it reasonable to generate conclusions for the world from this group? Maybe? We have limited data to work with and we have to determine how far we are willing to generalize to other groups.
 
 It is a judgment call, a matter of Wisdom, as to whether or not we may assume that the data we have and the data we want to have (i.e., the Preceptor Table) are drawn from the same population.
 

@@ -937,14 +937,12 @@ div.csl-indent {
 </h3>
 <p><em>Always explore your data.</em> Recall the discussion from <a href="04-rubin-causal-model.html"><span>Chapter&nbsp;1</span></a>. <span class="citation" data-cites="enos2014">Enos (<a href="references.html#ref-enos2014" role="doc-biblioref">2014</a>)</span> randomly placed Spanish-speaking confederates on nine train platforms around Boston, Massachusetts. Exposure to Spanish-speakers – the <code>treatment</code> – (potentially) influenced attitudes toward immigration. These reactions were measured through changes in answers to three survey questions. Load the necessary libraries and look at the data.</p>
 <div class="cell">
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">primer.data</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">primer.data</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://mc-stan.org/rstanarm/">rstanarm</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
-<span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">trains</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">trains</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 115
 Columns: 14
@@ -967,14 +965,12 @@ $ ideology_end   &lt;int&gt; 3, 4, 2, 4, 2, 5, 5, 4, 3, 4, 3, 4, 4, 1, 2, 3, 3, 
 <p>The data include information about each respondent’s gender, political affiliations, age, income and so on. <code>treatment</code> indicates whether a subject was in the control or treatment group. The key outcomes are their attitudes toward immigration both before (<code>att_start</code>) and after (<code>att_end</code>) the experiment. Type <code><a href="https://rdrr.io/pkg/primer.data/man/trains.html">?trains</a></code> to read the help page for more information about each variable.</p>
 <p>Let’s restrict attention to a subset of the variables we need to answer our questions, as specified in the Preceptor Table. <code>age</code> is the age of the respondent; <code>party</code> is their political party affiliation; <code>liberal</code> is whether they are liberal or not; <code>income</code> is the income of the respondent; <code>treatment</code> specifies whether the respondent was given the treatment of being exposed to Spanish-speakers in the train station; and <code>att_end</code> tell us about the respondent’s attitude toward immigration after the experiment.</p>
 <div class="cell">
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
-<span><span class="va">ch5</span> <span class="op">&lt;-</span> <span class="va">trains</span> <span class="op">|&gt;</span> </span>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ch5</span> <span class="op">&lt;-</span> <span class="va">trains</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">age</span>, <span class="va">att_end</span>, <span class="va">party</span>, <span class="va">income</span>, <span class="va">treatment</span>, <span class="va">liberal</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>It is always smart to look at a some random slices of the data:</p>
 <div class="cell">
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
-<span><span class="va">ch5</span> <span class="op">|&gt;</span> </span>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ch5</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_sample</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 6
@@ -989,8 +985,7 @@ $ ideology_end   &lt;int&gt; 3, 4, 2, 4, 2, 5, 5, 4, 3, 4, 3, 4, 4, 1, 2, 3, 3, 
 </div>
 <p><code>att_end</code> is a measure of person’s attitude toward immigration. A higher number means more conservative, i.e., a more exclusionary stance toward immigration into the United States.</p>
 <div class="cell">
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
-<span><span class="va">ch5</span> <span class="op">|&gt;</span> </span>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ch5</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 115
@@ -1005,8 +1000,7 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
 </div>
 <p>Pay attention to the variable types. Do they make sense? Perhaps. But there are certainly grounds for suspicion. Why is <code>att_end</code> a double rather than an integer? All the values in the data appear to be integers, so there is no benefit to having these variables be doubles. Why is <code>party</code> a character variable and <code>treatment</code> a factor variable? It could be that these are intentional choices made by the creator of the tibble, i.e., us. Or, these could be mistakes. Most likely, these choices are a mixture of sensible and arbitrary. Regardless, it is your responsibility to notice them. You can’t make a good model without looking closely at the data which you are using.</p>
 <div class="cell">
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
-<span><span class="va">ch5</span> <span class="op">|&gt;</span> </span>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ch5</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      age           att_end          party               income      
@@ -2523,14 +2517,12 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
 <p>Recall: a Preceptor Table is table with rows and columns such that, if there is no missing data, all our questions are easy to answer. To answer questions — like “What is the probability that, if a Democrat shows up at the train station, he will be over 50 years old?” — we need a row for every individual at the station.</p>
 <p><em>Always explore your data.</em> Recall the discussion from <a href="04-rubin-causal-model.html"><span>Chapter&nbsp;1</span></a>. <span class="citation" data-cites="enos2014">Enos (<a href="references.html#ref-enos2014" role="doc-biblioref">2014</a>)</span> randomly placed Spanish-speaking confederates on nine train platforms around Boston, Massachusetts. The data that we want to analyze consists of the age and party of each individual on these train platforms based on our variables in our Preceptor Table. These reactions were measured through changes in answers to three survey questions. Load the necessary libraries and look at the data.</p>
 <div class="cell">
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">primer.data</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">primer.data</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://mc-stan.org/rstanarm/">rstanarm</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
-<span><span class="va">trains</span> <span class="op">|&gt;</span></span>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">trains</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">age</span>, <span class="va">party</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 115 × 2
@@ -2551,8 +2543,7 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
 </div>
 <p>As specified in the Preceptor Table we only care about <code>age</code> is the age of the respondent and <code>party</code> is their political party affiliation.</p>
 <div class="cell">
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
-<span><span class="va">trains</span> <span class="op">|&gt;</span></span>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">trains</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">age</span>, <span class="va">party</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -3807,8 +3798,7 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
 <p>Courage allows us to translate math to code.</p>
 <p>To get posterior distributions for our three parameters, we will again use <code><a href="https://mc-stan.org/rstanarm/reference/stan_glm.html">stan_glm()</a></code>, just as we did in <a href="07-two-parameters.html"><span>Chapter&nbsp;4</span></a>.</p>
 <div class="cell">
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
-<span><span class="va">fit_1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/rstanarm/reference/stan_glm.html">stan_glm</a></span><span class="op">(</span><span class="va">age</span> <span class="op">~</span> <span class="va">party</span> <span class="op">-</span> <span class="fl">1</span>, </span>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/rstanarm/reference/stan_glm.html">stan_glm</a></span><span class="op">(</span><span class="va">age</span> <span class="op">~</span> <span class="va">party</span> <span class="op">-</span> <span class="fl">1</span>, </span>
 <span>                    data <span class="op">=</span> <span class="va">trains</span>, </span>
 <span>                    family <span class="op">=</span> <span class="va">gaussian</span>,</span>
 <span>                    seed <span class="op">=</span> <span class="fl">17</span>,</span>
@@ -3822,8 +3812,7 @@ $ liberal   &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
 </ul>
 <p>The resulting output:</p>
 <div class="cell">
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
-<span><span class="va">fit_1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>stan_glm
  family:       gaussian [identity]
@@ -3847,8 +3836,7 @@ sigma 12.3    0.8
 <p><code>partyDemocrat</code> corresponds to <span class="math inline">\(\beta_1\)</span>, the average age of Democrats in the population. <code>partyRepublican</code> corresponds to <span class="math inline">\(\beta_2\)</span>, the average age of Republicans in the population. Since we don’t really care about the posterior distribution for <span class="math inline">\(\sigma\)</span>, we won’t discuss it here. Graphically:</p>
 <!-- Lots to clean up about this plot! -->
 <div class="cell">
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
-<span><span class="va">fit_1</span> <span class="op">|&gt;</span> </span>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_1</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">sigma</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Democrat <span class="op">=</span> <span class="va">partyDemocrat</span>, Republican <span class="op">=</span> <span class="va">partyRepublican</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -4393,8 +4381,7 @@ sigma 12.3    0.8
 <p>The fitted values are the same for all Republicans and for all Democrats, as the model produces one fitted value for each condition. This table shows how just a sample of 8 individuals captures a wide range of residuals, making it difficult to predict the age of a new individual. We can get a better picture of the unmodeled variation in our sample if we plot these three variables for all the individuals in our data.</p>
 <p>The following three histograms show the actual outcomes, fitted values, and residuals of all people in <code>trains</code>:</p>
 <div class="cell">
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
-<span><span class="va">outcome</span> <span class="op">&lt;-</span> <span class="va">ch5</span> <span class="op">|&gt;</span> </span>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">outcome</span> <span class="op">&lt;-</span> <span class="va">ch5</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">age</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>bins <span class="op">=</span> <span class="fl">100</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Age"</span>,</span>
@@ -4443,15 +4430,13 @@ sigma 12.3    0.8
 <p>So far we have only tried our model on people from our data set whose real age we already knew. This is helpful to understand the model, but our ultimate goal is to understand more about the real world, about people we don’t yet know much about. Temperance guides us to make meaningful predictions and to become aware of their known and unknown limitations.</p>
 <p>Start with a simple question, what are the chances that a random Democrat is over 50 years old? First, we create a tibble with the assumed input for our model. In our case the tibble has a variable named “party” which contains a single observation with the value “Democrat”. This is a bit different than <a href="07-two-parameters.html"><span>Chapter&nbsp;4</span></a>.</p>
 <div class="cell">
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
-<span><span class="va">new_obs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>party <span class="op">=</span> <span class="st">"Democrat"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">new_obs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>party <span class="op">=</span> <span class="st">"Democrat"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <!-- Does this D_age work? If so, similar discussion should be used more broadly. Also discuss R_age. Even Person_age for a random person, an analysis which accounts for the mix of Rs and Ds in the sample/population. -->
 <p>Use <code><a href="https://mc-stan.org/rstantools/reference/posterior_predict.html">posterior_predict()</a></code> to create draws from the posterior for this scenario. Note that we have a new posterior distribution under consideration here. The unknown parameter, call it <span class="math inline">\(D_{age}\)</span>, is the age of a Democrat. This could be the age of a randomly selected Democrat from the population or of the next Democrat we meet or of the next Democrat we interview on the train platform. The definition of “population” determines the appropriate interpretation. Yet, regardless, <span class="math inline">\(D_{age}\)</span> is an unknown parameter. But it is not one — like <span class="math inline">\(\beta_1\)</span>, <span class="math inline">\(\beta_2\)</span>, or <span class="math inline">\(\sigma\)</span> — for which we have already created a posterior probability distribution. That is why we need <code><a href="https://mc-stan.org/rstantools/reference/posterior_predict.html">posterior_predict()</a></code>.</p>
 <p><code><a href="https://mc-stan.org/rstantools/reference/posterior_predict.html">posterior_predict()</a></code> takes two arguments: the model for which the simulations should be run, and a tibble indicating for which and how many parameters we want to run these simulations. In this case, the model is the one from Courage and the tibble is the one we just created.</p>
 <div class="cell">
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
-<span><span class="va">pp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/rstantools/reference/posterior_predict.html">posterior_predict</a></span><span class="op">(</span><span class="va">fit_1</span>, newdata <span class="op">=</span> <span class="va">new_obs</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/rstantools/reference/posterior_predict.html">posterior_predict</a></span><span class="op">(</span><span class="va">fit_1</span>, newdata <span class="op">=</span> <span class="va">new_obs</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="op">)</span> </span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">pp</span>, <span class="fl">10</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -4473,8 +4458,7 @@ sigma 12.3    0.8
 </div>
 <p>The result are draws from the posterior distribution of the age of a Democrat. It is important to understand that this is not a concrete person from the <code>trains</code> dataset - the algorithm in <code><a href="https://mc-stan.org/rstantools/reference/posterior_predict.html">posterior_predict()</a></code> simply uses the existing data from <code>trains</code> to estimate this posterior distribution.</p>
 <div class="cell">
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
-<span><span class="va">pp</span> <span class="op">|&gt;</span> </span>
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pp</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">`1`</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes_eval.html">after_stat</a></span><span class="op">(</span><span class="va">count</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">count</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>                   bins <span class="op">=</span> <span class="fl">100</span><span class="op">)</span>  <span class="op">+</span></span>
@@ -4490,8 +4474,7 @@ sigma 12.3    0.8
 </div>
 <p>Once we have the posterior distribution, we can answer (almost) any reasonable question. In this case, the probability that the next Democrat will be over 50 is around 28%.</p>
 <div class="cell">
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">pp</span><span class="op">$</span><span class="va">`1`</span> <span class="op">&gt;</span> <span class="fl">50</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">pp</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">pp</span><span class="op">$</span><span class="va">`1`</span> <span class="op">&gt;</span> <span class="fl">50</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">pp</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.26675</code></pre>
 </div>
@@ -4502,8 +4485,7 @@ sigma 12.3    0.8
 </ul>
 <p>As before we start by creating a tibble with the assumed input. Note that the name of the column (“party”) and the observations (“Democrat”, “Republican”) must always be <em>exactly</em> as they are in the original data set. This tibble as well as our model can then be used as arguments for <code><a href="https://mc-stan.org/rstantools/reference/posterior_predict.html">posterior_predict()</a></code>:</p>
 <div class="cell">
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
-<span><span class="va">newobs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>party <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Democrat"</span>, <span class="st">"Democrat"</span>, <span class="st">"Democrat"</span>, </span>
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">newobs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>party <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Democrat"</span>, <span class="st">"Democrat"</span>, <span class="st">"Democrat"</span>, </span>
 <span>                        <span class="st">"Republican"</span>, <span class="st">"Republican"</span>,<span class="st">"Republican"</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://mc-stan.org/rstantools/reference/posterior_predict.html">posterior_predict</a></span><span class="op">(</span><span class="va">fit_1</span>, newdata <span class="op">=</span> <span class="va">newobs</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -4530,8 +4512,7 @@ sigma 12.3    0.8
 <!-- DK: I am unsure about this code. Would c() in place of c_across() work as well? -->
 <!-- DK: This works without mutate(all...), but it takes much more time than it should because the the pp object still has every column as a ppd object, even after as_tibble(). The rest of the code still works, but takes a 100x longer than it should. Maybe that is a better approach for handling the ppd problem? Just ignore it and take the time hit? -->
 <div class="cell">
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
-<span><span class="va">pp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/rstantools/reference/posterior_predict.html">posterior_predict</a></span><span class="op">(</span><span class="va">fit_1</span>, newdata <span class="op">=</span> <span class="va">newobs</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/rstantools/reference/posterior_predict.html">posterior_predict</a></span><span class="op">(</span><span class="va">fit_1</span>, newdata <span class="op">=</span> <span class="va">newobs</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span></span>
 <span>    <span class="co"># We don't need to rename the columns, but doing so makes the subsequest</span></span>
@@ -4572,8 +4553,7 @@ sigma 12.3    0.8
 </div>
 <p>The plotting code is similar to what we have seen before:</p>
 <div class="cell">
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
-<span><span class="va">pp</span> <span class="op">|&gt;</span>  </span>
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pp</span> <span class="op">|&gt;</span>  </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">age_diff</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes_eval.html">after_stat</a></span><span class="op">(</span><span class="va">count</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">count</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>                   bins <span class="op">=</span> <span class="fl">100</span><span class="op">)</span> <span class="op">+</span></span>
@@ -4594,8 +4574,7 @@ sigma 12.3    0.8
 <p><span class="math display">\[ y_i = \beta_0  + \beta_1 democratic_i + \epsilon_i\]</span> The interpretations of the parameters are different from the prior model. <span class="math inline">\(\beta_0\)</span> is now the average age of Republicans. This is the same interpretation as <span class="math inline">\(\beta_1\)</span> in the original set up. <span class="math inline">\(\beta_1\)</span> is now the difference between the the average age of Republicans and that of Democrats.</p>
 <p>To fit this model, we use the exact same code as before, except without the <code>-1</code> in the <code>formula</code> argument.</p>
 <div class="cell">
-<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
-<span><span class="fu"><a href="https://mc-stan.org/rstanarm/reference/stan_glm.html">stan_glm</a></span><span class="op">(</span><span class="va">age</span> <span class="op">~</span> <span class="va">party</span>, </span>
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://mc-stan.org/rstanarm/reference/stan_glm.html">stan_glm</a></span><span class="op">(</span><span class="va">age</span> <span class="op">~</span> <span class="va">party</span>, </span>
 <span>         data <span class="op">=</span> <span class="va">trains</span>, </span>
 <span>         seed <span class="op">=</span> <span class="fl">98</span>,</span>
 <span>         refresh <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -5256,14 +5235,12 @@ sigma 12.3    0.8
 <p>Recall: a Preceptor Table is table with rows and columns such that, if there is no missing data, all our questions are easy to answer. To answer questions — like “What is the average treatment effect, of exposing people to Spanish-speakers, on their attitudes toward immigration? and What is the largest causal effect which still has a 1 in 10 chance of occurring?” — we need a row for every individual at the station.</p>
 <p><em>Always explore your data.</em> Recall the discussion from <a href="04-rubin-causal-model.html"><span>Chapter&nbsp;1</span></a>. <span class="citation" data-cites="enos2014">Enos (<a href="references.html#ref-enos2014" role="doc-biblioref">2014</a>)</span> randomly placed Spanish-speaking confederates on nine train platforms around Boston, Massachusetts. The data that we want to analyze consists of the age and party of each individual on these train platforms based on our variables in our Preceptor Table. These reactions were measured through changes in answers to three survey questions. Load the necessary libraries and look at the data.</p>
 <div class="cell">
-<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">primer.data</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">primer.data</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://mc-stan.org/rstanarm/">rstanarm</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
-<span><span class="va">trains</span> <span class="op">|&gt;</span></span>
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">trains</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">att_end</span>, <span class="va">treatment</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 115 × 2
@@ -5284,8 +5261,7 @@ sigma 12.3    0.8
 </div>
 <p>As specified in the Preceptor Table we only care about <code>treatment</code> specifies whether the respondent was given the treatment of being exposed to Spanish-speakers in the train station and <code>att_end</code> tell us about the respondent’s attitude toward immigration after the experiment.</p>
 <div class="cell">
-<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
-<span><span class="va">trains</span> <span class="op">|&gt;</span></span>
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">trains</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">att_end</span>, <span class="va">treatment</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -6001,8 +5977,7 @@ sigma 12.3    0.8
 </div>
 <p>With Justice satisfied, we gather our Courage and fit the model. Note that, except for the change in variable names, the code is exactly the same as it was above, in our predictive model for age. <em>Predictive models and causal models use the same math and the same code.</em> The differences, and they are very important, lie in the interpretation of the results, not in their creation.</p>
 <div class="cell">
-<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
-<span><span class="va">fit_2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/rstanarm/reference/stan_glm.html">stan_glm</a></span><span class="op">(</span><span class="va">att_end</span> <span class="op">~</span> <span class="va">treatment</span> <span class="op">-</span> <span class="fl">1</span>, </span>
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/rstanarm/reference/stan_glm.html">stan_glm</a></span><span class="op">(</span><span class="va">att_end</span> <span class="op">~</span> <span class="va">treatment</span> <span class="op">-</span> <span class="fl">1</span>, </span>
 <span>                      data <span class="op">=</span> <span class="va">trains</span>, </span>
 <span>                      seed <span class="op">=</span> <span class="fl">45</span>,</span>
 <span>                      refresh <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span>
@@ -6036,8 +6011,7 @@ sigma 2.8    0.2
 <p>Let’s look at the full posteriors for both <span class="math inline">\(\beta_1\)</span> and <span class="math inline">\(\beta_2\)</span>.</p>
 <!-- DK: Change Parameter levels to something nice. -->
 <div class="cell">
-<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
-<span><span class="va">fit_2</span> <span class="op">|&gt;</span> </span>
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_2</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">sigma</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span>cols <span class="op">=</span> <span class="va">treatmentTreated</span><span class="op">:</span><span class="va">treatmentControl</span>,</span>
@@ -6083,8 +6057,7 @@ sigma 2.8    0.2
 </ul>
 <!-- DK: Below is also not clear. --><p>Chapter <a href="04-rubin-causal-model.html"><span>Chapter&nbsp;1</span></a> defined the <em>average treatment effect</em>. One simple estimator of the average treatment effect is the difference between <span class="math inline">\(\beta_1\)</span> and <span class="math inline">\(\beta_2\)</span>. After all, the definition of <span class="math inline">\(\beta_1\)</span> is the average attitude toward immigration, of the population, for anyone, under exposure to the treatment. So, <span class="math inline">\(\beta_1 - \beta_2\)</span> is the average treatment effect for the population, roughly 1.5. However, estimating the posterior probability distribution for this parameter is tricky, unless we make use of the posterior distributions of <span class="math inline">\(\beta_1\)</span> and <span class="math inline">\(\beta_2\)</span>. With that information, the problem is simple:</p>
 <div class="cell">
-<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
-<span><span class="va">fit_2</span> <span class="op">|&gt;</span> </span>
+<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_2</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>ate <span class="op">=</span> <span class="va">treatmentTreated</span> <span class="op">-</span> <span class="va">treatmentControl</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">ate</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
@@ -6104,8 +6077,7 @@ sigma 2.8    0.2
 <!-- Establish that approximate 1.5 difference can be seen by the attitude posterior from courage -->
 <p>We can use <code><a href="https://mc-stan.org/rstantools/reference/posterior_epred.html">posterior_epred()</a></code> to answer this question. Create a tibble and use it as we have done before:</p>
 <div class="cell">
-<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
-<span><span class="va">newobs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>treatment <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Treated"</span>, <span class="st">"Control"</span><span class="op">)</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">newobs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>treatment <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Treated"</span>, <span class="st">"Control"</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">pe</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/rstantools/reference/posterior_epred.html">posterior_epred</a></span><span class="op">(</span><span class="va">fit_2</span>, <span class="va">newobs</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>    <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
@@ -6131,8 +6103,7 @@ sigma 2.8    0.2
 </div>
 <p>The posterior probability distribution created with <code><a href="https://mc-stan.org/rstantools/reference/posterior_epred.html">posterior_epred()</a></code> is the same as the one produced by manipulating the parameters directly.</p>
 <div class="cell">
-<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
-<span><span class="va">pe</span> <span class="op">|&gt;</span> </span>
+<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pe</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">ate</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes_eval.html">after_stat</a></span><span class="op">(</span><span class="va">count</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">count</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>                   bins <span class="op">=</span> <span class="fl">100</span><span class="op">)</span> <span class="op">+</span></span>
@@ -6155,8 +6126,7 @@ sigma 2.8    0.2
 <p>Consider the result of <code><a href="https://mc-stan.org/rstantools/reference/posterior_predict.html">posterior_predict()</a></code> for two people, one treated and one control. Take the difference.</p>
 <!-- DK: This goes a bit fast. Slow down. -->
 <div class="cell">
-<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
-<span><span class="va">pp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/rstantools/reference/posterior_predict.html">posterior_predict</a></span><span class="op">(</span><span class="va">fit_2</span>, </span>
+<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/rstantools/reference/posterior_predict.html">posterior_predict</a></span><span class="op">(</span><span class="va">fit_2</span>, </span>
 <span>                        newdata <span class="op">=</span> <span class="va">newobs</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>te <span class="op">=</span> <span class="va">`1`</span> <span class="op">-</span> <span class="va">`2`</span><span class="op">)</span></span>
@@ -6181,8 +6151,7 @@ sigma 2.8    0.2
 </div>
 <p>Create a graphic:</p>
 <div class="cell">
-<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
-<span><span class="va">pp</span> <span class="op">|&gt;</span> </span>
+<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pp</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">te</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes_eval.html">after_stat</a></span><span class="op">(</span><span class="va">count</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">count</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>                   bins <span class="op">=</span> <span class="fl">100</span><span class="op">)</span>  <span class="op">+</span></span>
@@ -6199,8 +6168,7 @@ sigma 2.8    0.2
 <p>In this case, we are looking at the distribution of the treatment effect for a single individual. This is very different than the <em>average</em> treatment effect. In particular, it is much more variable. We are looking at one row in the Preceptor Table. For a single individual, <code>att_end</code> can be anywhere from 3 to 15, both under treatment and under control. The causal effect — the difference between the two potential outcomes can, in theory, be anywhere from -12 to +12. Such extreme values are rare, but not impossible.</p>
 <p>The question, however, was interested in the value at the 90th percentile.</p>
 <div class="cell">
-<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">pp</span><span class="op">$</span><span class="va">te</span>, prob <span class="op">=</span> <span class="fl">0.9</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">pp</span><span class="op">$</span><span class="va">te</span>, prob <span class="op">=</span> <span class="fl">0.9</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     90% 
 6.524027 </code></pre>
@@ -6807,14 +6775,12 @@ sigma 2.8    0.2
 <p>Recall: a Preceptor Table is table with rows and columns such that, if there is no missing data, all our questions are easy to answer. To answer questions — like “What would you expect the income to be for a 40-year old?” — we need a row for every individual at the station.</p>
 <p><em>Always explore your data.</em> Recall the discussion from <a href="04-rubin-causal-model.html"><span>Chapter&nbsp;1</span></a>. <span class="citation" data-cites="enos2014">Enos (<a href="references.html#ref-enos2014" role="doc-biblioref">2014</a>)</span> randomly placed Spanish-speaking confederates on nine train platforms around Boston, Massachusetts. The data that we want to analyze consists of the age and party of each individual on these train platforms based on our variables in our Preceptor Table. These reactions were measured through changes in answers to three survey questions. Load the necessary libraries and look at the data.</p>
 <div class="cell">
-<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">primer.data</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">primer.data</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://mc-stan.org/rstanarm/">rstanarm</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
-<span><span class="va">trains</span> <span class="op">|&gt;</span></span>
+<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">trains</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">age</span>, <span class="va">income</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 115 × 2
@@ -6835,8 +6801,7 @@ sigma 2.8    0.2
 </div>
 <p>As specified in the Preceptor Table we only care about <code>age</code> is the age of the respondent and <code>income</code> is the income of the respondent.</p>
 <div class="cell">
-<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
-<span><span class="va">trains</span> <span class="op">|&gt;</span></span>
+<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">trains</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">age</span>, <span class="va">income</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -7496,8 +7461,7 @@ y_1 - y_2 = \beta_1\]</span></p>
 </div>
 <p>The use of <code><a href="https://mc-stan.org/rstanarm/reference/stan_glm.html">stan_glm()</a></code> is the same as usual.</p>
 <div class="cell">
-<div class="sourceCode" id="cb56"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
-<span><span class="va">fit_3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/rstanarm/reference/stan_glm.html">stan_glm</a></span><span class="op">(</span><span class="va">income</span> <span class="op">~</span> <span class="va">age</span>, </span>
+<div class="sourceCode" id="cb56"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/rstanarm/reference/stan_glm.html">stan_glm</a></span><span class="op">(</span><span class="va">income</span> <span class="op">~</span> <span class="va">age</span>, </span>
 <span>                  data <span class="op">=</span> <span class="va">trains</span>, </span>
 <span>                  seed <span class="op">=</span> <span class="fl">28</span>,</span>
 <span>                  refresh <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span>
@@ -7554,8 +7518,7 @@ sigma 74121.3  4897.0
 <p><em>What would you expect the income to be for a random 40 year old?</em></p>
 <p>Given that we are looking for an expected value, we use <code><a href="https://mc-stan.org/rstantools/reference/posterior_epred.html">posterior_epred()</a></code>.</p>
 <div class="cell">
-<div class="sourceCode" id="cb58"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
-<span><span class="va">newobs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>age <span class="op">=</span> <span class="fl">40</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb58"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">newobs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>age <span class="op">=</span> <span class="fl">40</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">pe</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/rstantools/reference/posterior_epred.html">posterior_epred</a></span><span class="op">(</span><span class="va">fit_3</span>, newdata <span class="op">=</span> <span class="va">newobs</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="op">)</span> </span>
@@ -7580,8 +7543,7 @@ sigma 74121.3  4897.0
 </div>
 <p>Plotting is the same as always.</p>
 <div class="cell">
-<div class="sourceCode" id="cb60"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
-<span><span class="va">pe</span> <span class="op">|&gt;</span> </span>
+<div class="sourceCode" id="cb60"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pe</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">`1`</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes_eval.html">after_stat</a></span><span class="op">(</span><span class="va">count</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">count</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>                   bins <span class="op">=</span> <span class="fl">100</span><span class="op">)</span>  <span class="op">+</span></span>
@@ -8230,14 +8192,12 @@ sigma 74121.3  4897.0
 <p>Recall: a Preceptor Table is table with rows and columns such that, if there is no missing data, all our questions are easy to answer. To answer questions — like “Among all people who have an income $100,000, what proportion are liberal? and Assume we have a group of eight people, two of whom make $100,000, two $200,000, two $300,000 and two $400,000. How many will be liberal?” — we need a row for every individual at the station.</p>
 <p><em>Always explore your data.</em> Recall the discussion from <a href="04-rubin-causal-model.html"><span>Chapter&nbsp;1</span></a>. <span class="citation" data-cites="enos2014">Enos (<a href="references.html#ref-enos2014" role="doc-biblioref">2014</a>)</span> randomly placed Spanish-speaking confederates on nine train platforms around Boston, Massachusetts. The data that we want to analyze consists of the age and party of each individual on these train platforms based on our variables in our Preceptor Table. These reactions were measured through changes in answers to three survey questions. Load the necessary libraries and look at the data.</p>
 <div class="cell">
-<div class="sourceCode" id="cb61"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">primer.data</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb61"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">primer.data</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://mc-stan.org/rstanarm/">rstanarm</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb62"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
-<span><span class="va">trains</span> <span class="op">|&gt;</span></span>
+<div class="sourceCode" id="cb62"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">trains</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">liberal</span>, <span class="va">income</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 115 × 2
@@ -8258,8 +8218,7 @@ sigma 74121.3  4897.0
 </div>
 <p>As specified in the Preceptor Table we only care about <code>liberal</code> is whether they are liberal or not and <code>income</code> is the income of the respondent.</p>
 <div class="cell">
-<div class="sourceCode" id="cb64"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
-<span><span class="va">trains</span> <span class="op">|&gt;</span></span>
+<div class="sourceCode" id="cb64"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">trains</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">liberal</span>, <span class="va">income</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -8950,8 +8909,7 @@ sigma 74121.3  4897.0
 <span class="header-section-number">5.5.3</span> Courage</h3>
 <p>Fitting a logistic model is easy. We use all the same arguments as usual, but with <code>family = binomial</code> added.</p>
 <div class="cell">
-<div class="sourceCode" id="cb66"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
-<span><span class="va">fit_4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/rstanarm/reference/stan_glm.html">stan_glm</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">ch5</span>,</span>
+<div class="sourceCode" id="cb66"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/rstanarm/reference/stan_glm.html">stan_glm</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">ch5</span>,</span>
 <span>                  formula <span class="op">=</span> <span class="va">liberal</span> <span class="op">~</span> <span class="va">income</span>,</span>
 <span>                  family <span class="op">=</span> <span class="va">binomial</span>,</span>
 <span>                  refresh <span class="op">=</span> <span class="fl">0</span>,</span>
@@ -8959,8 +8917,7 @@ sigma 74121.3  4897.0
 </div>
 <p>Having fit the model, we can look at a printed summary. Note the use of the <code>digits</code> argument to display more digits in the printout.</p>
 <div class="cell">
-<div class="sourceCode" id="cb67"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">fit_4</span>, digits <span class="op">=</span> <span class="fl">6</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb67"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">fit_4</span>, digits <span class="op">=</span> <span class="fl">6</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>stan_glm
  family:       binomial [logit]
@@ -8984,8 +8941,7 @@ income      -0.000006  0.000003
 <p><em>Among all people who have an income $100,000, what proportion are liberal?</em></p>
 <p>Although our model is now logistic, all the steps in answering a question like this are the same as with a linear/guassian model.</p>
 <div class="cell">
-<div class="sourceCode" id="cb69"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
-<span><span class="va">newobs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>income <span class="op">=</span> <span class="fl">100000</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb69"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">newobs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>income <span class="op">=</span> <span class="fl">100000</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">pe</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/rstantools/reference/posterior_epred.html">posterior_epred</a></span><span class="op">(</span><span class="va">fit_4</span>, </span>
 <span>                      newdata <span class="op">=</span> <span class="va">newobs</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
@@ -8993,8 +8949,7 @@ income      -0.000006  0.000003
 </div>
 <p><code>pe</code> is a tibble with a single vector. That vector is 4,000 draws from the posterior distribution of proportion of people, among those who make $100,000, who are liberal. The population proportion is the same thing as the probability for any single individual.</p>
 <div class="cell">
-<div class="sourceCode" id="cb70"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
-<span><span class="va">pe</span> <span class="op">|&gt;</span> </span>
+<div class="sourceCode" id="cb70"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pe</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">`1`</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes_eval.html">after_stat</a></span><span class="op">(</span><span class="va">count</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">count</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>                   bins <span class="op">=</span> <span class="fl">100</span><span class="op">)</span>  <span class="op">+</span></span>
@@ -9013,8 +8968,7 @@ income      -0.000006  0.000003
 <p><em>Assume we have a group of eight people, two of whom make $100,000, two $200,000, two $300,000 and two $400,000. How many will be liberal?</em></p>
 <p>Because we are trying to predict the outcome for a small number of units, we use <code><a href="https://mc-stan.org/rstantools/reference/posterior_predict.html">posterior_predict()</a></code>. The more complex the questions we ask, the more care we need to devote to making the <code>newobs</code> tibble. We use the same <code><a href="https://dplyr.tidyverse.org/reference/rowwise.html">rowwise()</a></code> and <code><a href="https://dplyr.tidyverse.org/reference/c_across.html">c_across()</a></code> tricks as earlier in the chapter.</p>
 <div class="cell">
-<div class="sourceCode" id="cb71"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
-<span><span class="va">newobs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>income <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">100000</span>, <span class="fl">2</span><span class="op">)</span>,</span>
+<div class="sourceCode" id="cb71"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">newobs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>income <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">100000</span>, <span class="fl">2</span><span class="op">)</span>,</span>
 <span>                            <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">200000</span>, <span class="fl">2</span><span class="op">)</span>,</span>
 <span>                            <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">300000</span>, <span class="fl">2</span><span class="op">)</span>,</span>
 <span>                            <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">400000</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
@@ -9033,8 +8987,7 @@ Caused by warning:
 ! Using `c_across()` without supplying `cols` was deprecated in dplyr 1.1.0.
 ℹ Please supply `cols` instead.</code></pre>
 </div>
-<div class="sourceCode" id="cb73"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
-<span><span class="va">pp</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb73"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pp</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4,000 × 9
 # Rowwise: 
@@ -9060,8 +9013,7 @@ Caused by warning:
 <p>We can simplify this draw by taking the sum, or doing anything else which might answer the question with which we are confronted. Posterior distributions are as flexible as individual numbers. We can, more or less, just use algebra to work with them.</p>
 <p>Graphically we have:</p>
 <div class="cell">
-<div class="sourceCode" id="cb75"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
-<span><span class="va">pp</span> <span class="op">|&gt;</span> </span>
+<div class="sourceCode" id="cb75"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pp</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">total</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes_eval.html">after_stat</a></span><span class="op">(</span><span class="va">count</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">count</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>                   bins <span class="op">=</span> <span class="fl">100</span><span class="op">)</span>  <span class="op">+</span></span>
