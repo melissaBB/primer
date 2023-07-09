@@ -8,7 +8,7 @@ These are the key concepts from the *Primer*. You should apply them whenever you
 
 **Units**, **outcomes** and **covariates** are important parts of every data science model. Causal, but not predictive, models also include **treatments**, which are just covariates which we can manipulate. The QoI determines the units and outcomes for your model.
 
-**Preceptor Table** is a table of data with rows and columns such that, if there is no missing data, it is easy to estimate the quantity of interest.
+**Preceptor Table** is the smallest possible table of data with rows and columns such that, if there is no missing data, then it is easy to estimate the quantity of interest.
 
 [**Potential Outcome**](https://www.econometrics-with-r.org/13-1-poceaie.html) is the outcome for an individual under a potential treatment.
 

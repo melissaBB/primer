@@ -12,9 +12,15 @@ library(gt)
 library(gtsummary)
 ```
 
-<!-- Link for MathJax: https://www.mathjax.org/#demo (good for testing if math stuff looks good)-->
+
+Make things more like later chapters in terms of the Preceptor Table, Population Table and key assumptions. Consider dropping the Simple models sections. Add other stuff?
+
+
+
 
 <!-- Older comments: -->
+
+<!-- Link for MathJax: https://www.mathjax.org/#demo (good for testing if math stuff looks good)-->
 
 <!-- Change the Multiple Units Preceptor Table to only show reality. That means, for both Data and for Preceptor, we can only see one of treatment and control values and never the causal effect. -->
 
@@ -76,48 +82,19 @@ By showing what the world would have been like without George, we get an idea of
 
 ## Preceptor Table
 
-A **Preceptor Table** is a table with rows and columns such that, if none of the data is missing, the thing we want to know is trivial to calculate. Preceptor Tables^[The term Preceptor Table is, perhaps unsurprisingly, unique to this textbook. We hope you find it useful.] vary in the number of their rows and columns. We use question marks to indicate missing data in a Preceptor Table. The rows in the Preceptor Table are the *units* --- people, galaxies, oak trees --- which are the subjects of interest. Even the simplest Preceptor Table will have two columns. The first is an *ID* column which serves to label each unit. The second column is the *outcome* of interest, the variable we are trying to predict/understand/change.
+We would not need data science if we (and our bosses, colleagues, and clients) did not have questions. Every data science project starts with a question. Examples:
 
-Assume that there are five adult brothers and you are given four of their heights. What is the average height of all five brothers? Consider a Preceptor Table for this problem:
+*What is the average height of a student at New College of Florida?*
 
-```{r}
-#| echo: false
-tibble(ID = c("Robert", "Andy", "Beau", "Ishan", "Nicholas"),
-       Heights = c("178", "?", "172", "173", "165")) |>
-  
-  # Then, we use the gt function to make it pretty
-  
-  gt() |>
-  tab_header(title = "Preceptor Table") |> 
-  cols_label(ID = md("ID"),
-                Heights = "Height (cm)") |>
-  tab_style(cell_borders(sides = "right"),
-            location = cells_body(columns = c(ID))) |>
-  tab_style(cell_text(align = "left", v_align = "middle"),
-            locations = cells_column_labels(columns = c(ID))) |>
-  cols_align(align = "center", columns = everything()) |>
-  cols_align(align = "left", columns = c(ID)) |>
-  tab_spanner(label = "Outcome", columns = c(Heights)) |> 
-  tab_style(style = cell_text(v_align = "bottom"),
-            locations = cells_column_labels())
+*What are the chances that, out of the next four New College students we meet, one will be taller than 183 centimeters?*
 
-```
-
-In this case, we have a row for each brother and a column for their heights. An individual *unit* is a brother. An *outcome* is that brother's height. We will always have an ID column in Preceptor Tables so that we can identify different units. It is always furthest to the left. In addition to an ID column, we will always have an Outcome column displaying the main variable of interest. For simplicity, we often leave out the ID column in this chapter. But it is always there in the background. It must be possible for us to tell apart the different units.
-
-To calculate the average height, we need to know Andy's height -- our missing data. Keep in mind that there is a *truth* out there, a state of the world independent of our knowledge of it. Andy is a specific height. If we had a complete Preceptor Table, with no missing values, we could calculate the average height of the brothers exactly. No fancy statistics would be needed, just arithmetic.
-
-Implicitly in every Preceptor Table is a notion of time. When, exactly, are we making this prediction? Since heights of adults change very, very slowly, we can ignore for this problem whether or not we are making this prediction tomorrow or a year from now. But, if we really want to know the average height of the brothers 40 years from now, we would need to adjust our estimate since people shrink with age.
-
-### New College Height
-
-Consider a more complex problem. We have the heights of 100 New College of Florida students, and from that we want to know the average height of all students in the school.
+A **Preceptor Table**^[The term Preceptor Table is, perhaps unsurprisingly, unique to this textbook. We hope you find it useful.] is the smallest possible table with rows and columns such that, if none of the data is missing, then the thing we want to know is easy to calculate. Consider:
 
 ```{r}
 #| echo: false
 tibble(ID = c("Student 1", "Student 2", "...", "Student 47", "Student 48",
               "...", "Student 325", "Student 326", "...", "Student 670"),
-       Heights = c("?", "?", "...", "172", "?", "...", "?", "162", "...", "?")) |>
+       Heights = c("190", "160", "...", "172", "176", "...", "180", "162", "...", "185")) |>
   
   # Then, we use the gt function to make it pretty
   
@@ -136,23 +113,53 @@ tibble(ID = c("Student 1", "Student 2", "...", "Student 47", "Student 48",
             locations = cells_column_labels())
 ```
 
-Again, are these 100 students randomly sampled? Could we estimate the 90th percentile of height in the student population? These questions are more complicated, and we might be less confident in our best guess. Note, also, that we will sometimes not know exactly how many rows there are in the Preceptor Table. In that case, we would use "Student N" as the last ID, where N is the total number of students at New College.
+If we had a table with the height of every New College student, then statistics like the average would be easy to calculate. It would also be straightforward, using simulation, to estimate the the chances of various scenarios, as in our question.
+
+Even the simplest Preceptor Table will have two columns. The first is an *ID* column which serves to label each unit. The second column is the *outcome* of interest, the variable we are trying to predict/understand/change. The rows of the Preceptor Table are the *units*, the objects on which the outcome is measured. 
+
+To answer questions, we need data. Consider:
+
+```{r}
+#| echo: false
+tibble(ID = c("Student 11", "Student 32", "Student 47", "Student 68",
+              "Student 425", "Student 436", "Student 570"),
+       Heights = c("160", "189",  "172", "170",  "175", "162",  "188")) |>
+  
+  # Then, we use the gt function to make it pretty
+  
+  gt() |>
+  tab_header(title = "Data for New College Students") |> 
+  cols_label(ID = md("ID"),
+                Heights = "Height (cm)") |>
+  tab_style(cell_borders(sides = "right"),
+            location = cells_body(columns = c(ID))) |>
+  tab_style(style = cell_text(align = "left", v_align = "middle"), 
+            locations = cells_column_labels(columns = c(ID))) |>
+  cols_align(align = "center", columns = everything()) |>
+  cols_align(align = "left", columns = c(ID)) |>
+  tab_spanner(label = "Outcome", columns = c(Heights)) |> 
+  tab_style(style = cell_text(v_align = "bottom"),
+            locations = cells_column_labels())
+```
+
+The notion of time is important, both in our Preceptor Table and in our data. To what moment in time do the questions refer? At what moment in time was our data collected? Those two moments are almost always different. Our data comes from some point in the past, even if it was collected yesterday. Our questions usually refer to *now* or to an indeterminate moment in the future.
+
+In order to use this data to answer our questions, we need to consider the concept of *validity*. Is the data we have *valid* for answering our questions? Height might seem to make this simple, but, even here, complications can arise. For example, was height measured with shoes on or off?
+
 
 ## Population Table
 
-The *Population Table* is distinct from the Preceptor Table. The aim of the Population Table^[The term Population Table is, perhaps unsurprisingly, unique to this textbook. We hope you find it useful.] is to illustrate the broader population in which we are interested, while also including the data from our Preceptor Table and from our dataset. This table has three sources of data: the data for units we *want to have* (the Preceptor Table), the data for units which we *actually have* (our actual data), and the data for units we *do not care about* (the rest of the population, not included in the data or the Preceptor Table).
+We create the *Population Table*^[The term Population Table is, perhaps unsurprisingly, unique to this textbook. We hope you find it useful.] by combining the Preceptor Table and the data. The aim of the Population Table is to illustrate the broader population in which we are interested. This table has three sources of data: the data for units we *want to have* (the Preceptor Table), the data for units which we *actually have* (our data), and the data for units we *do not care about* (the rest of the population, not included in the data or the Preceptor Table).
 
-The rows in the Preceptor Table contain the information that we would want to know in order to answer our questions. These rows contain entries for our covariates (year and age) but they do not contain any outcome results (height). We are trying to answer questions about the height of New College students in 2023, so our Age column will read somewhere between 15 and 27 and our Year entries for these rows will read "2023."
 
-<!-- Sloppy use of both year (to mean the variable) and Year (to mean the column in the table). -->
 
-Our actual data rows contain the information that we do know. These rows contain entries for both our covariates and the outcomes. In this case, the actual data comes from a survey of New College students in 2015, so Age value for those students --- none of whom are still at New College --- will be their ages in 2015, and the Year value for these rows will be "2015."
+<!-- Sloppy use of both year (to mean the variable) and Year (to mean the column in the table). Should this be in italics or quotes or backticks? -->
 
-<!-- Should we be quoting 2015? -->
+We are trying to answer questions about the height of New College students in 2023, so the "year" entries for these rows will read "2023." In this case, the actual data comes from a survey of New College students in 2015.
 
 <!-- Do we need to add ID to this table? To any/all Population Tables? -->
 
-Our population rows contain no data. These are subjects which fall within our population, but for which we have no data. As such, all values, other than year, are missing.
+The "Source" column refers to the source of the rows in the Population Table. The rows with no "Source" are from the larger population from which, by assumption, both the Preceptor Table and the data are drawn. As such, all values, other than year, are missing.
 
 ```{r}
 #| echo: false
@@ -161,7 +168,6 @@ tibble(source = c("...", "...",  "Data", "Data",
                   "Preceptor Table", "Preceptor Table", "...", "...", "..."),
        year = c("2010", "...", "2015", "2015", 
                 "...","2018", "...", "2023", "2023", "...", "2030", "2030"),
-       age = c("...", "...", "18", "23","...", "...","...","19", "21","...", "...", "..."),
        height = c("...", "...", "180", "163", "...", "...", "...","?", "?", "...", "...", "...")) |> 
   
   # Then, we use the gt function to make it pretty
@@ -170,7 +176,6 @@ tibble(source = c("...", "...",  "Data", "Data",
   tab_header(title = "Population Table") |> 
   cols_label(source = md("Source"),
              year = md("Year"),
-             age = md("Age"),
              height = md("Height")) |>
   tab_style(cell_borders(sides = "right"),
             location = cells_body(columns = c(source))) |>
@@ -181,11 +186,9 @@ tibble(source = c("...", "...",  "Data", "Data",
   fmt_markdown(columns = everything())  
 ```
 
-Implicit in the Preceptor Table is a notion of time. Now that we can see our actual data compared with our greater population and our desired data, we must expand our observations. That is to say that, given our data is sourced from 2015 and our desired data is from 2023, we must include a greater time span in our population.
+The question marks indicate the data which we do not know but which we need in order to answer the questions.
 
-<!-- AWK phrasing above and, even more, below. -->
-
-As such, we will see that rows from our larger population may include anywhere between 2010 and 2030. This is a ballpark range. Height is relatively stable, so it is reasonable to assume that the population is stable ove a longer time period.
+Implicit in the Preceptor Table is a notion of time. Now that we can see our actual data compared with our greater population and our desired data, we must expand our observations. That is to say that, given our data is sourced from 2015 and our desired data is from 2023, we should include, by assumption, a greater time span in our population.
 
 ## Causal effect
 
@@ -349,6 +352,8 @@ Take color-blindness for example. Say we are interested in how color-blindness i
 The slogan of "No causation without manipulation" may at first seem straight-forward, but it is clearly not so simple. Questions about race, sex, gender and genetics are very complex and should be considered with care.
 
 ### Multiple units
+
+<!-- Do these numbers work? Maybe change Diego to 7 and Yao to 9 as well. Otherwise, you end u with results which are outside the 3 to 15 range. If you move Diego up 4 and Yao down 4, then all the math still works. Right?  -->
 
 Generally, a study has many individuals (or, more broadly, "units") who each have their own potential outcomes. More notation is needed to allow us to differentiate between different units.
 
