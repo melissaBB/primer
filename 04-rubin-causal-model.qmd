@@ -13,9 +13,9 @@ library(gtsummary)
 ```
 
 
-Make things more like later chapters in terms of the Preceptor Table, Population Table and key assumptions. Consider dropping the Simple models sections. Add other stuff?
+<!-- DK: Consider dropping the Simple models sections. Add other stuff? -->
 
-
+<!-- DK: Need to update the tutorial, given the reorganization. -->
 
 
 <!-- Older comments: -->
@@ -514,6 +514,220 @@ predictive_table
 
 <!-- This section ends awkwardly! Add some words. This is important! -->
 
+## Assumptions
+
+In this section, we will explore four topics: validity, stability, representativeness and unconfoundedness.
+
+Our earlier Population Table familiarized us with the three sources of data for which we are making inferences: the Preceptor Table, our data, and the greater population from which both are drawn. Consider a new Population Table.
+
+<!-- Seems like we should add ID and time columns, place them toward the left and then put year there. Year is *not* just another covariate. -->
+
+```{r}
+#| echo: false
+# First, we create a tibble with the values we want for the table
+
+tibble(source = c("...", "...", "...",
+                  "Data", "Data", "...", 
+                  "Preceptor Table", "Preceptor Table", "...",
+                  "...", "..."), 
+       year = c("2010", "2010", "...",
+                "2012", "2012", "...",
+                "2023", "2023", "...",
+                "2023", "2023"),
+       sex = c("?", "?", "...",
+               "Male", "Female", "...",
+               "Female", "Female", "...",
+               "?", "?"),
+       ytreat = c("?", "?", "...",
+                  "13", "?", "...",
+                  "?", "?", "...",
+                  "?", "?"),
+       ycontrol = c("?", "?", "...",
+                    "?", "9", "...",
+                    "?", "?", "...",
+                    "?", "?"),
+       ydiff = c("?", "?", "...",
+                 "?", "?", "...",
+                 "?", "?", "...", "?", "?")) %>%
+  
+  # Then, we use the gt function to make it pretty
+  
+  gt() %>%
+    tab_header(title = "Population Table") %>% 
+    cols_label(source = md("Source"),
+               year = md("Year"),
+               sex = md("Sex"),
+               ytreat = md("$$Y_t(u)$$"),
+               ycontrol = md("$$Y_c(u)$$"),
+               ydiff = md("$$Y_t(u) - Y_c(u)$$")) %>%
+    cols_move(columns = c(ytreat, ycontrol), after = c(source)) %>%
+    tab_style(cell_borders(sides = "right"),
+              location = cells_body(columns = c(source))) %>%
+    tab_style(style = cell_text(align = "left", v_align = "middle", size = "large"), 
+              locations = cells_column_labels(columns = c(source))) %>%
+    cols_align(align = "center", columns = everything()) %>%
+    cols_align(align = "left", columns = c(source)) %>%
+    tab_spanner(label = "Outcomes", c(ytreat, ycontrol)) %>%
+    tab_spanner(label = "Causal Effect", c(ydiff)) %>% 
+    tab_spanner(label = "Covariates", c(sex)) |> 
+  tab_style(style = cell_text(v_align = "bottom"),
+            locations = cells_column_labels())         
+```
+
+The rows from our data have covariates and two potential outcomes. (By definition, we only know the value for one of the potential outcomes for each unit.) The rows from the Preceptor Table include covariates, but not outcomes. (We have no outcome data for 2023, but we will, in theory, be given the sex of any units about whom we need to make inferences.) The rows from our greater population include no data, as we know nothing about these units.
+
+<!-- More detail here? Calling it a Population Table and having only some rows with "Population" as a source seems suspect. -->
+
+### Validity
+
+<!-- Need a gif of three sources be stacked together, but only if validity is true. -->
+
+To understand *validity* in regards to the Population Table, we must first recognize an inherent flaw in any experiment design: *no two units receive exactly the same treatment*.
+
+Consider our Spanish-speakers train experiment. The units on the Spanish-speaking platform received the same treatment, right? No!
+
+Consider different volume levels, measured in decibels (dB), at which Spanish is being spoken.
+
+```{r}
+#| echo: false
+# First, we create a tibble with the values we want for the table
+
+tibble(subject = c("Yao", "Emma", "Cassidy", "Tahmid", "Diego"),
+       ytreat = c("13", "?", "?", "?", "?"),
+       ytreat1001 = c("?", "11", "?", "?", "?"),
+       ytreat1002 = c("?", "?", "?", "?", "6"),
+       yellipsis = c("?", "?", "?", "?", "?"),
+       ycontrol = c("?", "?", "10", "12", "?")) %>%
+  
+  # Then, we use the gt function to make it pretty
+  
+  gt() %>%
+    cols_label(subject = md("ID"),
+               ytreat = md("$$Y_{\\text{58 dB}}(u)$$"),
+               ytreat1001 = md("$$Y_{\\text{59 dB}}(u)$$"),
+               ytreat1002 = md("$$Y_{\\text{60 dB}}(u)$$"),
+               yellipsis = md("$$Y_{\\text{61 dB}}(u)$$"),
+               ycontrol = md("$$Y_c(u)$$")) %>%
+    tab_style(cell_borders(sides = "right"),
+              location = cells_body(columns = c(subject))) %>%
+    tab_style(style = cell_text(align = "left", v_align = "middle", size = "large"), 
+              locations = cells_column_labels(columns = c(subject))) %>%
+    cols_align(align = "center", columns = everything()) %>%
+    cols_align(align = "left", columns = c(subject)) %>%
+    tab_spanner(label = "Outcomes", 
+                c(ytreat, ytreat1001, ytreat1002, yellipsis, ycontrol)) %>%
+    fmt_markdown(columns = everything()) |> 
+  tab_style(style = cell_text(v_align = "bottom"),
+            locations = cells_column_labels())
+```
+
+Certain units heard the Spanish-speakers at higher volumes than other units. And it is entirely possible that the volume of the speech affects the outcome. There is also the issue of the time spent on the platform. Maybe Yao tends to run late, and only hears the Spanish-speakers for thirty seconds. Emma, on the other hand, arrives early. She hears the Spanish-speakers for fifteen minutes before the train arrives. Thus, despite the fact that Emma and Yao are in the same treatment --- that is, hearing Spanish on the platform --- they had very different versions of that treatment.
+
+There are an infinite number of possible treatments. Indeed, it is a virtual certainty that *every treated unit received a different treatment.* However, *validity*, if a reasonable assumption in this specific example, allows us to pretend/assume that Yao, Emma and Diego all received the same treatment. We place all their treated outcomes in the same column. Only if this is true (or true'ish) can we estimate an average treatment effect.
+
+More commonly, we simply assume that all treated units received the same treatment. *Validity allows us to ignore variation in treatment.* In fact, concerns about validity apply to all the variables (covariates and outcomes), not just the treatments. If the columns in the data are not the same thing as the columns in the Preceptor Table, you have a problem. Validity is the assumption which allows us to create the Population Table.
+
+The validity assumption is most important in that, if true, we can consider treatments and other variables to be similar (enough) across time that we can "stack" the data and the Preceptor Table into one, unified, Population Table. Validity means that "exposure to Spanish-speakers" in 2012 means the same thing as "exposure to Spanish-speakers" in 2023. Strictly speaking, this must be false! For example, we are unlikely to be able to hire the same Spanish speakers now as we did a decade ago. Moreover, it is impossible for them to say the exact same words *now*, at the exact same volume, as they did in 2012. Validity allows us to assume that the treatment, and other variables, are close enough.
+
+### Stability
+
+Stability means that the relationship between the columns is the same for three categories of rows: the data, the Preceptor Table, and the larger population from which both are drawn.
+
+<!-- Which height example? -->
+
+In our height example, it is much easier to assume stability over a greater period of time. Changes in global height occur extremely slowly, so height being stable across a span of 20 years is reasonable to assume. Can we say the same for this example, where we are looking at attitudes on immigration?
+
+With something like political ideology, it is much harder to assert that the relationships among the data collected in 2010 would be similar to the relationships among the data collected in 2030. Our data, for instance, was collected in 2012. We want to make predictions for 2023. And, frankly, it may be difficult to argue that our results would be stable if we re-conducted the experiment.
+
+When we are confronted with this uncertainty, we can consider making our timeframe smaller. However, we would still need to assume stability from 2012 (time of data collection) to today. *Stability allows us to ignore the passage of time.*
+
+### Representativeness
+
+<!-- Should we use the word unbiasedness instead? -->
+
+Representativeness, or the lack thereof, concerns two relationship, among the rows in the Population Table. The first is between the Precetor Table and the other rows. The second is between our data and the other rows. Ideally, we would like both the Precepor Table *and* our data to be random samples from the population. Sadly, this is almost never the case.
+
+Does the train experiment allow us to calculate a causal effect for people who commute by cars? Can we calculate the causal effect for people in New York City? Before we generalize to broader populations we have to consider if our experimental estimates are applicable beyond our experiment. Maybe we think that commuters in Boston and New York are similar enough to generalize our findings. We could also conclude that people who commute by car are fundamentally different than people who commute by train. If that was true, then we could not say our estimate is true for all commuters because our sample does not accurately *represent* the broader group to which we want to generalize.
+
+<!-- Generally: *if there was no chance that a certain type of person would have been in this experiment, we cannot make an assumption for that person*. Hmm. Include this? -->
+
+<!-- Below is awkward and poorly done. -->
+
+<!-- Get into missing data mechanism?  -->
+
+<!-- Additionally, representativeness can also consider whether or not the sample is biased or not. Let's look at it from the lenses of missing data mechanisms. If we have a Preceptor Table with no missing values, we have it easy. We just calculate the answer. Sadly, Preceptor Tables are (almost) always missing values, resulting in "missing data." The process by which some data is missing is known as the "missing data mechanism." The are two main missing data mechanisms which are of interest: the *assignment mechanism* and the *sampling mechanism*. The assignment mechanism is the process by which some units receive (or are "assigned") the treatment and some units receive the control. The sampling mechanism is the process by which some units appear in our data and some do not. The sampling mechanism will be talked about in this section, whereas the assignment mechanism will be discussed in the next section.  -->
+
+### Unconfoundedness
+
+A fourth assumption we use when working with causal models --- but not with predictive models --- is **"unconfoundedness."** If whether or not a unit received treatment or control is random, we write that treatment assignment is not "confounded." If, however, treatment assignment depends on the value of a potential outcome, then treatment assignment is confounded. Our lives are easiest if we can (reasonably!) assume unconfoundedness. In that case, we can estimate the average treatment effect by subtracting the average outcome of control units from the average outcome of treated units, as we do above.
+
+Consider the "Perfect Doctor" as an example of the problems caused by confounded treatment assignments. Imagine we have this omniscient doctor who knows how any patient will respond to a certain drug. She has perfect knowledge of the entire Preceptor Table. Using this information, she always assign each patient the treatment with the best outcome, whether that is treatment or control. Consider:
+
+```{r}
+#| echo: false
+tibble(subject = c("Yao", "Emma", "Cassidy", "Tahmid", "Diego", "MEAN"),
+       ytreat = c("130", "120", "100", "115", "135", "120"),
+       ycontrol = c("105", "140", "170", "125", "100", "128"),
+       ydiff = c("+25", "-20", "-70", "-10", "35", "-8")) %>%
+  
+  gt() %>%
+    tab_header(title = "Holy Grail of Information") %>% 
+    cols_label(subject = md("ID"),
+                  ytreat = md("$$Y_t(u)$$"),
+                  ycontrol = md("$$Y_c(u)$$"),
+                  ydiff = md("$$Y_t(u) - Y_c(u)$$")) %>%
+    cols_move(columns = c(ytreat, ycontrol), after = c(subject)) %>%
+    tab_style(cell_borders(sides = "right"),
+              location = cells_body(columns = c(subject))) %>%
+    tab_style(style = cell_text(align = "left", v_align = "middle", size = "large"), 
+              locations = cells_column_labels(columns = c(subject))) %>%
+    cols_align(align = "center", columns = everything()) %>%
+    cols_align(align = "left", columns = c(subject)) %>%
+    tab_spanner(label = "Blood Pressure Outcomes", c(ytreat, ycontrol)) %>%
+    tab_spanner(label = "Causal Effect", c(ydiff)) %>%
+    fmt_markdown(columns = everything()) |> 
+  tab_style(style = cell_text(v_align = "bottom"),
+            locations = cells_column_labels())
+```
+
+The Perfect Doctor would assign the treatment to Emma, Cassidy and Tahmid. She would assign control to Yao and Diego. And that is good! This is what the doctor should do. This is the best treatment assignment for the patients. But **it is not a good assignment mechanism for estimating the average causal effect because treatment assignment is confounded by the values of the potential outcomes.**
+
+We, the non-Perfect Doctors, do not have access to the entire Precetor Table. We can only see this:
+
+```{r}
+#| echo: false
+tibble(subject = c("Yao", "Emma", "Cassidy", "Tahmid", "Diego", "MEAN"),
+       ytreat = c("?", "120", "100", "115", "?", "111.66"),
+       ycontrol = c("105", "?", "?", "?", "100", "102.5"),
+       ydiff = c("?", "?", "?", "?", "?", "9.16")) %>%
+  
+  # Then, we use the gt function to make it pretty
+  
+  gt() %>%
+    tab_header(title = "Skewed Holy Grail of Information") %>% 
+    cols_label(subject = md("ID"),
+                  ytreat = md("$$Y_t(u)$$"),
+                  ycontrol = md("$$Y_c(u)$$"),
+                  ydiff = md("$$Y_t(u) - Y_c(u)$$")) %>%
+    cols_move(columns = c(ytreat, ycontrol), after = c(subject)) %>%
+    tab_style(cell_borders(sides = "right"),
+              location = cells_body(columns = c(subject))) %>%
+    tab_style(style = cell_text(align = "left", v_align = "middle", size = "large"), 
+              locations = cells_column_labels(columns = c(subject))) %>%
+    cols_align(align = "center", columns = everything()) %>%
+    cols_align(align = "left", columns = c(subject)) %>%
+    tab_spanner(label = "Blood Pressure Outcomes", c(ytreat, ycontrol)) %>%
+    tab_spanner(label = "Causal Effect", c(ydiff)) %>%
+    fmt_markdown(columns = everything()) |> 
+  tab_style(style = cell_text(v_align = "bottom"),
+            locations = cells_column_labels())
+```
+
+The true causal effect of the treatment, as we can see in the first table, is -8. In other words, the treatment lowers blood pressure on average. But, using just the data we have access to if the Perfect Doctor performs the treatment assignment, we would estimate --- if we mistakenly assume random assignment --- that the causal effect is positive, that treatment increases blood pressure.
+
+The best way to ensure unconfoundedness is to randomize the treatment across units. Don't let the doctor decide who gets the treatment and who gets the control. Randomize assignment. As long as you use randomization as your assignment mechanism, you're good. There is the possibility that you can't use pure randomization due to ethical or practical reasons, so we are forced to use non-random assignment mechanisms. Many statistical methods have been developed for causal inference when there is a non-random assignment mechanism. Those methods, however, are largely beyond the scope of this book.
+
+
 ## Simple models
 
 <!-- These are not, really, Preceptor Tables. These are the data rows from the Population Table. -->
@@ -878,219 +1092,6 @@ tibble(subject = c("Yao", "Emma", "Cassidy", "Tahmid", "Diego"),
 ```
 
 In this example, there is indeed a constant treatment effect for everyone: $+3$. Note that the *observed* values are all the same, but the unobserved values were such that our estimated ATE, $+1$, is pretty far from the actual ATE, $+3$. If we think we have a reasonable estimate of ATE, using that value as a constant for $\tau$ might be our *best guess*.
-
-## Assumptions
-
-In this section, we will explore four topics: validity, stability, representativeness and unconfoundedness.
-
-Our earlier Population Table familiarized us with the three sources of data for which we are making inferences: the Preceptor Table, our data, and the greater population from which both are drawn. Consider a new Population Table.
-
-<!-- Seems like we should add ID and time columns, place them toward the left and then put year there. Year is *not* just another covariate. -->
-
-```{r}
-#| echo: false
-# First, we create a tibble with the values we want for the table
-
-tibble(source = c("...", "...", "...",
-                  "Data", "Data", "...", 
-                  "Preceptor Table", "Preceptor Table", "...",
-                  "...", "..."), 
-       year = c("2010", "2010", "...",
-                "2012", "2012", "...",
-                "2023", "2023", "...",
-                "2023", "2023"),
-       sex = c("?", "?", "...",
-               "Male", "Female", "...",
-               "Female", "Female", "...",
-               "?", "?"),
-       ytreat = c("?", "?", "...",
-                  "13", "?", "...",
-                  "?", "?", "...",
-                  "?", "?"),
-       ycontrol = c("?", "?", "...",
-                    "?", "9", "...",
-                    "?", "?", "...",
-                    "?", "?"),
-       ydiff = c("?", "?", "...",
-                 "?", "?", "...",
-                 "?", "?", "...", "?", "?")) %>%
-  
-  # Then, we use the gt function to make it pretty
-  
-  gt() %>%
-    tab_header(title = "Population Table") %>% 
-    cols_label(source = md("Source"),
-               year = md("Year"),
-               sex = md("Sex"),
-               ytreat = md("$$Y_t(u)$$"),
-               ycontrol = md("$$Y_c(u)$$"),
-               ydiff = md("$$Y_t(u) - Y_c(u)$$")) %>%
-    cols_move(columns = c(ytreat, ycontrol), after = c(source)) %>%
-    tab_style(cell_borders(sides = "right"),
-              location = cells_body(columns = c(source))) %>%
-    tab_style(style = cell_text(align = "left", v_align = "middle", size = "large"), 
-              locations = cells_column_labels(columns = c(source))) %>%
-    cols_align(align = "center", columns = everything()) %>%
-    cols_align(align = "left", columns = c(source)) %>%
-    tab_spanner(label = "Outcomes", c(ytreat, ycontrol)) %>%
-    tab_spanner(label = "Causal Effect", c(ydiff)) %>% 
-    tab_spanner(label = "Covariates", c(sex)) |> 
-  tab_style(style = cell_text(v_align = "bottom"),
-            locations = cells_column_labels())         
-```
-
-The rows from our data have covariates and two potential outcomes. (By definition, we only know the value for one of the potential outcomes for each unit.) The rows from the Preceptor Table include covariates, but not outcomes. (We have no outcome data for 2023, but we will, in theory, be given the sex of any units about whom we need to make inferences.) The rows from our greater population include no data, as we know nothing about these units.
-
-<!-- More detail here? Calling it a Population Table and having only some rows with "Population" as a source seems suspect. -->
-
-### Validity
-
-<!-- Need a gif of three sources be stacked together, but only if validity is true. -->
-
-To understand *validity* in regards to the Population Table, we must first recognize an inherent flaw in any experiment design: *no two units receive exactly the same treatment*.
-
-Consider our Spanish-speakers train experiment. The units on the Spanish-speaking platform received the same treatment, right? No!
-
-Consider different volume levels, measured in decibels (dB), at which Spanish is being spoken.
-
-```{r}
-#| echo: false
-# First, we create a tibble with the values we want for the table
-
-tibble(subject = c("Yao", "Emma", "Cassidy", "Tahmid", "Diego"),
-       ytreat = c("13", "?", "?", "?", "?"),
-       ytreat1001 = c("?", "11", "?", "?", "?"),
-       ytreat1002 = c("?", "?", "?", "?", "6"),
-       yellipsis = c("?", "?", "?", "?", "?"),
-       ycontrol = c("?", "?", "10", "12", "?")) %>%
-  
-  # Then, we use the gt function to make it pretty
-  
-  gt() %>%
-    cols_label(subject = md("ID"),
-               ytreat = md("$$Y_{\\text{58 dB}}(u)$$"),
-               ytreat1001 = md("$$Y_{\\text{59 dB}}(u)$$"),
-               ytreat1002 = md("$$Y_{\\text{60 dB}}(u)$$"),
-               yellipsis = md("$$Y_{\\text{61 dB}}(u)$$"),
-               ycontrol = md("$$Y_c(u)$$")) %>%
-    tab_style(cell_borders(sides = "right"),
-              location = cells_body(columns = c(subject))) %>%
-    tab_style(style = cell_text(align = "left", v_align = "middle", size = "large"), 
-              locations = cells_column_labels(columns = c(subject))) %>%
-    cols_align(align = "center", columns = everything()) %>%
-    cols_align(align = "left", columns = c(subject)) %>%
-    tab_spanner(label = "Outcomes", 
-                c(ytreat, ytreat1001, ytreat1002, yellipsis, ycontrol)) %>%
-    fmt_markdown(columns = everything()) |> 
-  tab_style(style = cell_text(v_align = "bottom"),
-            locations = cells_column_labels())
-```
-
-Certain units heard the Spanish-speakers at higher volumes than other units. And it is entirely possible that the volume of the speech affects the outcome. There is also the issue of the time spent on the platform. Maybe Yao tends to run late, and only hears the Spanish-speakers for thirty seconds. Emma, on the other hand, arrives early. She hears the Spanish-speakers for fifteen minutes before the train arrives. Thus, despite the fact that Emma and Yao are in the same treatment --- that is, hearing Spanish on the platform --- they had very different versions of that treatment.
-
-There are an infinite number of possible treatments. Indeed, it is a virtual certainty that *every treated unit received a different treatment.* However, *validity*, if a reasonable assumption in this specific example, allows us to pretend/assume that Yao, Emma and Diego all received the same treatment. We place all their treated outcomes in the same column. Only if this is true (or true'ish) can we estimate an average treatment effect.
-
-More commonly, we simply assume that all treated units received the same treatment. *Validity allows us to ignore variation in treatment.* In fact, concerns about validity apply to all the variables (covariates and outcomes), not just the treatments. If the columns in the data are not the same thing as the columns in the Preceptor Table, you have a problem. Validity is the assumption which allows us to create the Population Table.
-
-The validity assumption is most important in that, if true, we can consider treatments and other variables to be similar (enough) across time that we can "stack" the data and the Preceptor Table into one, unified, Population Table. Validity means that "exposure to Spanish-speakers" in 2012 means the same thing as "exposure to Spanish-speakers" in 2023. Strictly speaking, this must be false! For example, we are unlikely to be able to hire the same Spanish speakers now as we did a decade ago. Moreover, it is impossible for them to say the exact same words *now*, at the exact same volume, as they did in 2012. Validity allows us to assume that the treatment, and other variables, are close enough.
-
-### Stability
-
-Stability means that the relationship between the columns is the same for three categories of rows: the data, the Preceptor Table, and the larger population from which both are drawn.
-
-<!-- Which height example? -->
-
-In our height example, it is much easier to assume stability over a greater period of time. Changes in global height occur extremely slowly, so height being stable across a span of 20 years is reasonable to assume. Can we say the same for this example, where we are looking at attitudes on immigration?
-
-With something like political ideology, it is much harder to assert that the relationships among the data collected in 2010 would be similar to the relationships among the data collected in 2030. Our data, for instance, was collected in 2012. We want to make predictions for 2023. And, frankly, it may be difficult to argue that our results would be stable if we re-conducted the experiment.
-
-When we are confronted with this uncertainty, we can consider making our timeframe smaller. However, we would still need to assume stability from 2012 (time of data collection) to today. *Stability allows us to ignore the passage of time.*
-
-### Representativeness
-
-<!-- Should we use the word unbiasedness instead? -->
-
-Representativeness, or the lack thereof, concerns two relationship, among the rows in the Population Table. The first is between the Precetor Table and the other rows. The second is between our data and the other rows. Ideally, we would like both the Precepor Table *and* our data to be random samples from the population. Sadly, this is almost never the case.
-
-Does the train experiment allow us to calculate a causal effect for people who commute by cars? Can we calculate the causal effect for people in New York City? Before we generalize to broader populations we have to consider if our experimental estimates are applicable beyond our experiment. Maybe we think that commuters in Boston and New York are similar enough to generalize our findings. We could also conclude that people who commute by car are fundamentally different than people who commute by train. If that was true, then we could not say our estimate is true for all commuters because our sample does not accurately *represent* the broader group to which we want to generalize.
-
-<!-- Generally: *if there was no chance that a certain type of person would have been in this experiment, we cannot make an assumption for that person*. Hmm. Include this? -->
-
-<!-- Below is awkward and poorly done. -->
-
-<!-- Get into missing data mechanism?  -->
-
-<!-- Additionally, representativeness can also consider whether or not the sample is biased or not. Let's look at it from the lenses of missing data mechanisms. If we have a Preceptor Table with no missing values, we have it easy. We just calculate the answer. Sadly, Preceptor Tables are (almost) always missing values, resulting in "missing data." The process by which some data is missing is known as the "missing data mechanism." The are two main missing data mechanisms which are of interest: the *assignment mechanism* and the *sampling mechanism*. The assignment mechanism is the process by which some units receive (or are "assigned") the treatment and some units receive the control. The sampling mechanism is the process by which some units appear in our data and some do not. The sampling mechanism will be talked about in this section, whereas the assignment mechanism will be discussed in the next section.  -->
-
-### Unconfoundedness
-
-A fourth assumption we use when working with causal models --- but not with predictive models --- is **"unconfoundedness."** If whether or not a unit received treatment or control is random, we write that treatment assignment is not "confounded." If, however, treatment assignment depends on the value of a potential outcome, then treatment assignment is confounded. Our lives are easiest if we can (reasonably!) assume unconfoundedness. In that case, we can estimate the average treatment effect by subtracting the average outcome of control units from the average outcome of treated units, as we do above.
-
-Consider the "Perfect Doctor" as an example of the problems caused by confounded treatment assignments. Imagine we have this omniscient doctor who knows how any patient will respond to a certain drug. She has perfect knowledge of the entire Preceptor Table. Using this information, she always assign each patient the treatment with the best outcome, whether that is treatment or control. Consider:
-
-```{r}
-#| echo: false
-tibble(subject = c("Yao", "Emma", "Cassidy", "Tahmid", "Diego", "MEAN"),
-       ytreat = c("130", "120", "100", "115", "135", "120"),
-       ycontrol = c("105", "140", "170", "125", "100", "128"),
-       ydiff = c("+25", "-20", "-70", "-10", "35", "-8")) %>%
-  
-  gt() %>%
-    tab_header(title = "Holy Grail of Information") %>% 
-    cols_label(subject = md("ID"),
-                  ytreat = md("$$Y_t(u)$$"),
-                  ycontrol = md("$$Y_c(u)$$"),
-                  ydiff = md("$$Y_t(u) - Y_c(u)$$")) %>%
-    cols_move(columns = c(ytreat, ycontrol), after = c(subject)) %>%
-    tab_style(cell_borders(sides = "right"),
-              location = cells_body(columns = c(subject))) %>%
-    tab_style(style = cell_text(align = "left", v_align = "middle", size = "large"), 
-              locations = cells_column_labels(columns = c(subject))) %>%
-    cols_align(align = "center", columns = everything()) %>%
-    cols_align(align = "left", columns = c(subject)) %>%
-    tab_spanner(label = "Blood Pressure Outcomes", c(ytreat, ycontrol)) %>%
-    tab_spanner(label = "Causal Effect", c(ydiff)) %>%
-    fmt_markdown(columns = everything()) |> 
-  tab_style(style = cell_text(v_align = "bottom"),
-            locations = cells_column_labels())
-```
-
-The Perfect Doctor would assign the treatment to Emma, Cassidy and Tahmid. She would assign control to Yao and Diego. And that is good! This is what the doctor should do. This is the best treatment assignment for the patients. But **it is not a good assignment mechanism for estimating the average causal effect because treatment assignment is confounded by the values of the potential outcomes.**
-
-We, the non-Perfect Doctors, do not have access to the entire Precetor Table. We can only see this:
-
-```{r}
-#| echo: false
-tibble(subject = c("Yao", "Emma", "Cassidy", "Tahmid", "Diego", "MEAN"),
-       ytreat = c("?", "120", "100", "115", "?", "111.66"),
-       ycontrol = c("105", "?", "?", "?", "100", "102.5"),
-       ydiff = c("?", "?", "?", "?", "?", "9.16")) %>%
-  
-  # Then, we use the gt function to make it pretty
-  
-  gt() %>%
-    tab_header(title = "Skewed Holy Grail of Information") %>% 
-    cols_label(subject = md("ID"),
-                  ytreat = md("$$Y_t(u)$$"),
-                  ycontrol = md("$$Y_c(u)$$"),
-                  ydiff = md("$$Y_t(u) - Y_c(u)$$")) %>%
-    cols_move(columns = c(ytreat, ycontrol), after = c(subject)) %>%
-    tab_style(cell_borders(sides = "right"),
-              location = cells_body(columns = c(subject))) %>%
-    tab_style(style = cell_text(align = "left", v_align = "middle", size = "large"), 
-              locations = cells_column_labels(columns = c(subject))) %>%
-    cols_align(align = "center", columns = everything()) %>%
-    cols_align(align = "left", columns = c(subject)) %>%
-    tab_spanner(label = "Blood Pressure Outcomes", c(ytreat, ycontrol)) %>%
-    tab_spanner(label = "Causal Effect", c(ydiff)) %>%
-    fmt_markdown(columns = everything()) |> 
-  tab_style(style = cell_text(v_align = "bottom"),
-            locations = cells_column_labels())
-```
-
-The true causal effect of the treatment, as we can see in the first table, is -8. In other words, the treatment lowers blood pressure on average. But, using just the data we have access to if the Perfect Doctor performs the treatment assignment, we would estimate --- if we mistakenly assume random assignment --- that the causal effect is positive, that treatment increases blood pressure.
-
-The best way to ensure unconfoundedness is to randomize the treatment across units. Don't let the doctor decide who gets the treatment and who gets the control. Randomize assignment. As long as you use randomization as your assignment mechanism, you're good. There is the possibility that you can't use pure randomization due to ethical or practical reasons, so we are forced to use non-random assignment mechanisms. Many statistical methods have been developed for causal inference when there is a non-random assignment mechanism. Those methods, however, are largely beyond the scope of this book.
 
 ## Summary
 
