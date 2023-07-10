@@ -1,0 +1,348 @@
+# Getting Started {.unnumbered}
+
+<!-- Need to rethink how students start the process, combining this material with the tutorial.helpers Getting Started tutorial and then r4ds.tutorials Chapter 1. We would like this section to be as short as possible.  -->
+
+
+<!-- We do not run set_rstudio_settings() and set_binary_only_in_r_profile() because these functions only work with an associated RStudio instance. There is no such instance when you render a qmd file, even if you render that file from within RStudio. (I think!) We do, however, run the install code for the packages. We do this in order to ensure that the code works when students try to run it, even though this is somewhat aggressive from the point of view of our co-authors. -->
+
+*You can never look at the data too much.* -- Mark Engerman
+
+
+The world confronts us. Make decisions we must.
+
+### Installing R and RStudio {.unnumbered}
+
+<!-- Update all the images. -->
+
+<!-- Change the graphic so that the words are the top are: "R is like a car's engine." and "RStudio is like a car's dashboard." -->
+
+```{r}
+#| echo: false
+knitr::include_graphics("getting-started/images/R_vs_RStudio_1.png")
+```
+
+We use **R** via **RStudio**. R is to RStudio as a car's engine is to its dashboard.
+
+More precisely, R is a programming language that runs computations, while RStudio is an *integrated development environment (IDE)* that provides an interface with many convenient features. Just as having access to a speedometer, rearview mirrors, and a navigation system makes driving much easier, using RStudio's interface makes using R much easier.
+
+Download and install R and RStudio (Desktop version) on your computer.
+
+1.  [Download and install R](https://cloud.r-project.org/). If you are using a Mac, make sure to use the correct installation, depending on whether you are using newer "M1 and higher Macs" (first option) or older "Intel Macs" (second option). You can look up the chip used in your Mac by checking "About This Mac" under the Apple menu.
+
+2.  [Download and install RStudio Desktop](https://rstudio.com/products/rstudio/download/#download) (the free version).
+
+<!-- DK: Sure would be nice if this was not necessary. Maybe R-universe would make it so? -->
+
+If you are using Windows, [download and install R Tools](https://cran.r-project.org/bin/windows/Rtools). Again, this is only for Windows users. The Rtools43 installer is what you want. The link is in the sixth paragraph of [this page](https://cran.r-project.org/bin/windows/Rtools/rtools43/rtools.html).
+
+If you are using a Chromebook, follow [this advice](https://levente.littvay.hu/chromebook/).
+
+If you are having trouble, just sign up for a free account on [Posit Cloud](https://posit.cloud/). This will give you 25 hours of usage, which should be enough to get started.
+
+<!-- DK: Should set up a robust Posit Cloud option. Indeed, might even make it the default for Day 1. Need to make sure that the instructions work for a default account. -->
+
+<!-- DK: Could text like this be in a "More Detail" box which only appears when clicked?  If you want a slower introduction, check out the short (free) book, [*Getting Used to R, RStudio, and R Markdown*](https://rbasics.netlify.com/). @usedtor2016 include screencast recordings that you can follow along and pause as you learn. -->
+
+### Using R via RStudio {.unnumbered}
+
+<!-- DK: This section could be quicker if the material is covered elsewhere. -->
+
+```{r}
+#| echo: false
+#| fig.cap: Icons of R versus RStudio on your computer.
+knitr::include_graphics("getting-started/images/R_vs_RStudio.png")
+```
+
+<!-- DK: Can we make more use of the RStudio Guide here? Hate to have to maintain all this myself. -->
+
+Much as we don't drive a car by interacting directly with the engine but rather by interacting with elements on the car's dashboard, we won't be using R directly. Instead, we will use RStudio's interface. After you install R and RStudio on your computer, you'll have two new *programs* (also called *applications*) you can open. Always work in RStudio and not directly in the R application.
+
+Open up RStudio. You should see three *panes* dividing the screen: the *Console pane*, the *Environment pane*, and the *Files pane*.
+
+```{r}
+#| echo: false
+knitr::include_graphics("getting-started/images/panes.png")
+```
+
+This is your workspace. Start with the big pane on the left:
+
+```{r}
+#| echo: false
+knitr::include_graphics("getting-started/images/jobs.png")
+```
+
+There are three tabs in the Console pane. We'll be focusing on the Console and Terminal tabs. When you first start R, the Console gives you some information about your version of R. The Console is where you can type and run R code. For example, if you type 1 + 1 and hit return, the Console returns 2.
+
+We often use the phrase "run the following code." This means that you should type or copy-and-paste the code into the Console and then hit the enter/return key.
+
+<!-- DK: Redo this image by splitting it into two. First, show it as students see it, with nothing in the environment. Then, tell them to type x <- 5. Then, show them the image of what it looks like now. In neither case is there a data object. -->
+
+Switch to the top right of your workspace:
+
+```{r}
+#| echo: false
+knitr::include_graphics("getting-started/images/top_right_window.png")
+```
+
+The main two tabs we will be using are Environment and Git (which is not yet visible). The Environment tab shows you the datasets and variables you currently have loaded into R. In this case, we loaded in a dataset with 3407 rows and 5 columns and a variable `x` equal to 5. For you, the Environment should be empty. Let's change that. Go to your Console and type:
+
+```{r}
+x <- 5
+```
+
+This code assigns the value 5 to an object, `x`. `<-` is the operator used to assign values to objects in R. Now, hit return/enter and you should see a variable `x` equal to 5 in your Environment tab. You must always hit return/enter after typing a command, otherwise RStudio will not realize that you want R to execute the command.
+
+Switch to the bottom right pane:
+
+```{r}
+#| echo: false
+
+knitr::include_graphics("getting-started/images/bottom_right_window.png")
+```
+
+The Files tab displays your computer's file system. When you create a project later, this tab will automatically show the contents of your project's folder. 
+
+<!-- DK: Perfect place for a More Details box. -->
+
+### Package installation {.unnumbered}
+
+R *packages*, also known as *libraries*, extend the power of R by providing additional functions and data.
+
+```{r}
+#| echo: false
+#| fig.cap: R is to R packages as a new phone is to apps for that phone.
+
+knitr::include_graphics("getting-started/images/R_vs_R_packages.png")
+```
+
+R is like a new phone. While it has a certain amount of features when you use it for the first time, it doesn't have everything. R packages are like the apps you download onto your phone.
+
+Consider an analogy to Instagram. If you have a new phone and want to share a photo with friends. You need to:
+
+1.  *Install the app*: Since your phone is new and does not include the Instagram app, you need to download the app. You do this only once. (You might need to do this again in the future when there is an update to the app.)
+2.  *Open the app*: After you've installed Instagram, you need to open it. You need to do this every time you use the app.
+
+The process is very similar for an R package. You need to:
+
+```{r}
+#| echo: false
+#| fig.cap: Installing versus loading an R package
+
+knitr::include_graphics("getting-started/images/install_vs_load.jpg")
+```
+
+1.  *Install the package*: This is like installing an app on your phone. Most packages are not installed by default when you put R and RStudio on your computer. Thus if you want to use a package for the first time, you need to install it. Once you've installed a package, you likely won't install it again unless you want to update it to a newer version.
+
+2.  *Load the package*: "Loading" a package is like opening an app on your phone. Packages are not loaded by default when you start RStudio. You need to load each package you want to use every time you restart RStudio.
+
+Just for this chapter, execute this command in your R Console.
+
+```{r}
+#| eval: false
+
+options("pkgType" = "binary")
+```
+
+This helps to ensure that package installation will go more smoothly.
+
+Let's *install* a useful package. At the Console pane within RStudio, type:
+
+```{r}
+#| output: false
+
+install.packages("remotes")
+```
+
+And press return/enter on your keyboard. You must include the quotation marks around the name of the package. A package can depend on other packages, which will be automatically installed if needed.
+
+One tricky aspect of this process is that R will occasionally ask you:
+
+```{bash}
+#| eval: false
+Do you want to install from sources the packages which 
+need compilation? (Yes/no/cancel)
+```
+
+Unless you have a good reason not to, always answer "no" to this question.
+
+R packages generally live in one of two places:
+
+-   CRAN (rhymes with "clan") for more mature, popular packages. Use `install.packages()`, as you did above.
+
+-   Github for more experimental, less stable packages. Use `remotes::install_github()`.
+
+### Package loading {.unnumbered}
+
+After you install a package, you need to "load" it by using the `library()` command. To load the **remotes** package, run the following code in the Console. 
+
+```{r}
+#| output: false
+library(remotes)
+```
+
+After running this code, a blinking cursor should appear next to the `>` symbol. (The `>` is the "prompt.") This means you were successful and the **remotes** package is now loaded and ready to use. However, you might get a red "error message" which reads:
+
+<span style="color: red;">Error in library(remotes) : there is no package called 'remotes'</span>
+
+This error message means that you haven't successfully installed the package. If you get this error message, make sure to install the **remotes** package before proceeding.
+
+For historical reasons, *packages* are also known as *libraries*, which is why the relevant command for loading them is `library()`.
+
+R will occasionally ask you if you want to install some packages. You almost always want to, otherwise R would not be asking you.
+
+Let's install another package:
+
+```{r}
+#| eval: false
+
+install.packages("tutorial.helpers")
+```
+
+This package provides infrastructure for doing tutorials, a common approach for learning R.
+
+Let's install another package:
+
+```{r}
+#| eval: false
+
+install.packages("tidyverse")
+```
+
+This might take awhile since the "Tidyverse" includes so many [useful packages](https://www.tidyverse.org/).
+
+### Package use {.unnumbered}
+
+*You have to load each package you want to use every time you start RStudio.* If you don't load a package before attempting to use one of its features, you will see an error message like:
+
+<span style="color: red;">Error: could not find function</span>
+
+This is a different error message than the one you just saw about a package not having been installed yet. R is telling you that you are trying to use a function in a package that has not yet been loaded. R doesn't know where to "find" the function you want to use.
+
+Let's install two packages that are not available from CRAN: **r4ds.tutorials** and **all.primer.tutorials**. Copy and paste the following to the R Console:
+
+```{r}
+#| output: false
+
+library(remotes)
+install_github("PPBDS/r4ds.tutorials")
+```
+
+<!-- DK: Will need to update this once we remove primer.data from the r4ds.tutorials package. But, even then, we will certainly need primer.data in the all.primer.tutorials package, so we will just be moving this discussion lower. -->
+
+This package is fairly simple and should install without any problems. Some other new packages will be installed as well, most importantly **primer.data**, which includes most of the data we use in the *Primer*.
+
+If the download fails, try
+
+```{r}
+#| eval: false
+options("timeout" = 600)
+```
+
+This gives the download more time to complete. Try `install_github("PPBDS/r4ds.tutorials")` again.
+
+Next, copy and paste the following to the R Console:
+
+
+```{r}
+#| output: false
+remotes::install_github("PPBDS/all.primer.tutorials")
+```
+
+Instead of loading the **remotes** package explicitly, we used the double colon notation --- `::` --- to refer directly to the `install_github()` function which resides in the **remotes** package.
+
+Other new packages will be installed. It may take a few minutes. If something gets messed up, it is often useful to read the error messages and see if a specific package is at fault. If so, use the `remove.packages()` function to remove the problematic package and then install it again.
+
+If **all.primer.tutorials** does not install correctly, don't worry about it. This package is much less important than **r4ds.tutorials**.
+
+### Tutorials {.unnumbered}
+
+<!-- DK: Is this really necessary? I think that you get all the tutorials for free? That is, you don't need to load them explicitly. They are just found by the Tutorial pane. -->
+
+There are many tutorials available in the **r4ds.tutorials** and **all.primer.tutorials** packages. In order to access these tutorials, you should run `library(r4ds.tutorials)` or `library(all.primer.tutorials)` in the R Console.
+
+```{r}
+#| echo: false
+knitr::include_graphics("getting-started/images/all_primer_tutorials_load.png")
+```
+
+Access the tutorials via the Tutorial tab in the Environment pane in RStudio. If you don't see any tutorials, try clicking the "Home" icon -- the little house symbol with the thin red roof. You may need to restart your R session. Click on the "Session" menu and select "Restart R".
+
+```{r}
+#| echo: false
+knitr::include_graphics("getting-started/images/starting_tutorial.gif")
+```
+
+In order to expand the window, you can drag and enlarge the Tutorial tab inside RStudio. In order to open a pop-up window, click the "Show in New Window" icon next to the Home icon.
+
+You may notice that the Background Jobs tab in the Console pane will create output as the tutorial is starting up. This is because RStudio is running the code to create the tutorial.
+
+**Your work will automatically be saved between RStudio sessions**. You can complete the tutorial in multiple sittings.
+
+There are two ways you can close out of a tutorial safely before quitting your RStudio session:
+
+  - If you clicked "Show in new window" and were working on the tutorial in a pop-up window, simply close the pop-up window.
+
+  - If you were working on the tutorial inside the Tutorial pane of RStudio, simply press the red stop sign icon.
+
+### Basic Commands {.unnumbered}
+
+<!-- DK: Could cut this and put it in tutorial.helpers. -->
+
+There are a few terms, tips, and tricks that you should know before getting started with R.
+
+-   *Functions*: these perform tasks by taking an input called an *argument* and returning an output.
+
+```{r}
+sqrt(64)
+```
+
+`sqrt()` is a function that gives us the square root of the argument. 64 is the argument. Therefore, the output should be 8. Try it for yourself in the Console!
+
+-   *Help files*: these provide documentation for packages, functions and datasets. You can bring up help files by adding a `?` before the name of the object in the Console. Run `?sqrt`.
+
+-   *Errors, warnings, and messages*: these are important communications from R to you. When there is an error, the code will not run. Read (and/or Google) the message and try to fix it. Warnings don't prevent code from completing. For example, if you create a scatterplot based on data with two missing values, you will see this warning:
+
+    <span style="color: red;">Warning message:
+    Removed 2 rows containing missing values (geom_point).</span>  
+
+Messages are similar. In both cases, you should fix the underlying issue until the error/warning/message goes away.
+
+### Next Steps {.unnumbered}
+
+Complete the "Getting Started" tutorial from the **tutorial.helpers** package. This will ensures that your RStudio settings are sensible.
+
+Previous version of this textbook included three chapters which reviewed the use of R for data science. However, most of this material is covered, more competently, in [*R for Data Science (2e)*](https://r4ds.hadley.nz/) by Hadley Wickham, Mine Çetinkaya-Rundel, and Garrett Grolemund. Go read that book now. Even better, complete the [associated tutorials](https://ppbds.github.io/r4ds.tutorials/).
+
+Once you have done so, or if you already know R, you can start to learn about data science.
+
+## Summary {.unnumbered}
+
+You should have done the following:
+
+  - Installed the *latest* versions of R and RStudio.
+  
+  - Installed, from CRAN, the **remotes**, **tutorial.helpers** and **tidyverse** packages:
+
+```{r}
+#| eval: false
+options("pkgType" = "binary")
+install.packages("remotes")
+install.packages("tutorial.helpers")
+install.packages("tidyverse")
+```
+
+  - Installed, from Github, the **r4ds.tutorials** and **all.primer.tutorials** packages:
+
+```{r}
+#| eval: false
+remotes::install_github("PPBDS/r4ds.tutorials")
+remotes::install_github("PPBDS/all.primer.tutorials")
+```
+
+
+Let's get started.
+
+```{r}
+#| echo: false
+knitr::include_graphics("getting-started/images/ending.gif")
+```

@@ -30,15 +30,15 @@ book:
   chapters:
     - index.qmd
     - preamble.qmd
-    - 00-getting-started.qmd
-    - 04-rubin-causal-model.qmd
-    - 05-probability.qmd
-    - 06-one-parameter.qmd
-    - 07-two-parameters.qmd
-    - 08-three-parameters.qmd
-    - 09-four-parameters.qmd
-    - 10-five-parameters.qmd
-    - 11-n-parameters.qmd
+    - getting-started.qmd
+    - rubin-causal-model.qmd
+    - probability.qmd
+    - one-parameter.qmd
+    - two-parameters.qmd
+    - three-parameters.qmd
+    - four-parameters.qmd
+    - five-parameters.qmd
+    - n-parameters.qmd
     - glossary.qmd
     - set-up.qmd
     - style-guide.qmd 
