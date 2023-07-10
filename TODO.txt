@@ -6,6 +6,7 @@ Get rid of graphs of parameters. Only confusing! Always use posterior_epred() an
 
 Different questions lead to different variables in the Preceptor Table, even for cases in which the outcome is the same.
 
+In every realistic data science problem, the Preceptor Table and the data are not the same rows.
 
 ## Discuss with Mann
 
