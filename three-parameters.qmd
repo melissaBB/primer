@@ -1484,6 +1484,8 @@ The central lesson of Temperance is: Don't confuse the *estimated* posterior (wh
 
 ## Summary
 
+<!-- DK: Reworked to review the path. -->
+
 In this chapter, we explored relationships between different variables in the `trains` data set. We built three predictive models and one causal model.
 
 Similar to previous chapters, our first task is to use *Wisdom*. We judge how relevant our data is to the questions we ask. Is it reasonable to consider the data we have (e.g., income and age data from Boston commuters in 2012) as being drawn from the same population as the data we want to have (e.g., income and age data from today for the entire US)? Probably?

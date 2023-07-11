@@ -1,6 +1,6 @@
 # Priorities
 
-Representativeness is a concern for both the data and for the Preceptor Table. If you need data for an unrepresentative subset of the population, you might be in trouble.
+Representativeness is a concern for both the data and for the Preceptor Table. If you need data for an unrepresentative subset of the population, you might be in trouble. Or, you can try to adjust your question so that answerable for the data you have.
 
 Get rid of graphs of parameters. Only confusing! Always use posterior_epred() and posterior_predict().
 
