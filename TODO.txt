@@ -8,6 +8,8 @@ Different questions lead to different variables in the Preceptor Table, even for
 
 In every realistic data science problem, the Preceptor Table and the data are not the same rows.
 
+Use gtsummary::tbl_regression() to show a nice table of the parameter values most of the time. Don't just show the fitted objected. Get them used to seeing a nice table.
+
 ## Discuss with Mann
 
 Note the updated definition of Representativeness. This means that we should always have two questions about how Representativeness fails. Examples: First, give an example of why the rows in the Preceptor Table may not be representative of the overall population. Second, give an example of why the rows in the data may not be representative of the overall population.

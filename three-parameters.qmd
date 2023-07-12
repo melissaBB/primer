@@ -10,9 +10,6 @@ library(gtsummary)
 library(patchwork)
 ```
 
-<!-- DK: Do the major surgery we discussed in age ~ party. Put addendum approach as main approach. DONE - addendum approach implemented in age~party & att_end~treatment and income~age & liberal~income both already have the addendum approach-->
-
-<!-- add plots: DONE added plots to the data analysis sections -->
 
 <!-- Need a table which shows all 4 (?) languages for describing a model together: English, math, code, output. ? -->
 
@@ -115,7 +112,18 @@ trains |>
   summary()
 ```
 
-`summary()` shows us what the different values of `age` and `party` are because it is a factor. The range for `age` seems reasonable. Recall that participants were asked three questions about immigration issues, each of which allowed for an answer indicated strength of agreement on a scale form 1 to 5, with higher values indicating more agreement with conservative viewpoints.
+The range of values for `age` seems reasonable. Perhaps children were explicitly excluded from the study. Or perhaps there were no children at the train station on those days.
+
+
+```{r}
+trains |> 
+  count(party)
+```
+There are about 5 times as many Democrats as Republicans, which is perhaps not too surprising in a heavily Democratic state like Massachusetts.
+
+Plotting your data is always a good idea.
+
+<!-- DK: Swap colors. -->
 
 ```{r}
 trains |> 
@@ -124,22 +132,29 @@ trains |>
                    alpha = 0.5, 
                    bins = 100, 
                    position = "identity") +
-    labs(title = "Probability for Average Age",
+    labs(title = "Distribution of Age and Party",
          subtitle = "More data allows for a more precise probability",
          x = "Age",
-         y = "Probability",
+         y = "Percent of Sample",
          fill = NULL) +
     scale_y_continuous(labels = scales::percent_format()) +
     theme_classic()
 ```
 
-We can never know the true average age of all Democrats in the population. But we can calculate a probability distribution for each parameter. Democrats seem slightly older than Republicans. Our estimate for the average age of Democrats in the population is much more precise than that for Republicans because we have five times as many Democrats as Republicans in our sample.
+Democrats seem slightly older than Republicans. Our estimate for the average age of Democrats in the population will be much more precise than that for Republicans because we have five times as many Democrats as Republicans in our sample.
 
-#### Assumption of Validity
+#### Validity
 
-Now let's take a look at the **assumption of validity** for our data and Preceptor Table. **Validity** is the assumption which allows us to consider the Preceptor Table and our data to have been drawn from the same population. There is no **truth** here. The data is real enough, but you created the Preceptor Table. Whether or not there is a population from which you can assume both the data and the Preceptor Table might have been drawn is not a TRUE/FALSE question. The Preceptor Table is all US train commuters today. However, the data we have involves train commuters in the Boston area in 2012. In addition, is our data from the Preceptor Table accurate? The data has been collected from filling out surveys about age without checking a driver's license. The data has been collected from filling out surveys about party without going to the train station. Finally, the privacy of a train station differs from filling out surveys at home. While all of these questions and assumptions prove validity wrong, overall, the assumption of validity seems reasonable. `age` and `party` are similar enough between our data and The Preceptor Table that we can "stack" them on top of each other. We can assume that both are drawn from the same population.
+Do the columns in the Preceptor Table mean the same thing as the columns in the data? That is the heart of validity. Just because we use the same words --- `age` and `party` --- in both tables does not prove that they are, in fact, the same things.
 
-After assuming validity, we can now create our Population Table. Recall that every row from both the Preceptor Table and the data is included in the Population Table, along with all the rows from the underlying population from which we assume that both the Preceptor Table and the data were drawn.
+For example, what it means to be a "Republican" might be very different in Massachusetts (meaning in our data) than what it means in the rest of the United States (meaning the Preceptor Table). Just slapping the two data sources together does not solve that problem. Similarly, `age` in the data is measured from a survey. People make mistakes. They even lie. In our Preceptor Table, we want the column `age` to be each person's actual age.
+
+Validity is the assumption which allows us to consider the Preceptor Table and our data to have been drawn from the same population. There is no **truth** here. The data is real enough, but we created the Preceptor Table. Whether or not there is a population from which we can assume both the data and the Preceptor Table might have been drawn is not a TRUE/FALSE question. 
+
+If `party` or `age` are too different between the Preceptor Table and our data, then the assumption of validity fails. We can't consider both sources to have been drawn from the same population, we can't use the data to make inferences about the Preceptor Table. 
+
+Overall, however, the assumption of validity seems reasonable. `age` and `party` are close enough between our data and The Preceptor Table that we can "stack" them on top of each other. We will assume that both are drawn from the same population.
+
 
 ### Justice
 
@@ -152,6 +167,8 @@ knitr::include_graphics("other/images/Justice.jpg")
 Justice concerns five topics: population table, stability, representativeness, unconfoundedness and the mathematical structure of the data generating mechanism (DGM).
 
 #### Population Table
+
+After assuming validity, we can now create our Population Table. Recall that every row from both the Preceptor Table and the data is included in the Population Table, along with all the rows from the underlying population from which we assume that both the Preceptor Table and the data were drawn.
 
 ```{r}
 #| echo: false
@@ -201,7 +218,7 @@ Our year within the Population table is an example of the moment in time.
 
 Our Preceptor Table rows are chronologically ordered. The "other" rows are our greater population for which we are making assumptions --- this is why the year at the start is earlier than our data and the year at the end is later than our Preceptor Table. This shows the more expansive population about which we are making inferences.
 
-#### Stability, Representativeness, Unconfoundedness and Data Generating Mechanism (DGM)
+#### Assumptions
 
 **Stability** means that the relationship between the columns is the same for three categories of rows: the data, the Preceptor table, and the larger population from which both are drawn. With something like height, it is much easier to assume stability over a greater period of time. Changes in global height occur extremely slowly, so height being stable across a span of 20 years is reasonable to assume. With something like political ideology, it is much harder to make the assertion that data collected in 2010 would be stable to data collected in 2030. When we are confronted with this uncertainty, we can consider making our timeframe smaller. However, we would still need to assume stability from 2014 (time of data collection) to today. Stability allows us to ignore the issue of time.
 
@@ -209,50 +226,13 @@ Our Preceptor Table rows are chronologically ordered. The "other" rows are our g
 
 **Unconfoundedness** means that the treatment assignment is independent of the potential outcomes, when we condition on pre-treatment covariates. However, with our scenario, we have a predictive model and this assumption is only relevant for causal models.
 
-<!-- MM: kind of DGM should be discussing linear or logistic -->
+#### Data Generating Mechanism
 
 The type of outcome variable is the most important issue in determining the mathematical form of the **data generating mechanism**. Since our outcome is a (mostly) continuous variable, a linear DGM is reasonable. If the outcome variable had been binary --- had only has two options --- we would use a logistic model. 
 
 We can also consider the type of DGM. Any DGM with age as its dependent variable will be predictive, not causal, for the simple reason that nothing, other than time, can change your age. You are X years old. It would not matter if you changed your party registration from Democrat to Republican or vice versa. Your age is your age. When dealing with a non-causal DGM, the focus is on predicting things. The underlying mechanism which connects age with party is less important than the brute statistical fact that there is a connection. *Predictive models care little about causality.*
 
-<!-- Preceptor Tables should be laid out like the formula: outcome on left, predictors on right. -->
-
-A good way at looking at this is with a Preceptor Table, as seen below. Unlike the previous table in @sec-two-parameters, we now have two columns in addition to ID. Since our data does not include all Republicans and Democrats in the world, not every row is filled in.
-
-```{r}
-#| echo: false
-tibble(ID = c("1", "2", "...", "473", "474",
-              "...", "3,258", "3,259", "...", "N"),
-       party = c("D", "?", "...", "D", "?", "...", "?", "R", "...", "?"), 
-       age = c("31", "?", "...", "58", "?", "...", "?", "49", "...", "?")) |>
-  
-  # Then, we use the gt function to make it pretty
-  
-  gt() |>
-  tab_header(title = "Preceptor Table") |> 
-  cols_label(ID = md("ID"),
-             party = md("Party"),
-             age = md("Age")) |>
-  tab_style(cell_borders(sides = "right"),
-            location = cells_body(columns = c(ID))) |>
-  tab_style(style = cell_text(align = "left", v_align = "middle", size = "large"), 
-            locations = cells_column_labels(columns = c(ID))) |>
-  cols_align(align = "center", columns = everything()) |>
-  cols_align(align = "left", columns = c(ID)) |>
-  fmt_markdown(columns = everything()) |>
-  tab_spanner(label = "Predictor", columns = c(party)) |>
-  tab_spanner(label = "Outcome", columns = c(age))
-```
-
- 
-
-We now know that we are working with a predictive DGM. Recall:
-
-$$\text{outcome} = \text{model} + \text{not in the model}$$
-
-In words, any event depends on our explicitly described model as well as on influences unknown to us. Everything that happens in the world is the result of various factors, and we can only consider some of them in our model (because we do not know about some influences, or because we have no data about them).
-
-<!-- Review concept of dummy variables in the context of the intercept model with categorical predictor. -->
+<!-- DK: Full math formula goes in Courage, not here. -->
 
 Let's make our DGM. The mathematics:
 
@@ -320,32 +300,19 @@ fit_1
 
 The key concept is the idea of a "population." From which larger population is the data we have being (conceptually) drawn? If we were only interested in the age of individuals in our data set, we would have no need for inference. *We know everyone's ages already.* We only need tools like `stan_glm()` if we seek to understand individuals not in our data.
 
-`partyDemocrat` corresponds to $\beta_1$, the average age of Democrats in the population. `partyRepublican` corresponds to $\beta_2$, the average age of Republicans in the population. Since we don't really care about the posterior distribution for $\sigma$, we won't discuss it here. Graphically:
+`partyDemocrat` corresponds to $\beta_1$, the average age of Democrats in the population. `partyRepublican` corresponds to $\beta_2$, the average age of Republicans in the population. 
 
-<!-- Lots to clean up about this plot! (remove plot below) -->
+<!-- DK: We can keep/edit the below comments since many of these facts can be determined directly from the fitted object. -->
+
+We can display the fitted values of the parameters in a pleasing table:
 
 ```{r}
-fit_1 |> 
-  as_tibble() |> 
-  select(-sigma) |> 
-  mutate(Democrat = partyDemocrat, Republican = partyRepublican) |>
-  pivot_longer(cols = Democrat:Republican,
-               names_to = "parameter",
-               values_to = "age") |> 
-  ggplot(aes(x = age, fill = parameter)) +
-    geom_histogram(aes(y = after_stat(count/sum(count))),
-                   alpha = 0.5, 
-                   bins = 100, 
-                   position = "identity") +
-    labs(title = "Posterior for Average Age",
-         subtitle = "More data allows for a more precise posterior for Democrats",
-         x = "Age",
-         y = "Probability") +
-    scale_y_continuous(labels = scales::percent_format()) +
-    theme_classic()
+gtsummary::tbl_regression(fit_1, intercept = TRUE)
 ```
 
-The unknown parameters $\beta_1$ (partyDemocrat) and $\beta_2$ (partyRepublican) are still unknown. We can never know the true average age of all Democrats in the population. But we can calculate a posterior probability distribution for each parameter. Comments:
+
+
+Comments:
 
 -   Democrats seem slightly older than Republicans. That was true in the sample and so, almost (but not quite!) by definition, it will be true in our the posterior probability distributions.
 
