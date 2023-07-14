@@ -54,11 +54,52 @@ Our question:
 
 The phrasing of the question --- especially the phrase "causal effect" --- makes it obvious that we need a causal, rather than a predictive, model. The *units* of our Preceptor Table are individual voters in Texas around the time of the next election. The *outcome* is voting or not voting. The *covariates* include, at least, measures of political engagement. The *treatments* are postcards of various types. The *potential outcomes* are the involve whether or not the person voted, depending on the treatment received.
 
-Recall the definition of a Preceptor Table. It is the smallest possible table such that, if no data were missing, the calculation of all quantities of interest would be trivial. The **causal effect**, for each individual, is the difference in voting behavior under two different treatments. 
+Recall the definition of a Preceptor Table. It is the smallest possible table such that, if no data were missing, the calculation of all quantities of interest would be trivial. The **causal effect**, for each individual, is the difference in voting behavior under treatment versus control. Consider:
 
-<!-- DK: Need the table. -->
+
+```{r}
+#| echo: false
+tibble(ID = c("1", "2", "...", "10", "11", "...", "N"),
+       voting_after_treated = c("1", "1", "...", "1", "0", "...", "1"),
+       voting_after_control = c("1", "0", "...", "1", "1", "...", "0"),
+       treatment = c("Yes", "No", "...", "Yes", "Yes", "...", "No"),
+       engagement = c("1", "3", "...", "6", "2", "...", "2")) |>
+  
+  gt() |>
+  tab_header(title = "Preceptor Table") |> 
+  cols_label(ID = md("ID"),
+             voting_after_treated = md("Voting After Treatment"),
+             voting_after_control = md("Voting After Control"),
+             treatment = md("Treatment"),
+             engagement = md("Engagement")) |>
+  tab_style(cell_borders(sides = "right"),
+            location = cells_body(columns = c(ID))) |>
+  tab_style(style = cell_text(align = "left", v_align = "middle", size = "large"), 
+            locations = cells_column_labels(columns = c(ID))) |>
+  cols_align(align = "center", columns = everything()) |>
+  cols_align(align = "left", columns = c(ID)) |>
+  fmt_markdown(columns = everything()) |>
+  tab_spanner(label = "Covariates", columns = c(treatment, engagement)) |>
+  tab_spanner(label = "Outcomes", columns = c(voting_after_control, voting_after_treated))
+```
+
+
+Comments:
+
+* The more experience you get as a data scientist, the more that you will come to understand that the Four Cardinal Virtues are not a one-way path. Instead, we circle round and round. Our initial question, instead of being fixed forever, is modified as we learn more about the data, and as we experiment with different modeling approaches.
+
+* Indeed, the politician (our boss/client) running for Texas governor probably did not start out with that question. After all, his main question is "How do I win this election?" That big picture goal would lead, over and over again, to more specific questions regarding strategy, including how best to motivate his supporters to vote.
+
+* The same iterative approach applies to the Preceptor Table. The above is just our first version. Once we look more closely at the data, we will discover that there are multiple treatments. In fact, we have a total of 5 potential outcomes in this example. 
+
+* Should we go back and change the Preceptor Table? No! The Preceptor Table is just a tool we use to fix ideas in our own heads. We never talk about Preceptor Tables with anyone else. Indeed, you won't ever see the words "Preceptor Table" outside of this *Primer* and related work.
+
+* Why is there only one covariate (in addition to the treatment)? Because the question only specifies that one. Any covariates mentioned in the question must be included in the Preceptor Table because, without that information for all units, we can't answer the question.
+
 
 ### EDA of `shaming`
+
+<!-- DK: Maybe load and explain the packages in the Introduction, except perhaps for the package we need for the EDA? Or maybe only load libraries, like rstanarm, when we actually need them? Should do this the same way throughout the Primer. -->
 
 After loading the packages we need, let's perform an EDA, starting off by running `glimpse()` on the `shaming` tibble from the **primer.data** package. 
 
@@ -81,18 +122,16 @@ glimpse(shaming)
 ```
 
 
-`glimpse()` gives us a look at the raw data contained within the `shaming` data set. At the very top of the output, we can see the number of rows and columns, or observations and variables respectively. We see that there are 344,084 observations, with each row corresponding to a unique respondent. This summary provides an idea of some of the variables we will be working with. 
+`glimpse()` gives us a look at the raw data contained within the `shaming` data set. At the very top of the output, we can see the number of rows and columns, or observations and variables respectively. We see that there are `r scales::comma(dim(shaming)[1])` observations, with each row corresponding to a unique respondent. `?shaming` provides more details about the variables.
 
-Variables of particular interest to us are `sex`, `hh_size`, and `primary_06`. The variable `hh_size` tells us the size of the respondent's household, `sex` tells us the sex of the respondent, and `primary_06` tells us whether or not the respondent voted in the 2006 Primary election. 
+Variables of particular interest to us are `sex`, `hh_size`, and `primary_06`. The variable `hh_size` tells us the size of the respondent's household, `sex` tells us the sex of the respondent, and `primary_06` tells us whether or not the respondent voted in the 2006 primary election. 
 
-There are a few things to note while exploring this data set. You may -- or may not -- have noticed that the only response to the `general_04` variable is "Yes". In their published article, the authors note that "Only registered voters who voted in November 2004 were selected for our sample" (Gerber, Green, Larimer, 2008). After this, the authors found their history then sent out the mailings. Thus, non-registered voters are excluded from our data.
+There are a few things to note while exploring this data set. You may -- or may not -- have noticed that the only response to the `general_04` variable is "Yes". In their published article, the authors note that "Only registered voters who voted in November 2004 were selected for our sample."  After this, the authors found their history then sent out the mailings. Thus, anyone who did not vote in the 2004 general election is excluded, by definition.
 
-It is also important to identify the dependent variable and its meaning. In this shaming experiment, the dependent variable is `primary_06`, which is a variable coded either 0 or 1 for whether or not the respondent voted in the 2006 primary election. This is the dependent variable because the authors are trying to measure the **effect** that the treatments have on voting behavior in the 2006 general election.
+The dependent variable is `primary_06`, which is a variable coded either 0 or 1 for whether or not the respondent voted in the 2006 primary election. This is the dependent variable because the authors are trying to measure the **effect** that the treatments have on voting behavior in the 2006 general election. It is also the dependent variable from our point of view since our question also deals with voting behavior.
 
+The `treatment` variable is a factor variable with 5 levels, including the control. Our focus is on those treatments, and on their causal effects, if any. Consider:
 
-We have not yet discussed the most important variable of them all: `treatment`. The `treatment` variable is a factor variable with 5 levels, including the control. Since we are curious as to how sending mailings affects voter turnout, the treatment variable will tell us about the impact each type of mailing can make. Let's start off by taking a broad look at the different treatments.
-
-<!-- HV: Is it okay to say the first sentence of this paragraph? -->
 
 ```{r}
 shaming |>
@@ -103,11 +142,19 @@ Four types of treatments were used in the experiment, with voters receiving one 
 
 The first treatment, Civic Duty, also read, “Remember your rights and responsibilities as a citizen. Remember to vote." This message acted as a baseline for the other treatments, since it carried a message very similar to the one displayed on all the mailings.
 
-In the second treatment, Hawthorne, households received a mailing which told the voters that they were being studied and their voting behavior would be examined through public records. This adds a small amount of social pressure to the households receiving this mailing.
+In the second treatment, Hawthorne, households received a mailing which told the voters that they were being studied and their voting behavior would be examined through public records. This adds a small amount of social pressure.
 
 In the third treatment, Self, the mailing includes the recent voting record of each member of the household, placing the word "Voted" next to their name if they did in fact vote in the 2004 election or a blank space next to the name if they did not. In this mailing, the households were also told, “we intend to mail an updated chart" with the voting record of the household members after the 2006 primary. By emphasizing the public nature of voting records, this type of mailing exerts more social pressure on voting than the Hawthorne treatment.
 
 The fourth treatment, Neighbors, provides the household members' voting records, as well as the voting records of those who live nearby. This mailing also told recipients, "we intend to mail an updated chart" of who voted in the 2006 election to the entire neighborhood.
+
+<!-- DK: Do more EDA here, including calculating our measure of civic engagement. -->
+
+### Validity
+
+
+
+
 
 ### Population
 
@@ -134,15 +181,10 @@ Even though the original question is about “voters” in general, and does not
 knitr::include_graphics("other/images/Justice.jpg")
 ```
 
-Justice emphasizes a few key concepts: 
+Justice includes the creation of the Population Table, followed by a discussion about the assumptions of stability, representativeness and unconfoundedness. It concludes by determining the mathematical structure of the data generating mechanism.
 
-* The actual Preceptor Table, a structure which includes a row for every unit in the population. We generally break the rows in the actual Preceptor Table into three categories: the data for units we want to have, the data for units which we actually have, and the data for units we do not care about. 
-* Is our data representative of the population? 
-* Is the meaning of the columns consistent, i.e., can we assume validity? 
 
-We then make an assumption about the data generating mechanism. 
-
-### Preceptor Table
+### Population Table
 
 Recall that in an actual Preceptor Table, we will have a bunch of missing data! We can not use simple arithmetic to calculate the causal effect of voting reminders on voting behavior. Instead, we will be required to estimate it. This is our estimand, a variable in the real world that we are trying to measure. An estimand is not the value you calculated, but is rather the unknown variable you want to estimate.
 
