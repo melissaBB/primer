@@ -585,52 +585,7 @@ The rows from our data have covariates and two potential outcomes. (By definitio
 
 <!-- Need a gif of three data sources be stacked together, but only if validity is true. -->
 
-To understand *validity* in regards to the Population Table, we must first recognize an inherent flaw in any experiment design: *no two units receive exactly the same treatment*.
 
-Consider our Spanish-speakers train experiment. The units on the Spanish-speaking platform received the same treatment, right? No!
-
-Consider different volume levels, measured in decibels (dB), at which Spanish is being spoken.
-
-```{r}
-#| echo: false
-# First, we create a tibble with the values we want for the table
-
-tibble(subject = c("Yao", "Emma", "Cassidy", "Tahmid", "Diego"),
-       ytreat = c("13", "?", "?", "?", "?"),
-       ytreat1001 = c("?", "11", "?", "?", "?"),
-       ytreat1002 = c("?", "?", "?", "?", "6"),
-       yellipsis = c("?", "?", "?", "?", "?"),
-       ycontrol = c("?", "?", "10", "12", "?")) %>%
-  
-  # Then, we use the gt function to make it pretty
-  
-  gt() %>%
-    cols_label(subject = md("ID"),
-               ytreat = md("$$Y_{\\text{58 dB}}(u)$$"),
-               ytreat1001 = md("$$Y_{\\text{59 dB}}(u)$$"),
-               ytreat1002 = md("$$Y_{\\text{60 dB}}(u)$$"),
-               yellipsis = md("$$Y_{\\text{61 dB}}(u)$$"),
-               ycontrol = md("$$Y_c(u)$$")) %>%
-    tab_style(cell_borders(sides = "right"),
-              location = cells_body(columns = c(subject))) %>%
-    tab_style(style = cell_text(align = "left", v_align = "middle", size = "large"), 
-              locations = cells_column_labels(columns = c(subject))) %>%
-    cols_align(align = "center", columns = everything()) %>%
-    cols_align(align = "left", columns = c(subject)) %>%
-    tab_spanner(label = "Outcomes", 
-                c(ytreat, ytreat1001, ytreat1002, yellipsis, ycontrol)) %>%
-    fmt_markdown(columns = everything()) |> 
-  tab_style(style = cell_text(v_align = "bottom"),
-            locations = cells_column_labels())
-```
-
-Certain units heard the Spanish-speakers at higher volumes than other units. And it is entirely possible that the volume of the speech affects the outcome. There is also the issue of the time spent on the platform. Maybe Yao tends to run late, and only hears the Spanish-speakers for thirty seconds. Emma, on the other hand, arrives early. She hears the Spanish-speakers for fifteen minutes before the train arrives. Thus, despite the fact that Emma and Yao are in the same treatment --- that is, hearing Spanish on the platform --- they had very different versions of that treatment.
-
-There are an infinite number of possible treatments. Indeed, it is a virtual certainty that *every treated unit received a different treatment.* However, *validity*, if a reasonable assumption in this specific example, allows us to pretend/assume that Yao, Emma and Diego all received the same treatment. We place all their treated outcomes in the same column. Only if this is true (or true'ish) can we estimate an average treatment effect.
-
-More commonly, we simply assume that all treated units received the same treatment. *Validity allows us to ignore variation in treatment.* In fact, concerns about validity apply to all the variables (covariates and outcomes), not just the treatments. If the columns in the data are not the same thing as the columns in the Preceptor Table, you have a problem. Validity is the assumption which allows us to create the Population Table.
-
-The validity assumption is most important in that, if true, we can consider treatments and other variables to be similar (enough) across time that we can "stack" the data and the Preceptor Table into one, unified, Population Table. Validity means that "exposure to Spanish-speakers" in 2012 means the same thing as "exposure to Spanish-speakers" in 2023. Strictly speaking, this must be false! For example, we are unlikely to be able to hire the same Spanish speakers now as we did a decade ago. Moreover, it is impossible for them to say the exact same words *now*, at the exact same volume, as they did in 2012. Validity allows us to assume that the treatment, and other variables, are close enough.
 
 ### Stability
 
