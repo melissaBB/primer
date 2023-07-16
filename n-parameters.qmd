@@ -184,52 +184,9 @@ knitr::include_graphics("other/images/Justice.jpg")
 Justice includes the creation of the Population Table, followed by a discussion about the assumptions of stability, representativeness and unconfoundedness. It concludes by determining the mathematical structure of the data generating mechanism.
 
 
-### Population Table
-
-Recall that in an actual Preceptor Table, we will have a bunch of missing data! We can not use simple arithmetic to calculate the causal effect of voting reminders on voting behavior. Instead, we will be required to estimate it. This is our estimand, a variable in the real world that we are trying to measure. An estimand is not the value you calculated, but is rather the unknown variable you want to estimate.
-
-Let's build a basic visualization for the actual Preceptor Table for this scenario:
-
-```{r}
-#| echo: false
-# First, we create a tibble with the values we want for the table
-
-tibble(subject = c("Citizen 1", "Citizen 23", "Citizen 40", "Citizen 53", "Citizen 80"),
-       ytreat = c("Voted", "Did not vote", "?", "?", "Voted"),
-       ycontrol = c("?", "?", "Voted", "Did not vote", "?"),
-       ydiff = c("?", "?", "?", "?", "?")) |>
-  
-  # Then, we use the gt function to make it pretty
-  
-  gt() |>
-  cols_label(subject = md("ID"),
-                ytreat = md("Treatment"),
-                ycontrol = md("Control"),
-                ydiff = md("Treatment - Control")) |>
-  cols_move(columns = c(ytreat, ycontrol), after = c(subject)) |>
-  tab_style(cell_borders(sides = "right"),
-            location = cells_body(columns = c(subject))) |>
-  tab_style(style = cell_text(align = "left", v_align = "middle", size = "large"), 
-            locations = cells_column_labels(columns = c(subject))) |>
-  cols_align(align = "center", columns = everything()) |>
-  cols_align(align = "left", columns = c(subject)) |>
-  fmt_markdown(columns = everything())  |>
-  tab_spanner(label = "Outcomes", c(ytreat, ycontrol))  |>
-  tab_spanner(label = "$$\\text{Estimand}$$", c(ydiff))
-```
-
-
-Here, there are two possible outcomes: did vote or did not vote. What we really want to know is the Average Treatment Effect (ATE) of the treatment, the voting reminder. We want to estimate how much the voting reminder impacts the odds of someone voting. 
-
-Note that this is a simplified version of the actual Preceptor Table. In this dataset, we have a number of other columns that we know about each of our subjects: age, sex, past voting history. In an expanded actual Preceptor Table, these columns would be included. 
-
-Now, how can we fill in the question marks? Because of the Fundamental Problem of Causal Inference, we can never know the missing values. Because we can never know the missing values, we must make assumptions. “Assumption” just means that we need a “model,” and all models have parameters.
-
 ### The Population Table
 
-The Population Table shows the data that we *actually* have in our desired population. It shows rows from three sources: the ideal Preceptor Table, the data, and the population outside of the data (rows which exist but for which we have no data). 
-
-In our ideal Preceptor rows, we have information for our covariates of sex, year, and state. However, because those rows are not included in our data, we do not have any outcome results. Since our scenario pertains to an upcoming election in Texas, the state column will read Texas and the year column will read 2021. 
+The Population Table  shows rows from three sources: the Preceptor Table, the data, and the population from which the rows in both the Preceptor Table and the data were drawn. 
 
 The rows from our data have everything: the covariates and the outcomes. The covariates here will be Michigan for state and 2006 for year, since these are the pieces of information that are included in our data. Of course, we still do not have values for Treatment minus Control, since we cannot observe one subject under two conditions. 
 
@@ -239,11 +196,11 @@ The rows from the population have no data. These are subjects which fall under o
 #| echo: false
 # First, we create a tibble with the values we want for the table
 
-tibble(source = c("Population", "Population", "...",
+tibble(source = c("...", "...", "...",
                   "Data", "Data", "...", 
-                  "Population", "Population", "...",
+                  "...", "...", "...",
                   "Preceptor Table", "Preceptor Table", "...",
-                  "Population", "Population"),
+                  "...", "..."),
        gender = c("?", "?", "...",
                   "Male", "Female", "...",
                   "?", "?", "...",
@@ -268,12 +225,7 @@ tibble(source = c("Population", "Population", "...",
                     "?", "Voted", "...",
                     "?", "?", "...", 
                     "?", "?", "...",
-                    "?", "?"),
-       ydiff = c("?", "?", "...", 
-                 "?", "?", "...",
-                 "?", "?", "...",
-                 "?", "?", "...",
-                 "?", "?")) |>
+                    "?", "?")) |>
   
   # Then, we use the gt function to make it pretty
   
@@ -283,8 +235,7 @@ tibble(source = c("Population", "Population", "...",
              year = md("Year"),
              state = md("State"),
              ytreat = md("Treatment"),
-             ycontrol = md("Control"),
-             ydiff = md("Treatment - Control")) |>
+             ycontrol = md("Control")) |>
   tab_style(cell_borders(sides = "right"),
             location = cells_body(columns = c(source))) |>
   tab_style(style = cell_text(align = "left", v_align = "middle", size = "large"), 
@@ -292,8 +243,7 @@ tibble(source = c("Population", "Population", "...",
   cols_align(align = "center", columns = everything()) |>
   cols_align(align = "left", columns = c(source)) |>
   fmt_markdown(columns = everything())  |>
-  tab_spanner(label = "Outcomes", c(ytreat, ycontrol))  |>
-  tab_spanner(label = "Causal Effect", c(ydiff))
+  tab_spanner(label = "Outcomes", c(ytreat, ycontrol)) 
 ```
 
 ### Validity

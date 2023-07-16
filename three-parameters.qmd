@@ -12,6 +12,8 @@ library(patchwork)
 
 <!-- Need a table which shows all 4 (?) languages for describing a model together: English, math, code, output. ? -->
 
+<!-- Come up with common ways in which a lack of representativeness causes problems. This is a list of things that we can check each time when we are interrogating a data science problem. Key issue is the correlation, if anything, between the "assignment mechanism" or "sampling mechanism" and other variables. Discuss sampling mechanism in all cases except att_end ~ treatment. For that, use "assignment mechanism." -->
+
 <!-- DK: Clean up these residuals plots to be similar across chapters! Also, we should ensure that the width of 10 units is the same in each plot. Or does that already happen? Want the intuition that, the more predictive the model, the smaller the remaining variation in the residuals. The below is from chapter 7. -->
 
 <!-- Combo of old things from different sections and new explanations, need to combine and clarify -->
