@@ -269,9 +269,6 @@ https://github.com/jonspring/discontinuity/blob/master/fileb23c55435f90.gif
 
 
 
-* Should use summary(fit_1) and discuss at some point. But when? Maybe Chapter 10?
-
-
 * More discussion of what it means to "control for" something in a regression. Right now, we don't mention this until chapter 11. Needs to be covered earlier, especially in chapter 9. That sets the stage for later.
 
 * Standardize notation. What are predicted/fitted values? Use y_i everywhere, instead of using problem specific terms? That seems a bad (good?!) idea.
@@ -417,23 +414,6 @@ https://rstudio-education.github.io/tidyverse-cookbook/. I love this image: http
 
 * https://github.com/yonicd/carbonate -- perhaps useful for some nicer formatting of source code.
 
-
-Take a look at drat.
-
-https://community.rstudio.com/t/native-pipe-with-lm/110956 Pipe bend might be important.
-
-### Quotes to add:
-
-
-
-## Distribution/Probability material cut from the Primer
-
-### Distribution Talk
-
-
-
-
-### More distribution junk from Wrangling
 
 
 
