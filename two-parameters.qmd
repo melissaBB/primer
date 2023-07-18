@@ -459,77 +459,14 @@ mad_sd <- fit_obj |>
 
 The MAD SD for each parameter is a measure of the variability of our posterior distributions for that parameter. How spread out are they? Speaking roughly, 95% of the mass of a posterior probability distribution is located within +/- 2 MAD SDs from the median. For example, we would be about 95% confident that the true value of $\mu$ is somewhere between `r round(median_fit - 2 * mad_sd, 1)` and `r round(median_fit + 2 * mad_sd, 1)`. 
 
-##### Plotting the posterior distributions
+<!-- *Pictures speak where math mumbles.* -->
 
-Instead of doing this math in our heads, we can display both posterior probability distributions. *Pictures speak where math mumbles.* Fortunately, getting draws from those posteriors is easy:
+<!-- DK: Add tbl_regression from gtsummary -->
 
-<!-- as_tibble() is just trying to make things "pretty", for certain meanings of that word. This causes the decimals for the intercept to vanish when this chapter is knit. The decimals are present when I run it here. Worth worrying about? -->
-
-```{r}
-fit_obj |> 
-  as_tibble()
-```
-
-These 4,000 rows are draws from the estimated posteriors, each in its own column. These are like the vectors which result from calling functions like `rnorm()` or `rbinom()`. We can create the plot in a similar way:
-
-<!-- More here. Drawing the connection to what we have done in earlier chapters. -->
+<!-- Add posterior predictive checks using, perhaps, https://mc-stan.org/rstanarm/reference/pp_check.stanreg.html -->
 
 
-```{r}
-fit_obj |> 
-  as_tibble() |> 
-  ggplot(aes(x = `(Intercept)`)) +
-  
-# Recall that after_stat() allows us to work with "stat variables" that have
-# been calculated by ggplot, such as "count" and "density".
-  
-    geom_histogram(aes(y = after_stat(count/sum(count))), 
-                   bins = 100) +
-    labs(title = "Posterior for Average Male Height",
-         subtitle = "American men average around 176 cm in height",
-         x = expression(mu), 
-         y = "Probability",
-         caption = "Data source: NHANES") +
-    scale_y_continuous(labels = scales::percent_format(accuracy = 1)) +
-    theme_classic()
-```
-
-Although it is possible to have variable names like "(Intercept)", it is not recommended. Avoid weird names! When you are stuck with them, place them in backticks. Even better, rename them, as we do above.
-
-Note that the title includes the word "Posterior" and not the complete term "Posterior Probability Distribution." This will be our practice going forward. "Posterior" means "Posterior Distribution" and, any posterior distribution in which the sum of the range is 1 is a "posterior probability distribution." In most or our plots, "posterior" implies "posterior probability distribution."
-
-Always go back to first principles. There is some *truth*, an unknown number, a fact about the world. If we knew everything, if we had the Preceptor Table, inference would not be necessary. Algebra would suffice. Alas, in this imperfect world, we have no choice but to be data scientist. We are always uncertain. We summarize our knowledge of unknown numbers with posterior probability distributions, or "posteriors" for short.
-
-<!-- Add more discussion about what this plot means. -->
-
-```{r}
-# The same plot as above, but for sigma instead of mu.
-
-fit_obj |> 
-  as_tibble() |> 
-  ggplot(aes(x = sigma)) +
-    geom_histogram(aes(y = after_stat(count/sum(count))), 
-                   bins = 100) +
-    labs(title = "Posterior for Standard Deviation of Male Height",
-         subtitle = "The standard deviation of height is around 7 to 11 cm",
-         x = expression(sigma),
-         y = "Probability",
-         caption = "Data source: NHANES") +
-    scale_y_continuous(labels = scales::percent_format(accuracy = 1)) +
-    theme_classic()
-```
-
-Again, $\sigma$ is usually a nuisance parameter. We don't really care what its value is, so we rarely plot it.
-
-
-<!-- DK: Discuss the meaning in more detail. Primary purpose is to come up with posteriors for the parameters, because we need those posteriors to answer our questions. We don't really care about the meaning of the posteriors. Lots of times, there is no sensible meaning. None of our questions have to do with sigma, so, we don't really care what the value of sigma is. Now, in this case, mu does have a sensible interpretation. Blah, blah, blah! Lesson: Don't spend too much time worrying about the interpretation of parameters.  -->
-
-<!-- DK: Fun problem set exercise is to pull this data, pivot it, and then create one graphic with both distributions on the same scale. Then you could . . . -->
-
-<!-- DK: Is there other stuff to do within Courage? Might show how to make a regression table. Should discuss how there is only one model and that we have different views of that model by looking at the printed output, the posterior probability distributions of the parameters and graphics of the fitted values and residuals.  -->
-
-
-### Testing
+<!-- ### Testing -->
 
 
 <!-- Discuss testing for the first time. Give simple example of how people test. Explain how people test. Null hypothesis, is that the average height of men is 173 cm. Alternative hypothesis is that it is not. Can I reject my null hypothesis, because 173 is more than two standard errors away from the mean of the data? REad the Open Intro explanation about what a hypothesis test is. Takes Courage to Not Test! Tetsing is stupid. -->
@@ -551,8 +488,6 @@ knitr::include_graphics("other/images/Temperance.jpg")
 We have a model. What can we do with it? Let's answer the four questions with which we started.
 
 ### Question 1
-
-<!-- DK: Show how this posterior is the same as the posterior mu. They are the same thing. Discuss mapping from parameters to reality. The latter is easier and more general. The former is mostly useful in seminar rooms. -->
 
 * What is the average height of men?
 
