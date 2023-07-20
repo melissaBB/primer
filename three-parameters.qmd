@@ -10,19 +10,20 @@ library(gtsummary)
 library(patchwork)
 ```
 
+
+<!-- End each Temperance section with reasons to be suspicious of the results. Maintain some humility. List all the problems with the process. -->
+
 <!-- MT: for all gtsummary tables we need to edit the tables to include specifics  -->
 
-<!-- Courage. First, what is the mathematics? We need to show the math, to specify the variables which are included and the parameters which are used. Second, what are the values of the parameters? The math plus the parameters creates the Data Generating Mechanism, which is the final step of Courage. All of this is very circular. Fuss with the fitted model. Example is posterior predictive checks. Also model comparisons. Also checking parameters for reasonableness is a poor man's posterior predictive check. Iterative process. DONE-->
+<!-- End Courage section with two sentences, right after showing the table. The first describes the model. The second highlights the value, or at least the direction, of at least one of the coefficients of the model. Sometimes there might be three or four sentences, if you wanted to talk about more coefficients. -->
 
-<!-- Need a table which shows all 4 (?) languages for describing a model together: English, math, code, output. ? -->
+<!-- "We model the age of individuals at a train station as a linear function of the party membership. We find that Republicans are about one and a half years younger than Democrats." -->
+
 
 <!-- Come up with common ways in which a lack of representativeness causes problems. This is a list of things that we can check each time when we are interrogating a data science problem. Key issue is the correlation, if anything, between the "assignment mechanism" or "sampling mechanism" and other variables. Discuss sampling mechanism in all cases except att_end ~ treatment. For that, use "assignment mechanism." -->
 
-<!-- DK: Clean up these residuals plots to be similar across chapters! Also, we should ensure that the width of 10 units is the same in each plot. Or does that already happen? Want the intuition that, the more predictive the model, the smaller the remaining variation in the residuals. The below is from chapter 7. -->
+<!-- DK: Make residual plots consistent in this chapter! Also, we should ensure that the width of 10 units is the same in each plot. Or does that already happen? Want the intuition that, the more predictive the model, the smaller the remaining variation in the residuals.  -->
 
-<!-- Combo of old things from different sections and new explanations, need to combine and clarify -->
-
-<!-- One of the key jobs of a data scientist is to guide people --- our colleagues, bosses and clients --- toward asking precise questions. We must help them to translate English into inference. That translation requires precision. -->
 
 Models have parameters. In @sec-one-parameter we created models with a single parameter $p$, the proportion of red beads in an urn. In @sec-two-parameters, we used models with two parameters: $\mu$ (the average height in the population, generically known as a model "intercept") and $\sigma$ (the variation in height in the population). Here --- can you guess where this is going? --- we will build models with three parameters: $\sigma$ (which serves the same role throughout the book) and two "coefficients." In models which relate a continuous predictor to the outcome, those two parameters will be labeled $\beta_0$ and $\beta_1$. In models which estimate two averages, the parameters will be $\beta_1$ and $\beta_2$. All this notation is confusing, not least because different academic fields use inconsistent schemes. Follow the Cardinal Virtues and tackle your problem step by step.
 
@@ -396,25 +397,18 @@ Finally there are several possibilities that still exist with age and party. Eac
 knitr::include_graphics("other/images/Temperance.jpg")
 ```
 
-**Courage** gave us the fitted model. **Temperance** guides us in the use of the model we have created to answer the questions we began with.
+**Courage** gave us the data generating mechanism. **Temperance** guides us in the use of the DGM to answer the questions we began with.
 
-#### Posterior Predict
-
-Recall the questions with which we began this section:
+Recall the first question:
 
 *What is the probability that, if a Democrat shows up at the train station, he will be over 50 years old?*
 
-*In a group of three Democrats and three Republicans, what will the age difference be between the oldest Democrat and the youngest Republican?*
-
-So far we have only tried our model on people from our data set whose real age we already knew. This is helpful to understand the model, but our ultimate goal is to understand more about the real world, about people we don't yet know much about. Temperance guides us to make meaningful predictions and to become aware of their known and unknown limitations.
-
-Start with a simple question, what are the chances that a random Democrat is over 50 years old? First, we create a tibble with the assumed input for our model. In our case the tibble has a variable named "party" which contains a single observation with the value "Democrat". This is a bit different than @sec-two-parameters.
+Create a tibble with the assumed input for our model. In our case the tibble has a variable named "party" which contains a single observation with the value "Democrat". This is a bit different than @sec-two-parameters.
 
 ```{r}
 new_obs <- tibble(party = "Democrat")
 ```
 
-<!-- Does this D_age work? If so, similar discussion should be used more broadly. Also discuss R_age. Even Person_age for a random person, an analysis which accounts for the mix of Rs and Ds in the sample/population. -->
 
 Use `posterior_predict()` to create draws from the posterior for this scenario. Note that we have a new posterior distribution under consideration here. The unknown parameter, call it $D_{age}$, is the age of a Democrat. This could be the age of a randomly selected Democrat from the population or of the next Democrat we meet or of the next Democrat we interview on the train platform. The definition of "population" determines the appropriate interpretation. Yet, regardless, $D_{age}$ is an unknown parameter. But it is not one --- like $\beta_0$, $\beta_1$, or $\sigma$ --- for which we have already created a posterior probability distribution. That is why we need `posterior_predict()`.
 
@@ -427,7 +421,7 @@ pp <- posterior_predict(fit_1, newdata = new_obs) |>
 head(pp, 10)
 ```
 
-The result are draws from the posterior distribution of the age of a Democrat. It is important to understand that this is not a concrete person from the `trains` dataset - the algorithm in `posterior_predict()` simply uses the existing data from `trains` to estimate this posterior distribution.
+The result are draws from the posterior distribution of the age of a Democrat. It is important to understand that this is not a concrete person from the `trains` dataset - the algorithm in `posterior_predict()` simply uses the existing data from `trains` to create the DGM, which is then used to sample from the posterior distribution of $D_age$.
 
 ```{r}
 pp |> 
@@ -449,9 +443,9 @@ Once we have the posterior distribution, we can answer (almost) any reasonable q
 sum(pp$`1` > 50) / nrow(pp)
 ```
 
-Recall the second question:
+The second question:
 
--   In a group of three Democrats and three Republicans, what will the age difference be between the oldest Democrat and the youngest Republican?
+*In a group of three Democrats and three Republicans, what will the age difference be between the oldest Democrat and the youngest Republican?*
 
 As before we start by creating a tibble with the assumed input. Note that the name of the column ("party") and the observations ("Democrat", "Republican") must always be *exactly* as they are in the original data set. This tibble as well as our model can then be used as arguments for `posterior_predict()`:
 
@@ -513,6 +507,9 @@ pp |>
 ```
 
 In words, we would expect the oldest Democrat to be about 22 years older than the youngest Republican, but we would not be too surprised if the oldest Democrat was actually younger than the youngest Republican in a group of 6.
+
+
+The answers we have provided, as always, almost certainly underestimate the true uncertainty of the world.
 
 ## att_end \~ treatment
 
@@ -704,8 +701,6 @@ On the left-hand side we still have the outcome, $y$, however in this case, this
 
 -   Note that the formula applies to everyone in the population, not just the 115 people for whom we have data. The index $i$ does not just go from 1 through 115. It goes from 1 through $N$, where $N$ is the number of individuals in the population. Conceptually, everyone has an `att_end` under treatment and under control.
 
-<!-- DK: Above is not overly clear. -->
-
 -   The small $i$'s are an index for the data set. It is equivalent to the "ID" column in our Preceptor Table and simply states that the outcome for person $i$ is explained by the predictor variables ($treatment$ and $control$) for person $i$, along with an error term.
 
 #### Fitted Model
@@ -804,30 +799,6 @@ knitr::include_graphics("other/images/Temperance.jpg")
 Recall the first question with which we began this section:
 
 -   What is the average treatment effect, of exposing people to Spanish-speakers, on their attitudes toward immigration?
-
-<!-- DK: Below is also not clear. -->
-
-Chapter @sec-rubin-causal-model defined the *average treatment effect*. One simple estimator of the average treatment effect is the difference between $\beta_1$ and $\beta_2$. After all, the definition of $\beta_1$ is the average attitude toward immigration, of the population, for anyone, under exposure to the treatment. So, $\beta_1 - \beta_2$ is the average treatment effect for the population, roughly 1.5. However, estimating the posterior probability distribution for this parameter is tricky, unless we make use of the posterior distributions of $\beta_1$ and $\beta_2$. With that information, the problem is simple:
-
-<!-- MT: Below graph needs to have (Intercept) as the x value instead of treatmentControl -->
-
-```{r}
-fit_2 |> 
-  as_tibble() |> 
-  ggplot(aes(x = treatmentControl)) +
-    geom_histogram(aes(y = after_stat(count/sum(count))),
-                   bins = 100) +
-    labs(title = "Posterior for Average Treatment Effect",
-         subtitle = "Exposure to Spanish-speakers shifts immigration attitudes rightward",
-         x = "Difference in Attitude",
-         y = "Probability") +
-    scale_y_continuous(labels = scales::percent_format()) +
-    theme_classic()
-```
-
-Could the true value of the average treatment effect be as much as 2 or as little as 1? Of course! The most likely value is around 1.5, but the variation in the data and the smallness of our sample cause the estimate to be imprecise. However, it is quite unlikely that the true average treatment effect is below zero.
-
-<!-- Establish that approximate 1.5 difference can be seen by the attitude posterior from courage -->
 
 We can use `posterior_epred()` to answer this question. Create a tibble and use it as we have done before:
 
