@@ -16,6 +16,14 @@ library(patchwork)
 
 <!-- DK: Make residual plots consistent in this chapter! Also, we should ensure that the width of 10 units is the same in each plot. Or does that already happen? Want the intuition that, the more predictive the model, the smaller the remaining variation in the residuals.  -->
 
+<!-- DK: Preceptor Table is always capitalized and has no missing values. Star numbers in the Preceptor Table which will never be oberseved. -->
+
+<!-- DK: Preceptor Table rows in Population Table have no outcomes or covariates most of the time. -->
+
+<!-- DK: Plot ggplot(data = trains, aes(x = age, y = income)) + geom_point() instead of income versus age histogram. -->
+
+<!-- DK: Whenever we have a predictive model, use language like "when comparing." Avoid even the hint of a causal claim. -->
+
 Models have parameters. In @sec-one-parameter we created models with a single parameter $p$, the proportion of red beads in an urn. In @sec-two-parameters, we used models with two parameters: $\mu$ (the average height in the population, generically known as a model "intercept") and $\sigma$ (the variation in height in the population). Here --- can you guess where this is going? --- we will build models with three parameters: $\sigma$ (which serves the same role throughout the book) and two "coefficients." In models which relate a continuous predictor to the outcome, those two parameters will be labeled $\beta_0$ and $\beta_1$. In models which estimate two averages, the parameters will be $\beta_1$ and $\beta_2$. All this notation is confusing, not least because different academic fields use inconsistent schemes. Follow the Cardinal Virtues and tackle your problem step by step.
 
 Perhaps more importantly, a focus on parameters is less relevant now than it was decades ago, when computational limitations made answering our actual questions harder. *Parameters are imaginary.* They don't exist. They, in general, are not the answer to an real world question. They are tools, along with the models of which they are a part, we use to answer questions.
@@ -497,7 +505,13 @@ pp |>
 
 In words, we would expect the oldest Democrat to be about 22 years older than the youngest Republican, but we would not be too surprised if the oldest Democrat was actually younger than the youngest Republican in a group of 6.
 
-Although we have used our fitted model and the Cardinal Virtues to answer our questions we still need to be suspicious of our results. We can not take our assumptions to be fully accurate as we have seen with the assumptions of stability, validity, representativeness, and unconfoundness. All of these assumptions have proved flaws within our line of reasoning and situation at hand which means that we can not take our model and results to be fully accurate. When we dealt with these assumptions we had problems with the "sampling mechanism", the true meaning of terms, and the way that we have collected our data. When we are dealing with the situations that we have at hand we need to make sure that we maintain humility because not all of our data and assumptions will be accurate. The answers we have provided, as always, almost certainly underestimate the true uncertainty of the world.
+We should always be cautious about our inferences. Our assumptions are never true. 
+
+<!-- One sentence per assumption. -->
+
+Our stated inferences almost certainly underestimate the true uncertainty of the world. Stay cautious my friends.
+
+<!-- Insert meme! -->
 
 ## att_end \~ treatment
 
@@ -750,7 +764,9 @@ Another model check that we can and should run is the posterior predictive check
 pp_check(fit_2, plotfun = "hist", nreps = 3, binwidth = 1)
 ```
 
-Let's take a deeper look at the graphs that we have above. Our graph in the darker blue represents our actual data. As we can see with the lighter blue graph, our fitted model is able to generate a distribution of the data that is similar when compared to the actual data. One important item that we want to note is that for the actual data there are no values that are above 15. When we compare this to our fitted model we can see that during the "fake-data" simulation there were attitudes that were above 15. Our fitted model did a great job staying reasonably accurate when compared to the actual data, however, the residuals present within the fitted model will change the way that the error plays a strong factor in the graphs.
+<!-- DK: Rewrite along the lines of. The fake data produces some values for `att_end` which are *impossible*. We know from the survey details that the lowest possible value for `att_end` is 3 and the highest is 15. But, in every fake data simulation, we see values less than 3 and greater than 15. This is a flaw in our model. Is it a serious flaw? Tough to know. But, for now, we lack the necessary skills to improve the model enough to remove it. -->
+
+Let's take a deeper look at the graphs that we have above. Our graph in the darker blue represents our actual data. As we can see with the lighter blue graph, our fitted model is able to generate a distribution of the data that is similar when compared to the actual data. One important item that we want to note is that for the actual data there are no values that are above 15. When we compare this to our fitted model we can see that during the "fake-data" simulation there were attitudes that were above 15. 
 
 #### Data Generating Mechanism (DGM)
 
@@ -764,7 +780,7 @@ gtsummary::tbl_regression(fit_2, intercept = TRUE) %>%
   bold_labels()
 ```
 
-`(Intercept)` corresponds to 10.0 which is $\beta_1$. As always, R has, behind the scenes, estimated the entire posterior probability distribution for $\beta_1$. We will graph that distribution in the next section. But the basic print method for these objects can't show the entire distribution, so it gives us summary numbers: the median and the MAD SD. Speaking roughly, we would expect about 95% of the values in the posterior to be within two MAD SD's of the median. In other words, we are 95% confident that the true, but unknowable, average attitude toward immigration among the Treated in the population to be between 9.2 and 10.8. `treatmentControl` corresponds to $\beta_2$. The `treatmentControl` estimate is -1.5 attitudes younger as the difference between "control" and "treated" has been shown to be younger regarding attitudes for the median values.
+`(Intercept)` corresponds to 10.0 which is $\beta_1$. As always, R has, behind the scenes, estimated the entire posterior probability distribution for $\beta_1$. But the basic print method for these objects can't show the entire distribution, so it gives us summary numbers: the median and the MAD SD. Speaking roughly, we would expect about 95% of the values in the posterior to be within two MAD SD's of the median. In other words, we are 95% confident that the true, but unknowable, average attitude toward immigration among the Treated in the population to be between 9.2 and 10.8. `treatmentControl` corresponds to $\beta_2$. The `treatmentControl` estimate is -1.5 attitudes younger as the difference between "control" and "treated" has been shown to be younger regarding attitudes for the median values.
 
 Up until now, we have used the Bayesian interpretation of "confidence interval." This is also the intuitive meaning which, outside of academia, is almost universal. There is a truth out there. We don't know, and sometimes can't know, the truth. A confidence interval, and its associated confidence level, tells us how likely the truth is to lie within a specific range. If your boss asks you for a confidence interval, she almost certainly is using this interpretation.
 
