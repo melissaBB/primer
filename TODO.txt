@@ -1,8 +1,10 @@
 # Priorities
 
-Courage section ends with a clear statement in English, in its own paragraph, describing the model. That is, what is the one sentence which a student would say at a presentation describing the model.
+Courage section ends with a clear statement in English, in its own paragraph, describing the model. That is, what are the two sentence which a student would say at a presentation describing the model. First sentence specifies the model, including making clear the units, outcome and key covariates. (No need to use the terms "units," "outcomes," and so on.) The second sentence tells us about one key number, along with its associated uncertainty. With predictive models, the language almost always includes "When comparing two units (whatever those units are), one with covariate (whatever it is) value X and the other with value Y, the difference in outcome is . . . " With a causal model, you are almost always interested in the average causal effect (or treatment effect), although sometimes you provide this number for a particularly interesting/important subset of the data.
 
-Representativeness is a concern for both the data and for the Preceptor Table. If you need data for an unrepresentative subset of the population, you might be in trouble. Or, you can try to adjust your question so that answerable for the data you have.
+
+
+Representativeness is a concern for both the data and for the Preceptor Table. If you need data for an unrepresentative subset of the population, you might be in trouble. Or, you can try to adjust your question so that it is answerable for the data you have.
 
 Get rid of graphs of parameters. Only confusing! Always use posterior_epred() and posterior_predict().
 
