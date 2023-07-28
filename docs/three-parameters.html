@@ -310,7 +310,7 @@ div.csl-indent {
   </div>
   
 
-</header><!-- MT: for all gtsummary tables we need to edit the tables to include specifics  --><!-- Come up with common ways in which a lack of representativeness causes problems. This is a list of things that we can check each time when we are interrogating a data science problem. Key issue is the correlation, if anything, between the "assignment mechanism" or "sampling mechanism" and other variables. Discuss sampling mechanism in all cases except att_end ~ treatment. For that, use "assignment mechanism." --><!-- DK: Make residual plots consistent in this chapter! Also, we should ensure that the width of 10 units is the same in each plot. Or does that already happen? Want the intuition that, the more predictive the model, the smaller the remaining variation in the residuals.  --><!-- DK: Whenever we have a predictive model, use language like "when comparing." Avoid even the hint of a causal claim. --><p>Models have parameters. In <a href="one-parameter.html"><span>Chapter&nbsp;3</span></a> we created models with a single parameter <span class="math inline">\(p\)</span>, the proportion of red beads in an urn. In <a href="two-parameters.html"><span>Chapter&nbsp;4</span></a>, we used models with two parameters: <span class="math inline">\(\mu\)</span> (the average height in the population, generically known as a model “intercept”) and <span class="math inline">\(\sigma\)</span> (the variation in height in the population). Here — can you guess where this is going? — we will build models with three parameters: <span class="math inline">\(\sigma\)</span> (which serves the same role throughout the book) and two “coefficients.” In models which relate a continuous predictor to the outcome, those two parameters will be labeled <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span>. In models which estimate two averages, the parameters will be <span class="math inline">\(\beta_1\)</span> and <span class="math inline">\(\beta_2\)</span>. All this notation is confusing, not least because different academic fields use inconsistent schemes. Follow the Cardinal Virtues and tackle your problem step by step.</p>
+</header><!-- DK: Always need to ask specify the moment in time to which the Preceptor Table refers. The original question will almost never specify this, although the normal answer is often "now" or "today." Ask this question as part of the what is the outcome question. DONE--><!-- Remove sampling & assignment mechanism --><!-- DK: In each case, make the "refined" question explicit right before creating the Preceptor Table. DONE--><!-- DK: In the Validity section, always discuss how we need to refine the question further in order to answer it, because variables do not come out of this air. --><!-- DK: Capitalize Population Table. DONE--><!-- DK: Discussions of representativeness might seem redundant. And, of course, we always mention the two potential problems: Is our data representative of the population and is our Preceptor Table representative of the population? Each of these points gets its own short paragraph. There are always two levels of concerns: first is generic, second only applies to the variables you need to answer the question. applied in age~party (needs to be applied elsewhere)--><!-- MT: for all gtsummary tables we need to edit the tables to include specifics  --><!-- Come up with common ways in which a lack of representativeness causes problems. This is a list of things that we can check each time when we are interrogating a data science problem. Key issue is the correlation, if anything, between the "assignment mechanism" or "sampling mechanism" and other variables. Discuss sampling mechanism in all cases except att_end ~ treatment. For that, use "assignment mechanism." --><!-- DK: Make residual plots consistent in this chapter! Also, we should ensure that the width of 10 units is the same in each plot. Or does that already happen? Want the intuition that, the more predictive the model, the smaller the remaining variation in the residuals.  --><!-- DK: Whenever we have a predictive model, use language like "when comparing." Avoid even the hint of a causal claim. --><p>Models have parameters. In <a href="one-parameter.html"><span>Chapter&nbsp;3</span></a> we created models with a single parameter <span class="math inline">\(p\)</span>, the proportion of red beads in an urn. In <a href="two-parameters.html"><span>Chapter&nbsp;4</span></a>, we used models with two parameters: <span class="math inline">\(\mu\)</span> (the average height in the population, generically known as a model “intercept”) and <span class="math inline">\(\sigma\)</span> (the variation in height in the population). Here — can you guess where this is going? — we will build models with three parameters: <span class="math inline">\(\sigma\)</span> (which serves the same role throughout the book) and two “coefficients.” In models which relate a continuous predictor to the outcome, those two parameters will be labeled <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span>. In models which estimate two averages, the parameters will be <span class="math inline">\(\beta_1\)</span> and <span class="math inline">\(\beta_2\)</span>. All this notation is confusing, not least because different academic fields use inconsistent schemes. Follow the Cardinal Virtues and tackle your problem step by step.</p>
 <p>Perhaps more importantly, a focus on parameters is less relevant now than it was decades ago, when computational limitations made answering our actual questions harder. <em>Parameters are imaginary.</em> They don’t exist. They, in general, are not the answer to an real world question. They are tools, along with the models of which they are a part, we use to answer questions.</p>
 <p>Packages:</p>
 <div class="cell">
@@ -337,31 +337,33 @@ div.csl-indent {
 <section id="preceptor-table" class="level4" data-number="5.1.1.1"><h4 data-number="5.1.1.1" class="anchored" data-anchor-id="preceptor-table">
 <span class="header-section-number">5.1.1.1</span> Preceptor Table</h4>
 <p>First, do we need a <strong>causal</strong> or <strong>predictive</strong> model? In our question above we have a predictive model as we only have one outcome which is the person’s age based on our predictor which is the person’s party.</p>
-<p>Second, what is the outcome? A person’s age will be the <strong>outcome</strong>. Note that the outcome is not necessarily the same concept mentioned in the questions. For example, the outcome column is not “probability that a person is over 50” even though that is one of the questions we need to answer.</p>
-<p>Third, what are the <strong>units</strong>? Our units for this scenario would be individuals because the questions are about the attributes of unique people at the station. The questions, however, leave unclear details. Where train stations are these people at? Which country? Also, at what moment in time is this experiment taking place? In order to dive deeper into these questions we need to engage in a conversation with the person that is asking us these questions.</p>
+<p>Second, what is the outcome? A person’s age will be the <strong>outcome</strong>. Note that the outcome is not necessarily the same concept mentioned in the questions. For example, the outcome column is not “probability that a person is over 50” even though that is one of the questions we need to answer. The questions, however, leave unclear details. Where train stations are these people at? Which country? Also, at what moment in time is this experiment taking place? In order to dive deeper into these questions we need to engage in a conversation with the person that is asking us these questions. When this occurs, we need to discuss and dive deeper into the questions that have been asked to understand what the true question is at hand. For the questions that we have at hand we will be talking about all the adults in July 1, 2012 at the location of Chicago, Illinois.</p>
+<p>Third, what are the <strong>units</strong>? Our units for this scenario would be individuals because the questions are about the attributes of unique people at the station.</p>
 <p>Fourth, what are the <strong>covariates</strong>? In our case, a person’s party will be the only covariate because it is another factor that plays to the person’s age and identity. The Preceptor Table must include any covariates mentioned in the question.</p>
 <p>Fifth, do we have a <strong>treatment</strong>? No.&nbsp;We will be using a predictive model as discussed above and treatments will only apply to situations with causal models. A treatment is just a covariate which we can, at least in theory, manipulate, thereby creating other potential outcomes.</p>
+<p>Let’s look at our refined question to create our Preceptor Table:</p>
+<p><em>What is the probability that, if a Democrat shows up at the train station in Chicago, Illinois in 2012, he will be over 50 years old?</em></p>
 <p>Our Preceptor Table:</p>
 <div class="cell">
 <div class="cell-output-display">
 
-<div id="ctyamcnatz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#ctyamcnatz table {
+<div id="jrngtajssk" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#jrngtajssk table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#ctyamcnatz thead, #ctyamcnatz tbody, #ctyamcnatz tfoot, #ctyamcnatz tr, #ctyamcnatz td, #ctyamcnatz th {
+#jrngtajssk thead, #jrngtajssk tbody, #jrngtajssk tfoot, #jrngtajssk tr, #jrngtajssk td, #jrngtajssk th {
   border-style: none;
 }
 
-#ctyamcnatz p {
+#jrngtajssk p {
   margin: 0;
   padding: 0;
 }
 
-#ctyamcnatz .gt_table {
+#jrngtajssk .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -387,12 +389,12 @@ div.csl-indent {
   border-left-color: #D3D3D3;
 }
 
-#ctyamcnatz .gt_caption {
+#jrngtajssk .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#ctyamcnatz .gt_title {
+#jrngtajssk .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -404,7 +406,7 @@ div.csl-indent {
   border-bottom-width: 0;
 }
 
-#ctyamcnatz .gt_subtitle {
+#jrngtajssk .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -416,7 +418,7 @@ div.csl-indent {
   border-top-width: 0;
 }
 
-#ctyamcnatz .gt_heading {
+#jrngtajssk .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -428,13 +430,13 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#ctyamcnatz .gt_bottom_border {
+#jrngtajssk .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#ctyamcnatz .gt_col_headings {
+#jrngtajssk .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -449,7 +451,7 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#ctyamcnatz .gt_col_heading {
+#jrngtajssk .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -469,7 +471,7 @@ div.csl-indent {
   overflow-x: hidden;
 }
 
-#ctyamcnatz .gt_column_spanner_outer {
+#jrngtajssk .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -481,15 +483,15 @@ div.csl-indent {
   padding-right: 4px;
 }
 
-#ctyamcnatz .gt_column_spanner_outer:first-child {
+#jrngtajssk .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#ctyamcnatz .gt_column_spanner_outer:last-child {
+#jrngtajssk .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#ctyamcnatz .gt_column_spanner {
+#jrngtajssk .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -501,11 +503,11 @@ div.csl-indent {
   width: 100%;
 }
 
-#ctyamcnatz .gt_spanner_row {
+#jrngtajssk .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#ctyamcnatz .gt_group_heading {
+#jrngtajssk .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -531,7 +533,7 @@ div.csl-indent {
   text-align: left;
 }
 
-#ctyamcnatz .gt_empty_group_heading {
+#jrngtajssk .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -546,15 +548,15 @@ div.csl-indent {
   vertical-align: middle;
 }
 
-#ctyamcnatz .gt_from_md > :first-child {
+#jrngtajssk .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#ctyamcnatz .gt_from_md > :last-child {
+#jrngtajssk .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#ctyamcnatz .gt_row {
+#jrngtajssk .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -573,7 +575,7 @@ div.csl-indent {
   overflow-x: hidden;
 }
 
-#ctyamcnatz .gt_stub {
+#jrngtajssk .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -586,7 +588,7 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#ctyamcnatz .gt_stub_row_group {
+#jrngtajssk .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -600,15 +602,15 @@ div.csl-indent {
   vertical-align: top;
 }
 
-#ctyamcnatz .gt_row_group_first td {
+#jrngtajssk .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#ctyamcnatz .gt_row_group_first th {
+#jrngtajssk .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#ctyamcnatz .gt_summary_row {
+#jrngtajssk .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -618,16 +620,16 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#ctyamcnatz .gt_first_summary_row {
+#jrngtajssk .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#ctyamcnatz .gt_first_summary_row.thick {
+#jrngtajssk .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#ctyamcnatz .gt_last_summary_row {
+#jrngtajssk .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -637,7 +639,7 @@ div.csl-indent {
   border-bottom-color: #D3D3D3;
 }
 
-#ctyamcnatz .gt_grand_summary_row {
+#jrngtajssk .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -647,7 +649,7 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#ctyamcnatz .gt_first_grand_summary_row {
+#jrngtajssk .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -657,7 +659,7 @@ div.csl-indent {
   border-top-color: #D3D3D3;
 }
 
-#ctyamcnatz .gt_last_grand_summary_row_top {
+#jrngtajssk .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -667,11 +669,11 @@ div.csl-indent {
   border-bottom-color: #D3D3D3;
 }
 
-#ctyamcnatz .gt_striped {
+#jrngtajssk .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#ctyamcnatz .gt_table_body {
+#jrngtajssk .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -680,7 +682,7 @@ div.csl-indent {
   border-bottom-color: #D3D3D3;
 }
 
-#ctyamcnatz .gt_footnotes {
+#jrngtajssk .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -694,7 +696,7 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#ctyamcnatz .gt_footnote {
+#jrngtajssk .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -703,7 +705,7 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#ctyamcnatz .gt_sourcenotes {
+#jrngtajssk .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -717,7 +719,7 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#ctyamcnatz .gt_sourcenote {
+#jrngtajssk .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -725,63 +727,63 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#ctyamcnatz .gt_left {
+#jrngtajssk .gt_left {
   text-align: left;
 }
 
-#ctyamcnatz .gt_center {
+#jrngtajssk .gt_center {
   text-align: center;
 }
 
-#ctyamcnatz .gt_right {
+#jrngtajssk .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#ctyamcnatz .gt_font_normal {
+#jrngtajssk .gt_font_normal {
   font-weight: normal;
 }
 
-#ctyamcnatz .gt_font_bold {
+#jrngtajssk .gt_font_bold {
   font-weight: bold;
 }
 
-#ctyamcnatz .gt_font_italic {
+#jrngtajssk .gt_font_italic {
   font-style: italic;
 }
 
-#ctyamcnatz .gt_super {
+#jrngtajssk .gt_super {
   font-size: 65%;
 }
 
-#ctyamcnatz .gt_footnote_marks {
+#jrngtajssk .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#ctyamcnatz .gt_asterisk {
+#jrngtajssk .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#ctyamcnatz .gt_indent_1 {
+#jrngtajssk .gt_indent_1 {
   text-indent: 5px;
 }
 
-#ctyamcnatz .gt_indent_2 {
+#jrngtajssk .gt_indent_2 {
   text-indent: 10px;
 }
 
-#ctyamcnatz .gt_indent_3 {
+#jrngtajssk .gt_indent_3 {
   text-indent: 15px;
 }
 
-#ctyamcnatz .gt_indent_4 {
+#jrngtajssk .gt_indent_4 {
   text-indent: 20px;
 }
 
-#ctyamcnatz .gt_indent_5 {
+#jrngtajssk .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -888,7 +890,6 @@ div.csl-indent {
 </div>
 </div>
 <p>Recall: a Preceptor Table is smallest possible table with rows and columns such that, if there is no missing data, all our questions are easy to answer. To answer questions — like “What is the probability that, if a Democrat shows up at the train station, he will be over 50 years old?” — we need a row for every individual at the station.</p>
-<p>When we take a look at the questions we discover that there is a fundamental flaw within our questions. We don’t know the location or the time that exists within these questions making it harder to find the answers to resolve our questions. When this occurs, we need to discuss and dive deeper into the questions that have been asked to understand what the true question is at hand. For the questions that we have at hand we will be using the year 2023 and the location of Chicago, Illinois which will allow us to answer the questions more accurately.</p>
 </section><section id="always-explore-your-data" class="level4" data-number="5.1.1.2"><h4 data-number="5.1.1.2" class="anchored" data-anchor-id="always-explore-your-data">
 <span class="header-section-number">5.1.1.2</span> Always Explore Your Data</h4>
 <p>Recall the discussion from <a href="rubin-causal-model.html"><span>Chapter&nbsp;1</span></a>. <span class="citation" data-cites="enos2014">Enos (<a href="references.html#ref-enos2014" role="doc-biblioref">2014</a>)</span> randomly placed Spanish-speaking confederates on nine train platforms around Boston, Massachusetts. The data that we want to analyze consists of the age and party of each individual on these train platforms based on our variables in our Preceptor Table. These reactions were measured through changes in answers to three survey questions.</p>
@@ -966,7 +967,7 @@ div.csl-indent {
 <p>Do the columns in the Preceptor Table mean the same thing as the columns in the data? That is the heart of validity. Just because we use the same words — <code>age</code> and <code>party</code> — in both tables does not prove that they are, in fact, the same things.</p>
 <p>Validity is the assumption which allows us to consider the Preceptor Table and our data to have been drawn from the same population. There is no <strong>truth</strong> here. The data is real enough, but we created the Preceptor Table. Whether or not there is a population from which we can assume both the data and the Preceptor Table might have been drawn is not a TRUE/FALSE question, we can’t use the data to make inferences about the Preceptor Table.</p>
 <p>Now the <strong>assumption of validity</strong> may not hold due to the possibility of what our terms mean. For example, what it means to be a “Republican” might be very different in Massachusetts (meaning in our data) than what it means in the rest of the United States (meaning the Preceptor Table). Just slapping the two data sources together does not solve that problem. Similarly, <code>age</code> in the data is measured from a survey. People make mistakes. They even lie. In our Preceptor Table, we want the column <code>age</code> to be each person’s actual age.</p>
-<p>If <code>party</code> or <code>age</code> are too different between the Preceptor Table and our data, then the assumption of validity fails. We can’t consider both sources to have been drawn from the same popula</p>
+<p>If <code>party</code> or <code>age</code> are too different between the Preceptor Table and our data, then the assumption of validity fails. We can’t consider both sources to have been drawn from the same population.</p>
 <p>Overall, however, the assumption of validity seems reasonable. <code>age</code> and <code>party</code> are close enough between our data and The Preceptor Table that we can “stack” them on top of each other. We will assume that both are drawn from the same population.</p>
 </section></section><section id="justice" class="level3" data-number="5.1.2"><h3 data-number="5.1.2" class="anchored" data-anchor-id="justice">
 <span class="header-section-number">5.1.2</span> Justice</h3>
@@ -978,30 +979,30 @@ div.csl-indent {
 </div>
 </div>
 </div>
-<p>Justice concerns five topics: population table, stability, representativeness, unconfoundedness and the mathematical structure of the data generating mechanism (DGM).</p>
+<p>Justice concerns five topics: Population Table, stability, representativeness, unconfoundedness and the mathematical structure of the data generating mechanism (DGM).</p>
 <section id="population-table" class="level4" data-number="5.1.2.1"><h4 data-number="5.1.2.1" class="anchored" data-anchor-id="population-table">
 <span class="header-section-number">5.1.2.1</span> Population Table</h4>
 <p>After assuming validity, we can now create our Population Table. Recall that every row from both the Preceptor Table and the data is included in the Population Table, along with all the rows from the underlying population from which we assume that both the Preceptor Table and the data were drawn.</p>
 <div class="cell">
 <div class="cell-output-display">
 
-<div id="nzosxxojgf" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#nzosxxojgf table {
+<div id="noufzlvedm" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#noufzlvedm table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#nzosxxojgf thead, #nzosxxojgf tbody, #nzosxxojgf tfoot, #nzosxxojgf tr, #nzosxxojgf td, #nzosxxojgf th {
+#noufzlvedm thead, #noufzlvedm tbody, #noufzlvedm tfoot, #noufzlvedm tr, #noufzlvedm td, #noufzlvedm th {
   border-style: none;
 }
 
-#nzosxxojgf p {
+#noufzlvedm p {
   margin: 0;
   padding: 0;
 }
 
-#nzosxxojgf .gt_table {
+#noufzlvedm .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1027,12 +1028,12 @@ div.csl-indent {
   border-left-color: #D3D3D3;
 }
 
-#nzosxxojgf .gt_caption {
+#noufzlvedm .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#nzosxxojgf .gt_title {
+#noufzlvedm .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1044,7 +1045,7 @@ div.csl-indent {
   border-bottom-width: 0;
 }
 
-#nzosxxojgf .gt_subtitle {
+#noufzlvedm .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1056,7 +1057,7 @@ div.csl-indent {
   border-top-width: 0;
 }
 
-#nzosxxojgf .gt_heading {
+#noufzlvedm .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1068,13 +1069,13 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#nzosxxojgf .gt_bottom_border {
+#noufzlvedm .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#nzosxxojgf .gt_col_headings {
+#noufzlvedm .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1089,7 +1090,7 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#nzosxxojgf .gt_col_heading {
+#noufzlvedm .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1109,7 +1110,7 @@ div.csl-indent {
   overflow-x: hidden;
 }
 
-#nzosxxojgf .gt_column_spanner_outer {
+#noufzlvedm .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1121,15 +1122,15 @@ div.csl-indent {
   padding-right: 4px;
 }
 
-#nzosxxojgf .gt_column_spanner_outer:first-child {
+#noufzlvedm .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#nzosxxojgf .gt_column_spanner_outer:last-child {
+#noufzlvedm .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#nzosxxojgf .gt_column_spanner {
+#noufzlvedm .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1141,11 +1142,11 @@ div.csl-indent {
   width: 100%;
 }
 
-#nzosxxojgf .gt_spanner_row {
+#noufzlvedm .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#nzosxxojgf .gt_group_heading {
+#noufzlvedm .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1171,7 +1172,7 @@ div.csl-indent {
   text-align: left;
 }
 
-#nzosxxojgf .gt_empty_group_heading {
+#noufzlvedm .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1186,15 +1187,15 @@ div.csl-indent {
   vertical-align: middle;
 }
 
-#nzosxxojgf .gt_from_md > :first-child {
+#noufzlvedm .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#nzosxxojgf .gt_from_md > :last-child {
+#noufzlvedm .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#nzosxxojgf .gt_row {
+#noufzlvedm .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1213,7 +1214,7 @@ div.csl-indent {
   overflow-x: hidden;
 }
 
-#nzosxxojgf .gt_stub {
+#noufzlvedm .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1226,7 +1227,7 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#nzosxxojgf .gt_stub_row_group {
+#noufzlvedm .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1240,15 +1241,15 @@ div.csl-indent {
   vertical-align: top;
 }
 
-#nzosxxojgf .gt_row_group_first td {
+#noufzlvedm .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#nzosxxojgf .gt_row_group_first th {
+#noufzlvedm .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#nzosxxojgf .gt_summary_row {
+#noufzlvedm .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1258,16 +1259,16 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#nzosxxojgf .gt_first_summary_row {
+#noufzlvedm .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#nzosxxojgf .gt_first_summary_row.thick {
+#noufzlvedm .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#nzosxxojgf .gt_last_summary_row {
+#noufzlvedm .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1277,7 +1278,7 @@ div.csl-indent {
   border-bottom-color: #D3D3D3;
 }
 
-#nzosxxojgf .gt_grand_summary_row {
+#noufzlvedm .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1287,7 +1288,7 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#nzosxxojgf .gt_first_grand_summary_row {
+#noufzlvedm .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1297,7 +1298,7 @@ div.csl-indent {
   border-top-color: #D3D3D3;
 }
 
-#nzosxxojgf .gt_last_grand_summary_row_top {
+#noufzlvedm .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1307,11 +1308,11 @@ div.csl-indent {
   border-bottom-color: #D3D3D3;
 }
 
-#nzosxxojgf .gt_striped {
+#noufzlvedm .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#nzosxxojgf .gt_table_body {
+#noufzlvedm .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1320,7 +1321,7 @@ div.csl-indent {
   border-bottom-color: #D3D3D3;
 }
 
-#nzosxxojgf .gt_footnotes {
+#noufzlvedm .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1334,7 +1335,7 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#nzosxxojgf .gt_footnote {
+#noufzlvedm .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1343,7 +1344,7 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#nzosxxojgf .gt_sourcenotes {
+#noufzlvedm .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1357,7 +1358,7 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#nzosxxojgf .gt_sourcenote {
+#noufzlvedm .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1365,63 +1366,63 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#nzosxxojgf .gt_left {
+#noufzlvedm .gt_left {
   text-align: left;
 }
 
-#nzosxxojgf .gt_center {
+#noufzlvedm .gt_center {
   text-align: center;
 }
 
-#nzosxxojgf .gt_right {
+#noufzlvedm .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#nzosxxojgf .gt_font_normal {
+#noufzlvedm .gt_font_normal {
   font-weight: normal;
 }
 
-#nzosxxojgf .gt_font_bold {
+#noufzlvedm .gt_font_bold {
   font-weight: bold;
 }
 
-#nzosxxojgf .gt_font_italic {
+#noufzlvedm .gt_font_italic {
   font-style: italic;
 }
 
-#nzosxxojgf .gt_super {
+#noufzlvedm .gt_super {
   font-size: 65%;
 }
 
-#nzosxxojgf .gt_footnote_marks {
+#noufzlvedm .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#nzosxxojgf .gt_asterisk {
+#noufzlvedm .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#nzosxxojgf .gt_indent_1 {
+#noufzlvedm .gt_indent_1 {
   text-indent: 5px;
 }
 
-#nzosxxojgf .gt_indent_2 {
+#noufzlvedm .gt_indent_2 {
   text-indent: 10px;
 }
 
-#nzosxxojgf .gt_indent_3 {
+#noufzlvedm .gt_indent_3 {
   text-indent: 15px;
 }
 
-#nzosxxojgf .gt_indent_4 {
+#noufzlvedm .gt_indent_4 {
   text-indent: 20px;
 }
 
-#nzosxxojgf .gt_indent_5 {
+#noufzlvedm .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -1546,7 +1547,7 @@ div.csl-indent {
 <p>2023</p>
 </div></td>
 <td headers="city" class="gt_row gt_center"><div class="gt_from_md">
-<p>Wilmington, DE</p>
+<p>Chicago, IL</p>
 </div></td>
 </tr>
 <tr>
@@ -1563,7 +1564,7 @@ div.csl-indent {
 <p>2023</p>
 </div></td>
 <td headers="city" class="gt_row gt_center"><div class="gt_from_md">
-<p>Atlanta, GA</p>
+<p>Chicago, IL</p>
 </div></td>
 </tr>
 <tr>
@@ -1593,7 +1594,8 @@ div.csl-indent {
 </section><section id="assumptions" class="level4" data-number="5.1.2.2"><h4 data-number="5.1.2.2" class="anchored" data-anchor-id="assumptions">
 <span class="header-section-number">5.1.2.2</span> Assumptions</h4>
 <p><strong>Stability</strong> means that the relationship between the columns is the same for three categories of rows: the data, the Preceptor table, and the larger population from which both are drawn. With something like height, it is much easier to assume stability over a greater period of time. Changes in global height occur extremely slowly, so height being stable across a span of 20 years is reasonable to assume. With something like political ideology, it is much harder to make the assertion that data collected in 2010 would be stable to data collected in 2030. When we are confronted with this uncertainty, we can consider making our time frame smaller. However, we would still need to assume stability from 2014 (time of data collection) to today. Stability allows us to ignore the issue of time.</p>
-<p><strong>Representativeness</strong> has to do with how well our sample represents the larger population we are interested in generalizing to. For example does the correlation between our “sampling mechanism” and other variables hold to be true. The “sampling mechanism” refers to a mechanism that utilizes sampling in order to get the best possible outcomes with the help of randomization and application to general population. Does the train experiment allow us to calculate a causal effect for people who commute by cars? Can we calculate the causal effect for people in New York City? Before we generalize to broader populations we have to consider if our experimental estimates are applicable beyond our experiment. Generally: <em>if there was no chance that a certain type of person would have been in this experiment, we cannot make an assumption for that person</em>.</p>
+<p>Discussions of representativeness might seem redundant. And, of course, we always mention the two potential problems: Is our data representative of the population and is our Preceptor Table representative of the population? Each of these points gets its own short paragraph. There are always two levels of concerns: first is generic, second only applies to the variables you need to answer the question.</p>
+<p><strong>Representativeness</strong> has to do with how well our sample represents the larger population we are interested in generalizing to. We might run into two potential problems: Is our data representative of the population? Is our Preceptor Table representative of the population? When we look at the data being representative of the population, let’s dive deeper and take a look at a few questions at hand. Does the train experiment allow us to calculate a predictive effect for people who commute by cars? Oftentimes the way that people commute change the way that we can intrepid their attitude regarding party. Can we calculate the predictive effect for people in Boston? When we deal with representativeness we deal with two primary concerns: the generic concern and the variable concern. The generic concern deals with our situation at hand and whether we can believe that our data and Preceptor Table is representative of the broader population that it is drawn from. Before we generalize to broader populations we have to consider if our experimental estimates are applicable beyond our experiment. Generally: <em>if there was no chance that a certain type of person would have been in this experiment, we cannot make an assumption for that person</em>. Our second level of concern deals with the variable concern which in this case deals with an individual’s age and party. Out of our sample, we aren’t able to contain all of the ages of individuals within the broader population. For example: we don’t have the age less than 20 which does not representa a large amount of our broader population. When we deal with party we see a similar result. We are only dealing with Democrat and Republican as our two main factors, however, that is not representative of our entire broader population. There are multiple parties within the nation and limiting our data to two, condenses the parties that we have - ultimately undermining representativeness within the situation.</p>
 <p><strong>Unconfoundedness</strong> means that the treatment assignment is independent of the potential outcomes, when we condition on pre-treatment covariates. However, with our scenario, we have a predictive model and this assumption is only relevant for causal models.</p>
 </section></section><section id="courage" class="level3" data-number="5.1.3"><h3 data-number="5.1.3" class="anchored" data-anchor-id="courage">
 <span class="header-section-number">5.1.3</span> Courage</h3>
@@ -1670,23 +1672,23 @@ sigma 12.2    0.8
 <div class="cell">
 <div class="cell-output-display">
 
-<div id="lkxgpzgezx" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#lkxgpzgezx table {
+<div id="xijptupekb" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#xijptupekb table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#lkxgpzgezx thead, #lkxgpzgezx tbody, #lkxgpzgezx tfoot, #lkxgpzgezx tr, #lkxgpzgezx td, #lkxgpzgezx th {
+#xijptupekb thead, #xijptupekb tbody, #xijptupekb tfoot, #xijptupekb tr, #xijptupekb td, #xijptupekb th {
   border-style: none;
 }
 
-#lkxgpzgezx p {
+#xijptupekb p {
   margin: 0;
   padding: 0;
 }
 
-#lkxgpzgezx .gt_table {
+#xijptupekb .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1712,12 +1714,12 @@ sigma 12.2    0.8
   border-left-color: #D3D3D3;
 }
 
-#lkxgpzgezx .gt_caption {
+#xijptupekb .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#lkxgpzgezx .gt_title {
+#xijptupekb .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1729,7 +1731,7 @@ sigma 12.2    0.8
   border-bottom-width: 0;
 }
 
-#lkxgpzgezx .gt_subtitle {
+#xijptupekb .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1741,7 +1743,7 @@ sigma 12.2    0.8
   border-top-width: 0;
 }
 
-#lkxgpzgezx .gt_heading {
+#xijptupekb .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1753,13 +1755,13 @@ sigma 12.2    0.8
   border-right-color: #D3D3D3;
 }
 
-#lkxgpzgezx .gt_bottom_border {
+#xijptupekb .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#lkxgpzgezx .gt_col_headings {
+#xijptupekb .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1774,7 +1776,7 @@ sigma 12.2    0.8
   border-right-color: #D3D3D3;
 }
 
-#lkxgpzgezx .gt_col_heading {
+#xijptupekb .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1794,7 +1796,7 @@ sigma 12.2    0.8
   overflow-x: hidden;
 }
 
-#lkxgpzgezx .gt_column_spanner_outer {
+#xijptupekb .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1806,15 +1808,15 @@ sigma 12.2    0.8
   padding-right: 4px;
 }
 
-#lkxgpzgezx .gt_column_spanner_outer:first-child {
+#xijptupekb .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#lkxgpzgezx .gt_column_spanner_outer:last-child {
+#xijptupekb .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#lkxgpzgezx .gt_column_spanner {
+#xijptupekb .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1826,11 +1828,11 @@ sigma 12.2    0.8
   width: 100%;
 }
 
-#lkxgpzgezx .gt_spanner_row {
+#xijptupekb .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#lkxgpzgezx .gt_group_heading {
+#xijptupekb .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1856,7 +1858,7 @@ sigma 12.2    0.8
   text-align: left;
 }
 
-#lkxgpzgezx .gt_empty_group_heading {
+#xijptupekb .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1871,15 +1873,15 @@ sigma 12.2    0.8
   vertical-align: middle;
 }
 
-#lkxgpzgezx .gt_from_md > :first-child {
+#xijptupekb .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#lkxgpzgezx .gt_from_md > :last-child {
+#xijptupekb .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#lkxgpzgezx .gt_row {
+#xijptupekb .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1898,7 +1900,7 @@ sigma 12.2    0.8
   overflow-x: hidden;
 }
 
-#lkxgpzgezx .gt_stub {
+#xijptupekb .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1911,7 +1913,7 @@ sigma 12.2    0.8
   padding-right: 5px;
 }
 
-#lkxgpzgezx .gt_stub_row_group {
+#xijptupekb .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1925,15 +1927,15 @@ sigma 12.2    0.8
   vertical-align: top;
 }
 
-#lkxgpzgezx .gt_row_group_first td {
+#xijptupekb .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#lkxgpzgezx .gt_row_group_first th {
+#xijptupekb .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#lkxgpzgezx .gt_summary_row {
+#xijptupekb .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1943,16 +1945,16 @@ sigma 12.2    0.8
   padding-right: 5px;
 }
 
-#lkxgpzgezx .gt_first_summary_row {
+#xijptupekb .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#lkxgpzgezx .gt_first_summary_row.thick {
+#xijptupekb .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#lkxgpzgezx .gt_last_summary_row {
+#xijptupekb .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1962,7 +1964,7 @@ sigma 12.2    0.8
   border-bottom-color: #D3D3D3;
 }
 
-#lkxgpzgezx .gt_grand_summary_row {
+#xijptupekb .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1972,7 +1974,7 @@ sigma 12.2    0.8
   padding-right: 5px;
 }
 
-#lkxgpzgezx .gt_first_grand_summary_row {
+#xijptupekb .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1982,7 +1984,7 @@ sigma 12.2    0.8
   border-top-color: #D3D3D3;
 }
 
-#lkxgpzgezx .gt_last_grand_summary_row_top {
+#xijptupekb .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1992,11 +1994,11 @@ sigma 12.2    0.8
   border-bottom-color: #D3D3D3;
 }
 
-#lkxgpzgezx .gt_striped {
+#xijptupekb .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#lkxgpzgezx .gt_table_body {
+#xijptupekb .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2005,7 +2007,7 @@ sigma 12.2    0.8
   border-bottom-color: #D3D3D3;
 }
 
-#lkxgpzgezx .gt_footnotes {
+#xijptupekb .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2019,7 +2021,7 @@ sigma 12.2    0.8
   border-right-color: #D3D3D3;
 }
 
-#lkxgpzgezx .gt_footnote {
+#xijptupekb .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2028,7 +2030,7 @@ sigma 12.2    0.8
   padding-right: 5px;
 }
 
-#lkxgpzgezx .gt_sourcenotes {
+#xijptupekb .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2042,7 +2044,7 @@ sigma 12.2    0.8
   border-right-color: #D3D3D3;
 }
 
-#lkxgpzgezx .gt_sourcenote {
+#xijptupekb .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2050,63 +2052,63 @@ sigma 12.2    0.8
   padding-right: 5px;
 }
 
-#lkxgpzgezx .gt_left {
+#xijptupekb .gt_left {
   text-align: left;
 }
 
-#lkxgpzgezx .gt_center {
+#xijptupekb .gt_center {
   text-align: center;
 }
 
-#lkxgpzgezx .gt_right {
+#xijptupekb .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#lkxgpzgezx .gt_font_normal {
+#xijptupekb .gt_font_normal {
   font-weight: normal;
 }
 
-#lkxgpzgezx .gt_font_bold {
+#xijptupekb .gt_font_bold {
   font-weight: bold;
 }
 
-#lkxgpzgezx .gt_font_italic {
+#xijptupekb .gt_font_italic {
   font-style: italic;
 }
 
-#lkxgpzgezx .gt_super {
+#xijptupekb .gt_super {
   font-size: 65%;
 }
 
-#lkxgpzgezx .gt_footnote_marks {
+#xijptupekb .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#lkxgpzgezx .gt_asterisk {
+#xijptupekb .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#lkxgpzgezx .gt_indent_1 {
+#xijptupekb .gt_indent_1 {
   text-indent: 5px;
 }
 
-#lkxgpzgezx .gt_indent_2 {
+#xijptupekb .gt_indent_2 {
   text-indent: 10px;
 }
 
-#lkxgpzgezx .gt_indent_3 {
+#xijptupekb .gt_indent_3 {
   text-indent: 15px;
 }
 
-#lkxgpzgezx .gt_indent_4 {
+#xijptupekb .gt_indent_4 {
   text-indent: 20px;
 }
 
-#lkxgpzgezx .gt_indent_5 {
+#xijptupekb .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -2230,23 +2232,23 @@ sigma 12.2    0.8
 <span>  <span class="fu">bold_labels</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
-<div id="iagrrartxz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#iagrrartxz table {
+<div id="vhklphpgbn" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#vhklphpgbn table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#iagrrartxz thead, #iagrrartxz tbody, #iagrrartxz tfoot, #iagrrartxz tr, #iagrrartxz td, #iagrrartxz th {
+#vhklphpgbn thead, #vhklphpgbn tbody, #vhklphpgbn tfoot, #vhklphpgbn tr, #vhklphpgbn td, #vhklphpgbn th {
   border-style: none;
 }
 
-#iagrrartxz p {
+#vhklphpgbn p {
   margin: 0;
   padding: 0;
 }
 
-#iagrrartxz .gt_table {
+#vhklphpgbn .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -2272,12 +2274,12 @@ sigma 12.2    0.8
   border-left-color: #D3D3D3;
 }
 
-#iagrrartxz .gt_caption {
+#vhklphpgbn .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#iagrrartxz .gt_title {
+#vhklphpgbn .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2289,7 +2291,7 @@ sigma 12.2    0.8
   border-bottom-width: 0;
 }
 
-#iagrrartxz .gt_subtitle {
+#vhklphpgbn .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2301,7 +2303,7 @@ sigma 12.2    0.8
   border-top-width: 0;
 }
 
-#iagrrartxz .gt_heading {
+#vhklphpgbn .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2313,13 +2315,13 @@ sigma 12.2    0.8
   border-right-color: #D3D3D3;
 }
 
-#iagrrartxz .gt_bottom_border {
+#vhklphpgbn .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#iagrrartxz .gt_col_headings {
+#vhklphpgbn .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2334,7 +2336,7 @@ sigma 12.2    0.8
   border-right-color: #D3D3D3;
 }
 
-#iagrrartxz .gt_col_heading {
+#vhklphpgbn .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2354,7 +2356,7 @@ sigma 12.2    0.8
   overflow-x: hidden;
 }
 
-#iagrrartxz .gt_column_spanner_outer {
+#vhklphpgbn .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2366,15 +2368,15 @@ sigma 12.2    0.8
   padding-right: 4px;
 }
 
-#iagrrartxz .gt_column_spanner_outer:first-child {
+#vhklphpgbn .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#iagrrartxz .gt_column_spanner_outer:last-child {
+#vhklphpgbn .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#iagrrartxz .gt_column_spanner {
+#vhklphpgbn .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2386,11 +2388,11 @@ sigma 12.2    0.8
   width: 100%;
 }
 
-#iagrrartxz .gt_spanner_row {
+#vhklphpgbn .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#iagrrartxz .gt_group_heading {
+#vhklphpgbn .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2416,7 +2418,7 @@ sigma 12.2    0.8
   text-align: left;
 }
 
-#iagrrartxz .gt_empty_group_heading {
+#vhklphpgbn .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2431,15 +2433,15 @@ sigma 12.2    0.8
   vertical-align: middle;
 }
 
-#iagrrartxz .gt_from_md > :first-child {
+#vhklphpgbn .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#iagrrartxz .gt_from_md > :last-child {
+#vhklphpgbn .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#iagrrartxz .gt_row {
+#vhklphpgbn .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2458,7 +2460,7 @@ sigma 12.2    0.8
   overflow-x: hidden;
 }
 
-#iagrrartxz .gt_stub {
+#vhklphpgbn .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2471,7 +2473,7 @@ sigma 12.2    0.8
   padding-right: 5px;
 }
 
-#iagrrartxz .gt_stub_row_group {
+#vhklphpgbn .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2485,15 +2487,15 @@ sigma 12.2    0.8
   vertical-align: top;
 }
 
-#iagrrartxz .gt_row_group_first td {
+#vhklphpgbn .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#iagrrartxz .gt_row_group_first th {
+#vhklphpgbn .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#iagrrartxz .gt_summary_row {
+#vhklphpgbn .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2503,16 +2505,16 @@ sigma 12.2    0.8
   padding-right: 5px;
 }
 
-#iagrrartxz .gt_first_summary_row {
+#vhklphpgbn .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#iagrrartxz .gt_first_summary_row.thick {
+#vhklphpgbn .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#iagrrartxz .gt_last_summary_row {
+#vhklphpgbn .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2522,7 +2524,7 @@ sigma 12.2    0.8
   border-bottom-color: #D3D3D3;
 }
 
-#iagrrartxz .gt_grand_summary_row {
+#vhklphpgbn .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2532,7 +2534,7 @@ sigma 12.2    0.8
   padding-right: 5px;
 }
 
-#iagrrartxz .gt_first_grand_summary_row {
+#vhklphpgbn .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2542,7 +2544,7 @@ sigma 12.2    0.8
   border-top-color: #D3D3D3;
 }
 
-#iagrrartxz .gt_last_grand_summary_row_top {
+#vhklphpgbn .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2552,11 +2554,11 @@ sigma 12.2    0.8
   border-bottom-color: #D3D3D3;
 }
 
-#iagrrartxz .gt_striped {
+#vhklphpgbn .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#iagrrartxz .gt_table_body {
+#vhklphpgbn .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2565,7 +2567,7 @@ sigma 12.2    0.8
   border-bottom-color: #D3D3D3;
 }
 
-#iagrrartxz .gt_footnotes {
+#vhklphpgbn .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2579,7 +2581,7 @@ sigma 12.2    0.8
   border-right-color: #D3D3D3;
 }
 
-#iagrrartxz .gt_footnote {
+#vhklphpgbn .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2588,7 +2590,7 @@ sigma 12.2    0.8
   padding-right: 5px;
 }
 
-#iagrrartxz .gt_sourcenotes {
+#vhklphpgbn .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2602,7 +2604,7 @@ sigma 12.2    0.8
   border-right-color: #D3D3D3;
 }
 
-#iagrrartxz .gt_sourcenote {
+#vhklphpgbn .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2610,63 +2612,63 @@ sigma 12.2    0.8
   padding-right: 5px;
 }
 
-#iagrrartxz .gt_left {
+#vhklphpgbn .gt_left {
   text-align: left;
 }
 
-#iagrrartxz .gt_center {
+#vhklphpgbn .gt_center {
   text-align: center;
 }
 
-#iagrrartxz .gt_right {
+#vhklphpgbn .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#iagrrartxz .gt_font_normal {
+#vhklphpgbn .gt_font_normal {
   font-weight: normal;
 }
 
-#iagrrartxz .gt_font_bold {
+#vhklphpgbn .gt_font_bold {
   font-weight: bold;
 }
 
-#iagrrartxz .gt_font_italic {
+#vhklphpgbn .gt_font_italic {
   font-style: italic;
 }
 
-#iagrrartxz .gt_super {
+#vhklphpgbn .gt_super {
   font-size: 65%;
 }
 
-#iagrrartxz .gt_footnote_marks {
+#vhklphpgbn .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#iagrrartxz .gt_asterisk {
+#vhklphpgbn .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#iagrrartxz .gt_indent_1 {
+#vhklphpgbn .gt_indent_1 {
   text-indent: 5px;
 }
 
-#iagrrartxz .gt_indent_2 {
+#vhklphpgbn .gt_indent_2 {
   text-indent: 10px;
 }
 
-#iagrrartxz .gt_indent_3 {
+#vhklphpgbn .gt_indent_3 {
   text-indent: 15px;
 }
 
-#iagrrartxz .gt_indent_4 {
+#vhklphpgbn .gt_indent_4 {
   text-indent: 20px;
 }
 
-#iagrrartxz .gt_indent_5 {
+#vhklphpgbn .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -2744,16 +2746,16 @@ sigma 12.2    0.8
 <pre><code># A tibble: 10 × 1
      `1`
    &lt;dbl&gt;
- 1  65.0
- 2  47.6
- 3  41.5
- 4  22.8
- 5  49.9
- 6  33.4
- 7  39.3
- 8  55.0
- 9  51.6
-10  71.3</code></pre>
+ 1  17.5
+ 2  53.5
+ 3  15.4
+ 4  67.9
+ 5  60.7
+ 6  33.2
+ 7  31.5
+ 8  68.7
+ 9  31.7
+10  38.0</code></pre>
 </div>
 </div>
 <p>The result are draws from the posterior distribution of the age of a Democrat. It is important to understand that this is not a concrete person from the <code>trains</code> dataset - the algorithm in <code><a href="https://mc-stan.org/rstantools/reference/posterior_predict.html">posterior_predict()</a></code> simply uses the existing data from <code>trains</code> to create the DGM, which is then used to sample from the posterior distribution of <span class="math inline">\(D_age\)</span>.</p>
@@ -2776,7 +2778,7 @@ sigma 12.2    0.8
 <div class="cell">
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">pp</span><span class="op">$</span><span class="va">`1`</span> <span class="op">&gt;</span> <span class="fl">50</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">pp</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.27</code></pre>
+<pre><code>[1] 0.2725</code></pre>
 </div>
 </div>
 <p>The second question:</p>
@@ -2790,18 +2792,18 @@ sigma 12.2    0.8
 <span>    <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="op">)</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4,000 × 6
-     `1`   `2`   `3`   `4`   `5`   `6`
-   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
- 1  36.9  23.6  36.9  49.4  52.1  33.5
- 2  44.7  40.5  18.7  61.6  31.1  37.2
- 3  38.5  34.7  22.8  34.9  50.0  36.0
- 4  39.7  37.7  34.5  37.1  51.9  34.5
- 5  28.6  62.0  63.0  32.8  48.3  43.0
- 6  37.1  50.0  32.9  52.1  48.8  52.8
- 7  58.4  33.7  42.9  30.9  59.7  47.2
- 8  42.6  51.6  36.6  39.7  31.0  38.6
- 9  36.4  67.3  66.2  28.2  40.4  59.8
-10  25.6  11.2  28.0  24.1  51.3  51.1
+      `1`   `2`   `3`   `4`   `5`   `6`
+    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+ 1 -0.282  49.0  63.1  47.4  28.6  48.5
+ 2 39.5    41.4  46.5  43.6  22.3  28.3
+ 3 38.2    51.4  35.3  45.5  28.4  40.0
+ 4 44.4    62.7  27.3  46.0  30.8  43.3
+ 5 56.2    58.9  30.7  41.9  60.1  43.7
+ 6 44.8    26.8  62.4  32.8  63.5  50.3
+ 7 42.4    51.7  57.9  47.7  34.4  74.3
+ 8 48.4    62.3  34.8  60.7  57.7  32.7
+ 9 39.5    52.8  26.0  42.3  22.9  33.3
+10 70.6    27.4  44.3  42.5  47.0  41.0
 # ℹ 3,990 more rows</code></pre>
 </div>
 </div>
@@ -2836,16 +2838,16 @@ sigma 12.2    0.8
 # Rowwise: 
    dem_1 dem_2 dem_3 rep_1 rep_2 rep_3 dems_oldest reps_youngest age_diff
    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;       &lt;dbl&gt;         &lt;dbl&gt;    &lt;dbl&gt;
- 1  31.0  72.8  42.5  39.0  56.0  29.5        72.8          29.5    43.2 
- 2  31.2  43.2  23.6  19.3  45.4  45.9        43.2          19.3    23.9 
- 3  21.6  39.0  26.0  31.8  48.5  54.4        39.0          31.8     7.17
- 4  20.9  51.3  38.0  57.4  47.4  25.9        51.3          25.9    25.4 
- 5  29.9  27.1  42.9  49.8  56.5  44.1        42.9          44.1    -1.21
- 6  38.8  51.8  72.6  42.6  16.7  34.8        72.6          16.7    55.9 
- 7  49.6  39.4  43.9  43.8  76.5  58.2        49.6          43.8     5.83
- 8  49.4  52.4  36.8  55.1  27.1  53.5        52.4          27.1    25.2 
- 9  48.2  56.0  54.2  40.4  43.3  48.3        56.0          40.4    15.6 
-10  43.7  42.0  21.4  28.3  52.3  41.0        43.7          28.3    15.4 
+ 1  51.5  46.1  25.7  45.4  47.3  57.1        51.5          45.4     6.07
+ 2  81.5  39.3  39.9  38.2  50.3  37.0        81.5          37.0    44.5 
+ 3  37.2  25.6  30.3  18.7  16.8  16.0        37.2          16.0    21.2 
+ 4  65.0  33.8  33.7  76.1  38.0  39.7        65.0          38.0    27.0 
+ 5  18.7  40.8  56.2  58.1  22.5  73.4        56.2          22.5    33.7 
+ 6  77.4  52.6  36.3  55.3  26.1  32.1        77.4          26.1    51.3 
+ 7  32.4  45.1  50.2  37.4  31.0  55.1        50.2          31.0    19.2 
+ 8  16.5  43.3  39.8  33.0  48.8  38.7        43.3          33.0    10.2 
+ 9  44.8  32.9  44.9  41.3  23.0  31.5        44.9          23.0    21.8 
+10  44.9  35.5  36.6  28.9  39.9  64.9        44.9          28.9    16.1 
 # ℹ 3,990 more rows</code></pre>
 </div>
 </div>
@@ -2873,7 +2875,7 @@ sigma 12.2    0.8
 <p>Above, we created a predictive model: with someone’s party affiliation, we can make a better guess as to what their age is than we could have in the absence of information about their party. There was nothing causal about that model. Changing someone’s party registration can not change their age. In this example, we build a causal model. Consider these two questions:</p>
 <p><em>What is the average treatment effect, of exposing people to Spanish-speakers, on their attitudes toward immigration?</em></p>
 <p><em>What is the largest causal effect which still has a 1 in 10 chance of occurring?</em></p>
-<p>Answering causal questions requires (at least) two potential outcomes: immigration attitudes when a person receives the treatment of being exposed to Spanish-speakers and immigration attitudes, for that same person, when they don’t receive the treatment. We can answer these and similar questions by creating a model with immigration attitude as the dependent variable and exposure to Spanish-speakers as the independent variable. Let’s follow the four Cardinal Virtue: Wisdom, Justice, Courage and Temperance.</p>
+<p>Answering causal questions requires (at least) two potential outcomes: immigration attitudes when a person receives the treatment of being exposed to Spanish-speakers and immigration attitudes, for that same person, when they don’t receive the treatment. We can answer these and similar questions by creating a model with immigration attitude as the dependent variable and exposure to Spanish-speakers as the independent variable. Let’s follow the four Cardinal Virtues: Wisdom, Justice, Courage and Temperance.</p>
 <section id="wisdom-1" class="level3" data-number="5.2.1"><h3 data-number="5.2.1" class="anchored" data-anchor-id="wisdom-1">
 <span class="header-section-number">5.2.1</span> Wisdom</h3>
 <div class="cell">
@@ -2884,31 +2886,33 @@ sigma 12.2    0.8
 <p>Wisdom requires the creation of a Preceptor Table, an examination of our data, and a determination, using the concept of “validity,” as to whether or not we can (reasonably!) assume that the two come from the same population.</p>
 <section id="preceptor-table-1" class="level4" data-number="5.2.1.1"><h4 data-number="5.2.1.1" class="anchored" data-anchor-id="preceptor-table-1">
 <span class="header-section-number">5.2.1.1</span> Preceptor Table</h4>
-<p>First, do we need a <strong>causal</strong> or <strong>predictive</strong> model? In this case, the model is clearly causal, so our Preceptor Table will have two columns for the potential outcomes.</p>
-<p>Second, what is the outcome? A person’s attitude toward immigration is the <strong>outcome</strong>.</p>
-<p>Third, what are the <strong>units</strong>? Our units for this scenario would be individuals because the questions are about the attributes of unique people at the station. The questions, however, leave unclear the details. Where are these people? Are they at a train station? In which country? Also, at what moment in time is this experiment taking place? We need to engage in a conversation with the person asking us these questions in order to flesh out some of the details.</p>
-<p>Fourth, do we have a <strong>treatment</strong>? Yes. In any causal model, there is at least one covariate which is defined as the “treatment,” something which we can manipulate so that some units receive one version and other units get a different version. In this case, the treatment is exposure to Spanish-speakers. Units can either be exposed, i.e., they receive the “treatment,” or they can not be exposed, i.e., they receive the “control.”</p>
+<p>First, do we need a <strong>causal</strong> or <strong>predictive</strong> model? In this case, the model is clearly causal, so our Preceptor Table will have two columns for the potential outcomes. If all you need to know to answer the question is the outcome under one value of the treatment, then the model is predictive. Example: What is the attitude for all women if they were to get the treatment? Here we a question that implies a comparison, <em>for a single individual unit</em>, between two states of the world, when where they get treatment and one where they do not get treatment.</p>
+<p>Second, what is the outcome? A person’s attitude toward immigration is the <strong>outcome</strong>. When we take a look at the questions we discover a flaw exists. The individual that asked this question did not tell us where or when we are looking at these questions. It is important to understand where and when that we are answering these questions because otherwise our data could be not accurately applied to the whole country, nation, or specific state. Therefore, by diving deeper within these questions we are able to accurately answer our question with the population that it refers to. For the questions that we have at hand we will be talking about all the adults in July 1, 2012 at the location of Chicago, Illinois which will allow us to answer the questions more accurately.</p>
+<p>Third, what are the <strong>units</strong>? Our units for this scenario would be individuals because the questions are about the attributes of unique people at the station.</p>
+<p>Fourth, do we have a <strong>treatment</strong>? Yes. In any causal model, there is at least one covariate which is defined as the “treatment,” something which we can manipulate so that some units receive one version and other units get a different version. A “treatment” is just a covariate in which we <em>can</em> manipulate and <em>need</em> to manipulate, at least in theory, to answer the question. In this case, the treatment is exposure to Spanish-speakers. Units can either be exposed, i.e., they receive the “treatment,” or they can not be exposed, i.e., they receive the “control.”</p>
+<p>Let’s look at our refined question to create our Preceptor Table:</p>
+<p><em>What is the average treatment effect, of exposing people to Spanish-speakers in Chicago Illinois in 2012, on their attitudes toward immigration?</em></p>
 <p>Our Preceptor Table:</p>
 <div class="cell">
 <div class="cell-output-display">
 
-<div id="dqcndvjnii" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#dqcndvjnii table {
+<div id="ipthymktwg" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ipthymktwg table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#dqcndvjnii thead, #dqcndvjnii tbody, #dqcndvjnii tfoot, #dqcndvjnii tr, #dqcndvjnii td, #dqcndvjnii th {
+#ipthymktwg thead, #ipthymktwg tbody, #ipthymktwg tfoot, #ipthymktwg tr, #ipthymktwg td, #ipthymktwg th {
   border-style: none;
 }
 
-#dqcndvjnii p {
+#ipthymktwg p {
   margin: 0;
   padding: 0;
 }
 
-#dqcndvjnii .gt_table {
+#ipthymktwg .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -2934,12 +2938,12 @@ sigma 12.2    0.8
   border-left-color: #D3D3D3;
 }
 
-#dqcndvjnii .gt_caption {
+#ipthymktwg .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#dqcndvjnii .gt_title {
+#ipthymktwg .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2951,7 +2955,7 @@ sigma 12.2    0.8
   border-bottom-width: 0;
 }
 
-#dqcndvjnii .gt_subtitle {
+#ipthymktwg .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2963,7 +2967,7 @@ sigma 12.2    0.8
   border-top-width: 0;
 }
 
-#dqcndvjnii .gt_heading {
+#ipthymktwg .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2975,13 +2979,13 @@ sigma 12.2    0.8
   border-right-color: #D3D3D3;
 }
 
-#dqcndvjnii .gt_bottom_border {
+#ipthymktwg .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#dqcndvjnii .gt_col_headings {
+#ipthymktwg .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2996,7 +3000,7 @@ sigma 12.2    0.8
   border-right-color: #D3D3D3;
 }
 
-#dqcndvjnii .gt_col_heading {
+#ipthymktwg .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3016,7 +3020,7 @@ sigma 12.2    0.8
   overflow-x: hidden;
 }
 
-#dqcndvjnii .gt_column_spanner_outer {
+#ipthymktwg .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3028,15 +3032,15 @@ sigma 12.2    0.8
   padding-right: 4px;
 }
 
-#dqcndvjnii .gt_column_spanner_outer:first-child {
+#ipthymktwg .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#dqcndvjnii .gt_column_spanner_outer:last-child {
+#ipthymktwg .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#dqcndvjnii .gt_column_spanner {
+#ipthymktwg .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -3048,11 +3052,11 @@ sigma 12.2    0.8
   width: 100%;
 }
 
-#dqcndvjnii .gt_spanner_row {
+#ipthymktwg .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#dqcndvjnii .gt_group_heading {
+#ipthymktwg .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3078,7 +3082,7 @@ sigma 12.2    0.8
   text-align: left;
 }
 
-#dqcndvjnii .gt_empty_group_heading {
+#ipthymktwg .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -3093,15 +3097,15 @@ sigma 12.2    0.8
   vertical-align: middle;
 }
 
-#dqcndvjnii .gt_from_md > :first-child {
+#ipthymktwg .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#dqcndvjnii .gt_from_md > :last-child {
+#ipthymktwg .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#dqcndvjnii .gt_row {
+#ipthymktwg .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3120,7 +3124,7 @@ sigma 12.2    0.8
   overflow-x: hidden;
 }
 
-#dqcndvjnii .gt_stub {
+#ipthymktwg .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3133,7 +3137,7 @@ sigma 12.2    0.8
   padding-right: 5px;
 }
 
-#dqcndvjnii .gt_stub_row_group {
+#ipthymktwg .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3147,15 +3151,15 @@ sigma 12.2    0.8
   vertical-align: top;
 }
 
-#dqcndvjnii .gt_row_group_first td {
+#ipthymktwg .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#dqcndvjnii .gt_row_group_first th {
+#ipthymktwg .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#dqcndvjnii .gt_summary_row {
+#ipthymktwg .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3165,16 +3169,16 @@ sigma 12.2    0.8
   padding-right: 5px;
 }
 
-#dqcndvjnii .gt_first_summary_row {
+#ipthymktwg .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#dqcndvjnii .gt_first_summary_row.thick {
+#ipthymktwg .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#dqcndvjnii .gt_last_summary_row {
+#ipthymktwg .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3184,7 +3188,7 @@ sigma 12.2    0.8
   border-bottom-color: #D3D3D3;
 }
 
-#dqcndvjnii .gt_grand_summary_row {
+#ipthymktwg .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3194,7 +3198,7 @@ sigma 12.2    0.8
   padding-right: 5px;
 }
 
-#dqcndvjnii .gt_first_grand_summary_row {
+#ipthymktwg .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3204,7 +3208,7 @@ sigma 12.2    0.8
   border-top-color: #D3D3D3;
 }
 
-#dqcndvjnii .gt_last_grand_summary_row_top {
+#ipthymktwg .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3214,11 +3218,11 @@ sigma 12.2    0.8
   border-bottom-color: #D3D3D3;
 }
 
-#dqcndvjnii .gt_striped {
+#ipthymktwg .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#dqcndvjnii .gt_table_body {
+#ipthymktwg .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3227,7 +3231,7 @@ sigma 12.2    0.8
   border-bottom-color: #D3D3D3;
 }
 
-#dqcndvjnii .gt_footnotes {
+#ipthymktwg .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3241,7 +3245,7 @@ sigma 12.2    0.8
   border-right-color: #D3D3D3;
 }
 
-#dqcndvjnii .gt_footnote {
+#ipthymktwg .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -3250,7 +3254,7 @@ sigma 12.2    0.8
   padding-right: 5px;
 }
 
-#dqcndvjnii .gt_sourcenotes {
+#ipthymktwg .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3264,7 +3268,7 @@ sigma 12.2    0.8
   border-right-color: #D3D3D3;
 }
 
-#dqcndvjnii .gt_sourcenote {
+#ipthymktwg .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -3272,63 +3276,63 @@ sigma 12.2    0.8
   padding-right: 5px;
 }
 
-#dqcndvjnii .gt_left {
+#ipthymktwg .gt_left {
   text-align: left;
 }
 
-#dqcndvjnii .gt_center {
+#ipthymktwg .gt_center {
   text-align: center;
 }
 
-#dqcndvjnii .gt_right {
+#ipthymktwg .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#dqcndvjnii .gt_font_normal {
+#ipthymktwg .gt_font_normal {
   font-weight: normal;
 }
 
-#dqcndvjnii .gt_font_bold {
+#ipthymktwg .gt_font_bold {
   font-weight: bold;
 }
 
-#dqcndvjnii .gt_font_italic {
+#ipthymktwg .gt_font_italic {
   font-style: italic;
 }
 
-#dqcndvjnii .gt_super {
+#ipthymktwg .gt_super {
   font-size: 65%;
 }
 
-#dqcndvjnii .gt_footnote_marks {
+#ipthymktwg .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#dqcndvjnii .gt_asterisk {
+#ipthymktwg .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#dqcndvjnii .gt_indent_1 {
+#ipthymktwg .gt_indent_1 {
   text-indent: 5px;
 }
 
-#dqcndvjnii .gt_indent_2 {
+#ipthymktwg .gt_indent_2 {
   text-indent: 10px;
 }
 
-#dqcndvjnii .gt_indent_3 {
+#ipthymktwg .gt_indent_3 {
   text-indent: 15px;
 }
 
-#dqcndvjnii .gt_indent_4 {
+#ipthymktwg .gt_indent_4 {
   text-indent: 20px;
 }
 
-#dqcndvjnii .gt_indent_5 {
+#ipthymktwg .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -3458,7 +3462,6 @@ sigma 12.2    0.8
 </div>
 <p>Note: the values that have a star next to them symbolize the possible values that may exist if they were “control” instead of “treated” or vice versa.</p>
 <p>Recall: a Preceptor Table is the smallest possible table with rows and columns such that, if there is no missing data, all our questions are easy to answer. To answer questions — like “What is the average treatment effect, of exposing people to Spanish-speakers, on their attitudes toward immigration? and What is the largest causal effect which still has a 1 in 10 chance of occurring?” — we need a row for every individual.</p>
-<p>When we take a look at the questions we discover a flaw exists. The individual that asked this question did not tell us where or when we are looking at these questions. It is important to understand where and when that we are answering these questions because otherwise our data could be not accurately applied to the whole country, nation, or specific state. Therefore, by diving deeper within these questions we are able to accurately answer our question with the population that it refers to. For the questions that we have at hand we will be using the year 2023 and the location of Chicago, Illinois which will allow us to answer the questions more accurately.</p>
 </section><section id="exploratory-data-analysis" class="level4" data-number="5.2.1.2"><h4 data-number="5.2.1.2" class="anchored" data-anchor-id="exploratory-data-analysis">
 <span class="header-section-number">5.2.1.2</span> Exploratory Data Analysis</h4>
 <p>Recall the discussion from <a href="rubin-causal-model.html"><span>Chapter&nbsp;1</span></a>. <span class="citation" data-cites="enos2014">Enos (<a href="references.html#ref-enos2014" role="doc-biblioref">2014</a>)</span> randomly placed Spanish-speaking confederates on nine train platforms around Boston, Massachusetts. The data that we want to analyze consists of the attitude toward immigration after the experiment is complete (<code>att_end</code>) and the exposure to Spanish-speakers (<code>treatment</code>) of each individual on these train platforms.</p>
@@ -3531,30 +3534,30 @@ sigma 12.2    0.8
 </div>
 </div>
 </div>
-<p>The five concerns of Justice in a data science project remain the same: population table, stability, representativeness, unconfoundedness and the mathematical structure of the data generating mechanism (DGM).</p>
+<p>The five concerns of Justice in a data science project remain the same: Population Table, stability, representativeness, unconfoundedness and the mathematical structure of the data generating mechanism (DGM).</p>
 <section id="population-table-1" class="level4" data-number="5.2.2.1"><h4 data-number="5.2.2.1" class="anchored" data-anchor-id="population-table-1">
 <span class="header-section-number">5.2.2.1</span> Population Table</h4>
 <p>After assuming validity, we can now create our Population Table. Recall that every row from both the Preceptor Table and the data is included in the Population Table, along with all the rows from the underlying population from which we assume that both the Preceptor Table and the data were drawn. The Population Table includes rows from three sources: the <strong>Preceptor Table</strong>, the <strong>actual data</strong>, and all <em>other</em> members of the population.</p>
 <div class="cell">
 <div class="cell-output-display">
 
-<div id="msowamhnyg" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#msowamhnyg table {
+<div id="mublpuetwd" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#mublpuetwd table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#msowamhnyg thead, #msowamhnyg tbody, #msowamhnyg tfoot, #msowamhnyg tr, #msowamhnyg td, #msowamhnyg th {
+#mublpuetwd thead, #mublpuetwd tbody, #mublpuetwd tfoot, #mublpuetwd tr, #mublpuetwd td, #mublpuetwd th {
   border-style: none;
 }
 
-#msowamhnyg p {
+#mublpuetwd p {
   margin: 0;
   padding: 0;
 }
 
-#msowamhnyg .gt_table {
+#mublpuetwd .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -3580,12 +3583,12 @@ sigma 12.2    0.8
   border-left-color: #D3D3D3;
 }
 
-#msowamhnyg .gt_caption {
+#mublpuetwd .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#msowamhnyg .gt_title {
+#mublpuetwd .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -3597,7 +3600,7 @@ sigma 12.2    0.8
   border-bottom-width: 0;
 }
 
-#msowamhnyg .gt_subtitle {
+#mublpuetwd .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -3609,7 +3612,7 @@ sigma 12.2    0.8
   border-top-width: 0;
 }
 
-#msowamhnyg .gt_heading {
+#mublpuetwd .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -3621,13 +3624,13 @@ sigma 12.2    0.8
   border-right-color: #D3D3D3;
 }
 
-#msowamhnyg .gt_bottom_border {
+#mublpuetwd .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#msowamhnyg .gt_col_headings {
+#mublpuetwd .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3642,7 +3645,7 @@ sigma 12.2    0.8
   border-right-color: #D3D3D3;
 }
 
-#msowamhnyg .gt_col_heading {
+#mublpuetwd .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3662,7 +3665,7 @@ sigma 12.2    0.8
   overflow-x: hidden;
 }
 
-#msowamhnyg .gt_column_spanner_outer {
+#mublpuetwd .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3674,15 +3677,15 @@ sigma 12.2    0.8
   padding-right: 4px;
 }
 
-#msowamhnyg .gt_column_spanner_outer:first-child {
+#mublpuetwd .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#msowamhnyg .gt_column_spanner_outer:last-child {
+#mublpuetwd .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#msowamhnyg .gt_column_spanner {
+#mublpuetwd .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -3694,11 +3697,11 @@ sigma 12.2    0.8
   width: 100%;
 }
 
-#msowamhnyg .gt_spanner_row {
+#mublpuetwd .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#msowamhnyg .gt_group_heading {
+#mublpuetwd .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3724,7 +3727,7 @@ sigma 12.2    0.8
   text-align: left;
 }
 
-#msowamhnyg .gt_empty_group_heading {
+#mublpuetwd .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -3739,15 +3742,15 @@ sigma 12.2    0.8
   vertical-align: middle;
 }
 
-#msowamhnyg .gt_from_md > :first-child {
+#mublpuetwd .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#msowamhnyg .gt_from_md > :last-child {
+#mublpuetwd .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#msowamhnyg .gt_row {
+#mublpuetwd .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3766,7 +3769,7 @@ sigma 12.2    0.8
   overflow-x: hidden;
 }
 
-#msowamhnyg .gt_stub {
+#mublpuetwd .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3779,7 +3782,7 @@ sigma 12.2    0.8
   padding-right: 5px;
 }
 
-#msowamhnyg .gt_stub_row_group {
+#mublpuetwd .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3793,15 +3796,15 @@ sigma 12.2    0.8
   vertical-align: top;
 }
 
-#msowamhnyg .gt_row_group_first td {
+#mublpuetwd .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#msowamhnyg .gt_row_group_first th {
+#mublpuetwd .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#msowamhnyg .gt_summary_row {
+#mublpuetwd .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3811,16 +3814,16 @@ sigma 12.2    0.8
   padding-right: 5px;
 }
 
-#msowamhnyg .gt_first_summary_row {
+#mublpuetwd .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#msowamhnyg .gt_first_summary_row.thick {
+#mublpuetwd .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#msowamhnyg .gt_last_summary_row {
+#mublpuetwd .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3830,7 +3833,7 @@ sigma 12.2    0.8
   border-bottom-color: #D3D3D3;
 }
 
-#msowamhnyg .gt_grand_summary_row {
+#mublpuetwd .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3840,7 +3843,7 @@ sigma 12.2    0.8
   padding-right: 5px;
 }
 
-#msowamhnyg .gt_first_grand_summary_row {
+#mublpuetwd .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3850,7 +3853,7 @@ sigma 12.2    0.8
   border-top-color: #D3D3D3;
 }
 
-#msowamhnyg .gt_last_grand_summary_row_top {
+#mublpuetwd .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3860,11 +3863,11 @@ sigma 12.2    0.8
   border-bottom-color: #D3D3D3;
 }
 
-#msowamhnyg .gt_striped {
+#mublpuetwd .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#msowamhnyg .gt_table_body {
+#mublpuetwd .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3873,7 +3876,7 @@ sigma 12.2    0.8
   border-bottom-color: #D3D3D3;
 }
 
-#msowamhnyg .gt_footnotes {
+#mublpuetwd .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3887,7 +3890,7 @@ sigma 12.2    0.8
   border-right-color: #D3D3D3;
 }
 
-#msowamhnyg .gt_footnote {
+#mublpuetwd .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -3896,7 +3899,7 @@ sigma 12.2    0.8
   padding-right: 5px;
 }
 
-#msowamhnyg .gt_sourcenotes {
+#mublpuetwd .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3910,7 +3913,7 @@ sigma 12.2    0.8
   border-right-color: #D3D3D3;
 }
 
-#msowamhnyg .gt_sourcenote {
+#mublpuetwd .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -3918,63 +3921,63 @@ sigma 12.2    0.8
   padding-right: 5px;
 }
 
-#msowamhnyg .gt_left {
+#mublpuetwd .gt_left {
   text-align: left;
 }
 
-#msowamhnyg .gt_center {
+#mublpuetwd .gt_center {
   text-align: center;
 }
 
-#msowamhnyg .gt_right {
+#mublpuetwd .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#msowamhnyg .gt_font_normal {
+#mublpuetwd .gt_font_normal {
   font-weight: normal;
 }
 
-#msowamhnyg .gt_font_bold {
+#mublpuetwd .gt_font_bold {
   font-weight: bold;
 }
 
-#msowamhnyg .gt_font_italic {
+#mublpuetwd .gt_font_italic {
   font-style: italic;
 }
 
-#msowamhnyg .gt_super {
+#mublpuetwd .gt_super {
   font-size: 65%;
 }
 
-#msowamhnyg .gt_footnote_marks {
+#mublpuetwd .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#msowamhnyg .gt_asterisk {
+#mublpuetwd .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#msowamhnyg .gt_indent_1 {
+#mublpuetwd .gt_indent_1 {
   text-indent: 5px;
 }
 
-#msowamhnyg .gt_indent_2 {
+#mublpuetwd .gt_indent_2 {
   text-indent: 10px;
 }
 
-#msowamhnyg .gt_indent_3 {
+#mublpuetwd .gt_indent_3 {
   text-indent: 15px;
 }
 
-#msowamhnyg .gt_indent_4 {
+#mublpuetwd .gt_indent_4 {
   text-indent: 20px;
 }
 
-#msowamhnyg .gt_indent_5 {
+#mublpuetwd .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -4118,7 +4121,7 @@ sigma 12.2    0.8
 <p>2023</p>
 </div></td>
 <td headers="city" class="gt_row gt_center"><div class="gt_from_md">
-<p>Wilmington, DE</p>
+<p>Chicago, IL</p>
 </div></td>
 </tr>
 <tr>
@@ -4138,7 +4141,7 @@ sigma 12.2    0.8
 <p>2023</p>
 </div></td>
 <td headers="city" class="gt_row gt_center"><div class="gt_from_md">
-<p>Atlanta, GA</p>
+<p>Chicago, IL</p>
 </div></td>
 </tr>
 <tr>
@@ -4254,23 +4257,23 @@ sigma 2.8    0.2
 <div class="cell">
 <div class="cell-output-display">
 
-<div id="oxfirxxcdr" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#oxfirxxcdr table {
+<div id="hitwqhhjjr" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#hitwqhhjjr table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#oxfirxxcdr thead, #oxfirxxcdr tbody, #oxfirxxcdr tfoot, #oxfirxxcdr tr, #oxfirxxcdr td, #oxfirxxcdr th {
+#hitwqhhjjr thead, #hitwqhhjjr tbody, #hitwqhhjjr tfoot, #hitwqhhjjr tr, #hitwqhhjjr td, #hitwqhhjjr th {
   border-style: none;
 }
 
-#oxfirxxcdr p {
+#hitwqhhjjr p {
   margin: 0;
   padding: 0;
 }
 
-#oxfirxxcdr .gt_table {
+#hitwqhhjjr .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -4296,12 +4299,12 @@ sigma 2.8    0.2
   border-left-color: #D3D3D3;
 }
 
-#oxfirxxcdr .gt_caption {
+#hitwqhhjjr .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#oxfirxxcdr .gt_title {
+#hitwqhhjjr .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -4313,7 +4316,7 @@ sigma 2.8    0.2
   border-bottom-width: 0;
 }
 
-#oxfirxxcdr .gt_subtitle {
+#hitwqhhjjr .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -4325,7 +4328,7 @@ sigma 2.8    0.2
   border-top-width: 0;
 }
 
-#oxfirxxcdr .gt_heading {
+#hitwqhhjjr .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -4337,13 +4340,13 @@ sigma 2.8    0.2
   border-right-color: #D3D3D3;
 }
 
-#oxfirxxcdr .gt_bottom_border {
+#hitwqhhjjr .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#oxfirxxcdr .gt_col_headings {
+#hitwqhhjjr .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -4358,7 +4361,7 @@ sigma 2.8    0.2
   border-right-color: #D3D3D3;
 }
 
-#oxfirxxcdr .gt_col_heading {
+#hitwqhhjjr .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -4378,7 +4381,7 @@ sigma 2.8    0.2
   overflow-x: hidden;
 }
 
-#oxfirxxcdr .gt_column_spanner_outer {
+#hitwqhhjjr .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -4390,15 +4393,15 @@ sigma 2.8    0.2
   padding-right: 4px;
 }
 
-#oxfirxxcdr .gt_column_spanner_outer:first-child {
+#hitwqhhjjr .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#oxfirxxcdr .gt_column_spanner_outer:last-child {
+#hitwqhhjjr .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#oxfirxxcdr .gt_column_spanner {
+#hitwqhhjjr .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -4410,11 +4413,11 @@ sigma 2.8    0.2
   width: 100%;
 }
 
-#oxfirxxcdr .gt_spanner_row {
+#hitwqhhjjr .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#oxfirxxcdr .gt_group_heading {
+#hitwqhhjjr .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4440,7 +4443,7 @@ sigma 2.8    0.2
   text-align: left;
 }
 
-#oxfirxxcdr .gt_empty_group_heading {
+#hitwqhhjjr .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -4455,15 +4458,15 @@ sigma 2.8    0.2
   vertical-align: middle;
 }
 
-#oxfirxxcdr .gt_from_md > :first-child {
+#hitwqhhjjr .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#oxfirxxcdr .gt_from_md > :last-child {
+#hitwqhhjjr .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#oxfirxxcdr .gt_row {
+#hitwqhhjjr .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4482,7 +4485,7 @@ sigma 2.8    0.2
   overflow-x: hidden;
 }
 
-#oxfirxxcdr .gt_stub {
+#hitwqhhjjr .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -4495,7 +4498,7 @@ sigma 2.8    0.2
   padding-right: 5px;
 }
 
-#oxfirxxcdr .gt_stub_row_group {
+#hitwqhhjjr .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -4509,15 +4512,15 @@ sigma 2.8    0.2
   vertical-align: top;
 }
 
-#oxfirxxcdr .gt_row_group_first td {
+#hitwqhhjjr .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#oxfirxxcdr .gt_row_group_first th {
+#hitwqhhjjr .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#oxfirxxcdr .gt_summary_row {
+#hitwqhhjjr .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -4527,16 +4530,16 @@ sigma 2.8    0.2
   padding-right: 5px;
 }
 
-#oxfirxxcdr .gt_first_summary_row {
+#hitwqhhjjr .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#oxfirxxcdr .gt_first_summary_row.thick {
+#hitwqhhjjr .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#oxfirxxcdr .gt_last_summary_row {
+#hitwqhhjjr .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4546,7 +4549,7 @@ sigma 2.8    0.2
   border-bottom-color: #D3D3D3;
 }
 
-#oxfirxxcdr .gt_grand_summary_row {
+#hitwqhhjjr .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -4556,7 +4559,7 @@ sigma 2.8    0.2
   padding-right: 5px;
 }
 
-#oxfirxxcdr .gt_first_grand_summary_row {
+#hitwqhhjjr .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4566,7 +4569,7 @@ sigma 2.8    0.2
   border-top-color: #D3D3D3;
 }
 
-#oxfirxxcdr .gt_last_grand_summary_row_top {
+#hitwqhhjjr .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4576,11 +4579,11 @@ sigma 2.8    0.2
   border-bottom-color: #D3D3D3;
 }
 
-#oxfirxxcdr .gt_striped {
+#hitwqhhjjr .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#oxfirxxcdr .gt_table_body {
+#hitwqhhjjr .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -4589,7 +4592,7 @@ sigma 2.8    0.2
   border-bottom-color: #D3D3D3;
 }
 
-#oxfirxxcdr .gt_footnotes {
+#hitwqhhjjr .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -4603,7 +4606,7 @@ sigma 2.8    0.2
   border-right-color: #D3D3D3;
 }
 
-#oxfirxxcdr .gt_footnote {
+#hitwqhhjjr .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -4612,7 +4615,7 @@ sigma 2.8    0.2
   padding-right: 5px;
 }
 
-#oxfirxxcdr .gt_sourcenotes {
+#hitwqhhjjr .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -4626,7 +4629,7 @@ sigma 2.8    0.2
   border-right-color: #D3D3D3;
 }
 
-#oxfirxxcdr .gt_sourcenote {
+#hitwqhhjjr .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -4634,63 +4637,63 @@ sigma 2.8    0.2
   padding-right: 5px;
 }
 
-#oxfirxxcdr .gt_left {
+#hitwqhhjjr .gt_left {
   text-align: left;
 }
 
-#oxfirxxcdr .gt_center {
+#hitwqhhjjr .gt_center {
   text-align: center;
 }
 
-#oxfirxxcdr .gt_right {
+#hitwqhhjjr .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#oxfirxxcdr .gt_font_normal {
+#hitwqhhjjr .gt_font_normal {
   font-weight: normal;
 }
 
-#oxfirxxcdr .gt_font_bold {
+#hitwqhhjjr .gt_font_bold {
   font-weight: bold;
 }
 
-#oxfirxxcdr .gt_font_italic {
+#hitwqhhjjr .gt_font_italic {
   font-style: italic;
 }
 
-#oxfirxxcdr .gt_super {
+#hitwqhhjjr .gt_super {
   font-size: 65%;
 }
 
-#oxfirxxcdr .gt_footnote_marks {
+#hitwqhhjjr .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#oxfirxxcdr .gt_asterisk {
+#hitwqhhjjr .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#oxfirxxcdr .gt_indent_1 {
+#hitwqhhjjr .gt_indent_1 {
   text-indent: 5px;
 }
 
-#oxfirxxcdr .gt_indent_2 {
+#hitwqhhjjr .gt_indent_2 {
   text-indent: 10px;
 }
 
-#oxfirxxcdr .gt_indent_3 {
+#hitwqhhjjr .gt_indent_3 {
   text-indent: 15px;
 }
 
-#oxfirxxcdr .gt_indent_4 {
+#hitwqhhjjr .gt_indent_4 {
   text-indent: 20px;
 }
 
-#oxfirxxcdr .gt_indent_5 {
+#hitwqhhjjr .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -4812,16 +4815,16 @@ sigma 2.8    0.2
 <pre><code># A tibble: 4,000 × 3
      `1`   `2`     te
    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
- 1 10.0   9.86  0.144
- 2  6.75  6.23  0.520
- 3 11.5  10.2   1.34 
- 4 15.7   9.01  6.72 
- 5 11.7  11.8  -0.109
- 6  7.09 12.0  -4.94 
- 7 13.4   9.07  4.30 
- 8 13.1   6.16  6.97 
- 9  5.34  7.72 -2.38 
-10  9.45  9.63 -0.177
+ 1  9.46  7.76  1.70 
+ 2 11.5   7.54  4.00 
+ 3  5.57  8.21 -2.64 
+ 4  6.01 11.5  -5.47 
+ 5 10.3  15.4  -5.12 
+ 6  6.29  5.91  0.387
+ 7  7.13 12.1  -5.02 
+ 8  9.32 12.8  -3.44 
+ 9 12.3   8.40  3.85 
+10 10.7  17.8  -7.15 
 # ℹ 3,990 more rows</code></pre>
 </div>
 </div>
@@ -4847,7 +4850,7 @@ sigma 2.8    0.2
 <div class="sourceCode" id="cb39"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">pp</span><span class="op">$</span><span class="va">te</span>, prob <span class="op">=</span> <span class="fl">0.9</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     90% 
-6.864575 </code></pre>
+6.648977 </code></pre>
 </div>
 </div>
 <p>We would not expect a treatment effect of this magnitude to be common, but, at the same time, effects this big and bigger will occur about 10% of the time.</p>
@@ -4867,32 +4870,34 @@ sigma 2.8    0.2
 <p>Wisdom requires the creation of a Preceptor Table, an examination of our data, and a determination, using the concept of “validity,” as to whether or not we can (reasonably!) assume that the two come from the same <em>population</em>.</p>
 <section id="preceptor-table-2" class="level4" data-number="5.3.1.1"><h4 data-number="5.3.1.1" class="anchored" data-anchor-id="preceptor-table-2">
 <span class="header-section-number">5.3.1.1</span> Preceptor Table</h4>
-<p>First, do we need a <strong>causal</strong> or <strong>predictive</strong> model? In our question above we have a predictive model as we are only considered with one outcome: a person’s income based on their age.</p>
-<p>Second, what is the outcome? A person’s income would be our <strong>outcome</strong>.</p>
+<p>First, do we need a <strong>causal</strong> or <strong>predictive</strong> model? In our question above we have a predictive model as we are only considered with one outcome: a person’s income based on their age. Remember the motto: <em>No causation without manipulation</em>.</p>
+<p>Second, what is the outcome? A person’s income would be our <strong>outcome</strong>. The individual that asked this question did not tell us where or when we are looking at these questions. Do we need to look at the year 2022, 2020, 2018? Do we need to look in Florida, Connecticut, Maryland? It is vital to understand where and when that we are answering these questions because otherwise our data could be not accurately applied to the whole country, nation, or specific state. Therefore, by diving deeper within these questions we are able to accurately answer our question with the population that it refers to. For the questions that we have at hand we will be talking about all the adults in July 1, 2012 at the location of the United States which will allow us to answer the questions more accurately.</p>
 <p>Third, what are the <strong>units</strong>? Our units for this scenario would be dollars as we are concerned with dollars at the station for 40-year olds.</p>
 <p>Fourth, what are the <strong>covariates</strong>? In this case, a person’s age is the only covariate. The Preceptor Table must include any covariates mentioned in the question.</p>
 <p>Fifth, do we have a <strong>treatment</strong>? No.&nbsp;We will be using a predictive model as discussed above and treatments will only apply to situations with causal models. A treatment is just a covariate which we can, at least in theory, manipulate, thereby creating other potential outcomes.</p>
+<p>Let’s look at our refined question to create our Preceptor Table:</p>
+<p><em>What would you expect the income to be for a 40-year old in the United States in 2012?</em></p>
 <p>Our Preceptor Table:</p>
 <div class="cell">
 <div class="cell-output-display">
 
-<div id="hqctwgsgaf" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#hqctwgsgaf table {
+<div id="pxrnaufhzm" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#pxrnaufhzm table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#hqctwgsgaf thead, #hqctwgsgaf tbody, #hqctwgsgaf tfoot, #hqctwgsgaf tr, #hqctwgsgaf td, #hqctwgsgaf th {
+#pxrnaufhzm thead, #pxrnaufhzm tbody, #pxrnaufhzm tfoot, #pxrnaufhzm tr, #pxrnaufhzm td, #pxrnaufhzm th {
   border-style: none;
 }
 
-#hqctwgsgaf p {
+#pxrnaufhzm p {
   margin: 0;
   padding: 0;
 }
 
-#hqctwgsgaf .gt_table {
+#pxrnaufhzm .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -4918,12 +4923,12 @@ sigma 2.8    0.2
   border-left-color: #D3D3D3;
 }
 
-#hqctwgsgaf .gt_caption {
+#pxrnaufhzm .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#hqctwgsgaf .gt_title {
+#pxrnaufhzm .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -4935,7 +4940,7 @@ sigma 2.8    0.2
   border-bottom-width: 0;
 }
 
-#hqctwgsgaf .gt_subtitle {
+#pxrnaufhzm .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -4947,7 +4952,7 @@ sigma 2.8    0.2
   border-top-width: 0;
 }
 
-#hqctwgsgaf .gt_heading {
+#pxrnaufhzm .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -4959,13 +4964,13 @@ sigma 2.8    0.2
   border-right-color: #D3D3D3;
 }
 
-#hqctwgsgaf .gt_bottom_border {
+#pxrnaufhzm .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#hqctwgsgaf .gt_col_headings {
+#pxrnaufhzm .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -4980,7 +4985,7 @@ sigma 2.8    0.2
   border-right-color: #D3D3D3;
 }
 
-#hqctwgsgaf .gt_col_heading {
+#pxrnaufhzm .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -5000,7 +5005,7 @@ sigma 2.8    0.2
   overflow-x: hidden;
 }
 
-#hqctwgsgaf .gt_column_spanner_outer {
+#pxrnaufhzm .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -5012,15 +5017,15 @@ sigma 2.8    0.2
   padding-right: 4px;
 }
 
-#hqctwgsgaf .gt_column_spanner_outer:first-child {
+#pxrnaufhzm .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#hqctwgsgaf .gt_column_spanner_outer:last-child {
+#pxrnaufhzm .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#hqctwgsgaf .gt_column_spanner {
+#pxrnaufhzm .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -5032,11 +5037,11 @@ sigma 2.8    0.2
   width: 100%;
 }
 
-#hqctwgsgaf .gt_spanner_row {
+#pxrnaufhzm .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#hqctwgsgaf .gt_group_heading {
+#pxrnaufhzm .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -5062,7 +5067,7 @@ sigma 2.8    0.2
   text-align: left;
 }
 
-#hqctwgsgaf .gt_empty_group_heading {
+#pxrnaufhzm .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -5077,15 +5082,15 @@ sigma 2.8    0.2
   vertical-align: middle;
 }
 
-#hqctwgsgaf .gt_from_md > :first-child {
+#pxrnaufhzm .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#hqctwgsgaf .gt_from_md > :last-child {
+#pxrnaufhzm .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#hqctwgsgaf .gt_row {
+#pxrnaufhzm .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -5104,7 +5109,7 @@ sigma 2.8    0.2
   overflow-x: hidden;
 }
 
-#hqctwgsgaf .gt_stub {
+#pxrnaufhzm .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -5117,7 +5122,7 @@ sigma 2.8    0.2
   padding-right: 5px;
 }
 
-#hqctwgsgaf .gt_stub_row_group {
+#pxrnaufhzm .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -5131,15 +5136,15 @@ sigma 2.8    0.2
   vertical-align: top;
 }
 
-#hqctwgsgaf .gt_row_group_first td {
+#pxrnaufhzm .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#hqctwgsgaf .gt_row_group_first th {
+#pxrnaufhzm .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#hqctwgsgaf .gt_summary_row {
+#pxrnaufhzm .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -5149,16 +5154,16 @@ sigma 2.8    0.2
   padding-right: 5px;
 }
 
-#hqctwgsgaf .gt_first_summary_row {
+#pxrnaufhzm .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#hqctwgsgaf .gt_first_summary_row.thick {
+#pxrnaufhzm .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#hqctwgsgaf .gt_last_summary_row {
+#pxrnaufhzm .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -5168,7 +5173,7 @@ sigma 2.8    0.2
   border-bottom-color: #D3D3D3;
 }
 
-#hqctwgsgaf .gt_grand_summary_row {
+#pxrnaufhzm .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -5178,7 +5183,7 @@ sigma 2.8    0.2
   padding-right: 5px;
 }
 
-#hqctwgsgaf .gt_first_grand_summary_row {
+#pxrnaufhzm .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -5188,7 +5193,7 @@ sigma 2.8    0.2
   border-top-color: #D3D3D3;
 }
 
-#hqctwgsgaf .gt_last_grand_summary_row_top {
+#pxrnaufhzm .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -5198,11 +5203,11 @@ sigma 2.8    0.2
   border-bottom-color: #D3D3D3;
 }
 
-#hqctwgsgaf .gt_striped {
+#pxrnaufhzm .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#hqctwgsgaf .gt_table_body {
+#pxrnaufhzm .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -5211,7 +5216,7 @@ sigma 2.8    0.2
   border-bottom-color: #D3D3D3;
 }
 
-#hqctwgsgaf .gt_footnotes {
+#pxrnaufhzm .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -5225,7 +5230,7 @@ sigma 2.8    0.2
   border-right-color: #D3D3D3;
 }
 
-#hqctwgsgaf .gt_footnote {
+#pxrnaufhzm .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -5234,7 +5239,7 @@ sigma 2.8    0.2
   padding-right: 5px;
 }
 
-#hqctwgsgaf .gt_sourcenotes {
+#pxrnaufhzm .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -5248,7 +5253,7 @@ sigma 2.8    0.2
   border-right-color: #D3D3D3;
 }
 
-#hqctwgsgaf .gt_sourcenote {
+#pxrnaufhzm .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -5256,63 +5261,63 @@ sigma 2.8    0.2
   padding-right: 5px;
 }
 
-#hqctwgsgaf .gt_left {
+#pxrnaufhzm .gt_left {
   text-align: left;
 }
 
-#hqctwgsgaf .gt_center {
+#pxrnaufhzm .gt_center {
   text-align: center;
 }
 
-#hqctwgsgaf .gt_right {
+#pxrnaufhzm .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#hqctwgsgaf .gt_font_normal {
+#pxrnaufhzm .gt_font_normal {
   font-weight: normal;
 }
 
-#hqctwgsgaf .gt_font_bold {
+#pxrnaufhzm .gt_font_bold {
   font-weight: bold;
 }
 
-#hqctwgsgaf .gt_font_italic {
+#pxrnaufhzm .gt_font_italic {
   font-style: italic;
 }
 
-#hqctwgsgaf .gt_super {
+#pxrnaufhzm .gt_super {
   font-size: 65%;
 }
 
-#hqctwgsgaf .gt_footnote_marks {
+#pxrnaufhzm .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#hqctwgsgaf .gt_asterisk {
+#pxrnaufhzm .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#hqctwgsgaf .gt_indent_1 {
+#pxrnaufhzm .gt_indent_1 {
   text-indent: 5px;
 }
 
-#hqctwgsgaf .gt_indent_2 {
+#pxrnaufhzm .gt_indent_2 {
   text-indent: 10px;
 }
 
-#hqctwgsgaf .gt_indent_3 {
+#pxrnaufhzm .gt_indent_3 {
   text-indent: 15px;
 }
 
-#hqctwgsgaf .gt_indent_4 {
+#pxrnaufhzm .gt_indent_4 {
   text-indent: 20px;
 }
 
-#hqctwgsgaf .gt_indent_5 {
+#pxrnaufhzm .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -5488,30 +5493,30 @@ sigma 2.8    0.2
 </div>
 </div>
 </div>
-<p>Once again, in <strong>Justice</strong>, we must consider the population table, stability, representativeness, unconfoundedness and the mathematical structure of the data generating mechanism (DGM).</p>
+<p>Once again, in <strong>Justice</strong>, we must consider the Population Table, stability, representativeness, unconfoundedness and the mathematical structure of the data generating mechanism (DGM).</p>
 <section id="population-table-2" class="level4" data-number="5.3.2.1"><h4 data-number="5.3.2.1" class="anchored" data-anchor-id="population-table-2">
 <span class="header-section-number">5.3.2.1</span> Population Table</h4>
 <p>With our <strong>assumption of validity</strong> proving to be reasonably accurate, we can now create our Population Table. We can make a Population Table with our Preceptor Table and other data based on our assumptions that we have made.</p>
 <div class="cell">
 <div class="cell-output-display">
 
-<div id="lvxjmeejrf" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#lvxjmeejrf table {
+<div id="bxjtsjlmjw" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#bxjtsjlmjw table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#lvxjmeejrf thead, #lvxjmeejrf tbody, #lvxjmeejrf tfoot, #lvxjmeejrf tr, #lvxjmeejrf td, #lvxjmeejrf th {
+#bxjtsjlmjw thead, #bxjtsjlmjw tbody, #bxjtsjlmjw tfoot, #bxjtsjlmjw tr, #bxjtsjlmjw td, #bxjtsjlmjw th {
   border-style: none;
 }
 
-#lvxjmeejrf p {
+#bxjtsjlmjw p {
   margin: 0;
   padding: 0;
 }
 
-#lvxjmeejrf .gt_table {
+#bxjtsjlmjw .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -5537,12 +5542,12 @@ sigma 2.8    0.2
   border-left-color: #D3D3D3;
 }
 
-#lvxjmeejrf .gt_caption {
+#bxjtsjlmjw .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#lvxjmeejrf .gt_title {
+#bxjtsjlmjw .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -5554,7 +5559,7 @@ sigma 2.8    0.2
   border-bottom-width: 0;
 }
 
-#lvxjmeejrf .gt_subtitle {
+#bxjtsjlmjw .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -5566,7 +5571,7 @@ sigma 2.8    0.2
   border-top-width: 0;
 }
 
-#lvxjmeejrf .gt_heading {
+#bxjtsjlmjw .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -5578,13 +5583,13 @@ sigma 2.8    0.2
   border-right-color: #D3D3D3;
 }
 
-#lvxjmeejrf .gt_bottom_border {
+#bxjtsjlmjw .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#lvxjmeejrf .gt_col_headings {
+#bxjtsjlmjw .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -5599,7 +5604,7 @@ sigma 2.8    0.2
   border-right-color: #D3D3D3;
 }
 
-#lvxjmeejrf .gt_col_heading {
+#bxjtsjlmjw .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -5619,7 +5624,7 @@ sigma 2.8    0.2
   overflow-x: hidden;
 }
 
-#lvxjmeejrf .gt_column_spanner_outer {
+#bxjtsjlmjw .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -5631,15 +5636,15 @@ sigma 2.8    0.2
   padding-right: 4px;
 }
 
-#lvxjmeejrf .gt_column_spanner_outer:first-child {
+#bxjtsjlmjw .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#lvxjmeejrf .gt_column_spanner_outer:last-child {
+#bxjtsjlmjw .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#lvxjmeejrf .gt_column_spanner {
+#bxjtsjlmjw .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -5651,11 +5656,11 @@ sigma 2.8    0.2
   width: 100%;
 }
 
-#lvxjmeejrf .gt_spanner_row {
+#bxjtsjlmjw .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#lvxjmeejrf .gt_group_heading {
+#bxjtsjlmjw .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -5681,7 +5686,7 @@ sigma 2.8    0.2
   text-align: left;
 }
 
-#lvxjmeejrf .gt_empty_group_heading {
+#bxjtsjlmjw .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -5696,15 +5701,15 @@ sigma 2.8    0.2
   vertical-align: middle;
 }
 
-#lvxjmeejrf .gt_from_md > :first-child {
+#bxjtsjlmjw .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#lvxjmeejrf .gt_from_md > :last-child {
+#bxjtsjlmjw .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#lvxjmeejrf .gt_row {
+#bxjtsjlmjw .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -5723,7 +5728,7 @@ sigma 2.8    0.2
   overflow-x: hidden;
 }
 
-#lvxjmeejrf .gt_stub {
+#bxjtsjlmjw .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -5736,7 +5741,7 @@ sigma 2.8    0.2
   padding-right: 5px;
 }
 
-#lvxjmeejrf .gt_stub_row_group {
+#bxjtsjlmjw .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -5750,15 +5755,15 @@ sigma 2.8    0.2
   vertical-align: top;
 }
 
-#lvxjmeejrf .gt_row_group_first td {
+#bxjtsjlmjw .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#lvxjmeejrf .gt_row_group_first th {
+#bxjtsjlmjw .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#lvxjmeejrf .gt_summary_row {
+#bxjtsjlmjw .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -5768,16 +5773,16 @@ sigma 2.8    0.2
   padding-right: 5px;
 }
 
-#lvxjmeejrf .gt_first_summary_row {
+#bxjtsjlmjw .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#lvxjmeejrf .gt_first_summary_row.thick {
+#bxjtsjlmjw .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#lvxjmeejrf .gt_last_summary_row {
+#bxjtsjlmjw .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -5787,7 +5792,7 @@ sigma 2.8    0.2
   border-bottom-color: #D3D3D3;
 }
 
-#lvxjmeejrf .gt_grand_summary_row {
+#bxjtsjlmjw .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -5797,7 +5802,7 @@ sigma 2.8    0.2
   padding-right: 5px;
 }
 
-#lvxjmeejrf .gt_first_grand_summary_row {
+#bxjtsjlmjw .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -5807,7 +5812,7 @@ sigma 2.8    0.2
   border-top-color: #D3D3D3;
 }
 
-#lvxjmeejrf .gt_last_grand_summary_row_top {
+#bxjtsjlmjw .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -5817,11 +5822,11 @@ sigma 2.8    0.2
   border-bottom-color: #D3D3D3;
 }
 
-#lvxjmeejrf .gt_striped {
+#bxjtsjlmjw .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#lvxjmeejrf .gt_table_body {
+#bxjtsjlmjw .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -5830,7 +5835,7 @@ sigma 2.8    0.2
   border-bottom-color: #D3D3D3;
 }
 
-#lvxjmeejrf .gt_footnotes {
+#bxjtsjlmjw .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -5844,7 +5849,7 @@ sigma 2.8    0.2
   border-right-color: #D3D3D3;
 }
 
-#lvxjmeejrf .gt_footnote {
+#bxjtsjlmjw .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -5853,7 +5858,7 @@ sigma 2.8    0.2
   padding-right: 5px;
 }
 
-#lvxjmeejrf .gt_sourcenotes {
+#bxjtsjlmjw .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -5867,7 +5872,7 @@ sigma 2.8    0.2
   border-right-color: #D3D3D3;
 }
 
-#lvxjmeejrf .gt_sourcenote {
+#bxjtsjlmjw .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -5875,63 +5880,63 @@ sigma 2.8    0.2
   padding-right: 5px;
 }
 
-#lvxjmeejrf .gt_left {
+#bxjtsjlmjw .gt_left {
   text-align: left;
 }
 
-#lvxjmeejrf .gt_center {
+#bxjtsjlmjw .gt_center {
   text-align: center;
 }
 
-#lvxjmeejrf .gt_right {
+#bxjtsjlmjw .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#lvxjmeejrf .gt_font_normal {
+#bxjtsjlmjw .gt_font_normal {
   font-weight: normal;
 }
 
-#lvxjmeejrf .gt_font_bold {
+#bxjtsjlmjw .gt_font_bold {
   font-weight: bold;
 }
 
-#lvxjmeejrf .gt_font_italic {
+#bxjtsjlmjw .gt_font_italic {
   font-style: italic;
 }
 
-#lvxjmeejrf .gt_super {
+#bxjtsjlmjw .gt_super {
   font-size: 65%;
 }
 
-#lvxjmeejrf .gt_footnote_marks {
+#bxjtsjlmjw .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#lvxjmeejrf .gt_asterisk {
+#bxjtsjlmjw .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#lvxjmeejrf .gt_indent_1 {
+#bxjtsjlmjw .gt_indent_1 {
   text-indent: 5px;
 }
 
-#lvxjmeejrf .gt_indent_2 {
+#bxjtsjlmjw .gt_indent_2 {
   text-indent: 10px;
 }
 
-#lvxjmeejrf .gt_indent_3 {
+#bxjtsjlmjw .gt_indent_3 {
   text-indent: 15px;
 }
 
-#lvxjmeejrf .gt_indent_4 {
+#bxjtsjlmjw .gt_indent_4 {
   text-indent: 20px;
 }
 
-#lvxjmeejrf .gt_indent_5 {
+#bxjtsjlmjw .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -6193,23 +6198,23 @@ sigma 74121.3  4897.0
 <div class="cell">
 <div class="cell-output-display">
 
-<div id="xryocbwbtv" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#xryocbwbtv table {
+<div id="vhrmbrxarv" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#vhrmbrxarv table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#xryocbwbtv thead, #xryocbwbtv tbody, #xryocbwbtv tfoot, #xryocbwbtv tr, #xryocbwbtv td, #xryocbwbtv th {
+#vhrmbrxarv thead, #vhrmbrxarv tbody, #vhrmbrxarv tfoot, #vhrmbrxarv tr, #vhrmbrxarv td, #vhrmbrxarv th {
   border-style: none;
 }
 
-#xryocbwbtv p {
+#vhrmbrxarv p {
   margin: 0;
   padding: 0;
 }
 
-#xryocbwbtv .gt_table {
+#vhrmbrxarv .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -6235,12 +6240,12 @@ sigma 74121.3  4897.0
   border-left-color: #D3D3D3;
 }
 
-#xryocbwbtv .gt_caption {
+#vhrmbrxarv .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#xryocbwbtv .gt_title {
+#vhrmbrxarv .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -6252,7 +6257,7 @@ sigma 74121.3  4897.0
   border-bottom-width: 0;
 }
 
-#xryocbwbtv .gt_subtitle {
+#vhrmbrxarv .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -6264,7 +6269,7 @@ sigma 74121.3  4897.0
   border-top-width: 0;
 }
 
-#xryocbwbtv .gt_heading {
+#vhrmbrxarv .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -6276,13 +6281,13 @@ sigma 74121.3  4897.0
   border-right-color: #D3D3D3;
 }
 
-#xryocbwbtv .gt_bottom_border {
+#vhrmbrxarv .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#xryocbwbtv .gt_col_headings {
+#vhrmbrxarv .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -6297,7 +6302,7 @@ sigma 74121.3  4897.0
   border-right-color: #D3D3D3;
 }
 
-#xryocbwbtv .gt_col_heading {
+#vhrmbrxarv .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -6317,7 +6322,7 @@ sigma 74121.3  4897.0
   overflow-x: hidden;
 }
 
-#xryocbwbtv .gt_column_spanner_outer {
+#vhrmbrxarv .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -6329,15 +6334,15 @@ sigma 74121.3  4897.0
   padding-right: 4px;
 }
 
-#xryocbwbtv .gt_column_spanner_outer:first-child {
+#vhrmbrxarv .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#xryocbwbtv .gt_column_spanner_outer:last-child {
+#vhrmbrxarv .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#xryocbwbtv .gt_column_spanner {
+#vhrmbrxarv .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -6349,11 +6354,11 @@ sigma 74121.3  4897.0
   width: 100%;
 }
 
-#xryocbwbtv .gt_spanner_row {
+#vhrmbrxarv .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#xryocbwbtv .gt_group_heading {
+#vhrmbrxarv .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -6379,7 +6384,7 @@ sigma 74121.3  4897.0
   text-align: left;
 }
 
-#xryocbwbtv .gt_empty_group_heading {
+#vhrmbrxarv .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -6394,15 +6399,15 @@ sigma 74121.3  4897.0
   vertical-align: middle;
 }
 
-#xryocbwbtv .gt_from_md > :first-child {
+#vhrmbrxarv .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#xryocbwbtv .gt_from_md > :last-child {
+#vhrmbrxarv .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#xryocbwbtv .gt_row {
+#vhrmbrxarv .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -6421,7 +6426,7 @@ sigma 74121.3  4897.0
   overflow-x: hidden;
 }
 
-#xryocbwbtv .gt_stub {
+#vhrmbrxarv .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -6434,7 +6439,7 @@ sigma 74121.3  4897.0
   padding-right: 5px;
 }
 
-#xryocbwbtv .gt_stub_row_group {
+#vhrmbrxarv .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -6448,15 +6453,15 @@ sigma 74121.3  4897.0
   vertical-align: top;
 }
 
-#xryocbwbtv .gt_row_group_first td {
+#vhrmbrxarv .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#xryocbwbtv .gt_row_group_first th {
+#vhrmbrxarv .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#xryocbwbtv .gt_summary_row {
+#vhrmbrxarv .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -6466,16 +6471,16 @@ sigma 74121.3  4897.0
   padding-right: 5px;
 }
 
-#xryocbwbtv .gt_first_summary_row {
+#vhrmbrxarv .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#xryocbwbtv .gt_first_summary_row.thick {
+#vhrmbrxarv .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#xryocbwbtv .gt_last_summary_row {
+#vhrmbrxarv .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -6485,7 +6490,7 @@ sigma 74121.3  4897.0
   border-bottom-color: #D3D3D3;
 }
 
-#xryocbwbtv .gt_grand_summary_row {
+#vhrmbrxarv .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -6495,7 +6500,7 @@ sigma 74121.3  4897.0
   padding-right: 5px;
 }
 
-#xryocbwbtv .gt_first_grand_summary_row {
+#vhrmbrxarv .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -6505,7 +6510,7 @@ sigma 74121.3  4897.0
   border-top-color: #D3D3D3;
 }
 
-#xryocbwbtv .gt_last_grand_summary_row_top {
+#vhrmbrxarv .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -6515,11 +6520,11 @@ sigma 74121.3  4897.0
   border-bottom-color: #D3D3D3;
 }
 
-#xryocbwbtv .gt_striped {
+#vhrmbrxarv .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#xryocbwbtv .gt_table_body {
+#vhrmbrxarv .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -6528,7 +6533,7 @@ sigma 74121.3  4897.0
   border-bottom-color: #D3D3D3;
 }
 
-#xryocbwbtv .gt_footnotes {
+#vhrmbrxarv .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -6542,7 +6547,7 @@ sigma 74121.3  4897.0
   border-right-color: #D3D3D3;
 }
 
-#xryocbwbtv .gt_footnote {
+#vhrmbrxarv .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -6551,7 +6556,7 @@ sigma 74121.3  4897.0
   padding-right: 5px;
 }
 
-#xryocbwbtv .gt_sourcenotes {
+#vhrmbrxarv .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -6565,7 +6570,7 @@ sigma 74121.3  4897.0
   border-right-color: #D3D3D3;
 }
 
-#xryocbwbtv .gt_sourcenote {
+#vhrmbrxarv .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -6573,63 +6578,63 @@ sigma 74121.3  4897.0
   padding-right: 5px;
 }
 
-#xryocbwbtv .gt_left {
+#vhrmbrxarv .gt_left {
   text-align: left;
 }
 
-#xryocbwbtv .gt_center {
+#vhrmbrxarv .gt_center {
   text-align: center;
 }
 
-#xryocbwbtv .gt_right {
+#vhrmbrxarv .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#xryocbwbtv .gt_font_normal {
+#vhrmbrxarv .gt_font_normal {
   font-weight: normal;
 }
 
-#xryocbwbtv .gt_font_bold {
+#vhrmbrxarv .gt_font_bold {
   font-weight: bold;
 }
 
-#xryocbwbtv .gt_font_italic {
+#vhrmbrxarv .gt_font_italic {
   font-style: italic;
 }
 
-#xryocbwbtv .gt_super {
+#vhrmbrxarv .gt_super {
   font-size: 65%;
 }
 
-#xryocbwbtv .gt_footnote_marks {
+#vhrmbrxarv .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#xryocbwbtv .gt_asterisk {
+#vhrmbrxarv .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#xryocbwbtv .gt_indent_1 {
+#vhrmbrxarv .gt_indent_1 {
   text-indent: 5px;
 }
 
-#xryocbwbtv .gt_indent_2 {
+#vhrmbrxarv .gt_indent_2 {
   text-indent: 10px;
 }
 
-#xryocbwbtv .gt_indent_3 {
+#vhrmbrxarv .gt_indent_3 {
   text-indent: 15px;
 }
 
-#xryocbwbtv .gt_indent_4 {
+#vhrmbrxarv .gt_indent_4 {
   text-indent: 20px;
 }
 
-#xryocbwbtv .gt_indent_5 {
+#vhrmbrxarv .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -6728,9 +6733,9 @@ sigma 74121.3  4897.0
 <span class="header-section-number">5.4</span> liberal ~ income</h2>
 <p>So far in this chapter, we have only considered <em>continuous</em> outcome variables. <code>age</code>, <code>att_end</code> and <code>income</code> all take on a variety of values. None of them are, truly, continuous, of course. <code>age</code> is only reported as an integer value. <code>att_end</code> can only, by definition, take on 13 distinct values. However, from a modeling perspective, what matters is that they have more than 2 possible values.</p>
 <p><code>liberal</code>, however, only takes on two values: TRUE and FALSE. In order to model it, we must use the <code>binomial</code> family. We begin, as always, with some questions:</p>
-<p><em>Among all people who have an income $100,000, what proportion are liberal?</em></p>
+<p><em>Among all people who have an income of $100,000, what proportion are liberal?</em></p>
 <p><em>Assume we have a group of eight people, two of whom make $100,000, two $200,000, two $300,000 and two $400,000. How many will be liberal?</em></p>
-<p>We can answer these and similar questions by creating a model that uses party affiliation to predict age. Let’s follow the four Cardinal Virtue: Wisdom, Justice, Courage and Temperance.</p>
+<p>We can answer these and similar questions by creating a model that uses party affiliation to predict age. Let’s follow the four Cardinal Virtues: Wisdom, Justice, Courage and Temperance.</p>
 <section id="wisdom-3" class="level3" data-number="5.4.1"><h3 data-number="5.4.1" class="anchored" data-anchor-id="wisdom-3">
 <span class="header-section-number">5.4.1</span> Wisdom</h3>
 <div class="cell">
@@ -6738,36 +6743,42 @@ sigma 74121.3  4897.0
 <p><img src="other/images/Wisdom.jpg" class="img-fluid" width="1280"></p>
 </div>
 </div>
-<p>Wisdom requires the creation of a Preceptor Table, an examination of our data, and a determination, using the concept of “validity,” as to whether or not we can (reasonably!) assume that the two come from the same <em>population</em>. Let’s take a look at our question below:</p>
-<p><em>Among all people who have an income $100,000, what proportion are liberal?</em></p>
-<p><em>Assume we have a group of eight people, two of whom make $100,000, two $200,000, two $300,000 and two $400,000. How many will be liberal?</em></p>
+<p>Wisdom requires the creation of a Preceptor Table, an examination of our data, and a determination, using the concept of “validity,” as to whether or not we can (reasonably!) assume that the two come from the same <em>population</em>.</p>
 <section id="preceptor-table-3" class="level4" data-number="5.4.1.1"><h4 data-number="5.4.1.1" class="anchored" data-anchor-id="preceptor-table-3">
 <span class="header-section-number">5.4.1.1</span> Preceptor Table</h4>
-<p>First, do we need a <strong>causal</strong> or <strong>predictive</strong> model? In our question above we have a causal model as we would have multiple potential outcomes with a person’s attitude based on whether the person is liberal or not.</p>
-<p>Second, what is the outcome? A person’s attitude would be the <strong>outcome</strong> in this scenario.</p>
+<!-- DK: Answer is predictive. Why? Because it is not causal. Looks for words like "cause" or "affect" or "influence." Look for a question which implies a comparison, *for a single individual unit*, between two states of the world, when where they get treatment X and one where they get treatment Y. Look for a discussion of something which we can *manipulate*. Remember the motto: *No causation without manipulation*. If none of this is present, use a predictive model. If all you need to know to answer the question is the outcome under one value of the treatment, then the model is predictive. Example: What is the att_end for all women if they were to get the treatment? DONE (spread out throughout sections)-->
+<p>First, do we need a <strong>causal</strong> or <strong>predictive</strong> model? In our question above we have a predictive model. When we are deciding between a causal or predictive model we want to look at the question. Does it include key words such as: “cause,” “affect,” or “influence.” Often these key words indicate that we are dealing with a causal model were a comparison exists between two states of a variable.</p>
+<p>Second, what is the outcome? A person’s attitude would be the <strong>outcome</strong> in this scenario. When we take a look at the questions we discover that there is a flaw that exists. It is vital to understand where and when that we are answering these questions because otherwise it could apply to the whole country, nation, or specific state. Therefore, by diving deeper within these questions we are able to accurately answer our question with the population that it refers to. For the questions that we have at hand we will be talking about all the adults in July 1, 2012 at the location of the United States which will allow us to answer the questions more accurately.</p>
+
+<!-- DK: Add discussion about how the questions, like always, is in exact. Who are we talking about. Let's assume it is all adults in the US in 2012. In fact, the "what are the units" paragraphs always need this discussion, otherwise we can't create a Preceptor Table. And, in addition to units, you need to discuss time. When are we asking this question? Assume it is July 1, 2012. DONE (in the outcomes paragraph as discussed)-->
 <p>Third, what are the <strong>units</strong>? Our units for this scenario would be individuals because the questions are about the attributes of unique people at the station.</p>
-<p>Fourth, do we have a <strong>treatment</strong>? Yes. In any causal model, there is at least one covariate which is defined as the “treatment,” something which we can manipulate so that some units receive one version and other units get a different version. In this case, the treatment would be whether an individual’s attitude changes. Units can either be exposed, i.e., they are a “treated”, or they can not be exposed, i.e., they are a “control.”</p>
+<!-- DK: Fix this. A "treatment" is just a covariate which, first, we *can* manipulate and, second, we *need* to manipulate, at least in theory, to answer the question. DONE-->
+<p>Fourth, do we have a <strong>treatment</strong>? No.&nbsp;When we deal with predictive models we don’t have any treatments. In this case, the treatment does not apply as we aren’t dealing with a covariate that we <em>can</em> manipulate and <em>need</em> to manipulate.</p>
+<p>Let’s look at our refined question to create our Preceptor Table:</p>
+<p><em>Among all people in the United States in 2012 who have an income of $100,000, what proportion are liberal?</em></p>
 <p>Our Preceptor Table:</p>
+
+<!-- DK: Make table predictive. DONE -->
 <div class="cell">
 <div class="cell-output-display">
 
-<div id="vvkabjwdei" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#vvkabjwdei table {
+<div id="xjfcoewfgz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#xjfcoewfgz table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#vvkabjwdei thead, #vvkabjwdei tbody, #vvkabjwdei tfoot, #vvkabjwdei tr, #vvkabjwdei td, #vvkabjwdei th {
+#xjfcoewfgz thead, #xjfcoewfgz tbody, #xjfcoewfgz tfoot, #xjfcoewfgz tr, #xjfcoewfgz td, #xjfcoewfgz th {
   border-style: none;
 }
 
-#vvkabjwdei p {
+#xjfcoewfgz p {
   margin: 0;
   padding: 0;
 }
 
-#vvkabjwdei .gt_table {
+#xjfcoewfgz .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -6793,12 +6804,12 @@ sigma 74121.3  4897.0
   border-left-color: #D3D3D3;
 }
 
-#vvkabjwdei .gt_caption {
+#xjfcoewfgz .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#vvkabjwdei .gt_title {
+#xjfcoewfgz .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -6810,7 +6821,7 @@ sigma 74121.3  4897.0
   border-bottom-width: 0;
 }
 
-#vvkabjwdei .gt_subtitle {
+#xjfcoewfgz .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -6822,7 +6833,7 @@ sigma 74121.3  4897.0
   border-top-width: 0;
 }
 
-#vvkabjwdei .gt_heading {
+#xjfcoewfgz .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -6834,13 +6845,13 @@ sigma 74121.3  4897.0
   border-right-color: #D3D3D3;
 }
 
-#vvkabjwdei .gt_bottom_border {
+#xjfcoewfgz .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#vvkabjwdei .gt_col_headings {
+#xjfcoewfgz .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -6855,7 +6866,7 @@ sigma 74121.3  4897.0
   border-right-color: #D3D3D3;
 }
 
-#vvkabjwdei .gt_col_heading {
+#xjfcoewfgz .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -6875,7 +6886,7 @@ sigma 74121.3  4897.0
   overflow-x: hidden;
 }
 
-#vvkabjwdei .gt_column_spanner_outer {
+#xjfcoewfgz .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -6887,15 +6898,15 @@ sigma 74121.3  4897.0
   padding-right: 4px;
 }
 
-#vvkabjwdei .gt_column_spanner_outer:first-child {
+#xjfcoewfgz .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#vvkabjwdei .gt_column_spanner_outer:last-child {
+#xjfcoewfgz .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#vvkabjwdei .gt_column_spanner {
+#xjfcoewfgz .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -6907,11 +6918,11 @@ sigma 74121.3  4897.0
   width: 100%;
 }
 
-#vvkabjwdei .gt_spanner_row {
+#xjfcoewfgz .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#vvkabjwdei .gt_group_heading {
+#xjfcoewfgz .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -6937,7 +6948,7 @@ sigma 74121.3  4897.0
   text-align: left;
 }
 
-#vvkabjwdei .gt_empty_group_heading {
+#xjfcoewfgz .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -6952,15 +6963,15 @@ sigma 74121.3  4897.0
   vertical-align: middle;
 }
 
-#vvkabjwdei .gt_from_md > :first-child {
+#xjfcoewfgz .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#vvkabjwdei .gt_from_md > :last-child {
+#xjfcoewfgz .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#vvkabjwdei .gt_row {
+#xjfcoewfgz .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -6979,7 +6990,7 @@ sigma 74121.3  4897.0
   overflow-x: hidden;
 }
 
-#vvkabjwdei .gt_stub {
+#xjfcoewfgz .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -6992,7 +7003,7 @@ sigma 74121.3  4897.0
   padding-right: 5px;
 }
 
-#vvkabjwdei .gt_stub_row_group {
+#xjfcoewfgz .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -7006,15 +7017,15 @@ sigma 74121.3  4897.0
   vertical-align: top;
 }
 
-#vvkabjwdei .gt_row_group_first td {
+#xjfcoewfgz .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#vvkabjwdei .gt_row_group_first th {
+#xjfcoewfgz .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#vvkabjwdei .gt_summary_row {
+#xjfcoewfgz .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -7024,16 +7035,16 @@ sigma 74121.3  4897.0
   padding-right: 5px;
 }
 
-#vvkabjwdei .gt_first_summary_row {
+#xjfcoewfgz .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#vvkabjwdei .gt_first_summary_row.thick {
+#xjfcoewfgz .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#vvkabjwdei .gt_last_summary_row {
+#xjfcoewfgz .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -7043,7 +7054,7 @@ sigma 74121.3  4897.0
   border-bottom-color: #D3D3D3;
 }
 
-#vvkabjwdei .gt_grand_summary_row {
+#xjfcoewfgz .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -7053,7 +7064,7 @@ sigma 74121.3  4897.0
   padding-right: 5px;
 }
 
-#vvkabjwdei .gt_first_grand_summary_row {
+#xjfcoewfgz .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -7063,7 +7074,7 @@ sigma 74121.3  4897.0
   border-top-color: #D3D3D3;
 }
 
-#vvkabjwdei .gt_last_grand_summary_row_top {
+#xjfcoewfgz .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -7073,11 +7084,11 @@ sigma 74121.3  4897.0
   border-bottom-color: #D3D3D3;
 }
 
-#vvkabjwdei .gt_striped {
+#xjfcoewfgz .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#vvkabjwdei .gt_table_body {
+#xjfcoewfgz .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -7086,7 +7097,7 @@ sigma 74121.3  4897.0
   border-bottom-color: #D3D3D3;
 }
 
-#vvkabjwdei .gt_footnotes {
+#xjfcoewfgz .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -7100,7 +7111,7 @@ sigma 74121.3  4897.0
   border-right-color: #D3D3D3;
 }
 
-#vvkabjwdei .gt_footnote {
+#xjfcoewfgz .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -7109,7 +7120,7 @@ sigma 74121.3  4897.0
   padding-right: 5px;
 }
 
-#vvkabjwdei .gt_sourcenotes {
+#xjfcoewfgz .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -7123,7 +7134,7 @@ sigma 74121.3  4897.0
   border-right-color: #D3D3D3;
 }
 
-#vvkabjwdei .gt_sourcenote {
+#xjfcoewfgz .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -7131,83 +7142,82 @@ sigma 74121.3  4897.0
   padding-right: 5px;
 }
 
-#vvkabjwdei .gt_left {
+#xjfcoewfgz .gt_left {
   text-align: left;
 }
 
-#vvkabjwdei .gt_center {
+#xjfcoewfgz .gt_center {
   text-align: center;
 }
 
-#vvkabjwdei .gt_right {
+#xjfcoewfgz .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#vvkabjwdei .gt_font_normal {
+#xjfcoewfgz .gt_font_normal {
   font-weight: normal;
 }
 
-#vvkabjwdei .gt_font_bold {
+#xjfcoewfgz .gt_font_bold {
   font-weight: bold;
 }
 
-#vvkabjwdei .gt_font_italic {
+#xjfcoewfgz .gt_font_italic {
   font-style: italic;
 }
 
-#vvkabjwdei .gt_super {
+#xjfcoewfgz .gt_super {
   font-size: 65%;
 }
 
-#vvkabjwdei .gt_footnote_marks {
+#xjfcoewfgz .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#vvkabjwdei .gt_asterisk {
+#xjfcoewfgz .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#vvkabjwdei .gt_indent_1 {
+#xjfcoewfgz .gt_indent_1 {
   text-indent: 5px;
 }
 
-#vvkabjwdei .gt_indent_2 {
+#xjfcoewfgz .gt_indent_2 {
   text-indent: 10px;
 }
 
-#vvkabjwdei .gt_indent_3 {
+#xjfcoewfgz .gt_indent_3 {
   text-indent: 15px;
 }
 
-#vvkabjwdei .gt_indent_4 {
+#xjfcoewfgz .gt_indent_4 {
   text-indent: 20px;
 }
 
-#vvkabjwdei .gt_indent_5 {
+#xjfcoewfgz .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
 <thead>
 <tr class="gt_heading">
-<td colspan="4" class="gt_heading gt_title gt_font_normal gt_bottom_border" style="">Preceptor Table</td>
+<td colspan="3" class="gt_heading gt_title gt_font_normal gt_bottom_border" style="">Preceptor Table</td>
     </tr>
 <tr class="gt_col_headings gt_spanner_row">
 <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="2" colspan="1" style="font-size: large; text-align: left; vertical-align: middle;" scope="col" id="ID">ID</th>
-      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="2" scope="colgroup" id="Potential Outcomes">
-        <span class="gt_column_spanner">Potential Outcomes</span>
+      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="1" scope="col" id="Outcome">
+        <span class="gt_column_spanner">Outcome</span>
       </th>
       <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="1" scope="col" id="Covariate">
         <span class="gt_column_spanner">Covariate</span>
       </th>
     </tr>
 <tr class="gt_col_headings">
-<th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="Liberal Ending Attitude">Liberal Ending Attitude</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="Not Liberal Ending Attitude">Not Liberal Ending Attitude</th>
+<th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="Liberal">Liberal</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="Income">Income</th>
     </tr>
 </thead>
@@ -7216,11 +7226,8 @@ sigma 74121.3  4897.0
 <td headers="ID" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div class="gt_from_md">
 <p>1</p>
 </div></td>
-<td headers="attitude_yes_liberal" class="gt_row gt_center"><div class="gt_from_md">
-<p>3*</p>
-</div></td>
-<td headers="attitude_no_liberal" class="gt_row gt_center"><div class="gt_from_md">
-<p>8</p>
+<td headers="liberal" class="gt_row gt_center"><div class="gt_from_md">
+<p>0</p>
 </div></td>
 <td headers="income" class="gt_row gt_center"><div class="gt_from_md">
 <p>150000</p>
@@ -7230,11 +7237,8 @@ sigma 74121.3  4897.0
 <td headers="ID" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div class="gt_from_md">
 <p>2</p>
 </div></td>
-<td headers="attitude_yes_liberal" class="gt_row gt_center"><div class="gt_from_md">
-<p>7</p>
-</div></td>
-<td headers="attitude_no_liberal" class="gt_row gt_center"><div class="gt_from_md">
-<p>2*</p>
+<td headers="liberal" class="gt_row gt_center"><div class="gt_from_md">
+<p>0</p>
 </div></td>
 <td headers="income" class="gt_row gt_center"><div class="gt_from_md">
 <p>50000</p>
@@ -7244,10 +7248,7 @@ sigma 74121.3  4897.0
 <td headers="ID" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div class="gt_from_md">
 <p>…</p>
 </div></td>
-<td headers="attitude_yes_liberal" class="gt_row gt_center"><div class="gt_from_md">
-<p>…</p>
-</div></td>
-<td headers="attitude_no_liberal" class="gt_row gt_center"><div class="gt_from_md">
+<td headers="liberal" class="gt_row gt_center"><div class="gt_from_md">
 <p>…</p>
 </div></td>
 <td headers="income" class="gt_row gt_center"><div class="gt_from_md">
@@ -7258,11 +7259,8 @@ sigma 74121.3  4897.0
 <td headers="ID" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div class="gt_from_md">
 <p>10</p>
 </div></td>
-<td headers="attitude_yes_liberal" class="gt_row gt_center"><div class="gt_from_md">
-<p>10*</p>
-</div></td>
-<td headers="attitude_no_liberal" class="gt_row gt_center"><div class="gt_from_md">
-<p>5</p>
+<td headers="liberal" class="gt_row gt_center"><div class="gt_from_md">
+<p>1</p>
 </div></td>
 <td headers="income" class="gt_row gt_center"><div class="gt_from_md">
 <p>65000</p>
@@ -7272,11 +7270,8 @@ sigma 74121.3  4897.0
 <td headers="ID" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div class="gt_from_md">
 <p>11</p>
 </div></td>
-<td headers="attitude_yes_liberal" class="gt_row gt_center"><div class="gt_from_md">
-<p>4</p>
-</div></td>
-<td headers="attitude_no_liberal" class="gt_row gt_center"><div class="gt_from_md">
-<p>15*</p>
+<td headers="liberal" class="gt_row gt_center"><div class="gt_from_md">
+<p>1</p>
 </div></td>
 <td headers="income" class="gt_row gt_center"><div class="gt_from_md">
 <p>35000</p>
@@ -7286,10 +7281,7 @@ sigma 74121.3  4897.0
 <td headers="ID" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div class="gt_from_md">
 <p>…</p>
 </div></td>
-<td headers="attitude_yes_liberal" class="gt_row gt_center"><div class="gt_from_md">
-<p>…</p>
-</div></td>
-<td headers="attitude_no_liberal" class="gt_row gt_center"><div class="gt_from_md">
+<td headers="liberal" class="gt_row gt_center"><div class="gt_from_md">
 <p>…</p>
 </div></td>
 <td headers="income" class="gt_row gt_center"><div class="gt_from_md">
@@ -7300,11 +7292,8 @@ sigma 74121.3  4897.0
 <td headers="ID" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div class="gt_from_md">
 <p>N</p>
 </div></td>
-<td headers="attitude_yes_liberal" class="gt_row gt_center"><div class="gt_from_md">
-<p>6</p>
-</div></td>
-<td headers="attitude_no_liberal" class="gt_row gt_center"><div class="gt_from_md">
-<p>7*</p>
+<td headers="liberal" class="gt_row gt_center"><div class="gt_from_md">
+<p>1</p>
 </div></td>
 <td headers="income" class="gt_row gt_center"><div class="gt_from_md">
 <p>78000</p>
@@ -7317,7 +7306,6 @@ sigma 74121.3  4897.0
 </div>
 <p>Note: the values that have a star next to them symbolize the possible values that may exist if they were “control” instead of “treated” or vice versa.</p>
 <p>Recall: a Preceptor Table is the smallest table with rows and columns such that, if there is no missing data, all our questions are easy to answer. To answer questions — like “Among all people who have an income $100,000, what proportion are liberal? and Assume we have a group of eight people, two of whom make $100,000, two $200,000, two $300,000 and two $400,000. How many will be liberal?” — we need a row for every individual at the station.</p>
-<p>When we take a look at the questions we discover that there is a flaw that exists. The individual that asked this question did not give us the location or the time that we want to use for these questions at hand. It is vital to understand where and when that we are answering these questions because otherwise it could apply to the whole country, nation, or specific state. Therefore, by diving deeper within these questions we are able to accurately answer our question with the population that it refers to. For the questions that we have at hand we will be using the year 2023 and the location of Chicago, Illinois which will allow us to answer the questions more accurately.</p>
 </section><section id="data-analysis-with-exploratory-approach" class="level4" data-number="5.4.1.2"><h4 data-number="5.4.1.2" class="anchored" data-anchor-id="data-analysis-with-exploratory-approach">
 <span class="header-section-number">5.4.1.2</span> Data Analysis with Exploratory Approach</h4>
 <p>Recall the discussion from <a href="rubin-causal-model.html"><span>Chapter&nbsp;1</span></a>. <span class="citation" data-cites="enos2014">Enos (<a href="references.html#ref-enos2014" role="doc-biblioref">2014</a>)</span> randomly placed Spanish-speaking confederates on nine train platforms around Boston, Massachusetts. The data that we want to analyze consists of the age and party of each individual on these train platforms based on our variables in our Preceptor Table. These reactions were measured through changes in answers to three survey questions.</p>
@@ -7356,27 +7344,28 @@ sigma 74121.3  4897.0
                  Max.   :300000  </code></pre>
 </div>
 </div>
-<p><code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code> shows us what the different values of <code>liberal</code> and <code>income</code> are because it is a factor. The range for <code>income</code> seems reasonable.</p>
+<p>The range for <code>income</code> seems reasonable.</p>
+<!-- DK: Change this plot to use liberal and income. DONE-->
 <div class="cell">
-<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">trains</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">income</span>, fill <span class="op">=</span> <span class="va">treatment</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes_eval.html">after_stat</a></span><span class="op">(</span><span class="va">count</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">count</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,</span>
-<span>                   position <span class="op">=</span> <span class="st">"dodge"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Expected Income Based On Treatment"</span>,</span>
-<span>         x <span class="op">=</span> <span class="st">"Income in 1000s"</span>,</span>
-<span>         y <span class="op">=</span> <span class="st">"Probability"</span>,</span>
-<span>         fill <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="fu"><a href="https://scales.r-lib.org/reference/dollar_format.html">dollar_format</a></span><span class="op">(</span>scale <span class="op">=</span> <span class="fl">1</span><span class="op">/</span><span class="fl">1000</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="fu"><a href="https://scales.r-lib.org/reference/percent_format.html">percent_format</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">trains</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">income</span>, y <span class="op">=</span> <span class="va">liberal</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Income Based On Liberal"</span>,</span>
+<span>       x <span class="op">=</span> <span class="st">"Income in 1000s"</span>,</span>
+<span>       y <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>       fill <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="fu"><a href="https://scales.r-lib.org/reference/dollar_format.html">dollar_format</a></span><span class="op">(</span>scale <span class="op">=</span> <span class="fl">1</span><span class="op">/</span><span class="fl">1000</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_discrete.html">scale_y_discrete</a></span><span class="op">(</span>labels<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"TRUE"</span> <span class="op">=</span> <span class="st">"Liberal"</span>, <span class="st">"FALSE"</span> <span class="op">=</span> <span class="st">"Not Liberal"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="three-parameters_files/figure-html/unnamed-chunk-64-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>We can never know the true average income is of all treated in the population. But we can calculate a distribution. As we can see with the plot above, the income stays relatively constant based on either the treatment.</p>
+<!-- DK: Sentence should be something about it not being clear how strong the connection is between liberal and income. DONE-->
+<p>Our plot above shows a wide assortment of incomes for both liberals and non-liberals, however, there is no clear connection between liberal and income. As we can see on the higher end there are both individuals that are liberal and not liberal that are attaining this sort of income. On the lower end it is the same, as a result we can see that a strong connection between liberal and income clearly does not exist within our situation.</p>
 </section><section id="validity-3" class="level4" data-number="5.4.1.3"><h4 data-number="5.4.1.3" class="anchored" data-anchor-id="validity-3">
 <span class="header-section-number">5.4.1.3</span> Validity</h4>
-<p>Now let’s take a look at the <strong>assumption of validity</strong> for our data and Preceptor Table. There is no <strong>truth</strong> here. The <strong>assumption of validity</strong> may not hold due to the possibility of how our data was collected. We asked each individual whether they were “liberal,” which means that we didn’t rely on the government database. The possibility of the data being different from the government database and the way that we asked each individual may differ across both the Preceptor Table and the data which can prove the assumption of validity to be false.</p>
+<p>DK: Validity discussions always have one (short) paragraph about each variable, with examples of why validity might not hold. Validity discussion finishes with a brief discussion along the lines of: “Despite these concerns, we will assume that validity does hold.”</p>
+<p>Now let’s take a look at the <strong>assumption of validity</strong> for our data and Preceptor Table. There is no <em>truth</em> here. The <strong>assumption of validity</strong> may not hold due to the possibility of how our data was collected. We asked each individual whether they were “liberal,” which means that we didn’t rely on the government database. The possibility of the data being different from the government database and the way that we asked each individual may differ across both the Preceptor Table and the data which can prove the assumption of validity to be false.</p>
 <p>Another case where the <strong>assumption of validity</strong> may not hold would be from how our income data was collected similar to our age data collection. The data has been collected from filling out surveys about income without cross-checking with the government database. We don’t know whether our income is accurate enough when compared to the government’s database to the survey that each individual filled out.</p>
 <p>While this assumption can prove validity wrong, overall, the assumption of validity seems reasonable. <code>liberal</code> and <code>income</code> are similar enough between our data and The Preceptor Table that we can “stack” them on top of each other. We can assume that both are drawn from the same population.</p>
 </section></section><section id="justice-3" class="level3" data-number="5.4.2"><h3 data-number="5.4.2" class="anchored" data-anchor-id="justice-3">
@@ -7389,30 +7378,31 @@ sigma 74121.3  4897.0
 </div>
 </div>
 </div>
-<p>Let’s now consider Justice for the relationship between <code>liberal</code> and <code>income</code>. In <strong>Justice</strong>, we must consider the population table, stability, representativeness, unconfoundedness and the mathematical structure of the data generating mechanism (DGM).</p>
+<p>Let’s now consider Justice for the relationship between <code>liberal</code> and <code>income</code>. In <strong>Justice</strong>, we must consider the Population Table, stability, representativeness, unconfoundedness and the mathematical structure of the data generating mechanism (DGM).</p>
 <section id="population-table-3" class="level4" data-number="5.4.2.1"><h4 data-number="5.4.2.1" class="anchored" data-anchor-id="population-table-3">
 <span class="header-section-number">5.4.2.1</span> Population Table</h4>
-<p>With our <strong>assumption of validity</strong> proving to be reasonably accurate, we can now create our Population Table. We can make a Population Table with our Preceptor Table and other data based on our assumptions that we have made. With the assumption of validity proving to be reasonable we are able to construct a Population Table because we have been able to confirm that our rows in the Preceptor Table and data are similar.</p>
+<p>With the <strong>assumption of validity</strong> seeming reasonable, we can now create our Population Table. The Population Table consists of all the rows from the Preceptor Table, all the rows from our data, and all the rows from the broader population from which both are drawn.</p>
+<!-- DK: Cities here Chicago? -->
 <div class="cell">
 <div class="cell-output-display">
 
-<div id="tfunyfwcem" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#tfunyfwcem table {
+<div id="xxukdtltdk" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#xxukdtltdk table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#tfunyfwcem thead, #tfunyfwcem tbody, #tfunyfwcem tfoot, #tfunyfwcem tr, #tfunyfwcem td, #tfunyfwcem th {
+#xxukdtltdk thead, #xxukdtltdk tbody, #xxukdtltdk tfoot, #xxukdtltdk tr, #xxukdtltdk td, #xxukdtltdk th {
   border-style: none;
 }
 
-#tfunyfwcem p {
+#xxukdtltdk p {
   margin: 0;
   padding: 0;
 }
 
-#tfunyfwcem .gt_table {
+#xxukdtltdk .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -7438,12 +7428,12 @@ sigma 74121.3  4897.0
   border-left-color: #D3D3D3;
 }
 
-#tfunyfwcem .gt_caption {
+#xxukdtltdk .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#tfunyfwcem .gt_title {
+#xxukdtltdk .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -7455,7 +7445,7 @@ sigma 74121.3  4897.0
   border-bottom-width: 0;
 }
 
-#tfunyfwcem .gt_subtitle {
+#xxukdtltdk .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -7467,7 +7457,7 @@ sigma 74121.3  4897.0
   border-top-width: 0;
 }
 
-#tfunyfwcem .gt_heading {
+#xxukdtltdk .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -7479,13 +7469,13 @@ sigma 74121.3  4897.0
   border-right-color: #D3D3D3;
 }
 
-#tfunyfwcem .gt_bottom_border {
+#xxukdtltdk .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#tfunyfwcem .gt_col_headings {
+#xxukdtltdk .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -7500,7 +7490,7 @@ sigma 74121.3  4897.0
   border-right-color: #D3D3D3;
 }
 
-#tfunyfwcem .gt_col_heading {
+#xxukdtltdk .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -7520,7 +7510,7 @@ sigma 74121.3  4897.0
   overflow-x: hidden;
 }
 
-#tfunyfwcem .gt_column_spanner_outer {
+#xxukdtltdk .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -7532,15 +7522,15 @@ sigma 74121.3  4897.0
   padding-right: 4px;
 }
 
-#tfunyfwcem .gt_column_spanner_outer:first-child {
+#xxukdtltdk .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#tfunyfwcem .gt_column_spanner_outer:last-child {
+#xxukdtltdk .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#tfunyfwcem .gt_column_spanner {
+#xxukdtltdk .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -7552,11 +7542,11 @@ sigma 74121.3  4897.0
   width: 100%;
 }
 
-#tfunyfwcem .gt_spanner_row {
+#xxukdtltdk .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#tfunyfwcem .gt_group_heading {
+#xxukdtltdk .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -7582,7 +7572,7 @@ sigma 74121.3  4897.0
   text-align: left;
 }
 
-#tfunyfwcem .gt_empty_group_heading {
+#xxukdtltdk .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -7597,15 +7587,15 @@ sigma 74121.3  4897.0
   vertical-align: middle;
 }
 
-#tfunyfwcem .gt_from_md > :first-child {
+#xxukdtltdk .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#tfunyfwcem .gt_from_md > :last-child {
+#xxukdtltdk .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#tfunyfwcem .gt_row {
+#xxukdtltdk .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -7624,7 +7614,7 @@ sigma 74121.3  4897.0
   overflow-x: hidden;
 }
 
-#tfunyfwcem .gt_stub {
+#xxukdtltdk .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -7637,7 +7627,7 @@ sigma 74121.3  4897.0
   padding-right: 5px;
 }
 
-#tfunyfwcem .gt_stub_row_group {
+#xxukdtltdk .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -7651,15 +7641,15 @@ sigma 74121.3  4897.0
   vertical-align: top;
 }
 
-#tfunyfwcem .gt_row_group_first td {
+#xxukdtltdk .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#tfunyfwcem .gt_row_group_first th {
+#xxukdtltdk .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#tfunyfwcem .gt_summary_row {
+#xxukdtltdk .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -7669,16 +7659,16 @@ sigma 74121.3  4897.0
   padding-right: 5px;
 }
 
-#tfunyfwcem .gt_first_summary_row {
+#xxukdtltdk .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#tfunyfwcem .gt_first_summary_row.thick {
+#xxukdtltdk .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#tfunyfwcem .gt_last_summary_row {
+#xxukdtltdk .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -7688,7 +7678,7 @@ sigma 74121.3  4897.0
   border-bottom-color: #D3D3D3;
 }
 
-#tfunyfwcem .gt_grand_summary_row {
+#xxukdtltdk .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -7698,7 +7688,7 @@ sigma 74121.3  4897.0
   padding-right: 5px;
 }
 
-#tfunyfwcem .gt_first_grand_summary_row {
+#xxukdtltdk .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -7708,7 +7698,7 @@ sigma 74121.3  4897.0
   border-top-color: #D3D3D3;
 }
 
-#tfunyfwcem .gt_last_grand_summary_row_top {
+#xxukdtltdk .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -7718,11 +7708,11 @@ sigma 74121.3  4897.0
   border-bottom-color: #D3D3D3;
 }
 
-#tfunyfwcem .gt_striped {
+#xxukdtltdk .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#tfunyfwcem .gt_table_body {
+#xxukdtltdk .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -7731,7 +7721,7 @@ sigma 74121.3  4897.0
   border-bottom-color: #D3D3D3;
 }
 
-#tfunyfwcem .gt_footnotes {
+#xxukdtltdk .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -7745,7 +7735,7 @@ sigma 74121.3  4897.0
   border-right-color: #D3D3D3;
 }
 
-#tfunyfwcem .gt_footnote {
+#xxukdtltdk .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -7754,7 +7744,7 @@ sigma 74121.3  4897.0
   padding-right: 5px;
 }
 
-#tfunyfwcem .gt_sourcenotes {
+#xxukdtltdk .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -7768,7 +7758,7 @@ sigma 74121.3  4897.0
   border-right-color: #D3D3D3;
 }
 
-#tfunyfwcem .gt_sourcenote {
+#xxukdtltdk .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -7776,63 +7766,63 @@ sigma 74121.3  4897.0
   padding-right: 5px;
 }
 
-#tfunyfwcem .gt_left {
+#xxukdtltdk .gt_left {
   text-align: left;
 }
 
-#tfunyfwcem .gt_center {
+#xxukdtltdk .gt_center {
   text-align: center;
 }
 
-#tfunyfwcem .gt_right {
+#xxukdtltdk .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#tfunyfwcem .gt_font_normal {
+#xxukdtltdk .gt_font_normal {
   font-weight: normal;
 }
 
-#tfunyfwcem .gt_font_bold {
+#xxukdtltdk .gt_font_bold {
   font-weight: bold;
 }
 
-#tfunyfwcem .gt_font_italic {
+#xxukdtltdk .gt_font_italic {
   font-style: italic;
 }
 
-#tfunyfwcem .gt_super {
+#xxukdtltdk .gt_super {
   font-size: 65%;
 }
 
-#tfunyfwcem .gt_footnote_marks {
+#xxukdtltdk .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#tfunyfwcem .gt_asterisk {
+#xxukdtltdk .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#tfunyfwcem .gt_indent_1 {
+#xxukdtltdk .gt_indent_1 {
   text-indent: 5px;
 }
 
-#tfunyfwcem .gt_indent_2 {
+#xxukdtltdk .gt_indent_2 {
   text-indent: 10px;
 }
 
-#tfunyfwcem .gt_indent_3 {
+#xxukdtltdk .gt_indent_3 {
   text-indent: 15px;
 }
 
-#tfunyfwcem .gt_indent_4 {
+#xxukdtltdk .gt_indent_4 {
   text-indent: 20px;
 }
 
-#tfunyfwcem .gt_indent_5 {
+#xxukdtltdk .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -8098,23 +8088,23 @@ income      -0.000006  0.000003
 <div class="cell">
 <div class="cell-output-display">
 
-<div id="ltmbexogtu" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#ltmbexogtu table {
+<div id="tztkonekua" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#tztkonekua table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#ltmbexogtu thead, #ltmbexogtu tbody, #ltmbexogtu tfoot, #ltmbexogtu tr, #ltmbexogtu td, #ltmbexogtu th {
+#tztkonekua thead, #tztkonekua tbody, #tztkonekua tfoot, #tztkonekua tr, #tztkonekua td, #tztkonekua th {
   border-style: none;
 }
 
-#ltmbexogtu p {
+#tztkonekua p {
   margin: 0;
   padding: 0;
 }
 
-#ltmbexogtu .gt_table {
+#tztkonekua .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -8140,12 +8130,12 @@ income      -0.000006  0.000003
   border-left-color: #D3D3D3;
 }
 
-#ltmbexogtu .gt_caption {
+#tztkonekua .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#ltmbexogtu .gt_title {
+#tztkonekua .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -8157,7 +8147,7 @@ income      -0.000006  0.000003
   border-bottom-width: 0;
 }
 
-#ltmbexogtu .gt_subtitle {
+#tztkonekua .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -8169,7 +8159,7 @@ income      -0.000006  0.000003
   border-top-width: 0;
 }
 
-#ltmbexogtu .gt_heading {
+#tztkonekua .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -8181,13 +8171,13 @@ income      -0.000006  0.000003
   border-right-color: #D3D3D3;
 }
 
-#ltmbexogtu .gt_bottom_border {
+#tztkonekua .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#ltmbexogtu .gt_col_headings {
+#tztkonekua .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -8202,7 +8192,7 @@ income      -0.000006  0.000003
   border-right-color: #D3D3D3;
 }
 
-#ltmbexogtu .gt_col_heading {
+#tztkonekua .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -8222,7 +8212,7 @@ income      -0.000006  0.000003
   overflow-x: hidden;
 }
 
-#ltmbexogtu .gt_column_spanner_outer {
+#tztkonekua .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -8234,15 +8224,15 @@ income      -0.000006  0.000003
   padding-right: 4px;
 }
 
-#ltmbexogtu .gt_column_spanner_outer:first-child {
+#tztkonekua .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#ltmbexogtu .gt_column_spanner_outer:last-child {
+#tztkonekua .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#ltmbexogtu .gt_column_spanner {
+#tztkonekua .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -8254,11 +8244,11 @@ income      -0.000006  0.000003
   width: 100%;
 }
 
-#ltmbexogtu .gt_spanner_row {
+#tztkonekua .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#ltmbexogtu .gt_group_heading {
+#tztkonekua .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -8284,7 +8274,7 @@ income      -0.000006  0.000003
   text-align: left;
 }
 
-#ltmbexogtu .gt_empty_group_heading {
+#tztkonekua .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -8299,15 +8289,15 @@ income      -0.000006  0.000003
   vertical-align: middle;
 }
 
-#ltmbexogtu .gt_from_md > :first-child {
+#tztkonekua .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#ltmbexogtu .gt_from_md > :last-child {
+#tztkonekua .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#ltmbexogtu .gt_row {
+#tztkonekua .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -8326,7 +8316,7 @@ income      -0.000006  0.000003
   overflow-x: hidden;
 }
 
-#ltmbexogtu .gt_stub {
+#tztkonekua .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -8339,7 +8329,7 @@ income      -0.000006  0.000003
   padding-right: 5px;
 }
 
-#ltmbexogtu .gt_stub_row_group {
+#tztkonekua .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -8353,15 +8343,15 @@ income      -0.000006  0.000003
   vertical-align: top;
 }
 
-#ltmbexogtu .gt_row_group_first td {
+#tztkonekua .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#ltmbexogtu .gt_row_group_first th {
+#tztkonekua .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#ltmbexogtu .gt_summary_row {
+#tztkonekua .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -8371,16 +8361,16 @@ income      -0.000006  0.000003
   padding-right: 5px;
 }
 
-#ltmbexogtu .gt_first_summary_row {
+#tztkonekua .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#ltmbexogtu .gt_first_summary_row.thick {
+#tztkonekua .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#ltmbexogtu .gt_last_summary_row {
+#tztkonekua .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -8390,7 +8380,7 @@ income      -0.000006  0.000003
   border-bottom-color: #D3D3D3;
 }
 
-#ltmbexogtu .gt_grand_summary_row {
+#tztkonekua .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -8400,7 +8390,7 @@ income      -0.000006  0.000003
   padding-right: 5px;
 }
 
-#ltmbexogtu .gt_first_grand_summary_row {
+#tztkonekua .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -8410,7 +8400,7 @@ income      -0.000006  0.000003
   border-top-color: #D3D3D3;
 }
 
-#ltmbexogtu .gt_last_grand_summary_row_top {
+#tztkonekua .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -8420,11 +8410,11 @@ income      -0.000006  0.000003
   border-bottom-color: #D3D3D3;
 }
 
-#ltmbexogtu .gt_striped {
+#tztkonekua .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#ltmbexogtu .gt_table_body {
+#tztkonekua .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -8433,7 +8423,7 @@ income      -0.000006  0.000003
   border-bottom-color: #D3D3D3;
 }
 
-#ltmbexogtu .gt_footnotes {
+#tztkonekua .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -8447,7 +8437,7 @@ income      -0.000006  0.000003
   border-right-color: #D3D3D3;
 }
 
-#ltmbexogtu .gt_footnote {
+#tztkonekua .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -8456,7 +8446,7 @@ income      -0.000006  0.000003
   padding-right: 5px;
 }
 
-#ltmbexogtu .gt_sourcenotes {
+#tztkonekua .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -8470,7 +8460,7 @@ income      -0.000006  0.000003
   border-right-color: #D3D3D3;
 }
 
-#ltmbexogtu .gt_sourcenote {
+#tztkonekua .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -8478,63 +8468,63 @@ income      -0.000006  0.000003
   padding-right: 5px;
 }
 
-#ltmbexogtu .gt_left {
+#tztkonekua .gt_left {
   text-align: left;
 }
 
-#ltmbexogtu .gt_center {
+#tztkonekua .gt_center {
   text-align: center;
 }
 
-#ltmbexogtu .gt_right {
+#tztkonekua .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#ltmbexogtu .gt_font_normal {
+#tztkonekua .gt_font_normal {
   font-weight: normal;
 }
 
-#ltmbexogtu .gt_font_bold {
+#tztkonekua .gt_font_bold {
   font-weight: bold;
 }
 
-#ltmbexogtu .gt_font_italic {
+#tztkonekua .gt_font_italic {
   font-style: italic;
 }
 
-#ltmbexogtu .gt_super {
+#tztkonekua .gt_super {
   font-size: 65%;
 }
 
-#ltmbexogtu .gt_footnote_marks {
+#tztkonekua .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#ltmbexogtu .gt_asterisk {
+#tztkonekua .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#ltmbexogtu .gt_indent_1 {
+#tztkonekua .gt_indent_1 {
   text-indent: 5px;
 }
 
-#ltmbexogtu .gt_indent_2 {
+#tztkonekua .gt_indent_2 {
   text-indent: 10px;
 }
 
-#ltmbexogtu .gt_indent_3 {
+#tztkonekua .gt_indent_3 {
   text-indent: 15px;
 }
 
-#ltmbexogtu .gt_indent_4 {
+#tztkonekua .gt_indent_4 {
   text-indent: 20px;
 }
 
-#ltmbexogtu .gt_indent_5 {
+#tztkonekua .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -8582,7 +8572,7 @@ income      -0.000006  0.000003
 </div>
 </div>
 <p><strong>Courage</strong> gave us the fitted model. With <strong>temperance</strong> the decisions made with flawed posteriors are almost always better than decisions made without them.</p>
-<p><em>Among all people who have an income $100,000, what proportion are liberal?</em></p>
+<p><em>Among all people who have an income of $100,000, what proportion are liberal?</em></p>
 <p>Although our model is now logistic, all the steps in answering a question like this are the same as with a linear/guassian model.</p>
 <div class="cell">
 <div class="sourceCode" id="cb59"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">newobs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>income <span class="op">=</span> <span class="fl">100000</span><span class="op">)</span></span>
@@ -8637,16 +8627,16 @@ Caused by warning:
 # Rowwise: 
      `1`   `2`   `3`   `4`   `5`   `6`   `7`   `8` total
    &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;
- 1     1     1     1     0     0     1     0     0     4
- 2     1     1     1     0     0     0     0     1     4
- 3     0     0     1     1     0     0     0     1     3
- 4     1     1     0     0     0     0     0     0     2
- 5     1     1     1     0     0     0     0     0     3
- 6     1     1     0     0     0     0     0     0     2
- 7     1     0     0     1     0     0     0     0     2
- 8     0     1     0     0     0     0     0     0     1
- 9     0     1     0     0     0     0     0     0     1
-10     0     0     0     0     0     0     0     0     0
+ 1     1     1     1     1     0     0     0     0     4
+ 2     0     0     0     1     0     0     0     0     1
+ 3     0     0     1     0     1     0     0     0     2
+ 4     1     0     0     0     0     0     0     0     1
+ 5     0     1     0     1     0     0     0     0     2
+ 6     1     1     1     0     1     0     1     0     5
+ 7     1     1     0     0     0     0     1     0     3
+ 8     1     0     1     1     0     0     0     0     3
+ 9     0     0     0     1     0     0     0     0     1
+10     1     1     0     0     1     0     0     0     3
 # ℹ 3,990 more rows</code></pre>
 </div>
 </div>
