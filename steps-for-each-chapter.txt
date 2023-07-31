@@ -20,6 +20,8 @@ Once we have our question, we can start with the Cardinal Virtues. Each section 
 
 #### Preceptor Table
 
+EDIT: Answer is predictive. Why? Because it is not causal. Looks for words like "cause" or "affect" or "influence." Look for a question which implies a comparison, *for a single individual unit*, between two states of the world, when where they get treatment X and one where they get treatment Y. Look for a discussion of something which we can *manipulate*. Remember the motto: *No causation without manipulation*. If none of this is present, use a predictive model. If all you need to know to answer the question is the outcome under one value of the treatment, then the model is predictive. Example: What is the att_end for all women if they were to get the treatment?
+
 The Preceptor Table always begins with a restatement of the definition: "A Preceptor Table is smallest possible table with rows and columns such that, if there is no missing data, our question is easy to answer."
 
 To create the Preceptor Table, we answer a series of questions. (Don't ask these questions rhetorically. Just describe the answer. There is also no need to number them, although you should always use this order.)
@@ -40,6 +42,11 @@ What are the treatments, if any? (There are no treatments in predictive models.)
 
 With all the above, describe the Preceptor Table.
 
+#### Validity
+
+Validity discussions always have one (short) paragraph about each variable, with examples of why validity might not hold. Validity discussion finishes with a brief discussion along the lines of: "Despite these concerns, we will assume that validity does hold." 
+
+
 
 ### Justice
 
@@ -53,6 +60,8 @@ With all the above, describe the Preceptor Table.
 
 #### Representativeness
 
+
+And, of course, we always mention the two potential problems: Is our data representative of the population and is our Preceptor Table representative of the population? Each of these points gets its own short paragraph. There are always two levels of concerns: first is generic, second only applies to the variables you need to answer the question.
 
 Representativeness is a concern for both the data and for the Preceptor Table. If you need data for an unrepresentative subset of the population, you might be in trouble. Or, you can try to adjust your question so that it is answerable for the data you have.
 
