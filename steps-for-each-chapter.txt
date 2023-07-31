@@ -32,7 +32,7 @@ What are the outcomes? (If the model is causal, then there must have at least tw
  
 What is the moment in time to which the question refers? Every question refers to a moment in time, even if that moment stretches a bit. The set of adults in Chicago *today* is different from the set 10 years ago, or even yesterday. Again, we need to *refine* the question. Assume that we are referring to July 1, 2012.
 
-What are the covariates? 
+What are the covariates? Discussing covariates in the context of the Preceptor Table is different than discussing covariates in the context of the data. Recall that the Preceptor Table is the smallest possible table, so we don't need to include every relevant variable. *We only need to discuss variables that are necessary to answer the question.* 
 
 What are the treatments, if any? (There are no treatments in predictive models.)
 
