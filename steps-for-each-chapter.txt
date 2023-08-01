@@ -69,10 +69,11 @@ Representativeness is a concern for both the data and for the Preceptor Table. I
 
 
 
-#### Mathematics
-
-
 ### Courage
+
+The opening Courage paragraph reminds us about Courage and also explains why we are using a linear (or logistic or whatever) model.
+
+Series of fitted models, none of which are used to answer our question yet. Each time, we fit, print and the describe with math. Then, we explain it English what the model shows.
 
 "Courage centers around the creation of the data generating mechanism, i.e., our fitted model."
 

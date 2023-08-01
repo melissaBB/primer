@@ -4,24 +4,19 @@
 
 <!-- Do we really believe the posterior for male/female expected years lived? No! Or, at the very least, we are suspicious. Discuss the importance of prior knowledge and "reality checks" in Temperance. -->
 
-
 <!-- Add posterior_predictive checks. Belongs at the end of the courage section. -->
+
+<!-- Every introductory section should have a sentence or two about the Cardinal Virtues. -->
 
 *This chapter is still a DRAFT.*
 
 Last chapter, we studied four parameters: models in which we studied multiple right-hand side variables at once. The next step in our model building education is to learn about *interactions*. The effect of a treatment relative to a control is almost never uniform. The effect might be bigger in women than in men, smaller in the rich relative to the poor. The technical term for such effects is "heterogeneous," which is just Ph.D.'ese for "different." With enough data, all effects are heterogeneous. Causal effects, at least in the social science, always vary across units. To model this reality, we rely on interactions, on allowing the effect size to differ. The same applies for predictive models. The relationship between our outcome variable $y$ and a predictor variable $x$ is rarely constant. The relationship varies based on the values of other variables. To take account of interactions, we need models with at least 5 parameters. 
 
-<!-- DK: Add some more. What are the key lessons? What do we carry over from previous chapters? What is new? Hit the data science research cycle. -->
 
 Packages:
 
-<!-- broom.mixed generates a weird warning about TMB was built with Matrix version -->
-<!-- 1.3.4 and Current Matrix version is 1.3.3. Not sure what to do, besides turn -->
-<!-- it off for now. -->
-
 ```{r}
 #| message: false
-#| warning: false
 library(primer.data)
 library(gt)
 library(gtsummary)
@@ -30,6 +25,9 @@ library(tidyverse)
 library(rstanarm)
 library(broom.mixed)
 ```
+
+<!-- We should split between one causal and one predictive question. do predictive question first regarding the expectation and then causal question next regarding whether winning the election affects their longevity. Mention the questions in the introduction. Then sentence or two summary about Cardinal Virtues. -->
+
 
 ## Wisdom
 
@@ -52,7 +50,6 @@ Recall the most important aspects of Wisdom: the Preceptor Table, the EDA (explo
 
 To create our Preceptor Table, we need to ask ourselves a couple of questions based on our questions above.
 
-<!-- MT: we should split between one causal and one predictive question. do predictive question first regarding the expectation and then causal question next regarding whether winning the election affects their longevity -->
 
 First, do we need a **causal** or **predictive** model? In our question above we have a predictive model as we only have one outcome which is the person's expected life expectancy based on our predictor which relates to an individual's sex.
 
@@ -318,6 +315,7 @@ Generally: *if there was no chance that a certain type of person would have been
 ### Data Generating Mechnaism
 
 <!-- MT: need to include the mathematics here -->
+
 <!-- MT: if there are separate mathematics for each section would it make sense to do something similar to three parameters? break up each section based on sex, election_age, election_age and sex, and then election_age, election_age, sex and election_age*sex. each section would then include its own data regarding the cardinal virtues. each could potentially answer each of the four different questions above?-->
 
 ## Courage
@@ -355,58 +353,7 @@ $\beta_0$ is our intercept, around `r round(coef(fit_2)["(Intercept)"], 0)` year
 
 $\beta_1$ only affects the outcome when the candidate is male. When the candidate is a male, we add the coefficient for male to the intercept value, which gives us the average lifespan of a male gubernatorial candidate after an election. 
 
-The posterior distribution for $\beta_0 + \beta_1$ can be constructed via simple addition.
 
-```{r}
-fit_2 |> 
-  as_tibble() |> 
-  mutate(male_intercept = `(Intercept)` + sexMale) |> 
-  ggplot(aes(male_intercept)) + 
-    geom_histogram(aes(y = after_stat(count/sum(count))),
-                   bins = 100) +
-    labs(title = "Posterior Distribution of Average Male Candidate Years Left",
-         y = "Probability",
-         x = "Years To Live After the Election") + 
-    scale_x_continuous(labels = scales::number_format()) +
-    scale_y_continuous(labels = scales::percent_format()) +
-    theme_classic()
-```
-
-But is that actually so "simple?" Not really! Manipulating parameters directly is bothersome. Dealing with variables named `(Intercept)` is error-prone. Using `posterior_epred()` and associated functions is much easier.
-
-```{r}
-posterior_epred(fit_2,
-                tibble(sex = "Male")) |> 
-  as_tibble() |> 
-  ggplot(aes(`1`)) + 
-    geom_histogram(aes(y = after_stat(count/sum(count))),
-                   bins = 100) +
-    labs(title = "Posterior Distribution of Average Male Candidate",
-         y = "Probability",
-         x = "Expected Lifespan Post-Election") + 
-    scale_x_continuous(labels = scales::number_format()) +
-    scale_y_continuous(labels = scales::percent_format()) +
-    theme_classic()
-```
-
-The interpretation of this parameter is the same as we have seen before. There is a true average, across the entire population, of the number of years that male candidates live after the election. We can never know what that true average is. But, it seems very likely that the true average is somewhere between 27.5 and 29.5 years.
-
-```{r}
-posterior_epred(fit_2,
-                tibble(sex = "Female")) |> 
-  as_tibble() |> 
-  ggplot(aes(`1`)) + 
-    geom_histogram(aes(y = after_stat(count/sum(count))),
-                   bins = 100) +
-    labs(title = "Posterior Distribution of Average Female Candidate",
-         y = "Probability",
-         x = "Expected Lifespan Post-Election") + 
-    scale_x_continuous(labels = scales::number_format()) +
-    scale_y_continuous(labels = scales::percent_format()) +
-    theme_classic()
-```
- 
-We see that the expected lifespan post-election is significantly lower for female candidates, with the average being around 15 years. 
 
 ### election_age
 
@@ -1109,8 +1056,9 @@ Recall the most important aspects of Wisdom: the Preceptor Table, the EDA (explo
 
 Consider the following causal questions:
 
-*More broadly, how long do candidates, in general, live after the election?*
-*Does winning the election affect their longevity?*
+*Does winning the election affect a candidate's longevity?*
+
+<!-- * What is the average causal effect of winning an election on candidates for state or federal office in the United States in 2023? -->
 
 What (imagined) dataset would make all of these questions easy to solve with a little bit of math? Well, we obviously need data on all gubernatorial candidate elections in the United States. We also need to know their dates of birth, age at time of election, age at time of death, and data for age at time of death minus age at time of election. With these pieces of information, we could answer all of our questions with simple math. 
 
