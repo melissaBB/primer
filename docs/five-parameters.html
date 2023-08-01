@@ -259,18 +259,17 @@ div.csl-indent {
 <li>
 <a href="#wisdom" id="toc-wisdom" class="nav-link active" data-scroll-target="#wisdom"><span class="header-section-number">7.1</span> Wisdom</a>
   <ul class="collapse">
-<li><a href="#the-preceptor-table" id="toc-the-preceptor-table" class="nav-link" data-scroll-target="#the-preceptor-table"><span class="header-section-number">7.1.1</span> The Preceptor Table</a></li>
+<li><a href="#preceptor-table" id="toc-preceptor-table" class="nav-link" data-scroll-target="#preceptor-table"><span class="header-section-number">7.1.1</span> Preceptor Table</a></li>
   <li><a href="#eda-of-governors" id="toc-eda-of-governors" class="nav-link" data-scroll-target="#eda-of-governors"><span class="header-section-number">7.1.2</span> EDA of <code>governors</code></a></li>
-  <li><a href="#population" id="toc-population" class="nav-link" data-scroll-target="#population"><span class="header-section-number">7.1.3</span> Population</a></li>
+  <li><a href="#validity" id="toc-validity" class="nav-link" data-scroll-target="#validity"><span class="header-section-number">7.1.3</span> Validity</a></li>
   </ul>
 </li>
   <li>
 <a href="#justice" id="toc-justice" class="nav-link" data-scroll-target="#justice"><span class="header-section-number">7.2</span> Justice</a>
   <ul class="collapse">
 <li><a href="#population-table" id="toc-population-table" class="nav-link" data-scroll-target="#population-table"><span class="header-section-number">7.2.1</span> Population Table</a></li>
-  <li><a href="#validity" id="toc-validity" class="nav-link" data-scroll-target="#validity"><span class="header-section-number">7.2.2</span> Validity</a></li>
-  <li><a href="#stability" id="toc-stability" class="nav-link" data-scroll-target="#stability"><span class="header-section-number">7.2.3</span> Stability</a></li>
-  <li><a href="#representativeness" id="toc-representativeness" class="nav-link" data-scroll-target="#representativeness"><span class="header-section-number">7.2.4</span> Representativeness</a></li>
+  <li><a href="#assumptions" id="toc-assumptions" class="nav-link" data-scroll-target="#assumptions"><span class="header-section-number">7.2.2</span> Assumptions</a></li>
+  <li><a href="#data-generating-mechnaism" id="toc-data-generating-mechnaism" class="nav-link" data-scroll-target="#data-generating-mechnaism"><span class="header-section-number">7.2.3</span> Data Generating Mechnaism</a></li>
   </ul>
 </li>
   <li>
@@ -288,11 +287,17 @@ div.csl-indent {
   <ul class="collapse">
 <li><a href="#expected-values" id="toc-expected-values" class="nav-link" data-scroll-target="#expected-values"><span class="header-section-number">7.4.1</span> Expected values</a></li>
   <li><a href="#individual-predictions" id="toc-individual-predictions" class="nav-link" data-scroll-target="#individual-predictions"><span class="header-section-number">7.4.2</span> Individual predictions</a></li>
-  <li><a href="#expectation-versus-individual-variation" id="toc-expectation-versus-individual-variation" class="nav-link" data-scroll-target="#expectation-versus-individual-variation"><span class="header-section-number">7.4.3</span> Expectation versus individual variation</a></li>
+  <li><a href="#expectation-versus-individual-variation" id="toc-expectation-versus-individual-variation" class="nav-link" data-scroll-target="#expectation-versus-individual-variation"><span class="header-section-number">7.4.3</span> Expectation versus Individual Variation</a></li>
   <li><a href="#testing" id="toc-testing" class="nav-link" data-scroll-target="#testing"><span class="header-section-number">7.4.4</span> Testing</a></li>
   </ul>
 </li>
-  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">7.5</span> Summary</a></li>
+  <li>
+<a href="#wisdom-for-causal-models" id="toc-wisdom-for-causal-models" class="nav-link" data-scroll-target="#wisdom-for-causal-models"><span class="header-section-number">7.5</span> Wisdom for Causal Models</a>
+  <ul class="collapse">
+<li><a href="#preceptor-table-1" id="toc-preceptor-table-1" class="nav-link" data-scroll-target="#preceptor-table-1"><span class="header-section-number">7.5.1</span> Preceptor Table</a></li>
+  </ul>
+</li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">7.6</span> Summary</a></li>
   </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/PPBDS/primer/edit/main/five-parameters.qmd" class="toc-action">Edit this page</a></p></div></div></nav>
     </div>
 <!-- main -->
@@ -310,7 +315,8 @@ div.csl-indent {
   </div>
   
 
-</header><!-- MF: MChanged Population Table and validity, stability, representativeness --><!-- Add more discussion below? Perhaps use as a good example of how the estimated posterior is not the true posterior because of the assumptions we are making about the structure of the error term. --><!-- Do we really believe the posterior for male/female expected years lived? No! Or, at the very least, we are suspicious. --><!-- In Temperance connect the expected value to the ideal Preceptor table. --><!-- Improve summary section. --><!-- Maybe consider posterior_predictive checks. Belongs at the end of the courage section. --><p>Last chapter, we studied four parameters: models in which we studied multiple right-hand side variables at once. The next step in our model building education is to learn about <em>interactions</em>. The effect of a treatment relative to a control is almost never uniform. The effect might be bigger in women than in men, smaller in the rich relative to the poor. The technical term for such effects is “heterogeneous,” which is just Ph.D.’ese for “different.” With enough data, all effects are heterogeneous. Causal effects, at least in the social science, always vary across units. To model this reality, we rely on interactions, on allowing the effect size to differ. The same applies for predictive models. The relationship between our outcome variable <span class="math inline">\(y\)</span> and a predictor variable <span class="math inline">\(x\)</span> is rarely constant. The relationship varies based on the values of other variables. To take account of interactions, we need models with at least 5 parameters.</p>
+</header><!-- Add more discussion below? Perhaps use as a good example of how the estimated posterior is not the true posterior because of the assumptions we are making about the structure of the error term. --><!-- Do we really believe the posterior for male/female expected years lived? No! Or, at the very least, we are suspicious. --><!-- In Temperance connect the expected value to the ideal Preceptor table. --><!-- Add posterior_predictive checks. Belongs at the end of the courage section. --><p><em>This chapter is still a DRAFT.</em></p>
+<p>Last chapter, we studied four parameters: models in which we studied multiple right-hand side variables at once. The next step in our model building education is to learn about <em>interactions</em>. The effect of a treatment relative to a control is almost never uniform. The effect might be bigger in women than in men, smaller in the rich relative to the poor. The technical term for such effects is “heterogeneous,” which is just Ph.D.’ese for “different.” With enough data, all effects are heterogeneous. Causal effects, at least in the social science, always vary across units. To model this reality, we rely on interactions, on allowing the effect size to differ. The same applies for predictive models. The relationship between our outcome variable <span class="math inline">\(y\)</span> and a predictor variable <span class="math inline">\(x\)</span> is rarely constant. The relationship varies based on the values of other variables. To take account of interactions, we need models with at least 5 parameters.</p>
 <!-- DK: Add some more. What are the key lessons? What do we carry over from previous chapters? What is new? Hit the data science research cycle. -->
 <p>Packages:</p>
 <!-- broom.mixed generates a weird warning about TMB was built with Matrix version -->
@@ -325,9 +331,6 @@ div.csl-indent {
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://mc-stan.org/rstanarm/">rstanarm</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/bbolker/broom.mixed">broom.mixed</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Consider the following questions:</p>
-<p><em>How many years would we expect two gubernatorial candidates — one male and one female, both 10 years older than the average candidate — to live after the election? How different will their lifespans be? More broadly, how long do candidates, in general, live after the election? Does winning the election affect their longevity?</em></p>
-<p>Note how far we have come in the <em>Primer</em>. These are difficult questions, involving issues of both prediction and causation. Yet, if we follow the Cardinal Virtues, we can provide sophisticated answers.</p>
 <section id="wisdom" class="level2" data-number="7.1"><h2 data-number="7.1" class="anchored" data-anchor-id="wisdom">
 <span class="header-section-number">7.1</span> Wisdom</h2>
 <div class="cell">
@@ -338,34 +341,40 @@ div.csl-indent {
 </div>
 </div>
 </div>
-<p>Recall the most important aspects of Wisdom: the Preceptor Table, the EDA (exploratory data analysis), the population, and the Population Table. As always, we start with the Preceptor Table — the table of data that would make all of our questions answerable with mere arithmetic (no inferences).</p>
-<section id="the-preceptor-table" class="level3" data-number="7.1.1"><h3 data-number="7.1.1" class="anchored" data-anchor-id="the-preceptor-table">
-<span class="header-section-number">7.1.1</span> The Preceptor Table</h3>
-<p>To create our Preceptor Table, we must first revisit our questions:</p>
-<p><em>How many years would we expect two gubernatorial candidates — one male and one female, both 10 years older than the average candidate — to live after the election? How different will their lifespans be? More broadly, how long do candidates, in general, live after the election? Does winning the election affect their longevity?</em></p>
-<p>What (imagined) dataset would make all of these questions easy to solve with a little bit of math? Well, we obviously need data on all gubernatorial candidate elections in the United States. We also need to know their dates of birth, age at time of election, age at time of death, and data for age at time of death minus age at time of election. With these pieces of information, we could answer all of our questions with simple math.</p>
-<p>Also, because this is an idealized table, we would know age at time of death assuming victory and age at time of death assuming loss. This would not be possible in the real world due to the Fundamental Problem of Causal Inference — we cannot observe a unit under two different conditions (both victory and loss).</p>
-<p>Here is a sample:</p>
+<p>Consider the following predictive questions:</p>
+<p><em>How many years would we expect two gubernatorial candidates — one male and one female, both 10 years older than the average candidate — to live after the election?</em> <em>How different will their lifespans be?</em></p>
+<p>Note how far we have come in the <em>Primer</em>. These are difficult questions, involving issues of both prediction and causation. Yet, if we follow the Cardinal Virtues, we can provide sophisticated answers.</p>
+<p>Recall the most important aspects of Wisdom: the Preceptor Table, the EDA (exploratory data analysis), and validity of the data. As always, we start with the Preceptor Table — the table of data that would make all of our questions answerable with mere arithmetic (no inferences).</p>
+<section id="preceptor-table" class="level3" data-number="7.1.1"><h3 data-number="7.1.1" class="anchored" data-anchor-id="preceptor-table">
+<span class="header-section-number">7.1.1</span> Preceptor Table</h3>
+<p>To create our Preceptor Table, we need to ask ourselves a couple of questions based on our questions above.</p>
+<!-- MT: we should split between one causal and one predictive question. do predictive question first regarding the expectation and then causal question next regarding whether winning the election affects their longevity -->
+<p>First, do we need a <strong>causal</strong> or <strong>predictive</strong> model? In our question above we have a predictive model as we only have one outcome which is the person’s expected life expectancy based on our predictor which relates to an individual’s sex.</p>
+<p>Second, what is the outcome? A person’s life expectancy will be the <strong>outcome</strong>. The questions, however, leave unclear details. Where are these people at? Which country? Also, at what moment in time is this experiment taking place? In order to dive deeper into these questions we need to engage in a conversation with the person that is asking us these questions. For the questions that we have at hand we will be talking about the location of Chicago, Illinois on July 1, 2012.</p>
+<p>Third, what are the <strong>units</strong>? Our units for this scenario would be individuals because the questions are about the life expectancy of unique candidates.</p>
+<p>Fourth, what are the <strong>covariates</strong>? In our case, a person’s sex will be a covariate as it is another factor that plays to the individual’s age and identity. The Preceptor Table must include any covariates mentioned in the question.</p>
+<p>Fifth, do we have a <strong>treatment</strong>? No.&nbsp;We will be using a predictive model as discussed above and treatments will only apply to situations with causal models. A treatment is just a covariate which we can, at least in theory, manipulate, thereby creating other potential outcomes.</p>
+<p>Our Preceptor Table:</p>
 <div class="cell" data-layout-align="left">
 <div class="cell-output-display">
 
-<div id="gfalrorfky" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#gfalrorfky table {
+<div id="dmibmwcwmf" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#dmibmwcwmf table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#gfalrorfky thead, #gfalrorfky tbody, #gfalrorfky tfoot, #gfalrorfky tr, #gfalrorfky td, #gfalrorfky th {
+#dmibmwcwmf thead, #dmibmwcwmf tbody, #dmibmwcwmf tfoot, #dmibmwcwmf tr, #dmibmwcwmf td, #dmibmwcwmf th {
   border-style: none;
 }
 
-#gfalrorfky p {
+#dmibmwcwmf p {
   margin: 0;
   padding: 0;
 }
 
-#gfalrorfky .gt_table {
+#dmibmwcwmf .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -391,12 +400,12 @@ div.csl-indent {
   border-left-color: #D3D3D3;
 }
 
-#gfalrorfky .gt_caption {
+#dmibmwcwmf .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#gfalrorfky .gt_title {
+#dmibmwcwmf .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -408,7 +417,7 @@ div.csl-indent {
   border-bottom-width: 0;
 }
 
-#gfalrorfky .gt_subtitle {
+#dmibmwcwmf .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -420,7 +429,7 @@ div.csl-indent {
   border-top-width: 0;
 }
 
-#gfalrorfky .gt_heading {
+#dmibmwcwmf .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -432,13 +441,13 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#gfalrorfky .gt_bottom_border {
+#dmibmwcwmf .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#gfalrorfky .gt_col_headings {
+#dmibmwcwmf .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -453,7 +462,7 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#gfalrorfky .gt_col_heading {
+#dmibmwcwmf .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -473,7 +482,7 @@ div.csl-indent {
   overflow-x: hidden;
 }
 
-#gfalrorfky .gt_column_spanner_outer {
+#dmibmwcwmf .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -485,15 +494,15 @@ div.csl-indent {
   padding-right: 4px;
 }
 
-#gfalrorfky .gt_column_spanner_outer:first-child {
+#dmibmwcwmf .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#gfalrorfky .gt_column_spanner_outer:last-child {
+#dmibmwcwmf .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#gfalrorfky .gt_column_spanner {
+#dmibmwcwmf .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -505,11 +514,11 @@ div.csl-indent {
   width: 100%;
 }
 
-#gfalrorfky .gt_spanner_row {
+#dmibmwcwmf .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#gfalrorfky .gt_group_heading {
+#dmibmwcwmf .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -535,7 +544,7 @@ div.csl-indent {
   text-align: left;
 }
 
-#gfalrorfky .gt_empty_group_heading {
+#dmibmwcwmf .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -550,15 +559,15 @@ div.csl-indent {
   vertical-align: middle;
 }
 
-#gfalrorfky .gt_from_md > :first-child {
+#dmibmwcwmf .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#gfalrorfky .gt_from_md > :last-child {
+#dmibmwcwmf .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#gfalrorfky .gt_row {
+#dmibmwcwmf .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -577,7 +586,7 @@ div.csl-indent {
   overflow-x: hidden;
 }
 
-#gfalrorfky .gt_stub {
+#dmibmwcwmf .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -590,7 +599,7 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#gfalrorfky .gt_stub_row_group {
+#dmibmwcwmf .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -604,15 +613,15 @@ div.csl-indent {
   vertical-align: top;
 }
 
-#gfalrorfky .gt_row_group_first td {
+#dmibmwcwmf .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#gfalrorfky .gt_row_group_first th {
+#dmibmwcwmf .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#gfalrorfky .gt_summary_row {
+#dmibmwcwmf .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -622,16 +631,16 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#gfalrorfky .gt_first_summary_row {
+#dmibmwcwmf .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#gfalrorfky .gt_first_summary_row.thick {
+#dmibmwcwmf .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#gfalrorfky .gt_last_summary_row {
+#dmibmwcwmf .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -641,7 +650,7 @@ div.csl-indent {
   border-bottom-color: #D3D3D3;
 }
 
-#gfalrorfky .gt_grand_summary_row {
+#dmibmwcwmf .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -651,7 +660,7 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#gfalrorfky .gt_first_grand_summary_row {
+#dmibmwcwmf .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -661,7 +670,7 @@ div.csl-indent {
   border-top-color: #D3D3D3;
 }
 
-#gfalrorfky .gt_last_grand_summary_row_top {
+#dmibmwcwmf .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -671,11 +680,11 @@ div.csl-indent {
   border-bottom-color: #D3D3D3;
 }
 
-#gfalrorfky .gt_striped {
+#dmibmwcwmf .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#gfalrorfky .gt_table_body {
+#dmibmwcwmf .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -684,7 +693,7 @@ div.csl-indent {
   border-bottom-color: #D3D3D3;
 }
 
-#gfalrorfky .gt_footnotes {
+#dmibmwcwmf .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -698,7 +707,7 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#gfalrorfky .gt_footnote {
+#dmibmwcwmf .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -707,7 +716,7 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#gfalrorfky .gt_sourcenotes {
+#dmibmwcwmf .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -721,7 +730,7 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#gfalrorfky .gt_sourcenote {
+#dmibmwcwmf .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -729,91 +738,128 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#gfalrorfky .gt_left {
+#dmibmwcwmf .gt_left {
   text-align: left;
 }
 
-#gfalrorfky .gt_center {
+#dmibmwcwmf .gt_center {
   text-align: center;
 }
 
-#gfalrorfky .gt_right {
+#dmibmwcwmf .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#gfalrorfky .gt_font_normal {
+#dmibmwcwmf .gt_font_normal {
   font-weight: normal;
 }
 
-#gfalrorfky .gt_font_bold {
+#dmibmwcwmf .gt_font_bold {
   font-weight: bold;
 }
 
-#gfalrorfky .gt_font_italic {
+#dmibmwcwmf .gt_font_italic {
   font-style: italic;
 }
 
-#gfalrorfky .gt_super {
+#dmibmwcwmf .gt_super {
   font-size: 65%;
 }
 
-#gfalrorfky .gt_footnote_marks {
+#dmibmwcwmf .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#gfalrorfky .gt_asterisk {
+#dmibmwcwmf .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#gfalrorfky .gt_indent_1 {
+#dmibmwcwmf .gt_indent_1 {
   text-indent: 5px;
 }
 
-#gfalrorfky .gt_indent_2 {
+#dmibmwcwmf .gt_indent_2 {
   text-indent: 10px;
 }
 
-#gfalrorfky .gt_indent_3 {
+#dmibmwcwmf .gt_indent_3 {
   text-indent: 15px;
 }
 
-#gfalrorfky .gt_indent_4 {
+#dmibmwcwmf .gt_indent_4 {
   text-indent: 20px;
 }
 
-#gfalrorfky .gt_indent_5 {
+#dmibmwcwmf .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-<thead><tr class="gt_col_headings">
-<th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="ID">ID</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Sex">Sex</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Age at Election">Age at Election</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Years Lived (Win)">Years Lived (Win)</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Years Lived (Loss)">Years Lived (Loss)</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Treatment Effect of Winning">Treatment Effect of Winning</th>
-    </tr></thead>
+<thead>
+<tr class="gt_heading">
+<td colspan="6" class="gt_heading gt_title gt_font_normal gt_bottom_border" style="">Preceptor Table</td>
+    </tr>
+<tr class="gt_col_headings gt_spanner_row">
+<th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="2" colspan="1" style="font-size: large; text-align: left; vertical-align: middle;" scope="col" id="ID">ID</th>
+      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="1" scope="col" id="Outcome">
+        <span class="gt_column_spanner">Outcome</span>
+      </th>
+      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="4" scope="colgroup" id="Covariate">
+        <span class="gt_column_spanner">Covariate</span>
+      </th>
+    </tr>
+<tr class="gt_col_headings">
+<th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="Treatment Effect of Winning">Treatment Effect of Winning</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="Sex">Sex</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="Age at Election">Age at Election</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="Years Lived (Win)">Years Lived (Win)</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="Years Lived (Loss)">Years Lived (Loss)</th>
+    </tr>
+</thead>
 <tbody class="gt_table_body">
 <tr>
-<td headers="ID" class="gt_row gt_left">Candidate 1</td>
-<td headers="sex" class="gt_row gt_left">F</td>
-<td headers="before" class="gt_row gt_right">56</td>
-<td headers="ytreat" class="gt_row gt_right">12</td>
-<td headers="ycontrol" class="gt_row gt_right">9</td>
-<td headers="yeffect" class="gt_row gt_right">+3</td>
+<td headers="ID" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div class="gt_from_md">
+<p>Candidate 1</p>
+</div></td>
+<td headers="yeffect" class="gt_row gt_center"><div class="gt_from_md">
+<p>+3</p>
+</div></td>
+<td headers="sex" class="gt_row gt_center"><div class="gt_from_md">
+<p>F</p>
+</div></td>
+<td headers="before" class="gt_row gt_center"><div class="gt_from_md">
+<p>56</p>
+</div></td>
+<td headers="ytreat" class="gt_row gt_center"><div class="gt_from_md">
+<p>12</p>
+</div></td>
+<td headers="ycontrol" class="gt_row gt_center"><div class="gt_from_md">
+<p>9</p>
+</div></td>
 </tr>
 <tr>
-<td headers="ID" class="gt_row gt_left">Candidate 2</td>
-<td headers="sex" class="gt_row gt_left">M</td>
-<td headers="before" class="gt_row gt_right">72</td>
-<td headers="ytreat" class="gt_row gt_right">7</td>
-<td headers="ycontrol" class="gt_row gt_right">5</td>
-<td headers="yeffect" class="gt_row gt_right">+2</td>
+<td headers="ID" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div class="gt_from_md">
+<p>Candidate 2</p>
+</div></td>
+<td headers="yeffect" class="gt_row gt_center"><div class="gt_from_md">
+<p>+2</p>
+</div></td>
+<td headers="sex" class="gt_row gt_center"><div class="gt_from_md">
+<p>M</p>
+</div></td>
+<td headers="before" class="gt_row gt_center"><div class="gt_from_md">
+<p>72</p>
+</div></td>
+<td headers="ytreat" class="gt_row gt_center"><div class="gt_from_md">
+<p>7</p>
+</div></td>
+<td headers="ycontrol" class="gt_row gt_center"><div class="gt_from_md">
+<p>5</p>
+</div></td>
 </tr>
 </tbody>
 </table>
@@ -1127,17 +1173,20 @@ $ lived_after  &lt;dbl&gt; 41.043121, 2.116359, 14.562628, 13.336071, 33.043121,
 </div>
 </div>
 <p>This plot shows that men live much longer, on average, than women after the election. Is there an intuitive explanation for why this might be?</p>
-</section><section id="population" class="level3" data-number="7.1.3"><h3 data-number="7.1.3" class="anchored" data-anchor-id="population">
-<span class="header-section-number">7.1.3</span> Population</h3>
-<p>The concept of the “population” is subtle and important. <em>The population is not the set of candidates for which we have data.</em> That is the dataset. The population is the larger — potentially much larger — set of individuals about whom we want to make inferences. <em>The parameters in our models refer to the population, not to the dataset.</em></p>
-<p>Consider a simple example. Define <span class="math inline">\(\mu\)</span> as the average number of years lived by candidates for governor after Election Day. Can we calculate <span class="math inline">\(\mu\)</span> from our data? No! There are many candidates for governor who are still alive, who are not included in our data even though they are part of the “population” we want to study. <span class="math inline">\(\mu\)</span> can not be <em>calculated.</em> It can only be <em>estimated.</em></p>
-<p>Another problem is that we would like to estimate the effect of winning on lifespan in <em>present day</em>. Because our data excludes the most recent candidates (since they are still alive), our predictions will not mirror the future as well as we may hope.</p>
-<p>Even though the original question is about “gubernatorial candidates” in general, and does not specifically refer to the United States, we will assume that the data we have for US governors is <em>representative enough</em> of the population we are interested in (global politicians) that the exercise is useful. If we did not believe that, then we should stop right now. <em>The major part of Wisdom is deciding what questions you can’t answer because of the data you just don’t have.</em></p>
-<p>The truth is: in the social sciences, there is never a perfect relationship between the data you have and the question you are trying to answer. Data for gubernatorial candidates in the past is not an analog for gubernatorial candidates today. Nor is it the same as the data for candidates in other countries. Yet, this data is relevant. Right? It is certainly better than nothing.</p>
-<p><em>Generally speaking, using not-perfect data is better than using no data at all.</em></p>
-<p>Of course, this is not always true. If we wanted to predict lifespans of gubernatorial candidates in the U.S., and our data was from lifespans of presidential candidates in France… we would be better off not making any predictions at all. If the data won’t help, don’t use the data.</p>
-
-<!-- DK: Add more? Connect to Preceptor Table. -->
+</section><section id="validity" class="level3" data-number="7.1.3"><h3 data-number="7.1.3" class="anchored" data-anchor-id="validity">
+<span class="header-section-number">7.1.3</span> Validity</h3>
+<p>Is the meaning of the columns consistent, i.e., can we assume validity? That is the heart of validity. To put it simply, does the column for lifespan in our Preceptor Table equate to the column for lifespan from our dataset. Again, we look to the source of our data: <span class="citation" data-cites="barfort2020">Barfort, Klemmensen, and Larsen (<a href="references.html#ref-barfort2020" role="doc-biblioref">2020</a>)</span>.</p>
+<p>The collection of birth and death dates for <em>winning</em> candidates is well documented. The birth and death dates for losing candidates, however, is not as easily gathered. In fact, <span class="citation" data-cites="barfort2020">Barfort, Klemmensen, and Larsen (<a href="references.html#ref-barfort2020" role="doc-biblioref">2020</a>)</span> had to perform independent research for this information:</p>
+<blockquote class="blockquote">
+<p>“For losing candidates, we use information gathered from several online sources, including Wikipedia, The Political Graveyard…, Find a Grave… and Our Campaigns.”</p>
+</blockquote>
+<p>This is not nearly as reliable as the data collection for candidates who won their election. And, there was a further complication:</p>
+<blockquote class="blockquote">
+<p>“In a few cases, we are only able to identify the year of birth or death, not the exact date of the event. For these candidates, we impute the date as July 1 of the given year.”</p>
+</blockquote>
+<p>For these candidates, then, our estimate for longevity will be inaccurate. We also have to <em>hope</em> that the birth and death dates listed on unreliable internet sources are accurate. It is possible that they are not, especially for older candidates.</p>
+<p>The mission of this exploration is to ensure validity as much as possible — that is, to equate our columns when they are not equated themselves. In this case, because we cannot fix the issues with data collection, we accept that our estimates may be slightly skewed.</p>
+<p>Overall, however, the assumption of validity seems reasonable. Our data and The Preceptor Table can “stack” on top of each other. We will assume that both are drawn from the same population.</p>
 </section></section><section id="justice" class="level2" data-number="7.2"><h2 data-number="7.2" class="anchored" data-anchor-id="justice">
 <span class="header-section-number">7.2</span> Justice</h2>
 <div class="cell" data-layout-align="center">
@@ -1148,16 +1197,10 @@ $ lived_after  &lt;dbl&gt; 41.043121, 2.116359, 14.562628, 13.336071, 33.043121,
 </div>
 </div>
 </div>
-<p>After inspecting our data and deciding that it is “close enough” to our questions to be useful, we move on to Justice.</p>
-<p>Justice emphasizes a few key concepts:</p>
-<ul>
-<li>The Population Table, a structure which includes a row for every unit in the population. We generally break the rows in the Population Table into three categories: the data for units we want to have (the actual data set), the data for units which we actually have (the Preceptor Table), and the data for units we do not care about (the rest of the population, not included in the data or the Preceptor Table).</li>
-<li>Is our data representative of the population?</li>
-<li>Is the meaning of the columns consistent, i.e., can we assume validity? We then make an assumption about the data generating mechanism.</li>
-</ul>
-<p>We inspect both representativeness and validity through our Population Table. Representativeness focuses on the rows of the table, while validity focuses on the columns.</p>
+<p>Justice concerns five topics: Population Table, stability, representativeness, unconfoundedness and the mathematical structure of the data generating mechanism (DGM). After inspecting our data and deciding that it is “close enough” to our questions to be useful, we move on to Justice.</p>
 <section id="population-table" class="level3" data-number="7.2.1"><h3 data-number="7.2.1" class="anchored" data-anchor-id="population-table">
 <span class="header-section-number">7.2.1</span> Population Table</h3>
+<p>The Population Table is a structure which includes a row for every unit in the population. We generally break the rows in the Population Table into three categories: the data for units we want to have (the actual data set), the data for units which we actually have (the Preceptor Table), and the data for units we do not care about (the rest of the population, not included in the data or the Preceptor Table).</p>
 <p>By determining that the data is drawn from the same population which we are analyzing, we can go on to produce a Population Table.</p>
 <p>The Population Table shows rows from three sources: the <strong>Preceptor Table</strong>, the <strong>actual data</strong>, and the <strong>population</strong> (outside of the data).</p>
 <p>Our <strong>Preceptor Table</strong> rows contain the information that we would <em>want</em> to know in order to answer our questions. These rows contain entries for our covariates (sex, election_age, year elected) but they do not contain any outcome results (lived_after). We are trying to answer questions about the train commuter population in 2021, so our year entries of these rows will read “2021”.</p>
@@ -1753,33 +1796,32 @@ $ lived_after  &lt;dbl&gt; 41.043121, 2.116359, 14.562628, 13.336071, 33.043121,
 </div>
 </div>
 <p>Again, the Population Table shows the more expansive population for which we are making assumptions — this includes data from our “population”, our actual data, and the Preceptor Table.</p>
-</section><section id="validity" class="level3" data-number="7.2.2"><h3 data-number="7.2.2" class="anchored" data-anchor-id="validity">
-<span class="header-section-number">7.2.2</span> Validity</h3>
-<p>Validity, on the other hand, involves our columns. To put it simply, does the column for lifespan in our Preceptor Table equate to the column for lifespan from our dataset. Again, we look to the source of our data: <span class="citation" data-cites="barfort2020">Barfort, Klemmensen, and Larsen (<a href="references.html#ref-barfort2020" role="doc-biblioref">2020</a>)</span>.</p>
-<p>The collection of birth and death dates for <em>winning</em> candidates is well documented. The birth and death dates for losing candidates, however, is not as easily gathered. In fact, <span class="citation" data-cites="barfort2020">Barfort, Klemmensen, and Larsen (<a href="references.html#ref-barfort2020" role="doc-biblioref">2020</a>)</span> had to perform independent research for this information:</p>
-<blockquote class="blockquote">
-<p>“For losing candidates, we use information gathered from several online sources, including Wikipedia, The Political Graveyard…, Find a Grave… and Our Campaigns.”</p>
-</blockquote>
-<p>This is not nearly as reliable as the data collection for candidates who won their election. And, there was a further complication:</p>
-<blockquote class="blockquote">
-<p>“In a few cases, we are only able to identify the year of birth or death, not the exact date of the event. For these candidates, we impute the date as July 1 of the given year.”</p>
-</blockquote>
-<p>For these candidates, then, our estimate for longevity will be inaccurate. We also have to <em>hope</em> that the birth and death dates listed on unreliable internet sources are accurate. It is possible that they are not, especially for older candidates.</p>
-<p>The mission of this exploration is to ensure validity as much as possible — that is, to equate our columns when they are not equated themselves. In this case, because we cannot fix the issues with data collection, we accept that our estimates may be slightly skewed.</p>
-</section><section id="stability" class="level3" data-number="7.2.3"><h3 data-number="7.2.3" class="anchored" data-anchor-id="stability">
-<span class="header-section-number">7.2.3</span> Stability</h3>
+</section><section id="assumptions" class="level3" data-number="7.2.2"><h3 data-number="7.2.2" class="anchored" data-anchor-id="assumptions">
+<span class="header-section-number">7.2.2</span> Assumptions</h3>
+<section id="stability" class="level4" data-number="7.2.2.1"><h4 data-number="7.2.2.1" class="anchored" data-anchor-id="stability">
+<span class="header-section-number">7.2.2.1</span> Stability</h4>
 <p>Stability means that the relationship between the columns is the same for three categories of rows: the data, the Preceptor table, and the larger population from which both are drawn.</p>
 <p>With an outcome variable such as height, it is easier to assume stability over a greater period of time. Changes in global height occur extremely slowly, so height being stable across a span of 20 years is reasonable to assume. Can we say the same for this example, where we are looking at years lived post-election?</p>
 <p>Lifespan changes over time. In fact, between 1960 and 2015, life expectancy for the total population in the United States increased by almost 10 years from 69.7 years in 1960 to 79.4 years in 2015. Therefore, our estimates for the future may need some adjustment — that is, to add years to our predicted life expectancy to account for a global change in lifespan over time.</p>
 <p>When we are confronted with this uncertainty, we can consider making our timeframe smaller. After all, if we confined the data to candidates post-1980, we would expect more stability in lifespan. This modification may be appropriate, but it limits our data. Stability, in essence, allows us to ignore the issue of time.</p>
 <p>Alternatively, if we believe that it is unlikely that our columns are stable, we have two choices. First, we abandon the experiment. If we believe our data is useless, so is our experiment. Second, we can choose to provide a sort of warning message with our conclusions: <em>this is based on data from ten years ago, but that was the most recent data available to us.</em></p>
-</section><section id="representativeness" class="level3" data-number="7.2.4"><h3 data-number="7.2.4" class="anchored" data-anchor-id="representativeness">
-<span class="header-section-number">7.2.4</span> Representativeness</h3>
-<p>The external validity of a study is often directly related to the representativeness of our sample. Representativeness has to do with how well our sample represents the larger population we are interested in generalizing to.</p>
+</section><section id="representativeness" class="level4" data-number="7.2.2.2"><h4 data-number="7.2.2.2" class="anchored" data-anchor-id="representativeness">
+<span class="header-section-number">7.2.2.2</span> Representativeness</h4>
+<p>Is our data representative of the population? <em>The population is not the set of candidates for which we have data.</em> That is the dataset. The population is the larger — potentially much larger — set of individuals about whom we want to make inferences. <em>The parameters in our models refer to the population, not to the dataset.</em></p>
+<p>Consider a simple example. Define <span class="math inline">\(\mu\)</span> as the average number of years lived by candidates for governor after Election Day. Can we calculate <span class="math inline">\(\mu\)</span> from our data? No! There are many candidates for governor who are still alive, who are not included in our data even though they are part of the “population” we want to study. <span class="math inline">\(\mu\)</span> can not be <em>calculated.</em> It can only be <em>estimated.</em></p>
+<p>Another problem is that we would like to estimate the effect of winning on lifespan in <em>present day</em>. Because our data excludes the most recent candidates (since they are still alive), our predictions will not mirror the future as well as we may hope.</p>
+<p>Even though the original question is about “gubernatorial candidates” in general, and does not specifically refer to the United States, we will assume that the data we have for US governors is <strong>representative enough</strong> of the population we are interested in (global politicians) that the exercise is useful. If we did not believe that, then we should stop right now. <em>The major part of Wisdom is deciding what questions you can’t answer because of the data you just don’t have.</em></p>
+<p>The truth is: in the social sciences, there is never a perfect relationship between the data you have and the question you are trying to answer. Data for gubernatorial candidates in the past is not an analog for gubernatorial candidates today. Nor is it the same as the data for candidates in other countries. Yet, this data is relevant. Right? It is certainly better than nothing.</p>
+<p><em>Generally speaking, using not-perfect data is better than using no data at all.</em></p>
+<p>Of course, this is not always true. If we wanted to predict lifespans of gubernatorial candidates in the U.S., and our data was from lifespans of presidential candidates in France… we would be better off not making any predictions at all. If the data won’t help, don’t use the data.</p>
 <p>After looking at <span class="citation" data-cites="barfort2020">Barfort, Klemmensen, and Larsen (<a href="references.html#ref-barfort2020" role="doc-biblioref">2020</a>)</span>, the source for our dataset, we see that:</p>
 <p>“We collect data… for all candidates running in a gubernatorial election from 1945 to 2012. We limit attention to the two candidates who received the highest number of votes.”</p>
-<p>This data is, then, <em>highly</em> representative of gubernatorial candidates, as it includes every candidate from 1945 to 2012. However, there is one large caveat: only the two candidates with the most votes are included in the dataset. This is unfortunate, as we would ideally look at all gubernatorial candidates (regardless of votes). Regardless, we still deem the dataset to be representative enough of our larger population.</p>
+<p>This data is, then, <strong>highly</strong> representative of gubernatorial candidates, as it includes every candidate from 1945 to 2012. However, there is one large caveat: only the two candidates with the most votes are included in the dataset. This is unfortunate, as we would ideally look at all gubernatorial candidates (regardless of votes). Regardless, we still deem the dataset to be representative enough of our larger population.</p>
 <p>Generally: <em>if there was no chance that a certain type of person would have been in this experiment, we cannot make an assumption for that person</em>.</p>
+</section></section><section id="data-generating-mechnaism" class="level3" data-number="7.2.3"><h3 data-number="7.2.3" class="anchored" data-anchor-id="data-generating-mechnaism">
+<span class="header-section-number">7.2.3</span> Data Generating Mechnaism</h3>
+<!-- MT: need to include the mathematics here -->
+<!-- MT: if there are separate mathematics for each section would it make sense to do something similar to three parameters? break up each section based on sex, election_age, election_age and sex, and then election_age, election_age, sex and election_age*sex. each section would then include its own data regarding the cardinal virtues. each could potentially answer each of the four different questions above?-->
 </section></section><section id="courage" class="level2" data-number="7.3"><h2 data-number="7.3" class="anchored" data-anchor-id="courage">
 <span class="header-section-number">7.3</span> Courage</h2>
 <div class="cell" data-layout-align="center">
@@ -1790,6 +1832,7 @@ $ lived_after  &lt;dbl&gt; 41.043121, 2.116359, 14.562628, 13.336071, 33.043121,
 </div>
 </div>
 </div>
+<p>Courage centers around the creation of the data generating mechanism, i.e., our fitted model.</p>
 <section id="sex" class="level3" data-number="7.3.1"><h3 data-number="7.3.1" class="anchored" data-anchor-id="sex">
 <span class="header-section-number">7.3.1</span> sex</h3>
 <p>Let’s regress <code>lived_after</code> on <code>sex</code> to see how candidates’ post-election lifespans differ by sex.</p>
@@ -1976,8 +2019,8 @@ sigma 11.1    0.2  </code></pre>
 </div>
 </div>
 <p>Looking at our results, you can see that our intercept value is around 66. The average female candidate, who had been alive the average number of years of all candidates, would live another 66 years or so after the election.</p>
-<p>Note that <code>sexMale</code> is around 6. This is our coefficient, <span class="math inline">\(\beta_1\)</span>. We need to connect this value to our intercept value to get something meaningful. Using the formula <span class="math inline">\(\beta_0 + \beta_1\)</span>, we find out that the number of years the average male candidate — who, on the day of election, is the average age of all candidates — would live is around 72 years.</p>
-<p>Now take a look at the coefficient for <span class="math inline">\(c\_election\_age_i\)</span>, <span class="math inline">\(\beta_2\)</span>. The median of the posterior, -0.8, represents the slope of the model. When comparing two candates who differ by one year in <code>election_age</code>, we expect that they will differ by -0.8 years in <code>lived_after</code>. It makes sense that this value is negative. The more years a candidate has lived, the fewer years the candidate has left to live. So, for every extra year a candidate is alive before an election, their lifespan after the election will be 0.8 years lower, on average.</p>
+<p>Note that <code>sexMale</code> is around 6. This is our coefficient, <span class="math inline">\(\beta_1\)</span>. We need to connect this value to our intercept value to get something meaningful. Using the formula <span class="math inline">\(\beta_0 + \beta_1\)</span>, we find out that the number of years the average male candidate — who, on the day of election, is the average age of all candidates — would live is around 72 years.<br>
+Now take a look at the coefficient for <span class="math inline">\(c\_election\_age_i\)</span>, <span class="math inline">\(\beta_2\)</span>. The median of the posterior, -0.8, represents the slope of the model. When comparing two candates who differ by one year in <code>election_age</code>, we expect that they will differ by -0.8 years in <code>lived_after</code>. It makes sense that this value is negative. The more years a candidate has lived, the fewer years the candidate has left to live. So, for every extra year a candidate is alive before an election, their lifespan after the election will be 0.8 years lower, on average.</p>
 <p>We will now show you the parallel slopes model, which was created using the same process explained in the prior chapter. All we’ve done here is extracted the values for our intercepts and slopes, and separated them into two groups. This allows us to create a <code>geom_abline</code> object that takes a unique slope and intercept value, so we can separate the male and female observations.</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
@@ -2204,6 +2247,7 @@ sigma 11.1    0.2  </code></pre>
 </div>
 </div>
 </div>
+<p><strong>Courage</strong> gave us the fitted model. With <strong>temperance</strong> we can create posteriors of the quantities of interest. We should be modest in the claims we make.</p>
 <p>Recall the questions with which we began the chapter:</p>
 <p><em>How long will two political candidates — one male and one female, both 10 years older than the average candidate — live after the election? How different will their lifespans be?</em></p>
 <p>These questions are, purposely, less precise than the ones we tackled in Chapters <a href="two-parameters.html"><span>Chapter&nbsp;4</span></a> and <a href="three-parameters.html"><span>Chapter&nbsp;5</span></a>, written more in a conversational style. This is how normal people talk.</p>
@@ -2369,7 +2413,7 @@ sigma 11.1    0.2  </code></pre>
 <p>In fact, there is a 4 in 10 chance that the female candidate lives longer.</p>
 <p><em>Note what is the same and what is different when we move from a question about averages to a question about individuals.</em> In both cases, the most likely value is about the same. That is, the average behavior is the same as our expected value for any given individual. But the uncertainty is much greater for an individual prediction. The chance of the true average for male candidates being less than that for female candidates is low. Yet, for any individual pair of candidates, it would not even be slightly surprising for the female candidate to outlive the male candidate. Individuals vary. Averages never tell the whole story.</p>
 </section><section id="expectation-versus-individual-variation" class="level3" data-number="7.4.3"><h3 data-number="7.4.3" class="anchored" data-anchor-id="expectation-versus-individual-variation">
-<span class="header-section-number">7.4.3</span> Expectation versus individual variation</h3>
+<span class="header-section-number">7.4.3</span> Expectation versus Individual Variation</h3>
 <p>Let’s compare the results from <code><a href="https://mc-stan.org/rstantools/reference/posterior_epred.html">posterior_epred()</a></code> and <code><a href="https://mc-stan.org/rstantools/reference/posterior_predict.html">posterior_predict()</a></code> for this scenario directly. Most of this code is the same as what we have shown you above, but we think it is useful to look at everything together.</p>
 <div class="cell">
 <div class="sourceCode" id="cb44"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">newobs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>sex <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Male"</span>, <span class="st">"Female"</span><span class="op">)</span>,</span>
@@ -2428,13 +2472,41 @@ sigma 11.1    0.2  </code></pre>
 <p>A Yes/No question throws away too much information to (almost) ever be useful. There is no reason to <em>test</em> when you can <em>summarize</em> by providing the full posterior probability distribution.</p>
 <p>The same arguments apply in the case of “insignificant” results when we can’t “reject” the null hypothesis. In simple terms: who cares!? We have the full posterior probability distribution for that prediction — also known as the posterior predictive distribution — as graphed above. The fact that result is not “significant” has no relevance to how we use the posterior to make decisions.</p>
 <p>The same reasoning applies to every parameter we estimate, to every prediction we make. Never test — unless your boss demands a test. <em>Use your judgment, make your models, summarize your knowledge of the world, and use that summary to make decisions.</em></p>
-</section></section><section id="summary" class="level2" data-number="7.5"><h2 data-number="7.5" class="anchored" data-anchor-id="summary">
-<span class="header-section-number">7.5</span> Summary</h2>
-<p><em>The major part of Wisdom is deciding what questions you can’t answer because of the data you don’t have.</em></p>
-<p><em>Avoid answering questions by working with parameters directly. Use <code><a href="https://mc-stan.org/rstantools/reference/posterior_epred.html">posterior_epred()</a></code> instead.</em></p>
-<p><em>Good data science involves an intelligent tour of the space of possible models.</em></p>
-<p><em>Always think in terms of comparisons when using a predictive model.</em></p>
-<p><em>Spend less time thinking about what parameters mean and more time using <code><a href="https://mc-stan.org/rstantools/reference/posterior_epred.html">posterior_epred()</a></code> and <code><a href="https://mc-stan.org/rstantools/reference/posterior_predict.html">posterior_predict()</a></code> to examine the implications of your models.</em></p>
+</section></section><section id="wisdom-for-causal-models" class="level2" data-number="7.5"><h2 data-number="7.5" class="anchored" data-anchor-id="wisdom-for-causal-models">
+<span class="header-section-number">7.5</span> Wisdom for Causal Models</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="other/images/Wisdom.jpg" class="img-fluid figure-img" width="1280"></p>
+<figcaption class="figure-caption">Wisdom</figcaption></figure>
+</div>
+</div>
+</div>
+<p>Recall the most important aspects of Wisdom: the Preceptor Table, the EDA (exploratory data analysis), and validity of the data. As always, we start with the Preceptor Table — the table of data that would make all of our questions answerable with mere arithmetic (no inferences).</p>
+<p>Consider the following causal questions:</p>
+<p><em>More broadly, how long do candidates, in general, live after the election?</em> <em>Does winning the election affect their longevity?</em></p>
+<p>What (imagined) dataset would make all of these questions easy to solve with a little bit of math? Well, we obviously need data on all gubernatorial candidate elections in the United States. We also need to know their dates of birth, age at time of election, age at time of death, and data for age at time of death minus age at time of election. With these pieces of information, we could answer all of our questions with simple math.</p>
+<p>Also, because this is an idealized table, we would know age at time of death assuming victory and age at time of death assuming loss. This would not be possible in the real world due to the Fundamental Problem of Causal Inference — we cannot observe a unit under two different conditions (both victory and loss).</p>
+<section id="preceptor-table-1" class="level3" data-number="7.5.1"><h3 data-number="7.5.1" class="anchored" data-anchor-id="preceptor-table-1">
+<span class="header-section-number">7.5.1</span> Preceptor Table</h3>
+<p>First, do we need a <strong>causal</strong> or <strong>predictive</strong> model? In this case, the model is clearly causal, so our Preceptor Table will have two columns for the potential outcomes. If all you need to know to answer the question is the outcome under one value of the treatment, then the model is predictive. Example: What is the life expectancy for all candidates if they were to win? Here we a question that implies a comparison, <em>for a single individual unit</em>, between two states of the world, when where they get treatment and one where they do not get treatment.</p>
+<p>Second, what is the outcome? A candidate’s life expectancy after winning elections is the <strong>outcome</strong>. When we take a look at the questions we discover a flaw exists. The individual that asked this question did not tell us where or when we are looking at these questions. It is important to understand where and when that we are answering these questions because otherwise our data could be not accurately applied to the whole country, nation, or specific state. For the questions that we have at hand we will be talking about all the adults in July 1, 2012 within the United States which will allow us to answer the questions more accurately.</p>
+<p>Third, what are the <strong>units</strong>? Our units for this scenario would be individuals because the questions are about the attributes of unique candidates.</p>
+<p>Fourth, do we have a <strong>treatment</strong>? Yes. In any causal model, there is at least one covariate which is defined as the “treatment,” something which we can manipulate so that some units receive one version and other units get a different version. A “treatment” is just a covariate in which we <em>can</em> manipulate and <em>need</em> to manipulate, at least in theory, to answer the question. In this case, the treatment is winning the election for candidates.</p>
+<p>Our Preceptor Table:</p>
+</section></section><section id="summary" class="level2" data-number="7.6"><h2 data-number="7.6" class="anchored" data-anchor-id="summary">
+<span class="header-section-number">7.6</span> Summary</h2>
+<p>Throughout this chapter, we explored relationships between different variables in the <code>governors</code> data set. We built a predictive and causal model.</p>
+<p>Just like in preceding chapters, our first objective remains with the use of <strong>Wisdom</strong>. We aim to assess the relevance of our data by examining the questions. Can we assume that the data we currently possess (e.g., election age and sex data from candidates in 2012) is drawn from the same population as the data we desire to obtain (e.g., election age and sex data from today)? Our inquires raise the issue of <strong>assumption of validity</strong> which leads into our next move.</p>
+<p>Our next move involves the examination of <strong>Justice</strong>, which guides us in determining the best approach to representing the models we intend to construct. A little bit of mathematics won’t pose major challenges. Translating these mathematical concepts into code will be accomplished with the help of <strong>Courage</strong>. With these Cardinal Virtues taken care of we now deal with <strong>Temperance</strong>. Our main objective is to generate posterior distributions for the parameters and comprehensively understand and interpret their significance. Finally, we conclude with the use of our models to address the questions. It is crucial to refine our questions to the greatest extent possible, as more detailed inquiries allow us to have the most precise answers.</p>
+<p><em>Always Remember the Following:</em></p>
+<ul>
+<li><p>The major part of Wisdom is deciding what questions you can’t answer because of the data you don’t have.</p></li>
+<li><p>Avoid answering questions by working with parameters directly. Use <code><a href="https://mc-stan.org/rstantools/reference/posterior_epred.html">posterior_epred()</a></code> instead.</p></li>
+<li><p>Good data science involves an intelligent tour of the space of possible models.</p></li>
+<li><p>Always think in terms of comparisons when using a predictive model.</p></li>
+<li><p>Spend less time thinking about what parameters mean and more time using <code><a href="https://mc-stan.org/rstantools/reference/posterior_epred.html">posterior_epred()</a></code> and <code><a href="https://mc-stan.org/rstantools/reference/posterior_predict.html">posterior_predict()</a></code> to examine the implications of your models.</p></li>
+</ul>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">

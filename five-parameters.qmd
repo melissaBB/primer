@@ -2,13 +2,12 @@
 
 <!-- Add more discussion below? Perhaps use as a good example of how the estimated posterior is not the true posterior because of the assumptions we are making about the structure of the error term. -->
 
-<!-- Do we really believe the posterior for male/female expected years lived? No! Or, at the very least, we are suspicious. -->
+<!-- Do we really believe the posterior for male/female expected years lived? No! Or, at the very least, we are suspicious. Discuss the importance of prior knowledge and "reality checks" in Temperance. -->
 
-<!-- In Temperance connect the expected value to the ideal Preceptor table. -->
 
-<!-- Improve summary section. DONE-->
+<!-- Add posterior_predictive checks. Belongs at the end of the courage section. -->
 
-<!-- Maybe consider posterior_predictive checks. Belongs at the end of the courage section. -->
+*This chapter is still a DRAFT.*
 
 Last chapter, we studied four parameters: models in which we studied multiple right-hand side variables at once. The next step in our model building education is to learn about *interactions*. The effect of a treatment relative to a control is almost never uniform. The effect might be bigger in women than in men, smaller in the rich relative to the poor. The technical term for such effects is "heterogeneous," which is just Ph.D.'ese for "different." With enough data, all effects are heterogeneous. Causal effects, at least in the social science, always vary across units. To model this reality, we rely on interactions, on allowing the effect size to differ. The same applies for predictive models. The relationship between our outcome variable $y$ and a predictor variable $x$ is rarely constant. The relationship varies based on the values of other variables. To take account of interactions, we need models with at least 5 parameters. 
 
