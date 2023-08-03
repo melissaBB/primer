@@ -170,28 +170,8 @@ ch10 |>
     theme_classic()
 ```
 
-As we take a look at our data through this graph we can see that many younger candidates tend to live much longer than the older candidates after election. However, this graph does not factor into whether these candidates have won or lost. Therefore, the elections could potentially be more stressful for older candidates, while the younger candidates could be living longer because of the lack fo stress they faced within their election. It is important to note that our data includes all elections whether they were close or not, which plays a role in how our data will be skewed. 
+Yyounger candidates tend to live much longer than older candidates after election. This makes sense. It is hard for an 80 year-old candidate to live for another 40 years after the election. 
 
-<!--```{r}
-ch10 |> 
-  ggplot(aes(x = election_age, y = lived_after)) +
-    geom_point() +
-    geom_line(aes(y = fitted(fit_2)), color = "blue") +
-  
-    # Add red box to highlight the slice of data we are discussing below using
-    # geom_rect().
-  
-    geom_rect(aes(xmin = 38.5 , xmax = 41.5, ymin = 0, ymax = 60),
-               fill = "transparent", color = "red", size = .5) +
-    labs(title = "Longevity of Gubernatorial Candidates",
-         subtitle = "Blue line shows fitted values", 
-         caption = "Data Source: Barfort, Klemmensen and Larsen (2019)",
-         x = "Age in Years at Time of Election",
-         y = "Years Lived After Election") +
-    scale_x_continuous(labels = scales::label_number()) +
-    scale_y_continuous(labels = scales::label_number()) +
-    theme_classic()
-```-->
 
 ### Validity
 
@@ -235,6 +215,7 @@ Our **actual data** rows contain the information that we *do* know. These rows c
 Our **population** rows contain no data. These are subjects which fall under our desired population, but for which we have no data. As such, all rows are missing.
 
 ```{r}
+#| echo: false
 tibble(source = c("...", "Data", "Data", "...", 
                   "...", "Preceptor Table", "Preceptor Table", "..."),
        year_elected = c("...", "1967", "2012", "...",
