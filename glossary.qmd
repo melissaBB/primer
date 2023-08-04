@@ -1,5 +1,7 @@
 # Key Concepts {-}
 
+*THIS IS A DRAFT*
+
 These are the key concepts from the *Primer*. You should apply them whenever you face a choice, and some data to help you make it. The world confronts us. Makes decisions we must.
 
 **Quantity of Interest** is the number which you want to estimate. You will almost always calculate a posterior probability distribution for your Quantity of Interest since, in the real world, it is almost always impossible to determine your QoI precisely.
@@ -37,7 +39,7 @@ These are the key concepts from the *Primer*. You should apply them whenever you
 
 ## Steps to Take in Every Data Science Problem
 
-In the spirit of transparency, here are the guidelines which we provide to co-authors updating chapters to the *Primer*. This is how we think data science ought to be taught. It is also, perhaps unsurprisingly, how we think data science ought to be done, at least at this introductory level.
+In the spirit of transparency, here are the guidelines which we provide to co-authors updating chapters in the *Primer*. This is how we think data science ought to be taught. It is also, perhaps unsurprisingly, how we think data science ought to be done, at least at this introductory level.
 
 ### Question
 
@@ -63,11 +65,11 @@ The Preceptor Table always begins with a restatement of the definition: "A Prece
 
 To create the Preceptor Table, we answer a series of questions. (Don't ask these questions rhetorically. Just describe the answer. There is also no need to number them, although you should always use this order.)
 
-1) Is the question causal?  Looks for words like "cause" or "affect" or "influence." Look for a question which implies a comparison, *for a single individual unit*, between two states of the world, one where they get treatment X and one where they get treatment Y. Look for a discussion of something which we can *manipulate*. Remember the motto: *No causation without manipulation*. We look to see if the question seeks to compare two potential outcomes *within the same unit*, rather than the same outcome between two different units.
+* Is the question causal?  Looks for words like "cause" or "affect" or "influence." Look for a question which implies a comparison, *for a single individual unit*, between two states of the world, one where they get treatment X and one where they get treatment Y. Look for a discussion of something which we can *manipulate*. Remember the motto: *No causation without manipulation*. We look to see if the question seeks to compare two potential outcomes *within the same unit*, rather than the same outcome between two different units.
 
 If none of this is present, use a predictive model. If all you need to know to answer the question is the outcome under one value of the treatment, then the model is predictive. Example: What is the att_end for all women if they were to get the treatment? This is a predictive question, not a causal one, because we do not need to know the outcome under treatment and under control for any individual woman.
 
-2) What is the moment in time to which the question refers? Every question refers to a moment in time, even if that moment stretches a bit. The set of adults *today* is different from the set 10 years ago, or even yesterday. We need to *refine* the origial question. Assume that we are referring to July 1, 2012. We have changed the original question from: 
+* What is the moment in time to which the question refers? Every question refers to a moment in time, even if that moment stretches a bit. The set of adults *today* is different from the set 10 years ago, or even yesterday. We need to *refine* the origial question. Assume that we are referring to July 1, 2012. We have changed the original question from: 
 
 "What proportion of people who make $100,000 are liberal?" 
 
@@ -75,7 +77,7 @@ to
 
 "On July 1, 2012, what proportion of people who make $100,000 were liberal?"
 
-3) What are the units? The question often makes this fairly clear, at least in terms of what each row corresponds to, whether it be individuals, classrooms or countries. But, questions often fail to make clear the total number of the rows. Our example question above does not specify the relevant population. Is it about all the people in the world? All the adults? All the adults in the United States? The purpose of this paragraph is to *refine* the question, to make it more specific. Assume that we are interested in all the adults in Chicago. Our question now is:
+* What are the units? The question often makes this fairly clear, at least in terms of what each row corresponds to, whether it be individuals, classrooms or countries. But, questions often fail to make clear the total number of the rows. Our example question above does not specify the relevant population. Is it about all the people in the world? All the adults? All the adults in the United States? The purpose of this paragraph is to *refine* the question, to make it more specific. Assume that we are interested in all the adults in Chicago. Our question now is:
 
 "On July 1, 2012, what proportion of the adults in Chicago who make $100,000 were liberal?"
 
@@ -83,21 +85,19 @@ This back-and-forth between the question and the analysis is a standard part of 
 
 Our job as data scientists is not to simply answer the question we have been asked, but to help the questioner determine a question which can be answered with the data we have, a question which helps them to make the decision which they face.
 
-4) What are the outcomes? (If the model is causal, then there must be at least two potential outcomes. If you can't figure them out, then the model is probably predictive.) If the model is predictive, then there is only one outcome. This paragraph does more than just name the relevant variable. It also starts the discussion about how exactly we might measure this variable. We consider both underlying concept, "liberal," and the process by which we might operationalize the concept. Perhaps we are using a written survey with a YES/NO answer. Perhaps it is an in person interview with a 1-7 Likert scale, in which answers of 1 or 2 are coded, by us, as "liberal." The details don't matter, but we need to discuss.
+* What are the outcomes? (If the model is causal, then there must be at least two potential outcomes. If you can't figure them out, then the model is probably predictive.) If the model is predictive, then there is only one outcome. This paragraph does more than just name the relevant variable. It also starts the discussion about how exactly we might measure this variable. We consider both underlying concept, "liberal," and the process by which we might operationalize the concept. Perhaps we are using a written survey with a YES/NO answer. Perhaps it is an in person interview with a 1-7 Likert scale, in which answers of 1 or 2 are coded, by us, as "liberal." The details don't matter, but we need to discuss.
  
 
 
 What are the covariates? Discussing covariates in the context of the Preceptor Table is different than discussing covariates in the context of the data. Recall that the Preceptor Table is the smallest possible table, so we don't need to include every relevant variable. *We only need to discuss variables that are necessary to answer the question.* 
 
-What are the treatments, if any? (There are no treatments in predictive models.)
+What are the treatments, if any? (There are no treatments in predictive models.) A treatment is a covariate which, at least in theory, we can manipulate and the manipulation of which is necessary to answer our question.
 
-
-
-With all the above, describe the Preceptor Table.
+With all the above, create the Preceptor Table.
 
 #### Validity
 
-Validity discussions always have one (short) paragraph about each variable, with examples of why validity might not hold. Validity discussion finishes with a brief discussion along the lines of: "Despite these concerns, we will assume that validity does hold." 
+Validity discussions always have one (short) paragraph about each variable, with examples of why validity might *not* hold. Validity discussion finishes with a brief discussion along the lines of: "Despite these concerns, we will assume that validity does hold." 
 
 
 
