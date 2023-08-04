@@ -12,27 +12,41 @@ Note that the sophistication of these discussions increases as we go further int
 
 Each chapter features all the same sections and sub-sections as we use below. That is, there are three sub-sections to Wisdom, five sub-sections for Justice, and so on. 
 
-### Wisdom
-
 Once we have our question, we can start with the Cardinal Virtues. Each section begins with a one sentence summary about the component steps of the relevant virtue. These will, obviously, be highly similar from chapter to chapter. But that is OK! We want to reinforce the steps in the path over and over again.
 
-"Wisdom requires the creation of a Preceptor Table, an examination of our data, and a determination, using the concept of “validity,” as to whether or not we can (reasonably!) assume that the two come from the same population."
+### Wisdom
+
+"Wisdom requires the creation of a Preceptor Table, an examination of our data, and a determination, using the concept of validity, as to whether or not we can (reasonably!) assume that the two come from the same population."
 
 #### Preceptor Table
-
-EDIT: Answer is predictive. Why? Because it is not causal. Looks for words like "cause" or "affect" or "influence." Look for a question which implies a comparison, *for a single individual unit*, between two states of the world, when where they get treatment X and one where they get treatment Y. Look for a discussion of something which we can *manipulate*. Remember the motto: *No causation without manipulation*. If none of this is present, use a predictive model. If all you need to know to answer the question is the outcome under one value of the treatment, then the model is predictive. Example: What is the att_end for all women if they were to get the treatment?
 
 The Preceptor Table always begins with a restatement of the definition: "A Preceptor Table is smallest possible table with rows and columns such that, if there is no missing data, our question is easy to answer."
 
 To create the Preceptor Table, we answer a series of questions. (Don't ask these questions rhetorically. Just describe the answer. There is also no need to number them, although you should always use this order.)
 
-Is the question causal? We determine this by looking for words/phrases like "causal effect," "treatment effect," "cause," "influence," and so on. We look to see if the question seeks to compare two potential outcomes within the same unit, rather than the same outcome between two different units. If we see any of these clues, then the model is causal. Otherwise, it is predictive. 
+1) Is the question causal?  Looks for words like "cause" or "affect" or "influence." Look for a question which implies a comparison, *for a single individual unit*, between two states of the world, one where they get treatment X and one where they get treatment Y. Look for a discussion of something which we can *manipulate*. Remember the motto: *No causation without manipulation*. We look to see if the question seeks to compare two potential outcomes *within the same unit*, rather than the same outcome between two different units.
 
-What are the units? The question often makes this fairly clear, at least in terms of what each row corresponds to, whether it be individuals, classrooms or countries. But, questions often fail to make clear the total number of the rows. Our example question above does not specify the relevant population. Is it about all the people in the world? All the adults? All the adults in the United States? The purpose of this paragraph is to *refine* the question, to make it more specific. Assume that we are interested in all the adults in Chicago.
+If none of this is present, use a predictive model. If all you need to know to answer the question is the outcome under one value of the treatment, then the model is predictive. Example: What is the att_end for all women if they were to get the treatment? This is a predictive question, not a causal one, because we do not need to know the outcome under treatment and under control for any individual woman.
 
-What are the outcomes? (If the model is causal, then there must have at least two potential outcomes. If you can't figure them out, then the model is probably predictive.) If the model is predictive, then there is only one outcome. This paragraph does more than just name the relevant variable. It also starts the discussion about how exactly we might measure this variable. We consider both underlying concept, "liberal," and the process by which we might operationalize the concept. Perhaps we are using a written survey with a YES/NO answer. Perhaps it is an in person interview with a 1-7 Likert scale, in which answers of 1 or 2 are coded, by us, as "liberal." The details don't matter, but we need to discuss.
+2) What is the moment in time to which the question refers? Every question refers to a moment in time, even if that moment stretches a bit. The set of adults *today* is different from the set 10 years ago, or even yesterday. We need to *refine* the origial question. Assume that we are referring to July 1, 2012. We have changed the original question from: 
+
+"What proportion of people who make $100,000 are liberal?" 
+
+to
+
+"On July 1, 2012, what proportion of people who make $100,000 were liberal?"
+
+3) What are the units? The question often makes this fairly clear, at least in terms of what each row corresponds to, whether it be individuals, classrooms or countries. But, questions often fail to make clear the total number of the rows. Our example question above does not specify the relevant population. Is it about all the people in the world? All the adults? All the adults in the United States? The purpose of this paragraph is to *refine* the question, to make it more specific. Assume that we are interested in all the adults in Chicago. Our question now is:
+
+"On July 1, 2012, what proportion of the adults in Chicago who make $100,000 were liberal?"
+
+This back-and-forth between the question and the analysis is a standard part of data science. We rarely answer the exact question we started with, especially because that question is never specific enough to answer without further qualifications. Furthermore, the data we have may not allow us to answer that question, but it may be enough to answer a related question. Is that good enough for the boss/client/colleague who asked the original question? Maybe? We won't know till we ask. 
+
+Our job as data scientists is not to simply answer the question we have been asked, but to help the questioner determine a question which can be answered with the data we have, a question which helps them to make the decision which they face.
+
+4) What are the outcomes? (If the model is causal, then there must be at least two potential outcomes. If you can't figure them out, then the model is probably predictive.) If the model is predictive, then there is only one outcome. This paragraph does more than just name the relevant variable. It also starts the discussion about how exactly we might measure this variable. We consider both underlying concept, "liberal," and the process by which we might operationalize the concept. Perhaps we are using a written survey with a YES/NO answer. Perhaps it is an in person interview with a 1-7 Likert scale, in which answers of 1 or 2 are coded, by us, as "liberal." The details don't matter, but we need to discuss.
  
-What is the moment in time to which the question refers? Every question refers to a moment in time, even if that moment stretches a bit. The set of adults in Chicago *today* is different from the set 10 years ago, or even yesterday. Again, we need to *refine* the question. Assume that we are referring to July 1, 2012.
+
 
 What are the covariates? Discussing covariates in the context of the Preceptor Table is different than discussing covariates in the context of the data. Recall that the Preceptor Table is the smallest possible table, so we don't need to include every relevant variable. *We only need to discuss variables that are necessary to answer the question.* 
 
