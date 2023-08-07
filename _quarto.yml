@@ -58,6 +58,8 @@ bibliography:
 
 format:
   html:
+    code-fold: true
+    code-summary: "Show the code"
     theme: cosmo
     code-link: true
     code-overflow: wrap

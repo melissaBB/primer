@@ -338,7 +338,8 @@ div.csl-indent {
 <p>Small letters refer to a single outcome or result from a random variable. <span class="math inline">\(c\)</span> is the outcome from one coin toss. <span class="math inline">\(d\)</span> is the result from one throw of the dice. The value of the outcome must come from the sample space. So, <span class="math inline">\(c\)</span> can only take on two possible values: heads or tails. When discussing random variables in general, we use <span class="math inline">\(y\)</span> to refer to one outcome of the random variable <span class="math inline">\(Y\)</span>. If there are multiple outcomes — if we have, for example, flipped the coin multiple times — then we use subscripts to indicate the separate outcomes: <span class="math inline">\(y_1\)</span>, <span class="math inline">\(y_2\)</span>, and so on. The symbol for an arbitrary outcome is <span class="math inline">\(y_i\)</span>, where <span class="math inline">\(i\)</span> ranges from 1 through <span class="math inline">\(N\)</span>, the total number of events or experiments for which an outcome <span class="math inline">\(y\)</span> was produced.</p>
 <p>The only package we need in this chapter is <strong>tidyverse</strong>.</p>
 <div class="cell">
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details><summary>Code</summary><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <p>To understand probability more fully, we first need to understand distributions.</p>
 <section id="sec-distributions" class="level2" data-number="2.1"><h2 data-number="2.1" class="anchored" data-anchor-id="sec-distributions">
@@ -348,29 +349,30 @@ div.csl-indent {
 <span class="header-section-number">2.1.1</span> Scaling distributions</h3>
 <p>Consider the vector which is the result of rolling one dice 10 times.</p>
 <div class="cell">
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ten_rolls</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">5</span>, <span class="fl">1</span>, <span class="fl">5</span>, <span class="fl">4</span>, <span class="fl">2</span>, <span class="fl">6</span>, <span class="fl">2</span>, <span class="fl">1</span>, <span class="fl">5</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details><summary>Code</summary><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ten_rolls</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">5</span>, <span class="fl">1</span>, <span class="fl">5</span>, <span class="fl">4</span>, <span class="fl">2</span>, <span class="fl">6</span>, <span class="fl">2</span>, <span class="fl">1</span>, <span class="fl">5</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <p>There are other ways of storing the data in this vector. Instead of reporting every observation, we could record the number of times each value appears or the percentage of the total which this number accounts for.</p>
 <div class="cell">
 <div class="cell-output-display">
 
-<div id="jdnmdbkfgs" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#jdnmdbkfgs table {
+<div id="bgoqtuhdhy" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#bgoqtuhdhy table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#jdnmdbkfgs thead, #jdnmdbkfgs tbody, #jdnmdbkfgs tfoot, #jdnmdbkfgs tr, #jdnmdbkfgs td, #jdnmdbkfgs th {
+#bgoqtuhdhy thead, #bgoqtuhdhy tbody, #bgoqtuhdhy tfoot, #bgoqtuhdhy tr, #bgoqtuhdhy td, #bgoqtuhdhy th {
   border-style: none;
 }
 
-#jdnmdbkfgs p {
+#bgoqtuhdhy p {
   margin: 0;
   padding: 0;
 }
 
-#jdnmdbkfgs .gt_table {
+#bgoqtuhdhy .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -396,12 +398,12 @@ div.csl-indent {
   border-left-color: #D3D3D3;
 }
 
-#jdnmdbkfgs .gt_caption {
+#bgoqtuhdhy .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#jdnmdbkfgs .gt_title {
+#bgoqtuhdhy .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -413,7 +415,7 @@ div.csl-indent {
   border-bottom-width: 0;
 }
 
-#jdnmdbkfgs .gt_subtitle {
+#bgoqtuhdhy .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -425,7 +427,7 @@ div.csl-indent {
   border-top-width: 0;
 }
 
-#jdnmdbkfgs .gt_heading {
+#bgoqtuhdhy .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -437,13 +439,13 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#jdnmdbkfgs .gt_bottom_border {
+#bgoqtuhdhy .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#jdnmdbkfgs .gt_col_headings {
+#bgoqtuhdhy .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -458,7 +460,7 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#jdnmdbkfgs .gt_col_heading {
+#bgoqtuhdhy .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -478,7 +480,7 @@ div.csl-indent {
   overflow-x: hidden;
 }
 
-#jdnmdbkfgs .gt_column_spanner_outer {
+#bgoqtuhdhy .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -490,15 +492,15 @@ div.csl-indent {
   padding-right: 4px;
 }
 
-#jdnmdbkfgs .gt_column_spanner_outer:first-child {
+#bgoqtuhdhy .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#jdnmdbkfgs .gt_column_spanner_outer:last-child {
+#bgoqtuhdhy .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#jdnmdbkfgs .gt_column_spanner {
+#bgoqtuhdhy .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -510,11 +512,11 @@ div.csl-indent {
   width: 100%;
 }
 
-#jdnmdbkfgs .gt_spanner_row {
+#bgoqtuhdhy .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#jdnmdbkfgs .gt_group_heading {
+#bgoqtuhdhy .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -540,7 +542,7 @@ div.csl-indent {
   text-align: left;
 }
 
-#jdnmdbkfgs .gt_empty_group_heading {
+#bgoqtuhdhy .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -555,15 +557,15 @@ div.csl-indent {
   vertical-align: middle;
 }
 
-#jdnmdbkfgs .gt_from_md > :first-child {
+#bgoqtuhdhy .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#jdnmdbkfgs .gt_from_md > :last-child {
+#bgoqtuhdhy .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#jdnmdbkfgs .gt_row {
+#bgoqtuhdhy .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -582,7 +584,7 @@ div.csl-indent {
   overflow-x: hidden;
 }
 
-#jdnmdbkfgs .gt_stub {
+#bgoqtuhdhy .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -595,7 +597,7 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#jdnmdbkfgs .gt_stub_row_group {
+#bgoqtuhdhy .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -609,15 +611,15 @@ div.csl-indent {
   vertical-align: top;
 }
 
-#jdnmdbkfgs .gt_row_group_first td {
+#bgoqtuhdhy .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#jdnmdbkfgs .gt_row_group_first th {
+#bgoqtuhdhy .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#jdnmdbkfgs .gt_summary_row {
+#bgoqtuhdhy .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -627,16 +629,16 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#jdnmdbkfgs .gt_first_summary_row {
+#bgoqtuhdhy .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#jdnmdbkfgs .gt_first_summary_row.thick {
+#bgoqtuhdhy .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#jdnmdbkfgs .gt_last_summary_row {
+#bgoqtuhdhy .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -646,7 +648,7 @@ div.csl-indent {
   border-bottom-color: #D3D3D3;
 }
 
-#jdnmdbkfgs .gt_grand_summary_row {
+#bgoqtuhdhy .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -656,7 +658,7 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#jdnmdbkfgs .gt_first_grand_summary_row {
+#bgoqtuhdhy .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -666,7 +668,7 @@ div.csl-indent {
   border-top-color: #D3D3D3;
 }
 
-#jdnmdbkfgs .gt_last_grand_summary_row_top {
+#bgoqtuhdhy .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -676,11 +678,11 @@ div.csl-indent {
   border-bottom-color: #D3D3D3;
 }
 
-#jdnmdbkfgs .gt_striped {
+#bgoqtuhdhy .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#jdnmdbkfgs .gt_table_body {
+#bgoqtuhdhy .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -689,7 +691,7 @@ div.csl-indent {
   border-bottom-color: #D3D3D3;
 }
 
-#jdnmdbkfgs .gt_footnotes {
+#bgoqtuhdhy .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -703,7 +705,7 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#jdnmdbkfgs .gt_footnote {
+#bgoqtuhdhy .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -712,7 +714,7 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#jdnmdbkfgs .gt_sourcenotes {
+#bgoqtuhdhy .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -726,7 +728,7 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#jdnmdbkfgs .gt_sourcenote {
+#bgoqtuhdhy .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -734,63 +736,63 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#jdnmdbkfgs .gt_left {
+#bgoqtuhdhy .gt_left {
   text-align: left;
 }
 
-#jdnmdbkfgs .gt_center {
+#bgoqtuhdhy .gt_center {
   text-align: center;
 }
 
-#jdnmdbkfgs .gt_right {
+#bgoqtuhdhy .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#jdnmdbkfgs .gt_font_normal {
+#bgoqtuhdhy .gt_font_normal {
   font-weight: normal;
 }
 
-#jdnmdbkfgs .gt_font_bold {
+#bgoqtuhdhy .gt_font_bold {
   font-weight: bold;
 }
 
-#jdnmdbkfgs .gt_font_italic {
+#bgoqtuhdhy .gt_font_italic {
   font-style: italic;
 }
 
-#jdnmdbkfgs .gt_super {
+#bgoqtuhdhy .gt_super {
   font-size: 65%;
 }
 
-#jdnmdbkfgs .gt_footnote_marks {
+#bgoqtuhdhy .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#jdnmdbkfgs .gt_asterisk {
+#bgoqtuhdhy .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#jdnmdbkfgs .gt_indent_1 {
+#bgoqtuhdhy .gt_indent_1 {
   text-indent: 5px;
 }
 
-#jdnmdbkfgs .gt_indent_2 {
+#bgoqtuhdhy .gt_indent_2 {
   text-indent: 10px;
 }
 
-#jdnmdbkfgs .gt_indent_3 {
+#bgoqtuhdhy .gt_indent_3 {
   text-indent: 15px;
 }
 
-#jdnmdbkfgs .gt_indent_4 {
+#bgoqtuhdhy .gt_indent_4 {
   text-indent: 20px;
 }
 
-#jdnmdbkfgs .gt_indent_5 {
+#bgoqtuhdhy .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -1336,7 +1338,8 @@ div.csl-indent {
 <p>Instead of keeping around a vector of length 1,000, we can just keep 12 values — the 6 possible outcomes and their frequency — without losing any information.</p>
 <p>Two distributions can be identical even if they are of very different lengths. Let’s compare our original distribution of 10 rolls of the dice with another distribution which just features 100 copies of those 10 rolls.</p>
 <div class="cell">
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">more_rolls</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="va">ten_rolls</span>, <span class="fl">100</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details><summary>Code</summary><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">more_rolls</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="va">ten_rolls</span>, <span class="fl">100</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div class="cell">
 <div class="cell-output-display">
@@ -1430,17 +1433,17 @@ div.csl-indent {
 <!-- DK: Not sure I like this. Maybe use `rbinom(n = 10, size = 13, prob = 0.5)` instead? Maybe show both? -->
 <p>Recall the question with which we started this section: <em>What are the chances of getting three heads in a row when flipping a fair coin?</em> To answer this question, we need to use a probability distribution as our <em>data generating mechanism</em>. Fortunately, the <code><a href="https://rdrr.io/r/stats/Binomial.html">rbinom()</a></code> function allows us to generate the results for coin flips. For example:</p>
 <div class="cell">
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">rbinom</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">10</span>, size <span class="op">=</span> <span class="fl">1</span>, prob <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
+<details><summary>Code</summary><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">rbinom</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">10</span>, size <span class="op">=</span> <span class="fl">1</span>, prob <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output cell-output-stdout">
 <pre><code> [1] 1 1 0 1 1 0 0 0 0 0</code></pre>
 </div>
 </div>
 <p>generates the results of 10 coin flips, where a result of heads is presented as <code>1</code> and tails as <code>0</code>. With this tool, we can generate 1,000 draws from our experiment:</p>
 <div class="cell">
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>toss_1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">rbinom</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">1000</span>, size <span class="op">=</span> <span class="fl">1</span>, prob <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span>,</span>
+<details><summary>Code</summary><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>toss_1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">rbinom</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">1000</span>, size <span class="op">=</span> <span class="fl">1</span>, prob <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span>,</span>
 <span>       toss_2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">rbinom</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">1000</span>, size <span class="op">=</span> <span class="fl">1</span>, prob <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span>,</span>
 <span>       toss_3 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">rbinom</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">1000</span>, size <span class="op">=</span> <span class="fl">1</span>, prob <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
+</details><div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1,000 × 3
    toss_1 toss_2 toss_3
     &lt;int&gt;  &lt;int&gt;  &lt;int&gt;
@@ -1459,12 +1462,12 @@ div.csl-indent {
 </div>
 <p>Because the flips are independent, we can consider each row to be a draw from the experiment. Then, we simply count up the proportion of experiments in which resulted in three heads.</p>
 <div class="cell">
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>toss_1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">rbinom</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">1000</span>, size <span class="op">=</span> <span class="fl">1</span>, prob <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span>,</span>
+<details><summary>Code</summary><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>toss_1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">rbinom</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">1000</span>, size <span class="op">=</span> <span class="fl">1</span>, prob <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span>,</span>
 <span>       toss_2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">rbinom</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">1000</span>, size <span class="op">=</span> <span class="fl">1</span>, prob <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span>,</span>
 <span>       toss_3 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">rbinom</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">1000</span>, size <span class="op">=</span> <span class="fl">1</span>, prob <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>three_heads <span class="op">=</span> <span class="va">toss_1</span> <span class="op">+</span> <span class="va">toss_2</span> <span class="op">+</span> <span class="va">toss_3</span> <span class="op">==</span> <span class="fl">3</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>chance <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">three_heads</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
+</details><div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 1
   chance
    &lt;dbl&gt;
@@ -1473,12 +1476,12 @@ div.csl-indent {
 </div>
 <p>This is close to the “correct” answer of <span class="math inline">\(1/8\)</span>th. If we increase the number of draws, we will get closer to the “truth.” The reason for the quotation marks around “correct” and “truth” is that we are uncertain. We don’t know the <em>true</em> probability distribution for this coin. If this coin is a trick coin — like the one we expect our friend to have brought to school — then the odds of three heads in a row would be much higher:</p>
 <div class="cell">
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>toss_1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">rbinom</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">1000</span>, size <span class="op">=</span> <span class="fl">1</span>, prob <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span>,</span>
+<details><summary>Code</summary><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>toss_1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">rbinom</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">1000</span>, size <span class="op">=</span> <span class="fl">1</span>, prob <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span>,</span>
 <span>       toss_2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">rbinom</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">1000</span>, size <span class="op">=</span> <span class="fl">1</span>, prob <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span>,</span>
 <span>       toss_3 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">rbinom</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">1000</span>, size <span class="op">=</span> <span class="fl">1</span>, prob <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>three_heads <span class="op">=</span> <span class="va">toss_1</span> <span class="op">+</span> <span class="va">toss_2</span> <span class="op">+</span> <span class="va">toss_3</span> <span class="op">==</span> <span class="fl">3</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>chance <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">three_heads</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
+</details><div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 1
   chance
    &lt;dbl&gt;
@@ -1514,7 +1517,7 @@ div.csl-indent {
 <p>We began this section with a question about the probability (or odds) of rolling a 7 or 11 — i.e., a “natural” — with a pair of dice. The answer to the question depends on whether or not we think the dice are fair. In other words, we need to know which distribution to use to answer the question.</p>
 <p>Assume that the dice are fair. In that case, we can create a data generating mechanism by hand. (Alas, there is not a built-in R function for dice like there is for coin flips with <code><a href="https://rdrr.io/r/stats/Binomial.html">rbinom()</a></code>.)</p>
 <div class="cell">
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">7</span><span class="op">)</span></span>
+<details><summary>Code</summary><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">7</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Creating a variable like rolls makes our code easier to read and modify. Of</span></span>
 <span><span class="co"># course, we could just hard code the 4 into the size argument for each of the</span></span>
@@ -1530,7 +1533,7 @@ div.csl-indent {
 <span>       dice_2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">6</span>, size <span class="op">=</span> <span class="va">rolls</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>result <span class="op">=</span> <span class="va">dice_1</span> <span class="op">+</span> <span class="va">dice_2</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>natural <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">result</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">7</span>, <span class="fl">11</span><span class="op">)</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
+</details><div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 4
   dice_1 dice_2 result natural
    &lt;int&gt;  &lt;int&gt;  &lt;int&gt; &lt;lgl&gt;  
@@ -1542,7 +1545,7 @@ div.csl-indent {
 </div>
 <p>This code is another <em>data generating mechanism</em> or <em>dgm</em>. It allows us to simulate the distribution of the results from rolling a pair of fair dice. To answer our question, we simply increase the number of rolls and calculate the proportion of rolls which result in a 7 or 11.</p>
 <div class="cell">
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">rolls</span> <span class="op">&lt;-</span> <span class="fl">100000</span></span>
+<details><summary>Code</summary><div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">rolls</span> <span class="op">&lt;-</span> <span class="fl">100000</span></span>
 <span></span>
 <span><span class="co"># We probably don't need 100,000 rolls, but this code is so fast that it does</span></span>
 <span><span class="co"># not matter. Generally 1,000 (or even 100) draws from the data generating</span></span>
@@ -1552,7 +1555,7 @@ div.csl-indent {
 <span>       dice_2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">6</span>, size <span class="op">=</span> <span class="va">rolls</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>result <span class="op">=</span> <span class="va">dice_1</span> <span class="op">+</span> <span class="va">dice_2</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>natural_perc <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">result</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">7</span>, <span class="fl">11</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
+</details><div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 1
   natural_perc
          &lt;dbl&gt;
@@ -1682,9 +1685,9 @@ div.csl-indent {
 <!-- Could we get rid of all of this? How useful is it to learn these tricks if we will just be using rstanarm and friends after Chapter 6? -->
 <p>We need to expand our collection of R tricks by learning about list-columns and <code>map_*</code> functions. Recall that a list is different from an atomic vector. In atomic vectors, each element of the vector has one value. Lists, however, can contain vectors, and even more complex objects, as elements.</p>
 <div class="cell">
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">16</span>, <span class="fl">9</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="st">"Z"</span><span class="op">)</span><span class="op">)</span></span>
+<details><summary>Code</summary><div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">16</span>, <span class="fl">9</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="st">"Z"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">x</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
+</details><div class="cell-output cell-output-stdout">
 <pre><code>[[1]]
 [1]  4 16  9
 
@@ -1694,25 +1697,25 @@ div.csl-indent {
 </div>
 <p><code>x</code> is a list with two elements. The first element is a numeric vector of length 3. The second element is a character vector of length 2. We use <code>[[]]</code> to extract specific elements.</p>
 <div class="cell">
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
+<details><summary>Code</summary><div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output cell-output-stdout">
 <pre><code>[1]  4 16  9</code></pre>
 </div>
 </div>
 <p>There are a number of built-in R functions that output lists. For example, <strong><em>ggplot</em></strong> objects store all of the plot information in a list. Any function that returns multiple values can be used to create a list output by wrapping that returned object with <code><a href="https://rdrr.io/r/base/list.html">list()</a></code>.</p>
 <div class="cell">
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span></span>
+<details><summary>Code</summary><div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># range() returns the min and max of the argument </span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/range.html">range</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
+</details><div class="cell-output cell-output-stdout">
 <pre><code>[1] -1.841155  1.098223</code></pre>
 </div>
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># We can create a tibble which includes the results of range(x)</span></span>
+<details><summary>Code</summary><div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># We can create a tibble which includes the results of range(x)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>col_1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/range.html">range</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
+</details><div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 1
   col_1    
   &lt;list&gt;   
@@ -1723,13 +1726,13 @@ div.csl-indent {
 <p><em>If a function returns multiple values as a vector, like <code><a href="https://rdrr.io/r/base/range.html">range()</a></code> does, you must use <code><a href="https://rdrr.io/r/base/list.html">list()</a></code> as a wrapper if you want to create a list-column.</em></p>
 <p>A list column is a column of your data which is a <a href="https://adv-r.hadley.nz/vectors-chap.html#lists">list</a> rather than an atomic vector. As with stand-alone list objects, you can pipe to <code><a href="https://rdrr.io/r/utils/str.html">str()</a></code> to examine the column.</p>
 <div class="cell">
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># tibble() is what we use to generate a tibble, it acts sort of like the</span></span>
+<details><summary>Code</summary><div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># tibble() is what we use to generate a tibble, it acts sort of like the</span></span>
 <span><span class="co"># mutate(), but mutate() needs a data frame to add new column, tibble can</span></span>
 <span><span class="co"># survive on itself.</span></span>
 <span></span>
 <span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>col_1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/range.html">range</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
+</details><div class="cell-output cell-output-stdout">
 <pre><code>tibble [1 × 1] (S3: tbl_df/tbl/data.frame)
  $ col_1:List of 1
   ..$ : num [1:2] -1.84 1.1</code></pre>
@@ -1737,12 +1740,12 @@ div.csl-indent {
 </div>
 <p>We can use <code>map_*</code> functions to both create a list-column and then, much more importantly, work with that list-column afterwards.</p>
 <div class="cell">
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># .x is col_1 from tibble and ~ sum(.) is the formula</span></span>
+<details><summary>Code</summary><div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># .x is col_1 from tibble and ~ sum(.) is the formula</span></span>
 <span></span>
 <span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>col_1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/range.html">range</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>col_2 <span class="op">=</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_dbl</a></span><span class="op">(</span><span class="va">col_1</span>, <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">.</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
+</details><div class="cell-output cell-output-stdout">
 <pre><code>tibble [1 × 2] (S3: tbl_df/tbl/data.frame)
  $ col_1:List of 1
   ..$ : num [1:2] -1.84 1.1
@@ -1752,13 +1755,13 @@ div.csl-indent {
 <p><code>map_*</code> functions, like <code><a href="https://purrr.tidyverse.org/reference/map.html">map_dbl()</a></code> in this example, take two key arguments, <code>.x</code> (the data which will be acted on) and <code>.f</code> (the function which will act on this data). Here, <code>.x</code> is the data in <code>col_1</code>, which is a list-column. <code>.f</code> is the function <code><a href="https://rdrr.io/r/base/sum.html">sum()</a></code>. However, we can not simply write <code>map_dbl(col_1, sum)</code>. Instead, each use of <code>map_*</code> functions requires the use of a tilde — a <code>~</code> — to indicate the start of the function and the use of a dot — a <code>.</code> — to specify where the data goes in the function.</p>
 <p><code>map_*</code> functions are a family of functions, with the suffix specifying the type of the object to be returned. <code><a href="https://purrr.tidyverse.org/reference/map.html">map()</a></code> itself returns a list. <code><a href="https://purrr.tidyverse.org/reference/map.html">map_dbl()</a></code> returns a double. <code><a href="https://purrr.tidyverse.org/reference/map.html">map_int()</a></code> returns an integer. <code><a href="https://purrr.tidyverse.org/reference/map.html">map_chr()</a></code> returns a character, and so on. Example:</p>
 <div class="cell">
-<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>ID <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<details><summary>Code</summary><div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>ID <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>col_1 <span class="op">=</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span><span class="op">(</span><span class="va">ID</span>, <span class="op">~</span><span class="fu"><a href="https://rdrr.io/r/base/range.html">range</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>col_2 <span class="op">=</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_dbl</a></span><span class="op">(</span><span class="va">col_1</span>, <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">.</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>col_3 <span class="op">=</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_int</a></span><span class="op">(</span><span class="va">col_1</span>, <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">.</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>col_4 <span class="op">=</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_chr</a></span><span class="op">(</span><span class="va">col_1</span>, <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">.</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
+</details><div class="cell-output cell-output-stderr">
 <pre><code>Warning: There was 1 warning in `mutate()`.
 ℹ In argument: `col_4 = map_chr(col_1, ~sum(.))`.
 Caused by warning:
@@ -1777,7 +1780,7 @@ Caused by warning:
 </div>
 <p>Consider a more detailed example:</p>
 <div class="cell">
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># This simple example demonstrates the workflow which we will often follow.</span></span>
+<details><summary>Code</summary><div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># This simple example demonstrates the workflow which we will often follow.</span></span>
 <span><span class="co"># Start by creating a tibble which will be used to store the results. (Or start</span></span>
 <span><span class="co"># with a tibble which already exists and to which you will be adding more</span></span>
 <span><span class="co"># columns.) It is often convenient to get all the code working with just a few</span></span>
@@ -1806,7 +1809,7 @@ Caused by warning:
 <span>  <span class="co"># in a list column. map() does that for us automatically.</span></span>
 <span>  </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>min_max <span class="op">=</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span><span class="op">(</span><span class="va">draws</span>, <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/range.html">range</a></span><span class="op">(</span><span class="va">.</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
+</details><div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 4
      ID draws        max min_max  
   &lt;int&gt; &lt;list&gt;     &lt;dbl&gt; &lt;list&gt;   
@@ -1832,7 +1835,7 @@ Caused by warning:
 <p>For example, assume you have Probophobia. There is then a 50% chance that you test positive and a 50% chance you test negative. Similarly, if we assume that the second model is true — that you don’t have Probophobia — then there is 1% chance you test positive and a 99% you chance negative. Of course, for you (or any individual) we do not know for sure what is happening. We do not know if you have the disease. We do not know what your test will show. But we can use these relationships to construct the joint distribution.</p>
 <!-- DK: Redo this analysis, and perhaps other similar examples below. First, column of tibble is the state of the world. Or list of all possible models. In this case, this would be `have_disease` which should be either TRUE or FALSE.  -->
 <div class="cell">
-<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Pipes generally start with tibbles, so we start with a tibble which just</span></span>
+<details><summary>Code</summary><div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Pipes generally start with tibbles, so we start with a tibble which just</span></span>
 <span><span class="co"># includes an ID variable. We don't really use ID. It is just handy for getting</span></span>
 <span><span class="co"># organized. We call this object `jd_disease`, where the `jd` stands for</span></span>
 <span><span class="co"># joint distribution.</span></span>
@@ -1848,7 +1851,7 @@ Caused by warning:
 <span></span>
 <span></span>
 <span><span class="va">jd_disease</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
+</details><div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 10,000 × 3
       ID have_disease positive_test
    &lt;int&gt; &lt;lgl&gt;                &lt;int&gt;
@@ -1884,9 +1887,9 @@ Caused by warning:
 <p>In addition to the two models, we have two possible results of our experiment on a given person: test positive or test negative. Again, this is an assumption. We do not allow for any other outcome. In coming sections, we will look at more complex situations where we consider more than two models and more than two possible results of the experiment. In the meantime, we have built the <em>unnormalized joint distribution for models and results</em>. This is a key point! Look back earlier in this Chapter for discussions about both unnormalized distributions and joint distributions.</p>
 <p>We want to analyze these plots by looking at different slices. For instance, let’s say that you have tested positive for the disease. Since the test is not always accurate, you cannot be 100% certain that you have it. We isolate the slice where the test result equals 1 (meaning positive).</p>
 <div class="cell">
-<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">jd_disease</span> <span class="op">|&gt;</span> </span>
+<details><summary>Code</summary><div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">jd_disease</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">positive_test</span> <span class="op">==</span> <span class="fl">1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
+</details><div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 7,484 × 3
       ID have_disease positive_test
    &lt;int&gt; &lt;lgl&gt;                &lt;int&gt;
@@ -1923,7 +1926,7 @@ Caused by warning:
 <p><em>With a positive test, you can be almost 70% sure that you have Probophobia, however there is a good chance about 30% that you receive a false positive, so don’t worry too much there is still about a third of hope that you get the wrong result</em></p>
 <p>Now let’s consider the manipulation of this posterior, here is another question. Question : <em>10 people walks up to testing center, 5 of them tested negative, 5 of them tested positive, what is the probability of at least 6 people are actually healthy? </em></p>
 <div class="cell">
-<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>test <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">100000</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<details><summary>Code</summary><div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>test <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">100000</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>person1 <span class="op">=</span>  <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_int</a></span><span class="op">(</span><span class="va">test</span>, <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">rbinom</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">1</span>, size <span class="op">=</span> <span class="fl">1</span>, p <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>person2 <span class="op">=</span>  <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_int</a></span><span class="op">(</span><span class="va">test</span>, <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">rbinom</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">1</span>, size <span class="op">=</span> <span class="fl">1</span>, p <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>person3 <span class="op">=</span>  <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_int</a></span><span class="op">(</span><span class="va">test</span>, <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">rbinom</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">1</span>, size <span class="op">=</span> <span class="fl">1</span>, p <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -1952,7 +1955,7 @@ Caused by warning:
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="fu"><a href="https://scales.r-lib.org/reference/percent_format.html">percent_format</a></span><span class="op">(</span>accuracy <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span>  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
+</details><div class="cell-output-display">
 <p><img src="probability_files/figure-html/unnamed-chunk-47-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
@@ -1971,7 +1974,7 @@ Caused by warning:
 <p>Step 1: Simulate the data into an tibble</p>
 <p>Let’s say you take a marble out of the bag, record whether it’s black or white, then return it to the bag. You repeat this three times, observing the number of white marbles you see out of three trials. You could get three whites, two whites, one white, or zero whites as a result of this trial. We have three models (three different proportions of white marbles in the bag) and four possible experimental results. Let’s create 3,000 draws from this joint distribution:</p>
 <div class="cell">
-<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Create the joint distribution of the number of white marbles in the bag</span></span>
+<details><summary>Code</summary><div class="sourceCode" id="cb38"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Create the joint distribution of the number of white marbles in the bag</span></span>
 <span><span class="co"># (in_bag) and the number of white marbles pulled out in the sample (in_sample),</span></span>
 <span><span class="co"># one-by-one. in_bag takes three possible values: 0, 1 and 2, corresponding to</span></span>
 <span><span class="co"># zero, one and two white marbles potentially in the bag.</span></span>
@@ -2000,7 +2003,7 @@ Caused by warning:
 <span>                                              p <span class="op">=</span> <span class="va">.</span><span class="op">/</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> </span>
 <span></span>
 <span><span class="va">jd_marbles</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
+</details><div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 10,000 × 3
       ID in_bag in_sample
    &lt;int&gt;  &lt;int&gt;     &lt;int&gt;
@@ -2019,7 +2022,7 @@ Caused by warning:
 </div>
 <p>Step 2: Plot the joint distribution:</p>
 <div class="cell">
-<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># The distribution is unnormalized. All we see is the number of outcomes in each</span></span>
+<details><summary>Code</summary><div class="sourceCode" id="cb40"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># The distribution is unnormalized. All we see is the number of outcomes in each</span></span>
 <span><span class="co"># "bucket." Although it is never stated clearly, we are assuming that there is</span></span>
 <span><span class="co"># an equal likelihood of 0, 1 or 2 white marbles in the bag.</span></span>
 <span></span>
@@ -2032,7 +2035,7 @@ Caused by warning:
 <span>         y <span class="op">=</span> <span class="st">"White Marbles in the Bag"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
+</details><div class="cell-output-display">
 <p><img src="probability_files/figure-html/unnamed-chunk-50-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
@@ -2046,7 +2049,7 @@ Caused by warning:
 <p>Now recalls the question, we essentially only care about the fourth column in the joint distribution (x-axis=3) because the question is asking us to create a conditional distribution <em>given</em> that fact that 3 marbles were selected. Therefore, we could isolate the slice where the result of the simulation involves three white marbles and zero black ones. Here is the unnormalized probability distribution.</p>
 <p>Step 3: Plot the unnormalized conditional distribution.</p>
 <div class="cell">
-<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># The key step is the filter. Creating a conditional distribution from a joint</span></span>
+<details><summary>Code</summary><div class="sourceCode" id="cb41"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># The key step is the filter. Creating a conditional distribution from a joint</span></span>
 <span><span class="co"># distribution is the same thing as filtering that joint distribution for a</span></span>
 <span><span class="co"># specific value. A conditional distribution is a "slice" of the joint</span></span>
 <span><span class="co"># distribution, and we take that slice with filter().</span></span>
@@ -2062,13 +2065,13 @@ Caused by warning:
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_cartesian.html">coord_cartesian</a></span><span class="op">(</span>xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
+</details><div class="cell-output-display">
 <p><img src="probability_files/figure-html/unnamed-chunk-52-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Step 4: Plot the normalize posterior distribution. Next, let’s normalize the distribution.</p>
 <div class="cell">
-<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">jd_marbles</span> <span class="op">|&gt;</span> </span>
+<details><summary>Code</summary><div class="sourceCode" id="cb42"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">jd_marbles</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">in_sample</span> <span class="op">==</span> <span class="fl">3</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">in_bag</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes_eval.html">after_stat</a></span><span class="op">(</span><span class="va">count</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">count</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>, </span>
@@ -2083,7 +2086,7 @@ Caused by warning:
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>labels <span class="op">=</span> </span>
 <span>                         <span class="fu">scales</span><span class="fu">::</span><span class="fu"><a href="https://scales.r-lib.org/reference/percent_format.html">percent_format</a></span><span class="op">(</span>accuracy <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
+</details><div class="cell-output-display">
 <p><img src="probability_files/figure-html/unnamed-chunk-53-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
@@ -2240,14 +2243,14 @@ a range of observations to red/blue, the z-values of these observations will be 
 <p>There are three main ways you could go about solving this problem with simulations.</p>
 <p>The first <em>wrong</em> way to do this is assuming that <span class="math inline">\(\rho_h\)</span> is certain because we observed 8 heads after 20 tosses. We would conclude that 8/20 gives us 0.4. The big problem with this is that you are ignoring your uncertainty when estimating <span class="math inline">\(\rho_h\)</span>. This would lead us to the following code.</p>
 <div class="cell" data-hash="probability_cache/html/unnamed-chunk-61_a476e73d9ed8ed787d90df389dc48ac3">
-<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">sims</span> <span class="op">&lt;-</span> <span class="fl">10000000</span></span>
+<details><summary>Code</summary><div class="sourceCode" id="cb43"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">sims</span> <span class="op">&lt;-</span> <span class="fl">10000000</span></span>
 <span></span>
 <span><span class="va">odds</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>sim_ID <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="va">sims</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>heads <span class="op">=</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_int</a></span><span class="op">(</span><span class="va">sim_ID</span>, <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">rbinom</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">1</span>, size <span class="op">=</span> <span class="fl">20</span>, p <span class="op">=</span> <span class="fl">.4</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>above_ten <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else</a></span><span class="op">(</span><span class="va">heads</span> <span class="op">&gt;=</span> <span class="fl">10</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">odds</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
+</details><div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 10,000,000 × 3
    sim_ID heads above_ten
     &lt;int&gt; &lt;int&gt; &lt;lgl&gt;    
@@ -2265,7 +2268,7 @@ a range of observations to red/blue, the z-values of these observations will be 
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">odds</span> <span class="op">|&gt;</span></span>
+<details><summary>Code</summary><div class="sourceCode" id="cb45"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">odds</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">heads</span>,fill<span class="op">=</span><span class="va">above_ten</span><span class="op">)</span><span class="op">)</span><span class="op">+</span></span>
 <span>           <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes_eval.html">after_stat</a></span><span class="op">(</span><span class="va">count</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">count</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,bins <span class="op">=</span> <span class="fl">50</span><span class="op">)</span><span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_fill_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'grey50'</span>, <span class="st">'red'</span><span class="op">)</span><span class="op">)</span><span class="op">+</span></span>
@@ -2277,15 +2280,15 @@ a range of observations to red/blue, the z-values of these observations will be 
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="fu"><a href="https://scales.r-lib.org/reference/comma.html">number_format</a></span><span class="op">(</span>accuracy <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="fu"><a href="https://scales.r-lib.org/reference/percent_format.html">percent_format</a></span><span class="op">(</span>accuracy <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
+</details><div class="cell-output-display">
 <p><img src="probability_files/figure-html/unnamed-chunk-62-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Using this Posterior distribution derived from the (wrong way) simulated data, the probability results in 10 or more head is</p>
 <div class="cell">
-<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">odds</span> <span class="op">|&gt;</span></span>
+<details><summary>Code</summary><div class="sourceCode" id="cb46"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">odds</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>success <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">above_ten</span><span class="op">)</span><span class="op">/</span><span class="va">sims</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
+</details><div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 1
   success
     &lt;dbl&gt;
@@ -2295,7 +2298,7 @@ a range of observations to red/blue, the z-values of these observations will be 
 <p>about 24.5%.</p>
 <p>The second method involves sampling the whole posterior distribution vector we previously created. This would lead to the following correct code.</p>
 <div class="cell">
-<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p_draws</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>p <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">0.1</span><span class="op">)</span>, <span class="fl">1000</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<details><summary>Code</summary><div class="sourceCode" id="cb48"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p_draws</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>p <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">0.1</span><span class="op">)</span>, <span class="fl">1000</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>heads <span class="op">=</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_int</a></span><span class="op">(</span><span class="va">p</span>, <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">rbinom</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">1</span>, size <span class="op">=</span> <span class="fl">20</span>, p <span class="op">=</span> <span class="va">.</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">heads</span> <span class="op">==</span> <span class="fl">8</span><span class="op">)</span></span>
 <span>  </span>
@@ -2304,7 +2307,7 @@ a range of observations to red/blue, the z-values of these observations will be 
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>above_ten <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else</a></span><span class="op">(</span><span class="va">heads</span> <span class="op">&gt;=</span> <span class="fl">10</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span> </span>
 <span></span>
 <span><span class="va">odds_2nd</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
+</details><div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 10,000,000 × 3
        p heads above_ten
    &lt;dbl&gt; &lt;int&gt; &lt;lgl&gt;    
@@ -2322,7 +2325,7 @@ a range of observations to red/blue, the z-values of these observations will be 
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">odds_2nd</span> <span class="op">|&gt;</span></span>
+<details><summary>Code</summary><div class="sourceCode" id="cb50"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">odds_2nd</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">heads</span>,fill <span class="op">=</span> <span class="va">above_ten</span><span class="op">)</span><span class="op">)</span><span class="op">+</span></span>
 <span>           <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes_eval.html">after_stat</a></span><span class="op">(</span><span class="va">count</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">count</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,bins <span class="op">=</span> <span class="fl">50</span><span class="op">)</span><span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_fill_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'grey50'</span>, <span class="st">'red'</span><span class="op">)</span><span class="op">)</span><span class="op">+</span></span>
@@ -2334,15 +2337,15 @@ a range of observations to red/blue, the z-values of these observations will be 
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="fu"><a href="https://scales.r-lib.org/reference/comma.html">number_format</a></span><span class="op">(</span>accuracy <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="fu"><a href="https://scales.r-lib.org/reference/percent_format.html">percent_format</a></span><span class="op">(</span>accuracy <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
+</details><div class="cell-output-display">
 <p><img src="probability_files/figure-html/unnamed-chunk-65-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Using this Posterior distribution derived from the (right way 1st) simulated data, the probability results in 10 or more head is</p>
 <div class="cell">
-<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">odds_2nd</span> <span class="op">|&gt;</span></span>
+<details><summary>Code</summary><div class="sourceCode" id="cb51"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">odds_2nd</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>success <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">above_ten</span><span class="op">)</span><span class="op">/</span><span class="va">sims</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
+</details><div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 1
   success
     &lt;dbl&gt;
@@ -2368,36 +2371,36 @@ a range of observations to red/blue, the z-values of these observations will be 
 <p>The most common distributions you will work with are <em>empirical</em> or <em>frequency</em> distributions, the values of <code>age</code> in the <code>trains</code> tibble, the values of <code>poverty</code> in the <code>kenya</code> tibble, and so on. But we can also create our own data by making “draws” from a distribution which we have concocted.</p>
 <p>Consider the distribution of the possible values from rolling a fair die. We can use the <code><a href="https://rdrr.io/r/base/sample.html">sample()</a></code> function to create draws from this distribution, meaning it will change (or sometimes stay the same) for every subsequent draw.</p>
 <div class="cell">
-<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">die</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">5</span>, <span class="fl">6</span><span class="op">)</span></span>
+<details><summary>Code</summary><div class="sourceCode" id="cb53"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">die</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">5</span>, <span class="fl">6</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">die</span>, size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
+</details><div class="cell-output cell-output-stdout">
 <pre><code>[1] 3</code></pre>
 </div>
 </div>
 <p>This produces one “draw” from the distribution of the possible values of one roll of fair six-sided die.</p>
 <p>Now, suppose we wanted to roll this die 10 times. One of the arguments of the <code><a href="https://rdrr.io/r/base/sample.html">sample()</a></code> function is <code>replace</code>. We must specify it as <code>TRUE</code> if values can appear more than once. Since, when rolling a die 10 times, we expect that a value like 3 can appear more than once, we need to set <code>replace = TRUE</code>.</p>
 <div class="cell">
-<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">die</span>, size <span class="op">=</span> <span class="fl">10</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
+<details><summary>Code</summary><div class="sourceCode" id="cb55"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">die</span>, size <span class="op">=</span> <span class="fl">10</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output cell-output-stdout">
 <pre><code> [1] 5 6 3 3 3 4 3 6 4 5</code></pre>
 </div>
 </div>
 <p>In other words, rolling a 1 on the first roll should not preclude you from rolling a 1 on a later roll.</p>
 <p>What if the die is not “fair,” meaning that some sides are more likely to appear than others? The final argument of the <code><a href="https://rdrr.io/r/base/sample.html">sample()</a></code> function is the <code>prob</code> argument. It takes a vector (of the same length as the initial vector <code>x</code>) that contains all of the probabilities of selecting each one of the elements of <code>x</code>. Suppose that the probability of rolling a 1 was 0.5, and the probability of rolling any other value is 0.1. (These probabilities should sum to 1. If they don’t <code><a href="https://rdrr.io/r/base/sample.html">sample()</a></code> will automatically re-scale them.)</p>
 <div class="cell">
-<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">die</span>, </span>
+<details><summary>Code</summary><div class="sourceCode" id="cb57"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">die</span>, </span>
 <span>       size <span class="op">=</span> <span class="fl">10</span>, </span>
 <span>       replace <span class="op">=</span> <span class="cn">TRUE</span>, </span>
 <span>       prob <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
+</details><div class="cell-output cell-output-stdout">
 <pre><code> [1] 1 1 3 1 2 1 1 6 1 1</code></pre>
 </div>
 </div>
 <!-- DK: Keep this big picture discussion? And after the plot? -->
 <p><strong>Remember: There is no real data here.</strong> We have not actually rolled a die. We have just made some assumptions about what would happen if we were to roll a die. With those assumptions we have built an urn — a <em>data generating mechanism</em> — from which we can draw as many values as we like. Let’s roll the unfair die 10,000 times.</p>
 <div class="cell">
-<div class="sourceCode" id="cb59"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>result <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">die</span>, </span>
+<details><summary>Code</summary><div class="sourceCode" id="cb59"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>result <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">die</span>, </span>
 <span>                       size <span class="op">=</span> <span class="fl">10000</span>, </span>
 <span>                       replace <span class="op">=</span> <span class="cn">TRUE</span>, </span>
 <span>                       prob <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="fl">5</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
@@ -2409,7 +2412,7 @@ a range of observations to red/blue, the z-values of these observations will be 
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>breaks <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">6</span>,</span>
 <span>                       labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="fu"><a href="https://scales.r-lib.org/reference/comma.html">comma_format</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
+</details><div class="cell-output-display">
 <p><img src="probability_files/figure-html/unnamed-chunk-71-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
@@ -2419,8 +2422,8 @@ a range of observations to red/blue, the z-values of these observations will be 
 </h4>
 <p>Consider a “uniform” distribution. This is the case in which every outcome in the range of possible outcomes has the same chance of occurring. The function <code><a href="https://rdrr.io/r/stats/Uniform.html">runif()</a></code> (spoken as “r-unif”) enables us to draw from a uniform contribution. <code><a href="https://rdrr.io/r/stats/Uniform.html">runif()</a></code> has three arguments: <code>n</code>, <code>min</code>, and <code>max</code>. <code><a href="https://rdrr.io/r/stats/Uniform.html">runif()</a></code> will produce <code>n</code> draws from between <code>min</code> and <code>max</code>, with each value having an equal chance of occurring.</p>
 <div class="cell">
-<div class="sourceCode" id="cb60"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">10</span>, min <span class="op">=</span> <span class="fl">4</span>, max <span class="op">=</span> <span class="fl">6</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
+<details><summary>Code</summary><div class="sourceCode" id="cb60"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">10</span>, min <span class="op">=</span> <span class="fl">4</span>, max <span class="op">=</span> <span class="fl">6</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output cell-output-stdout">
 <pre><code> [1] 5.594800 4.981960 4.601993 5.738417 4.879622 5.155263 4.319479 5.627666
  [9] 4.800110 5.634794</code></pre>
 </div>
@@ -2435,14 +2438,14 @@ a range of observations to red/blue, the z-values of these observations will be 
 <p><em><code>n</code> is the number of values we seek to draw. </em><code>size</code> is the number of trials for each <code>n</code>. *<code>prob</code> is the probability of success on each trial.</p>
 <p>Suppose we wanted to flip a fair coin one time, and let landing on heads represent success.</p>
 <div class="cell">
-<div class="sourceCode" id="cb62"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">rbinom</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">1</span> , size <span class="op">=</span> <span class="fl">1</span>, prob <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
+<details><summary>Code</summary><div class="sourceCode" id="cb62"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">rbinom</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">1</span> , size <span class="op">=</span> <span class="fl">1</span>, prob <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output cell-output-stdout">
 <pre><code>[1] 0</code></pre>
 </div>
 </div>
 <p>Do the same thing 100 times:</p>
 <div class="cell">
-<div class="sourceCode" id="cb64"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>heads <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">rbinom</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">100</span>, size <span class="op">=</span> <span class="fl">1</span>, prob <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<details><summary>Code</summary><div class="sourceCode" id="cb64"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>heads <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">rbinom</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">100</span>, size <span class="op">=</span> <span class="fl">1</span>, prob <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">heads</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Flipping a Fair Coin 100 Times"</span>,</span>
@@ -2450,7 +2453,7 @@ a range of observations to red/blue, the z-values of these observations will be 
 <span>         y <span class="op">=</span> <span class="st">"Count"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>,</span>
 <span>                       labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Tails"</span>, <span class="st">"Heads"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
+</details><div class="cell-output-display">
 <p><img src="probability_files/figure-html/unnamed-chunk-74-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
@@ -2459,7 +2462,7 @@ a range of observations to red/blue, the z-values of these observations will be 
 <!-- DK: Could do a little example of that, showing the convergence to 50% as n increases. -->
 <p>Suppose instead we wanted to simulate an unfair coin, where the probability of landing on Heads was 0.75 instead of 0.25.</p>
 <div class="cell">
-<div class="sourceCode" id="cb65"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>heads <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">rbinom</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">100</span>, size <span class="op">=</span> <span class="fl">1</span>, prob <span class="op">=</span> <span class="fl">0.75</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<details><summary>Code</summary><div class="sourceCode" id="cb65"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>heads <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">rbinom</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">100</span>, size <span class="op">=</span> <span class="fl">1</span>, prob <span class="op">=</span> <span class="fl">0.75</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">heads</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Flipping a Fair Coin 100 Times"</span>,</span>
@@ -2467,7 +2470,7 @@ a range of observations to red/blue, the z-values of these observations will be 
 <span>         y <span class="op">=</span> <span class="st">"Count"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>,</span>
 <span>                       labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Tails"</span>, <span class="st">"Heads"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
+</details><div class="cell-output-display">
 <p><img src="probability_files/figure-html/unnamed-chunk-75-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
@@ -2476,7 +2479,7 @@ a range of observations to red/blue, the z-values of these observations will be 
 <p>Each value for <span class="math inline">\(y\)</span> is drawn from a binomial distribution with parameters <span class="math inline">\(n\)</span> for the number of trials and <span class="math inline">\(p\)</span> for the probability of success.</p>
 <p>Instead of each <code>n</code> consisting of a single trial, we could have situation in which we are, 10,000 times, flipping a coin 10 times and summing up, for each experiment, the number of heads. In that case:</p>
 <div class="cell">
-<div class="sourceCode" id="cb66"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">9</span><span class="op">)</span></span>
+<details><summary>Code</summary><div class="sourceCode" id="cb66"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">9</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>heads <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">rbinom</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">10000</span>, size <span class="op">=</span> <span class="fl">10</span>, prob <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">heads</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
@@ -2485,7 +2488,7 @@ a range of observations to red/blue, the z-values of these observations will be 
 <span>         x <span class="op">=</span> <span class="st">"Total Number of Heads in Ten Flips"</span>,</span>
 <span>         y <span class="op">=</span> <span class="st">"Count"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>breaks <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
+</details><div class="cell-output-display">
 <p><img src="probability_files/figure-html/unnamed-chunk-76-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
@@ -2535,8 +2538,8 @@ a range of observations to red/blue, the z-values of these observations will be 
 <span class="header-section-number">2.7.3</span> Summary statistics</h3>
 <p>A probability distribution is not always easy to work with. It is a complex object. And, in many contexts, we don’t really care about all that complexity. So, instead of providing the full probability distribution, we often just use a summary measure, a number or two or three which captures those aspects of the entire distribution which are relevant to the matter at hand. Let’s explore these issues using the 538 posterior probability distribution, as of August 13, 2020, for the number of electoral votes which will be won by Joe Biden. Here is a tibble with 1,000,000 draws from that distribution:</p>
 <div class="cell">
-<div class="sourceCode" id="cb67"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">draws</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
+<details><summary>Code</summary><div class="sourceCode" id="cb67"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">draws</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1,000,000 × 2
       ID electoral_votes
    &lt;int&gt;           &lt;int&gt;
@@ -2557,22 +2560,22 @@ a range of observations to red/blue, the z-values of these observations will be 
 <!-- DK: Need more here. Connect to the discussion in Section 2.9 -->
 <p>Recall how we can draw randomly from specified probability distributions:</p>
 <div class="cell">
-<div class="sourceCode" id="cb69"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
+<details><summary>Code</summary><div class="sourceCode" id="cb69"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output cell-output-stdout">
 <pre><code> [1]  0.95693552  0.18860245 -2.04561627  0.41344817  0.26100764  1.18315071
  [7]  0.07832782 -1.14338230 -0.98240598  1.88883159</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb71"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
+<details><summary>Code</summary><div class="sourceCode" id="cb71"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output cell-output-stdout">
 <pre><code> [1] 0.30482858 0.08068409 0.65942947 0.86727544 0.54974073 0.20976843
  [7] 0.77876867 0.09990737 0.74968824 0.19082733</code></pre>
 </div>
 </div>
 <p>The elements of these vectors are all “draws” from the specified probability distributions. In most applied situations, our tools will produce draws rather than summary objects. Fortunately, a vector of draws is very easy to work with. Start with summary statistics:</p>
 <div class="cell">
-<div class="sourceCode" id="cb73"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># recall mean, media, standard deviation and mad functions.</span></span>
+<details><summary>Code</summary><div class="sourceCode" id="cb73"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># recall mean, media, standard deviation and mad functions.</span></span>
 <span></span>
 <span><span class="va">key_stats</span> <span class="op">&lt;-</span> <span class="va">draws</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>mn <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">electoral_votes</span><span class="op">)</span>,</span>
@@ -2581,7 +2584,7 @@ a range of observations to red/blue, the z-values of these observations will be 
 <span>            mad <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/mad.html">mad</a></span><span class="op">(</span><span class="va">electoral_votes</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">key_stats</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
+</details><div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 4
      mn    md    sd   mad
   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -2590,22 +2593,22 @@ a range of observations to red/blue, the z-values of these observations will be 
 </div>
 <p>Calculate a 95% interval directly:</p>
 <div class="cell">
-<div class="sourceCode" id="cb75"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">draws</span><span class="op">$</span><span class="va">electoral_votes</span>, probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.025</span>, <span class="fl">0.975</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
+<details><summary>Code</summary><div class="sourceCode" id="cb75"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">draws</span><span class="op">$</span><span class="va">electoral_votes</span>, probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.025</span>, <span class="fl">0.975</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output cell-output-stdout">
 <pre><code> 2.5% 97.5% 
   172   483 </code></pre>
 </div>
 </div>
 <p>Approximate the 95% interval in two ways:</p>
 <div class="cell">
-<div class="sourceCode" id="cb77"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">key_stats</span><span class="op">$</span><span class="va">mn</span> <span class="op">-</span> <span class="fl">2</span> <span class="op">*</span> <span class="va">key_stats</span><span class="op">$</span><span class="va">sd</span>, </span>
+<details><summary>Code</summary><div class="sourceCode" id="cb77"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">key_stats</span><span class="op">$</span><span class="va">mn</span> <span class="op">-</span> <span class="fl">2</span> <span class="op">*</span> <span class="va">key_stats</span><span class="op">$</span><span class="va">sd</span>, </span>
 <span>  <span class="va">key_stats</span><span class="op">$</span><span class="va">mn</span> <span class="op">+</span> <span class="fl">2</span> <span class="op">*</span> <span class="va">key_stats</span><span class="op">$</span><span class="va">sd</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
+</details><div class="cell-output cell-output-stdout">
 <pre><code>[1] 151.5461 499.0198</code></pre>
 </div>
-<div class="sourceCode" id="cb79"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">key_stats</span><span class="op">$</span><span class="va">md</span> <span class="op">-</span> <span class="fl">2</span> <span class="op">*</span> <span class="va">key_stats</span><span class="op">$</span><span class="va">mad</span>, </span>
+<details><summary>Code</summary><div class="sourceCode" id="cb79"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">key_stats</span><span class="op">$</span><span class="va">md</span> <span class="op">-</span> <span class="fl">2</span> <span class="op">*</span> <span class="va">key_stats</span><span class="op">$</span><span class="va">mad</span>, </span>
 <span>  <span class="va">key_stats</span><span class="op">$</span><span class="va">md</span> <span class="op">+</span> <span class="fl">2</span> <span class="op">*</span> <span class="va">key_stats</span><span class="op">$</span><span class="va">mad</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
+</details><div class="cell-output cell-output-stdout">
 <pre><code>[1] 124.3664 527.6336</code></pre>
 </div>
 </div>

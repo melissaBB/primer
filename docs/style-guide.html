@@ -283,7 +283,7 @@ Spelling matters. Comments should be constructed as sentences, with appropriate 
 </section><section id="whitespace" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="whitespace">Whitespace</h3>
 <p><code>|&gt;</code> should always have a space before it, and should usually be followed by a new line. After the first step in the pipe, each line should be indented by two spaces. This structure makes it easier to add new steps (or rearrange existing steps) and harder to overlook a step.</p>
 <div class="cell">
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Good</span></span>
+<details><summary>Code</summary><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Good</span></span>
 <span></span>
 <span><span class="va">iris</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">select</span><span class="op">(</span><span class="va">Species</span>, <span class="va">Sepal.Length</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
@@ -295,10 +295,11 @@ Spelling matters. Comments should be constructed as sentences, with appropriate 
 <span></span>
 <span><span class="va">iris</span> <span class="op">|&gt;</span> <span class="fu">select</span><span class="op">(</span><span class="va">Species</span>, <span class="va">Sepal.Length</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">summarise</span><span class="op">(</span>avg <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">Sepal.Length</span><span class="op">)</span>,</span>
 <span>            .by <span class="op">=</span> <span class="va">Species</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">arrange</span><span class="op">(</span><span class="va">avg</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <p><strong>ggplot2</strong> code is handled in a similar fashion. All commands after the initial invocation of <code>ggplot()</code> are indented.</p>
 <div class="cell">
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Good</span></span>
+<details><summary>Code</summary><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Good</span></span>
 <span></span>
 <span><span class="va">diamonds</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">depth</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
@@ -314,11 +315,12 @@ Spelling matters. Comments should be constructed as sentences, with appropriate 
 <span><span class="fu">geom_histogram</span><span class="op">(</span>bins <span class="op">=</span> <span class="fl">100</span><span class="op">)</span> <span class="op">+</span> <span class="fu">labs</span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Distribution of Depth"</span>,</span>
 <span>         x <span class="op">=</span> <span class="st">"Depth"</span>,</span>
 <span>         y <span class="op">=</span> <span class="st">"Count"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 </section><section id="commas" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="commas">Commas</h3>
 <p>Always put a space after a comma, never before, just like in regular English.</p>
 <div class="cell">
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Good</span></span>
+<details><summary>Code</summary><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Good</span></span>
 <span></span>
 <span><span class="va">x</span><span class="op">[</span>, <span class="fl">1</span><span class="op">]</span></span>
 <span></span>
@@ -327,11 +329,12 @@ Spelling matters. Comments should be constructed as sentences, with appropriate 
 <span><span class="va">x</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span></span>
 <span><span class="va">x</span><span class="op">[</span> ,<span class="fl">1</span><span class="op">]</span></span>
 <span><span class="va">x</span><span class="op">[</span> , <span class="fl">1</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 </section><section id="parentheses" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="parentheses">Parentheses</h3>
 <p>Do not put spaces inside or outside parentheses for regular function calls.</p>
 <div class="cell">
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Good</span></span>
+<details><summary>Code</summary><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Good</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">x</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span></span>
@@ -339,11 +342,12 @@ Spelling matters. Comments should be constructed as sentences, with appropriate 
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span> <span class="op">(</span><span class="va">x</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span> <span class="va">x</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span> <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 </section><section id="infix-operators" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="infix-operators">Infix operators</h3>
 <p>Most infix operators (<code>=</code>, <code>==</code>, <code>+</code>, <code>-</code>, <code>&lt;-</code>, <code>~</code>, et cetera) should be surrounded by one space.</p>
 <div class="cell">
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Good</span></span>
+<details><summary>Code</summary><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Good</span></span>
 <span></span>
 <span><span class="va">height</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="va">feet</span> <span class="op">*</span> <span class="fl">12</span><span class="op">)</span> <span class="op">+</span> <span class="va">inches</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">x</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
@@ -355,10 +359,11 @@ Spelling matters. Comments should be constructed as sentences, with appropriate 
 <span><span class="va">height</span><span class="op">&lt;-</span><span class="va">feet</span><span class="op">*</span><span class="fl">12</span><span class="op">+</span><span class="va">inches</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">x</span>, na.rm<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="va">y</span><span class="op">~</span><span class="va">a</span> <span class="op">+</span> <span class="va">b</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <p>Other operators — like <code>::</code>, <code>:::</code>, <code>$</code>, <code>@</code>, <code>[</code>, <code>[[</code>, <code>^</code>, and <code>:</code> — should never be surrounded by spaces.</p>
 <div class="cell">
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Good</span></span>
+<details><summary>Code</summary><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Good</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">x</span><span class="op">^</span><span class="fl">2</span> <span class="op">+</span> <span class="va">y</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span></span>
 <span><span class="va">df</span><span class="op">$</span><span class="va">z</span></span>
@@ -369,11 +374,13 @@ Spelling matters. Comments should be constructed as sentences, with appropriate 
 <span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">x</span> <span class="op">^</span> <span class="fl">2</span> <span class="op">+</span> <span class="va">y</span> <span class="op">^</span> <span class="fl">2</span><span class="op">)</span></span>
 <span><span class="va">df</span> <span class="op">$</span> <span class="va">z</span></span>
 <span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">1</span> <span class="op">:</span> <span class="fl">10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <p>You may add extra spaces if it improves alignment of <code>=</code> or <code>&lt;-</code>.</p>
 <div class="cell">
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>total <span class="op">=</span> <span class="va">a</span> <span class="op">+</span> <span class="va">b</span> <span class="op">+</span> <span class="va">c</span>,</span>
+<details><summary>Code</summary><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>total <span class="op">=</span> <span class="va">a</span> <span class="op">+</span> <span class="va">b</span> <span class="op">+</span> <span class="va">c</span>,</span>
 <span>     mean <span class="op">=</span> <span class="op">(</span><span class="va">a</span> <span class="op">+</span> <span class="va">b</span> <span class="op">+</span> <span class="va">c</span><span class="op">)</span> <span class="op">/</span> <span class="va">n</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <p>Do not add extra spaces to places where space is not usually allowed.</p>
 </section></section><section id="messageswarningserrors" class="level2 unnumbered"><h2 class="unnumbered anchored" data-anchor-id="messageswarningserrors">Messages/Warnings/Errors</h2>
