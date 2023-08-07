@@ -1,18 +1,15 @@
 # Five Parameters {#sec-five-parameters}
 
-<!-- DK: Add Preceptor Table for first question. DONE-->
 
-<!-- DK: ch10 should be ch7_a and ch7_b DONE-->
+<!-- DK: Perhaps use as a good example of how the estimated posterior is not the true posterior, Preceptor's Posterior, because of the assumptions we are making are never completely true. Add a paragrpah in Temperance about this fact. -->
 
-<!-- DK: Hide the code, as you see fit. DONE-->
+<!-- DK: Do we really believe the posterior for male/female expected years lived? No! Or, at the very least, we are suspicious. Discuss the importance of prior knowledge and "reality checks" in Temperance or, perhaps better, in election_age + sex model section.  -->
 
-<!-- Add more discussion below? Perhaps use as a good example of how the estimated posterior is not the true posterior because of the assumptions we are making about the structure of the error term. -->
+<!-- DK: Add posterior_predictive checks. Belongs at the end of the courage section. -->
 
-<!-- Do we really believe the posterior for male/female expected years lived? No! Or, at the very least, we are suspicious. Discuss the importance of prior knowledge and "reality checks" in Temperance. -->
+<!-- DK: Get rid of warnings with size aesthetic in plots. -->
 
-<!-- Add posterior_predictive checks. Belongs at the end of the courage section. -->
-
-<!-- Every introductory section should have a sentence or two about the Cardinal Virtues. -->
+<!-- DK: For each model, we need the math, the code and the printed out fitted model. -->
 
 *This chapter is still a DRAFT.*
 
@@ -358,9 +355,13 @@ print(fit_1, detail = FALSE)
 
 As we can see $\beta_0$ is our intercept, around `r round(coef(fit_1)["(Intercept)"], 0)` years.
 
-We do not have a value for female. However we do have an intercept. `sexMale` is the median age of male candidates after winning an election. The MAD_SD for each parameter is a measure of the variability of our posterior distributions for that parameter. Speaking roughly, 95% of the mass of a posterior probability distribution is located within +/- 3 MAD_SDs from the median. Typically we don't want to consider parameters that are under 2 because they tend to show that the distribution of data may not be as important. However, there are several times where this case may not be accurate, and we will need to use parameters that have a MAD_SD of under 2.
+We do not have a value for female. However we do have an intercept. `sexMale` is the median age of male candidates after winning an election. The MAD_SD for each parameter is a measure of the variability of our posterior distributions for that parameter. Speaking roughly, 95% of the mass of a posterior probability distribution is located within +/- 2 MAD_SDs from the median. If a parameter's estimated value is more than 2 or 3 MAD_SD's away from zero, we generally keep that parameter (and its associated variable) in the model. This is, probably, a variable which "matters." 
+
+The main exception to this rule is a parameter whose value is so close to zero that it changes in its associated variable, within the general range of that variable, can't change the value of the outcome by much. For example, if the estimated value of $\beta_1$ were 0.1 (with a MAD_SD of 0.01), we might drop the variable, even though the parameter is 10 MAD_SD's away from zero, because 0.1 years is too small a value to matter.
 
 ### election_age
+
+<!-- DK: Add a nice graphic with the fitted line, like we have in the next section. -->
 
 To begin, let's model candidate lifespan after the election as a function of candidate lifespan prior to the election with our mathematics.
 
@@ -423,12 +424,10 @@ This is a descriptive model, not a causal model. Remember our motto from Chapter
 
 Given that, it is important to monitor our language. We do not believe that that changes in `election_age` "cause" changes in `lived_after`. That is obvious. But there are some words and phrases --- like "associated with" and "change by" --- which are too close to causal. (And which we are guilty of using just a few paragraphs ago!) Be wary of their use. *Always think in terms of comparisons when using a predictive model.* We can't change `election_age` for an individual candidate. We can only compare two candidates (or two groups of candidates).
 
-<!-- DK: THis is a critical point. Maybe give a precise example? Go through the math slowly, like ModernDive does? Highlight this somehow? At the very least, we should emphasize the point for each model going forward. -->
+<!-- This is a critical point. Maybe give a precise example? Go through the math slowly, like ModernDive does? Highlight this somehow? At the very least, we should emphasize the point for each model going forward. -->
 
-<!-- DK: Add some interpretation. Need to explain how the uncertainty in beta_1 is connected to the uncertainty we will see in lived_after, for a given difference (not "change") in election_age. -->
+<!-- Perhaps add a graphic which shows the "cloud" of possible regression lines, consistent with the posterior for beta_1.  -->
 
-<!-- DK: Priority is to add a graphic which shows the "cloud" of possible regression lines, consistent with the posterior for beta_1.  -->
-<!-- DK: Would using 50-year-old be better? -->
 
 ### election_age and sex
 
@@ -555,9 +554,9 @@ Let's create another model. This time, however, the numeric outcome variable of 
 
 #### Mathematics
 
-$$ lived\_after_i =  \beta_0 + \beta_1 male_i + \beta_2 c\_election\_age_i + \\ \beta_3 male_i *  c\_election\_age_i + \epsilon_i $$
+<!-- DK: This should wrap. Does it? -->
 
-<!-- DK: Need to make these interpretations clearer and more consistent across the examples. Explain how you can have more predictors than you have variables. -->
+$$ lived\_after_i =  \beta_0 + \beta_1 male_i + \beta_2 c\_election\_age_i + \\ \beta_3 male_i *  c\_election\_age_i + \epsilon_i $$
 
 * Our outcome variable is still $lived\_after_i$. We want to know how many years a candidate will live after an election. Our explanatory variables as the same as before. $male_i$ is one for male candidates and zero for female candidates. $c\_election\_age_i$ the number of years a candidate has lived before the election, relative to the average value for all candidates. In this model, we have a third predictor variable: the interaction between $male_i$ and $c\_election\_age_i$. 
 
@@ -565,7 +564,7 @@ $$ lived\_after_i =  \beta_0 + \beta_1 male_i + \beta_2 c\_election\_age_i + \\ 
 
 * $\beta_1$ does not have a simple interpretation as a stand-alone parameter. It is a measure of how different women are from men. However, $\beta_0 + \beta_1$ has a straightforward meaning exactly analogous to the meaning of $\beta_0$. The sum  is the average number of years lived after the election for *men*, who on the day of election, have been alive the average number of years of all candidates.
 
-* $\beta_2$ is the coefficient of $c\_election\_age_i$. It it just the slope for women. It is the average difference in $lived\_after_i$ between two women, one of whom has an $c\_election\_age_i$ value of 1 greater than the other. In our last example,  $\beta_2$ was the slope for the whole population. Now we are different slopes for different genders. 
+* $\beta_2$ is the coefficient of $c\_election\_age_i$. It it just the slope for women. It is the average difference in $lived\_after_i$ between two women, one of whom has an $c\_election\_age_i$ value of 1 greater than the other. In our last example,  $\beta_2$ was the slope for the whole population. Now we have different slopes for different genders. 
 
 * $\beta_3$ alone is difficult to interpret. However, when it is added to $\beta_2$, the result in the slope for men.
 
@@ -587,7 +586,6 @@ print(fit_4, detail = FALSE)
 
 <!-- DK: Take your time explaining what this means! It is not trivial. Note that this is a non-parallel slopes model. -->
 
-<!-- DK: Fix -->
 
 The intercept has increased. $\beta_0$ is around `r round(coef(fit_4)["(Intercept)"], 0)`. This is the intercept for females. It still means the average number of years lived after the election for women is `r round(coef(fit_4)["(Intercept)"], 0)` or so. Our `sexMale` coefficient, $\beta_1$, refers to the value that must be added to the intercept in order to get the average for males. When calculated, the result is `r round(coef(fit_4)["(Intercept)"] + coef(fit_4)["sexMale"], 0)`. Keep in mind, however, that these values only apply if $c\_election\_age_i = 0$, if, that is, candidate $i$ is around `r round(mean(ch7_a$election_age), 0)` years old. 
 
@@ -595,39 +593,11 @@ The coefficient for $c\_election\_age_i$, $\beta_2$, is `r round(coef(fit_4)["el
 
 *Key point*: The interpretation of the intercepts only apply to candidates for whom $c\_election\_age_i = 0$. Candidates who are not `r round(mean(ch7_a$election_age), 0)` years-old will have a different expected number of years to live. The interpretation of the slope applies to everyone. In other words, the relationship between $lived\_after_i$ and $c\_election\_age_i$ is the same, regardless of your gender or how old you are.
 
-The posterior:
-
-```{r}
-fit_4 |> 
-  as_tibble() |> 
-  mutate(male_years = `(Intercept)` + sexMale) |> 
-  rename(female_years = `(Intercept)`) |> 
-  select(female_years, male_years) |> 
-  pivot_longer(cols = female_years:male_years, 
-               names_to = "parameters",
-               values_to = "years") |> 
-  ggplot(aes(years, fill = parameters)) +
-    geom_histogram(aes(y = after_stat(count/sum(count))),
-                   alpha = 0.5, 
-                   bins = 100, 
-                   position = "identity") +
-    labs(title = "Posterior for Years Lived After the Election",
-         subtitle = "Men live longer",
-         x = "Average Years Lived Post Election",
-         y = "Probability", 
-         fill = "Parameters") + 
-    scale_x_continuous(labels = scales::number_format()) +
-    scale_y_continuous(labels = scales::percent_format()) +
-    theme_classic()
-```
-
-Again, *we do not recommend working directly with parameters.* The above analysis would be much easier with `posterior_epred()`, as we will see in the Temperance Section.
 
 Male candidates live longer on average than female candidates. Note, also, that the average years to live after the election for females is about `r round(coef(fit_4)["(Intercept)"], 0)` with this model. With the previous model, it was `r round(coef(fit_3)["(Intercept)"], 0)` years. Why the difference? The interpretation of "average" is different! In the previous model, it was the average for all women. In this model, it is the average for all `r round(mean(ch7_a$election_age), 0)` years-old women. Those are different things, so we should hardly be surprised by different posteriors.
 
 <!-- DK: Is the above right? -->
- 
-<!-- DK: Need a better title. How do we describe the meaning of slope without using the word slope? -->
+
 
 ### Interaction model
 
@@ -730,7 +700,6 @@ This is our final interaction model! There are some interesting takeaways. First
  
 The male line seems more sensible, as we might expect with far more datapoints. For male candidates, we see a clear (logical) pattern: the older candidates are at the time of election, the less years post-election they live. This makes sense, as we are limited by the human lifespan. 
 
-<!-- DK: Answer this question!  -->
 
 ## Temperance
 
@@ -742,6 +711,8 @@ knitr::include_graphics("other/images/Temperance.jpg")
 **Courage** gave us the fitted model. With **Temperance** we can create posteriors of the quantities of interest. We should be modest in the claims we make.
 
 Recall the questions with which we began the chapter:
+
+<!-- DK: Make question consistent with one you started with. -->
 
 *How long will two political candidates --- one male and one female, both 10 years older than the average candidate --- live after the election? How different will their lifespans be?*
 
@@ -792,9 +763,7 @@ pe |>
     theme_classic()
 ```
 
-<!-- DK: Do males live longer than females, even when both of 62? That is surprising! -->
-
-<!-- DK: Need to discuss if we would get the same answer for candidates of ages other than 62. Not sure myself! -->
+<!-- DK: Do males live longer than females, even when both of 62? That is surprising! Discuss again, even though we discussed above. This is sort of a posterior predictive check using uour knowledge of the world. -->
 
 Looking at our posterior probability distributions above, we can see that male candidates are expected to live longer. But how much longer? Does the initial age affect the posterior for expected years after the candidate's election? As in previous chapters, we can manipulate distributions in, more or less, the same way that we manipulate simple numbers. If we want to know the difference between two posterior distributions, we can simply subtract. 
 
@@ -867,8 +836,6 @@ pp |>
 
 There is a big overlap in the predictions for individuals while, at the same time, there is much less overlap in the averages. Random stuff happens to an individual all the time. Random stuff cancels out when you take the average for many individuals. Consider the difference in the posterior predictive distributions for the two individuals.
 
-<!-- DK: Example "Posterior Predictive Distribution" -->
-
 ```{r}
 pp |> 
   mutate(diff = Male - Female) |> 
@@ -887,7 +854,7 @@ pp |>
     theme_classic()
 ```
 
-<!-- DK: Fix. Could not figure out how to calculate the 13 years on the fly. Code like this --- r round(mean(pp[,2] - pp[,1]), 0) --- did not work. Problem is that the pp tibble has variable names 1 and 2, but we can't grab those with pp$`1` because that expression is within the backticks of an inline R code chunk. -->
+<!-- Could not figure out how to calculate the 13 years on the fly. Code like this --- r round(mean(pp[,2] - pp[,1]), 0) --- did not work. Problem is that the pp tibble has variable names 1 and 2, but we can't grab those with pp$`1` because that expression is within the backticks of an inline R code chunk. -->
 
 In words, we would predict that the male candidate would live longer than the female candidate. By how much? Well, that number is an unknown parameter. By looking at our posterior above, our best estimate is about `r round(pp |> mutate(diff = Male - Female) |> pull(diff) |> mean(), 1)` years. However, it is quite possible that, for any given male/female candidates, the female will live longer.
 
@@ -943,9 +910,6 @@ tibble(Expectation = pe$diff,
 
 Expected values vary much less than predictions. The above chart makes that easy to see. We are somewhat sure that the true underlying average for the numbers of years that male candidates live post-election is more than female candidates. But, for any two individual candidates, there is a good chance that that the female candidate will live longer. We can not ignore $\epsilon$ when predicting the outcome for individuals. When estimating expected values or long-run averages, the  $\epsilon$'s cancel out. 
 
-<!-- DK: Discuss the substantive issue? How can it be that Washington candidates live longer? Also, compare these estimates to what naive lm() would tell us. -->
-
-<!-- DK: Finish with Temperance/population/exchangability discussion. -->
 
 ### Testing
 
