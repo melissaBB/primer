@@ -250,12 +250,15 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
+<!-- Given that, it is important to monitor our language. We do not believe that that changes in `election_age` "cause" changes in `lived_after`. That is obvious. But there are some words and phrases --- like "associated with" and "change by" --- which are too close to causal. (And which we are guilty of using just a few paragraphs ago!) Be wary of their use. *Always think in terms of comparisons when using a predictive model.* We can't change `election_age` for an individual candidate. We can only compare two candidates (or two groups of candidates). -->
+<!-- If a parameter's estimated value is more than 2 or 3 MAD_SD's away from zero, we generally keep that parameter (and its associated variable) in the model. This is, probably, a variable which "matters." The main exception to this rule is a parameter whose value is so close to zero that it changes in its associated variable, within the general range of that variable, can't change the value of the outcome by much. -->
+<!-- Test paragraph in each Temperance section. Move from 5 parameter chapter. -->
 <p><em>THIS IS A DRAFT</em></p>
 <p>These are the key concepts from the <em>Primer</em>. You should apply them whenever you face a choice, and some data to help you make it. The world confronts us. Makes decisions we must.</p>
-<p><strong>Quantity of Interest</strong> is the number which you want to estimate. You will almost always calculate a posterior probability distribution for your Quantity of Interest since, in the real world, it is almost always impossible to determine your QoI precisely.</p>
+<p><strong>Quantity of Interest</strong> is the number which you want to estimate. You will almost always calculate a posterior probability distribution for your Quantity of Interest since, in the real world, it is almost always impossible to determine your QoI precisely. Most problems involve more than one QoI.</p>
 <p><strong>Predictive Models and Causal Models</strong> are different because predictive models have only one outcome column. Causal models have more than one (potential) outcome column because we need more than one potential outcome in order to estimate a <em>causal effect</em>. The first step in a data science problem is to determine if your QoI requires a causal or a predictive model.</p>
 <p><strong>Units</strong>, <strong>outcomes</strong> and <strong>covariates</strong> are important parts of every data science model. Causal, but not predictive, models also include <strong>treatments</strong>, which are just covariates which we can manipulate. The QoI determines the units and outcomes for your model.</p>
-<p><strong>Preceptor Table</strong> is the smallest possible table of data with rows and columns such that, if there is no missing data, then it is easy to estimate the quantity of interest.</p>
+<p><strong>Preceptor Table</strong> is the smallest possible table of data with rows and columns such that, if there is no missing data, then it is easy to estimate the quantities of interest.</p>
 <p><a href="https://www.econometrics-with-r.org/13-1-poceaie.html"><strong>Potential Outcome</strong></a> is the outcome for an individual under a potential treatment.</p>
 <p><strong>Causal Effect</strong> is the difference between two potential outcomes.</p>
 <p><a href="https://en.wikipedia.org/wiki/Rubin_causal_model"><strong>Rubin Causal Model</strong></a> is an approach to the statistical analysis of cause and effect based on the framework of potential outcomes.</p>

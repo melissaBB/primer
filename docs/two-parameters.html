@@ -98,7 +98,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./three-parameters.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Three Parameters</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./two-parameters.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Two Parameters</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -284,7 +284,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
-</header><!-- Perhaps this chapter should introduce, gently, the concept of in-sample and out-of-sample. As well as predictive accuracy as being a good way to judge how good your model is. What are some useful measures of predictive accuracy? Discuss our objective functions; minimize what? when would median be better than mean? Find a skewed data set and show how guessing the median works better than guessing the mean, if you care about absolute difference. (Can we estimate the median with stan_glm()?) Bias/Variance == Underfitting/Overfitting --><!-- Perhaps the above indicates the manner in which we might expand the Courage and Temperance sections? --><p>In <a href="probability.html"><span>Chapter&nbsp;2</span></a>, we learned how to do inference. We created a joint distribution of the models under consideration and the data which might be observed. Once we observed the data, we went from the joint distribution to the conditional distribution of possible models given the data which we did, in fact, observe. That conditional distribution, suitably normalized, was our posterior probability distribution over the space of possible models. With that distribution, we can answer any question we might (reasonably) ask.</p>
+</header><!-- Two parameter chapter is missing the math. --><!-- Perhaps this chapter should introduce, gently, the concept of in-sample and out-of-sample. As well as predictive accuracy as being a good way to judge how good your model is. What are some useful measures of predictive accuracy? Discuss our objective functions; minimize what? when would median be better than mean? Find a skewed data set and show how guessing the median works better than guessing the mean, if you care about absolute difference. (Can we estimate the median with stan_glm()?) Bias/Variance == Underfitting/Overfitting --><!-- Perhaps the above indicates the manner in which we might expand the Courage and Temperance sections? --><p>In <a href="probability.html"><span>Chapter&nbsp;2</span></a>, we learned how to do inference. We created a joint distribution of the models under consideration and the data which might be observed. Once we observed the data, we went from the joint distribution to the conditional distribution of possible models given the data which we did, in fact, observe. That conditional distribution, suitably normalized, was our posterior probability distribution over the space of possible models. With that distribution, we can answer any question we might (reasonably) ask.</p>
 <!-- Need a gif here. Like Hunger Games in Chapter 6. -->
 <p><em>But what a pain in the ass that whole process was!</em> Do professionals actually go through all those steps every time they work on a data science problem? No! That would be absurd. Instead, professionals use standard tools which, in an automated fashion, take care of those steps, taking us directly from assumptions and data to the posterior:</p>
 <p><span class="math display">\[\text{Prob}(\text{models} | \text{data} = \text{data we observed})\]</span></p>
@@ -333,23 +333,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell" data-layout-align="left">
 <div class="cell-output-display">
 
-<div id="avfusqewzj" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#avfusqewzj table {
+<div id="bshnaywnea" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#bshnaywnea table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#avfusqewzj thead, #avfusqewzj tbody, #avfusqewzj tfoot, #avfusqewzj tr, #avfusqewzj td, #avfusqewzj th {
+#bshnaywnea thead, #bshnaywnea tbody, #bshnaywnea tfoot, #bshnaywnea tr, #bshnaywnea td, #bshnaywnea th {
   border-style: none;
 }
 
-#avfusqewzj p {
+#bshnaywnea p {
   margin: 0;
   padding: 0;
 }
 
-#avfusqewzj .gt_table {
+#bshnaywnea .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -375,12 +375,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-left-color: #D3D3D3;
 }
 
-#avfusqewzj .gt_caption {
+#bshnaywnea .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#avfusqewzj .gt_title {
+#bshnaywnea .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -392,7 +392,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-width: 0;
 }
 
-#avfusqewzj .gt_subtitle {
+#bshnaywnea .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -404,7 +404,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-top-width: 0;
 }
 
-#avfusqewzj .gt_heading {
+#bshnaywnea .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -416,13 +416,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#avfusqewzj .gt_bottom_border {
+#bshnaywnea .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#avfusqewzj .gt_col_headings {
+#bshnaywnea .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -437,7 +437,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#avfusqewzj .gt_col_heading {
+#bshnaywnea .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -457,7 +457,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   overflow-x: hidden;
 }
 
-#avfusqewzj .gt_column_spanner_outer {
+#bshnaywnea .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -469,15 +469,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 4px;
 }
 
-#avfusqewzj .gt_column_spanner_outer:first-child {
+#bshnaywnea .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#avfusqewzj .gt_column_spanner_outer:last-child {
+#bshnaywnea .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#avfusqewzj .gt_column_spanner {
+#bshnaywnea .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -489,11 +489,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   width: 100%;
 }
 
-#avfusqewzj .gt_spanner_row {
+#bshnaywnea .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#avfusqewzj .gt_group_heading {
+#bshnaywnea .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -519,7 +519,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   text-align: left;
 }
 
-#avfusqewzj .gt_empty_group_heading {
+#bshnaywnea .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -534,15 +534,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   vertical-align: middle;
 }
 
-#avfusqewzj .gt_from_md > :first-child {
+#bshnaywnea .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#avfusqewzj .gt_from_md > :last-child {
+#bshnaywnea .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#avfusqewzj .gt_row {
+#bshnaywnea .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -561,7 +561,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   overflow-x: hidden;
 }
 
-#avfusqewzj .gt_stub {
+#bshnaywnea .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -574,7 +574,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#avfusqewzj .gt_stub_row_group {
+#bshnaywnea .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -588,15 +588,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   vertical-align: top;
 }
 
-#avfusqewzj .gt_row_group_first td {
+#bshnaywnea .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#avfusqewzj .gt_row_group_first th {
+#bshnaywnea .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#avfusqewzj .gt_summary_row {
+#bshnaywnea .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -606,16 +606,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#avfusqewzj .gt_first_summary_row {
+#bshnaywnea .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#avfusqewzj .gt_first_summary_row.thick {
+#bshnaywnea .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#avfusqewzj .gt_last_summary_row {
+#bshnaywnea .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -625,7 +625,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#avfusqewzj .gt_grand_summary_row {
+#bshnaywnea .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -635,7 +635,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#avfusqewzj .gt_first_grand_summary_row {
+#bshnaywnea .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -645,7 +645,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-top-color: #D3D3D3;
 }
 
-#avfusqewzj .gt_last_grand_summary_row_top {
+#bshnaywnea .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -655,11 +655,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#avfusqewzj .gt_striped {
+#bshnaywnea .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#avfusqewzj .gt_table_body {
+#bshnaywnea .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -668,7 +668,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#avfusqewzj .gt_footnotes {
+#bshnaywnea .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -682,7 +682,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#avfusqewzj .gt_footnote {
+#bshnaywnea .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -691,7 +691,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#avfusqewzj .gt_sourcenotes {
+#bshnaywnea .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -705,7 +705,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#avfusqewzj .gt_sourcenote {
+#bshnaywnea .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -713,63 +713,63 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#avfusqewzj .gt_left {
+#bshnaywnea .gt_left {
   text-align: left;
 }
 
-#avfusqewzj .gt_center {
+#bshnaywnea .gt_center {
   text-align: center;
 }
 
-#avfusqewzj .gt_right {
+#bshnaywnea .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#avfusqewzj .gt_font_normal {
+#bshnaywnea .gt_font_normal {
   font-weight: normal;
 }
 
-#avfusqewzj .gt_font_bold {
+#bshnaywnea .gt_font_bold {
   font-weight: bold;
 }
 
-#avfusqewzj .gt_font_italic {
+#bshnaywnea .gt_font_italic {
   font-style: italic;
 }
 
-#avfusqewzj .gt_super {
+#bshnaywnea .gt_super {
   font-size: 65%;
 }
 
-#avfusqewzj .gt_footnote_marks {
+#bshnaywnea .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#avfusqewzj .gt_asterisk {
+#bshnaywnea .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#avfusqewzj .gt_indent_1 {
+#bshnaywnea .gt_indent_1 {
   text-indent: 5px;
 }
 
-#avfusqewzj .gt_indent_2 {
+#bshnaywnea .gt_indent_2 {
   text-indent: 10px;
 }
 
-#avfusqewzj .gt_indent_3 {
+#bshnaywnea .gt_indent_3 {
   text-indent: 15px;
 }
 
-#avfusqewzj .gt_indent_4 {
+#bshnaywnea .gt_indent_4 {
   text-indent: 20px;
 }
 
-#avfusqewzj .gt_indent_5 {
+#bshnaywnea .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -868,11 +868,11 @@ $ sleep          &lt;int&gt; 4, 4, 4, NA, 8, NA, NA, 8, 8, 8, 7, 5, 4, NA, 5, 7,
 <pre><code># A tibble: 5 × 3
     age gender height
   &lt;int&gt; &lt;chr&gt;   &lt;dbl&gt;
-1    64 Female  161. 
-2    80 Male    174. 
-3    32 Male    178. 
-4     3 Female   99.7
-5    72 Female  162. </code></pre>
+1    26 Female   162.
+2    80 Female   154.
+3     8 Male     130.
+4    34 Male     178.
+5    16 Male     153.</code></pre>
 </div>
 </div>
 <p>We think of both <code>age</code> and <code>height</code> as numbers. And they are numbers! But R distinguishes between “integers” and “doubles,” only the second of which allow for decimal values. In the <code>nhanes</code> data, <code>age</code> is an integer and <code>height</code> is a double.</p>
