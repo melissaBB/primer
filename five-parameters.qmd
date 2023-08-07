@@ -151,8 +151,6 @@ Looking at the histogram for `year`, we see that it is skewed right --- meaning 
 In using this data set, our left-side variable will be `lived_after`. We are trying to understand/predict how many years a candidate will live after the election. 
 
 ```{r}
-#| code-fold: true
-#| code-summary: "Show the code"
 ch7_a |>
   ggplot(aes(x = year, y = lived_after)) +
   geom_point() +
@@ -172,8 +170,6 @@ The reason the data is slanted downward is because the maximum value for this sc
 To begin visualizing our `lived_after` data, we will inspect the difference in years lived post election between male and female candidates. 
 
 ```{r}
-#| code-fold: true
-#| code-summary: "Show the code"
 ch7_a |>
   ggplot(aes(x = sex, y = lived_after)) +
   geom_boxplot() +
@@ -189,8 +185,6 @@ ch7_a |>
 This plot shows that men live much longer, on average, than women after the election. Is there an intuitive explanation for why this might be? 
 
 ```{r}
-#| code-fold: true
-#| code-summary: "Show the code"
 ch7_a |> 
   ggplot(aes(x = election_age, y = lived_after)) +
     geom_point() +
@@ -360,8 +354,6 @@ The main exception to this rule is a parameter whose value is so close to zero t
 #### Model Checks
 
 ```{r}
-#| code-fold: true
-#| code-summary: "Show the code"
 pp_check(fit_1, plotfun = "hist", nreps = 3, binwidth = 5)
 ```
 
@@ -458,8 +450,6 @@ candidate_slope <- election_age
 
 ```{r}
 #| warning: false
-#| code-fold: true
-#| code-summary: "Show the code"
 ggplot(ch7_a, aes(x = lived_after, y = election_age)) +
   geom_point() +
   geom_abline(intercept = candidate_intercept,
@@ -478,8 +468,6 @@ Now that we have created our fitted model we can perform model checks to ensure 
 
 ```{r}
 #| warning: false
-#| code-fold: true
-#| code-summary: "Show the code"
 pp_check(fit_2, plotfun = "hist", nreps = 3, binwidth = 10)
 ```
 
@@ -570,8 +558,6 @@ sex_male_att_slope <- election_age
 
 ```{r}
 #| warning: false
-#| code-fold: true
-#| code-summary: "Show the code"
 ggplot(ch7_a, aes(x = lived_after, y = election_age, color = sex)) +
   
   # Use geom_point to show the datapoints. 
@@ -614,8 +600,6 @@ The posterior for male/female years lived shows a huge gap between the two value
 With the fitted model that we have created we are able to perform model checks. The model checks that we perform will help us understand how accurate our model is because we need to be able to ensure that our fitted model is reasonably accurate. We can view our model through model checks that interpret the residuals (error), outcome, and "fake-data" simulations. 
 
 ```{r}
-#| code-fold: true
-#| code-summary: "Show the code"
 pp_check(fit_3, plotfun = "hist", nreps = 3, binwidth = 0.1)
 ```
 
@@ -892,8 +876,6 @@ The resulting tibble has 2 columns, the first for a male candidate and the secon
 Let's look at the posterior predictive distribution for each candidate.
 
 ```{r}
-#| code-fold: true
-#| code-summary: "Show the code"
 pp |> 
   pivot_longer(cols = Male:Female, 
                names_to = "Gender",
@@ -916,8 +898,6 @@ pp |>
 There is a big overlap in the predictions for individuals while, at the same time, there is much less overlap in the averages. Random stuff happens to an individual all the time. Random stuff cancels out when you take the average for many individuals. Consider the difference in the posterior predictive distributions for the two individuals.
 
 ```{r}
-#| code-fold: true
-#| code-summary: "Show the code"
 pp |> 
   mutate(diff = Male - Female) |> 
   ggplot(aes(diff)) +
@@ -1118,8 +1098,6 @@ With the question that we are trying to answer, we will be more focused on explo
 In using this data set, our left-side variable will be `lived_after`. We are trying to understand/predict how many years a candidate will live after they have won election and whether winning the election affects how long they live.  
 
 ```{r}
-#| code-fold: true
-#| code-summary: "Show the code"
 ch7_b |>
   ggplot(aes(x = election_age, y = lived_after, color = won)) +
   geom_point() +
