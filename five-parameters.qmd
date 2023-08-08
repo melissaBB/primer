@@ -1,16 +1,8 @@
 # Five Parameters {#sec-five-parameters}
 
-<!-- DK: Perhaps use as a good example of how the estimated posterior is not the true posterior, Preceptor's Posterior, because of the assumptions we are making are never completely true. Add a paragrpah in Temperance about this fact. DONE-->
-
-<!-- DK: Do we really believe the posterior for male/female expected years lived? No! Or, at the very least, we are suspicious. Discuss the importance of prior knowledge and "reality checks" in Temperance or, perhaps better, in election_age + sex model section.  DONE-->
-
-<!-- DK: Add posterior_predictive checks. Belongs at the end of the courage section. DONE-->
-
-<!-- DK: Get rid of warnings with size aesthetic in plots. DONE-->
-
-<!-- DK: For each model, we need the math, the code and the printed out fitted model. DONE-->
-
 *This chapter is still a DRAFT.*
+
+<!-- DK: Show the code for fitting and printing models, and for any other code chunks that are small/important. -->
 
 Last chapter, we studied four parameters: models in which we studied multiple right-hand side variables at once. The next step in our model building education is to learn about *interactions*. The effect of a treatment relative to a control is almost never uniform. The effect might be bigger in women than in men, smaller in the rich relative to the poor. The technical term for such effects is "heterogeneous," which is just Ph.D.'ese for "different." With enough data, all effects are heterogeneous. Causal effects, at least in the social science, always vary across units. To model this reality, we rely on interactions, on allowing the effect size to differ. The same applies for predictive models. The relationship between our outcome variable $y$ and a predictor variable $x$ is rarely constant. The relationship varies based on the values of other variables. To take account of interactions, we need models with at least 5 parameters. 
 
@@ -21,6 +13,7 @@ Packages:
 ```{r}
 #| message: false
 #| warning: false
+#| code-fold: false
 library(primer.data)
 library(gt)
 library(gtsummary)
@@ -30,7 +23,7 @@ library(rstanarm)
 library(broom.mixed)
 ```
 
-<!-- We should split between one causal and one predictive question. do predictive question first regarding the expectation and then causal question next regarding whether winning the election affects their longevity. Mention the questions in the introduction. Then sentence or two summary about Cardinal Virtues. -->
+<!-- DK: Perhaps add summary paragraph. Mention the questions in the introduction. Then sentence or two summary about Cardinal Virtues. -->
 
 ## Wisdom
 
@@ -39,15 +32,15 @@ library(broom.mixed)
 knitr::include_graphics("other/images/Wisdom.jpg")
 ```
 
-**Wisdom** is the first Cardinal Virtue that requires the creation of a Preceptor Table, an examination of our data, and a determination, using the concept of "validity," as to whether or not we can (reasonably!) assume that the two come from the same population.
+**Wisdom** is the first Cardinal Virtue. It requires the creation of a Preceptor Table, an examination of our data, and a determination, using the concept of "validity," as to whether or not we can (reasonably!) assume that the two come from the same population.
 
-Consider the following predictive questions:
+Consider the following questions:
 
-*How many years would we expect two gubernatorial candidates --- one male and one female, both 10 years older than the average candidate --- to live after the election? How different will their lifespans be?*
+<!-- DK: Start with less precise version of the question, and then refine it. -->
 
-Note how far we have come in the *Primer*. These are difficult questions, involving issues of both prediction and causation. Yet, if we follow the Cardinal Virtues, we can provide sophisticated answers.
+*How long do gubernatorial candidates live after the election?*
 
-Recall the most important aspects of Wisdom: the Preceptor Table, the EDA (exploratory data analysis), and validity of the data. As always, we start with the Preceptor Table --- the table of data that would make all of our questions answerable with mere arithmetic (no inferences). 
+Recall the most important aspects of Wisdom: the Preceptor Table, the EDA (exploratory data analysis), and the assumption of validity. As always, we start with the Preceptor Table. 
 
 ### Preceptor Table
 
@@ -55,9 +48,11 @@ The **Preceptor Table** is the smallest possible table of data with rows and col
 
 To create our Preceptor Table, we need to ask ourselves a couple of questions based on our questions above.
 
-First, do we need a **causal** or **predictive** model? In our question above we have a predictive model as we only have one outcome which is the person's expected life expectancy based on our predictor which relates to an individual's sex.
+First, do we need a **causal** or **predictive** model? In our question above we have a predictive model as we only have one outcome which is the person's longevity.
 
-Second, what is the outcome? A person's life expectancy will be the **outcome**. The questions, however, leave unclear details. Where are these people at? Which country? Also, at what moment in time is this experiment taking place? In order to dive deeper into these questions we need to engage in a conversation with the person that is asking us these questions. For the questions that we have at hand we will be talking about the location of Chicago, Illinois on July 1, 2012. 
+Second, what is the outcome? A person's longevity after the election will be the **outcome**. The questions, however, leave unclear details. For example, what time period does the Preceptor Table cover? In order to dive deeper into these questions we need to engage in a conversation with the person that is asking us these questions. 
+
+<!-- DK: Pick units, either all candidates from 2000 through 2023, or all candidates in the 2024 election. -->
 
 Third, what are the **units**? Our units for this scenario would be individuals because the questions are about the life expectancy of unique candidates.
 
@@ -92,7 +87,7 @@ tibble(ID = c("Candidate 1", "Candidate 2", "...", "Candidate 10", "Candidate 11
   tab_spanner(label = "Covariates", columns = c(sex, year_elected, election_age))
 ```
 
-We would have rows for *every* gubernatorial election candidate in U.S. history. We may want further details, such as election year. This is merely a sketch of our ideal dataset.
+We would have rows for *every* gubernatorial election candidate in U.S. history. We may want further details, such as election year. 
 
 ### EDA of `governors`
 
@@ -335,6 +330,7 @@ With the help of **Courage** we can translate this math into code.
 To get posterior distributions for our parameters, we will use `stan_glm()`, just as we did in @sec-two-parameters. Let's regress `lived_after` on `sex` to see how candidates' post-election lifespans differ by sex with the help of mathematics first. 
 
 ```{r}
+#| code-fold: false
 fit_1 <- stan_glm(data = ch7_a,
                   formula = lived_after ~ sex,
                   refresh = 0,
@@ -342,6 +338,7 @@ fit_1 <- stan_glm(data = ch7_a,
 ```
 
 ```{r}
+#| code-fold: false
 print(fit_1, detail = FALSE)
 ```
 
@@ -354,6 +351,7 @@ The main exception to this rule is a parameter whose value is so close to zero t
 #### Model Checks
 
 ```{r}
+#| code-fold: false
 pp_check(fit_1, plotfun = "hist", nreps = 3, binwidth = 5)
 ```
 
@@ -361,7 +359,6 @@ pp_check(fit_1, plotfun = "hist", nreps = 3, binwidth = 5)
 
 ### election_age
 
-<!-- DK: Add a nice graphic with the fitted line, like we have in the next section. DONE-->
 
 To begin, let's model candidate lifespan after the election as a function of candidate lifespan prior to the election with our mathematics.
 
@@ -659,8 +656,6 @@ With the fitted model that we have created we are able to perform model checks. 
 pp_check(fit_4, plotfun = "hist", nreps = 3, binwidth = 1)
 ```
 
-<!-- DK: Is the above right? Yes. DONE-->
-
 ### Interaction model
 
 Recall the parallel slopes model that we created in @sec-four-parameters. Another visualization we can create, one that also uses slopes and intercepts for our model, is the interaction model. In this model, the slopes for our two groups **are different**, creating a non-parallel visualization. 
@@ -772,8 +767,6 @@ knitr::include_graphics("other/images/Temperance.jpg")
 **Courage** gave us the fitted model. With **Temperance** we can create posteriors of the quantities of interest. We should be modest in the claims we make.
 
 Recall the questions with which we began the chapter:
-
-<!-- DK: Make question consistent with one you started with. DONE-->
 
 **How many years would we expect two gubernatorial candidates --- one male and one female, both 10 years older than the average candidate --- to live after the election? How different will their lifespans be?*
 
