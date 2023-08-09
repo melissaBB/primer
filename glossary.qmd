@@ -7,6 +7,8 @@
 
 <!-- Test paragraph in each Temperance section. Move from 5 parameter chapter. -->
 
+<!-- The model you have made by the end of Courage is almost always too complex to answer the simple question you started with, because the question rarely specifies the values of all the covariates which are included in the model. -->
+
 *THIS IS A DRAFT*
 
 These are the key concepts from the *Primer*. You should apply them whenever you face a choice, and some data to help you make it. The world confronts us. Makes decisions we must.

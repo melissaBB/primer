@@ -1,8 +1,12 @@
 # Five Parameters {#sec-five-parameters}
 
-*This chapter is still a DRAFT.*
+<!-- DK: Only do pp() once, on the last model. -->
 
-<!-- DK: Show the code for fitting and printing models, and for any other code chunks that are small/important. DONE-->
+<!-- DK: Add "The more data we have, the more narrow the posteriors which we create." -->
+
+<!-- DK: Highlight the fact that we have complete data for some, but not all, the rows in the Preceptor Table, like the height example in Chapter 1. Would not be true if the question was about candidates in the future. In that case, no data in Preceptor Table. -->
+
+*This chapter is still a DRAFT.*
 
 Last chapter, we studied four parameters: models in which we studied multiple right-hand side variables at once. The next step in our model building education is to learn about *interactions*. The effect of a treatment relative to a control is almost never uniform. The effect might be bigger in women than in men, smaller in the rich relative to the poor. The technical term for such effects is "heterogeneous," which is just Ph.D.'ese for "different." With enough data, all effects are heterogeneous. Causal effects, at least in the social science, always vary across units. To model this reality, we rely on interactions, on allowing the effect size to differ. The same applies for predictive models. The relationship between our outcome variable $y$ and a predictor variable $x$ is rarely constant. The relationship varies based on the values of other variables. To take account of interactions, we need models with at least 5 parameters.
 
@@ -25,9 +29,6 @@ library(broom.mixed)
 
 Follow the Cardinal Virtues and tackle each problem step by step. Remember the process: first we use Wisdom, next Justice, next Courage, and finally Temperance. Each Cardinal Virtue plays role in answering the question that we have at hand. From creating the Preceptor Table, to the Population Table, to converting the math into code, we are able to use the Cardinal Virtues as a tool to answer all of our questions.
 
-<!-- DK: Perhaps add summary paragraph done. 
-Mention the questions in the introduction. -- Done in the wisdom section
-Then sentence or two summary about Cardinal Virtues. done -->
 
 ## Wisdom
 
@@ -39,8 +40,6 @@ knitr::include_graphics("other/images/Wisdom.jpg")
 **Wisdom** is the first Cardinal Virtue. It requires the creation of a Preceptor Table, an examination of our data, and a determination, using the concept of "validity," as to whether or not we can (reasonably!) assume that the two come from the same population.
 
 Consider the following questions:
-
-<!-- DK: Start with less precise version of the question, and then refine it. DONE-->
 
 *How long do gubernatorial candidates live after the election?*
 
@@ -56,7 +55,6 @@ First, do we need a **causal** or **predictive** model? In our question above we
 
 Second, what is the outcome? A person's longevity after the election will be the **outcome**. The questions, however, leave unclear details. For example, what time period does the Preceptor Table cover? In order to dive deeper into these questions we need to engage in a conversation with the person that is asking us these questions.
 
-<!-- DK: Pick units, either all candidates from 2000 through 2023, or all candidates in the 2024 election. Using 2000 through 2023.-->
 
 Third, what are the **units**? Our units for this scenario would be gubernatorial candidates because the questions are about the life expectancy of unique candidates. Here, we want to discuss all gubernatorial candidates from 2000 through 2023 in the United States. However, another question arises: are we looking for the average of all gubernatorial candidates? Are we looking specifically into the average of all female gubernatorial candidates? Or male gubernatorial candidates? In our situation, it is important to refine the question because that allows us to accurately respond to the question at hand.
 
@@ -66,7 +64,9 @@ Fifth, do we have a **treatment**? No. We will be using a predictive model as di
 
 Our refined question:
 
-**How many years would we expect two gubernatorial candidates --- one male and one female, both 10 years older than the average candidate --- to live after any elections from 2000 to 2023 in the United States? How different will their lifespans be?*
+<!-- Awkward phrasing. -->
+
+*How many years would we expect gubernatorial candidates to live after an election from 2000 to 2023 in the United States?*
 
 Our Preceptor Table:
 
@@ -81,7 +81,7 @@ tibble(ID = c("Candidate 1", "Candidate 2", "...", "Candidate 10", "Candidate 11
   tab_header(title = "Preceptor Table") |>
   cols_label(ID = md("ID"),
              lived_after = md("Years Lived After"),
-             year_elected = md("Year Elected"),
+             year_elected = md("Year of Election"),
              election_age = md("Age at Election"),
              sex = md("Sex")) |>
   tab_style(cell_borders(sides = "right"),
@@ -95,7 +95,7 @@ tibble(ID = c("Candidate 1", "Candidate 2", "...", "Candidate 10", "Candidate 11
   tab_spanner(label = "Covariates", columns = c(sex, year_elected, election_age))
 ```
 
-We would have rows for *every* gubernatorial election candidate in U.S. history. We may want further details, such as election year. 
+<!-- Summary sentence needed which explains clearly how this table, if you know all the entries, would answer the question. You can even hint at more detailed questions/analysis.  -->
 
 ### EDA of `governors`
 
@@ -788,7 +788,7 @@ knitr::include_graphics("other/images/Temperance.jpg")
 
 Recall the questions with which we began the chapter:
 
-**How many years would we expect two gubernatorial candidates --- one male and one female, both 10 years older than the average candidate --- to live after the election?*
+*How many years would we expect two gubernatorial candidates --- one male and one female, both 10 years older than the average candidate --- to live after the election?*
 
 These questions are, purposely, less precise than the ones we tackled in Chapters @sec-two-parameters and @sec-three-parameters, written more in a conversational style. This is how normal people talk.
 
