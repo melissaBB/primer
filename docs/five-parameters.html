@@ -313,6 +313,7 @@ div.csl-indent {
   <ul class="collapse">
 <li><a href="#mathematics-4" id="toc-mathematics-4" class="nav-link" data-scroll-target="#mathematics-4"><span class="header-section-number">7.7.1</span> Mathematics</a></li>
   <li><a href="#fitted-model-4" id="toc-fitted-model-4" class="nav-link" data-scroll-target="#fitted-model-4"><span class="header-section-number">7.7.2</span> Fitted Model</a></li>
+  <li><a href="#model-checks-4" id="toc-model-checks-4" class="nav-link" data-scroll-target="#model-checks-4"><span class="header-section-number">7.7.3</span> Model Checks</a></li>
   </ul>
 </li>
   <li><a href="#temperance-1" id="toc-temperance-1" class="nav-link" data-scroll-target="#temperance-1"><span class="header-section-number">7.8</span> Temperance</a></li>
@@ -334,21 +335,24 @@ div.csl-indent {
   </div>
   
 
-</header><!-- DK: Perhaps use as a good example of how the estimated posterior is not the true posterior, Preceptor's Posterior, because of the assumptions we are making are never completely true. Add a paragrpah in Temperance about this fact. DONE--><!-- DK: Do we really believe the posterior for male/female expected years lived? No! Or, at the very least, we are suspicious. Discuss the importance of prior knowledge and "reality checks" in Temperance or, perhaps better, in election_age + sex model section.  DONE--><!-- DK: Add posterior_predictive checks. Belongs at the end of the courage section. DONE--><!-- DK: Get rid of warnings with size aesthetic in plots. DONE--><!-- DK: For each model, we need the math, the code and the printed out fitted model. DONE--><p><em>This chapter is still a DRAFT.</em></p>
+</header><p><em>This chapter is still a DRAFT.</em></p>
+<!-- DK: Show the code for fitting and printing models, and for any other code chunks that are small/important. DONE-->
 <p>Last chapter, we studied four parameters: models in which we studied multiple right-hand side variables at once. The next step in our model building education is to learn about <em>interactions</em>. The effect of a treatment relative to a control is almost never uniform. The effect might be bigger in women than in men, smaller in the rich relative to the poor. The technical term for such effects is “heterogeneous,” which is just Ph.D.’ese for “different.” With enough data, all effects are heterogeneous. Causal effects, at least in the social science, always vary across units. To model this reality, we rely on interactions, on allowing the effect size to differ. The same applies for predictive models. The relationship between our outcome variable <span class="math inline">\(y\)</span> and a predictor variable <span class="math inline">\(x\)</span> is rarely constant. The relationship varies based on the values of other variables. To take account of interactions, we need models with at least 5 parameters.</p>
 <p>Packages:</p>
 <!-- Still seem to be warnings: Warning: package ___ was built under R version 4.3.1 -->
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">primer.data</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">primer.data</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://gt.rstudio.com/">gt</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ddsjoberg/gtsummary">gtsummary</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://docs.ropensci.org/skimr/">skimr</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://mc-stan.org/rstanarm/">rstanarm</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/bbolker/broom.mixed">broom.mixed</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 </div>
-<!-- We should split between one causal and one predictive question. do predictive question first regarding the expectation and then causal question next regarding whether winning the election affects their longevity. Mention the questions in the introduction. Then sentence or two summary about Cardinal Virtues. -->
+<p>Follow the Cardinal Virtues and tackle each problem step by step. Remember the process: first we use Wisdom, next Justice, next Courage, and finally Temperance. Each Cardinal Virtue plays role in answering the question that we have at hand. From creating the Preceptor Table, to the Population Table, to converting the math into code, we are able to use the Cardinal Virtues as a tool to answer all of our questions.</p>
+<!-- DK: Perhaps add summary paragraph done. 
+Mention the questions in the introduction. -- Done in the wisdom section
+Then sentence or two summary about Cardinal Virtues. done -->
 <section id="wisdom" class="level2" data-number="7.1"><h2 data-number="7.1" class="anchored" data-anchor-id="wisdom">
 <span class="header-section-number">7.1</span> Wisdom</h2>
 <div class="cell">
@@ -356,41 +360,44 @@ div.csl-indent {
 <p><img src="other/images/Wisdom.jpg" class="img-fluid" width="1280"></p>
 </div>
 </div>
-<p><strong>Wisdom</strong> is the first Cardinal Virtue that requires the creation of a Preceptor Table, an examination of our data, and a determination, using the concept of “validity,” as to whether or not we can (reasonably!) assume that the two come from the same population.</p>
-<p>Consider the following predictive questions:</p>
-<p><em>How many years would we expect two gubernatorial candidates — one male and one female, both 10 years older than the average candidate — to live after the election? How different will their lifespans be?</em></p>
-<p>Note how far we have come in the <em>Primer</em>. These are difficult questions, involving issues of both prediction and causation. Yet, if we follow the Cardinal Virtues, we can provide sophisticated answers.</p>
-<p>Recall the most important aspects of Wisdom: the Preceptor Table, the EDA (exploratory data analysis), and validity of the data. As always, we start with the Preceptor Table — the table of data that would make all of our questions answerable with mere arithmetic (no inferences).</p>
+<p><strong>Wisdom</strong> is the first Cardinal Virtue. It requires the creation of a Preceptor Table, an examination of our data, and a determination, using the concept of “validity,” as to whether or not we can (reasonably!) assume that the two come from the same population.</p>
+<p>Consider the following questions:</p>
+<!-- DK: Start with less precise version of the question, and then refine it. DONE-->
+<p><em>How long do gubernatorial candidates live after the election?</em></p>
+<p>Recall the most important aspects of Wisdom: the Preceptor Table, the EDA (exploratory data analysis), and the assumption of validity. As always, we start with the Preceptor Table.</p>
 <section id="preceptor-table" class="level3" data-number="7.1.1"><h3 data-number="7.1.1" class="anchored" data-anchor-id="preceptor-table">
 <span class="header-section-number">7.1.1</span> Preceptor Table</h3>
 <p>The <strong>Preceptor Table</strong> is the smallest possible table of data with rows and columns such that, if there is no missing data, then it is easy to estimate the quantities of interest.</p>
 <p>To create our Preceptor Table, we need to ask ourselves a couple of questions based on our questions above.</p>
-<p>First, do we need a <strong>causal</strong> or <strong>predictive</strong> model? In our question above we have a predictive model as we only have one outcome which is the person’s expected life expectancy based on our predictor which relates to an individual’s sex.</p>
-<p>Second, what is the outcome? A person’s life expectancy will be the <strong>outcome</strong>. The questions, however, leave unclear details. Where are these people at? Which country? Also, at what moment in time is this experiment taking place? In order to dive deeper into these questions we need to engage in a conversation with the person that is asking us these questions. For the questions that we have at hand we will be talking about the location of Chicago, Illinois on July 1, 2012.</p>
-<p>Third, what are the <strong>units</strong>? Our units for this scenario would be individuals because the questions are about the life expectancy of unique candidates.</p>
+<p>First, do we need a <strong>causal</strong> or <strong>predictive</strong> model? In our question above we have a predictive model as we only have one outcome which is a gubernatorial candidate’s longevity.</p>
+<p>Second, what is the outcome? A person’s longevity after the election will be the <strong>outcome</strong>. The questions, however, leave unclear details. For example, what time period does the Preceptor Table cover? In order to dive deeper into these questions we need to engage in a conversation with the person that is asking us these questions.</p>
+<!-- DK: Pick units, either all candidates from 2000 through 2023, or all candidates in the 2024 election. Using 2000 through 2023.-->
+<p>Third, what are the <strong>units</strong>? Our units for this scenario would be gubernatorial candidates because the questions are about the life expectancy of unique candidates. Here, we want to discuss all gubernatorial candidates from 2000 through 2023 in the United States. However, another question arises: are we looking for the average of all gubernatorial candidates? Are we looking specifically into the average of all female gubernatorial candidates? Or male gubernatorial candidates? In our situation, it is important to refine the question because that allows us to accurately respond to the question at hand.</p>
 <p>Fourth, what are the <strong>covariates</strong>? In our case, a person’s sex will be a covariate as it is another factor that plays to the individual’s age and identity. The Preceptor Table must include any covariates mentioned in the question.</p>
 <p>Fifth, do we have a <strong>treatment</strong>? No.&nbsp;We will be using a predictive model as discussed above and treatments will only apply to situations with causal models. A treatment is just a covariate which we can, at least in theory, manipulate, thereby creating other potential outcomes.</p>
+<p>Our refined question:</p>
+<p>**How many years would we expect two gubernatorial candidates — one male and one female, both 10 years older than the average candidate — to live after any elections from 2000 to 2023 in the United States? How different will their lifespans be?*</p>
 <p>Our Preceptor Table:</p>
 <div class="cell">
 <div class="cell-output-display">
 
-<div id="svrkiqvuhu" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#svrkiqvuhu table {
+<div id="hsabcneiyx" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#hsabcneiyx table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#svrkiqvuhu thead, #svrkiqvuhu tbody, #svrkiqvuhu tfoot, #svrkiqvuhu tr, #svrkiqvuhu td, #svrkiqvuhu th {
+#hsabcneiyx thead, #hsabcneiyx tbody, #hsabcneiyx tfoot, #hsabcneiyx tr, #hsabcneiyx td, #hsabcneiyx th {
   border-style: none;
 }
 
-#svrkiqvuhu p {
+#hsabcneiyx p {
   margin: 0;
   padding: 0;
 }
 
-#svrkiqvuhu .gt_table {
+#hsabcneiyx .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -416,12 +423,12 @@ div.csl-indent {
   border-left-color: #D3D3D3;
 }
 
-#svrkiqvuhu .gt_caption {
+#hsabcneiyx .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#svrkiqvuhu .gt_title {
+#hsabcneiyx .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -433,7 +440,7 @@ div.csl-indent {
   border-bottom-width: 0;
 }
 
-#svrkiqvuhu .gt_subtitle {
+#hsabcneiyx .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -445,7 +452,7 @@ div.csl-indent {
   border-top-width: 0;
 }
 
-#svrkiqvuhu .gt_heading {
+#hsabcneiyx .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -457,13 +464,13 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#svrkiqvuhu .gt_bottom_border {
+#hsabcneiyx .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#svrkiqvuhu .gt_col_headings {
+#hsabcneiyx .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -478,7 +485,7 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#svrkiqvuhu .gt_col_heading {
+#hsabcneiyx .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -498,7 +505,7 @@ div.csl-indent {
   overflow-x: hidden;
 }
 
-#svrkiqvuhu .gt_column_spanner_outer {
+#hsabcneiyx .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -510,15 +517,15 @@ div.csl-indent {
   padding-right: 4px;
 }
 
-#svrkiqvuhu .gt_column_spanner_outer:first-child {
+#hsabcneiyx .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#svrkiqvuhu .gt_column_spanner_outer:last-child {
+#hsabcneiyx .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#svrkiqvuhu .gt_column_spanner {
+#hsabcneiyx .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -530,11 +537,11 @@ div.csl-indent {
   width: 100%;
 }
 
-#svrkiqvuhu .gt_spanner_row {
+#hsabcneiyx .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#svrkiqvuhu .gt_group_heading {
+#hsabcneiyx .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -560,7 +567,7 @@ div.csl-indent {
   text-align: left;
 }
 
-#svrkiqvuhu .gt_empty_group_heading {
+#hsabcneiyx .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -575,15 +582,15 @@ div.csl-indent {
   vertical-align: middle;
 }
 
-#svrkiqvuhu .gt_from_md > :first-child {
+#hsabcneiyx .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#svrkiqvuhu .gt_from_md > :last-child {
+#hsabcneiyx .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#svrkiqvuhu .gt_row {
+#hsabcneiyx .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -602,7 +609,7 @@ div.csl-indent {
   overflow-x: hidden;
 }
 
-#svrkiqvuhu .gt_stub {
+#hsabcneiyx .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -615,7 +622,7 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#svrkiqvuhu .gt_stub_row_group {
+#hsabcneiyx .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -629,15 +636,15 @@ div.csl-indent {
   vertical-align: top;
 }
 
-#svrkiqvuhu .gt_row_group_first td {
+#hsabcneiyx .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#svrkiqvuhu .gt_row_group_first th {
+#hsabcneiyx .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#svrkiqvuhu .gt_summary_row {
+#hsabcneiyx .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -647,16 +654,16 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#svrkiqvuhu .gt_first_summary_row {
+#hsabcneiyx .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#svrkiqvuhu .gt_first_summary_row.thick {
+#hsabcneiyx .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#svrkiqvuhu .gt_last_summary_row {
+#hsabcneiyx .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -666,7 +673,7 @@ div.csl-indent {
   border-bottom-color: #D3D3D3;
 }
 
-#svrkiqvuhu .gt_grand_summary_row {
+#hsabcneiyx .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -676,7 +683,7 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#svrkiqvuhu .gt_first_grand_summary_row {
+#hsabcneiyx .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -686,7 +693,7 @@ div.csl-indent {
   border-top-color: #D3D3D3;
 }
 
-#svrkiqvuhu .gt_last_grand_summary_row_top {
+#hsabcneiyx .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -696,11 +703,11 @@ div.csl-indent {
   border-bottom-color: #D3D3D3;
 }
 
-#svrkiqvuhu .gt_striped {
+#hsabcneiyx .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#svrkiqvuhu .gt_table_body {
+#hsabcneiyx .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -709,7 +716,7 @@ div.csl-indent {
   border-bottom-color: #D3D3D3;
 }
 
-#svrkiqvuhu .gt_footnotes {
+#hsabcneiyx .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -723,7 +730,7 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#svrkiqvuhu .gt_footnote {
+#hsabcneiyx .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -732,7 +739,7 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#svrkiqvuhu .gt_sourcenotes {
+#hsabcneiyx .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -746,7 +753,7 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#svrkiqvuhu .gt_sourcenote {
+#hsabcneiyx .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -754,63 +761,63 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#svrkiqvuhu .gt_left {
+#hsabcneiyx .gt_left {
   text-align: left;
 }
 
-#svrkiqvuhu .gt_center {
+#hsabcneiyx .gt_center {
   text-align: center;
 }
 
-#svrkiqvuhu .gt_right {
+#hsabcneiyx .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#svrkiqvuhu .gt_font_normal {
+#hsabcneiyx .gt_font_normal {
   font-weight: normal;
 }
 
-#svrkiqvuhu .gt_font_bold {
+#hsabcneiyx .gt_font_bold {
   font-weight: bold;
 }
 
-#svrkiqvuhu .gt_font_italic {
+#hsabcneiyx .gt_font_italic {
   font-style: italic;
 }
 
-#svrkiqvuhu .gt_super {
+#hsabcneiyx .gt_super {
   font-size: 65%;
 }
 
-#svrkiqvuhu .gt_footnote_marks {
+#hsabcneiyx .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#svrkiqvuhu .gt_asterisk {
+#hsabcneiyx .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#svrkiqvuhu .gt_indent_1 {
+#hsabcneiyx .gt_indent_1 {
   text-indent: 5px;
 }
 
-#svrkiqvuhu .gt_indent_2 {
+#hsabcneiyx .gt_indent_2 {
   text-indent: 10px;
 }
 
-#svrkiqvuhu .gt_indent_3 {
+#hsabcneiyx .gt_indent_3 {
   text-indent: 15px;
 }
 
-#svrkiqvuhu .gt_indent_4 {
+#hsabcneiyx .gt_indent_4 {
   text-indent: 20px;
 }
 
-#svrkiqvuhu .gt_indent_5 {
+#hsabcneiyx .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -847,7 +854,7 @@ div.csl-indent {
 <p>Female</p>
 </div></td>
 <td headers="year_elected" class="gt_row gt_center"><div class="gt_from_md">
-<p>1967</p>
+<p>2000</p>
 </div></td>
 <td headers="election_age" class="gt_row gt_center"><div class="gt_from_md">
 <p>63</p>
@@ -915,7 +922,7 @@ div.csl-indent {
 <p>Female</p>
 </div></td>
 <td headers="year_elected" class="gt_row gt_center"><div class="gt_from_md">
-<p>2015</p>
+<p>2023</p>
 </div></td>
 <td headers="election_age" class="gt_row gt_center"><div class="gt_from_md">
 <p>75</p>
@@ -949,7 +956,7 @@ div.csl-indent {
 <p>Male</p>
 </div></td>
 <td headers="year_elected" class="gt_row gt_center"><div class="gt_from_md">
-<p>2015</p>
+<p>2023</p>
 </div></td>
 <td headers="election_age" class="gt_row gt_center"><div class="gt_from_md">
 <p>68</p>
@@ -960,7 +967,7 @@ div.csl-indent {
 </div>
 </div>
 </div>
-<p>We would have rows for <em>every</em> gubernatorial election candidate in U.S. history. We may want further details, such as election year. This is merely a sketch of our ideal dataset.</p>
+<p>We would have rows for <em>every</em> gubernatorial election candidate in U.S. history. We may want further details, such as election year.</p>
 </section><section id="eda-of-governors" class="level3" data-number="7.1.2"><h3 data-number="7.1.2" class="anchored" data-anchor-id="eda-of-governors">
 <span class="header-section-number">7.1.2</span> EDA of <code>governors</code>
 </h3>
@@ -991,16 +998,15 @@ $ lived_after  &lt;dbl&gt; 41.043121, 2.116359, 14.562628, 13.336071, 33.043121,
 <!-- Should we restrict the data to one observation per person? A subtle issue. Maybe raise this in the Summary? -->
 <p>There are 14 variables and 1,092 observations. In this Chapter, we will only be looking at the variables <code>last_name</code>, <code>year</code>, <code>state</code>, <code>sex</code>, <code>lived_after</code>, and <code>election_age</code>.</p>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ch7_a</span> <span class="op">&lt;-</span> <span class="va">governors</span> <span class="op">|&gt;</span> </span>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ch7_a</span> <span class="op">&lt;-</span> <span class="va">governors</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">last_name</span>, <span class="va">year</span>, <span class="va">state</span>, <span class="va">sex</span>, <span class="va">lived_after</span>, <span class="va">election_age</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 </div>
 <p><code>election_age</code> and <code>lived_after</code> are how many years a candidate lived before and after the election, respectively. As a consequence, only politicians who are already deceased are included in this data set. This means that there are only a handful of observations from elections in the last 20 years. Most candidates from that time period are still alive and are, therefore, excluded.</p>
 <p>One subtle issue: Should the same candidate be included multiple times? For example:</p>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ch7_a</span> <span class="op">|&gt;</span> </span>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ch7_a</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">last_name</span> <span class="op">==</span> <span class="st">"Cuomo"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output cell-output-stdout">
+<div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 6
   last_name  year state    sex   lived_after election_age
   &lt;chr&gt;     &lt;int&gt; &lt;chr&gt;    &lt;chr&gt;       &lt;dbl&gt;        &lt;dbl&gt;
@@ -1202,7 +1208,7 @@ $ lived_after  &lt;dbl&gt; 41.043121, 2.116359, 14.562628, 13.336071, 33.043121,
 <p>Looking at the histogram for <code>year</code>, we see that it is skewed right — meaning that most of the data is bunched to the left and that there is a smaller tail to the right — with half of the observations from election years between 1945 and 1962. This makes sense logically, because we are only looking at deceased candidates, and candidates from more recent elections are more likely to still be alive.</p>
 <p>In using this data set, our left-side variable will be <code>lived_after</code>. We are trying to understand/predict how many years a candidate will live after the election.</p>
 <div class="cell">
-<details><summary>Show the code</summary><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ch7_a</span> <span class="op">|&gt;</span></span>
+<details><summary>Code</summary><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ch7_a</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, y <span class="op">=</span> <span class="va">lived_after</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"US Gubernatorial Candidate Years Lived Post-Election"</span>,</span>
@@ -1220,7 +1226,7 @@ $ lived_after  &lt;dbl&gt; 41.043121, 2.116359, 14.562628, 13.336071, 33.043121,
 <p>The reason the data is slanted downward is because the maximum value for this scenario is greater in earlier years. That is, those candidates who ran for governor in earlier years could live a long time after the election and still have died prior to the data set creation, giving them higher <code>lived_after</code> values than those who ran for office in more recent years. The edge of the scatter plot is not perfectly straight because, for many election years, no candidate had the decency to die just before data collection. The reason for so few observations in later years is that fewer recent candidates have died.</p>
 <p>To begin visualizing our <code>lived_after</code> data, we will inspect the difference in years lived post election between male and female candidates.</p>
 <div class="cell">
-<details><summary>Show the code</summary><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ch7_a</span> <span class="op">|&gt;</span></span>
+<details><summary>Code</summary><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ch7_a</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">sex</span>, y <span class="op">=</span> <span class="va">lived_after</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"US Gubernatorial Candidate Years Lived Post-Election"</span>,</span>
@@ -1236,7 +1242,7 @@ $ lived_after  &lt;dbl&gt; 41.043121, 2.116359, 14.562628, 13.336071, 33.043121,
 </div>
 <p>This plot shows that men live much longer, on average, than women after the election. Is there an intuitive explanation for why this might be?</p>
 <div class="cell">
-<details><summary>Show the code</summary><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ch7_a</span> <span class="op">|&gt;</span> </span>
+<details><summary>Code</summary><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ch7_a</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">election_age</span>, y <span class="op">=</span> <span class="va">lived_after</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Longevity of Gubernatorial Candidates"</span>,</span>
@@ -1954,15 +1960,14 @@ $ lived_after  &lt;dbl&gt; 41.043121, 2.116359, 14.562628, 13.336071, 33.043121,
 <p>With the help of <strong>Courage</strong> we can translate this math into code.</p>
 <p>To get posterior distributions for our parameters, we will use <code><a href="https://mc-stan.org/rstanarm/reference/stan_glm.html">stan_glm()</a></code>, just as we did in <a href="two-parameters.html"><span>Chapter&nbsp;4</span></a>. Let’s regress <code>lived_after</code> on <code>sex</code> to see how candidates’ post-election lifespans differ by sex with the help of mathematics first.</p>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/rstanarm/reference/stan_glm.html">stan_glm</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">ch7_a</span>,</span>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/rstanarm/reference/stan_glm.html">stan_glm</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">ch7_a</span>,</span>
 <span>                  formula <span class="op">=</span> <span class="va">lived_after</span> <span class="op">~</span> <span class="va">sex</span>,</span>
 <span>                  refresh <span class="op">=</span> <span class="fl">0</span>,</span>
 <span>                  seed <span class="op">=</span> <span class="fl">76</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 </div>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">fit_1</span>, detail <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output cell-output-stdout">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">fit_1</span>, detail <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
 <pre><code>            Median MAD_SD
 (Intercept) 16.1    2.9  
 sexMale     12.3    2.9  
@@ -1978,15 +1983,14 @@ sigma 13.3    0.3  </code></pre>
 </section><section id="model-checks" class="level4" data-number="7.3.1.3"><h4 data-number="7.3.1.3" class="anchored" data-anchor-id="model-checks">
 <span class="header-section-number">7.3.1.3</span> Model Checks</h4>
 <div class="cell">
-<details><summary>Show the code</summary><div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://mc-stan.org/bayesplot/reference/pp_check.html">pp_check</a></span><span class="op">(</span><span class="va">fit_1</span>, plotfun <span class="op">=</span> <span class="st">"hist"</span>, nreps <span class="op">=</span> <span class="fl">3</span>, binwidth <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output-display">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://mc-stan.org/bayesplot/reference/pp_check.html">pp_check</a></span><span class="op">(</span><span class="va">fit_1</span>, plotfun <span class="op">=</span> <span class="st">"hist"</span>, nreps <span class="op">=</span> <span class="fl">3</span>, binwidth <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
 <p><img src="five-parameters_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<!-- Add Commentary across all model checks -->
+<p>Our graph in the darker blue represents our actual data. As we can see with the lighter blue graph, our fitted model is able to generate a distribution that is similar when compared to the actual data. One important item that we want to note is that for the actual data there is no value that is under 0 or over 60 for longevity of a candidate, however, in the fitted model we are able to see several general values for which the longevity of a candidate is under 0 or over 60. For the most part our fitted model does a great job in generating a distribution through the “fake-data” simulation when compared to the actual data set.</p>
 </section></section><section id="election_age" class="level3" data-number="7.3.2"><h3 data-number="7.3.2" class="anchored" data-anchor-id="election_age">
 <span class="header-section-number">7.3.2</span> election_age</h3>
-<!-- DK: Add a nice graphic with the fitted line, like we have in the next section. DONE-->
 <p>To begin, let’s model candidate lifespan after the election as a function of candidate lifespan prior to the election with our mathematics.</p>
 <section id="mathematics-1" class="level4" data-number="7.3.2.1"><h4 data-number="7.3.2.1" class="anchored" data-anchor-id="mathematics-1">
 <span class="header-section-number">7.3.2.1</span> Mathematics</h4>
@@ -2014,15 +2018,14 @@ sigma 13.3    0.3  </code></pre>
 <span class="header-section-number">7.3.2.2</span> Fitted Model</h4>
 <p>Now we want to use <code><a href="https://mc-stan.org/rstanarm/reference/stan_glm.html">stan_glm()</a></code> to convert our mathematics into code through a fitted model.</p>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/rstanarm/reference/stan_glm.html">stan_glm</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">ch7_a</span>,</span>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/rstanarm/reference/stan_glm.html">stan_glm</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">ch7_a</span>,</span>
 <span>                  formula <span class="op">=</span> <span class="va">lived_after</span> <span class="op">~</span> <span class="va">election_age</span>,</span>
 <span>                  refresh <span class="op">=</span> <span class="fl">0</span>,</span>
 <span>                  seed <span class="op">=</span> <span class="fl">9</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 </div>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">fit_2</span>, detail <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output cell-output-stdout">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">fit_2</span>, detail <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
 <pre><code>             Median MAD_SD
 (Intercept)  72.7    2.1  
 election_age -0.9    0.0  
@@ -2051,7 +2054,7 @@ sigma 11.1    0.2  </code></pre>
 </div>
 </div>
 <div class="cell">
-<details><summary>Show the code</summary><div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">ch7_a</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">lived_after</span>, y <span class="op">=</span> <span class="va">election_age</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<details><summary>Code</summary><div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">ch7_a</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">lived_after</span>, y <span class="op">=</span> <span class="va">election_age</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_abline</a></span><span class="op">(</span>intercept <span class="op">=</span> <span class="va">candidate_intercept</span>,</span>
 <span>              slope <span class="op">=</span> <span class="va">candidate_slope</span>, </span>
@@ -2069,11 +2072,12 @@ sigma 11.1    0.2  </code></pre>
 <span class="header-section-number">7.3.2.3</span> Model Checks</h4>
 <p>Now that we have created our fitted model we can perform model checks to ensure that our fitted model is reasonably accurate. We attempt to the make the model as accurate as possible, however, we can only view whether it is accurate through model checks that we need to perform.</p>
 <div class="cell">
-<details><summary>Show the code</summary><div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://mc-stan.org/bayesplot/reference/pp_check.html">pp_check</a></span><span class="op">(</span><span class="va">fit_2</span>, plotfun <span class="op">=</span> <span class="st">"hist"</span>, nreps <span class="op">=</span> <span class="fl">3</span>, binwidth <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output-display">
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://mc-stan.org/bayesplot/reference/pp_check.html">pp_check</a></span><span class="op">(</span><span class="va">fit_2</span>, plotfun <span class="op">=</span> <span class="st">"hist"</span>, nreps <span class="op">=</span> <span class="fl">3</span>, binwidth <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
 <p><img src="five-parameters_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p>With the lighter blue graph, our fitted model is able to generate a distribution that is reasonably similar to the actual data. However, the “fake-data” produces some values for longevity which are <em>impossible.</em> We know that the longevity of a person can not decrease below 0. But, with our “fake-data” simulations, we see several values that are less than 0. This is a flaw in our model. Is it a serious flaw? That is tough to decide. For the most part though our fitted model does a great job in generating a distribution through the “fake-data” simulation when compared to the actual data set.</p>
 <!-- This is a critical point. Maybe give a precise example? Go through the math slowly, like ModernDive does? Highlight this somehow? At the very least, we should emphasize the point for each model going forward. -->
 <!-- Perhaps add a graphic which shows the "cloud" of possible regression lines, consistent with the posterior for beta_1.  -->
 </section></section><section id="election_age-and-sex" class="level3" data-number="7.3.3"><h3 data-number="7.3.3" class="anchored" data-anchor-id="election_age-and-sex">
@@ -2093,15 +2097,14 @@ sigma 11.1    0.2  </code></pre>
 <span class="header-section-number">7.3.3.2</span> Fitted Model</h4>
 <p>Let’s translate the model into code.</p>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/rstanarm/reference/stan_glm.html">stan_glm</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">ch7_a</span>,</span>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/rstanarm/reference/stan_glm.html">stan_glm</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">ch7_a</span>,</span>
 <span>                  formula <span class="op">=</span> <span class="va">lived_after</span> <span class="op">~</span> <span class="va">sex</span> <span class="op">+</span> <span class="va">election_age</span>,</span>
 <span>                  refresh <span class="op">=</span> <span class="fl">0</span>,</span>
 <span>                  seed <span class="op">=</span> <span class="fl">12</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 </div>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">fit_3</span>, detail <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output cell-output-stdout">
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">fit_3</span>, detail <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
 <pre><code>             Median MAD_SD
 (Intercept)  66.0    3.2  
 sexMale       6.1    2.4  
@@ -2127,7 +2130,7 @@ Now take a look at the coefficient for <span class="math inline">\(c\_election\_
 </div>
 </div>
 <div class="cell">
-<details><summary>Show the code</summary><div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">ch7_a</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">lived_after</span>, y <span class="op">=</span> <span class="va">election_age</span>, color <span class="op">=</span> <span class="va">sex</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<details><summary>Code</summary><div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">ch7_a</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">lived_after</span>, y <span class="op">=</span> <span class="va">election_age</span>, color <span class="op">=</span> <span class="va">sex</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  </span>
 <span>  <span class="co"># Use geom_point to show the datapoints. </span></span>
 <span>  </span>
@@ -2164,16 +2167,17 @@ Now take a look at the coefficient for <span class="math inline">\(c\_election\_
 <p><img src="five-parameters_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>The posterior for male/female years lived shows a huge gap between the two values. We want to take into factor the prior knowledge that we have regarding female and male lived after ages. The females tend to live longer than the males based on our prior knowledge which presents a problem with the graph that we have above. With our graph we have a higher tendecy of the male candidates living longer simply because of the amount of data that we have. We have more data for the male candidates running for election because they tend to run for election more than the female candidates which in turn skews the lived after predictions that we can make for both sorts of candidates.</p>
+<p>The posterior for male/female years lived shows a huge gap between the two values. We want to take into factor the prior knowledge that we have regarding female and male lived after ages. The females tend to live longer than the males based on our prior knowledge which presents a problem with the graph that we have above. With our graph we have a higher tendency of the male candidates living longer simply because of the amount of data that we have. We have more data for the male candidates running for election because they tend to run for election more than the female candidates which in turn skews the lived after predictions that we can make for both sorts of candidates.</p>
 </section><section id="model-checks-2" class="level4" data-number="7.3.3.3"><h4 data-number="7.3.3.3" class="anchored" data-anchor-id="model-checks-2">
 <span class="header-section-number">7.3.3.3</span> Model Checks</h4>
 <p>With the fitted model that we have created we are able to perform model checks. The model checks that we perform will help us understand how accurate our model is because we need to be able to ensure that our fitted model is reasonably accurate. We can view our model through model checks that interpret the residuals (error), outcome, and “fake-data” simulations.</p>
 <div class="cell">
-<details><summary>Show the code</summary><div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://mc-stan.org/bayesplot/reference/pp_check.html">pp_check</a></span><span class="op">(</span><span class="va">fit_3</span>, plotfun <span class="op">=</span> <span class="st">"hist"</span>, nreps <span class="op">=</span> <span class="fl">3</span>, binwidth <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output-display">
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://mc-stan.org/bayesplot/reference/pp_check.html">pp_check</a></span><span class="op">(</span><span class="va">fit_3</span>, plotfun <span class="op">=</span> <span class="st">"hist"</span>, nreps <span class="op">=</span> <span class="fl">3</span>, binwidth <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
 <p><img src="five-parameters_files/figure-html/unnamed-chunk-30-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p>Our fitted model generates a distribution that is very similar to the distribution of values from our actual data.</p>
 </section></section><section id="election_age-sex-and-election_agesex" class="level3" data-number="7.3.4"><h3 data-number="7.3.4" class="anchored" data-anchor-id="election_age-sex-and-election_agesex">
 <span class="header-section-number">7.3.4</span> election_age, sex and election_age*sex</h3>
 <p>Let’s create another model. This time, however, the numeric outcome variable of <code>lived_after</code> is a function of the two explanatory variables we used above, <code>election_age</code> and <code>sex</code>, and of their interaction. To look at interactions, we need 5 parameters, which is why we needed to wait until this chapter to introduce the concept.</p>
@@ -2191,16 +2195,15 @@ Now take a look at the coefficient for <span class="math inline">\(c\_election\_
 </ul></section><section id="fitted-model-3" class="level4" data-number="7.3.4.2"><h4 data-number="7.3.4.2" class="anchored" data-anchor-id="fitted-model-3">
 <span class="header-section-number">7.3.4.2</span> Fitted Model</h4>
 <p>With the help of <strong>Courage</strong> we can translate all of the math from above into code.</p>
-<div class="cell" data-hash="five-parameters_cache/html/unnamed-chunk-31_2383bede3f55c6a4939c2a8218ad6d71">
-<details><summary>Code</summary><div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/rstanarm/reference/stan_glm.html">stan_glm</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">ch7_a</span>,</span>
+<div class="cell" data-hash="five-parameters_cache/html/unnamed-chunk-31_ed6444eec3017e4feee7eb822d0a9cbc">
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/rstanarm/reference/stan_glm.html">stan_glm</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">ch7_a</span>,</span>
 <span>                  formula <span class="op">=</span> <span class="va">lived_after</span> <span class="op">~</span> <span class="va">sex</span><span class="op">*</span><span class="va">election_age</span>,</span>
 <span>                  refresh <span class="op">=</span> <span class="fl">0</span>,</span>
 <span>                  seed <span class="op">=</span> <span class="fl">13</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 </div>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">fit_4</span>, detail <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output cell-output-stdout">
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">fit_4</span>, detail <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
 <pre><code>                     Median MAD_SD
 (Intercept)          20.4   20.7  
 sexMale              52.0   20.8  
@@ -2221,17 +2224,18 @@ sigma 11.1    0.2  </code></pre>
 <span class="header-section-number">7.3.4.3</span> Model Checks</h4>
 <p>With the fitted model that we have created we are able to perform model checks. Model checks help us understand how accurate our model is to ensure that the fitted model that we have created is reasonably accurate when compared to the actual data. We can view our model through the posterior predictive check that simulates the data upon our fitted model to generate a distribution. With the posterior predictive check we are able to visualize how accurate our data is compared to the actual data ensuring that we have created a great fitted model.</p>
 <div class="cell">
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://mc-stan.org/bayesplot/reference/pp_check.html">pp_check</a></span><span class="op">(</span><span class="va">fit_4</span>, plotfun <span class="op">=</span> <span class="st">"hist"</span>, nreps <span class="op">=</span> <span class="fl">3</span>, binwidth <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="five-parameters_files/figure-html/unnamed-chunk-33-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<!-- DK: Is the above right? Yes. DONE-->
+<p>For the most part the model is really accurate as we are able to see the distribution is very similar to the actual data proving it to be reasonably accurate.</p>
 </section></section><section id="interaction-model" class="level3" data-number="7.3.5"><h3 data-number="7.3.5" class="anchored" data-anchor-id="interaction-model">
 <span class="header-section-number">7.3.5</span> Interaction model</h3>
 <p>Recall the parallel slopes model that we created in <a href="four-parameters.html"><span>Chapter&nbsp;6</span></a>. Another visualization we can create, one that also uses slopes and intercepts for our model, is the interaction model. In this model, the slopes for our two groups <strong>are different</strong>, creating a non-parallel visualization.</p>
 <p>The process for creating the interaction model is similar to creating the parallel slopes model. Let us begin the same way — by tidying our data and inspecting it.</p>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># First, we will tidy the data from our model and select the term and estimate.</span></span>
+<details><summary>Code</summary><div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># First, we will tidy the data from our model and select the term and estimate.</span></span>
 <span><span class="co"># This allows us to create our regression lines more easily.</span></span>
 <span></span>
 <span><span class="va">tidy</span> <span class="op">&lt;-</span> <span class="va">fit_4</span> <span class="op">|&gt;</span> </span>
@@ -2251,7 +2255,7 @@ sigma 11.1    0.2  </code></pre>
 </div>
 <p>After tidying our data, we will extract values and assign sensible names for later use. Note that this is identical to the process from <a href="four-parameters.html"><span>Chapter&nbsp;6</span></a>, with the addition of a fourth term (the interaction term):</p>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Extract and name the columns of our tidy object. By calling tidy$estimate[1],</span></span>
+<details><summary>Code</summary><div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Extract and name the columns of our tidy object. By calling tidy$estimate[1],</span></span>
 <span><span class="co"># we are telling R to extract the first value from the estimate column in our</span></span>
 <span><span class="co"># tidy object.</span></span>
 <span></span>
@@ -2269,7 +2273,7 @@ sigma 11.1    0.2  </code></pre>
 <li>The coefficient of <code>sexMale:election_age</code> is the value that must be added to the coefficient of <span class="math inline">\(c\_election\_age_i\)</span> in order to find the slope for males.</li>
 </ul>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Recall that the intercept and the estimate for election_age act as the</span></span>
+<details><summary>Code</summary><div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Recall that the intercept and the estimate for election_age act as the</span></span>
 <span><span class="co"># estimates for female candidates only. Accordingly, we have assigned those</span></span>
 <span><span class="co"># values (from the previous code chunk) to more sensible names: female_intercept</span></span>
 <span><span class="co"># and female_slope.</span></span>
@@ -2287,7 +2291,7 @@ sigma 11.1    0.2  </code></pre>
 </div>
 <p>After creating objects for our different intercepts and slopes, we will now create the interaction model using <code><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_abline()</a></code> for a male and female line.</p>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># From the ch7_a data, create a ggplot object with election_age as the x-axis</span></span>
+<details><summary>Code</summary><div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># From the ch7_a data, create a ggplot object with election_age as the x-axis</span></span>
 <span><span class="co"># and lived_after as the y-axis. We will use color = sex.</span></span>
 <span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">ch7_a</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">election_age</span>, y <span class="op">=</span> <span class="va">lived_after</span>, color <span class="op">=</span> <span class="va">sex</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
@@ -2339,8 +2343,7 @@ sigma 11.1    0.2  </code></pre>
 </div>
 <p><strong>Courage</strong> gave us the fitted model. With <strong>Temperance</strong> we can create posteriors of the quantities of interest. We should be modest in the claims we make.</p>
 <p>Recall the questions with which we began the chapter:</p>
-<!-- DK: Make question consistent with one you started with. DONE-->
-<p>**How many years would we expect two gubernatorial candidates — one male and one female, both 10 years older than the average candidate — to live after the election? How different will their lifespans be?*</p>
+<p>**How many years would we expect two gubernatorial candidates — one male and one female, both 10 years older than the average candidate — to live after the election?*</p>
 <p>These questions are, purposely, less precise than the ones we tackled in Chapters <a href="two-parameters.html"><span>Chapter&nbsp;4</span></a> and <a href="three-parameters.html"><span>Chapter&nbsp;5</span></a>, written more in a conversational style. This is how normal people talk.</p>
 <p>However, as data scientists, our job is to bring precision to these questions. There are two commonsense interpretations. First, we could be curious about the <em>expected values</em> for these questions. If we averaged the data for a thousand candidates like these, what would the answer be? Second, we could be curious about two specific individuals. How long will they live? <em>Averages involve questions about parameters. The fates of individuals require predictions.</em> Those are general claims, violated too often to be firm rules. Yet, they highlight a key point: <em>expected values are less variable than individual predictions</em>.</p>
 <p>To calculate expected values, use <code><a href="https://mc-stan.org/rstantools/reference/posterior_epred.html">posterior_epred()</a></code>. To forecast for individuals, use <code><a href="https://mc-stan.org/rstantools/reference/posterior_predict.html">posterior_predict()</a></code>.</p>
@@ -2348,21 +2351,24 @@ sigma 11.1    0.2  </code></pre>
 <span class="header-section-number">7.4.1</span> Expected values</h3>
 <p>Consider the “on average” interpretation first. The answer begins with the posterior distributions of the parameters in <code>fit_4</code>.</p>
 <!-- DK: We need to walk through the math. Start with the original formula. Replace the x's with the values for this person. Simplify. Plug in the parameters, which are distributions. This gives us the answer. It goes too fast to just go straight for the code. -->
+<p>First we want to take a look at our mathematics once again:</p>
+<p><span class="math display">\[ lived\_after_i =  \beta_0 + \beta_1 male_i + \beta_2 c\_election\_age_i + \\
+\beta_3 male_i *  c\_election\_age_i + \epsilon_i \]</span></p>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">newobs</span> <span class="op">=</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>sex <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Male"</span>, <span class="st">"Female"</span><span class="op">)</span>, </span>
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">newobs</span> <span class="op">=</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>sex <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Male"</span>, <span class="st">"Female"</span><span class="op">)</span>, </span>
 <span>                 election_age <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 </div>
+<p>With <code>newobs</code> we are want to generate a sample of what a scenario may look like for a candidate’s longevity. Here we establish the two sexes and the election age that we want to deal with for our candidates.</p>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb38"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pe</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/rstantools/reference/posterior_epred.html">posterior_epred</a></span><span class="op">(</span>object <span class="op">=</span> <span class="va">fit_4</span>, </span>
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pe</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/rstantools/reference/posterior_epred.html">posterior_epred</a></span><span class="op">(</span>object <span class="op">=</span> <span class="va">fit_4</span>, </span>
 <span>                      newdata <span class="op">=</span> <span class="va">newobs</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span><span class="st">"Male"</span> <span class="op">=</span> <span class="va">`1`</span>,</span>
 <span>         <span class="st">"Female"</span> <span class="op">=</span> <span class="va">`2`</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 </div>
+<p>When we put this in terms of our mathematics the <span class="math inline">\(beta_1\)</span> becomes <code>1</code> as our <code>"Male"</code> term corresponds to <code>1</code>. The code that we have above is able to use our fitted model from above to generate a similar distribution of longevity for our candidates with the possiblity of how long they may live and whether male candidates will live longer than female candidates.</p>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb39"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pe</span> <span class="op">|&gt;</span> </span>
+<details><summary>Code</summary><div class="sourceCode" id="cb40"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pe</span> <span class="op">|&gt;</span> </span>
 <span> <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span>cols <span class="op">=</span> <span class="va">Male</span><span class="op">:</span><span class="va">Female</span>, </span>
 <span>               names_to <span class="op">=</span> <span class="st">"Gender"</span>,</span>
 <span>               values_to <span class="op">=</span> <span class="st">"years"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
@@ -2384,17 +2390,17 @@ sigma 11.1    0.2  </code></pre>
 <p><img src="five-parameters_files/figure-html/unnamed-chunk-41-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<!-- DK: Do males live longer than females, even when both of 62? That is surprising! Discuss again, even though we discussed above. This is sort of a posterior predictive check using uour knowledge of the world. -->
-<p>Looking at our posterior probability distributions above, we can see that male candidates are expected to live longer. But how much longer? Does the initial age affect the posterior for expected years after the candidate’s election? As in previous chapters, we can manipulate distributions in, more or less, the same way that we manipulate simple numbers. If we want to know the difference between two posterior distributions, we can simply subtract.</p>
+<!-- DK: Do males live longer than females? That is surprising! Discuss again, even though we discussed above. This is sort of a posterior predictive check using your knowledge of the world. done added discussion-->
+<p>Looking at our posterior probability distributions above, we can see that male candidates are expected to live longer. But how much longer? Does the initial age affect the posterior for expected years after the candidate’s election? Based on our previous knowledge we know that females tend to live longer than the males which is surprising. With our graph we have a higher tendency of the male candidates living longer simply because of the amount of male candidates that run for election. As in previous chapters, we can manipulate distributions in, more or less, the same way that we manipulate simple numbers. If we want to know the difference between two posterior distributions, we can simply subtract.</p>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb40"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pe</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/rstantools/reference/posterior_epred.html">posterior_epred</a></span><span class="op">(</span>object <span class="op">=</span> <span class="va">fit_4</span>, </span>
+<details><summary>Code</summary><div class="sourceCode" id="cb41"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pe</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/rstantools/reference/posterior_epred.html">posterior_epred</a></span><span class="op">(</span>object <span class="op">=</span> <span class="va">fit_4</span>, </span>
 <span>                      newdata <span class="op">=</span> <span class="va">newobs</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>diff <span class="op">=</span> <span class="va">`1`</span> <span class="op">-</span> <span class="va">`2`</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb41"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pe</span> <span class="op">|&gt;</span> </span>
+<details><summary>Code</summary><div class="sourceCode" id="cb42"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pe</span> <span class="op">|&gt;</span> </span>
 <span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">diff</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes_eval.html">after_stat</a></span><span class="op">(</span><span class="va">count</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">count</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>                    alpha <span class="op">=</span> <span class="fl">0.5</span>, </span>
@@ -2418,7 +2424,7 @@ sigma 11.1    0.2  </code></pre>
 <p>If, instead, we interpret the question as asking for a prediction for a small number of individuals, then we need to use <code><a href="https://mc-stan.org/rstantools/reference/posterior_predict.html">posterior_predict()</a></code>.</p>
 <p>With the help of the posterior predictive check we can run a “fake-data” simulation upon our fitted model that generates a distribution based on the variables at hand. With the help of this check we can view our similar our distribution is when compared with the “fake-data” simulation and the actual data. Use <code><a href="https://mc-stan.org/rstantools/reference/posterior_predict.html">posterior_predict()</a></code> to create draws from the posterior probability distribution for our prediction for these cases. <code><a href="https://mc-stan.org/rstantools/reference/posterior_predict.html">posterior_predict()</a></code> takes two arguments: the model for which the simulations should be run, and a tibble indicating the covariate values for the individual(s) we want to predict. In this case, we are using the <code>fit_4</code> model and the tibble is the one we just created above. In other words, the inputs for <code><a href="https://mc-stan.org/rstantools/reference/posterior_predict.html">posterior_predict()</a></code> and <code><a href="https://mc-stan.org/rstantools/reference/posterior_epred.html">posterior_epred()</a></code> are identical.</p>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb42"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/rstantools/reference/posterior_predict.html">posterior_predict</a></span><span class="op">(</span>object <span class="op">=</span> <span class="va">fit_4</span>, </span>
+<details><summary>Code</summary><div class="sourceCode" id="cb43"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/rstantools/reference/posterior_predict.html">posterior_predict</a></span><span class="op">(</span>object <span class="op">=</span> <span class="va">fit_4</span>, </span>
 <span>                        newdata <span class="op">=</span> <span class="va">newobs</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span><span class="st">"Male"</span> <span class="op">=</span> <span class="va">`1`</span>,</span>
@@ -2445,7 +2451,7 @@ sigma 11.1    0.2  </code></pre>
 <p>The resulting tibble has 2 columns, the first for a male candidate and the second for female candidate. Both columns are draws from the posterior predictive distributions. In both cases, the forecasts depend on the values of all the covariates. That is, we would provide a different forecast if the candidates were younger or older.</p>
 <p>Let’s look at the posterior predictive distribution for each candidate.</p>
 <div class="cell">
-<details><summary>Show the code</summary><div class="sourceCode" id="cb44"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pp</span> <span class="op">|&gt;</span> </span>
+<details><summary>Code</summary><div class="sourceCode" id="cb45"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pp</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span>cols <span class="op">=</span> <span class="va">Male</span><span class="op">:</span><span class="va">Female</span>, </span>
 <span>               names_to <span class="op">=</span> <span class="st">"Gender"</span>,</span>
 <span>               values_to <span class="op">=</span> <span class="st">"years"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
@@ -2468,7 +2474,7 @@ sigma 11.1    0.2  </code></pre>
 </div>
 <p>There is a big overlap in the predictions for individuals while, at the same time, there is much less overlap in the averages. Random stuff happens to an individual all the time. Random stuff cancels out when you take the average for many individuals. Consider the difference in the posterior predictive distributions for the two individuals.</p>
 <div class="cell">
-<details><summary>Show the code</summary><div class="sourceCode" id="cb45"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pp</span> <span class="op">|&gt;</span> </span>
+<details><summary>Code</summary><div class="sourceCode" id="cb46"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pp</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>diff <span class="op">=</span> <span class="va">Male</span> <span class="op">-</span> <span class="va">Female</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">diff</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes_eval.html">after_stat</a></span><span class="op">(</span><span class="va">count</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">count</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,</span>
@@ -2490,7 +2496,7 @@ sigma 11.1    0.2  </code></pre>
 <!-- Could not figure out how to calculate the 13 years on the fly. Code like this --- r round(mean(pp[,2] - pp[,1]), 0) --- did not work. Problem is that the pp tibble has variable names 1 and 2, but we can't grab those with pp$`1` because that expression is within the backticks of an inline R code chunk. -->
 <p>In words, we would predict that the male candidate would live longer than the female candidate. By how much? Well, that number is an unknown parameter. By looking at our posterior above, our best estimate is about 44.6 years. However, it is quite possible that, for any given male/female candidates, the female will live longer.</p>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb46"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pp</span> <span class="op">|&gt;</span> </span>
+<details><summary>Code</summary><div class="sourceCode" id="cb47"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pp</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>diff <span class="op">=</span> <span class="va">Male</span> <span class="op">-</span> <span class="va">Female</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>f_live_longer <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">diff</span> <span class="op">&lt;</span> <span class="fl">0</span><span class="op">)</span>,</span>
 <span>            total <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span>,</span>
@@ -2508,7 +2514,7 @@ sigma 11.1    0.2  </code></pre>
 <span class="header-section-number">7.4.3</span> Expectation versus Individual Variation</h3>
 <p>Let’s compare the results from <code><a href="https://mc-stan.org/rstantools/reference/posterior_epred.html">posterior_epred()</a></code> and <code><a href="https://mc-stan.org/rstantools/reference/posterior_predict.html">posterior_predict()</a></code> for this scenario directly. Most of this code is the same as what we have shown you above, but we think it is useful to look at everything together.</p>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb48"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">newobs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>sex <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Male"</span>, <span class="st">"Female"</span><span class="op">)</span>,</span>
+<details><summary>Code</summary><div class="sourceCode" id="cb49"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">newobs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>sex <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Male"</span>, <span class="st">"Female"</span><span class="op">)</span>,</span>
 <span>                  election_age <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">pe</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/rstantools/reference/posterior_epred.html">posterior_epred</a></span><span class="op">(</span><span class="va">fit_4</span>, </span>
@@ -3203,7 +3209,7 @@ sigma 11.1    0.2  </code></pre>
 <p>Once again we will look at the <strong>primer.data</strong> package which includes the <code>governors</code> data set which features demographic information about candidates for governor in the United States. <span class="citation" data-cites="barfort2020">Barfort, Klemmensen, and Larsen (<a href="references.html#ref-barfort2020" role="doc-biblioref">2020</a>)</span> gathered this data and concluded that winning a gubernatorial election increases a candidate’s lifespan.</p>
 <p>There are 14 variables and 1,092 observations. In this section, we will only be looking at the variables <code>sex</code>, <code>lived_after</code>, <code>election_age</code>, <code>won</code>, and <code>close_race</code>.</p>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb49"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ch7_b</span> <span class="op">&lt;-</span> <span class="va">governors</span> <span class="op">|&gt;</span> </span>
+<details><summary>Code</summary><div class="sourceCode" id="cb50"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ch7_b</span> <span class="op">&lt;-</span> <span class="va">governors</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>won <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else</a></span><span class="op">(</span><span class="va">win_margin</span> <span class="op">&gt;</span> <span class="fl">0</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>close_race <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">win_margin</span><span class="op">)</span> <span class="op">&lt;</span> <span class="fl">5</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">year</span>, <span class="va">sex</span>, <span class="va">lived_after</span>, <span class="va">election_age</span>, <span class="va">won</span>, <span class="va">close_race</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -3211,7 +3217,7 @@ sigma 11.1    0.2  </code></pre>
 </div>
 <p>We created the <code>won</code> variable to indicate whether or not the candidate won the election. We define <code>close_race</code> to be true if the winning margin was less than 5%. Within this section we want to dive deeper into understanding the causal effect of winning on a candidate’s longevity which is why we want to specifically to create the <code>won</code> variable.</p>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb50"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">ch7_b</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details><summary>Code</summary><div class="sourceCode" id="cb51"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">ch7_b</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output cell-output-stdout">
 <pre><code>      year          sex             lived_after       election_age  
  Min.   :1945   Length:1092        Min.   : 0.1259   Min.   :31.35  
@@ -3232,7 +3238,7 @@ sigma 11.1    0.2  </code></pre>
 <p>With the question that we are trying to answer, we will be more focused on exploring the variables of <code>won</code>, <code>sex</code>, <code>election_age</code>, and <code>close_race</code>.</p>
 <p>In using this data set, our left-side variable will be <code>lived_after</code>. We are trying to understand/predict how many years a candidate will live after they have won election and whether winning the election affects how long they live.</p>
 <div class="cell">
-<details><summary>Show the code</summary><div class="sourceCode" id="cb52"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ch7_b</span> <span class="op">|&gt;</span></span>
+<details><summary>Code</summary><div class="sourceCode" id="cb53"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ch7_b</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">election_age</span>, y <span class="op">=</span> <span class="va">lived_after</span>, color <span class="op">=</span> <span class="va">won</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"US Gubernatorial Candidate Years Lived Post Winning Election"</span>,</span>
@@ -3934,16 +3940,15 @@ sigma 11.1    0.2  </code></pre>
 </section><section id="fitted-model-4" class="level3" data-number="7.7.2"><h3 data-number="7.7.2" class="anchored" data-anchor-id="fitted-model-4">
 <span class="header-section-number">7.7.2</span> Fitted Model</h3>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb53"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_5</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/rstanarm/reference/stan_glm.html">stan_glm</a></span><span class="op">(</span>data <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">ch7_b</span>, <span class="va">close_race</span><span class="op">)</span>,</span>
+<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_5</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/rstanarm/reference/stan_glm.html">stan_glm</a></span><span class="op">(</span>data <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">ch7_b</span>, <span class="va">close_race</span><span class="op">)</span>,</span>
 <span>                  formula <span class="op">=</span> <span class="va">lived_after</span> <span class="op">~</span> <span class="va">won</span> <span class="op">+</span> <span class="va">sex</span> <span class="op">+</span> <span class="va">election_age</span>,</span>
 <span>                  refresh <span class="op">=</span> <span class="fl">0</span>,</span>
 <span>                  seed <span class="op">=</span> <span class="fl">12</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 </div>
 <p>Having fit the model, we can look at a printed summary.</p>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb54"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">fit_5</span>, detail <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output cell-output-stdout">
+<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">fit_5</span>, detail <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
 <pre><code>             Median MAD_SD
 (Intercept)  71.7    7.4  
 wonTRUE       2.1    1.4  
@@ -3956,6 +3961,15 @@ sigma 11.6    0.5  </code></pre>
 </div>
 </div>
 <p>Looking at our results, you can see that our intercept value is around 72. The average electoral candidate that won, who had been alive the average number of years of all candidates, would live another 2 years or so after the election.</p>
+</section><section id="model-checks-4" class="level3" data-number="7.7.3"><h3 data-number="7.7.3" class="anchored" data-anchor-id="model-checks-4">
+<span class="header-section-number">7.7.3</span> Model Checks</h3>
+<p>Model checks help us understand how accurate our model is to ensure that the fitted model that we have created is reasonably accurate when compared to the actual data. We can view our model through the posterior predictive check that simulates the data upon our fitted model to generate a distribution.</p>
+<div class="cell">
+<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://mc-stan.org/bayesplot/reference/pp_check.html">pp_check</a></span><span class="op">(</span><span class="va">fit_5</span>, plotfun <span class="op">=</span> <span class="st">"scatter"</span>, nreps <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="five-parameters_files/figure-html/unnamed-chunk-59-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
 </section></section><section id="temperance-1" class="level2" data-number="7.8"><h2 data-number="7.8" class="anchored" data-anchor-id="temperance-1">
 <span class="header-section-number">7.8</span> Temperance</h2>
 <div class="cell">
@@ -3969,16 +3983,23 @@ sigma 11.6    0.5  </code></pre>
 <p>When we end <strong>Temperance</strong> we end with the discussion of the Preceptor’s Posterior. The Preceptor’s Posterior as mentioned above is the posterior we calculate when all the assumptions we made under Wisdom and Justice are correct. However, most of the times these are not correct! With all of the assumptions that we looked at in the Wisdom, Justice, and Courage sections, it is safe to assume that there are several possibilities where our posterior may not hold to be true. So it is important that we maintain humility when we deal with our posterior. However, we do hope that our posterior will be a close approximation of the Preceptor’s Posterior.</p>
 </section><section id="summary" class="level2" data-number="7.9"><h2 data-number="7.9" class="anchored" data-anchor-id="summary">
 <span class="header-section-number">7.9</span> Summary</h2>
-<p>Throughout this chapter, we explored relationships between different variables in the <code>governors</code> data set. We built a predictive and causal model.</p>
+<p>Throughout this chapter, we explored relationships between different variables in the <code>governors</code> data set. To take account of our interactions, we used models with at least five parameters. Within each model we utilized the Cardinal Virtues to answer all of our questions.</p>
 <p>Just like in preceding chapters, our first objective remains with the use of <strong>Wisdom</strong>. We aim to assess the relevance of our data by examining the questions. Can we assume that the data we currently possess (e.g., election age and sex data from candidates in 2012) is drawn from the same population as the data we desire to obtain (e.g., election age and sex data from today)? Our inquires raise the issue of <strong>assumption of validity</strong> which leads into our next move.</p>
 <p>Our next move involves the examination of <strong>Justice</strong>, which guides us in determining the best approach to representing the models we intend to construct. A little bit of mathematics won’t pose major challenges. Translating these mathematical concepts into code will be accomplished with the help of <strong>Courage</strong>. With these Cardinal Virtues taken care of we now deal with <strong>Temperance</strong>. Our main objective is to generate posterior distributions for the parameters and comprehensively understand and interpret their significance. Finally, we conclude with the use of our models to address the questions. It is crucial to refine our questions to the greatest extent possible, as more detailed inquiries allow us to have the most precise answers.</p>
+<p><em>Key Lessons and Commands That Were Talked About:</em></p>
+<ul>
+<li><p>We can use <code><a href="https://mc-stan.org/rstanarm/reference/stan_glm.html">stan_glm()</a></code> to create fitted models.</p></li>
+<li><p>Use <code><a href="https://mc-stan.org/rstantools/reference/posterior_epred.html">posterior_epred()</a></code> when you want to estimate expected values.</p></li>
+<li><p>Avoid answering questions by working with parameters directly. Use <code><a href="https://mc-stan.org/rstantools/reference/posterior_epred.html">posterior_epred()</a></code> instead.</p></li>
+<li><p>Once we have create a posterior distribution for our data we can manipulate the model to answer our question at hand.</p></li>
+<li><p>Spend less time thinking about what parameters mean and more time using <code><a href="https://mc-stan.org/rstantools/reference/posterior_epred.html">posterior_epred()</a></code> and <code><a href="https://mc-stan.org/rstantools/reference/posterior_predict.html">posterior_predict()</a></code> to examine the implications of your models.</p></li>
+</ul>
 <p><em>Always Remember the Following:</em></p>
 <ul>
-<li><p>The major part of Wisdom is deciding what questions you can’t answer because of the data you don’t have.</p></li>
-<li><p>Avoid answering questions by working with parameters directly. Use <code><a href="https://mc-stan.org/rstantools/reference/posterior_epred.html">posterior_epred()</a></code> instead.</p></li>
+<li><p>The major part of <strong>Wisdom</strong> is deciding what questions you can’t answer because of the data you don’t have.</p></li>
+<li><p><strong>Justice</strong> will always include the assumptions of stability, representativeness, and unconfoundedness, where it is important to dive deep into why our assumptions may be false of the situation that we want to analyze.</p></li>
 <li><p>Good data science involves an intelligent tour of the space of possible models.</p></li>
 <li><p>Always think in terms of comparisons when using a predictive model.</p></li>
-<li><p>Spend less time thinking about what parameters mean and more time using <code><a href="https://mc-stan.org/rstantools/reference/posterior_epred.html">posterior_epred()</a></code> and <code><a href="https://mc-stan.org/rstantools/reference/posterior_predict.html">posterior_predict()</a></code> to examine the implications of your models.</p></li>
 </ul>
 
 
