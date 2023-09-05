@@ -179,6 +179,13 @@ But even if there is not an open PR, `pr_push()` can be tricky. The key thing to
 
 9) Sometimes, your **renv** library becomes messed up. Note that nuking from orbit may not fix this because **renv** installs your packages in some private common area which is not impacted when you reinstall the PPBDS package you are working with. In this case, running `renv::rebuild()` may help. If not, run `renv::diagnostics()`, find the path to the **renv** cache directory and delete everything there by hand. Then, run `renv::repair()'.`
 
+10) When using `renv::restore()`, you will occasionally have a problem in which one package, say **aprob**, fails to install, thereby aborting the entire run. This can be tricky. Some suggestions:
+
+  + In a new non-renv project, run `install.packages("aprob")`. This tests whether or not something is fundamentally broken, either with the package itself (maybe it was removed from CRAN) or with your computer. If this does not work, then you have a problem which is independent of either **renv** or the package you are working on with me. Sometimes, just doing this (successfully) is enough. If you run `renv::restore()` again (after restarting our project), it might just work.
+  
+  + In our project, you can try to install just **aprob** by itself. First, try this with `renv::install("aprob")`. If that fails, try running `install.packages("aprob")`. As you might expect, using `install.packages()` within a **renv** project is not recommended, but sometimes it just works. Then, restart the RStudio session with our project. When you now run `renv::restore()`, it should work because it no longer needs to install **aprob**.
+  
+  
 ## Style Guide
 
 * Never use just a single `#` after using it for the chapter title. The first subpart uses a `##`. There should be 5 to 8 subparts for each chapter. Within each subpart, you may have sub-subparts, indicated with `###`. There should be 3 to 10 of those. You may use `####` if you like.
