@@ -4,6 +4,8 @@
 
 <!-- Need a new cover. Sirens will do for now. Format more like Mastering Shiny?-->
 
+The *Primer* is being re-written. Consider it all to be a  draft, at least for now.
+
 ```{r, echo = FALSE}
 knitr::include_graphics("other/images/sirens.jpg") 
 ```
@@ -14,12 +16,8 @@ This isn't the book you're looking for.
 
 {{< video https://www.youtube.com/embed/532j-186xEQ >}}
 
-
-
 First, the book is for students in my classes. Everything about the book is designed to make the experience of those students better. I hope that some of the material here may be useful to people outside of this class.
 
 Second, the book changes all the time. It is as up-to-date as possible. 
 
 Third, I am highly opinionated about what matters and what does not. You might not share my views. 
-
-
