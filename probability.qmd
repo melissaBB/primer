@@ -2178,11 +2178,11 @@ The four [Cardinal Virtues](https://en.wikipedia.org/wiki/Cardinal_virtues) are 
 
 * *Wisdom* starts by creating the Preceptor Table. What data, if we had it, would allow us to answer our question easily? If the Preceptor Table has one outcome, then the model is *predictive*. If it has more than one (potential) outcome, then the model is *causal*. We then explore the data we have. You can never look too closely at your data. Key question: Are the data we have close enough to the data we want (i.e., the Preceptor Table) that we can consider both as coming from the same *population*? If not, we can't proceed further. Key in making that decision is the assumption of *validity*. Do the columns in the Preceptor Table match the columns in the data?
 
-* *Justice* starts with the Population Table -- the data we want to have, the data which we actually have, and all the other data from that same *population*. Each row of the Population Table is defined by a unique Unit/Time combination. We explore three key issues about the Population Table. First, does the relationship among the variables demonstrate *stability*, meaning is the model stable across different time periods? Second, are the rows associated with the data *representative* of all the units which we might have had data for from that time period? Third, for causal models only, we consider *unconfoundedness*. Justice concludes by making an assumption about the *data generating mechanism*. Which general mathematical formula connects the outcome variable we are interested in with the other data that we have?
+* *Justice* starts with the Population Table -- the data we want to have (i.e., the Preceptor Table), the data which we actually have, and all the other data from that same *population*. Each row of the Population Table is defined by a unique Unit/Time combination. We explore three key issues about the Population Table. First, does the relationship among the variables demonstrate *stability*, meaning is the model stable across different time periods? Second, are the rows associated with the data and, separately, the rows associated with the Preceptor Table *representative* of all the units from the population? Third, for causal models only, we consider *unconfoundedness*. 
 
-* *Courage* allows us to explore different models. Even though Justice has provided the basic mathematical structure of the model, we still need to decide which variables to include and to estimate the values of unknown parameters. We avoid hypothesis tests. We check our models for consistency with the data we have. We select one model. 
+* *Courage* allows us to explore different models. Justice gave us the Population Table. Courage creates the data generating mechanism.  We begin with the basic mathematical structure of the model. With that structure in mind, we decide which variables to include. We estimate the values of the unknown parameters. We avoid hypothesis tests. We check our models for consistency with the data we have. We select one model. 
 
-* *Temperance* guides us in the use of the model we have created to answer the questions we began with. We create posteriors of *quantities of interest*.  We should be modest in the claims we make. The posteriors we create are never the "truth." The assumptions we made to create the model are never perfect. Yet decisions made with flawed posteriors are almost always better than decisions made without them. 
+* *Temperance* guides us in the use of the model we have created to answer the questions with which we began. We create posteriors of *quantities of interest*.  We should be modest in the claims we make. The posteriors we create are never the "truth." The assumptions we made to create the model are never perfect. Yet decisions made with flawed posteriors are almost always better than decisions made without them. 
 
 
 ### Wisdom
@@ -2202,19 +2202,17 @@ Wisdom helps us decide if we can even hope to answer our question with the data 
 Begin with the Preceptor Table. What rows and columns of data do you need such that, if you had them all, the calculation of the *quantity of interest* would be trivial? If you want to know the average height of an adult in India, then the Preceptor Table would include a row for each adult and a column for their height. With no missing data, the average is easy to determine, as are a wide variety of other *estimands*, other unknown values. 
 
 One key aspect of this Preceptor Table is whether or not we need more than one potential outcome in order to calculate our estimand. For example, if we want to know the causal effect of exposure to Spanish-speakers on attitude toward immigration then we need a causal model, one which estimates that attitude for each person under both treatment and control. The Preceptor Table would require two columns for the outcome. If, on the other hand, we only want to predict someone's attitude, or compare one person's attitude to another's, then we would only need a Preceptor Table with one column for the outcome. 
-
 Are we are modeling (just) for prediction or are we (also) modeling for causation? Predictive models care nothing about causation. Causal models are often also concerned with prediction, if only as a means of measuring the quality of the model. 
 
 Every model is predictive, in the sense that, if we give you new data --- and it is drawn from the same population --- then you can create a predictive forecast. But only a subset of those models are causal, meaning that, *for a given individual*, you can change the value of one input and figure out what the new output would be and then, from that, calculate the causal effect by looking at the difference between two potential outcomes.
 
-With prediction, all we care about is forecasting $Y$ given $X$ on some as-yet-unseen data. But there is no notion of "manipulation" in such models. We don't pretend that, for Joe, we could turn variable $X$ from a value of $5$ to a value of $6$ by just turning some knob and, by doing so, cause Joe's value of $Y$ to change from $17$ to $23$. We can compare two people (or two groups of people), one with $X$ equal to $5$ and one with $X$ equal to $6$, and see how they differ in $Y$. The basic assumption of predictive models is that there is only one possible $Y$ for Joe. There are not, by assumption, two possible values for $Y$, one if $X$ equals $5$ and another if $X$ equals $6$. The Preceptor Table has a single column under $Y$.
+With prediction, all we care about is forecasting $Y$ given $X$ on some as-yet-unseen data. But there is no notion of "manipulation" in such models. We don't pretend that, for Joe, we could turn variable $X$ from a value of $5$ to a value of $6$ by just turning some knob and, by doing so, cause Joe's value of $Y$ to change from $17$ to $23$. We can compare two people (or two groups of people), one with $X$ equal to $5$ and one with $X$ equal to $6$, and see how they differ in $Y$. The basic assumption of predictive models is that there is only one possible $Y$ for Joe. There are not, by assumption, two possible values for $Y$, one if $X$ equals $5$ and another if $X$ equals $6$. The Preceptor Table has a single column under $Y$ if that is all we need to answer the question.
 
 With causal inference, however, we can consider the case of Joe with $X = 5$ and Joe with $X = 6$. The same mathematical model can be used. And both models can be used for prediction, for estimating what the value of $Y$ will be for a yet-unseen observation with a specified value for $X$. But, in this case, instead of only a single column in the Preceptor Table for $Y$, we have at least two (and possibly many) such columns, one for each of the potential outcomes under consideration.
 
-*The difference between prediction models and causal models is that the former have one column for the outcome variable and the latter have more than one column.* 
+*The difference between predictive models and causal models is that the former have one column for the outcome variable and the latter have more than one column.* 
 
 Second, we look at the data we have and perform an **e**xploratory **d**ata **a**nalysis, an EDA. You can never look at your data too much. The most important variable is the one we most want to understand/explain/predict. In the models we create in later chapters, this variable will go on the left-hand side of our mathematical equations. Some academic fields refer to this as the "dependent variable." Others use terms like "response" or "outcome." Whatever the terminology, we need to explore the distribution of this variable, its min/max/range, its mean and median, its standard deviation, and so on.  
-
 @roas write:
 
 > Most important is that the data you are analyzing should map to the research question you are trying to answer. This sounds obvious but is often overlooked or ignored because it can be inconvenient. Optimally, this means that the outcome measure should accurately reflect the phenomenon of interest, the model should include all relevant predictors, and the model should generalize to the cases to which it will be applied.
@@ -2227,7 +2225,7 @@ Third, the (almost always imaginary) *population* is key. We need the data we *w
 
 > In statistics, a population is a set of similar items or events which is of interest for some question or experiment. A statistical population can be a group of existing objects (e.g. the set of all stars within the Milky Way galaxy) or a hypothetical and potentially infinite group of objects conceived as a generalization from experience (e.g. the set of all opening hands in all the poker games in Las Vegas tomorrow).
 
-Mechanically, assuming that the Precetor Table and the data are drawn from the same population is the same thing as "stacking" the two on top of each other. For that to make sense, the variables must mean the same thing --- at least mostly --- in both sources. This is the assumption of *validity*. For example, if the Preceptor Table concerns who people will vote for in the election next week and the data is from a survey taken last week, it is not obvious that we can consider the data as coming from the same population. After all, voting and survey responses are not exactly the same thing. We can only assume that they are --- which is precisely what everyone who forecasts elections does --- if we assume that both are "valid" measures of the same underlying construct.
+Mechanically, assuming that the Preceptor Table and the data are drawn from the same population is the same thing as "stacking" the two on top of each other. For that to make sense, the variables must mean the same thing --- at least mostly --- in both cases. This is the assumption of *validity*. For example, if the Preceptor Table concerns who people will vote for in the election next week and the data is from a survey taken last week, it is not obvious that we can consider the data as coming from the same population. After all, voting and survey responses are not exactly the same thing. We can only assume that they are --- which is precisely what everyone who forecasts elections does --- if we assume that both are "valid" measures of the same underlying construct.
 
 
 If we assume that the data we have is drawn from the same population as the data in the Preceptor Table, then we can use information about the former to make inferences about the latter. We can combine the Preceptor Table and the data into a single *Population Table*. If we can't do that, if we can't assume that the two sources come from the same population, then we can't use our data to answer our questions. We have no choice but to walk away. The heart of Wisdom is knowing when to walk away. As John Tukey noted: 
@@ -2242,36 +2240,18 @@ If we assume that the data we have is drawn from the same population as the data
 knitr::include_graphics("other/images/Justice.jpg")
 ```
 
-After Wisdom, we have an *Population Table.* It includes rows for the data we have and the data we want to have. It will almost always have many more rows, rows from the larger population of which the Preceptor Table and our data form a portion. It has missing values, most importantly for potential outcomes which were not observed. The central problem in inference is to fill in the question marks in the Population Table.
+After Wisdom, we have an *Population Table.* It includes rows for the data we have and the data we want to have. It will almost always have many more rows, rows from the larger population of which the Preceptor Table and our data form a portion. It has missing values, most importantly for potential outcomes which were not observed. The central problem in inference is to fill in the missing values in the Population Table.
 
 There are three key issues to explore in any Population Table: stability, representativeness and unconfoundedness.
 
 
-* *Stability* assumes that the relationship between the outcome variable and the covariates is consistent over time. Never forget that *temporal* nature of almost all real data science problems. Our Preceptor Table will focus on rows for today or for the near future. *The data we have will always be from before now.* We must almost always assume that the future will be like the past in order to use data from the past to make predictions about the future.
+* *Stability* assumes that the relationship between the outcome variable and the covariates is consistent over time. Never forget the *temporal* nature of almost all real data science problems. Our Preceptor Table will focus on rows for today or for the near future. *The data we have will always be from before now.* We must almost always assume that the future will be like the past in order to use data from the past to make predictions about the future.
 
 * *Representativeness* is a two-sided concern. We want the data we have to be representative of the population for which we need to calculate parameters. Ideally, we would love for our data to be randomly sampled from the population, but this is almost never the case. But this is a concern, not just with our data, but also for our Preceptor Table. If the data we want is not representative of the entire population then we will need to be careful in the inferences which we draw. 
 
-<!-- DK: Flesh the above out a bit. Is representativeness really a, exactly, two-sided concern. If so, we should treat each part separately each time we deal with it. -->
-
 *Validity is about the columns in our Population Table. Stability and representativeness are about the rows.*
 
-The last step of Justice is to make an assumption about the structure of the data generating mechanism (DGM): the mathematical formula, and associated error term, which relates our outcome variable to our covariates.  
 
-*Justice requires math.* Consider a model of coin-tossing:
-
-$$ H_i  \sim B(\rho_h, n = 20) $$
-
-The total number $H$ of Heads in experiment $i$ with 20 flips of a single coin, $H_i$, is distributed as a binomial with $n = 20$ and an unknown probability $\rho_h$ of the coin coming up Heads. 
- 
-Note:
-
-* This is a cheat and a simplification! We are Bayesians but we have not specified the full Bayesian machinery. We really need priors on the unknown parameter $\rho_h$ as well. But that is too complex for an introductory textbook, so we wave our hands, accept the default sensible parameters built into the R packages we use, and point readers to more advanced books, like @roas. 
-
-* Defining $\rho_h$ as the "the probability that the coin comes up Heads" is a bit of a fudge. If you calculate that by hand and then compare it to what our tools produce, they won't be the same. Instead, the calculated value will be closer to zero. Why? $\rho_h$ is really the "long-run percentage of the time the coin comes up Heads." It is not just the percentage from this experiment. 
-
-<!-- DK: Unclear, even to me! -->
-
-* In this simple case, we are fortunate that the parameter $\rho_h$ has such a (mostly!) simple analog to a real world quantity. Most of the time, parameters are not so easy to interpret. In a more complex model, especially those with interaction terms, we focus less on parameters and more on actual predictions.
 
 ### Courage
 
@@ -2283,13 +2263,31 @@ knitr::include_graphics("other/images/Courage.jpg")
 
 <!-- Courage: For each model, write down the math, estimate the model, say something sensible about the regression table. Testing is stupid. -->
 
+The first step of Courage is to make an assumption about the structure of the data generating mechanism (DGM): the mathematical formula, and associated error term, which relates our outcome variable to our covariates.  
+
+*Courage requires math.* Consider a model of coin-tossing:
+
+$$ H_i  \sim B(\rho_h, n = 20) $$
+
+The total number $H$ of Heads in experiment $i$ with 20 flips of a single coin, $H_i$, is distributed as a binomial with $n = 20$ and an unknown probability $\rho_h$ of the coin coming up Heads. 
+ 
+<!-- DK: Are these points too abstruse to include here?  -->
+ 
+Note:
+
+* This is a cheat and a simplification! We are Bayesians but we have not specified the full Bayesian machinery. We really need priors on the unknown parameter $\rho_h$ as well. But that is too complex for an introductory textbook, so we wave our hands, accept the default sensible parameters built into the R packages we use, and point readers to more advanced books, like @roas. 
+
+* Defining $\rho_h$ as the "the probability that the coin comes up Heads" is a bit of a fudge. If you calculate that by hand and then compare it to what our tools produce, they won't be the same. Instead, the calculated value will be closer to zero. Why? $\rho_h$ is really the "long-run percentage of the time the coin comes up Heads." It is not just the percentage from this experiment. 
+
+* In this simple case, we are fortunate that the parameter $\rho_h$ has such a (mostly!) simple analog to a real world quantity. Most of the time, parameters are not so easy to interpret. In a more complex model, especially those with interaction terms, we focus less on parameters and more on model predictions.
+
 *The three languages of data science are words, math and code, and the most important of these is code.* 
 
 We need to explain the structure of our model using all three languages, but we need *Courage* to implement the model in code.
 
-Courage requires us to take the general mathematical formula provide by Justice and then make it specific. Which variables should we include in the model and which do we exclude? Every data science project involves the creation of several models. For each, we specify the precise data generating mechanism. Using that formula, and some R code, we create a fitted model. All models have parameters. We can never know the true values of the parameters, but we can create, and explore, posterior distributions for those unknown true values.
+<!-- DK: Rewrite the below, I think. It is a mish-mash of old observations. Note that there is little discussion of hypthesis tests or model checks. -->
 
-<!-- Above is awk. -->
+Courage requires us to take the general mathematical formula and then make it specific. Which variables should we include in the model and which do we exclude? Every data science project involves the creation of several models. For each, we specify the precise data generating mechanism. Using that formula, and some R code, we create a fitted model. All models have parameters. We can never know the true values of the parameters, but we can create, and explore, posterior distributions for those unknown true values.
 
 Code allows us to "fit" a model by estimating the values of the unknown parameters, like $\rho_h$. Sadly, we can never know the true values of these parameters. But, like all good statisticians, we can express our uncertain knowledge in the form of posterior probability distributions. With those distributions, we can compare the actual values of the outcome variable with the  "fitted" or "predicted" results of the model. We can examine the "residuals," the difference between the fitted and actual values.  
 
@@ -2303,9 +2301,11 @@ Some of our uncertainty is driven by our ignorance about $\rho_h$.
 
 A parameter is something which does not exist in the real world. (If it did, or could, then it would be data.) Instead, a parameter is a mental abstraction, a building block which we will use to to help us accomplish our true goal: To replace at least some of the questions marks in the actual Preceptor Table. Since parameters are mental abstractions, we will always be uncertain as to their value, however much data we might collect.
 
-But some, often most, of the uncertainty comes from forces that are, by assumption, not in the model. For example, if the coin is fair, we expect $H_i$ to equal 10. But, often, it will be different, even if we are correct and $\rho_h$ equals exactly 0.5. 
+But some, often most, of the uncertainty associated with the outcome derives from forces that are, by assumption, not in the model. For example, if the coin is fair, we expect $H_i$ to equal 10. But, often, it will be different, even if we are correct and $\rho_h$ equals exactly 0.5. 
 
 *Randomness is intrinsic to this fallen world.* 
+
+Null hypothesis testing is a mistake. There is only the data, the models and the summaries therefrom.
 
 ### Temperance
 
@@ -2319,9 +2319,9 @@ knitr::include_graphics("other/images/Temperance.jpg")
 
 <!-- Perhaps at least mention decision analysis. -->
 
-There are few more important concepts in statistics and data science than the "Data Generating Mechanism." Our *data* --- the data that we collect and see --- has been *generated* by the complexity and confusion of the world. God's own *mechanism* has brought His data to us. Our job is to build a model of that process, to create, on the computer, a mechanism which generates fake data consistent with the data which we see. With that DGM, we can answer any question which we might have. In particular, with the DGM, we provide predictions of data we have not seen and estimates of the uncertainty associated with those predictions. 
+There are few more important concepts in statistics and data science than the "Data Generating Mechanism." Our *data* --- the data that we collect and see --- has been *generated* by the complexity and confusion of the world. God's own *mechanism* has brought His data to us. Our job is to build a model of that process, to create, on the computer, a mechanism which generates fake data consistent with the data which we see. With that DGM, we can answer any question which we might have. In particular, with the DGM, we provide predictions of data we have not seen and estimates of the uncertainty associated with those predictions. We can fill in the missing values in the Preceptor Table and then, easily, calculate all Quantities of Interest. 
 
-*Justice* gave us the structure of the DGM.  *Courage* created the DGM, the fitted model. *Temperance* will guide us in its use.
+*Justice* gave us the Population Table.  *Courage* created the DGM, the fitted model. *Temperance* will guide us in its use.
 
 Having created (and checked) a model, we now use the model to answer questions. Models are made for use, not for beauty. The world confronts us. Make decisions we must. Our decisions will be better ones if we use high quality models to help make them.
 
@@ -2339,8 +2339,9 @@ knitr::include_graphics("probability/images/donald_rumsfeld.jpg")
 
 What we really care about is data we haven't seen yet, mostly data from tomorrow. But what if the world changes, as it always does? If it doesn't change much, maybe we are OK. If it changes a lot, then what good will our model be? In general, the world changes some. That means that *our forecasts are more uncertain that a naive use of our model might suggest.* 
   
+<!-- DK: Presidential example belongs in model checking, under Courage.   -->
 
-We need temperance in order to study and understand the unknown unknowns in our model. Temperance is also important when we analyze the "realism" of our models. When we created the mathematical probability distribution for presidential elections, for instance, we assumed that the Democratic candidate would have a 50% chance of winning each vote in the electoral college. By comparing the mathematical model to our empirical cases, however, we recognize that the mathematical model is unlikely to be true. The mathematical model suggested that getting fewer than 100 votes is next to impossible, but many past Democratic candidates in the empirical distribution received less than 100 electoral votes.
+We need Temperance in order to study and understand the unknown unknowns in our model. Temperance is also important when we analyze the "realism" of our models. When we created the mathematical probability distribution for presidential elections, for instance, we assumed that the Democratic candidate would have a 50% chance of winning each vote in the electoral college. By comparing the mathematical model to our empirical cases, however, we recognize that the mathematical model is unlikely to be true. The mathematical model suggested that getting fewer than 100 votes is next to impossible, but many past Democratic candidates in the empirical distribution received less than 100 electoral votes.
 
 In Temperance, the key distinction is between the *true* posterior distribution --- what we will call "Preceptor's Posterior" --- and the estimated posterior distribution. Recall our discussion from @sec-distributions. Imagine that every assumption we made in Wisdom and Justice were correct, that we correctly understand every aspect of how the world works. We still would not know the unknown value we are trying to estimate --- recall the Fundamental Problem of Causal Inference --- but the posterior we created would be perfect. That is Preceptor's Posterior. Sadly, even if our estimated posterior is, very close to Preceptor's Posterior, we can never be sure of that fact, because we can never know the truth, never be certain that all the assumptions we made are correct. 
 
@@ -2350,7 +2351,7 @@ Even worse, we must always worry that our estimated posterior, despite all the w
 
 <!-- DK: Could do more here. Show the iterative process of model building, including posterior predictive checks. -->
 
-<!-- Null hypothesis testing is a mistake. There is only the data, the models and the summaries therefrom. Describe an hypothesis test each chapter, and then dismiss it. Play the prediction game. That, perhaps, provides a useful framework for why NHST is stupid. Or, rather, you play the prediction game to figure out which statistical procedures are best --- and or, how well procedure X works --- and then use that information to make a decision. Explain what a test is, and why we think it is a waste of time to do them, and why people do them anyway. Key issue: If p = 0.04 really makes you do something totally different than p = 0.06, then either you (or the system within which you are operating) is stupid. -->
+<!--  Describe an hypothesis test each chapter, and then dismiss it. Play the prediction game. That, perhaps, provides a useful framework for why NHST is stupid. Or, rather, you play the prediction game to figure out which statistical procedures are best --- and or, how well procedure X works --- and then use that information to make a decision. Explain what a test is, and why we think it is a waste of time to do them, and why people do them anyway. Key issue: If p = 0.04 really makes you do something totally different than p = 0.06, then either you (or the system within which you are operating) is stupid. -->
 
 
 ## Summary
