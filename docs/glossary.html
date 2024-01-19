@@ -263,9 +263,9 @@ ul.task-list li input[type="checkbox"] {
 <p>The Preceptor Table always begins with a restatement of the definition: “A Preceptor Table is smallest possible table with rows and columns such that, if there is no missing data, our question is easy to answer.”</p>
 <p>To create the Preceptor Table, we answer a series of questions. (Don’t ask these questions rhetorically. Just describe the answer. There is also no need to number them, although you should always use this order.)</p>
 <ul>
-<li>Is the question causal? Looks for words like “cause” or “affect” or “influence.” Look for a question which implies a comparison, <em>for a single individual unit</em>, between two states of the world, one where the unit receives treatment X and one where the unit gets treatment Y. Look for a discussion of something which we can <em>manipulate</em>. Remember the motto: <em>No causation without manipulation</em>. We look to see if the question seeks to compare two potential outcomes <em>within the same unit</em>, rather than the same outcome between two different units.</li>
+<li>Is the question causal? Looks for verbs like “cause” or “affect” or “influence.” Look for a question which implies a comparison, <em>for a single individual unit</em>, between two states of the world, one where the unit receives treatment X and one where the unit gets treatment Y. Look for a discussion of something which we can <em>manipulate</em>. Remember the motto: <em>No causation without manipulation</em>. We look to see if the question seeks to compare two potential outcomes <em>within the same unit</em>, rather than the same outcome between two different units.</li>
 </ul>
-<p>If none of this is present, use a predictive model. If all you need to know to answer the question is the outcome under one value of the treatment, then the model is predictive. Example: What is the <code>att_end</code> for all women if they were to get the treatment? This is a predictive question, not a causal one, because we do not need to know the outcome under treatment and under control for any individual woman.</p>
+<p>If none of this is present, use a predictive model. If all you need to know to answer the question is the outcome under one value of the treatment, then the model is predictive. Example: What is the <code>att_end</code> for all women if they were to get the treatment? This is a predictive question, not a causal one, because we do not need to know the outcome under treatment <em>and</em> under control for any individual woman.</p>
 <ul>
 <li>What is the moment in time to which the question refers? Every question refers to a moment in time, even if that moment stretches a bit. The set of adults <em>today</em> is different from the set 10 years ago, or even yesterday. We need to <em>refine</em> the original question. Assume that we are referring to July 1, 2020. We have changed the original question from:</li>
 </ul>
@@ -279,31 +279,31 @@ ul.task-list li input[type="checkbox"] {
 <p>This back-and-forth between the question and the analysis is a standard part of data science. We rarely answer the exact question we started with, especially because that question is never specific enough to answer without further qualifications. Furthermore, the data we have may not allow us to answer that question, but it may be enough to answer a related question. Is that good enough for the boss/client/colleague who asked the original question? Maybe? We won’t know till we ask.</p>
 <p>Our job as data scientists is not to simply answer the question we have been asked, but to help the questioner determine a question which can be answered with the data we have, a question which helps them to make the decision which they face.</p>
 <ul>
-<li>What are the outcomes? (If the model is causal, then there must be at least two potential outcomes. If you can’t figure them out, then the model is probably predictive.) If the model is predictive, then there is only one outcome. This paragraph does more than just name the relevant variable. It also starts the discussion about how exactly we might measure this variable. We consider both the underlying concept, “liberal,” and the process by which we might operationalize the concept. Perhaps we are using a written survey with a YES/NO answer. Perhaps it is an in person interview with a 1-7 Likert scale, in which answers of 1 or 2 are coded, by us, as “liberal.” The details don’t matter, but we need to discuss.</li>
+<li>What are the outcomes? (If the model is causal, then there must be at least two potential outcomes. If you can’t figure them out, then the model is probably predictive.) If the model is predictive, then there is only one outcome. This paragraph does more than just name the relevant variable. It also starts the discussion about how exactly we might measure this variable. We consider both the underlying concept, “liberal,” and the process by which we might operationalize the concept. Perhaps we are using a written survey with a YES/NO answer. Perhaps it is an in-person interview with a 1-7 Likert scale, in which answers of 1 or 2 are coded, by us, as “liberal.” The details don’t matter, but we need to discuss.</li>
 </ul>
 <p>What are the covariates? Discussing covariates in the context of the Preceptor Table is different than discussing covariates in the context of the data. Recall that the Preceptor Table is the smallest possible table, so we don’t need to include every relevant variable. <em>We only need to discuss variables that are necessary to answer the question.</em></p>
-<p>What are the treatments, if any? (There are no treatments in predictive models.) A treatment is a covariate which, at least in theory, we can manipulate and the manipulation of which is necessary to answer our question.</p>
+<p>What are the treatments, if any? (There are no “treatments” in predictive models. There are only covariates.) A treatment is a covariate which, at least in theory, we can manipulate and the manipulation of which is necessary to answer our question.</p>
 <p>With all the above, create the Preceptor Table. In this case, our Preceptor Table includes <code>N</code> rows, one for every adult in Chicago on July 1, 1982. It includes two columns: the outcome (<code>liberal</code>) and a single covariate (<code>income</code>).</p>
 <div class="cell">
 <div class="cell-output-display">
 
-<div id="dscyrhsplt" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#dscyrhsplt table {
+<div id="tysqgfvkoz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#tysqgfvkoz table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#dscyrhsplt thead, #dscyrhsplt tbody, #dscyrhsplt tfoot, #dscyrhsplt tr, #dscyrhsplt td, #dscyrhsplt th {
+#tysqgfvkoz thead, #tysqgfvkoz tbody, #tysqgfvkoz tfoot, #tysqgfvkoz tr, #tysqgfvkoz td, #tysqgfvkoz th {
   border-style: none;
 }
 
-#dscyrhsplt p {
+#tysqgfvkoz p {
   margin: 0;
   padding: 0;
 }
 
-#dscyrhsplt .gt_table {
+#tysqgfvkoz .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -329,12 +329,12 @@ ul.task-list li input[type="checkbox"] {
   border-left-color: #D3D3D3;
 }
 
-#dscyrhsplt .gt_caption {
+#tysqgfvkoz .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#dscyrhsplt .gt_title {
+#tysqgfvkoz .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -346,7 +346,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-width: 0;
 }
 
-#dscyrhsplt .gt_subtitle {
+#tysqgfvkoz .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -358,7 +358,7 @@ ul.task-list li input[type="checkbox"] {
   border-top-width: 0;
 }
 
-#dscyrhsplt .gt_heading {
+#tysqgfvkoz .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -370,13 +370,13 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#dscyrhsplt .gt_bottom_border {
+#tysqgfvkoz .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#dscyrhsplt .gt_col_headings {
+#tysqgfvkoz .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -391,7 +391,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#dscyrhsplt .gt_col_heading {
+#tysqgfvkoz .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -411,7 +411,7 @@ ul.task-list li input[type="checkbox"] {
   overflow-x: hidden;
 }
 
-#dscyrhsplt .gt_column_spanner_outer {
+#tysqgfvkoz .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -423,15 +423,15 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 4px;
 }
 
-#dscyrhsplt .gt_column_spanner_outer:first-child {
+#tysqgfvkoz .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#dscyrhsplt .gt_column_spanner_outer:last-child {
+#tysqgfvkoz .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#dscyrhsplt .gt_column_spanner {
+#tysqgfvkoz .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -443,11 +443,11 @@ ul.task-list li input[type="checkbox"] {
   width: 100%;
 }
 
-#dscyrhsplt .gt_spanner_row {
+#tysqgfvkoz .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#dscyrhsplt .gt_group_heading {
+#tysqgfvkoz .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -473,7 +473,7 @@ ul.task-list li input[type="checkbox"] {
   text-align: left;
 }
 
-#dscyrhsplt .gt_empty_group_heading {
+#tysqgfvkoz .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -488,15 +488,15 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 
-#dscyrhsplt .gt_from_md > :first-child {
+#tysqgfvkoz .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#dscyrhsplt .gt_from_md > :last-child {
+#tysqgfvkoz .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#dscyrhsplt .gt_row {
+#tysqgfvkoz .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -515,7 +515,7 @@ ul.task-list li input[type="checkbox"] {
   overflow-x: hidden;
 }
 
-#dscyrhsplt .gt_stub {
+#tysqgfvkoz .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -528,7 +528,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#dscyrhsplt .gt_stub_row_group {
+#tysqgfvkoz .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -542,15 +542,15 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: top;
 }
 
-#dscyrhsplt .gt_row_group_first td {
+#tysqgfvkoz .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#dscyrhsplt .gt_row_group_first th {
+#tysqgfvkoz .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#dscyrhsplt .gt_summary_row {
+#tysqgfvkoz .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -560,16 +560,16 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#dscyrhsplt .gt_first_summary_row {
+#tysqgfvkoz .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#dscyrhsplt .gt_first_summary_row.thick {
+#tysqgfvkoz .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#dscyrhsplt .gt_last_summary_row {
+#tysqgfvkoz .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -579,7 +579,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#dscyrhsplt .gt_grand_summary_row {
+#tysqgfvkoz .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -589,7 +589,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#dscyrhsplt .gt_first_grand_summary_row {
+#tysqgfvkoz .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -599,7 +599,7 @@ ul.task-list li input[type="checkbox"] {
   border-top-color: #D3D3D3;
 }
 
-#dscyrhsplt .gt_last_grand_summary_row_top {
+#tysqgfvkoz .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -609,11 +609,11 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#dscyrhsplt .gt_striped {
+#tysqgfvkoz .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#dscyrhsplt .gt_table_body {
+#tysqgfvkoz .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -622,7 +622,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#dscyrhsplt .gt_footnotes {
+#tysqgfvkoz .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -636,7 +636,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#dscyrhsplt .gt_footnote {
+#tysqgfvkoz .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -645,7 +645,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#dscyrhsplt .gt_sourcenotes {
+#tysqgfvkoz .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -659,7 +659,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#dscyrhsplt .gt_sourcenote {
+#tysqgfvkoz .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -667,63 +667,63 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#dscyrhsplt .gt_left {
+#tysqgfvkoz .gt_left {
   text-align: left;
 }
 
-#dscyrhsplt .gt_center {
+#tysqgfvkoz .gt_center {
   text-align: center;
 }
 
-#dscyrhsplt .gt_right {
+#tysqgfvkoz .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#dscyrhsplt .gt_font_normal {
+#tysqgfvkoz .gt_font_normal {
   font-weight: normal;
 }
 
-#dscyrhsplt .gt_font_bold {
+#tysqgfvkoz .gt_font_bold {
   font-weight: bold;
 }
 
-#dscyrhsplt .gt_font_italic {
+#tysqgfvkoz .gt_font_italic {
   font-style: italic;
 }
 
-#dscyrhsplt .gt_super {
+#tysqgfvkoz .gt_super {
   font-size: 65%;
 }
 
-#dscyrhsplt .gt_footnote_marks {
+#tysqgfvkoz .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#dscyrhsplt .gt_asterisk {
+#tysqgfvkoz .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#dscyrhsplt .gt_indent_1 {
+#tysqgfvkoz .gt_indent_1 {
   text-indent: 5px;
 }
 
-#dscyrhsplt .gt_indent_2 {
+#tysqgfvkoz .gt_indent_2 {
   text-indent: 10px;
 }
 
-#dscyrhsplt .gt_indent_3 {
+#tysqgfvkoz .gt_indent_3 {
   text-indent: 15px;
 }
 
-#dscyrhsplt .gt_indent_4 {
+#tysqgfvkoz .gt_indent_4 {
   text-indent: 20px;
 }
 
-#dscyrhsplt .gt_indent_5 {
+#tysqgfvkoz .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -848,23 +848,23 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell">
 <div class="cell-output-display">
 
-<div id="baifpvxmmf" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#baifpvxmmf table {
+<div id="dpyxpscduk" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#dpyxpscduk table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#baifpvxmmf thead, #baifpvxmmf tbody, #baifpvxmmf tfoot, #baifpvxmmf tr, #baifpvxmmf td, #baifpvxmmf th {
+#dpyxpscduk thead, #dpyxpscduk tbody, #dpyxpscduk tfoot, #dpyxpscduk tr, #dpyxpscduk td, #dpyxpscduk th {
   border-style: none;
 }
 
-#baifpvxmmf p {
+#dpyxpscduk p {
   margin: 0;
   padding: 0;
 }
 
-#baifpvxmmf .gt_table {
+#dpyxpscduk .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -890,12 +890,12 @@ ul.task-list li input[type="checkbox"] {
   border-left-color: #D3D3D3;
 }
 
-#baifpvxmmf .gt_caption {
+#dpyxpscduk .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#baifpvxmmf .gt_title {
+#dpyxpscduk .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -907,7 +907,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-width: 0;
 }
 
-#baifpvxmmf .gt_subtitle {
+#dpyxpscduk .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -919,7 +919,7 @@ ul.task-list li input[type="checkbox"] {
   border-top-width: 0;
 }
 
-#baifpvxmmf .gt_heading {
+#dpyxpscduk .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -931,13 +931,13 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#baifpvxmmf .gt_bottom_border {
+#dpyxpscduk .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#baifpvxmmf .gt_col_headings {
+#dpyxpscduk .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -952,7 +952,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#baifpvxmmf .gt_col_heading {
+#dpyxpscduk .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -972,7 +972,7 @@ ul.task-list li input[type="checkbox"] {
   overflow-x: hidden;
 }
 
-#baifpvxmmf .gt_column_spanner_outer {
+#dpyxpscduk .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -984,15 +984,15 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 4px;
 }
 
-#baifpvxmmf .gt_column_spanner_outer:first-child {
+#dpyxpscduk .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#baifpvxmmf .gt_column_spanner_outer:last-child {
+#dpyxpscduk .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#baifpvxmmf .gt_column_spanner {
+#dpyxpscduk .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1004,11 +1004,11 @@ ul.task-list li input[type="checkbox"] {
   width: 100%;
 }
 
-#baifpvxmmf .gt_spanner_row {
+#dpyxpscduk .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#baifpvxmmf .gt_group_heading {
+#dpyxpscduk .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1034,7 +1034,7 @@ ul.task-list li input[type="checkbox"] {
   text-align: left;
 }
 
-#baifpvxmmf .gt_empty_group_heading {
+#dpyxpscduk .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1049,15 +1049,15 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 
-#baifpvxmmf .gt_from_md > :first-child {
+#dpyxpscduk .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#baifpvxmmf .gt_from_md > :last-child {
+#dpyxpscduk .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#baifpvxmmf .gt_row {
+#dpyxpscduk .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1076,7 +1076,7 @@ ul.task-list li input[type="checkbox"] {
   overflow-x: hidden;
 }
 
-#baifpvxmmf .gt_stub {
+#dpyxpscduk .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1089,7 +1089,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#baifpvxmmf .gt_stub_row_group {
+#dpyxpscduk .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1103,15 +1103,15 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: top;
 }
 
-#baifpvxmmf .gt_row_group_first td {
+#dpyxpscduk .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#baifpvxmmf .gt_row_group_first th {
+#dpyxpscduk .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#baifpvxmmf .gt_summary_row {
+#dpyxpscduk .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1121,16 +1121,16 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#baifpvxmmf .gt_first_summary_row {
+#dpyxpscduk .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#baifpvxmmf .gt_first_summary_row.thick {
+#dpyxpscduk .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#baifpvxmmf .gt_last_summary_row {
+#dpyxpscduk .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1140,7 +1140,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#baifpvxmmf .gt_grand_summary_row {
+#dpyxpscduk .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1150,7 +1150,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#baifpvxmmf .gt_first_grand_summary_row {
+#dpyxpscduk .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1160,7 +1160,7 @@ ul.task-list li input[type="checkbox"] {
   border-top-color: #D3D3D3;
 }
 
-#baifpvxmmf .gt_last_grand_summary_row_top {
+#dpyxpscduk .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1170,11 +1170,11 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#baifpvxmmf .gt_striped {
+#dpyxpscduk .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#baifpvxmmf .gt_table_body {
+#dpyxpscduk .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1183,7 +1183,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#baifpvxmmf .gt_footnotes {
+#dpyxpscduk .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1197,7 +1197,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#baifpvxmmf .gt_footnote {
+#dpyxpscduk .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1206,7 +1206,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#baifpvxmmf .gt_sourcenotes {
+#dpyxpscduk .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1220,7 +1220,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#baifpvxmmf .gt_sourcenote {
+#dpyxpscduk .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1228,63 +1228,63 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#baifpvxmmf .gt_left {
+#dpyxpscduk .gt_left {
   text-align: left;
 }
 
-#baifpvxmmf .gt_center {
+#dpyxpscduk .gt_center {
   text-align: center;
 }
 
-#baifpvxmmf .gt_right {
+#dpyxpscduk .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#baifpvxmmf .gt_font_normal {
+#dpyxpscduk .gt_font_normal {
   font-weight: normal;
 }
 
-#baifpvxmmf .gt_font_bold {
+#dpyxpscduk .gt_font_bold {
   font-weight: bold;
 }
 
-#baifpvxmmf .gt_font_italic {
+#dpyxpscduk .gt_font_italic {
   font-style: italic;
 }
 
-#baifpvxmmf .gt_super {
+#dpyxpscduk .gt_super {
   font-size: 65%;
 }
 
-#baifpvxmmf .gt_footnote_marks {
+#dpyxpscduk .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#baifpvxmmf .gt_asterisk {
+#dpyxpscduk .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#baifpvxmmf .gt_indent_1 {
+#dpyxpscduk .gt_indent_1 {
   text-indent: 5px;
 }
 
-#baifpvxmmf .gt_indent_2 {
+#dpyxpscduk .gt_indent_2 {
   text-indent: 10px;
 }
 
-#baifpvxmmf .gt_indent_3 {
+#dpyxpscduk .gt_indent_3 {
   text-indent: 15px;
 }
 
-#baifpvxmmf .gt_indent_4 {
+#dpyxpscduk .gt_indent_4 {
   text-indent: 20px;
 }
 
-#baifpvxmmf .gt_indent_5 {
+#dpyxpscduk .gt_indent_5 {
   text-indent: 25px;
 }
 </style>

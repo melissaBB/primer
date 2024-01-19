@@ -11,6 +11,8 @@
 # [here](https://www.rayshader.com/) but we will not be explaining how to use it
 # in this *Primer*.
 
+# The rayshader packages has given us endless problems over the years. We began by closing the image with 
+
 options(rgl.useNULL = TRUE)
 library(rayshader)
 library(tidyverse)
@@ -23,6 +25,7 @@ library(primer.data)
 
 <!-- Our previous approach used library(rgl). Instead of render_snapshot(), it had rglwiget() followed by something like close3d() to close the object. This created a 3d plot that could be manipulated, i.e., rotated with the pointer. It was cool! But was it really that useful? Anyway, that approach now causes an error which I could not solve. So, we switched to render_snapshot(), which works but with images that are fixed.  -->
 
+<!-- Get rid of list columns and map function since, one hopes, this is covered in R4DS?  -->
 
 <!-- Perhaps change the joint and conditional distribution section to use gender/height from NHANES? It is true that this is a discrete and continuous joint distribution, but that is probably fine. Certainly connects nicely with the male height example. Certainly works well with the joint and conditional together. Certainly would be nice to do the empirical/mathematical/posterior trypycht as in the first three examples. Posterior could be for a WNBA practice session. Most of the women will be tall, but the men will be of more typical height. -->
 
@@ -869,6 +872,7 @@ Let's say that you are rolling two six-sided dice simultaneously. Dice 1 is weig
 
 ```{r}
 #| echo: false
+#| eval: false
 # DK: Revisit and clean up this code.
 
 # Step 1: Create and organize the data.
@@ -905,7 +909,16 @@ plot_gg(mtplot,
          soliddepth = -0.5, # Thickness of pane (always <0, the smaller the thicker)
          windowsize = c(2048,1536)) # Resolution
 
-# render_snapshot()
+# Save the plot as an image
+rgl::rgl.snapshot("probability/images/die.png")
+
+# Close the RGL device
+rgl::close3d()
+```
+
+```{r}
+#| echo: false
+knitr::include_graphics("probability/images/die.png")
 ```
 
 
@@ -1127,6 +1140,7 @@ Below is a joint distribution displayed in 3D. Instead of using the "jitter" fea
 
 ```{r}
 #| echo: false
+#| eval: false
 
 # Pile up the dots in one point.
 # Later use for rayshader
@@ -1163,7 +1177,16 @@ plot_gg(jd_disease_plot,
         soliddepth = -0.5,
         windowsize = c(2048, 1536))
 
-# render_snapshot()
+# Save the plot as an image
+rgl::rgl.snapshot("probability/images/disease.png")
+
+# Close the RGL device
+rgl::close3d()
+```
+
+```{r}
+#| echo: false
+knitr::include_graphics("probability/images/disease.png")
 ```
 
 <!-- DK: Insert the sliced rayshader distribution here, and discuss. Then, below, we do the same thing by hand. Then, use this text: -->
@@ -1351,6 +1374,7 @@ Here is the 3D visualization:
 
 ```{r}
 #| echo: false
+#| eval: false
 
 # Same process, first condense point plot to a single plot, then use plot_gg make it 3d and 
 # give height.
@@ -1383,9 +1407,17 @@ plot_gg(jd_marbles_plot,
          raytrace = FALSE,
          windowsize = c(2048,1536))
 
-# render_snapshot()
+# Save the plot as an image
+rgl::rgl.snapshot("probability/images/marbles.png")
+
+# Close the RGL device
+rgl::close3d()
 ```
 
+```{r}
+#| echo: false
+knitr::include_graphics("probability/images/marbles.png")
+```
 
 
 The y-axes of both the scatterplot and the 3D visualization are labeled "Number of White Marbles in the Bag." *Each value on the y-axis is a model, a belief about the world.* For instance, when the model is 0, we have no white marbles in the bag, meaning that none of the marbles we pull out in the sample will be white.
@@ -1536,8 +1568,9 @@ Here is the 3D version of the same plot.
 
 ```{r}
 #| echo: false
+#| eval: false
 
-#Condese point and make rayshader plot.
+# Condese point and make rayshader plot.
 
 jd_coin_plot <- jd_coin |> 
   summarize(total = n(), 
@@ -1568,7 +1601,16 @@ plot_gg(jd_coin_plot,
          raytrace = FALSE,
          windowsize = c(2048,1536))
 
-# render_snapshot()
+# Save the plot as an image
+rgl::rgl.snapshot("probability/images/coin.png")
+
+# Close the RGL device
+rgl::close3d()
+```
+
+```{r}
+#| echo: false
+knitr::include_graphics("probability/images/coin.png")
 ```
 
 In both of these diagrams, we see 11 models and 21 outcomes. We don't really care about the p($models$, $data$), the joint distribution of the models-which-might-be-true and the data-which-our-experiment-might-generate. Instead, we want to estimate $p$, the unknown parameter which determines the probability that this coin will come up heads when tossed. The joint distribution alone can't tell us that. We *created* the joint distribution before we had even conducted the experiment. It is our creation, a tool which we use to make inferences. Instead, we want the conditional distribution, p($models$ | $data = 8$). We have the results of the experiment. What do those results tell us about the probability distribution of $p$? 
@@ -1577,96 +1619,6 @@ To answer this question, we simply take a vertical *slice* from the joint distri
 
 
 This animation shows what we want to do with joint distributions. We take a slice (the red one), isolate it, rotate it to look at the conditional distribution, normalize it (change the values along the current z-axis from counts to probabilities), then observe the resulting posterior.
-
-<!-- 
-
-TW: I tried to recreate the GIF below in rayshader, but failed. For those bold enough to try, the process 
-to create it would be as follows (problem described at the end):
-
-
-1. Create a dataframe with three columns: x, y and z. These will be the coordinates. 
-   Note that you need to cover every possible combination of x and y-values, and 
-   every such combination must have a z-value. Thus, the dataframe should have 
-   3 * [(#x-values)*(#values)] observations. Creating this by hand is a tedious process, 
-   but if you are using the same series of z-values over and over again, MS Excel might 
-   be helpful. 
-   If you want to save time, check out the file Values.xlsx in primer/probability. It
-   contains a dataframe I created, but it does not have the exact same dimensions as the plot 
-   in the GIF.
-   
-   
-2. Create a 2D plot like this and and save it as an object.
-    
-plot <-- ggplot(df, aes(x, y, color = z)) +
-          geom_point() +
-          theme(legend.position = "none")
-   
-   
-3. Turn it into a 3D plot. Use the following code. Only the first
-   argument is required, you may adjust the rest.
-
-plot_gg(plot,
-        width = 3.5,
-        zoom = 0.65,
-        theta = 25,
-        phi = 30,
-        sunangle = 225,
-        soliddepth = -50,
-        windowsize = c(2048,1536))
-
-
-4. If you installed xquartz, and window named "RGL Device" with the plot 
-   should have opened on your machine. Tilt the plot in the desired position.
-   Then, run this command to create a snapshot:
-   
-render_snapshot()
-
-   Congrats, you now have a single snapshot. However, keep in mind that in order to 
-   create a GIF, you need a series of snapshots that can be rendered into a GIF. This
-   means you will have to repeat the above process for every possible perspective/plot 
-   seen in below. And since the GIF consist of different plots, you must not only change
-   the perspective, but also the plot itself when creating all those snapshots. As I see it, 
-   there are four different plots that would need to be created:
-    
-    - "edge view" and all blue (initial view / one snapshot)
-    - "edge view" and one distribution red (one snapshot)
-    - "edge view" and all but red distribution flat (one snapshot) 
-    - shift to a frontal 2D-like perspective (many snapshots)
-   
-   The last step can (and should) be automated. This involves writing a loop that changes the 
-   view on the plot just a little bit, creates a snapshot, moves on to the next position, creates
-   another snapshot, and so on. This is not as hard as it seems, and a basic example of this can
-   be found here https://www.tylermw.com/a-step-by-step-guide-to-making-3d-maps-with-satellite-imagery-in-r/
-   (scroll down to the last image).
-   
-
-5. Once you have created all the snapshots the GIF will consist of, make sure their names reflect
-   the order in which they should be displayed. For example, "plot1.png", "plot2.png" and so on. If
-   you write the loop the right way, you may only have to rename the first three snapshots created 
-   manually. See the link above for details.
-   Finally, you can put it all together. First, run this command in R to close the "RGL Device" window:
-
-rgl::rgl.close()
-
-  Next, run this command in the TERMINAL. Make sure that you are in the right working directory and that 
-  you have ffmpeg installed. The third part defines the framerate per second, the example below uses 60. 
-  The fifth part must be named like your snapshots, followed by "%d.png". The last part is the name of the 
-  mp4 file, or the GIF, and can be named anything you like.
-
-system("ffmpeg -framerate 60 -i plot%d.png -pix_fmt yuv420p plot_gif.mp4")
-   
-   
------------------------
-   
-The Problem:
-
-I don't know how to create a 3D plot with rayshader and gpplot AND manually defined colors. Specifically, 
-I didn't manage to create the 3D plot with one red distribution surrounded by blue distributions. The issue 
-seems to be that rayshader uses the "color" aesthetic to make the z-axis. If you try to change the color of 
-a range of observations to red/blue, the z-values of these observations will be messed up.  
-
-
--->
 
 ![](probability/animations/color_red_combo.gif)
 
