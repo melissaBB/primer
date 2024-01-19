@@ -13,7 +13,7 @@ library(gt)
 
 <!-- Given that, it is important to monitor our language. We do not believe that that changes in `election_age` "cause" changes in `lived_after`. That is obvious. But there are some words and phrases --- like "associated with" and "change by" --- which are too close to causal. (And which we are guilty of using just a few paragraphs ago!) Be wary of their use. *Always think in terms of comparisons when using a predictive model.* We can't change `election_age` for an individual candidate. We can only compare two candidates (or two groups of candidates). -->
 
-<!-- If a parameter's estimated value is more than 2 or 3 MAD_SD's away from zero, we generally keep that parameter (and its associated variable) in the model. This is, probably, a variable which "matters." The main exception to this rule is a parameter whose value is so close to zero that it changes in its associated variable, within the general range of that variable, can't change the value of the outcome by much. -->
+<!-- If a parameter's estimated value is more than 2 or 3 MAD_SD's away from zero, we generally keep that parameter (and its associated variable) in the model. This is, probably, a variable which "matters." The main exception to this rule is a parameter whose value is so close to zero that changes in its associated variable, within the general range of that variable, can't change the value of the outcome by much. -->
 
 <!-- Test paragraph in each Temperance section. Move from 5 parameter chapter. -->
 
@@ -58,7 +58,7 @@ These are the key concepts from the *Primer*. You should apply them whenever you
 
 ## Steps to Take in Every Data Science Problem
 
-In the spirit of transparency, here are the guidelines which we provide to co-authors updating chapters in the *Primer*. This is how we think data science ought to be taught. It is also, perhaps unsurprisingly, how we think data science ought to be done, at least at this introductory level.
+In the spirit of transparency, here are the guidelines which we provide to colleagues updating chapters in the *Primer*. This is how we think data science ought to be taught. It is also, perhaps unsurprisingly, how we think data science ought to be done, at least at this introductory level.
 
 ### Question
 
