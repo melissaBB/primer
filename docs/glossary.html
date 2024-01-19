@@ -230,7 +230,7 @@ ul.task-list li input[type="checkbox"] {
   </div>
   
 
-</header><!-- Each core section finishes with a sentence summarizing what you have learned. Those sentences are combined at the end. --><!-- Given that, it is important to monitor our language. We do not believe that that changes in `election_age` "cause" changes in `lived_after`. That is obvious. But there are some words and phrases --- like "associated with" and "change by" --- which are too close to causal. (And which we are guilty of using just a few paragraphs ago!) Be wary of their use. *Always think in terms of comparisons when using a predictive model.* We can't change `election_age` for an individual candidate. We can only compare two candidates (or two groups of candidates). --><!-- If a parameter's estimated value is more than 2 or 3 MAD_SD's away from zero, we generally keep that parameter (and its associated variable) in the model. This is, probably, a variable which "matters." The main exception to this rule is a parameter whose value is so close to zero that it changes in its associated variable, within the general range of that variable, can't change the value of the outcome by much. --><!-- Test paragraph in each Temperance section. Move from 5 parameter chapter. --><!-- The model you have made by the end of Courage is almost always too complex to answer the simple question you started with, because the question rarely specifies the values of all the covariates which are included in the model. --><p><em>THIS IS A DRAFT</em></p>
+</header><!-- Each core section finishes with a sentence summarizing what you have learned. Those sentences are combined at the end. --><!-- Given that, it is important to monitor our language. We do not believe that that changes in `election_age` "cause" changes in `lived_after`. That is obvious. But there are some words and phrases --- like "associated with" and "change by" --- which are too close to causal. (And which we are guilty of using just a few paragraphs ago!) Be wary of their use. *Always think in terms of comparisons when using a predictive model.* We can't change `election_age` for an individual candidate. We can only compare two candidates (or two groups of candidates). --><!-- If a parameter's estimated value is more than 2 or 3 MAD_SD's away from zero, we generally keep that parameter (and its associated variable) in the model. This is, probably, a variable which "matters." The main exception to this rule is a parameter whose value is so close to zero that changes in its associated variable, within the general range of that variable, can't change the value of the outcome by much. --><!-- Test paragraph in each Temperance section. Move from 5 parameter chapter. --><!-- The model you have made by the end of Courage is almost always too complex to answer the simple question you started with, because the question rarely specifies the values of all the covariates which are included in the model. --><p><em>THIS IS A DRAFT</em></p>
 <p>These are the key concepts from the <em>Primer</em>. You should apply them whenever you face a choice, and some data to help you make it. The world confronts us. Makes decisions we must.</p>
 <p><strong>Quantity of Interest</strong> is the number which you want to estimate. You will almost always calculate a posterior probability distribution for your Quantity of Interest since, in the real world, you will never know your QoI precisely. Most problems involve more than one QoI.</p>
 <p><strong>Predictive Models and Causal Models</strong> are different because predictive models have only one outcome column. Causal models have more than one (potential) outcome column because we need more than one potential outcome in order to estimate a <em>causal effect</em>. The first step in a data science problem is to determine if your QoI requires a causal or a predictive model.</p>
@@ -249,7 +249,7 @@ ul.task-list li input[type="checkbox"] {
 <p><strong>Courage</strong> is the third <a href="https://en.wikipedia.org/wiki/Cardinal_virtues">Cardinal Virtue</a> in data science. Justice gave us the Population Table. Courage creates the data generating mechanism. Which general mathematical formula connects the outcome variable we are interested in with the other data that we have? Courage allows us to explore different models. We need to decide which variables to include and to estimate the values of unknown parameters. We avoid hypothesis tests. We check our models for consistency with the data we have. We select one model.</p>
 <p><strong>Temperance</strong> is the fourth <a href="https://en.wikipedia.org/wiki/Cardinal_virtues">Cardinal Virtue</a> in data science. Courage gave us the data generating mechanism. Temperance guides us in the use of the DGM — or the “model” — we have created to answer the questions with which we began. We create posteriors for the quantities of interest. We should be modest in the claims we make. The posteriors we create are never the “truth.” The assumptions we made to create the model are never perfect. Yet decisions made with flawed posteriors are almost always better than decisions made without them.</p>
 <section id="steps-to-take-in-every-data-science-problem" class="level2"><h2 class="anchored" data-anchor-id="steps-to-take-in-every-data-science-problem">Steps to Take in Every Data Science Problem</h2>
-<p>In the spirit of transparency, here are the guidelines which we provide to co-authors updating chapters in the <em>Primer</em>. This is how we think data science ought to be taught. It is also, perhaps unsurprisingly, how we think data science ought to be done, at least at this introductory level.</p>
+<p>In the spirit of transparency, here are the guidelines which we provide to colleagues updating chapters in the <em>Primer</em>. This is how we think data science ought to be taught. It is also, perhaps unsurprisingly, how we think data science ought to be done, at least at this introductory level.</p>
 <section id="question" class="level3"><h3 class="anchored" data-anchor-id="question">Question</h3>
 <p>Start with the question. This will generally be something simple, easily expressed in just a sentence, using colloquial language. Every data science problem starts with a question. Your goal is to provide an answer to the question, along with your uncertainty about that answer. The most common form for the answer is a posterior probability distribution. This PPD is either the answer itself, or the tool we use to answer the question. Example:</p>
 <p>“What proportion of people who make $100,000 are liberal?”</p>
@@ -287,23 +287,23 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell">
 <div class="cell-output-display">
 
-<div id="zjpfybanyw" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#zjpfybanyw table {
+<div id="dscyrhsplt" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#dscyrhsplt table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#zjpfybanyw thead, #zjpfybanyw tbody, #zjpfybanyw tfoot, #zjpfybanyw tr, #zjpfybanyw td, #zjpfybanyw th {
+#dscyrhsplt thead, #dscyrhsplt tbody, #dscyrhsplt tfoot, #dscyrhsplt tr, #dscyrhsplt td, #dscyrhsplt th {
   border-style: none;
 }
 
-#zjpfybanyw p {
+#dscyrhsplt p {
   margin: 0;
   padding: 0;
 }
 
-#zjpfybanyw .gt_table {
+#dscyrhsplt .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -329,12 +329,12 @@ ul.task-list li input[type="checkbox"] {
   border-left-color: #D3D3D3;
 }
 
-#zjpfybanyw .gt_caption {
+#dscyrhsplt .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#zjpfybanyw .gt_title {
+#dscyrhsplt .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -346,7 +346,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-width: 0;
 }
 
-#zjpfybanyw .gt_subtitle {
+#dscyrhsplt .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -358,7 +358,7 @@ ul.task-list li input[type="checkbox"] {
   border-top-width: 0;
 }
 
-#zjpfybanyw .gt_heading {
+#dscyrhsplt .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -370,13 +370,13 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#zjpfybanyw .gt_bottom_border {
+#dscyrhsplt .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#zjpfybanyw .gt_col_headings {
+#dscyrhsplt .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -391,7 +391,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#zjpfybanyw .gt_col_heading {
+#dscyrhsplt .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -411,7 +411,7 @@ ul.task-list li input[type="checkbox"] {
   overflow-x: hidden;
 }
 
-#zjpfybanyw .gt_column_spanner_outer {
+#dscyrhsplt .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -423,15 +423,15 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 4px;
 }
 
-#zjpfybanyw .gt_column_spanner_outer:first-child {
+#dscyrhsplt .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#zjpfybanyw .gt_column_spanner_outer:last-child {
+#dscyrhsplt .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#zjpfybanyw .gt_column_spanner {
+#dscyrhsplt .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -443,11 +443,11 @@ ul.task-list li input[type="checkbox"] {
   width: 100%;
 }
 
-#zjpfybanyw .gt_spanner_row {
+#dscyrhsplt .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#zjpfybanyw .gt_group_heading {
+#dscyrhsplt .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -473,7 +473,7 @@ ul.task-list li input[type="checkbox"] {
   text-align: left;
 }
 
-#zjpfybanyw .gt_empty_group_heading {
+#dscyrhsplt .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -488,15 +488,15 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 
-#zjpfybanyw .gt_from_md > :first-child {
+#dscyrhsplt .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#zjpfybanyw .gt_from_md > :last-child {
+#dscyrhsplt .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#zjpfybanyw .gt_row {
+#dscyrhsplt .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -515,7 +515,7 @@ ul.task-list li input[type="checkbox"] {
   overflow-x: hidden;
 }
 
-#zjpfybanyw .gt_stub {
+#dscyrhsplt .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -528,7 +528,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#zjpfybanyw .gt_stub_row_group {
+#dscyrhsplt .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -542,15 +542,15 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: top;
 }
 
-#zjpfybanyw .gt_row_group_first td {
+#dscyrhsplt .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#zjpfybanyw .gt_row_group_first th {
+#dscyrhsplt .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#zjpfybanyw .gt_summary_row {
+#dscyrhsplt .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -560,16 +560,16 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#zjpfybanyw .gt_first_summary_row {
+#dscyrhsplt .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#zjpfybanyw .gt_first_summary_row.thick {
+#dscyrhsplt .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#zjpfybanyw .gt_last_summary_row {
+#dscyrhsplt .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -579,7 +579,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#zjpfybanyw .gt_grand_summary_row {
+#dscyrhsplt .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -589,7 +589,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#zjpfybanyw .gt_first_grand_summary_row {
+#dscyrhsplt .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -599,7 +599,7 @@ ul.task-list li input[type="checkbox"] {
   border-top-color: #D3D3D3;
 }
 
-#zjpfybanyw .gt_last_grand_summary_row_top {
+#dscyrhsplt .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -609,11 +609,11 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#zjpfybanyw .gt_striped {
+#dscyrhsplt .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#zjpfybanyw .gt_table_body {
+#dscyrhsplt .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -622,7 +622,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#zjpfybanyw .gt_footnotes {
+#dscyrhsplt .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -636,7 +636,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#zjpfybanyw .gt_footnote {
+#dscyrhsplt .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -645,7 +645,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#zjpfybanyw .gt_sourcenotes {
+#dscyrhsplt .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -659,7 +659,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#zjpfybanyw .gt_sourcenote {
+#dscyrhsplt .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -667,63 +667,63 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#zjpfybanyw .gt_left {
+#dscyrhsplt .gt_left {
   text-align: left;
 }
 
-#zjpfybanyw .gt_center {
+#dscyrhsplt .gt_center {
   text-align: center;
 }
 
-#zjpfybanyw .gt_right {
+#dscyrhsplt .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#zjpfybanyw .gt_font_normal {
+#dscyrhsplt .gt_font_normal {
   font-weight: normal;
 }
 
-#zjpfybanyw .gt_font_bold {
+#dscyrhsplt .gt_font_bold {
   font-weight: bold;
 }
 
-#zjpfybanyw .gt_font_italic {
+#dscyrhsplt .gt_font_italic {
   font-style: italic;
 }
 
-#zjpfybanyw .gt_super {
+#dscyrhsplt .gt_super {
   font-size: 65%;
 }
 
-#zjpfybanyw .gt_footnote_marks {
+#dscyrhsplt .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#zjpfybanyw .gt_asterisk {
+#dscyrhsplt .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#zjpfybanyw .gt_indent_1 {
+#dscyrhsplt .gt_indent_1 {
   text-indent: 5px;
 }
 
-#zjpfybanyw .gt_indent_2 {
+#dscyrhsplt .gt_indent_2 {
   text-indent: 10px;
 }
 
-#zjpfybanyw .gt_indent_3 {
+#dscyrhsplt .gt_indent_3 {
   text-indent: 15px;
 }
 
-#zjpfybanyw .gt_indent_4 {
+#dscyrhsplt .gt_indent_4 {
   text-indent: 20px;
 }
 
-#zjpfybanyw .gt_indent_5 {
+#dscyrhsplt .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -748,81 +748,81 @@ ul.task-list li input[type="checkbox"] {
 </thead>
 <tbody class="gt_table_body">
 <tr>
-<td headers="ID" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div class="gt_from_md">
+<td headers="ID" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div data-qmd="1"><div class="gt_from_md">
 <p>1</p>
-</div></td>
-<td headers="liberal" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="liberal" class="gt_row gt_center"><div data-qmd="0"><div class="gt_from_md">
 <p>0</p>
-</div></td>
-<td headers="income" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="income" class="gt_row gt_center"><div data-qmd="150000"><div class="gt_from_md">
 <p>150000</p>
-</div></td>
+</div></div></td>
 </tr>
 <tr>
-<td headers="ID" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div class="gt_from_md">
+<td headers="ID" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div data-qmd="2"><div class="gt_from_md">
 <p>2</p>
-</div></td>
-<td headers="liberal" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="liberal" class="gt_row gt_center"><div data-qmd="0"><div class="gt_from_md">
 <p>0</p>
-</div></td>
-<td headers="income" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="income" class="gt_row gt_center"><div data-qmd="50000"><div class="gt_from_md">
 <p>50000</p>
-</div></td>
+</div></div></td>
 </tr>
 <tr>
-<td headers="ID" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div class="gt_from_md">
+<td headers="ID" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div data-qmd="..."><div class="gt_from_md">
 <p>…</p>
-</div></td>
-<td headers="liberal" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="liberal" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
 <p>…</p>
-</div></td>
-<td headers="income" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="income" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
 <p>…</p>
-</div></td>
+</div></div></td>
 </tr>
 <tr>
-<td headers="ID" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div class="gt_from_md">
+<td headers="ID" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div data-qmd="10"><div class="gt_from_md">
 <p>10</p>
-</div></td>
-<td headers="liberal" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="liberal" class="gt_row gt_center"><div data-qmd="1"><div class="gt_from_md">
 <p>1</p>
-</div></td>
-<td headers="income" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="income" class="gt_row gt_center"><div data-qmd="65000"><div class="gt_from_md">
 <p>65000</p>
-</div></td>
+</div></div></td>
 </tr>
 <tr>
-<td headers="ID" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div class="gt_from_md">
+<td headers="ID" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div data-qmd="11"><div class="gt_from_md">
 <p>11</p>
-</div></td>
-<td headers="liberal" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="liberal" class="gt_row gt_center"><div data-qmd="1"><div class="gt_from_md">
 <p>1</p>
-</div></td>
-<td headers="income" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="income" class="gt_row gt_center"><div data-qmd="35000"><div class="gt_from_md">
 <p>35000</p>
-</div></td>
+</div></div></td>
 </tr>
 <tr>
-<td headers="ID" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div class="gt_from_md">
+<td headers="ID" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div data-qmd="..."><div class="gt_from_md">
 <p>…</p>
-</div></td>
-<td headers="liberal" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="liberal" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
 <p>…</p>
-</div></td>
-<td headers="income" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="income" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
 <p>…</p>
-</div></td>
+</div></div></td>
 </tr>
 <tr>
-<td headers="ID" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div class="gt_from_md">
+<td headers="ID" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div data-qmd="N"><div class="gt_from_md">
 <p>N</p>
-</div></td>
-<td headers="liberal" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="liberal" class="gt_row gt_center"><div data-qmd="1"><div class="gt_from_md">
 <p>1</p>
-</div></td>
-<td headers="income" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="income" class="gt_row gt_center"><div data-qmd="78000"><div class="gt_from_md">
 <p>78000</p>
-</div></td>
+</div></div></td>
 </tr>
 </tbody>
 </table>
@@ -848,23 +848,23 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell">
 <div class="cell-output-display">
 
-<div id="nwffihgpqa" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#nwffihgpqa table {
+<div id="baifpvxmmf" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#baifpvxmmf table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#nwffihgpqa thead, #nwffihgpqa tbody, #nwffihgpqa tfoot, #nwffihgpqa tr, #nwffihgpqa td, #nwffihgpqa th {
+#baifpvxmmf thead, #baifpvxmmf tbody, #baifpvxmmf tfoot, #baifpvxmmf tr, #baifpvxmmf td, #baifpvxmmf th {
   border-style: none;
 }
 
-#nwffihgpqa p {
+#baifpvxmmf p {
   margin: 0;
   padding: 0;
 }
 
-#nwffihgpqa .gt_table {
+#baifpvxmmf .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -890,12 +890,12 @@ ul.task-list li input[type="checkbox"] {
   border-left-color: #D3D3D3;
 }
 
-#nwffihgpqa .gt_caption {
+#baifpvxmmf .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#nwffihgpqa .gt_title {
+#baifpvxmmf .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -907,7 +907,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-width: 0;
 }
 
-#nwffihgpqa .gt_subtitle {
+#baifpvxmmf .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -919,7 +919,7 @@ ul.task-list li input[type="checkbox"] {
   border-top-width: 0;
 }
 
-#nwffihgpqa .gt_heading {
+#baifpvxmmf .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -931,13 +931,13 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#nwffihgpqa .gt_bottom_border {
+#baifpvxmmf .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#nwffihgpqa .gt_col_headings {
+#baifpvxmmf .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -952,7 +952,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#nwffihgpqa .gt_col_heading {
+#baifpvxmmf .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -972,7 +972,7 @@ ul.task-list li input[type="checkbox"] {
   overflow-x: hidden;
 }
 
-#nwffihgpqa .gt_column_spanner_outer {
+#baifpvxmmf .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -984,15 +984,15 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 4px;
 }
 
-#nwffihgpqa .gt_column_spanner_outer:first-child {
+#baifpvxmmf .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#nwffihgpqa .gt_column_spanner_outer:last-child {
+#baifpvxmmf .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#nwffihgpqa .gt_column_spanner {
+#baifpvxmmf .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1004,11 +1004,11 @@ ul.task-list li input[type="checkbox"] {
   width: 100%;
 }
 
-#nwffihgpqa .gt_spanner_row {
+#baifpvxmmf .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#nwffihgpqa .gt_group_heading {
+#baifpvxmmf .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1034,7 +1034,7 @@ ul.task-list li input[type="checkbox"] {
   text-align: left;
 }
 
-#nwffihgpqa .gt_empty_group_heading {
+#baifpvxmmf .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1049,15 +1049,15 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 
-#nwffihgpqa .gt_from_md > :first-child {
+#baifpvxmmf .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#nwffihgpqa .gt_from_md > :last-child {
+#baifpvxmmf .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#nwffihgpqa .gt_row {
+#baifpvxmmf .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1076,7 +1076,7 @@ ul.task-list li input[type="checkbox"] {
   overflow-x: hidden;
 }
 
-#nwffihgpqa .gt_stub {
+#baifpvxmmf .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1089,7 +1089,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#nwffihgpqa .gt_stub_row_group {
+#baifpvxmmf .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1103,15 +1103,15 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: top;
 }
 
-#nwffihgpqa .gt_row_group_first td {
+#baifpvxmmf .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#nwffihgpqa .gt_row_group_first th {
+#baifpvxmmf .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#nwffihgpqa .gt_summary_row {
+#baifpvxmmf .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1121,16 +1121,16 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#nwffihgpqa .gt_first_summary_row {
+#baifpvxmmf .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#nwffihgpqa .gt_first_summary_row.thick {
+#baifpvxmmf .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#nwffihgpqa .gt_last_summary_row {
+#baifpvxmmf .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1140,7 +1140,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#nwffihgpqa .gt_grand_summary_row {
+#baifpvxmmf .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1150,7 +1150,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#nwffihgpqa .gt_first_grand_summary_row {
+#baifpvxmmf .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1160,7 +1160,7 @@ ul.task-list li input[type="checkbox"] {
   border-top-color: #D3D3D3;
 }
 
-#nwffihgpqa .gt_last_grand_summary_row_top {
+#baifpvxmmf .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1170,11 +1170,11 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#nwffihgpqa .gt_striped {
+#baifpvxmmf .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#nwffihgpqa .gt_table_body {
+#baifpvxmmf .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1183,7 +1183,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#nwffihgpqa .gt_footnotes {
+#baifpvxmmf .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1197,7 +1197,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#nwffihgpqa .gt_footnote {
+#baifpvxmmf .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1206,7 +1206,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#nwffihgpqa .gt_sourcenotes {
+#baifpvxmmf .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1220,7 +1220,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#nwffihgpqa .gt_sourcenote {
+#baifpvxmmf .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1228,63 +1228,63 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#nwffihgpqa .gt_left {
+#baifpvxmmf .gt_left {
   text-align: left;
 }
 
-#nwffihgpqa .gt_center {
+#baifpvxmmf .gt_center {
   text-align: center;
 }
 
-#nwffihgpqa .gt_right {
+#baifpvxmmf .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#nwffihgpqa .gt_font_normal {
+#baifpvxmmf .gt_font_normal {
   font-weight: normal;
 }
 
-#nwffihgpqa .gt_font_bold {
+#baifpvxmmf .gt_font_bold {
   font-weight: bold;
 }
 
-#nwffihgpqa .gt_font_italic {
+#baifpvxmmf .gt_font_italic {
   font-style: italic;
 }
 
-#nwffihgpqa .gt_super {
+#baifpvxmmf .gt_super {
   font-size: 65%;
 }
 
-#nwffihgpqa .gt_footnote_marks {
+#baifpvxmmf .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#nwffihgpqa .gt_asterisk {
+#baifpvxmmf .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#nwffihgpqa .gt_indent_1 {
+#baifpvxmmf .gt_indent_1 {
   text-indent: 5px;
 }
 
-#nwffihgpqa .gt_indent_2 {
+#baifpvxmmf .gt_indent_2 {
   text-indent: 10px;
 }
 
-#nwffihgpqa .gt_indent_3 {
+#baifpvxmmf .gt_indent_3 {
   text-indent: 15px;
 }
 
-#nwffihgpqa .gt_indent_4 {
+#baifpvxmmf .gt_indent_4 {
   text-indent: 20px;
 }
 
-#nwffihgpqa .gt_indent_5 {
+#baifpvxmmf .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -1311,140 +1311,140 @@ ul.task-list li input[type="checkbox"] {
 </thead>
 <tbody class="gt_table_body">
 <tr>
-<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div class="gt_from_md">
+<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div data-qmd="..."><div class="gt_from_md">
 <p>…</p>
-</div></td>
-<td headers="year" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="year" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
 <p>…</p>
-</div></td>
-<td headers="income" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="income" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
 <p>…</p>
-</div></td>
-<td headers="age" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="age" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
 <p>…</p>
-</div></td>
-<td headers="city" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="city" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
 <p>…</p>
-</div></td>
+</div></div></td>
 </tr>
 <tr>
-<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div class="gt_from_md">
+<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div data-qmd="Data"><div class="gt_from_md">
 <p>Data</p>
-</div></td>
-<td headers="year" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="year" class="gt_row gt_center"><div data-qmd="2012"><div class="gt_from_md">
 <p>2012</p>
-</div></td>
-<td headers="income" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="income" class="gt_row gt_center"><div data-qmd="150000"><div class="gt_from_md">
 <p>150000</p>
-</div></td>
-<td headers="age" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="age" class="gt_row gt_center"><div data-qmd="43"><div class="gt_from_md">
 <p>43</p>
-</div></td>
-<td headers="city" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="city" class="gt_row gt_center"><div data-qmd="Boston"><div class="gt_from_md">
 <p>Boston</p>
-</div></td>
+</div></div></td>
 </tr>
 <tr>
-<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div class="gt_from_md">
+<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div data-qmd="Data"><div class="gt_from_md">
 <p>Data</p>
-</div></td>
-<td headers="year" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="year" class="gt_row gt_center"><div data-qmd="2012"><div class="gt_from_md">
 <p>2012</p>
-</div></td>
-<td headers="income" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="income" class="gt_row gt_center"><div data-qmd="50000"><div class="gt_from_md">
 <p>50000</p>
-</div></td>
-<td headers="age" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="age" class="gt_row gt_center"><div data-qmd="52"><div class="gt_from_md">
 <p>52</p>
-</div></td>
-<td headers="city" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="city" class="gt_row gt_center"><div data-qmd="Boston"><div class="gt_from_md">
 <p>Boston</p>
-</div></td>
+</div></div></td>
 </tr>
 <tr>
-<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div class="gt_from_md">
+<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div data-qmd="..."><div class="gt_from_md">
 <p>…</p>
-</div></td>
-<td headers="year" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="year" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
 <p>…</p>
-</div></td>
-<td headers="income" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="income" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
 <p>…</p>
-</div></td>
-<td headers="age" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="age" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
 <p>…</p>
-</div></td>
-<td headers="city" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="city" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
 <p>…</p>
-</div></td>
+</div></div></td>
 </tr>
 <tr>
-<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div class="gt_from_md">
+<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div data-qmd="..."><div class="gt_from_md">
 <p>…</p>
-</div></td>
-<td headers="year" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="year" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
 <p>…</p>
-</div></td>
-<td headers="income" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="income" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
 <p>…</p>
-</div></td>
-<td headers="age" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="age" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
 <p>…</p>
-</div></td>
-<td headers="city" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="city" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
 <p>…</p>
-</div></td>
+</div></div></td>
 </tr>
 <tr>
-<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div class="gt_from_md">
+<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div data-qmd="Preceptor Table"><div class="gt_from_md">
 <p>Preceptor Table</p>
-</div></td>
-<td headers="year" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="year" class="gt_row gt_center"><div data-qmd="2020"><div class="gt_from_md">
 <p>2020</p>
-</div></td>
-<td headers="income" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="income" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
 <p>…</p>
-</div></td>
-<td headers="age" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="age" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
 <p>…</p>
-</div></td>
-<td headers="city" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="city" class="gt_row gt_center"><div data-qmd="Chicago"><div class="gt_from_md">
 <p>Chicago</p>
-</div></td>
+</div></div></td>
 </tr>
 <tr>
-<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div class="gt_from_md">
+<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div data-qmd="Preceptor Table"><div class="gt_from_md">
 <p>Preceptor Table</p>
-</div></td>
-<td headers="year" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="year" class="gt_row gt_center"><div data-qmd="2020"><div class="gt_from_md">
 <p>2020</p>
-</div></td>
-<td headers="income" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="income" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
 <p>…</p>
-</div></td>
-<td headers="age" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="age" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
 <p>…</p>
-</div></td>
-<td headers="city" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="city" class="gt_row gt_center"><div data-qmd="Chicago"><div class="gt_from_md">
 <p>Chicago</p>
-</div></td>
+</div></div></td>
 </tr>
 <tr>
-<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div class="gt_from_md">
+<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div data-qmd="..."><div class="gt_from_md">
 <p>…</p>
-</div></td>
-<td headers="year" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="year" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
 <p>…</p>
-</div></td>
-<td headers="income" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="income" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
 <p>…</p>
-</div></td>
-<td headers="age" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="age" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
 <p>…</p>
-</div></td>
-<td headers="city" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="city" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
 <p>…</p>
-</div></td>
+</div></div></td>
 </tr>
 </tbody>
 </table>

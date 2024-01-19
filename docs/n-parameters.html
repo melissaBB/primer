@@ -288,19 +288,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
-</header><p><!-- MF: POpulation Table adjusted. Validity, stability, and representativeness modified but could use some polishing. Fix Temperance section. --></p>
-
-<!-- Continuing in Justice, what assumption do we make about the form of the model? (Meaning linear, logistic and so on.) Also, discuss the fact that we have assuming that the unknown joint distribution is consistent for the whole population. That is, there is a formula which works for all the rows in the Population Table. This may require removing some rows from the Population Table. JUst because Wisdom handed us a Population Table with X rows does not mean we need to keep all X rows, especially if creating a model which covers all rows is hard/impossible. We can just simplify the claims we are making about the world by removing some rows. But we better not remove the rows we need to answer the question we started with. Justice finishes with a generic model form, but not with a decision about which variables to include.
--->
-<!-- Temperance. Answer the question. Be aware of the limits to the accuracy of your answer. Testing. All the cool themes. Bring it all together. Make the students say "Ahhh!" Revisit the three levels of possible knowledge: -->
-<!-- Fix DK comment. -->
-<!-- Add a testing is nonsense section. -->
-<p><em>This chapter is still a DRAFT.</em></p>
+</header><p><em>This chapter is still a DRAFT.</em></p>
 <blockquote class="blockquote">
 <p>It may be time to move from assuming that research has been honestly conducted and reported to assuming it to be untrustworthy until there is some evidence to the contrary. – <a href="https://blogs.bmj.com/bmj/2021/07/05/time-to-assume-that-health-research-is-fraudulent-until-proved-otherwise/">Richard Smith</a>, former editor of the <em>British Medical Journal</em>.</p>
 </blockquote>
 <p>Having created models with one parameter in <a href="one-parameter.html"><span>Chapter&nbsp;3</span></a>, two parameters in <a href="two-parameters.html"><span>Chapter&nbsp;4</span></a>, three parameters in <a href="three-parameters.html"><span>Chapter&nbsp;5</span></a>, four parameters in <a href="four-parameters.html"><span>Chapter&nbsp;6</span></a> and five parameters in <a href="five-parameters.html"><span>Chapter&nbsp;7</span></a>, you are now ready to make the jump to <span class="math inline">\(N\)</span> parameters.</p>
-<p>In this chapter, we will consider models with many parameters and the complexities that arise therefrom. As our models grow in complexity, we need to pay extra attention to basic considerations like validity, stability, and representativeness. It is easy to jump right in and start interpreting! It is harder, but necessary, to ensure that our models are really answering our questions.</p>
+<p>In this chapter, we will consider models with many parameters and the complexities that arise therefrom. As our models grow in complexity, we need to pay extra attention to basic assumptions like validity, stability, representativeness, and unconfoundedness. It is easy to jump right in and start interpreting! It is harder, but necessary, to ensure that our models are really answering our questions.</p>
 <p>Imagine you are running for Governor in Texas and want to do a better job of getting your voters to vote. How can you encourage voters to go out to the polls on election day?</p>
 <section id="wisdom" class="level2" data-number="8.1"><h2 data-number="8.1" class="anchored" data-anchor-id="wisdom">
 <span class="header-section-number">8.1</span> Wisdom</h2>
@@ -324,23 +317,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="cell-output-display">
 
-<div id="ugjtxmrdeu" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#ugjtxmrdeu table {
+<div id="igkocnezbe" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#igkocnezbe table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#ugjtxmrdeu thead, #ugjtxmrdeu tbody, #ugjtxmrdeu tfoot, #ugjtxmrdeu tr, #ugjtxmrdeu td, #ugjtxmrdeu th {
+#igkocnezbe thead, #igkocnezbe tbody, #igkocnezbe tfoot, #igkocnezbe tr, #igkocnezbe td, #igkocnezbe th {
   border-style: none;
 }
 
-#ugjtxmrdeu p {
+#igkocnezbe p {
   margin: 0;
   padding: 0;
 }
 
-#ugjtxmrdeu .gt_table {
+#igkocnezbe .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -366,12 +359,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-left-color: #D3D3D3;
 }
 
-#ugjtxmrdeu .gt_caption {
+#igkocnezbe .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#ugjtxmrdeu .gt_title {
+#igkocnezbe .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -383,7 +376,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-width: 0;
 }
 
-#ugjtxmrdeu .gt_subtitle {
+#igkocnezbe .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -395,7 +388,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-top-width: 0;
 }
 
-#ugjtxmrdeu .gt_heading {
+#igkocnezbe .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -407,13 +400,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#ugjtxmrdeu .gt_bottom_border {
+#igkocnezbe .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#ugjtxmrdeu .gt_col_headings {
+#igkocnezbe .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -428,7 +421,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#ugjtxmrdeu .gt_col_heading {
+#igkocnezbe .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -448,7 +441,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   overflow-x: hidden;
 }
 
-#ugjtxmrdeu .gt_column_spanner_outer {
+#igkocnezbe .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -460,15 +453,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 4px;
 }
 
-#ugjtxmrdeu .gt_column_spanner_outer:first-child {
+#igkocnezbe .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#ugjtxmrdeu .gt_column_spanner_outer:last-child {
+#igkocnezbe .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#ugjtxmrdeu .gt_column_spanner {
+#igkocnezbe .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -480,11 +473,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   width: 100%;
 }
 
-#ugjtxmrdeu .gt_spanner_row {
+#igkocnezbe .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#ugjtxmrdeu .gt_group_heading {
+#igkocnezbe .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -510,7 +503,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   text-align: left;
 }
 
-#ugjtxmrdeu .gt_empty_group_heading {
+#igkocnezbe .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -525,15 +518,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   vertical-align: middle;
 }
 
-#ugjtxmrdeu .gt_from_md > :first-child {
+#igkocnezbe .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#ugjtxmrdeu .gt_from_md > :last-child {
+#igkocnezbe .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#ugjtxmrdeu .gt_row {
+#igkocnezbe .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -552,7 +545,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   overflow-x: hidden;
 }
 
-#ugjtxmrdeu .gt_stub {
+#igkocnezbe .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -565,7 +558,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#ugjtxmrdeu .gt_stub_row_group {
+#igkocnezbe .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -579,15 +572,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   vertical-align: top;
 }
 
-#ugjtxmrdeu .gt_row_group_first td {
+#igkocnezbe .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#ugjtxmrdeu .gt_row_group_first th {
+#igkocnezbe .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#ugjtxmrdeu .gt_summary_row {
+#igkocnezbe .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -597,16 +590,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#ugjtxmrdeu .gt_first_summary_row {
+#igkocnezbe .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#ugjtxmrdeu .gt_first_summary_row.thick {
+#igkocnezbe .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#ugjtxmrdeu .gt_last_summary_row {
+#igkocnezbe .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -616,7 +609,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#ugjtxmrdeu .gt_grand_summary_row {
+#igkocnezbe .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -626,7 +619,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#ugjtxmrdeu .gt_first_grand_summary_row {
+#igkocnezbe .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -636,7 +629,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-top-color: #D3D3D3;
 }
 
-#ugjtxmrdeu .gt_last_grand_summary_row_top {
+#igkocnezbe .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -646,11 +639,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#ugjtxmrdeu .gt_striped {
+#igkocnezbe .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#ugjtxmrdeu .gt_table_body {
+#igkocnezbe .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -659,7 +652,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#ugjtxmrdeu .gt_footnotes {
+#igkocnezbe .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -673,7 +666,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#ugjtxmrdeu .gt_footnote {
+#igkocnezbe .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -682,7 +675,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#ugjtxmrdeu .gt_sourcenotes {
+#igkocnezbe .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -696,7 +689,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#ugjtxmrdeu .gt_sourcenote {
+#igkocnezbe .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -704,63 +697,63 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#ugjtxmrdeu .gt_left {
+#igkocnezbe .gt_left {
   text-align: left;
 }
 
-#ugjtxmrdeu .gt_center {
+#igkocnezbe .gt_center {
   text-align: center;
 }
 
-#ugjtxmrdeu .gt_right {
+#igkocnezbe .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#ugjtxmrdeu .gt_font_normal {
+#igkocnezbe .gt_font_normal {
   font-weight: normal;
 }
 
-#ugjtxmrdeu .gt_font_bold {
+#igkocnezbe .gt_font_bold {
   font-weight: bold;
 }
 
-#ugjtxmrdeu .gt_font_italic {
+#igkocnezbe .gt_font_italic {
   font-style: italic;
 }
 
-#ugjtxmrdeu .gt_super {
+#igkocnezbe .gt_super {
   font-size: 65%;
 }
 
-#ugjtxmrdeu .gt_footnote_marks {
+#igkocnezbe .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#ugjtxmrdeu .gt_asterisk {
+#igkocnezbe .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#ugjtxmrdeu .gt_indent_1 {
+#igkocnezbe .gt_indent_1 {
   text-indent: 5px;
 }
 
-#ugjtxmrdeu .gt_indent_2 {
+#igkocnezbe .gt_indent_2 {
   text-indent: 10px;
 }
 
-#ugjtxmrdeu .gt_indent_3 {
+#igkocnezbe .gt_indent_3 {
   text-indent: 15px;
 }
 
-#ugjtxmrdeu .gt_indent_4 {
+#igkocnezbe .gt_indent_4 {
   text-indent: 20px;
 }
 
-#ugjtxmrdeu .gt_indent_5 {
+#igkocnezbe .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -787,123 +780,123 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </thead>
 <tbody class="gt_table_body">
 <tr>
-<td headers="ID" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div class="gt_from_md">
+<td headers="ID" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div data-qmd="1"><div class="gt_from_md">
 <p>1</p>
-</div></td>
-<td headers="voting_after_control" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="voting_after_control" class="gt_row gt_center"><div data-qmd="1"><div class="gt_from_md">
 <p>1</p>
-</div></td>
-<td headers="voting_after_treated" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="voting_after_treated" class="gt_row gt_center"><div data-qmd="1"><div class="gt_from_md">
 <p>1</p>
-</div></td>
-<td headers="treatment" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="treatment" class="gt_row gt_center"><div data-qmd="Yes"><div class="gt_from_md">
 <p>Yes</p>
-</div></td>
-<td headers="engagement" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="engagement" class="gt_row gt_center"><div data-qmd="1"><div class="gt_from_md">
 <p>1</p>
-</div></td>
+</div></div></td>
 </tr>
 <tr>
-<td headers="ID" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div class="gt_from_md">
+<td headers="ID" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div data-qmd="2"><div class="gt_from_md">
 <p>2</p>
-</div></td>
-<td headers="voting_after_control" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="voting_after_control" class="gt_row gt_center"><div data-qmd="0"><div class="gt_from_md">
 <p>0</p>
-</div></td>
-<td headers="voting_after_treated" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="voting_after_treated" class="gt_row gt_center"><div data-qmd="1"><div class="gt_from_md">
 <p>1</p>
-</div></td>
-<td headers="treatment" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="treatment" class="gt_row gt_center"><div data-qmd="No"><div class="gt_from_md">
 <p>No</p>
-</div></td>
-<td headers="engagement" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="engagement" class="gt_row gt_center"><div data-qmd="3"><div class="gt_from_md">
 <p>3</p>
-</div></td>
+</div></div></td>
 </tr>
 <tr>
-<td headers="ID" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div class="gt_from_md">
+<td headers="ID" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div data-qmd="..."><div class="gt_from_md">
 <p>…</p>
-</div></td>
-<td headers="voting_after_control" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="voting_after_control" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
 <p>…</p>
-</div></td>
-<td headers="voting_after_treated" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="voting_after_treated" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
 <p>…</p>
-</div></td>
-<td headers="treatment" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="treatment" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
 <p>…</p>
-</div></td>
-<td headers="engagement" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="engagement" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
 <p>…</p>
-</div></td>
+</div></div></td>
 </tr>
 <tr>
-<td headers="ID" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div class="gt_from_md">
+<td headers="ID" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div data-qmd="10"><div class="gt_from_md">
 <p>10</p>
-</div></td>
-<td headers="voting_after_control" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="voting_after_control" class="gt_row gt_center"><div data-qmd="1"><div class="gt_from_md">
 <p>1</p>
-</div></td>
-<td headers="voting_after_treated" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="voting_after_treated" class="gt_row gt_center"><div data-qmd="1"><div class="gt_from_md">
 <p>1</p>
-</div></td>
-<td headers="treatment" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="treatment" class="gt_row gt_center"><div data-qmd="Yes"><div class="gt_from_md">
 <p>Yes</p>
-</div></td>
-<td headers="engagement" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="engagement" class="gt_row gt_center"><div data-qmd="6"><div class="gt_from_md">
 <p>6</p>
-</div></td>
+</div></div></td>
 </tr>
 <tr>
-<td headers="ID" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div class="gt_from_md">
+<td headers="ID" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div data-qmd="11"><div class="gt_from_md">
 <p>11</p>
-</div></td>
-<td headers="voting_after_control" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="voting_after_control" class="gt_row gt_center"><div data-qmd="1"><div class="gt_from_md">
 <p>1</p>
-</div></td>
-<td headers="voting_after_treated" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="voting_after_treated" class="gt_row gt_center"><div data-qmd="0"><div class="gt_from_md">
 <p>0</p>
-</div></td>
-<td headers="treatment" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="treatment" class="gt_row gt_center"><div data-qmd="Yes"><div class="gt_from_md">
 <p>Yes</p>
-</div></td>
-<td headers="engagement" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="engagement" class="gt_row gt_center"><div data-qmd="2"><div class="gt_from_md">
 <p>2</p>
-</div></td>
+</div></div></td>
 </tr>
 <tr>
-<td headers="ID" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div class="gt_from_md">
+<td headers="ID" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div data-qmd="..."><div class="gt_from_md">
 <p>…</p>
-</div></td>
-<td headers="voting_after_control" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="voting_after_control" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
 <p>…</p>
-</div></td>
-<td headers="voting_after_treated" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="voting_after_treated" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
 <p>…</p>
-</div></td>
-<td headers="treatment" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="treatment" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
 <p>…</p>
-</div></td>
-<td headers="engagement" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="engagement" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
 <p>…</p>
-</div></td>
+</div></div></td>
 </tr>
 <tr>
-<td headers="ID" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div class="gt_from_md">
+<td headers="ID" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div data-qmd="N"><div class="gt_from_md">
 <p>N</p>
-</div></td>
-<td headers="voting_after_control" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="voting_after_control" class="gt_row gt_center"><div data-qmd="0"><div class="gt_from_md">
 <p>0</p>
-</div></td>
-<td headers="voting_after_treated" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="voting_after_treated" class="gt_row gt_center"><div data-qmd="1"><div class="gt_from_md">
 <p>1</p>
-</div></td>
-<td headers="treatment" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="treatment" class="gt_row gt_center"><div data-qmd="No"><div class="gt_from_md">
 <p>No</p>
-</div></td>
-<td headers="engagement" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="engagement" class="gt_row gt_center"><div data-qmd="2"><div class="gt_from_md">
 <p>2</p>
-</div></td>
+</div></div></td>
 </tr>
 </tbody>
 </table>
@@ -929,7 +922,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://mc-stan.org/rstanarm/">rstanarm</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jrnold/ggthemes">ggthemes</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://mjskay.github.io/ggdist/">ggdist</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://gt.rstudio.com/">gt</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://gt.rstudio.com">gt</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/sfirke/janitor">janitor</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/bbolker/broom.mixed">broom.mixed</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ddsjoberg/gtsummary">gtsummary</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1012,23 +1005,23 @@ $ neighbors     &lt;int&gt; 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 
 <div class="cell">
 <div class="cell-output-display">
 
-<div id="aaqeypknkc" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#aaqeypknkc table {
+<div id="azhsoxzcjp" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#azhsoxzcjp table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#aaqeypknkc thead, #aaqeypknkc tbody, #aaqeypknkc tfoot, #aaqeypknkc tr, #aaqeypknkc td, #aaqeypknkc th {
+#azhsoxzcjp thead, #azhsoxzcjp tbody, #azhsoxzcjp tfoot, #azhsoxzcjp tr, #azhsoxzcjp td, #azhsoxzcjp th {
   border-style: none;
 }
 
-#aaqeypknkc p {
+#azhsoxzcjp p {
   margin: 0;
   padding: 0;
 }
 
-#aaqeypknkc .gt_table {
+#azhsoxzcjp .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1054,12 +1047,12 @@ $ neighbors     &lt;int&gt; 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 
   border-left-color: #D3D3D3;
 }
 
-#aaqeypknkc .gt_caption {
+#azhsoxzcjp .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#aaqeypknkc .gt_title {
+#azhsoxzcjp .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1071,7 +1064,7 @@ $ neighbors     &lt;int&gt; 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 
   border-bottom-width: 0;
 }
 
-#aaqeypknkc .gt_subtitle {
+#azhsoxzcjp .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1083,7 +1076,7 @@ $ neighbors     &lt;int&gt; 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 
   border-top-width: 0;
 }
 
-#aaqeypknkc .gt_heading {
+#azhsoxzcjp .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1095,13 +1088,13 @@ $ neighbors     &lt;int&gt; 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 
   border-right-color: #D3D3D3;
 }
 
-#aaqeypknkc .gt_bottom_border {
+#azhsoxzcjp .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#aaqeypknkc .gt_col_headings {
+#azhsoxzcjp .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1116,7 +1109,7 @@ $ neighbors     &lt;int&gt; 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 
   border-right-color: #D3D3D3;
 }
 
-#aaqeypknkc .gt_col_heading {
+#azhsoxzcjp .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1136,7 +1129,7 @@ $ neighbors     &lt;int&gt; 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 
   overflow-x: hidden;
 }
 
-#aaqeypknkc .gt_column_spanner_outer {
+#azhsoxzcjp .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1148,15 +1141,15 @@ $ neighbors     &lt;int&gt; 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 
   padding-right: 4px;
 }
 
-#aaqeypknkc .gt_column_spanner_outer:first-child {
+#azhsoxzcjp .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#aaqeypknkc .gt_column_spanner_outer:last-child {
+#azhsoxzcjp .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#aaqeypknkc .gt_column_spanner {
+#azhsoxzcjp .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1168,11 +1161,11 @@ $ neighbors     &lt;int&gt; 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 
   width: 100%;
 }
 
-#aaqeypknkc .gt_spanner_row {
+#azhsoxzcjp .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#aaqeypknkc .gt_group_heading {
+#azhsoxzcjp .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1198,7 +1191,7 @@ $ neighbors     &lt;int&gt; 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 
   text-align: left;
 }
 
-#aaqeypknkc .gt_empty_group_heading {
+#azhsoxzcjp .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1213,15 +1206,15 @@ $ neighbors     &lt;int&gt; 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 
   vertical-align: middle;
 }
 
-#aaqeypknkc .gt_from_md > :first-child {
+#azhsoxzcjp .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#aaqeypknkc .gt_from_md > :last-child {
+#azhsoxzcjp .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#aaqeypknkc .gt_row {
+#azhsoxzcjp .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1240,7 +1233,7 @@ $ neighbors     &lt;int&gt; 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 
   overflow-x: hidden;
 }
 
-#aaqeypknkc .gt_stub {
+#azhsoxzcjp .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1253,7 +1246,7 @@ $ neighbors     &lt;int&gt; 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 
   padding-right: 5px;
 }
 
-#aaqeypknkc .gt_stub_row_group {
+#azhsoxzcjp .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1267,15 +1260,15 @@ $ neighbors     &lt;int&gt; 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 
   vertical-align: top;
 }
 
-#aaqeypknkc .gt_row_group_first td {
+#azhsoxzcjp .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#aaqeypknkc .gt_row_group_first th {
+#azhsoxzcjp .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#aaqeypknkc .gt_summary_row {
+#azhsoxzcjp .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1285,16 +1278,16 @@ $ neighbors     &lt;int&gt; 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 
   padding-right: 5px;
 }
 
-#aaqeypknkc .gt_first_summary_row {
+#azhsoxzcjp .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#aaqeypknkc .gt_first_summary_row.thick {
+#azhsoxzcjp .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#aaqeypknkc .gt_last_summary_row {
+#azhsoxzcjp .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1304,7 +1297,7 @@ $ neighbors     &lt;int&gt; 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 
   border-bottom-color: #D3D3D3;
 }
 
-#aaqeypknkc .gt_grand_summary_row {
+#azhsoxzcjp .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1314,7 +1307,7 @@ $ neighbors     &lt;int&gt; 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 
   padding-right: 5px;
 }
 
-#aaqeypknkc .gt_first_grand_summary_row {
+#azhsoxzcjp .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1324,7 +1317,7 @@ $ neighbors     &lt;int&gt; 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 
   border-top-color: #D3D3D3;
 }
 
-#aaqeypknkc .gt_last_grand_summary_row_top {
+#azhsoxzcjp .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1334,11 +1327,11 @@ $ neighbors     &lt;int&gt; 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 
   border-bottom-color: #D3D3D3;
 }
 
-#aaqeypknkc .gt_striped {
+#azhsoxzcjp .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#aaqeypknkc .gt_table_body {
+#azhsoxzcjp .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1347,7 +1340,7 @@ $ neighbors     &lt;int&gt; 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 
   border-bottom-color: #D3D3D3;
 }
 
-#aaqeypknkc .gt_footnotes {
+#azhsoxzcjp .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1361,7 +1354,7 @@ $ neighbors     &lt;int&gt; 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 
   border-right-color: #D3D3D3;
 }
 
-#aaqeypknkc .gt_footnote {
+#azhsoxzcjp .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1370,7 +1363,7 @@ $ neighbors     &lt;int&gt; 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 
   padding-right: 5px;
 }
 
-#aaqeypknkc .gt_sourcenotes {
+#azhsoxzcjp .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1384,7 +1377,7 @@ $ neighbors     &lt;int&gt; 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 
   border-right-color: #D3D3D3;
 }
 
-#aaqeypknkc .gt_sourcenote {
+#azhsoxzcjp .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1392,63 +1385,63 @@ $ neighbors     &lt;int&gt; 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 
   padding-right: 5px;
 }
 
-#aaqeypknkc .gt_left {
+#azhsoxzcjp .gt_left {
   text-align: left;
 }
 
-#aaqeypknkc .gt_center {
+#azhsoxzcjp .gt_center {
   text-align: center;
 }
 
-#aaqeypknkc .gt_right {
+#azhsoxzcjp .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#aaqeypknkc .gt_font_normal {
+#azhsoxzcjp .gt_font_normal {
   font-weight: normal;
 }
 
-#aaqeypknkc .gt_font_bold {
+#azhsoxzcjp .gt_font_bold {
   font-weight: bold;
 }
 
-#aaqeypknkc .gt_font_italic {
+#azhsoxzcjp .gt_font_italic {
   font-style: italic;
 }
 
-#aaqeypknkc .gt_super {
+#azhsoxzcjp .gt_super {
   font-size: 65%;
 }
 
-#aaqeypknkc .gt_footnote_marks {
+#azhsoxzcjp .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#aaqeypknkc .gt_asterisk {
+#azhsoxzcjp .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#aaqeypknkc .gt_indent_1 {
+#azhsoxzcjp .gt_indent_1 {
   text-indent: 5px;
 }
 
-#aaqeypknkc .gt_indent_2 {
+#azhsoxzcjp .gt_indent_2 {
   text-indent: 10px;
 }
 
-#aaqeypknkc .gt_indent_3 {
+#azhsoxzcjp .gt_indent_3 {
   text-indent: 15px;
 }
 
-#aaqeypknkc .gt_indent_4 {
+#azhsoxzcjp .gt_indent_4 {
   text-indent: 20px;
 }
 
-#aaqeypknkc .gt_indent_5 {
+#azhsoxzcjp .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -1470,284 +1463,284 @@ $ neighbors     &lt;int&gt; 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 
 </thead>
 <tbody class="gt_table_body">
 <tr>
-<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div class="gt_from_md">
+<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div data-qmd="..."><div class="gt_from_md">
 <p>…</p>
-</div></td>
-<td headers="gender" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="gender" class="gt_row gt_center"><div data-qmd="?"><div class="gt_from_md">
 <p>?</p>
-</div></td>
-<td headers="year" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="year" class="gt_row gt_center"><div data-qmd="1990"><div class="gt_from_md">
 <p>1990</p>
-</div></td>
-<td headers="state" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="state" class="gt_row gt_center"><div data-qmd="?"><div class="gt_from_md">
 <p>?</p>
-</div></td>
-<td headers="ytreat" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="ytreat" class="gt_row gt_center"><div data-qmd="?"><div class="gt_from_md">
 <p>?</p>
-</div></td>
-<td headers="ycontrol" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="ycontrol" class="gt_row gt_center"><div data-qmd="?"><div class="gt_from_md">
 <p>?</p>
-</div></td>
+</div></div></td>
 </tr>
 <tr>
-<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div class="gt_from_md">
+<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div data-qmd="..."><div class="gt_from_md">
 <p>…</p>
-</div></td>
-<td headers="gender" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="gender" class="gt_row gt_center"><div data-qmd="?"><div class="gt_from_md">
 <p>?</p>
-</div></td>
-<td headers="year" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="year" class="gt_row gt_center"><div data-qmd="1995"><div class="gt_from_md">
 <p>1995</p>
-</div></td>
-<td headers="state" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="state" class="gt_row gt_center"><div data-qmd="?"><div class="gt_from_md">
 <p>?</p>
-</div></td>
-<td headers="ytreat" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="ytreat" class="gt_row gt_center"><div data-qmd="?"><div class="gt_from_md">
 <p>?</p>
-</div></td>
-<td headers="ycontrol" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="ycontrol" class="gt_row gt_center"><div data-qmd="?"><div class="gt_from_md">
 <p>?</p>
-</div></td>
+</div></div></td>
 </tr>
 <tr>
-<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div class="gt_from_md">
+<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div data-qmd="..."><div class="gt_from_md">
 <p>…</p>
-</div></td>
-<td headers="gender" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="gender" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
 <p>…</p>
-</div></td>
-<td headers="year" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="year" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
 <p>…</p>
-</div></td>
-<td headers="state" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="state" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
 <p>…</p>
-</div></td>
-<td headers="ytreat" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="ytreat" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
 <p>…</p>
-</div></td>
-<td headers="ycontrol" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="ycontrol" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
 <p>…</p>
-</div></td>
+</div></div></td>
 </tr>
 <tr>
-<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div class="gt_from_md">
+<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div data-qmd="Data"><div class="gt_from_md">
 <p>Data</p>
-</div></td>
-<td headers="gender" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="gender" class="gt_row gt_center"><div data-qmd="Male"><div class="gt_from_md">
 <p>Male</p>
-</div></td>
-<td headers="year" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="year" class="gt_row gt_center"><div data-qmd="2006"><div class="gt_from_md">
 <p>2006</p>
-</div></td>
-<td headers="state" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="state" class="gt_row gt_center"><div data-qmd="Michigan"><div class="gt_from_md">
 <p>Michigan</p>
-</div></td>
-<td headers="ytreat" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="ytreat" class="gt_row gt_center"><div data-qmd="Did not vote"><div class="gt_from_md">
 <p>Did not vote</p>
-</div></td>
-<td headers="ycontrol" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="ycontrol" class="gt_row gt_center"><div data-qmd="?"><div class="gt_from_md">
 <p>?</p>
-</div></td>
+</div></div></td>
 </tr>
 <tr>
-<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div class="gt_from_md">
+<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div data-qmd="Data"><div class="gt_from_md">
 <p>Data</p>
-</div></td>
-<td headers="gender" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="gender" class="gt_row gt_center"><div data-qmd="Female"><div class="gt_from_md">
 <p>Female</p>
-</div></td>
-<td headers="year" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="year" class="gt_row gt_center"><div data-qmd="2006"><div class="gt_from_md">
 <p>2006</p>
-</div></td>
-<td headers="state" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="state" class="gt_row gt_center"><div data-qmd="Michigan"><div class="gt_from_md">
 <p>Michigan</p>
-</div></td>
-<td headers="ytreat" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="ytreat" class="gt_row gt_center"><div data-qmd="?"><div class="gt_from_md">
 <p>?</p>
-</div></td>
-<td headers="ycontrol" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="ycontrol" class="gt_row gt_center"><div data-qmd="Voted"><div class="gt_from_md">
 <p>Voted</p>
-</div></td>
+</div></div></td>
 </tr>
 <tr>
-<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div class="gt_from_md">
+<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div data-qmd="..."><div class="gt_from_md">
 <p>…</p>
-</div></td>
-<td headers="gender" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="gender" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
 <p>…</p>
-</div></td>
-<td headers="year" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="year" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
 <p>…</p>
-</div></td>
-<td headers="state" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="state" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
 <p>…</p>
-</div></td>
-<td headers="ytreat" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="ytreat" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
 <p>…</p>
-</div></td>
-<td headers="ycontrol" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="ycontrol" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
 <p>…</p>
-</div></td>
+</div></div></td>
 </tr>
 <tr>
-<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div class="gt_from_md">
+<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div data-qmd="..."><div class="gt_from_md">
 <p>…</p>
-</div></td>
-<td headers="gender" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="gender" class="gt_row gt_center"><div data-qmd="?"><div class="gt_from_md">
 <p>?</p>
-</div></td>
-<td headers="year" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="year" class="gt_row gt_center"><div data-qmd="2010"><div class="gt_from_md">
 <p>2010</p>
-</div></td>
-<td headers="state" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="state" class="gt_row gt_center"><div data-qmd="?"><div class="gt_from_md">
 <p>?</p>
-</div></td>
-<td headers="ytreat" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="ytreat" class="gt_row gt_center"><div data-qmd="?"><div class="gt_from_md">
 <p>?</p>
-</div></td>
-<td headers="ycontrol" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="ycontrol" class="gt_row gt_center"><div data-qmd="?"><div class="gt_from_md">
 <p>?</p>
-</div></td>
+</div></div></td>
 </tr>
 <tr>
-<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div class="gt_from_md">
+<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div data-qmd="..."><div class="gt_from_md">
 <p>…</p>
-</div></td>
-<td headers="gender" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="gender" class="gt_row gt_center"><div data-qmd="?"><div class="gt_from_md">
 <p>?</p>
-</div></td>
-<td headers="year" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="year" class="gt_row gt_center"><div data-qmd="2012"><div class="gt_from_md">
 <p>2012</p>
-</div></td>
-<td headers="state" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="state" class="gt_row gt_center"><div data-qmd="?"><div class="gt_from_md">
 <p>?</p>
-</div></td>
-<td headers="ytreat" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="ytreat" class="gt_row gt_center"><div data-qmd="?"><div class="gt_from_md">
 <p>?</p>
-</div></td>
-<td headers="ycontrol" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="ycontrol" class="gt_row gt_center"><div data-qmd="?"><div class="gt_from_md">
 <p>?</p>
-</div></td>
+</div></div></td>
 </tr>
 <tr>
-<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div class="gt_from_md">
+<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div data-qmd="..."><div class="gt_from_md">
 <p>…</p>
-</div></td>
-<td headers="gender" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="gender" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
 <p>…</p>
-</div></td>
-<td headers="year" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="year" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
 <p>…</p>
-</div></td>
-<td headers="state" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="state" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
 <p>…</p>
-</div></td>
-<td headers="ytreat" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="ytreat" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
 <p>…</p>
-</div></td>
-<td headers="ycontrol" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="ycontrol" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
 <p>…</p>
-</div></td>
+</div></div></td>
 </tr>
 <tr>
-<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div class="gt_from_md">
+<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div data-qmd="Preceptor Table"><div class="gt_from_md">
 <p>Preceptor Table</p>
-</div></td>
-<td headers="gender" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="gender" class="gt_row gt_center"><div data-qmd="Female"><div class="gt_from_md">
 <p>Female</p>
-</div></td>
-<td headers="year" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="year" class="gt_row gt_center"><div data-qmd="2021"><div class="gt_from_md">
 <p>2021</p>
-</div></td>
-<td headers="state" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="state" class="gt_row gt_center"><div data-qmd="Texas"><div class="gt_from_md">
 <p>Texas</p>
-</div></td>
-<td headers="ytreat" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="ytreat" class="gt_row gt_center"><div data-qmd="?"><div class="gt_from_md">
 <p>?</p>
-</div></td>
-<td headers="ycontrol" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="ycontrol" class="gt_row gt_center"><div data-qmd="?"><div class="gt_from_md">
 <p>?</p>
-</div></td>
+</div></div></td>
 </tr>
 <tr>
-<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div class="gt_from_md">
+<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div data-qmd="Preceptor Table"><div class="gt_from_md">
 <p>Preceptor Table</p>
-</div></td>
-<td headers="gender" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="gender" class="gt_row gt_center"><div data-qmd="Female"><div class="gt_from_md">
 <p>Female</p>
-</div></td>
-<td headers="year" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="year" class="gt_row gt_center"><div data-qmd="2021"><div class="gt_from_md">
 <p>2021</p>
-</div></td>
-<td headers="state" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="state" class="gt_row gt_center"><div data-qmd="Texas"><div class="gt_from_md">
 <p>Texas</p>
-</div></td>
-<td headers="ytreat" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="ytreat" class="gt_row gt_center"><div data-qmd="?"><div class="gt_from_md">
 <p>?</p>
-</div></td>
-<td headers="ycontrol" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="ycontrol" class="gt_row gt_center"><div data-qmd="?"><div class="gt_from_md">
 <p>?</p>
-</div></td>
+</div></div></td>
 </tr>
 <tr>
-<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div class="gt_from_md">
+<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div data-qmd="..."><div class="gt_from_md">
 <p>…</p>
-</div></td>
-<td headers="gender" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="gender" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
 <p>…</p>
-</div></td>
-<td headers="year" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="year" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
 <p>…</p>
-</div></td>
-<td headers="state" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="state" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
 <p>…</p>
-</div></td>
-<td headers="ytreat" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="ytreat" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
 <p>…</p>
-</div></td>
-<td headers="ycontrol" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="ycontrol" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
 <p>…</p>
-</div></td>
+</div></div></td>
 </tr>
 <tr>
-<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div class="gt_from_md">
+<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div data-qmd="..."><div class="gt_from_md">
 <p>…</p>
-</div></td>
-<td headers="gender" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="gender" class="gt_row gt_center"><div data-qmd="?"><div class="gt_from_md">
 <p>?</p>
-</div></td>
-<td headers="year" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="year" class="gt_row gt_center"><div data-qmd="2026"><div class="gt_from_md">
 <p>2026</p>
-</div></td>
-<td headers="state" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="state" class="gt_row gt_center"><div data-qmd="?"><div class="gt_from_md">
 <p>?</p>
-</div></td>
-<td headers="ytreat" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="ytreat" class="gt_row gt_center"><div data-qmd="?"><div class="gt_from_md">
 <p>?</p>
-</div></td>
-<td headers="ycontrol" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="ycontrol" class="gt_row gt_center"><div data-qmd="?"><div class="gt_from_md">
 <p>?</p>
-</div></td>
+</div></div></td>
 </tr>
 <tr>
-<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div class="gt_from_md">
+<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div data-qmd="..."><div class="gt_from_md">
 <p>…</p>
-</div></td>
-<td headers="gender" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="gender" class="gt_row gt_center"><div data-qmd="?"><div class="gt_from_md">
 <p>?</p>
-</div></td>
-<td headers="year" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="year" class="gt_row gt_center"><div data-qmd="2030"><div class="gt_from_md">
 <p>2030</p>
-</div></td>
-<td headers="state" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="state" class="gt_row gt_center"><div data-qmd="?"><div class="gt_from_md">
 <p>?</p>
-</div></td>
-<td headers="ytreat" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="ytreat" class="gt_row gt_center"><div data-qmd="?"><div class="gt_from_md">
 <p>?</p>
-</div></td>
-<td headers="ycontrol" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="ycontrol" class="gt_row gt_center"><div data-qmd="?"><div class="gt_from_md">
 <p>?</p>
-</div></td>
+</div></div></td>
 </tr>
 </tbody>
 </table>
@@ -1863,7 +1856,8 @@ $ neighbors     &lt;int&gt; 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 
 <p>Without variable names:</p>
 <p><span class="math display">\[ y_{i} = \beta_{0} + \beta_{1}x_{i, 1} + \beta_{2}x_{i,2} ... + \beta_{n}x_{i,n} + \epsilon_{i} \]</span> With variable names:</p>
 <p><span class="math display">\[ y_{i} = \beta_{0} + \beta_{1}civic\_duty_i + \beta_{2}hawthorne_i + \beta_{3}self_i + \beta_{4}neighbors_i + \beta_{5}male_i + \epsilon_{i} \]</span></p>
-<p>There are two ways to formalize the model used in <code>fit_1</code>: with and without the variable names. The former is related to the concept of Justice as we acknowledge that the model is constructed via the linear sum of <code>n</code> parameters times the value for <code>n</code> variables, along with an error term. In other words, it is a linear model. The only other model we have learned this semester is a logistic model, but there are other kinds of models, each defined by the mathematics and the assumptions about the error term. The second type of formal notation, more associated with the virtue Courage, includes the actual variable names we are using. The trickiest part is the transformation of character/factor variables into indicator variables, meaning variables with 0/1 values. Because <code>treatment</code> has 5 levels, we need 4 indicator variables. The fifth level — which, by default, is the first variable alphabetically (for character variables) or the first level (for factor variables) — is incorporated in the intercept.</p>
+<p>There are two ways to formalize the model used in <code>fit_1</code>: with and without the variable names. The former is related to the concept of Justice as we acknowledge that the model is constructed via the linear sum of <code>n</code> parameters times the value for <code>n</code> variables, along with an error term. In other words, it is a linear model. The only other model we have learned this semester is a logistic model, but there are other kinds of models, each defined by the mathematics and the assumptions about the error term.</p>
+<p>The second type of formal notation, more associated with the virtue Courage, includes the actual variable names we are using. The trickiest part is the transformation of character/factor variables into indicator variables, meaning variables with 0/1 values. Because <code>treatment</code> has 5 levels, we need 4 indicator variables. The fifth level — which, by default, is the first variable alphabetically (for character variables) or the first level (for factor variables) — is incorporated in the intercept.</p>
 <p>Let’s translate the model into code.</p>
 <div class="cell" data-hash="n-parameters_cache/html/unnamed-chunk-12_4ee85014f0a2df4e19ecfca86a4dba84">
 <details><summary>Code</summary><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/rstanarm/reference/stan_glm.html">stan_glm</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">object_1</span>,</span>
@@ -2377,8 +2371,8 @@ sigma 0.464  0.001
 </tr>
 <tr>
 <td headers="label" class="gt_row gt_left">treatment</td>
-<td headers="estimate" class="gt_row gt_center"></td>
-<td headers="ci" class="gt_row gt_center"></td>
+<td headers="estimate" class="gt_row gt_center"><br></td>
+<td headers="ci" class="gt_row gt_center"><br></td>
 </tr>
 <tr>
 <td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;No Postcard</td>
@@ -2407,8 +2401,8 @@ sigma 0.464  0.001
 </tr>
 <tr>
 <td headers="label" class="gt_row gt_left">sex</td>
-<td headers="estimate" class="gt_row gt_center"></td>
-<td headers="ci" class="gt_row gt_center"></td>
+<td headers="estimate" class="gt_row gt_center"><br></td>
+<td headers="ci" class="gt_row gt_center"><br></td>
 </tr>
 <tr>
 <td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Female</td>
@@ -2432,11 +2426,16 @@ sigma 0.464  0.001
 </div>
 </div>
 </div>
-<p>Interpretation: * The intercept of this model is the expected value of the probability of someone voting in the 2006 primary given that they are part of the control group and are female. In this case, we estimate that women in the control group will vote ~29.1% of the time. * The coefficient for <code>sexMale</code> indicates the difference in likelihood of voting between a male and female. In other words, when comparing men and women, the 0.012 implies that men are ~1.2% more likely to vote than women. Note that, because this is a linear model with no interactions between sex and other variables, this difference applies to any male, regardless of the treatment he received. Because sex can not be manipulated (by assumption), we should not use a causal interpretation of the coefficient. * The coefficients of the treatments, on the other hand, do have a causal interpretation. For a single individual, of either sex, being sent the Self postcard increases your probability of voting by 4.8%. It appears that the <code>Neighbors</code> treatment is the most effective at ~8.1% and <code>Civic Duty</code> is the least effective at ~1.8%.</p>
-</section><section id="primary_06-z_age-sex-treatment-voter_class-voter_classtreatment" class="level3" data-number="8.4.3"><h3 data-number="8.4.3" class="anchored" data-anchor-id="primary_06-z_age-sex-treatment-voter_class-voter_classtreatment">
+<p>Interpretation:</p>
+<ul>
+<li><p>The intercept of this model is the expected value of the probability of someone voting in the 2006 primary given that they are part of the control group and are female. In this case, we estimate that women in the control group will vote ~29.1% of the time.</p></li>
+<li><p>The coefficient for <code>sexMale</code> indicates the difference in likelihood of voting between a male and female. In other words, when comparing men and women, the 0.012 implies that men are ~1.2% more likely to vote than women. Note that, because this is a linear model with no interactions between sex and other variables, this difference applies to any male, regardless of the treatment he received. Because sex can not be manipulated (by assumption), we should not use a causal interpretation of the coefficient.</p></li>
+<li><p>The coefficients of the treatments, on the other hand, do have a causal interpretation. For a single individual, of either sex, being sent the Self postcard increases your probability of voting by 4.8%. It appears that the <code>Neighbors</code> treatment is the most effective at ~8.1% and <code>Civic Duty</code> is the least effective at ~1.8%.</p></li>
+</ul></section><section id="primary_06-z_age-sex-treatment-voter_class-voter_classtreatment" class="level3" data-number="8.4.3"><h3 data-number="8.4.3" class="anchored" data-anchor-id="primary_06-z_age-sex-treatment-voter_class-voter_classtreatment">
 <span class="header-section-number">8.4.3</span> primary_06 ~ z_age + sex + treatment + voter_class + voter_class*treatment</h3>
 <p>It is time to look at interactions! Create another model named <code>fit_2</code> that estimates <code>primary_06</code> as a function of <code>z_age</code>, <code>sex</code>, <code>treatment</code>, <code>voter_class</code>, and the interaction between treatment and voter classification.</p>
-<p>The math: <span class="math display">\[y_{i} = \beta_{0} + \beta_{1}z\_age + \beta_{2}male_i + \beta_{3}civic\_duty_i + \\ \beta_{4}hawthorne_i + \beta_{5}self_i + \beta_{6}neighbors_i + \\ \beta_{7}Sometimes\ vote_i + \beta_{8}Always\ vote_i + \\ \beta_{9}civic\_duty_i Sometimes\ vote_i + \beta_{10}hawthorne_i Sometimes\ vote_i + \\ \beta_{11}self_i Sometimes\ vote_i + \beta_{11}neighbors_i Sometimes\ vote_i + \\ \beta_{12}civic\_duty_i Always\ vote_i + \beta_{13}hawthorne_i Always\ vote_i + \\ \beta_{14}self_i Always\ vote_i + \beta_{15}neighbors_i Always\ vote_i + \epsilon_{i}\]</span> Translate into code:</p>
+<p>The math:</p>
+<p><span class="math display">\[y_{i} = \beta_{0} + \beta_{1}z\_age + \beta_{2}male_i + \beta_{3}civic\_duty_i + \\ \beta_{4}hawthorne_i + \beta_{5}self_i + \beta_{6}neighbors_i + \\ \beta_{7}Sometimes\ vote_i + \beta_{8}Always\ vote_i + \\ \beta_{9}civic\_duty_i Sometimes\ vote_i + \beta_{10}hawthorne_i Sometimes\ vote_i + \\ \beta_{11}self_i Sometimes\ vote_i + \beta_{11}neighbors_i Sometimes\ vote_i + \\ \beta_{12}civic\_duty_i Always\ vote_i + \beta_{13}hawthorne_i Always\ vote_i + \\ \beta_{14}self_i Always\ vote_i + \beta_{15}neighbors_i Always\ vote_i + \epsilon_{i}\]</span> Translate into code:</p>
 <div class="cell" data-hash="n-parameters_cache/html/unnamed-chunk-15_5db09debd7b488771e07711629f34617">
 <details><summary>Code</summary><div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/rstanarm/reference/stan_glm.html">stan_glm</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">object_1</span>,</span>
 <span>                  formula <span class="op">=</span> <span class="va">primary_06</span> <span class="op">~</span> <span class="va">z_age</span> <span class="op">+</span> <span class="va">sex</span> <span class="op">+</span> <span class="va">treatment</span> <span class="op">+</span> <span class="va">voter_class</span> <span class="op">+</span> </span>
@@ -2965,8 +2964,8 @@ sigma 0.451  0.001
 </tr>
 <tr>
 <td headers="label" class="gt_row gt_left">sex</td>
-<td headers="estimate" class="gt_row gt_center"></td>
-<td headers="ci" class="gt_row gt_center"></td>
+<td headers="estimate" class="gt_row gt_center"><br></td>
+<td headers="ci" class="gt_row gt_center"><br></td>
 </tr>
 <tr>
 <td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Female</td>
@@ -2980,8 +2979,8 @@ sigma 0.451  0.001
 </tr>
 <tr>
 <td headers="label" class="gt_row gt_left">treatment</td>
-<td headers="estimate" class="gt_row gt_center"></td>
-<td headers="ci" class="gt_row gt_center"></td>
+<td headers="estimate" class="gt_row gt_center"><br></td>
+<td headers="ci" class="gt_row gt_center"><br></td>
 </tr>
 <tr>
 <td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;No Postcard</td>
@@ -3010,8 +3009,8 @@ sigma 0.451  0.001
 </tr>
 <tr>
 <td headers="label" class="gt_row gt_left">voter_class</td>
-<td headers="estimate" class="gt_row gt_center"></td>
-<td headers="ci" class="gt_row gt_center"></td>
+<td headers="estimate" class="gt_row gt_center"><br></td>
+<td headers="ci" class="gt_row gt_center"><br></td>
 </tr>
 <tr>
 <td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Rarely Vote</td>
@@ -3030,8 +3029,8 @@ sigma 0.451  0.001
 </tr>
 <tr>
 <td headers="label" class="gt_row gt_left">treatment * voter_class</td>
-<td headers="estimate" class="gt_row gt_center"></td>
-<td headers="ci" class="gt_row gt_center"></td>
+<td headers="estimate" class="gt_row gt_center"><br></td>
+<td headers="ci" class="gt_row gt_center"><br></td>
 </tr>
 <tr>
 <td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Civic Duty * Sometimes Vote</td>
@@ -3085,8 +3084,13 @@ sigma 0.451  0.001
 </div>
 </div>
 </div>
-<p>Now that we have a summarized visual for our data, let’s interpret the findings: * The intercept of <code>fit_2</code> is the expected probability of voting in the upcoming election for a woman of average age (~ 50 years old in this data), who is assigned to the No Postcard group, and is a Rarely Voter. The estimate is 15.3%. * The coefficient of z_age, 0, implies a change of ~3.5% in likelihood of voting for each increment of one standard deviation (~ 14.45 years). For example: when comparing someone 50 years old with someone 65, the latter is about 3.5% more likely to vote. * Exposure to the Neighbors treatment shows a ~4.4% increase in voting likelihood for someone in the Rarely Vote category. Because of random assignment of treatment, we can interpret that coefficient as an estimate of the average treatment effect. * If someone were from a different voter classification, the calculation is more complex because we need to account for the interaction term. For example, for individuals who Sometimes Vote, the treatment effect of Neighbors is 0.1%. For Always Vote Neighbors, it is 0.1%.</p>
-</section></section><section id="temperance" class="level2" data-number="8.5"><h2 data-number="8.5" class="anchored" data-anchor-id="temperance">
+<p>Now that we have a summarized visual for our data, let’s interpret the findings:</p>
+<ul>
+<li><p>The intercept of <code>fit_2</code> is the expected probability of voting in the upcoming election for a woman of average age (~ 50 years old in this data), who is assigned to the No Postcard group, and is a Rarely Voter. The estimate is 15.3%.</p></li>
+<li><p>The coefficient of z_age, 0, implies a change of ~3.5% in likelihood of voting for each increment of one standard deviation (~ 14.45 years). For example: when comparing someone 50 years old with someone 65, the latter is about 3.5% more likely to vote.</p></li>
+<li><p>Exposure to the Neighbors treatment shows a ~4.4% increase in voting likelihood for someone in the Rarely Vote category. Because of random assignment of treatment, we can interpret that coefficient as an estimate of the average treatment effect.</p></li>
+<li><p>If someone were from a different voter classification, the calculation is more complex because we need to account for the interaction term. For example, for individuals who Sometimes Vote, the treatment effect of Neighbors is 0.1%. For Always Vote Neighbors, it is 0.1%.</p></li>
+</ul></section></section><section id="temperance" class="level2" data-number="8.5"><h2 data-number="8.5" class="anchored" data-anchor-id="temperance">
 <span class="header-section-number">8.5</span> Temperance</h2>
 <div class="cell">
 <div class="cell-output-display">

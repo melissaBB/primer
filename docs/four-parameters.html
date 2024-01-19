@@ -354,12 +354,12 @@ Do we discuss anything in the "Other transformations section" (pg. 195)? This in
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">fit_1</span>, detail <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output cell-output-stdout">
 <pre><code>            Median   MAD_SD  
-(Intercept) 103927.5  23785.9
-age            887.1    555.9
+(Intercept) 103754.6  25757.9
+age            901.1    587.6
 
 Auxiliary parameter(s):
       Median  MAD_SD 
-sigma 74153.4  4905.9</code></pre>
+sigma 74196.8  4869.9</code></pre>
 </div>
 </div>
 <p>There is nothing wrong with this model. Yet the interpretation of <span class="math inline">\(\beta_0\)</span>, the intercept in the regression, is awkward. It represents the average income for people of age zero. That is useless! There are no people of zero age in our data. And, even if there were, it would be weird to think about such people taking the commuter train into Boston and filling out our survey forms.</p>
@@ -376,15 +376,15 @@ sigma 74153.4  4905.9</code></pre>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">fit_1_c</span>, detail <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output cell-output-stdout">
 <pre><code>            Median   MAD_SD  
-(Intercept) 141922.8   6829.9
-c_age          915.0    559.2
+(Intercept) 141851.0   7171.1
+c_age          906.3    574.4
 
 Auxiliary parameter(s):
       Median  MAD_SD 
-sigma 74234.5  4723.3</code></pre>
+sigma 74131.4  4757.5</code></pre>
 </div>
 </div>
-<p>The intercept, 141,923, is the expected income for someone with <code>c_age = 0</code>, i.e., someone of an average age in the data, which is around 42.</p>
+<p>The intercept, 141,851, is the expected income for someone with <code>c_age = 0</code>, i.e., someone of an average age in the data, which is around 42.</p>
 </section><section id="scaling" class="level3" data-number="6.1.2"><h3 data-number="6.1.2" class="anchored" data-anchor-id="scaling">
 <span class="header-section-number">6.1.2</span> Scaling</h3>
 <p>Centering — changing a variable via addition/subtraction — often makes the intercept easier to interpret. Scaling — changing a variable via multiplication/division — often makes it easier to interpret coefficients. The most common scaling method is to divide the variable by its standard deviation.</p>
@@ -400,12 +400,12 @@ sigma 74234.5  4723.3</code></pre>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">fit_1_s</span>, detail <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output cell-output-stdout">
 <pre><code>            Median   MAD_SD  
-(Intercept) 103621.9  25156.0
-s_age        10975.5   7115.7
+(Intercept) 105186.0  25579.3
+s_age        10560.4   7082.4
 
 Auxiliary parameter(s):
       Median  MAD_SD 
-sigma 74432.7  4950.9</code></pre>
+sigma 74248.2  4930.7</code></pre>
 </div>
 </div>
 <p><code>s_age</code> is age <strong>s</strong>caled by its own standard deviation. A change in one unit of <code>s_age</code> is the same as a change in one standard deviation of the <code>age</code>, which is about 12. The interpretation of <span class="math inline">\(\beta_1\)</span> is now:</p>
@@ -426,12 +426,12 @@ sigma 74432.7  4950.9</code></pre>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">fit_1_z</span>, detail <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output cell-output-stdout">
 <pre><code>            Median   MAD_SD  
-(Intercept) 141737.9   6877.0
-z_age        11041.8   7035.7
+(Intercept) 141946.5   6596.1
+z_age        11092.9   6746.6
 
 Auxiliary parameter(s):
       Median  MAD_SD 
-sigma 74306.7  5154.8</code></pre>
+sigma 74311.6  4866.7</code></pre>
 </div>
 </div>
 <p>The two parameters are easy to interpret after this transformation.</p>
@@ -646,13 +646,13 @@ sigma 1.3    0.1
  predictors:   3
 ------
             Median   MAD_SD  
-(Intercept) 110298.3  23690.0
-age           1079.4    534.6
-liberalTRUE -32490.6  13481.3
+(Intercept) 110407.8  25195.8
+age           1074.7    560.8
+liberalTRUE -32650.1  13416.0
 
 Auxiliary parameter(s):
       Median  MAD_SD 
-sigma 72547.0  4894.7
+sigma 72608.9  4881.9
 
 ------
 * For help interpreting the printed output see ?print.stanreg
@@ -668,7 +668,7 @@ sigma 72547.0  4894.7
 <li><p>The estimate for <code>liberalTRUE</code> represents the offset in predicted income for commuters who <em>are</em> liberal. To find the estimate, we must add the coefficient to our <code>(Intercept)</code> value. We see that, on average, liberal commuters make less money.</p></li>
 </ul>
 <p>It is important to note that we are not looking at a causal relationship for either of these explanatory variables. We are noting the differences between two groups, without considering causality. This is known as an <em>across unit</em> comparison. When we compare <em>across unit</em> we are not looking at a causal relationship.</p>
-<p>When comparing <code>liberalTRUE</code> with our <code>(Intercept)</code>, recall that the <code>(Intercept)</code> is calculating income for the case where <code>liberal == FALSE</code>. As we can see, then, the coefficient for <code>liberalTRUE</code>, -32,491, shows that the liberals in our dataset make less on average than non-liberals in our dataset. The coefficient is large relative to the <code>(Intercept)</code> and, with rough mental math, we see that the 95% confidence interval excludes 0. Therefore, <code>liberal</code> is a helpful variable!</p>
+<p>When comparing <code>liberalTRUE</code> with our <code>(Intercept)</code>, recall that the <code>(Intercept)</code> is calculating income for the case where <code>liberal == FALSE</code>. As we can see, then, the coefficient for <code>liberalTRUE</code>, -32,650, shows that the liberals in our dataset make less on average than non-liberals in our dataset. The coefficient is large relative to the <code>(Intercept)</code> and, with rough mental math, we see that the 95% confidence interval excludes 0. Therefore, <code>liberal</code> is a helpful variable!</p>
 <p>The variable <code>age</code>, however, does not appear to have a meaningful impact on our <code>(Intercept)</code>. The coefficient of <code>age</code> is low and the 95% confidence interval <em>does not</em> exclude 0.</p>
 <p><strong>Conclusion</strong>: definitely keep <code>liberal</code>! <code>age</code> is less clear. It is really a matter of preference at this point.</p>
 </section><section id="liberal-iincome1e05-party" class="level3" data-number="6.2.5"><h3 data-number="6.2.5" class="anchored" data-anchor-id="liberal-iincome1e05-party">

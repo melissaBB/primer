@@ -270,14 +270,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#justice" id="toc-justice" class="nav-link" data-scroll-target="#justice"><span class="header-section-number">3.4.2</span> Justice</a></li>
   <li><a href="#courage" id="toc-courage" class="nav-link" data-scroll-target="#courage"><span class="header-section-number">3.4.3</span> Courage</a></li>
   <li><a href="#temperance" id="toc-temperance" class="nav-link" data-scroll-target="#temperance"><span class="header-section-number">3.4.4</span> Temperance</a></li>
-  <li><a href="#traditional-practices" id="toc-traditional-practices" class="nav-link" data-scroll-target="#traditional-practices"><span class="header-section-number">3.4.5</span> Traditional practices</a></li>
   </ul>
 </li>
-  <li><a href="#sec-sampling-case-study" id="toc-sec-sampling-case-study" class="nav-link" data-scroll-target="#sec-sampling-case-study"><span class="header-section-number">3.5</span> Case study: Polls</a></li>
   <li>
-<a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">3.6</span> Summary</a>
+<a href="#traditional-practices" id="toc-traditional-practices" class="nav-link" data-scroll-target="#traditional-practices"><span class="header-section-number">3.5</span> Traditional practices</a>
   <ul class="collapse">
-<li><a href="#other-highlights" id="toc-other-highlights" class="nav-link" data-scroll-target="#other-highlights"><span class="header-section-number">3.6.1</span> Other highlights</a></li>
+<li><a href="#confidence-intervals" id="toc-confidence-intervals" class="nav-link" data-scroll-target="#confidence-intervals"><span class="header-section-number">3.5.1</span> Confidence intervals</a></li>
+  <li><a href="#hypothesis-tests" id="toc-hypothesis-tests" class="nav-link" data-scroll-target="#hypothesis-tests"><span class="header-section-number">3.5.2</span> Hypothesis tests</a></li>
+  </ul>
+</li>
+  <li><a href="#sec-sampling-case-study" id="toc-sec-sampling-case-study" class="nav-link" data-scroll-target="#sec-sampling-case-study"><span class="header-section-number">3.6</span> Case study: Polls</a></li>
+  <li>
+<a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">3.7</span> Summary</a>
+  <ul class="collapse">
+<li><a href="#other-highlights" id="toc-other-highlights" class="nav-link" data-scroll-target="#other-highlights"><span class="header-section-number">3.7.1</span> Other highlights</a></li>
   </ul>
 </li>
   </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/PPBDS/primer/edit/main/one-parameter.qmd" class="toc-action">Edit this page</a></p></div></div></nav>
@@ -297,10 +303,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
-</header><!-- Highest priority: Did we really answer the two questions which we started with? --><!-- The boss move would be to delete 80% of this chapter. Cut all the sampling stuff. There is nothing wrong with it, per se, but the only reason we have it is that it was part of the Modern Dive book. It is not really necessary for the core Cardinal Virtues approach of the rest of the Primer. --><!-- Case study of polls needs to be updated to use our language of validity and so on. --><!-- There needs to be more explanation about confidence intervals!  --><!-- In some paragraphs we say that it is impossible to conduct a census because we don't have access to the urn, in others like this we do have access and can complete the census. Which is it? You pick. --><!-- Another paragraph or two of discussion about the final posterior. How do we use it? Within what range would you offer 50/50 odds that the true percentage lies? (use quantile(0.25, 0.75). Area under the curve? Explain clearly how that 26% is calculated. What is post_dist? What does it mean? How can I use it? Maybe show it sorted? Add some code comments. --><!-- You must understand what the standard error of $\hat{\rho}$ means. You do not need to understand why. --><!-- Explain in a comment the reason for  fun = function(.x) 1/(2 * sqrt(.x)) in the plot. I don't know why we need the 2. We would probably use geom_function(). Maybe using geom_function with the function for a standard error will just magically work! --><!-- Make a 15 second video, put it on YouTube. "We don't estimate parameters because we care about parameters. Parameters are imaginary! Like unicorns! [Put finger on forehead and imitate unicorn.] We estimate parameters to build Data Generating Mechanisms. And with a DGM, you can move the world!" --><div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/e3PJ3Du_zDc" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+</header><!-- DK: I have fixed the most egregious disagreements between our revised Cardinal Virtues process and what was here before. However, the end of this chapter is still a mess! Maybe that is OK because it is trying to connect to all the theory we had in the Probability Chapter. We are also doing a bit of CYA to explain why, for the rest of the book, we are doing things our way. Still . . . --><!-- Highest priority: Did we really answer the two questions which we started with? --><!-- The boss move would be to delete 80% of this chapter. Cut all the sampling stuff. There is nothing wrong with it, per se, but the only reason we have it is that it was part of the Modern Dive book. It is not really necessary for the core Cardinal Virtues approach of the rest of the Primer. --><!-- Case study of polls needs to be updated to use our language of validity and so on. --><!-- There needs to be more explanation about confidence intervals!  --><!-- In some paragraphs we say that it is impossible to conduct a census because we don't have access to the urn, in others like this we do have access and can complete the census. Which is it? --><!-- Another paragraph or two of discussion about the final posterior. How do we use it? Within what range would you offer 50/50 odds that the true percentage lies? (use quantile(0.25, 0.75). Area under the curve? Explain clearly how that 26% is calculated. What is post_dist? What does it mean? How can I use it? Maybe show it sorted? Add some code comments. --><!-- You must understand what the standard error of $\hat{\rho}$ means. You do not need to understand why. --><!-- Explain in a comment the reason for  fun = function(.x) 1/(2 * sqrt(.x)) in the plot. I don't know why we need the 2. We would probably use geom_function(). Maybe using geom_function with the function for a standard error will just magically work! --><!-- Make a 15 second video, put it on YouTube. "We don't estimate parameters because we care about parameters. Parameters are imaginary! Like unicorns! [Put finger on forehead and imitate unicorn.] We estimate parameters to build Data Generating Mechanisms. And with a DGM, you can move the world!" --><div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/e3PJ3Du_zDc" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
 <p><em>The Hunger Games</em> is a dystopian novel in which children are chosen via lottery to fight to the death. Primrose Everdeen is selected from the urn. Why does she have the misfortune of being selected? Or, as we data scientists say, <em>sampled</em>?</p>
 <!-- DK: This paragraph could be improved to be more like other chapters. Shouldn't every introduction mention the key concepts of the book: the four Cardinal Virtues and the assumptions which link them together? -->
 <p>In <a href="probability.html"><span>Chapter&nbsp;2</span></a>, we learned about probability, the framework for quantifying uncertainty. In this chapter, we will learn about <em>sampling</em>, the beginning of our journey toward inference. When we sample, we take some <em>units</em> from a <em>population</em>. With the data collected via sampling, we will create statistical models with just one unknown parameter. With such models, we can make inferences in order to answer questions.</p>
+<section id="sec-sampling-activity" class="level2" data-number="3.1"><h2 data-number="3.1" class="anchored" data-anchor-id="sec-sampling-activity">
+<span class="header-section-number">3.1</span> Real sampling activity</h2>
 <p>The urn below has a certain number of red and a certain number of white beads all of equal size, mixed well together. What proportion, <span class="math inline">\(\rho\)</span>, of this urn’s beads are red?</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -318,16 +326,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details><summary>Code</summary><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-</div>
-<section id="sec-sampling-activity" class="level2" data-number="3.1"><h2 data-number="3.1" class="anchored" data-anchor-id="sec-sampling-activity">
-<span class="header-section-number">3.1</span> Real sampling activity</h2>
-<div class="cell">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="one-parameter/images/sampling_bowl_1.jpg" class="img-fluid figure-img" width="2656"></p>
-<figcaption class="figure-caption">An urn with red and white beads.</figcaption></figure>
-</div>
-</div>
 </div>
 <section id="using-the-shovel-method-once" class="level3" data-number="3.1.1"><h3 data-number="3.1.1" class="anchored" data-anchor-id="using-the-shovel-method-once">
 <span class="header-section-number">3.1.1</span> Using the shovel method once</h3>
@@ -349,8 +347,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Observe that 17 of the 50 sampled beads are red and thus <span class="math inline">\(17/50 = 0.34 = 34\%\)</span> of the shovel’s beads are red. We can view the proportion of beads that are red in this shovel as a guess of the proportion of beads that are red in the entire urn. While not as exact as doing an exhaustive count of all the beads in the urn, our guess of 34% took much less time and energy to make.</p>
-<p>Recall that <span class="math inline">\(\rho\)</span> is the true value of the proportion of red beads. There is only one <span class="math inline">\(\rho\)</span>. Our guesses at the proportion of red beads are known as <span class="math inline">\(\hat{\rho}\)</span> (pronounced p hat), where <span class="math inline">\(\hat{\rho}\)</span> is the estimated value of <span class="math inline">\(\rho\)</span> which comes from taking a sample. There are many possible <span class="math inline">\(\hat{\rho}\)</span>’s. You and I will often differ in our estimates. We each have a different <span class="math inline">\(\hat{\rho}\)</span> even though we agree that there is only one <span class="math inline">\(\rho\)</span>.</p>
-<p>Start this activity over from the beginning, placing the 50 beads back into the urn. Would a second sample include exactly 17 red beads? Maybe, but probably not.</p>
+<p>Recall that <span class="math inline">\(\rho\)</span> is the true value of the proportion of red beads. There is only one <span class="math inline">\(\rho\)</span>. Our guesses at the proportion of red beads are known as <span class="math inline">\(\hat{\rho}\)</span> (pronounced p hat), where <span class="math inline">\(\hat{\rho}\)</span> is the estimated value of <span class="math inline">\(\rho\)</span>. There are many ways to estimate <span class="math inline">\(\rho\)</span>, each leading to a (potentially) different <span class="math inline">\(\hat{\rho}\)</span>. The 34% value for <span class="math inline">\(\hat{\rho}\)</span> came from taking this sample. But, if we used the shovel again, we would probably come up with a different <span class="math inline">\(\hat{\rho}\)</span>. There are many possible <span class="math inline">\(\hat{\rho}\)</span>’s. You and I will often differ in our estimates. We each have a different <span class="math inline">\(\hat{\rho}\)</span> even though we agree that there is only one <span class="math inline">\(\rho\)</span>.</p>
+<p>Start this activity over again from the beginning, placing the 50 beads back into the urn. Would a second sample include exactly 17 red beads? Maybe, but probably not.</p>
 <p>What if we repeated this activity <em>many</em> times? Would our guess at the proportion of the urn’s beads that are red, <span class="math inline">\(\hat{\rho}\)</span>, be exactly 34% every time? Surely not.</p>
 <p>Let’s repeat this exercise with the help of 33 groups of friends to understand how the value of <span class="math inline">\(\hat{\rho}\)</span> varies across 33 independent trials.</p>
 </section><section id="student-shovels" class="level3" data-number="3.1.2"><h3 data-number="3.1.2" class="anchored" data-anchor-id="student-shovels">
@@ -391,18 +389,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 33 × 4
-   group           red_beads prop_red group_ID
-   &lt;chr&gt;               &lt;dbl&gt;    &lt;dbl&gt;    &lt;int&gt;
- 1 Katie, Anthony         20     0.4         1
- 2 Mal, Francis           17     0.34        2
- 3 Caroline, Edna         15     0.3         3
- 4 Ellie, Terrance        17     0.34        4
- 5 Mark, Jane             21     0.42        5
- 6 Griffin, Mary          18     0.36        6
- 7 Claire, Cloud          16     0.32        7
- 8 Mia, James             15     0.3         8
- 9 Nam, Joshua            19     0.38        9
-10 Morgan, Emily          21     0.42       10
+   group          red_beads prop_red group_ID
+   &lt;chr&gt;              &lt;dbl&gt;    &lt;dbl&gt;    &lt;int&gt;
+ 1 Claire, Cloud         16     0.32        1
+ 2 Morgan, Emily         21     0.42        2
+ 3 Mak, Sophie           17     0.34        3
+ 4 Aayush, Karen         15     0.3         4
+ 5 Sophie, Brian         21     0.42        5
+ 6 Griffin, Mary         18     0.36        6
+ 7 Vignesh, Eliot        16     0.32        7
+ 8 Conrad, Vlad          16     0.32        8
+ 9 Mark, Jane            21     0.42        9
+10 Ilyas, Yohan          21     0.42       10
 # ℹ 23 more rows</code></pre>
 </div>
 </div>
@@ -434,7 +432,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>       y <span class="op">=</span> <span class="st">"Count"</span>,</span>
 <span>       title <span class="op">=</span> <span class="st">"Proportions Red in 33 Samples"</span><span class="op">)</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
-<p><img src="one-parameter_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+<p><img src="one-parameter_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section><section id="what-did-we-just-do" class="level3" data-number="3.1.3"><h3 data-number="3.1.3" class="anchored" data-anchor-id="what-did-we-just-do">
@@ -601,7 +599,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>  </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">10</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
-<p><img src="one-parameter_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="672"></p>
+<p><img src="one-parameter_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Since <code>binwidth = 0.05</code>, this will create bins with boundaries at 0.30, 0.35, 0.45, and so on. Recall that <span class="math inline">\(\hat{\rho}\)</span> is equal to the proportion of beads which are red in each sample.</p>
@@ -610,7 +608,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="one-parameter_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="672"></p>
+<figure class="figure"><p><img src="one-parameter_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="672"></p>
 <figcaption class="figure-caption">Comparing 33 virtual and 33 tactile proportions red. Note that, though the figures differ slightly, both are centered around .35 to .45. This shows that, in both sampling distributions, the most frequently occuring proportion red is between 35% and 45%.</figcaption></figure>
 </div>
 </div>
@@ -649,7 +647,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>       y <span class="op">=</span> <span class="st">"Count"</span>,</span>
 <span>       title <span class="op">=</span> <span class="st">"Distribution of 1,000 proportions red"</span><span class="op">)</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
-<p><img src="one-parameter_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid" width="672"></p>
+<p><img src="one-parameter_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Why the empty spaces among the bars? Recall that, with only 50 beads, there are only 51 possible values for <span class="math inline">\(\hat{\rho}\)</span>: 0, 0.02, 0.04, …, 0.98, 1. A value of 0.31 or 0.47 is impossible, hence the gaps.</p>
@@ -683,7 +681,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/expression.html">expression</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"Proportion, "</span>, <span class="fu"><a href="https://rdrr.io/r/stats/influence.measures.html">hat</a></span><span class="op">(</span><span class="va">rho</span><span class="op">)</span>, <span class="st">", of 25 beads that were red"</span><span class="op">)</span><span class="op">)</span>, </span>
 <span>       title <span class="op">=</span> <span class="st">"25"</span><span class="op">)</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
-<p><img src="one-parameter_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid" width="672"></p>
+<p><img src="one-parameter_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>We will repeat this process with a shovel size of <strong>50</strong>.</p>
@@ -702,7 +700,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/expression.html">expression</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"Proportion, "</span>, <span class="fu"><a href="https://rdrr.io/r/stats/influence.measures.html">hat</a></span><span class="op">(</span><span class="va">rho</span><span class="op">)</span>, <span class="st">", of 50 beads that were red"</span><span class="op">)</span><span class="op">)</span>, </span>
 <span>       title <span class="op">=</span> <span class="st">"50"</span><span class="op">)</span>  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
-<p><img src="one-parameter_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid" width="672"></p>
+<p><img src="one-parameter_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>We choose a bin width of .04 for all histograms to more easily compare different shovel sizes. Using a smaller bin size would result in gaps between the bars, as a shovel of size 50 has more possible <span class="math inline">\(\hat{\rho}\)</span> values than a shovel of size 25.</p>
@@ -722,7 +720,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/expression.html">expression</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"Proportion, "</span>, <span class="fu"><a href="https://rdrr.io/r/stats/influence.measures.html">hat</a></span><span class="op">(</span><span class="va">rho</span><span class="op">)</span>, <span class="st">", of 100 beads that were red"</span><span class="op">)</span><span class="op">)</span>, </span>
 <span>       title <span class="op">=</span> <span class="st">"100"</span><span class="op">)</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
-<p><img src="one-parameter_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid" width="672"></p>
+<p><img src="one-parameter_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>For easy comparison, we present the three resulting histograms in a single row with matching x and y axes:</p>
@@ -755,7 +753,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="va">comparing_sampling_distributions</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="one-parameter_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid figure-img" width="672"></p>
+<figure class="figure"><p><img src="one-parameter_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid figure-img" width="672"></p>
 <figcaption class="figure-caption">Comparing the distributions of proportion red for different sample sizes (25, 50, 100). The important takeaway is that our center becomes more concentrated as our sample size increases, indicating a smaller standard deviation between our guesses.</figcaption></figure>
 </div>
 </div>
@@ -779,7 +777,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>        axis.text.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>        axis.ticks.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
-<p><img src="one-parameter_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid" width="672"></p>
+<p><img src="one-parameter_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>This graph illustrates the exact same concept as the histogram. With the smallest shovel size there is significant variance from sample to sample, as samples take on a wide variety of sample proportions! However, as we increase the sample size, the points become more concentrated, or less variance.</p>
@@ -1349,7 +1347,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>This is, approximately, the same result as we saw above, but with 1 re-factored tibble instead of 3 separate ones. We can also use functions like <code><a href="https://tidyr.tidyverse.org/reference/expand_grid.html">expand_grid()</a></code> in the future to make our code more concise.</p>
 <p>Now that we have this framework, there’s no need to limit ourselves to the sizes 25, 50, and 100. Why not try all integers from 1 to 100? We can use the same code, except we’ll now set <code>shovel_size = 1:100</code>.</p>
-<div class="cell" data-hash="one-parameter_cache/html/unnamed-chunk-34_dc2331e694f3bae419f464da81b1480d">
+<div class="cell" data-hash="one-parameter_cache/html/unnamed-chunk-33_262fcfa44a27cc02e9f19371b385b4be">
 <details><summary>Code</summary><div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">shovels_100</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tidyr.tidyverse.org/reference/expand_grid.html">expand_grid</a></span><span class="op">(</span>trial_ID <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">1000</span><span class="op">)</span>, shovel_size <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">100</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>shovel <span class="op">=</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span><span class="op">(</span><span class="va">shovel_size</span>, <span class="op">~</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_sample</a></span><span class="op">(</span><span class="va">urn</span>, n <span class="op">=</span> <span class="va">.</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>numb_red <span class="op">=</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_int</a></span><span class="op">(</span><span class="va">shovel</span>, <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">.</span><span class="op">$</span><span class="va">color</span> <span class="op">==</span> <span class="st">"red"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
@@ -1366,10 +1364,10 @@ $ st_dev_p_hat &lt;dbl&gt; 0.48436516, 0.34093399, 0.27629253, 0.24069833, 0.214
 </div>
 </div>
 <p>Now, we have the standard deviation of <code>prop_red</code> for all shovel sizes from 1 to 100. Let’s plot that value to see how it changes as the shovel gets larger:</p>
-<div class="cell" data-hash="one-parameter_cache/html/unnamed-chunk-35_12f9af226b1aeaa2fb62acb5f17f258d">
+<div class="cell" data-hash="one-parameter_cache/html/unnamed-chunk-34_da2caf28a79f15af6b3c3cafd0ee29dc">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="one-parameter_files/figure-html/unnamed-chunk-35-1.png" class="img-fluid figure-img" width="672"></p>
+<figure class="figure"><p><img src="one-parameter_files/figure-html/unnamed-chunk-34-1.png" class="img-fluid figure-img" width="672"></p>
 <figcaption class="figure-caption">Comparing standard deviations of proportions red for 100 different shovels. The standard deviation decreases at the same rate as the square root of shovel size. The red line shows the standard error.</figcaption></figure>
 </div>
 </div>
@@ -1448,7 +1446,7 @@ $ st_dev_p_hat &lt;dbl&gt; 0.48436516, 0.34093399, 0.27629253, 0.24069833, 0.214
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="one-parameter_files/figure-html/unnamed-chunk-40-1.png" class="img-fluid figure-img" width="672"></p>
+<figure class="figure"><p><img src="one-parameter_files/figure-html/unnamed-chunk-39-1.png" class="img-fluid figure-img" width="672"></p>
 <figcaption class="figure-caption">Previously seen three distributions of the sample proportion <span class="math inline">\(\hat{ ho}\)</span>.</figcaption></figure>
 </div>
 </div>
@@ -1458,7 +1456,7 @@ $ st_dev_p_hat &lt;dbl&gt; 0.48436516, 0.34093399, 0.27629253, 0.24069833, 0.214
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="one-parameter_files/figure-html/unnamed-chunk-41-1.png" class="img-fluid figure-img" width="672"></p>
+<figure class="figure"><p><img src="one-parameter_files/figure-html/unnamed-chunk-40-1.png" class="img-fluid figure-img" width="672"></p>
 <figcaption class="figure-caption">Previously seen comparing standard deviations of proportions red for 100 different shovels</figcaption></figure>
 </div>
 </div>
@@ -1477,7 +1475,7 @@ $ st_dev_p_hat &lt;dbl&gt; 0.48436516, 0.34093399, 0.27629253, 0.24069833, 0.214
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="one-parameter_files/figure-html/unnamed-chunk-42-1.png" class="img-fluid figure-img" width="672"></p>
+<figure class="figure"><p><img src="one-parameter_files/figure-html/unnamed-chunk-41-1.png" class="img-fluid figure-img" width="672"></p>
 <figcaption class="figure-caption">Three sampling distributions of the sample proportion <span class="math inline">\(\hat{ ho}\)</span>. Note the increased concentration on the bins around .4 as our sample size increases.</figcaption></figure>
 </div>
 </div>
@@ -1486,7 +1484,7 @@ $ st_dev_p_hat &lt;dbl&gt; 0.48436516, 0.34093399, 0.27629253, 0.24069833, 0.214
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="one-parameter_files/figure-html/unnamed-chunk-43-1.png" class="img-fluid figure-img" width="672"></p>
+<figure class="figure"><p><img src="one-parameter_files/figure-html/unnamed-chunk-42-1.png" class="img-fluid figure-img" width="672"></p>
 <figcaption class="figure-caption">Standard errors of the sample proportion based on sample sizes of 1 to 100</figcaption></figure>
 </div>
 </div>
@@ -2534,7 +2532,7 @@ $ st_dev_p_hat &lt;dbl&gt; 0.48436516, 0.34093399, 0.27629253, 0.24069833, 0.214
 <p>The last step of Wisdom is to decide whether or not we can consider the units from the Preceptor Table and the units from the data to have been drawn from the same <em>population</em>. In this case, as with many sampling scenarios, it is trivial that we may make this assumption. If all the rows from the data are also rows in the Preceptor Table, we may assume that they are drawn from the same distribution.</p>
 <!-- DK: Could expand on this point, or move it to later. -->
 <p>We also consider why some beads do get sampled, while others do not. This is a consequence of the <em>sampling mechanism</em>. We hope that all members of the population have the same chance of being sampled, or else our data might be biased. Almost all samples have some bias, but we must make a judgement call to see if the data we have is close enough to the data we want (i.e., the Preceptor Table) that we can consider both as coming from the same population. Our sample of 50 beads is taken from a <em>mixed</em> urn, so hopefully there is a near equal chance of selecting each bead, and our samples are representative of the population.</p>
-<p><em>Validity</em> involves the columns of our data set. Is the meaning of our columns consistent across the different data sources? In our urn scenario, does bead color in our sampled data and bead color in our Preceptor Table mean the same thing? The answer is yes, and validity can be assumed very easily. If some beads in the urn are old and the color has worn off, it may be more difficult to conclude whether the color column always means the same thing.</p>
+<p><em>Validity</em> involves the columns of our data set. Is the meaning of our columns consistent across the different data sources? In our urn scenario, does bead color in our sampled data and bead color in our Preceptor Table mean the same thing? The answer is yes, and validity can be assumed very easily.</p>
 <!-- DK: Don't use the word "representative" here! -->
 
 <!-- Could get into more details here, e.g., Sometimes, the Preceptor Table and the Population Table have the same number of rows. This happens when all the data are rows from the Preceptor Table. Example would be the simple case of an urn, the beads in which you know do not change color, and from which you have drawn a sample. But, what if beads can change color? Then the data from the sample 10 minutes ago has a less than certain relationship with the Preceptor Table. The same includes the color for bead 96 ten minutes ago. The Preceptor Table has one row for bead 96 now, at this moment. So, in this case, the Population Table has a row for every bead at each moment in time that we care about. At the very least, it as 1,000 rows for 10 minutes ago (when we took the sample) and 1,000 rows for now. -->
@@ -2545,13 +2543,11 @@ $ st_dev_p_hat &lt;dbl&gt; 0.48436516, 0.34093399, 0.27629253, 0.24069833, 0.214
 <p><img src="other/images/Justice.jpg" class="img-fluid" width="960"></p>
 </div>
 </div>
-<p>Justice starts with an examination of the stability, representativeness, and unconfoundedness of the Population Table and ends with an assumption about the <em>mathematical form</em> of the data generating mechanism.</p>
+<p>Justice examines the assumptions of stability, representativeness, and unconfoundedness with regard to the Population Table.</p>
 <section id="population-table" class="level4" data-number="3.4.2.1"><h4 data-number="3.4.2.1" class="anchored" data-anchor-id="population-table">
 <span class="header-section-number">3.4.2.1</span> Population Table</h4>
 <p>We use <em>The Population Table</em> to acknowledge the wider source from which we could have collected our data.</p>
 <p>It includes rows from three sources: the data for units we want to have (the Preceptor Table), the data for units which we have (our actual data), and the data for units we do not care about (the rest of the population, not included in the data or the Preceptor Table).</p>
-
-<!-- DK: Make this table correctly. Add a "Time" column. Only four columns: Source, Time, ID and Color. First rows from Population, then Data, than Population, then Preceptor Table, then Population. Time goes in 10 minute increments. Time Preceptor Table is "Now". Time for Population at end is "Now + 10". Time for Data is "Now - 10". Did this a little differently-->
 <div class="cell">
 <div class="cell-output-display">
 
@@ -3005,327 +3001,327 @@ $ st_dev_p_hat &lt;dbl&gt; 0.48436516, 0.34093399, 0.27629253, 0.24069833, 0.214
     </tr></thead>
 <tbody class="gt_table_body">
 <tr>
-<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div class="gt_from_md">
-<p>Other</p>
-</div></td>
-<td headers="location" class="gt_row gt_center"><div class="gt_from_md">
+<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div data-qmd="..."><div class="gt_from_md">
+<p>…</p>
+</div></div></td>
+<td headers="location" class="gt_row gt_center"><div data-qmd="Known, specific urn"><div class="gt_from_md">
 <p>Known, specific urn</p>
-</div></td>
-<td headers="time" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="time" class="gt_row gt_center"><div data-qmd="Time of sample - 2 years"><div class="gt_from_md">
 <p>Time of sample - 2 years</p>
-</div></td>
-<td headers="id" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="id" class="gt_row gt_center"><div data-qmd="1"><div class="gt_from_md">
 <p>1</p>
-</div></td>
-<td headers="color" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="color" class="gt_row gt_center"><div data-qmd="?"><div class="gt_from_md">
 <p>?</p>
-</div></td>
+</div></div></td>
 </tr>
 <tr>
-<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div class="gt_from_md">
-<p>Other</p>
-</div></td>
-<td headers="location" class="gt_row gt_center"><div class="gt_from_md">
+<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div data-qmd="..."><div class="gt_from_md">
+<p>…</p>
+</div></div></td>
+<td headers="location" class="gt_row gt_center"><div data-qmd="Known, specific urn"><div class="gt_from_md">
 <p>Known, specific urn</p>
-</div></td>
-<td headers="time" class="gt_row gt_center"><div class="gt_from_md">
-<p>Time of sample - 3 weeks</p>
-</div></td>
-<td headers="id" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="time" class="gt_row gt_center"><div data-qmd="Time of sample - 2 years"><div class="gt_from_md">
+<p>Time of sample - 2 years</p>
+</div></div></td>
+<td headers="id" class="gt_row gt_center"><div data-qmd="200"><div class="gt_from_md">
 <p>200</p>
-</div></td>
-<td headers="color" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="color" class="gt_row gt_center"><div data-qmd="?"><div class="gt_from_md">
 <p>?</p>
-</div></td>
+</div></div></td>
 </tr>
 <tr>
-<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div class="gt_from_md">
-<p>Other</p>
-</div></td>
-<td headers="location" class="gt_row gt_center"><div class="gt_from_md">
+<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div data-qmd="..."><div class="gt_from_md">
+<p>…</p>
+</div></div></td>
+<td headers="location" class="gt_row gt_center"><div data-qmd="Known, specific urn"><div class="gt_from_md">
 <p>Known, specific urn</p>
-</div></td>
-<td headers="time" class="gt_row gt_center"><div class="gt_from_md">
-<p>Time of sample - 10 days</p>
-</div></td>
-<td headers="id" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="time" class="gt_row gt_center"><div data-qmd="Time of sample - 2 years"><div class="gt_from_md">
+<p>Time of sample - 2 years</p>
+</div></div></td>
+<td headers="id" class="gt_row gt_center"><div data-qmd="976"><div class="gt_from_md">
 <p>976</p>
-</div></td>
-<td headers="color" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="color" class="gt_row gt_center"><div data-qmd="?"><div class="gt_from_md">
 <p>?</p>
-</div></td>
+</div></div></td>
 </tr>
 <tr>
-<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div class="gt_from_md">
+<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div data-qmd="..."><div class="gt_from_md">
 <p>…</p>
-</div></td>
-<td headers="location" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="location" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
 <p>…</p>
-</div></td>
-<td headers="time" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="time" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
 <p>…</p>
-</div></td>
-<td headers="id" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="id" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
 <p>…</p>
-</div></td>
-<td headers="color" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="color" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
 <p>…</p>
-</div></td>
+</div></div></td>
 </tr>
 <tr>
-<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div class="gt_from_md">
+<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div data-qmd="Data"><div class="gt_from_md">
 <p>Data</p>
-</div></td>
-<td headers="location" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="location" class="gt_row gt_center"><div data-qmd="Known, specific urn"><div class="gt_from_md">
 <p>Known, specific urn</p>
-</div></td>
-<td headers="time" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="time" class="gt_row gt_center"><div data-qmd="Time of sample"><div class="gt_from_md">
 <p>Time of sample</p>
-</div></td>
-<td headers="id" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="id" class="gt_row gt_center"><div data-qmd="2"><div class="gt_from_md">
 <p>2</p>
-</div></td>
-<td headers="color" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="color" class="gt_row gt_center"><div data-qmd="white"><div class="gt_from_md">
 <p>white</p>
-</div></td>
+</div></div></td>
 </tr>
 <tr>
-<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div class="gt_from_md">
+<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div data-qmd="Data"><div class="gt_from_md">
 <p>Data</p>
-</div></td>
-<td headers="location" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="location" class="gt_row gt_center"><div data-qmd="Known, specific urn"><div class="gt_from_md">
 <p>Known, specific urn</p>
-</div></td>
-<td headers="time" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="time" class="gt_row gt_center"><div data-qmd="Time of sample"><div class="gt_from_md">
 <p>Time of sample</p>
-</div></td>
-<td headers="id" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="id" class="gt_row gt_center"><div data-qmd="200"><div class="gt_from_md">
 <p>200</p>
-</div></td>
-<td headers="color" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="color" class="gt_row gt_center"><div data-qmd="red"><div class="gt_from_md">
 <p>red</p>
-</div></td>
+</div></div></td>
 </tr>
 <tr>
-<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div class="gt_from_md">
+<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div data-qmd="Data"><div class="gt_from_md">
 <p>Data</p>
-</div></td>
-<td headers="location" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="location" class="gt_row gt_center"><div data-qmd="Known, specific urn"><div class="gt_from_md">
 <p>Known, specific urn</p>
-</div></td>
-<td headers="time" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="time" class="gt_row gt_center"><div data-qmd="Time of sample"><div class="gt_from_md">
 <p>Time of sample</p>
-</div></td>
-<td headers="id" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="id" class="gt_row gt_center"><div data-qmd="1080"><div class="gt_from_md">
 <p>1080</p>
-</div></td>
-<td headers="color" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="color" class="gt_row gt_center"><div data-qmd="white"><div class="gt_from_md">
 <p>white</p>
-</div></td>
+</div></div></td>
 </tr>
 <tr>
-<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div class="gt_from_md">
+<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div data-qmd="..."><div class="gt_from_md">
 <p>…</p>
-</div></td>
-<td headers="location" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="location" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
 <p>…</p>
-</div></td>
-<td headers="time" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="time" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
 <p>…</p>
-</div></td>
-<td headers="id" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="id" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
 <p>…</p>
-</div></td>
-<td headers="color" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="color" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
 <p>…</p>
-</div></td>
+</div></div></td>
 </tr>
 <tr>
-<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div class="gt_from_md">
-<p>Other</p>
-</div></td>
-<td headers="location" class="gt_row gt_center"><div class="gt_from_md">
+<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div data-qmd="..."><div class="gt_from_md">
+<p>…</p>
+</div></div></td>
+<td headers="location" class="gt_row gt_center"><div data-qmd="Known, specific urn"><div class="gt_from_md">
 <p>Known, specific urn</p>
-</div></td>
-<td headers="time" class="gt_row gt_center"><div class="gt_from_md">
-<p>Time of sample + 10 days</p>
-</div></td>
-<td headers="id" class="gt_row gt_center"><div class="gt_from_md">
-<p>1</p>
-</div></td>
-<td headers="color" class="gt_row gt_center"><div class="gt_from_md">
-<p>?</p>
-</div></td>
-</tr>
-<tr>
-<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div class="gt_from_md">
-<p>Other</p>
-</div></td>
-<td headers="location" class="gt_row gt_center"><div class="gt_from_md">
-<p>Known, specific urn</p>
-</div></td>
-<td headers="time" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="time" class="gt_row gt_center"><div data-qmd="Time of sample + 3 weeks"><div class="gt_from_md">
 <p>Time of sample + 3 weeks</p>
-</div></td>
-<td headers="id" class="gt_row gt_center"><div class="gt_from_md">
-<p>200</p>
-</div></td>
-<td headers="color" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="id" class="gt_row gt_center"><div data-qmd="1"><div class="gt_from_md">
+<p>1</p>
+</div></div></td>
+<td headers="color" class="gt_row gt_center"><div data-qmd="?"><div class="gt_from_md">
 <p>?</p>
-</div></td>
+</div></div></td>
 </tr>
 <tr>
-<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div class="gt_from_md">
-<p>Other</p>
-</div></td>
-<td headers="location" class="gt_row gt_center"><div class="gt_from_md">
+<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div data-qmd="..."><div class="gt_from_md">
+<p>…</p>
+</div></div></td>
+<td headers="location" class="gt_row gt_center"><div data-qmd="Known, specific urn"><div class="gt_from_md">
 <p>Known, specific urn</p>
-</div></td>
-<td headers="time" class="gt_row gt_center"><div class="gt_from_md">
-<p>Time of sample + 2 years</p>
-</div></td>
-<td headers="id" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="time" class="gt_row gt_center"><div data-qmd="Time of sample + 3 weeks"><div class="gt_from_md">
+<p>Time of sample + 3 weeks</p>
+</div></div></td>
+<td headers="id" class="gt_row gt_center"><div data-qmd="200"><div class="gt_from_md">
+<p>200</p>
+</div></div></td>
+<td headers="color" class="gt_row gt_center"><div data-qmd="?"><div class="gt_from_md">
+<p>?</p>
+</div></div></td>
+</tr>
+<tr>
+<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div data-qmd="..."><div class="gt_from_md">
+<p>…</p>
+</div></div></td>
+<td headers="location" class="gt_row gt_center"><div data-qmd="Known, specific urn"><div class="gt_from_md">
+<p>Known, specific urn</p>
+</div></div></td>
+<td headers="time" class="gt_row gt_center"><div data-qmd="Time of sample + 3 weeks"><div class="gt_from_md">
+<p>Time of sample + 3 weeks</p>
+</div></div></td>
+<td headers="id" class="gt_row gt_center"><div data-qmd="2025"><div class="gt_from_md">
 <p>2025</p>
-</div></td>
-<td headers="color" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="color" class="gt_row gt_center"><div data-qmd="?"><div class="gt_from_md">
 <p>?</p>
-</div></td>
+</div></div></td>
 </tr>
 <tr>
-<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div class="gt_from_md">
+<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div data-qmd="..."><div class="gt_from_md">
 <p>…</p>
-</div></td>
-<td headers="location" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="location" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
 <p>…</p>
-</div></td>
-<td headers="time" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="time" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
 <p>…</p>
-</div></td>
-<td headers="id" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="id" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
 <p>…</p>
-</div></td>
-<td headers="color" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="color" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
 <p>…</p>
-</div></td>
+</div></div></td>
 </tr>
 <tr>
-<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div class="gt_from_md">
+<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div data-qmd="Preceptor Table"><div class="gt_from_md">
 <p>Preceptor Table</p>
-</div></td>
-<td headers="location" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="location" class="gt_row gt_center"><div data-qmd="Known, specific urn"><div class="gt_from_md">
 <p>Known, specific urn</p>
-</div></td>
-<td headers="time" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="time" class="gt_row gt_center"><div data-qmd="Now"><div class="gt_from_md">
 <p>Now</p>
-</div></td>
-<td headers="id" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="id" class="gt_row gt_center"><div data-qmd="1"><div class="gt_from_md">
 <p>1</p>
-</div></td>
-<td headers="color" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="color" class="gt_row gt_center"><div data-qmd="?"><div class="gt_from_md">
 <p>?</p>
-</div></td>
+</div></div></td>
 </tr>
 <tr>
-<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div class="gt_from_md">
+<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div data-qmd="Preceptor Table"><div class="gt_from_md">
 <p>Preceptor Table</p>
-</div></td>
-<td headers="location" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="location" class="gt_row gt_center"><div data-qmd="Known, specific urn"><div class="gt_from_md">
 <p>Known, specific urn</p>
-</div></td>
-<td headers="time" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="time" class="gt_row gt_center"><div data-qmd="Now"><div class="gt_from_md">
 <p>Now</p>
-</div></td>
-<td headers="id" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="id" class="gt_row gt_center"><div data-qmd="200"><div class="gt_from_md">
 <p>200</p>
-</div></td>
-<td headers="color" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="color" class="gt_row gt_center"><div data-qmd="red"><div class="gt_from_md">
 <p>red</p>
-</div></td>
+</div></div></td>
 </tr>
 <tr>
-<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div class="gt_from_md">
+<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div data-qmd="Preceptor Table"><div class="gt_from_md">
 <p>Preceptor Table</p>
-</div></td>
-<td headers="location" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="location" class="gt_row gt_center"><div data-qmd="Known, specific urn"><div class="gt_from_md">
 <p>Known, specific urn</p>
-</div></td>
-<td headers="time" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="time" class="gt_row gt_center"><div data-qmd="Now"><div class="gt_from_md">
 <p>Now</p>
-</div></td>
-<td headers="id" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="id" class="gt_row gt_center"><div data-qmd="2078"><div class="gt_from_md">
 <p>2078</p>
-</div></td>
-<td headers="color" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="color" class="gt_row gt_center"><div data-qmd="?"><div class="gt_from_md">
 <p>?</p>
-</div></td>
+</div></div></td>
 </tr>
 <tr>
-<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div class="gt_from_md">
+<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div data-qmd="..."><div class="gt_from_md">
 <p>…</p>
-</div></td>
-<td headers="location" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="location" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
 <p>…</p>
-</div></td>
-<td headers="time" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="time" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
 <p>…</p>
-</div></td>
-<td headers="id" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="id" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
 <p>…</p>
-</div></td>
-<td headers="color" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="color" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
 <p>…</p>
-</div></td>
+</div></div></td>
 </tr>
 <tr>
-<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div class="gt_from_md">
-<p>Other</p>
-</div></td>
-<td headers="location" class="gt_row gt_center"><div class="gt_from_md">
+<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div data-qmd="..."><div class="gt_from_md">
+<p>…</p>
+</div></div></td>
+<td headers="location" class="gt_row gt_center"><div data-qmd="Known, specific urn"><div class="gt_from_md">
 <p>Known, specific urn</p>
-</div></td>
-<td headers="time" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="time" class="gt_row gt_center"><div data-qmd="Now + 10 days"><div class="gt_from_md">
 <p>Now + 10 days</p>
-</div></td>
-<td headers="id" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="id" class="gt_row gt_center"><div data-qmd="1"><div class="gt_from_md">
 <p>1</p>
-</div></td>
-<td headers="color" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="color" class="gt_row gt_center"><div data-qmd="?"><div class="gt_from_md">
 <p>?</p>
-</div></td>
+</div></div></td>
 </tr>
 <tr>
-<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div class="gt_from_md">
-<p>Other</p>
-</div></td>
-<td headers="location" class="gt_row gt_center"><div class="gt_from_md">
+<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div data-qmd="..."><div class="gt_from_md">
+<p>…</p>
+</div></div></td>
+<td headers="location" class="gt_row gt_center"><div data-qmd="Known, specific urn"><div class="gt_from_md">
 <p>Known, specific urn</p>
-</div></td>
-<td headers="time" class="gt_row gt_center"><div class="gt_from_md">
-<p>Now + 3 weeks</p>
-</div></td>
-<td headers="id" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="time" class="gt_row gt_center"><div data-qmd="Now + 10 days"><div class="gt_from_md">
+<p>Now + 10 days</p>
+</div></div></td>
+<td headers="id" class="gt_row gt_center"><div data-qmd="200"><div class="gt_from_md">
 <p>200</p>
-</div></td>
-<td headers="color" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="color" class="gt_row gt_center"><div data-qmd="?"><div class="gt_from_md">
 <p>?</p>
-</div></td>
+</div></div></td>
 </tr>
 <tr>
-<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div class="gt_from_md">
-<p>Other</p>
-</div></td>
-<td headers="location" class="gt_row gt_center"><div class="gt_from_md">
+<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div data-qmd="..."><div class="gt_from_md">
+<p>…</p>
+</div></div></td>
+<td headers="location" class="gt_row gt_center"><div data-qmd="Known, specific urn"><div class="gt_from_md">
 <p>Known, specific urn</p>
-</div></td>
-<td headers="time" class="gt_row gt_center"><div class="gt_from_md">
-<p>Now + 2 years</p>
-</div></td>
-<td headers="id" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="time" class="gt_row gt_center"><div data-qmd="Now + 10 days"><div class="gt_from_md">
+<p>Now + 10 days</p>
+</div></div></td>
+<td headers="id" class="gt_row gt_center"><div data-qmd="2300"><div class="gt_from_md">
 <p>2300</p>
-</div></td>
-<td headers="color" class="gt_row gt_center"><div class="gt_from_md">
+</div></div></td>
+<td headers="color" class="gt_row gt_center"><div data-qmd="?"><div class="gt_from_md">
 <p>?</p>
-</div></td>
+</div></div></td>
 </tr>
 </tbody>
 </table>
@@ -3335,26 +3331,19 @@ $ st_dev_p_hat &lt;dbl&gt; 0.48436516, 0.34093399, 0.27629253, 0.24069833, 0.214
 <p>&nbsp;</p>
 <p>Each specific row represents one subject, which are individual beads in our urn scenario. Because there could be thousands or even millions of beads, we provide 3 examples for each category, and use ellipses to denote that there are many more subjects that we have yet to record.</p>
 <p>Each Population Table will usually have several types of columns: id, time, covariates, and outcome(s):</p>
-<p>When we construct a Preceptor Table to answer our question, we must select some <em>covariates</em> that we <strong>want</strong> all of our subjects to have. Our urn scenario only has no covariates, however, so we will explore this issue in later chapters.</p>
+<p>When we construct a Preceptor Table to answer our question, we must select some <em>covariates</em> that we <strong>want</strong> all of our subjects to have. Our urn scenario has no covariates, however, so we will explore this issue in later chapters.</p>
 <ul>
 <li>Because we draw our sample from the exact same urn our question asks us about, the data we collect comes directly from the Preceptor Table, all subjects in our population have the same location (“Known, specific urn”). The Preceptor Table and Population categories are essentially identical. This is the perfect scenario for us, but this rarely occurs in real life.</li>
 </ul>
-<p>Population Tables always have a column for <em>Time</em>. When answering a question we must specify the time that it’s being asked, because stuff happens and things change.</p>
-<ul>
-<li>We must acknowledge that the sample from the urn could have been taken at any time, so the contents of the urn in the past (our data) <em>could be</em> different from the contents of the urn when we want to answer our question now (the Preceptor Table). As such, there is a wider population we could have collected our data from: any time before collecting the sample, or anytime after collecting it.</li>
-</ul>
-<p>Finally, Population Tables have an <em>outcome</em>. Sometimes there will be multiple outcome columns, like in the case of casual models where we want the values for two or more potential outcomes.</p>
+<p>Population Tables always have a column for <em>Time</em>. When answering a question we must specify the moment in time to which it applies, because stuff happens and things change.</p>
+<p>We must acknowledge that the sample from the urn could have been taken at any time, so the contents of the urn in the past (our data) <em>could be</em> different from the contents of the urn when we want to answer our question now (the Preceptor Table). As such, there is a wider population we could have collected our data from: any time before collecting the sample, or anytime after collecting it.</p>
+<p>Finally, Population Tables have an <em>outcome</em>. Sometimes there will be multiple outcome columns, as in the case of casual models in which we need the values for two or more potential outcomes so that we can calculate a causal effect.</p>
 </section><section id="stability-and-representativeness" class="level4" data-number="3.4.2.2"><h4 data-number="3.4.2.2" class="anchored" data-anchor-id="stability-and-representativeness">
 <span class="header-section-number">3.4.2.2</span> Stability and representativeness</h4>
 <p>Now that we have created our Population Table, we can analyze the key assumptions of stability, representativeness and unconfoundedness.</p>
 <p><em>Stability</em> involves time. Is the model — meaning both the mathematical formula and the value of the parameters — stable over time? Realistically, an urn will be the same today, tomorrow or next year. However, what if someone dumps some red beads into the urn after we take our sample? Then we cannot assume stability, because the proportion of red beads in the urn, <span class="math inline">\(\rho\)</span>, the instant before the dump is different than the proportion red in the urn after. We will assume no one is tampering with our urn, and assume stability across time periods.</p>
 <p><em>Representativeness</em> involves the data rows, specifically the rows for which we <em>have data</em> versus the rows for which we <em>might have had data</em>. Are the rows that we do have data for representative of the rows for which we do not have data? For the sample proportion to be similar to the actual population proportion, we ideally want the data we have to be a random, unbiased selection from our population. In the context of our problem, the sampling mechanism of using a shovel of size 50 to sample beads from an urn in which the beads are thoroughly mixed should be enough to consider our sample representative of the population.</p>
-<p><em>Unconfoundedness</em> involves the potential correlation between treatment assignment and other variables. It is only a concern for causal models. Since this is a predictive model, we do not have to worry about unconfoundedness. There is no “treatment” which might be confounded with anything.</p>
-</section><section id="the-dgm" class="level4" data-number="3.4.2.3"><h4 data-number="3.4.2.3" class="anchored" data-anchor-id="the-dgm">
-<span class="header-section-number">3.4.2.3</span> The DGM</h4>
-<p>The final aspect of Justice is assuming/creating a mathematical formula — a <em>data generating mechanism</em>, or DGM — which mimics the process by which the data comes to us. The DGM for sampling scenarios with only two possible values is often denoted as follows:</p>
-<p><span class="math display">\[ R_i  \sim B(\rho, n = 50) \]</span></p>
-<p>The total number of red beads selected in a sample of 50 beads, <span class="math inline">\(R_i\)</span>, is equal to one draw from a binomial distribution with <span class="math inline">\(n = 50\)</span> observations and an unknown probability <span class="math inline">\(\rho\)</span> of the proportion of red beads in the urn.</p>
+<p><em>Unconfoundedness</em> involves the potential correlation between treatment assignment and the outcome. It is only a concern for causal models. Since this is a predictive model, we do not have to worry about unconfoundedness. There is no “treatment” which might be confounded with anything.</p>
 </section></section><section id="courage" class="level3" data-number="3.4.3"><h3 data-number="3.4.3" class="anchored" data-anchor-id="courage">
 <span class="header-section-number">3.4.3</span> Courage</h3>
 <div class="cell">
@@ -3362,27 +3351,31 @@ $ st_dev_p_hat &lt;dbl&gt; 0.48436516, 0.34093399, 0.27629253, 0.24069833, 0.214
 <p><img src="other/images/Courage.jpg" class="img-fluid" width="1024"></p>
 </div>
 </div>
-<p>Courage takes the mathematical formula from Justice and, using code, creates a fitted model, included posterior probability distributions for all the unknown parameters.</p>
-<section id="bayesian-framework" class="level4" data-number="3.4.3.1"><h4 data-number="3.4.3.1" class="anchored" data-anchor-id="bayesian-framework">
-<span class="header-section-number">3.4.3.1</span> Bayesian framework</h4>
-<p>We are Bayesian statisticians who make Bayesian models. This means that we make specific assumptions and consider data to be fixed and parameters to be variable. One of the most important distinctions is that in Bayesian data science, <strong>we don’t know the values of our parameters</strong>. Consider the DGM created in Justice:</p>
+<p>Courage begins with the Population Table and then creates a mathematical model which connects the outcome variable to the covariates, if any. Then, using code, we create a fitted model, included posterior probability distributions for all the unknown parameters.</p>
+<section id="the-dgm" class="level4" data-number="3.4.3.1"><h4 data-number="3.4.3.1" class="anchored" data-anchor-id="the-dgm">
+<span class="header-section-number">3.4.3.1</span> The DGM</h4>
+<p>The <em>data generating mechanism</em>, or DGM, is a mathematical formula which mimics the process by which the data comes to us. The DGM for sampling scenarios with only two possible values is often denoted as follows:</p>
 <p><span class="math display">\[ R_i  \sim B(\rho, n = 50) \]</span></p>
-<!-- DK: Awkwardy written. Shorten. Cut? -->
+<p>The total number of red beads selected in a sample of 50 beads, <span class="math inline">\(R_i\)</span>, is equal to one draw from a binomial distribution with <span class="math inline">\(n = 50\)</span> observations and an unknown probability <span class="math inline">\(\rho\)</span> of the proportion of red beads in the urn.</p>
+</section><section id="bayesian-framework" class="level4" data-number="3.4.3.2"><h4 data-number="3.4.3.2" class="anchored" data-anchor-id="bayesian-framework">
+<span class="header-section-number">3.4.3.2</span> Bayesian framework</h4>
+<!-- DK: Too abstract? Too long? -->
+<p>We are Bayesian statisticians who make Bayesian models. This means that we make specific assumptions and consider data to be fixed and parameters to be variable. One of the most important distinctions is that in Bayesian data science, <strong>we don’t know the values of our parameters</strong>.</p>
 <p>Some non-Bayesian frameworks are concerned with the probability distribution of our observed data, but do not care much about the probability distribution for <span class="math inline">\(\rho\)</span> and assume it to be fixed. If <span class="math inline">\(\rho\)</span> is fixed, the equation above becomes one simple binomial distribution. Think of this as a standard 2 dimensional plot.</p>
 <p>We Bayesians consider our observed data to be fixed. We don’t consider alternate realities where our observed data is different due to sampling variation. Instead, we are concerned with the probability distribution of our parameter. In our urn scenario, <span class="math inline">\(\rho\)</span> is variable, so we have to create a separate binomial distribution for each possible value of <span class="math inline">\(\rho\)</span>. Think of this as a 3 dimensional joint distribution, as we created in <a href="probability.html#sec-n-models"><span>Section&nbsp;2.6</span></a>.</p>
 <p>It is essential to understand the joint distribution and the posterior, two concepts Bayesians use to solve problems. We will provide quick a quick review here, including statistical notation that may be helpful to some.</p>
-<!-- Too long? -->
 <p><strong>The joint distribution</strong>, <span class="math inline">\(p(y|\theta)\)</span>, models the outcome <span class="math inline">\(y\)</span> given one or more unknown parameter(s), <span class="math inline">\(\theta\)</span>. The equation illustrates exact same concept we addressed while discussing the distinctions of Bayesian science: because our parameters are variable, we have to create separate distributions for each potential value. Combining all these distributions together creates a joint distribution that is 3 dimensional when plotted.</p>
 <p><strong>The posterior</strong>, <span class="math inline">\(p(\theta|y)\)</span>, is the probability distribution of our parameter(s) <span class="math inline">\(\theta\)</span>, created using data <span class="math inline">\(y\)</span> that updates our beliefs. We have referenced the posterior many times before, and this definition does not change its meaning.</p>
 <p>In our urn scenario, obtaining the posterior involves first creating many binomial distributions for each possible population proportion. This is the joint distribution, and it is a 3 dimensional model. We then select the distribution that corresponds with our data: 17 red beads are sampled. We can represent the posterior with the following:</p>
 <p><span class="math display">\[\text{Prob}(\text{models} | \text{data} = 17)\]</span></p>
 <p>This is equivalent to taking a 2 dimensional slice of the 3 dimensional model. We are left with a probability distribution for our parameter, <span class="math inline">\(\rho\)</span>.</p>
-</section><section id="stan_glm" class="level4" data-number="3.4.3.2"><h4 data-number="3.4.3.2" class="anchored" data-anchor-id="stan_glm">
-<span class="header-section-number">3.4.3.2</span> stan_glm()</h4>
+</section><section id="stan_glm" class="level4" data-number="3.4.3.3"><h4 data-number="3.4.3.3" class="anchored" data-anchor-id="stan_glm">
+<span class="header-section-number">3.4.3.3</span> <code>stan_glm()</code>
+</h4>
 <p>Given a data set to use and a mathematical formula to work with, the next step is to write some code. We will use the <strong>rstanarm</strong> package, which provides a user friendly interface to work with the statistical language Stan.</p>
-<p><strong>rstanarm</strong> and Stan are appealing because they are powerful. Functions such as <code><a href="https://mc-stan.org/rstanarm/reference/stan_glm.html">stan_glm()</a></code> can do everything we did by hand in Chapter 5 in a few lines of code. Because we will use a professional statistical library, the objects we make will become more complex. In this Chapter, we provide the steps for answering our questions. <a href="two-parameters.html"><span>Chapter&nbsp;4</span></a> will provide a more detailed explanation of the objects we will make. <em>To be clear, you do not need to fully understand this section or how this code works. This is an introduction, not a formal lesson.</em></p>
+<p><strong>rstanarm</strong> and Stan are appealing because they are powerful. Functions such as <code><a href="https://mc-stan.org/rstanarm/reference/stan_glm.html">stan_glm()</a></code> can do everything we did by hand in <a href="probability.html"><span>Chapter&nbsp;2</span></a> in a few lines of code. Because we will use a professional statistical library, the objects we make will become more complex. In this Chapter, we provide the steps for answering our questions. <a href="two-parameters.html"><span>Chapter&nbsp;4</span></a> will provide a more detailed explanation of the objects we will make. <em>To be clear, you do not need to fully understand this section or how this code works. This is an introduction, not a formal lesson.</em></p>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://mc-stan.org/rstanarm/">rstanarm</a></span><span class="op">)</span></span>
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://mc-stan.org/rstanarm/">rstanarm</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">fit_1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/rstanarm/reference/stan_glm.html">stan_glm</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">red</span> <span class="op">~</span> <span class="fl">1</span>, </span>
 <span>                  data <span class="op">=</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>red <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">17</span><span class="op">)</span>, </span>
@@ -3390,7 +3383,6 @@ $ st_dev_p_hat &lt;dbl&gt; 0.48436516, 0.34093399, 0.27629253, 0.24069833, 0.214
 <span>                  family <span class="op">=</span> <span class="va">binomial</span>,</span>
 <span>                  refresh <span class="op">=</span> <span class="fl">0</span>,</span>
 <span>                  seed <span class="op">=</span> <span class="fl">10</span><span class="op">)</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 </div>
 <p>Recall that we assumed a binomial model for the data generating mechanism. In <code><a href="https://mc-stan.org/rstanarm/reference/stan_glm.html">stan_glm()</a></code> we denote this with <code>family = binomial</code>. In addition to the type of the distribution, we also need to analyze the outcome and predictor variables involved. The outcome is the quantity we are measuring, in this case the total number of red beads in our sample. Because we have no predictors, we use the argument <code>formula = red ~ 1</code>, which means that we only model the outcome based on the unknown proportion of red beads in the urn, <span class="math inline">\(\rho\)</span>.</p>
 <p>We pass in data in a binomial format: the 1’s represent the number of successes (red beads drawn), and the 0’s represent the number of failures (white beads drawn). As such, we pass a tibble with 17 red beads and 33 white beads into <code>data</code>.</p>
@@ -3415,7 +3407,7 @@ $ st_dev_p_hat &lt;dbl&gt; 0.48436516, 0.34093399, 0.27629253, 0.24069833, 0.214
 <p>We will learn the meaning of this output in <a href="two-parameters.html"><span>Chapter&nbsp;4</span></a>. Once we have the <code>fit_1</code> object, it is easy to answer two sorts of questions: the posterior probability distribution for <span class="math inline">\(\rho\)</span> and predictions for new draws from the urn. The key functions are <code><a href="https://mc-stan.org/rstantools/reference/posterior_epred.html">posterior_epred()</a></code> for the former and <code><a href="https://mc-stan.org/rstantools/reference/posterior_predict.html">posterior_predict()</a></code> for the latter.</p>
 <p>Let’s create our posterior for <span class="math inline">\(\rho\)</span> by using <code><a href="https://mc-stan.org/rstantools/reference/posterior_epred.html">posterior_epred()</a></code>:</p>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ppd_for_p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/rstantools/reference/posterior_epred.html">posterior_epred</a></span><span class="op">(</span><span class="va">fit_1</span>, </span>
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ppd_for_p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/rstantools/reference/posterior_epred.html">posterior_epred</a></span><span class="op">(</span><span class="va">fit_1</span>, </span>
 <span>                newdata <span class="op">=</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>.rows <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span>p <span class="op">=</span> <span class="va">`1`</span><span class="op">)</span></span>
@@ -3426,7 +3418,7 @@ $ st_dev_p_hat &lt;dbl&gt; 0.48436516, 0.34093399, 0.27629253, 0.24069833, 0.214
 <span><span class="co"># will oftentimes see `1` in later chapters.</span></span>
 <span></span>
 <span><span class="va">ppd_for_p</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output cell-output-stdout">
+<div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4,000 × 1
        p
    &lt;dbl&gt;
@@ -3458,7 +3450,7 @@ $ st_dev_p_hat &lt;dbl&gt; 0.48436516, 0.34093399, 0.27629253, 0.24069833, 0.214
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="fu"><a href="https://scales.r-lib.org/reference/percent_format.html">percent_format</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
-<p><img src="one-parameter_files/figure-html/unnamed-chunk-55-1.png" class="img-fluid" width="672"></p>
+<p><img src="one-parameter_files/figure-html/unnamed-chunk-54-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>We have successfully created the posterior distribution and can finally answer the question we started the chapter with:</p>
@@ -3476,12 +3468,12 @@ $ st_dev_p_hat &lt;dbl&gt; 0.48436516, 0.34093399, 0.27629253, 0.24069833, 0.214
 <p>For example, what if we wanted to know the probability that <span class="math inline">\(\rho\)</span> is between .3 and .4? To answer this using the pure posterior, we would need to calculate the area under the distribution from when <span class="math inline">\(.3 &lt; \rho &lt; .4\)</span>. This is more difficult then it seems, as the posterior is a distribution, so it has no individual observations to work with as it’s continuous!</p>
 <p>Instead, we can work with draws from the posterior. With enough draws we create a close approximation of the posterior which models the counts of our observations. This is an <em>approximation</em>; it is not exactly the posterior, but close enough for our purposes. We can easily convert our posterior distribution into a <strong>posterior probability distribution</strong>, by making the area under the graph sum to 1. The posterior probability distribution is often used as a visual aid, as percentages are more easy to conceptualize than raw numbers. One way to convert a posterior distribution into a probability distribution is to group by each value of <span class="math inline">\(\rho\)</span> and turn the counts into probabilities:</p>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb40"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ppd_for_p</span> <span class="op">|&gt;</span></span>
+<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ppd_for_p</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span>digits <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>prob <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">ppd_for_p</span><span class="op">)</span>,</span>
 <span>            .by <span class="op">=</span> <span class="va">p</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">prob</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output cell-output-stdout">
+<div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 46 × 2
        p   prob
    &lt;dbl&gt;  &lt;dbl&gt;
@@ -3524,23 +3516,23 @@ $ st_dev_p_hat &lt;dbl&gt; 0.48436516, 0.34093399, 0.27629253, 0.24069833, 0.214
 <p>The posterior probability distribution for a probability is a tricky thing. It is much easier just to estimate the posterior probability distribution for the outcome — number of red beads out of 20 — and then work with that distribution in order to answer probability-type questions.</p>
 <p>To predict these future unknown samples, we use <code><a href="https://mc-stan.org/rstantools/reference/posterior_predict.html">posterior_predict()</a></code>. We pass the posterior created using <code><a href="https://mc-stan.org/rstanarm/reference/stan_glm.html">stan_glm()</a></code> as the first argument, and because we want to estimate the number of red draws with a shovel size of 20, we use pass a tibble with 20 rows into <code>newdata</code>.</p>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb44"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://mc-stan.org/rstantools/reference/posterior_predict.html">posterior_predict</a></span><span class="op">(</span><span class="va">fit_1</span>, </span>
+<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://mc-stan.org/rstantools/reference/posterior_predict.html">posterior_predict</a></span><span class="op">(</span><span class="va">fit_1</span>, </span>
 <span>                  newdata <span class="op">=</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>.rows <span class="op">=</span> <span class="fl">20</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output cell-output-stdout">
+<div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4,000 × 20
      `1`   `2`   `3`   `4`   `5`   `6`   `7`   `8`   `9`  `10`  `11`  `12`  `13`
    &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;
- 1     0     0     0     0     1     0     0     0     1     0     0     0     1
- 2     0     0     0     0     1     0     1     0     0     0     1     0     0
- 3     0     1     0     0     0     0     0     0     0     0     1     0     0
- 4     0     1     0     1     1     0     0     1     0     0     0     0     1
- 5     0     0     0     1     0     0     1     0     0     0     0     1     0
- 6     0     0     0     0     0     1     1     0     0     0     0     0     1
- 7     0     1     1     1     0     0     1     1     0     0     0     0     1
- 8     1     1     1     1     0     0     1     0     1     1     0     0     0
- 9     1     0     1     1     0     0     0     0     0     1     0     1     1
-10     0     0     1     1     0     0     0     0     0     0     0     0     0
+ 1     0     0     1     0     0     1     0     0     0     1     0     1     0
+ 2     0     0     0     0     0     1     0     0     0     0     0     0     0
+ 3     0     0     1     0     0     0     1     0     0     0     0     0     0
+ 4     1     1     1     0     1     0     0     0     0     0     0     0     0
+ 5     1     0     0     0     0     0     1     1     1     0     1     0     1
+ 6     0     0     1     0     0     1     1     0     0     0     1     0     1
+ 7     1     0     0     0     1     0     0     0     0     1     0     0     0
+ 8     0     0     0     0     1     0     1     0     0     0     0     1     0
+ 9     1     0     1     0     1     0     0     0     0     1     0     0     1
+10     0     0     0     0     0     1     0     0     0     0     0     0     0
 # ℹ 3,990 more rows
 # ℹ 7 more variables: `14` &lt;int&gt;, `15` &lt;int&gt;, `16` &lt;int&gt;, `17` &lt;int&gt;,
 #   `18` &lt;int&gt;, `19` &lt;int&gt;, `20` &lt;int&gt;</code></pre>
@@ -3568,7 +3560,7 @@ $ st_dev_p_hat &lt;dbl&gt; 0.48436516, 0.34093399, 0.27629253, 0.24069833, 0.214
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="fu"><a href="https://scales.r-lib.org/reference/percent_format.html">percent_format</a></span><span class="op">(</span>accuracy <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
-<p><img src="one-parameter_files/figure-html/unnamed-chunk-60-1.png" class="img-fluid" width="672"></p>
+<p><img src="one-parameter_files/figure-html/unnamed-chunk-59-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>We have successfully created the posterior probability distribution for the number of red beads drawn in a shovel of size 20. But before we answer our question, some of us may be wondering why we made our predictions using <code><a href="https://mc-stan.org/rstantools/reference/posterior_predict.html">posterior_predict()</a></code> instead of <code><a href="https://mc-stan.org/rstantools/reference/posterior_epred.html">posterior_epred()</a></code>. Let’s examine what happens if we use <code><a href="https://mc-stan.org/rstantools/reference/posterior_epred.html">posterior_epred()</a></code> instead.</p>
@@ -3593,7 +3585,7 @@ $ st_dev_p_hat &lt;dbl&gt; 0.48436516, 0.34093399, 0.27629253, 0.24069833, 0.214
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="one-parameter_files/figure-html/unnamed-chunk-61-1.png" class="img-fluid figure-img" width="672"></p>
+<figure class="figure"><p><img src="one-parameter_files/figure-html/unnamed-chunk-60-1.png" class="img-fluid figure-img" width="672"></p>
 <figcaption class="figure-caption">Using posterior_epred()</figcaption></figure>
 </div>
 </div>
@@ -3615,7 +3607,7 @@ $ st_dev_p_hat &lt;dbl&gt; 0.48436516, 0.34093399, 0.27629253, 0.24069833, 0.214
 <span>  <span class="fu">plot_annotation</span><span class="op">(</span>title <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/expression.html">expression</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"Expected prediction for sample of size 20 on left, posterior distribution for "</span>, <span class="va">rho</span>, <span class="st">" on right."</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>                  subtitle <span class="op">=</span> <span class="st">"The two distributions have an identical shape."</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
-<p><img src="one-parameter_files/figure-html/unnamed-chunk-62-1.png" class="img-fluid" width="672"></p>
+<p><img src="one-parameter_files/figure-html/unnamed-chunk-61-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>On the other hand, <code><a href="https://mc-stan.org/rstantools/reference/posterior_predict.html">posterior_predict()</a></code> models the posterior distribution for future <strong>individuals</strong>. In our scenario, we model the binomial distribution of a discrete random variable. The bars only appear at real numbers between 1 and 16, because we are predicting the probability of individual samples. We cannot draw fractions of beads in our sample. Using <code><a href="https://mc-stan.org/rstantools/reference/posterior_predict.html">posterior_predict()</a></code> essentially replicates the DGM, taking many virtual draws from our urn and summarizing all the results.</p>
@@ -3639,10 +3631,10 @@ $ st_dev_p_hat &lt;dbl&gt; 0.48436516, 0.34093399, 0.27629253, 0.24069833, 0.214
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">ppd_reds_in_20</span><span class="op">$</span><span class="va">total</span> <span class="op">&gt;</span> <span class="fl">8</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">ppd_reds_in_20</span><span class="op">$</span><span class="va">total</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.24925</code></pre>
+<pre><code>[1] 0.2565</code></pre>
 </div>
 </div>
-<p><strong>There is approximately a 25% chance that we will draw more than 8 red beads out of a sample size of 20.</strong></p>
+<p><strong>There is approximately a 26% chance that we will draw more than 8 red beads out of a sample size of 20.</strong></p>
 <p>To visualize this probability graphically, we will reuse our posterior, and add a new column called <code>above_eight</code> that is <code>TRUE</code> if <code>total &gt; 8</code>.</p>
 <div class="cell">
 <details><summary>Code</summary><div class="sourceCode" id="cb51"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ppd_reds_in_20</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/rstantools/reference/posterior_predict.html">posterior_predict</a></span><span class="op">(</span><span class="va">fit_1</span>, </span>
@@ -3660,13 +3652,13 @@ $ st_dev_p_hat &lt;dbl&gt; 0.48436516, 0.34093399, 0.27629253, 0.24069833, 0.214
    total above_eight
    &lt;int&gt; &lt;lgl&gt;      
  1     4 FALSE      
- 2     3 FALSE      
- 3     5 FALSE      
- 4     6 FALSE      
- 5     3 FALSE      
- 6     4 FALSE      
+ 2     4 FALSE      
+ 3     4 FALSE      
+ 4     5 FALSE      
+ 5     4 FALSE      
+ 6     7 FALSE      
  7     6 FALSE      
- 8     3 FALSE      
+ 8     5 FALSE      
  9     7 FALSE      
 10     6 FALSE      
 # ℹ 3,990 more rows</code></pre>
@@ -3696,20 +3688,21 @@ $ st_dev_p_hat &lt;dbl&gt; 0.48436516, 0.34093399, 0.27629253, 0.24069833, 0.214
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="fu"><a href="https://scales.r-lib.org/reference/percent_format.html">percent_format</a></span><span class="op">(</span>accuracy <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
-<p><img src="one-parameter_files/figure-html/unnamed-chunk-65-1.png" class="img-fluid" width="672"></p>
+<p><img src="one-parameter_files/figure-html/unnamed-chunk-64-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>The red bars illustrate the area under a specific section of the curve, as compared to the <em>entire</em> area under the curve. <em>Each question requires looking at a new area under the curve.</em> When someones asks you a question, they are doing two things. First, they are providing instructions as to the posterior your should create. Here, the results with a shovel of 20 slots. Second, they are asking a question about the area under the curve in a specific region. Here, the region where the number of red beads is greater than 8 is highlighted in red. Therefore, the area below the curve that <strong>is red</strong> is how we get our estimate.</p>
 <p>See <a href="two-parameters.html"><span>Chapter&nbsp;4</span></a> for a thorough discussion of the use of <strong>rstanarm</strong>. This package will be our main tool for the rest of the <em>Primer</em>.</p>
 </section><section id="assesing-uncertainty" class="level4" data-number="3.4.4.2"><h4 data-number="3.4.4.2" class="anchored" data-anchor-id="assesing-uncertainty">
 <span class="header-section-number">3.4.4.2</span> Assesing uncertainty</h4>
-<p>The process Cardinal Virtues process may seem tedious, but we use them for good reason. In Wisdom we determined what data we need to answer our question, and in Justice we analyzed whether or not the data we have can answer our question. If we had skipped these steps, we would be at risk of creating models with “bad data” in Courage and Temperance, and draw misleading conclusions.</p>
-<p>We have successfully answered our questions using the Cardinal Virtues, but we must also realize that there are limitations to our models. Earlier we claimed there is a 26% chance that we will draw more than 8 red beads out of a sample size of 20. However, we must be modest about our claims. Is this question about <em>this</em> particular urn, or all urns? Clearly, as our predictions are based upon the posterior from our specific urn, our conclusions can only be applied to <em>this particular urn</em>; our conclusions are not generalizable to all urns.</p>
-<p>Furthermore, how certain are we in our prediction from Temperance that 26% of samples out of a shovel size of 20 using our urn would produce more than 8 red beads?</p>
+<!-- DK: Cut all this? No need to explain why some other approach is wrong. Just say that our approach is correct. -->
+<p>The Cardinal Virtues may seem tedious, but we use them for good reason. In Wisdom we determined what data we need to answer our question, and in Justice we analyzed whether or not the data we have can answer our question. If we had skipped these steps, we would be at risk of creating models with “bad data” in Courage and Temperance, and of then drawing misleading conclusions.</p>
+<p>We have successfully answered our questions using the Cardinal Virtues, but we must also realize that there are limitations to our models. Earlier we claimed there is a 25% chance that we will draw more than 8 red beads out of a sample size of 20. However, we must be modest about our claims. Is this question about <em>this</em> particular urn, or all urns? Clearly, as our predictions are based upon the posterior from our specific urn, our conclusions can only be applied to <em>this particular urn</em>; our conclusions are not generalizable to all urns.</p>
+<p>Furthermore, how certain are we in our prediction from Temperance that 25% of samples out of a shovel size of 20 using our urn would produce more than 8 red beads?</p>
 <p>First let’s model our situation:</p>
 <p><span class="math display">\[ R_i  \sim B(\rho, n = 20) \]</span></p>
 <p>The total number of red beads selected in a sample of 20 beads, <span class="math inline">\(R_i\)</span>, is modeled by a binomial distribution with <span class="math inline">\(n = 20\)</span> observations and an unknown probability <span class="math inline">\(\rho\)</span> of the proportion of red beads in the urn.</p>
-<p>We must realize that our 26% estimate is based on an entire posterior. We are uncertain about the exact value of <span class="math inline">\(\rho\)</span>, so <code><a href="https://mc-stan.org/rstantools/reference/posterior_predict.html">posterior_predict()</a></code> takes our uncertainty into account when creating the model. However, there is in fact some actual value for <span class="math inline">\(\rho\)</span>, even if we don’t know it.</p>
+<p>We must realize that our 25% estimate is based on an entire posterior. We are uncertain about the exact value of <span class="math inline">\(\rho\)</span>, so <code><a href="https://mc-stan.org/rstantools/reference/posterior_predict.html">posterior_predict()</a></code> takes our uncertainty into account when creating the model. However, there is in fact some actual value for <span class="math inline">\(\rho\)</span>, even if we don’t know it.</p>
 <p>If the actual value of <span class="math inline">\(\rho\)</span> was 30%, we can calculate the <strong>correct</strong> answer to our question using the binomial probability distribution function:</p>
 <div class="cell">
 <details><summary>Code</summary><div class="sourceCode" id="cb54"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">pbinom</a></span><span class="op">(</span>q <span class="op">=</span> <span class="fl">8</span>, size <span class="op">=</span> <span class="fl">20</span>, prob <span class="op">=</span> <span class="fl">.3</span>, lower.tail <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -3724,12 +3717,12 @@ $ st_dev_p_hat &lt;dbl&gt; 0.48436516, 0.34093399, 0.27629253, 0.24069833, 0.214
 <pre><code>[1] 0.4044013</code></pre>
 </div>
 </div>
-<p>Sadly, the answer to our question could be 11%, 40%, a value in between, or even a more extreme value. We will never know the correct answer, and must settle with our best estimate of 26% that factors in our uncertainty regarding the true value of <span class="math inline">\(\rho\)</span>. Long story short, our models are never the truth.</p>
-</section></section><section id="traditional-practices" class="level3" data-number="3.4.5"><h3 data-number="3.4.5" class="anchored" data-anchor-id="traditional-practices">
-<span class="header-section-number">3.4.5</span> Traditional practices</h3>
-<p>Although the process was long, we have successfully gone through the cardinal virtues and answered our questions like real data scientists. In this section we will explain more traditional approaches.</p>
-<section id="confidence-intervals" class="level4" data-number="3.4.5.1"><h4 data-number="3.4.5.1" class="anchored" data-anchor-id="confidence-intervals">
-<span class="header-section-number">3.4.5.1</span> Confidence intervals</h4>
+<p>Sadly, the answer to our question could be 11%, 40%, a value in between, or even a more extreme value. We will never know the correct answer, and must settle with our best estimate of 25% that factors in our uncertainty regarding the true value of <span class="math inline">\(\rho\)</span>. Long story short, our models are never the truth.</p>
+</section></section></section><section id="traditional-practices" class="level2" data-number="3.5"><h2 data-number="3.5" class="anchored" data-anchor-id="traditional-practices">
+<span class="header-section-number">3.5</span> Traditional practices</h2>
+<p>Although the process was long, we have successfully gone through the Cardinal Virtues and answered our questions like real data scientists. In this section we will explain more traditional approaches.</p>
+<section id="confidence-intervals" class="level3" data-number="3.5.1"><h3 data-number="3.5.1" class="anchored" data-anchor-id="confidence-intervals">
+<span class="header-section-number">3.5.1</span> Confidence intervals</h3>
 <p>Let’s go back to our first question:</p>
 <blockquote class="blockquote">
 <p>If we get 17 red beads in a random sample of size 50 taken from a mixed urn, what proportion <span class="math inline">\(\rho\)</span> of the beads in the urn are red?</p>
@@ -3738,8 +3731,8 @@ $ st_dev_p_hat &lt;dbl&gt; 0.48436516, 0.34093399, 0.27629253, 0.24069833, 0.214
 <p><span class="math display">\[  SE = \frac{\sigma\text{ of data}}{\sqrt{\text{sample size}}} = \frac{.4785}{\sqrt{50}} \approx .067\]</span></p>
 <p>We calculate the numerator by taking the standard deviation of a dataset with 50 observation, where 1’s represent red beads and 0’s represent white beads:</p>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb58"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">17</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">33</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output cell-output-stdout">
+<div class="sourceCode" id="cb58"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">17</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">33</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.4785181</code></pre>
 </div>
 </div>
@@ -3747,17 +3740,20 @@ $ st_dev_p_hat &lt;dbl&gt; 0.48436516, 0.34093399, 0.27629253, 0.24069833, 0.214
 <p><span class="math display">\[  CI = \bar{x} \hspace{.1cm} \pm 2SE = .34 \hspace{.1cm} \pm .134\]</span></p>
 <p>With 95% confidence, the proportion of red beads in the urn is between 21% and 47%.</p>
 <p>This is correct, but quite difficult to conceptualize. If our boss needs a quick answer, by all means we can use a confidence interval to save us from doing all the work we did earlier! However, <strong>we must be careful with confidence intervals.</strong> If we had chosen to answer the first question using them, we would be unable to answer any questions in Temperance. The confidence interval gives us a general range of our uncertainty, but to answer a question that requires knowledge about the value of a parameter, the confidence interval does us very little good. As data scientists we create the posterior distribution to quantify our uncertainty and answer all our questions.</p>
-</section><section id="hypothesis-tests" class="level4" data-number="3.4.5.2"><h4 data-number="3.4.5.2" class="anchored" data-anchor-id="hypothesis-tests">
-<span class="header-section-number">3.4.5.2</span> Hypothesis tests</h4>
-<p>Statisticians also use hypothesis tests to quickly <strong>try</strong> to answer questions. Recall our view on hypothesis tests: <strong>Amateurs test. Professionals summarize.</strong> Traditionally, most scientific papers are not so much interested in estimating <span class="math inline">\(\rho\)</span>. They are interested in testing specific hypotheses. What do we mean by that?</p>
+</section><section id="hypothesis-tests" class="level3" data-number="3.5.2"><h3 data-number="3.5.2" class="anchored" data-anchor-id="hypothesis-tests">
+<span class="header-section-number">3.5.2</span> Hypothesis tests</h3>
+<p>Statisticians also use hypothesis tests to quickly <strong>try</strong> to answer questions. Our view on hypothesis tests is that:</p>
+<p><strong>Amateurs test. Professionals summarize.</strong></p>
+<p>Traditionally, most scientific papers are not so much interested in estimating <span class="math inline">\(\rho\)</span>. They are interested in testing specific hypotheses. What do we mean by that?</p>
 <p>Let’s look at a possible hypothesis in our urn paradigm: there are equal number of red and white beads in the urn. The null hypothesis, denoted by <span class="math inline">\(H_0\)</span>, is the theory we are testing, while the alternative hypothesis, denoted by <span class="math inline">\(H_a\)</span>, represents the opposite of our theory. Therefore, our hypothesis is designed as such:</p>
 <p><span class="math inline">\(H_0\)</span>: There are an equal number of red and white beads in the urn.</p>
 <p><span class="math inline">\(H_a\)</span>: There are <em>not</em> an equal number of red and white beads in the urn.</p>
 <p>Can we reject that hypothesis? Convention: if the 95% confidence interval excludes the null hypothesis, then we reject it. Here, that would mean if our estimate (plus or minus 2 standard errors) <em>excluded</em> the possibility of the red and white beads being equal (<span class="math inline">\(\rho = .5\)</span>) we can reject the null hypothesis. In the previous section we determined that the 95% confidence interval is between 21% and 47%. Because 50% is outside of this interval, we could reject the null hypothesis, and conclude that it is unlikely that the proportion of beads in the urn is 50%.</p>
 <p>If we were testing the theory that <span class="math inline">\(\rho = .45\)</span> instead, our null hypothesis would fall within the confidence interval. <strong>This does not mean that we accept the null hypothesis</strong>. Instead, we simply don’t reject it. In our scenario we only know that there is some possibility that <span class="math inline">\(\rho = .45\)</span>. We’re just back where we started! This is why we never test — unless your boss demands a test. <strong>Use your judgment, make your models, summarize your knowledge of the world, and use that summary to make decisions.</strong></p>
-</section></section></section><section id="sec-sampling-case-study" class="level2" data-number="3.5"><h2 data-number="3.5" class="anchored" data-anchor-id="sec-sampling-case-study">
-<span class="header-section-number">3.5</span> Case study: Polls</h2>
-<p>Let’s now switch gears to a more realistic sampling scenario: a poll. In practice, pollsters do not take 1,000 repeated samples as we did in our previous sampling activities, but rather take only a <em>single sample</em> that’s as large as possible.</p>
+</section></section><section id="sec-sampling-case-study" class="level2" data-number="3.6"><h2 data-number="3.6" class="anchored" data-anchor-id="sec-sampling-case-study">
+<span class="header-section-number">3.6</span> Case study: Polls</h2>
+<!-- DK: Delete all this? Make it just two paragraphs? Or add in the Cardinal Virtue concerns? Yes! Switch to recent poll. -->
+<p>Let’s now switch gears to a more realistic sampling scenario: a poll. In practice, pollsters do not take 1,000 repeated samples as we did in our virtual sampling activities, but rather take only a <em>single sample</em> that’s as large as possible.</p>
 <p>On December 4, 2013, National Public Radio in the US reported on a poll of President Obama’s approval rating among young Americans aged 18-29 in an article, <a href="https://www.npr.org/sections/itsallpolitics/2013/12/04/248793753/poll-support-for-obama-among-young-americans-eroding">“Poll: Support For Obama Among Young Americans Eroding.”</a> The poll was conducted by the Kennedy School’s Institute of Politics at Harvard University. A quote from the article:</p>
 <blockquote class="blockquote">
 <p>After voting for him in large numbers in 2008 and 2012, young Americans are souring on President Obama.</p>
@@ -3837,15 +3833,15 @@ $ st_dev_p_hat &lt;dbl&gt; 0.48436516, 0.34093399, 0.27629253, 0.24069833, 0.214
 </ul>
 <p>So as you can see, it was critical for the sample obtained by Kennedy School’s Institute of Politics at Harvard University to be truly random in order to infer about <em>all</em> young Americans’ opinions about Obama. Was their sample truly random? It’s hard to answer such questions without knowing about the <em>sampling methodology</em> they used.</p>
 <p>For example, what if Kennedy School’s Institute of Politics at Harvard University conducted this poll using only mobile phone numbers? People without mobile phones would be left out and therefore not represented in the sample. This flaw is an example of <strong>censoring</strong>, the exclusion of certain datapoints due to an issue with data collection. This results in an incomplete observation and increases the prediction uncertainty of the estimand, Obama’s approval rating among young Americans. Ensuring that our samples were random was easy to do in our sampling urn exercises; however, in a real life situation like the Obama poll, this is much harder to do.</p>
-</section><section id="summary" class="level2" data-number="3.6"><h2 data-number="3.6" class="anchored" data-anchor-id="summary">
-<span class="header-section-number">3.6</span> Summary</h2>
+</section><section id="summary" class="level2" data-number="3.7"><h2 data-number="3.7" class="anchored" data-anchor-id="summary">
+<span class="header-section-number">3.7</span> Summary</h2>
 <p>In this chapter, we performed both tactile and virtual sampling exercises to make inferences about an unknown parameter: the proportion of red beads. We also presented a case study of sampling in real life with polls. In each case, we used the sample proportion <span class="math inline">\(\hat{\rho}\)</span> to estimate the true proportion <span class="math inline">\(\rho\)</span>. However, we are not just limited to scenarios related to proportions. We can use sampling to estimate other unknown quantities.</p>
 <p>There is a truth! There is a true value for <span class="math inline">\(\rho\)</span> which we do not know. We want to create a posterior probability distribution which summarizes our knowledge. We care about the posterior probability distribution of <span class="math inline">\(\rho\)</span>. The center of that distribution is around the mean or median of the proportion in your sample. The sd (or mad) of that posterior is the standard deviation divided by the square root of our sample size. Note that this is the same thing as the standard deviation of the repeated samples.</p>
 <p>We journey from reality, to our predictions, to the standard error of our predictions, to the posterior probability distribution for <span class="math inline">\(\rho\)</span>. This is our sequence:</p>
 <p><strong><span class="math inline">\(\rho\)</span> (i.e., the truth) <span class="math inline">\(\Rightarrow\)</span> <span class="math inline">\(\hat{\rho}\)</span> (i.e., my estimate) <span class="math inline">\(\Rightarrow\)</span> the standard error of <span class="math inline">\(\hat{\rho}\)</span> (i.e., black box of math mumbo jumbo and computer simulation magic) <span class="math inline">\(\Rightarrow\)</span> our posterior probability distribution for <span class="math inline">\(\rho\)</span> (i.e., our beliefs about the truth).</strong></p>
 <p>This journey shows how our beliefs about the truth develop through our work. We begin with <span class="math inline">\(\rho\)</span>; <span class="math inline">\(\rho\)</span> is the truth, the true but unknown value we are estimating. <span class="math inline">\(\hat{\rho}\)</span> is our estimate for <span class="math inline">\(\rho\)</span>. There can be millions and millions of <span class="math inline">\(\hat{\rho}\)</span>’s. Next, we must estimate the standard error of our estimates (our <span class="math inline">\(\hat{\rho}\)</span>’s) to account for the uncertainty of our predictions. Finally, we create a posterior probability distribution for <span class="math inline">\(\rho\)</span>. This distribution is used to answer any questions about <span class="math inline">\(\rho\)</span>.</p>
-<section id="other-highlights" class="level3" data-number="3.6.1"><h3 data-number="3.6.1" class="anchored" data-anchor-id="other-highlights">
-<span class="header-section-number">3.6.1</span> Other highlights</h3>
+<section id="other-highlights" class="level3" data-number="3.7.1"><h3 data-number="3.7.1" class="anchored" data-anchor-id="other-highlights">
+<span class="header-section-number">3.7.1</span> Other highlights</h3>
 <ul>
 <li><p>Standard error is just a fancy term for your uncertainty about something you don’t know. Standard error <span class="math inline">\(\approx\)</span> our (uncertain) beliefs.</p></li>
 <li><p>Larger sample sizes <span class="math inline">\(\implies\)</span> lower standard errors <span class="math inline">\(\implies\)</span> more accurate estimates.</p></li>

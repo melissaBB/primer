@@ -886,6 +886,8 @@ We need to maintain humility when we are making our inferences and decisions. St
 
 ## income \~ age
 
+<!-- Need to fix the years. Data is from 2012, so question ought to be about 2020. -->
+
 So far, we have only created models in which the predictor variable is discrete, with two possible values. `party` is either "Democrat" or "Republican". `treatment` is either "Treated" or "Control". Often times, however, the predictor variable will be continuous. We can answer these and similar questions by creating a model that uses party affiliation to predict age. Let's follow the four Cardinal Virtue: Wisdom, Justice, Courage and Temperance. Fortunately, the exact same approach works in this case. Consider:
 
 *What would you expect the income to be for a 40-year old?*
