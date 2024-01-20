@@ -11,7 +11,14 @@
 # [here](https://www.rayshader.com/) but we will not be explaining how to use it
 # in this *Primer*.
 
-# The rayshader packages has given us endless problems over the years. We began by closing the image with 
+# The rayshader packages has given us endless problems over the years. We began
+# by closing the image with rglwiget() followed by something like close3d().
+# That allowed for interactive 3-D images, which was cool! But that stopped
+# working, so we moved to render_snapshot(). But that now seems broken. Even the
+# examples from the help page don't work! So, we now have this total hack of
+# writing out an image with rgl.snapshot(). I still love the idea of having a
+# 3-D image that students could manipulate, turning and twisting it . But no
+# need to spend more time on it now!
 
 options(rgl.useNULL = TRUE)
 library(rayshader)
@@ -23,19 +30,18 @@ library(patchwork)
 library(primer.data)
 ```
 
-<!-- Our previous approach used library(rgl). Instead of render_snapshot(), it had rglwiget() followed by something like close3d() to close the object. This created a 3d plot that could be manipulated, i.e., rotated with the pointer. It was cool! But was it really that useful? Anyway, that approach now causes an error which I could not solve. So, we switched to render_snapshot(), which works but with images that are fixed.  -->
 
 <!-- Get rid of list columns and map function since, one hopes, this is covered in R4DS?  -->
 
+<!-- Why bother teaching them how to calculate the probabilities by hand, with list-columns and map_* functions in the first place? After all, we are never going to do this again! (If we get rid of them, we would need to remove them from the tutorials, of course.) In the same way that we don't teach them rayshader, we just use it as a teaching tool, we could avoid teaching them map_* functions and then just use the outputs. On the other hand, aren't there some examples in later chapters in which, in fact, we do need map_* functions to answer the question? -->
+
 <!-- Perhaps change the joint and conditional distribution section to use gender/height from NHANES? It is true that this is a discrete and continuous joint distribution, but that is probably fine. Certainly connects nicely with the male height example. Certainly works well with the joint and conditional together. Certainly would be nice to do the empirical/mathematical/posterior trypycht as in the first three examples. Posterior could be for a WNBA practice session. Most of the women will be tall, but the men will be of more typical height. -->
 
-<!-- Shouldn't we have a question which we anwer with a dgm for each distribution example, as we do with three heads in a row? -->
+<!-- Shouldn't we have a question which we answer with a dgm for each distribution example, as we do with three heads in a row? -->
 
 <!-- Should we discuss more the interplay of the use of data and math? For example, in the Presidential election example, we recognize that the (naive) mathematical distribution is inconsistent with the data. So, we need to change the math. And then see if the new math is more consistent with the data. Perhaps an important point worth repeating. -->
 
-<!-- Need more clarity on when/whether a distribution is empirical, meaning it is a histogram of the whole population (or a sample from it), and when it is an expection, like what we expect to happen if we sample one more person. Not even sure that this distinction is sensible . . . -->
-
-<!-- Remove last couple of sloppy uses of group_by(). -->
+<!-- Need more clarity on when/whether a distribution is empirical, meaning it is a histogram of the whole population (or a sample from it), and when it is an expectation, like what we expect to happen if we sample one more person. Not even sure that this distinction is sensible . . . -->
 
 <!-- Major change is that each example needs to have a simple question. Then it needs a DGM. Then we use the DGM to answer the question.  -->
 
@@ -133,25 +139,18 @@ There are other ways of storing the data in this vector. Instead of reporting ev
 
 ```{r}
 #| echo: false
-# When I try to use `fmt_percent(portion, decimals = 0)`, it works
-# interactively. But, when knitting the whole chapter, you get 19prcnt and
-# similar nonsense. This link may be relevant:
-
-# https://stackoverflow.com/questions/67952525/escaping-symbol-in-gt-package-function-fmt-percent
-
-# Really ought to submit a reprex to R Studio Community.
 
 tibble(outcome = ten_rolls) |> 
-  group_by(outcome) |> 
-  count() |> 
-  ungroup() |> 
+  summarise(n = n(), .by = outcome) |> 
   mutate(portion = n / sum(n)) |> 
+  arrange(outcome) |> 
   gt() |> 
     tab_header(title = "Distribution of Ten Rolls of a Fair Dice",
                subtitle = "Counts and percentages reflect the same information") |> 
     cols_label(outcome = "Outcome",
                n = "Count",
-               portion = "Percentage") 
+               portion = "Percentage") |> 
+    fmt_percent(columns = c(portion), decimals = 0)
 ```
 
 
@@ -162,16 +161,16 @@ In this case, with only 10 values, it is actually less efficient to store the da
 set.seed(89)
 
 tibble(outcome = sample(1:6, size = 1000, replace = TRUE)) |> 
-  group_by(outcome) |> 
-  count() |> 
-  ungroup() |> 
+  summarise(n = n(), .by = outcome) |> 
   mutate(portion = n / sum(n)) |> 
+  arrange(outcome) |> 
   gt() |> 
     tab_header(title = "Distribution of One Thousand Rolls of a Fair Dice",
                subtitle = "Counts and percentages reflect the same information") |> 
     cols_label(outcome = "Outcome",
                n = "Count",
-               portion = "Percentage") 
+               portion = "Percentage") |> 
+    fmt_percent(columns = c(portion), decimals = 0)
 ```
 
 Instead of keeping around a vector of length 1,000, we can just keep 12 values --- the 6 possible outcomes and their frequency --- without losing any information.
@@ -289,7 +288,7 @@ The key difference between a *distribution*, as we have explored them in @sec-di
 
 Pay attention to notation. Recall that when we are talking about a specific probability (represented by a single value), we will use $\rho$ (the Greek letter "rho") with a *subscript* which specifies the exact outcome of which it is the probability. For instance, $\rho_h = 0.5$ denotes the probability of getting heads on a coin toss when the coin is fair. $\rho_t$ --- spoken as "PT" or "P sub T" or "P tails" --- denotes the probability of getting tails on a coin toss. However, when we are referring to the entire probability distribution over a set of outcomes, we will use $P()$. For example, the probability distribution of a coin toss is $P(\text{coin})$. That is, $P(\text{coin})$ is composed of the two specific probabilities (50% and 50%) mapped from the two values in the domain (Heads and Tails). Similarly, $P(\text{sum of two dice})$ is the probability distribution over the set of 11 outcomes (2 through 12) which are possible when you take the sum of two dice. $P(\text{sum of two dice})$ is made up of 11 numbers --- $\rho_2$,  $\rho_3$, ..., $\rho_{12}$ --- each representing the unknown probability that the sum will equal their value. That is, $\rho_2$ is the probability of rolling a 2.
 
-
+*A distribution is a function that shows the possible values of a variable and how often they occur.* 
 
 ### Flipping a coin
 
@@ -678,8 +677,7 @@ The *posterior distribution* of electoral votes is a popular topic, and an area 
 ```{r}
 #| echo: false
 
-# DK: Some comments about this. Where did you get this data from? Why those
-# columns?
+# This data was downloaded by hand from the 538 website.
 
 # Have to include these cols type, otherwise it will shows up this "Column
 # specification", thing on the primer, not pretty.
@@ -873,7 +871,7 @@ Let's say that you are rolling two six-sided dice simultaneously. Dice 1 is weig
 ```{r}
 #| echo: false
 #| eval: false
-# DK: Revisit and clean up this code.
+# Revisit and clean up this code.
 
 # Step 1: Create and organize the data.
 
@@ -984,8 +982,8 @@ A list column is a column of your data which is a [list](https://adv-r.hadley.nz
 
 ```{r}
 # tibble() is what we use to generate a tibble, it acts sort of like the
-# mutate(), but mutate() needs a data frame to add new column, tibble can
-# survive on itself.
+# mutate(), but mutate() needs a data frame to which it can add a new column,
+# tibble can survive by itself.
 
 tibble(col_1 = list(range(x))) |>
   str()
@@ -1008,11 +1006,14 @@ tibble(col_1 = list(range(x))) |>
 
 
 ```{r}
+# Note that map_chr() requires that the relevant function return a character,
+# hence the use of as.character as a wrapper around sum(.).
+
 tibble(ID = 1) |> 
   mutate(col_1 = map(ID, ~range(rnorm(10)))) |>
   mutate(col_2 = map_dbl(col_1, ~ sum(.))) |> 
   mutate(col_3 = map_int(col_1, ~ length(.))) |> 
-  mutate(col_4 = map_chr(col_1, ~ sum(.))) |> 
+  mutate(col_4 = map_chr(col_1, ~ as.character(sum(.)))) |> 
   str()
 ```
 
