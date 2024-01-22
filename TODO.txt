@@ -1,6 +1,5 @@
 # Priorities
 
-render_snapshot() in Probability is broken. Not sure why. But we don't have cool 3-D plots!
 
 ## Quotes
 

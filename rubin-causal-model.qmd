@@ -585,27 +585,30 @@ The rows from our data have covariates and two potential outcomes. (By definitio
 
 <!-- Need a gif of three data sources be stacked together, but only if validity is true. -->
 
+**Validity** is the consistency, or lack there of, in the columns of your dataset and the corresponding columns in your Preceptor Table. In order to consider the two datasets to be drawn from the same population, the columns from one must have a *valid correspondence* with the columns in the other. Validity, if true (or at least reasonable), allows us to construct the *Population Table*.
+
+Consider the potential outcomes: attitude toward immigration under treatment and control. How is this measured? In this case, we use answers to survey questions. Our we going to use the *exact* same questions in 2023 as were used in our data from 2012? Probably not. Even if we used the same wording, will the *meaning* of the words be constant. Almost certainly not! The word "undocumented" could mean something very different in the America before the election of Donald Trump in 2016. Consider the treatment: exposure to Spanish speakers on a train platform. The speakers used in 2012 will not be available in 2023 if we were to redo the experiment. 
+
+*Validity* is an assumption which allows us to "stack" the data and the Preceptor Table on top of one another, into a single Population Table. The variables from each source, while not identical in meaning, are similar enough that we can treat them *as if* they are the same thing. 
 
 
 ### Stability
 
-Stability means that the relationship between the columns is the same for three categories of rows: the data, the Preceptor Table, and the larger population from which both are drawn.
+**Stability** means that the relationship between the columns in the Population Table is the same for three categories of rows: the data, the Preceptor Table, and the larger population from which both are drawn.
 
-<!-- Which height example? -->
+We will be constructing *models*, mathematical relationships between different variables. For example, perhaps the treatment has a greater effect on women than on men. However, we can only directly observe that relationship in the data which we have, from 2012. We must *assume* stability in order to use the model created from the data to make inferences about other rows in the Population Table, specifically the rows corresponding to the Preceptor Table.
 
-In our height example, it is much easier to assume stability over a greater period of time. Changes in global height occur extremely slowly, so height being stable across a span of 20 years is reasonable to assume. Can we say the same for this example, where we are looking at attitudes on immigration?
-
-With something like political ideology, it is much harder to assert that the relationships among the data collected in 2010 would be similar to the relationships among the data collected in 2030. Our data, for instance, was collected in 2012. We want to make predictions for 2023. And, frankly, it may be difficult to argue that our results would be stable if we re-conducted the experiment.
-
-When we are confronted with this uncertainty, we can consider making our timeframe smaller. However, we would still need to assume stability from 2012 (time of data collection) to today. *Stability allows us to ignore the passage of time.*
+Must the world be stable? No! In fact, the world is always changing! The *stability* assumption, in this case, is a claim that the world has not changes that much between 2012 and 2023. Stability applies, not just to the data and the Preceptor Table rows, but to the entire Population Table. *Stability allows us to ignore the passage of time.*
 
 ### Representativeness
 
+<!-- Clean up. -->
+
 <!-- Should we use the word unbiasedness instead? -->
 
-Representativeness, or the lack thereof, concerns two relationship, among the rows in the Population Table. The first is between the Precetor Table and the other rows. The second is between our data and the other rows. Ideally, we would like both the Precepor Table *and* our data to be random samples from the population. Sadly, this is almost never the case.
+Representativeness, or the lack thereof, concerns two relationship, among the rows in the Population Table. The first is between the Preceptor Table and the other rows. The second is between our data and the other rows. Ideally, we would like both the Precepor Table *and* our data to be random samples from the population. Sadly, this is almost never the case.
 
-Does the train experiment allow us to calculate a causal effect for people who commute by cars? Can we calculate the causal effect for people in New York City? Before we generalize to broader populations we have to consider if our experimental estimates are applicable beyond our experiment. Maybe we think that commuters in Boston and New York are similar enough to generalize our findings. We could also conclude that people who commute by car are fundamentally different than people who commute by train. If that was true, then we could not say our estimate is true for all commuters because our sample does not accurately *represent* the broader group to which we want to generalize.
+Does the train experiment allow us to calculate a causal effect for people who commute by cars? Can we calculate the causal effect for people in New York City? Before we generalize to a broader population we have to consider if our experimental estimates are applicable beyond our experiment. Maybe we think that commuters in Boston and New York are similar enough to generalize our findings. We could also conclude that people who commute by car are fundamentally different than people who commute by train. If that was true, then we could not say our estimate is true for all commuters because our sample does not accurately *represent* the broader group to which we want to generalize.
 
 <!-- Generally: *if there was no chance that a certain type of person would have been in this experiment, we cannot make an assumption for that person*. Hmm. Include this? -->
 
@@ -617,7 +620,7 @@ Does the train experiment allow us to calculate a causal effect for people who c
 
 ### Unconfoundedness
 
-A fourth assumption we use when working with causal models --- but not with predictive models --- is **"unconfoundedness."** If whether or not a unit received treatment or control is random, we write that treatment assignment is not "confounded." If, however, treatment assignment depends on the value of a potential outcome, then treatment assignment is confounded. Our lives are easiest if we can (reasonably!) assume unconfoundedness. In that case, we can estimate the average treatment effect by subtracting the average outcome of control units from the average outcome of treated units, as we do above.
+A fourth assumption we use when working with causal models --- but not with predictive models --- is **"unconfoundedness."** If whether or not a unit received treatment or control is random, we write that treatment assignment is not "confounded." If, however, treatment assignment depends on the value of a potential outcome, then treatment assignment is confounded. Our lives are easiest if we can (reasonably!) assume unconfoundedness. In that case, we can estimate the average treatment effect by subtracting the average outcome for control units from the average outcome for treated units, as we do above.
 
 Consider the "Perfect Doctor" as an example of the problems caused by confounded treatment assignments. Imagine we have this omniscient doctor who knows how any patient will respond to a certain drug. She has perfect knowledge of the entire Preceptor Table. Using this information, she always assign each patient the treatment with the best outcome, whether that is treatment or control. Consider:
 
@@ -650,7 +653,7 @@ tibble(subject = c("Yao", "Emma", "Cassidy", "Tahmid", "Diego", "MEAN"),
 
 The Perfect Doctor would assign the treatment to Emma, Cassidy and Tahmid. She would assign control to Yao and Diego. And that is good! This is what the doctor should do. This is the best treatment assignment for the patients. But **it is not a good assignment mechanism for estimating the average causal effect because treatment assignment is confounded by the values of the potential outcomes.**
 
-We, the non-Perfect Doctors, do not have access to the entire Precetor Table. We can only see this:
+We, the non-Perfect Doctors, do not have access to the entire Preceptor Table. We can only see this:
 
 ```{r}
 #| echo: false
@@ -683,7 +686,7 @@ tibble(subject = c("Yao", "Emma", "Cassidy", "Tahmid", "Diego", "MEAN"),
 
 The true causal effect of the treatment, as we can see in the first table, is -8. In other words, the treatment lowers blood pressure on average. But, using just the data we have access to if the Perfect Doctor performs the treatment assignment, we would estimate --- if we mistakenly assume random assignment --- that the causal effect is positive, that treatment increases blood pressure.
 
-The best way to ensure unconfoundedness is to randomize the treatment across units. Don't let the doctor decide who gets the treatment and who gets the control. Randomize assignment. As long as you use randomization as your assignment mechanism, you're good. There is the possibility that you can't use pure randomization due to ethical or practical reasons, so we are forced to use non-random assignment mechanisms. Many statistical methods have been developed for causal inference when there is a non-random assignment mechanism. Those methods, however, are largely beyond the scope of this book.
+The best way to ensure unconfoundedness is to randomize the treatment across units. Don't let the doctor decide who gets the treatment and who gets the control. Randomize assignment. As long as you use randomization as your assignment mechanism, you are good. There is the possibility that you can't use pure randomization due to ethical or practical reasons, so we are forced to use a non-random assignment mechanisms. Many statistical methods have been developed for causal inference when there is a non-random assignment mechanism. Those methods, however, are largely beyond the scope of this book.
 
 
 ## Simple models

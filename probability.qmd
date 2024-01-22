@@ -2152,7 +2152,7 @@ knitr::include_graphics("other/images/Wisdom.jpg")
 
 Wisdom helps us decide if we can even hope to answer our question with the data we have.
 
-Begin with the Preceptor Table. What rows and columns of data do you need such that, if you had them all, the calculation of the *quantity of interest* would be trivial? If you want to know the average height of an adult in India, then the Preceptor Table would include a row for each adult and a column for their height. With no missing data, the average is easy to determine, as are a wide variety of other *estimands*, other unknown values. 
+Begin with the Preceptor Table. What rows and columns of data do you need such that, if you had them all, the calculation of the *Quantity of Interest* would be trivial? If you want to know the average height of an adult in India, then the Preceptor Table would include a row for each adult and a column for their height. With no missing data, the average is easy to determine, as are a wide variety of other *estimands*, other unknown values. 
 
 One key aspect of this Preceptor Table is whether or not we need more than one potential outcome in order to calculate our estimand. For example, if we want to know the causal effect of exposure to Spanish-speakers on attitude toward immigration then we need a causal model, one which estimates that attitude for each person under both treatment and control. The Preceptor Table would require two columns for the outcome. If, on the other hand, we only want to predict someone's attitude, or compare one person's attitude to another's, then we would only need a Preceptor Table with one column for the outcome. 
 Are we are modeling (just) for prediction or are we (also) modeling for causation? Predictive models care nothing about causation. Causal models are often also concerned with prediction, if only as a means of measuring the quality of the model. 
@@ -2193,12 +2193,12 @@ If we assume that the data we have is drawn from the same population as the data
 knitr::include_graphics("other/images/Justice.jpg")
 ```
 
-After Wisdom, we have an *Population Table.* It includes rows for the data we have and the data we want to have. It will almost always have many more rows, rows from the larger population of which the Preceptor Table and our data form a portion. It has missing values, most importantly for potential outcomes which were not observed. The central problem in inference is to fill in the missing values in the Population Table.
+Justice begins with a *Population Table.* It includes rows for the data we have and the data we want to have. It will almost always have many more rows, rows from the larger population of which the Preceptor Table and our data form a portion. It has missing values, most importantly for potential outcomes which were not observed. The central problem in inference is to fill in the missing values in the Population Table.
 
 There are three key issues to explore in any Population Table: stability, representativeness and unconfoundedness.
 
 
-* *Stability* assumes that the relationship between the outcome variable and the covariates is consistent over time. Never forget the *temporal* nature of almost all real data science problems. Our Preceptor Table will focus on rows for today or for the near future. *The data we have will always be from before now.* We must almost always assume that the future will be like the past in order to use data from the past to make predictions about the future.
+* *Stability* assumes that the relationship between the outcome variable and the covariates is consistent over time and over different parts of the population. Never forget the *temporal* nature of almost all real data science problems. Our Preceptor Table will focus on rows for today or for the near future. *The data we have will always be from before now.* We must almost always assume that the future will be like the past in order to use data from the past to make predictions about the future.
 
 * *Representativeness* is a two-sided concern. We want the data we have to be representative of the population for which we need to calculate parameters. Ideally, we would love for our data to be randomly sampled from the population, but this is almost never the case. But this is a concern, not just with our data, but also for our Preceptor Table. If the data we want is not representative of the entire population then we will need to be careful in the inferences which we draw. 
 
@@ -2238,7 +2238,7 @@ Note:
 
 We need to explain the structure of our model using all three languages, but we need *Courage* to implement the model in code.
 
-<!-- DK: Rewrite the below, I think. It is a mish-mash of old observations. Note that there is little discussion of hypthesis tests or model checks. -->
+<!-- DK: Rewrite the below, I think. It is a mish-mash of old observations. Note that there is little discussion of hypothesis tests or model checks. -->
 
 Courage requires us to take the general mathematical formula and then make it specific. Which variables should we include in the model and which do we exclude? Every data science project involves the creation of several models. For each, we specify the precise data generating mechanism. Using that formula, and some R code, we create a fitted model. All models have parameters. We can never know the true values of the parameters, but we can create, and explore, posterior distributions for those unknown true values.
 

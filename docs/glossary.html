@@ -230,8 +230,7 @@ ul.task-list li input[type="checkbox"] {
   </div>
   
 
-</header><!-- Each core section finishes with a sentence summarizing what you have learned. Those sentences are combined at the end. --><!-- Given that, it is important to monitor our language. We do not believe that that changes in `election_age` "cause" changes in `lived_after`. That is obvious. But there are some words and phrases --- like "associated with" and "change by" --- which are too close to causal. (And which we are guilty of using just a few paragraphs ago!) Be wary of their use. *Always think in terms of comparisons when using a predictive model.* We can't change `election_age` for an individual candidate. We can only compare two candidates (or two groups of candidates). --><!-- If a parameter's estimated value is more than 2 or 3 MAD_SD's away from zero, we generally keep that parameter (and its associated variable) in the model. This is, probably, a variable which "matters." The main exception to this rule is a parameter whose value is so close to zero that changes in its associated variable, within the general range of that variable, can't change the value of the outcome by much. --><!-- Test paragraph in each Temperance section. Move from 5 parameter chapter. --><!-- The model you have made by the end of Courage is almost always too complex to answer the simple question you started with, because the question rarely specifies the values of all the covariates which are included in the model. --><p><em>THIS IS A DRAFT</em></p>
-<p>These are the key concepts from the <em>Primer</em>. You should apply them whenever you face a choice, and some data to help you make it. The world confronts us. Makes decisions we must.</p>
+</header><!-- Each core section finishes with a sentence summarizing what you have learned. Those sentences are combined at the end. --><!-- Given that, it is important to monitor our language. We do not believe that that changes in `election_age` "cause" changes in `lived_after`. That is obvious. But there are some words and phrases --- like "associated with" and "change by" --- which are too close to causal. (And which we are guilty of using just a few paragraphs ago!) Be wary of their use. *Always think in terms of comparisons when using a predictive model.* We can't change `election_age` for an individual candidate. We can only compare two candidates (or two groups of candidates). --><!-- If a parameter's estimated value is more than 2 or 3 MAD_SD's away from zero, we generally keep that parameter (and its associated variable) in the model. This is, probably, a variable which "matters." The main exception to this rule is a parameter whose value is so close to zero that changes in its associated variable, within the general range of that variable, can't change the value of the outcome by much. --><!-- Test paragraph in each Temperance section. Move from 5 parameter chapter. --><!-- The model you have made by the end of Courage is almost always too complex to answer the simple question you started with, because the question rarely specifies the values of all the covariates which are included in the model. --><!-- Key issue is the connection between the Preceptor Table and the DGM (either true or estimate). The connection is tricky! Not even sure I understand it. The DGM can be used to "fill in" all the missing elements of the Preceptor Table, but there will always be some associated randomness. Even with the true DGM, we don't know what `att_end` Joe would have had under treatment, we just have a posterior for that variable, a way to make draws. --><!-- There are two (equivalent?) approaches. First, use the DGM to create one complete Preceptor Table. In that draw, Joe is a 6 for `att_end`. Then, do another draw. Joe is a 5. Do a thousand draws. You then have a thousand Preceptor Tables. Calculate the Quantity of Interest for each Preceptor Table. The 1,000 values are the posterior for your QoI.  --><!-- Second, instead of creating the 1,000 Preceptor Tables, fill in each entry of the Preceptor Table with a tiny posterior. Joe does not have one value for `att_end`. He has a posterior. Then, with this "probabilistic" Preceptor Table, you can . . . too complex! --><!-- Would be great to make a cool animation of this, perhaps with a simple example. Would be fun to have a similar animation for each chapter. Great summer project! --><p>These are the key concepts from the <em>Primer</em>. You should apply them whenever you face a choice, and some data to help you make it. The world confronts us. Makes decisions we must.</p>
 <p><strong>Quantity of Interest</strong> is the number which you want to estimate. You will almost always calculate a posterior probability distribution for your Quantity of Interest since, in the real world, you will never know your QoI precisely. Most problems involve more than one QoI.</p>
 <p><strong>Predictive Models and Causal Models</strong> are different because predictive models have only one outcome column. Causal models have more than one (potential) outcome column because we need more than one potential outcome in order to estimate a <em>causal effect</em>. The first step in a data science problem is to determine if your QoI requires a causal or a predictive model.</p>
 <p><strong>Units</strong>, <strong>outcomes</strong> and <strong>covariates</strong> are important parts of every data science model. Causal, but not predictive, models also include <strong>treatments</strong>, which are just covariates which we can (at least in theory) manipulate. The QoI determines the units and outcomes for your model.</p>
@@ -240,7 +239,7 @@ ul.task-list li input[type="checkbox"] {
 <p><strong>Causal Effect</strong> is the difference between two potential outcomes.</p>
 <p><a href="https://en.wikipedia.org/wiki/Rubin_causal_model"><strong>Rubin Causal Model</strong></a> is an approach to the statistical analysis of cause and effect based on the framework of potential outcomes.</p>
 <p><strong>Wisdom</strong> is the first <a href="https://en.wikipedia.org/wiki/Cardinal_virtues">Cardinal Virtue</a> in data science. Begin with the quantity of interest. Is that QoI a causal effect or simply a forecast? Which units and outcomes does it imply? What Preceptor Table would allow you to calculate your QoI easily? Perform an exploratory data analysis (EDA) on the data you have. Is it <em>valid</em> to consider the data you have and the (theoretical) data from the Preceptor Table to have arisen out of the same population? If so, you may continue. If not, your attempt to estimate your QoI ends now.</p>
-<p><strong>Validity</strong> is the consistency, or lack there of, in the columns of your dataset and the corresponding columns in your Preceptor Table. In order to consider the two datasets to be drawn from the same population, the columns from one must be have a <em>valid correspondence</em> with the columns in the other. Validity, if true (or at least reasonable), allows us to construct the <em>Population Table</em>.</p>
+<p><strong>Validity</strong> is the consistency, or lack there of, in the columns of your dataset and the corresponding columns in your Preceptor Table. In order to consider the two datasets to be drawn from the same population, the columns from one must have a <em>valid correspondence</em> with the columns in the other. Validity, if true (or at least reasonable), allows us to construct the <em>Population Table</em>, which is the first step in Justice.</p>
 <p><strong>Population Table</strong> can be constructed if the validity assumption is (mostly) true. It includes all the rows and columns from the Preceptor Table. It also includes the rows and columns from the data set. It generally has other rows as well, rows which represent unit/time combinations from other components of the population.</p>
 <p><strong>Justice</strong> is the second <a href="https://en.wikipedia.org/wiki/Cardinal_virtues">Cardinal Virtue</a> in data science. Justice starts with the Population Table – the data we want to have, the data which we actually have, and all the other data from that same population. Each row of the Population Table is defined by a unique unit/time combination. We explore three key issues about the Population Table. First, does the relationship among the variables demonstrate <em>stability</em>, meaning is the model stable across different time periods? Second, are the rows associated with the data and, separately, the rows associated with the Preceptor Table <em>representative</em> of all the units from the population? Third, for causal models only, we consider <em>unconfoundedness</em>.</p>
 <p><strong>Stability</strong> means that the relationship between the columns in the Population Table is the same for three categories of rows: the data, the Preceptor Table, and the larger population from which both are drawn.</p>
@@ -248,6 +247,7 @@ ul.task-list li input[type="checkbox"] {
 <p><strong>Unconfoundedness</strong> means that the treatment assignment is independent of the potential outcomes, when we condition on pre-treatment covariates. This assumption is only relevant for causal models. We describe a model as “confounded” if this is not true. The easiest way to ensure unconfoundedness is to randomly assign treatment.</p>
 <p><strong>Courage</strong> is the third <a href="https://en.wikipedia.org/wiki/Cardinal_virtues">Cardinal Virtue</a> in data science. Justice gave us the Population Table. Courage creates the data generating mechanism. Which general mathematical formula connects the outcome variable we are interested in with the other data that we have? Courage allows us to explore different models. We need to decide which variables to include and to estimate the values of unknown parameters. We avoid hypothesis tests. We check our models for consistency with the data we have. We select one model.</p>
 <p><strong>Temperance</strong> is the fourth <a href="https://en.wikipedia.org/wiki/Cardinal_virtues">Cardinal Virtue</a> in data science. Courage gave us the data generating mechanism. Temperance guides us in the use of the DGM — or the “model” — we have created to answer the questions with which we began. We create posteriors for the quantities of interest. We should be modest in the claims we make. The posteriors we create are never the “truth.” The assumptions we made to create the model are never perfect. Yet decisions made with flawed posteriors are almost always better than decisions made without them.</p>
+<p>Wisdom clarifies the question. Justice gives us the Population Table. Courage creates the data generating mechanism. Temperance answers the question.</p>
 <section id="steps-to-take-in-every-data-science-problem" class="level2"><h2 class="anchored" data-anchor-id="steps-to-take-in-every-data-science-problem">Steps to Take in Every Data Science Problem</h2>
 <p>In the spirit of transparency, here are the guidelines which we provide to colleagues updating chapters in the <em>Primer</em>. This is how we think data science ought to be taught. It is also, perhaps unsurprisingly, how we think data science ought to be done, at least at this introductory level.</p>
 <section id="question" class="level3"><h3 class="anchored" data-anchor-id="question">Question</h3>
@@ -255,7 +255,7 @@ ul.task-list li input[type="checkbox"] {
 <p>“What proportion of people who make $100,000 are liberal?”</p>
 <p>Of course, every data science problem does not start with a question. It actually starts with a decision. The world confronts us. Make decisions we must. Yet, in this introductory textbook, starting with a decision to make is too hard. So, we simplify and start with a question. But we should always at least mention the sort of decision which the answer to the question might help us to make.</p>
 <p>Note that the sophistication of these discussions increases as we go further into the book. Your discussion should be more sophisticated than that found in the previous chapter and less sophisticated than what comes later.</p>
-<p>Each chapter features all the same sections and sub-sections as we use below. That is, there are three sub-sections to Wisdom, five sub-sections for Justice, and so on.</p>
+<p>Each chapter features all the same sections and sub-sections as we use below. That is, there are three sub-sections to Wisdom, four sub-sections for Justice, and so on.</p>
 <p>Once we have our question, we can start with the Cardinal Virtues. Each section begins with a one sentence summary about the component steps of the relevant virtue. These will, obviously, be highly similar from chapter to chapter. But that is OK! We want to reinforce the steps in the path over and over again.</p>
 </section><section id="wisdom" class="level3"><h3 class="anchored" data-anchor-id="wisdom">Wisdom</h3>
 <p>“Wisdom requires the creation of a Preceptor Table, an examination of our data, and a determination, using the concept of validity, as to whether or not we can (reasonably!) assume that the two come from the same population.”</p>
@@ -287,23 +287,23 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell">
 <div class="cell-output-display">
 
-<div id="guhgxifhov" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#guhgxifhov table {
+<div id="wawfkoyjir" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#wawfkoyjir table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#guhgxifhov thead, #guhgxifhov tbody, #guhgxifhov tfoot, #guhgxifhov tr, #guhgxifhov td, #guhgxifhov th {
+#wawfkoyjir thead, #wawfkoyjir tbody, #wawfkoyjir tfoot, #wawfkoyjir tr, #wawfkoyjir td, #wawfkoyjir th {
   border-style: none;
 }
 
-#guhgxifhov p {
+#wawfkoyjir p {
   margin: 0;
   padding: 0;
 }
 
-#guhgxifhov .gt_table {
+#wawfkoyjir .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -329,12 +329,12 @@ ul.task-list li input[type="checkbox"] {
   border-left-color: #D3D3D3;
 }
 
-#guhgxifhov .gt_caption {
+#wawfkoyjir .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#guhgxifhov .gt_title {
+#wawfkoyjir .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -346,7 +346,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-width: 0;
 }
 
-#guhgxifhov .gt_subtitle {
+#wawfkoyjir .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -358,7 +358,7 @@ ul.task-list li input[type="checkbox"] {
   border-top-width: 0;
 }
 
-#guhgxifhov .gt_heading {
+#wawfkoyjir .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -370,13 +370,13 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#guhgxifhov .gt_bottom_border {
+#wawfkoyjir .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#guhgxifhov .gt_col_headings {
+#wawfkoyjir .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -391,7 +391,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#guhgxifhov .gt_col_heading {
+#wawfkoyjir .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -411,7 +411,7 @@ ul.task-list li input[type="checkbox"] {
   overflow-x: hidden;
 }
 
-#guhgxifhov .gt_column_spanner_outer {
+#wawfkoyjir .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -423,15 +423,15 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 4px;
 }
 
-#guhgxifhov .gt_column_spanner_outer:first-child {
+#wawfkoyjir .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#guhgxifhov .gt_column_spanner_outer:last-child {
+#wawfkoyjir .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#guhgxifhov .gt_column_spanner {
+#wawfkoyjir .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -443,11 +443,11 @@ ul.task-list li input[type="checkbox"] {
   width: 100%;
 }
 
-#guhgxifhov .gt_spanner_row {
+#wawfkoyjir .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#guhgxifhov .gt_group_heading {
+#wawfkoyjir .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -473,7 +473,7 @@ ul.task-list li input[type="checkbox"] {
   text-align: left;
 }
 
-#guhgxifhov .gt_empty_group_heading {
+#wawfkoyjir .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -488,15 +488,15 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 
-#guhgxifhov .gt_from_md > :first-child {
+#wawfkoyjir .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#guhgxifhov .gt_from_md > :last-child {
+#wawfkoyjir .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#guhgxifhov .gt_row {
+#wawfkoyjir .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -515,7 +515,7 @@ ul.task-list li input[type="checkbox"] {
   overflow-x: hidden;
 }
 
-#guhgxifhov .gt_stub {
+#wawfkoyjir .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -528,7 +528,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#guhgxifhov .gt_stub_row_group {
+#wawfkoyjir .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -542,15 +542,15 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: top;
 }
 
-#guhgxifhov .gt_row_group_first td {
+#wawfkoyjir .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#guhgxifhov .gt_row_group_first th {
+#wawfkoyjir .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#guhgxifhov .gt_summary_row {
+#wawfkoyjir .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -560,16 +560,16 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#guhgxifhov .gt_first_summary_row {
+#wawfkoyjir .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#guhgxifhov .gt_first_summary_row.thick {
+#wawfkoyjir .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#guhgxifhov .gt_last_summary_row {
+#wawfkoyjir .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -579,7 +579,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#guhgxifhov .gt_grand_summary_row {
+#wawfkoyjir .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -589,7 +589,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#guhgxifhov .gt_first_grand_summary_row {
+#wawfkoyjir .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -599,7 +599,7 @@ ul.task-list li input[type="checkbox"] {
   border-top-color: #D3D3D3;
 }
 
-#guhgxifhov .gt_last_grand_summary_row_top {
+#wawfkoyjir .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -609,11 +609,11 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#guhgxifhov .gt_striped {
+#wawfkoyjir .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#guhgxifhov .gt_table_body {
+#wawfkoyjir .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -622,7 +622,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#guhgxifhov .gt_footnotes {
+#wawfkoyjir .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -636,7 +636,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#guhgxifhov .gt_footnote {
+#wawfkoyjir .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -645,7 +645,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#guhgxifhov .gt_sourcenotes {
+#wawfkoyjir .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -659,7 +659,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#guhgxifhov .gt_sourcenote {
+#wawfkoyjir .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -667,63 +667,63 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#guhgxifhov .gt_left {
+#wawfkoyjir .gt_left {
   text-align: left;
 }
 
-#guhgxifhov .gt_center {
+#wawfkoyjir .gt_center {
   text-align: center;
 }
 
-#guhgxifhov .gt_right {
+#wawfkoyjir .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#guhgxifhov .gt_font_normal {
+#wawfkoyjir .gt_font_normal {
   font-weight: normal;
 }
 
-#guhgxifhov .gt_font_bold {
+#wawfkoyjir .gt_font_bold {
   font-weight: bold;
 }
 
-#guhgxifhov .gt_font_italic {
+#wawfkoyjir .gt_font_italic {
   font-style: italic;
 }
 
-#guhgxifhov .gt_super {
+#wawfkoyjir .gt_super {
   font-size: 65%;
 }
 
-#guhgxifhov .gt_footnote_marks {
+#wawfkoyjir .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#guhgxifhov .gt_asterisk {
+#wawfkoyjir .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#guhgxifhov .gt_indent_1 {
+#wawfkoyjir .gt_indent_1 {
   text-indent: 5px;
 }
 
-#guhgxifhov .gt_indent_2 {
+#wawfkoyjir .gt_indent_2 {
   text-indent: 10px;
 }
 
-#guhgxifhov .gt_indent_3 {
+#wawfkoyjir .gt_indent_3 {
   text-indent: 15px;
 }
 
-#guhgxifhov .gt_indent_4 {
+#wawfkoyjir .gt_indent_4 {
   text-indent: 20px;
 }
 
-#guhgxifhov .gt_indent_5 {
+#wawfkoyjir .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -832,7 +832,7 @@ ul.task-list li input[type="checkbox"] {
 <p>If we have the Preceptor Table, with no missing data, then it is trivial to calculate the percentage of adults who make more than $100,000 who are liberal.</p>
 </section><section id="eda" class="level4"><h4 class="anchored" data-anchor-id="eda">EDA</h4>
 <p>There is always short section devoted to exploratory data analysis. You can never look at the data too much. Each EDA will include at least one textual look at the data, usually using <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code>, but with <code>skim()</code>, <code>glimpse()</code>, <code><a href="https://rdrr.io/r/base/print.html">print()</a></code> and <code>slice_sample()</code> also available. It will also include at least one graphic, almost always with the outcome variable on the y-axis and one of the covariates on the x-axis. The data set will often include columns and rows which are irrelevant to the question. Those columns and rows are removed, creating a tibble which will be used in the Courage section. The name of that tibble will often be something convenient like <code>ch_7</code>.</p>
-<p>It also makes sense to include some discussion about where this data comes from. What are the definitions of the variables? Who choose the sample? Where is the documentation. This sort of background sets the stage for discussing validity.</p>
+<p>It also makes sense to include some discussion about where this data comes from. What are the definitions of the variables? Who chose the sample? Where is the documentation. This sort of background sets the stage for discussing validity.</p>
 </section><section id="validity" class="level4"><h4 class="anchored" data-anchor-id="validity">Validity</h4>
 <p>Validity discussions always have one (short) paragraph about each relevant variable (the outcome and any relevant covariates), with examples of why validity might <em>not</em> hold. Validity discussion finishes with a brief discussion along the lines of: “Despite these concerns, we will assume that validity does hold.”</p>
 <p>These section can be longer of course, depending on how many details you discussed during the EDA. The central point is that we have two (potentially!) completely difference things: the Preceptor Table and the data. <em>Just because two columns have the same name does not mean that they are the same thing.</em> Indeed, they will often be quite different! But because we control the Preceptor Table and, to a lesser extent, the original question, we can adjust those variables to be “closer” to the data that we actually have. This is another example of the iterative nature of data science. If the data is not close enough to the question, then we check with our boss/colleague/customer to see if we can modify the question in order to make the match between the data and the Preceptor Table close enough for validity to hold.</p>
@@ -841,30 +841,30 @@ ul.task-list li input[type="checkbox"] {
 <p>The idea is that, by thinking hard about the original question and the data, we have come up with a question which <em>may</em> be possible to answer with the data we have.</p>
 </section></section><section id="justice" class="level3"><h3 class="anchored" data-anchor-id="justice">Justice</h3>
 
-<!--  Just because Wisdom handed us a Population Table with X rows does not mean we need to keep all X rows, especially if creating a model which covers all rows is hard/impossible. We can just simplify the claims we are making about the world by removing some rows. But we better not remove the rows we need to answer the question we started with. -->
-<p>“Justice concerns five topics: the Population Table, stability, representativeness, unconfoundedness and the mathematical structure of the data generating mechanism (DGM).”</p>
+<!--  Just because Wisdom points us toward a Population Table with X rows does not mean we need to keep all X rows, especially if creating a model which covers all rows is hard/impossible. We can just simplify the claims we are making about the world by removing some rows. But we better not remove the rows we need to answer the question we started with. -->
+<p>“Justice concerns four topics: the Population Table, stability, representativeness, and unconfoundedness.”</p>
 <section id="population-table" class="level4"><h4 class="anchored" data-anchor-id="population-table">Population Table</h4>
 <p>If validity holds, then we can create a Population Table.</p>
 <div class="cell">
 <div class="cell-output-display">
 
-<div id="zgsvaskqgs" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#zgsvaskqgs table {
+<div id="icrgfropfl" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#icrgfropfl table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#zgsvaskqgs thead, #zgsvaskqgs tbody, #zgsvaskqgs tfoot, #zgsvaskqgs tr, #zgsvaskqgs td, #zgsvaskqgs th {
+#icrgfropfl thead, #icrgfropfl tbody, #icrgfropfl tfoot, #icrgfropfl tr, #icrgfropfl td, #icrgfropfl th {
   border-style: none;
 }
 
-#zgsvaskqgs p {
+#icrgfropfl p {
   margin: 0;
   padding: 0;
 }
 
-#zgsvaskqgs .gt_table {
+#icrgfropfl .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -890,12 +890,12 @@ ul.task-list li input[type="checkbox"] {
   border-left-color: #D3D3D3;
 }
 
-#zgsvaskqgs .gt_caption {
+#icrgfropfl .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#zgsvaskqgs .gt_title {
+#icrgfropfl .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -907,7 +907,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-width: 0;
 }
 
-#zgsvaskqgs .gt_subtitle {
+#icrgfropfl .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -919,7 +919,7 @@ ul.task-list li input[type="checkbox"] {
   border-top-width: 0;
 }
 
-#zgsvaskqgs .gt_heading {
+#icrgfropfl .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -931,13 +931,13 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#zgsvaskqgs .gt_bottom_border {
+#icrgfropfl .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#zgsvaskqgs .gt_col_headings {
+#icrgfropfl .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -952,7 +952,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#zgsvaskqgs .gt_col_heading {
+#icrgfropfl .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -972,7 +972,7 @@ ul.task-list li input[type="checkbox"] {
   overflow-x: hidden;
 }
 
-#zgsvaskqgs .gt_column_spanner_outer {
+#icrgfropfl .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -984,15 +984,15 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 4px;
 }
 
-#zgsvaskqgs .gt_column_spanner_outer:first-child {
+#icrgfropfl .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#zgsvaskqgs .gt_column_spanner_outer:last-child {
+#icrgfropfl .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#zgsvaskqgs .gt_column_spanner {
+#icrgfropfl .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1004,11 +1004,11 @@ ul.task-list li input[type="checkbox"] {
   width: 100%;
 }
 
-#zgsvaskqgs .gt_spanner_row {
+#icrgfropfl .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#zgsvaskqgs .gt_group_heading {
+#icrgfropfl .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1034,7 +1034,7 @@ ul.task-list li input[type="checkbox"] {
   text-align: left;
 }
 
-#zgsvaskqgs .gt_empty_group_heading {
+#icrgfropfl .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1049,15 +1049,15 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 
-#zgsvaskqgs .gt_from_md > :first-child {
+#icrgfropfl .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#zgsvaskqgs .gt_from_md > :last-child {
+#icrgfropfl .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#zgsvaskqgs .gt_row {
+#icrgfropfl .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1076,7 +1076,7 @@ ul.task-list li input[type="checkbox"] {
   overflow-x: hidden;
 }
 
-#zgsvaskqgs .gt_stub {
+#icrgfropfl .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1089,7 +1089,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#zgsvaskqgs .gt_stub_row_group {
+#icrgfropfl .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1103,15 +1103,15 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: top;
 }
 
-#zgsvaskqgs .gt_row_group_first td {
+#icrgfropfl .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#zgsvaskqgs .gt_row_group_first th {
+#icrgfropfl .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#zgsvaskqgs .gt_summary_row {
+#icrgfropfl .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1121,16 +1121,16 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#zgsvaskqgs .gt_first_summary_row {
+#icrgfropfl .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#zgsvaskqgs .gt_first_summary_row.thick {
+#icrgfropfl .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#zgsvaskqgs .gt_last_summary_row {
+#icrgfropfl .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1140,7 +1140,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#zgsvaskqgs .gt_grand_summary_row {
+#icrgfropfl .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1150,7 +1150,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#zgsvaskqgs .gt_first_grand_summary_row {
+#icrgfropfl .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1160,7 +1160,7 @@ ul.task-list li input[type="checkbox"] {
   border-top-color: #D3D3D3;
 }
 
-#zgsvaskqgs .gt_last_grand_summary_row_top {
+#icrgfropfl .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1170,11 +1170,11 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#zgsvaskqgs .gt_striped {
+#icrgfropfl .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#zgsvaskqgs .gt_table_body {
+#icrgfropfl .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1183,7 +1183,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#zgsvaskqgs .gt_footnotes {
+#icrgfropfl .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1197,7 +1197,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#zgsvaskqgs .gt_footnote {
+#icrgfropfl .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1206,7 +1206,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#zgsvaskqgs .gt_sourcenotes {
+#icrgfropfl .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1220,7 +1220,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#zgsvaskqgs .gt_sourcenote {
+#icrgfropfl .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1228,63 +1228,63 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#zgsvaskqgs .gt_left {
+#icrgfropfl .gt_left {
   text-align: left;
 }
 
-#zgsvaskqgs .gt_center {
+#icrgfropfl .gt_center {
   text-align: center;
 }
 
-#zgsvaskqgs .gt_right {
+#icrgfropfl .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#zgsvaskqgs .gt_font_normal {
+#icrgfropfl .gt_font_normal {
   font-weight: normal;
 }
 
-#zgsvaskqgs .gt_font_bold {
+#icrgfropfl .gt_font_bold {
   font-weight: bold;
 }
 
-#zgsvaskqgs .gt_font_italic {
+#icrgfropfl .gt_font_italic {
   font-style: italic;
 }
 
-#zgsvaskqgs .gt_super {
+#icrgfropfl .gt_super {
   font-size: 65%;
 }
 
-#zgsvaskqgs .gt_footnote_marks {
+#icrgfropfl .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#zgsvaskqgs .gt_asterisk {
+#icrgfropfl .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#zgsvaskqgs .gt_indent_1 {
+#icrgfropfl .gt_indent_1 {
   text-indent: 5px;
 }
 
-#zgsvaskqgs .gt_indent_2 {
+#icrgfropfl .gt_indent_2 {
   text-indent: 10px;
 }
 
-#zgsvaskqgs .gt_indent_3 {
+#icrgfropfl .gt_indent_3 {
   text-indent: 15px;
 }
 
-#zgsvaskqgs .gt_indent_4 {
+#icrgfropfl .gt_indent_4 {
   text-indent: 20px;
 }
 
-#zgsvaskqgs .gt_indent_5 {
+#icrgfropfl .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -1452,45 +1452,46 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 <ul>
-<li><p>The “Source” column highlights the the Population Table includes three categories of rows: The data, the Preceptor Table, and the rest of the population, from which both the data and the Preceptor Table are drawn. The <code>...</code> indicates rows from the population which are not included in either the data or the Preceptor Table.</p></li>
+<li><p>The “Source” column highlights that the Population Table includes three categories of rows: The data, the Preceptor Table, and the rest of the population, from which both the data and the Preceptor Table are drawn. The <code>...</code> indicates rows from the population which are not included in either the data or the Preceptor Table.</p></li>
 <li><p>The “ID” column is implicit, and generally not included. After all, it should be obvious that each row refers to a specific unit. If we don’t really care about the individual units, there is no need to label them.</p></li>
-<li><p>There should always be a column, in this case “Year,” which indicates the moment in time at which the covariates were recorded. A given unit may appear in multiple rows, with each row providing the data at a different time. In this example, we will have a row for Sarah in 2012, which she was 43, and a row for Sarah in 2014, when she was 45. Note that Sarah might just be member of the population, neither in the data we have nor in the Preceptor Table we want.</p></li>
+<li><p>There should always be a column, in this case “Year,” which indicates the moment in time at which the covariates were recorded. A given unit may appear in multiple rows, with each row providing the data at a different time. In this example, we will have a row for Sarah in 2012, which she was 43, and a row for Sarah in 2014, when she was 45, and so on. Note that Sarah might just be member of the population, neither in the data we have nor in the Preceptor Table. Or she might be in one or the other. We are not concerned with any specific individuals.</p></li>
 <li><p>Each row in the Population Table represents a unique Unit/Time combination.</p></li>
 <li><p>The “Outcome” column is the variable which we are trying to understand/explain/predict. There is always an outcome column, although it will often just be labelled with the variable name, as here with “Income.”</p></li>
 <li><p>The “Covariates” are all the columns other than those already discussed.</p></li>
 </ul></section><section id="stability" class="level4"><h4 class="anchored" data-anchor-id="stability">Stability</h4>
-<p>If the assumption of stability holds, then the relationship between the columns in the Population Table is the same for three categories of rows: the data, the Preceptor Table, and the larger population from which both are drawn. Each Stability section begins with a version of this definition. We then discuss at least two examples of why stability might <em>not</em> hold in this case. These examples are almost always connected to the passage of time. Whatever the relationship between political ideology and income that might have held in 2012, when we gathered are data, might not be true either before or afterwards. Provide specific speculations about what might have changed in the world.</p>
+<p>If the assumption of stability holds, then the relationship between the columns in the Population Table is the same for three categories of rows: the data, the Preceptor Table, and the larger population from which both are drawn. Each Stability section begins with a version of this definition. We then discuss at least two examples of why stability might <em>not</em> hold in this case. These examples are almost always connected to the passage of time. Whatever the relationship between political ideology and income that might have held in 2012, when we gathered our data, might not be true either before or afterwards. Provide specific speculations about what might have changed in the world.</p>
 <p>Regardless of those concerns, we always conclude that, although the assumption of stability might not hold perfectly, the world is probably stable enough over this time period to make inference possible.</p>
 </section><section id="representativeness" class="level4"><h4 class="anchored" data-anchor-id="representativeness">Representativeness</h4>
 <p>As with all our assumptions, we always begin by restating the definition. <strong>Representativeness</strong>, or the lack thereof, concerns two relationship, among the rows in the Population Table. The first is between the Preceptor Table and the other rows. The second is between our data and the other rows.</p>
 <p>We mention specific examples of two potential problems. First, is our data representative of the population? Never! Not least because it is virtually impossible to do random sampling across time. Second, are the rows associated with the Preceptor Table representative of the population? Again, No!</p>
 <p>Provide specific examples of how a lack of representativeness might be a problem, one large enough to affect your ability to answer the question.</p>
+<p>But, to continue the analysis, we always assume/pretend that the rows from both the data and the Preceptor Table are representative <em>enough</em> of the larger population from which both are drawn.</p>
 </section><section id="unconfoundedness" class="level4"><h4 class="anchored" data-anchor-id="unconfoundedness">Unconfoundedness</h4>
 <p>If the model is predictive, then unconfoundedness is not a concern. Just mention that fact in a sentence at the end of the section on representativeness. But, if the model is causal, then we need a section devoted to this topic.</p>
-<p>As always, by restating the definition, something along the lines of “unconfoundedness means that the treatment assignment is independent of the potential outcomes, when we condition on pre-treatment covariates. A model as”confounded” if this is not true.”</p>
-<p>If treatment assignment was random, then unconfoundedness guaranteed, although experienced researchers often worry about the exact process involved in such “random” assignment. If, however, treatment assignment was not random, then there will always be a concern that it is correlated with potential outcomes. Discuss at least two scenarios in which this might be a concern. But then, as usual, conclude that, although there might be some issues with confoundedness, they are probably small enough to not worry about.</p>
+<p>As always, bstart y restating the definition, something along the lines of “Unconfoundedness means that the treatment assignment is independent of the potential outcomes, when we condition on pre-treatment covariates. A model as”confounded” if this is not true.”</p>
+<p>If treatment assignment was random, then unconfoundedness is guaranteed, although experienced researchers often worry about the exact process involved in such “random” assignment. If, however, treatment assignment was not random, then there will always be a concern that it is correlated with potential outcomes. Discuss at least two scenarios in which this might be a concern. But then, as usual, conclude that, although there might be some issues with confoundedness, they are probably small enough to not worry about.</p>
+<p>The Justice section concludes with a sentence or two about how, despite any problems with the core assumptions of stability, representativeness and unconfoundedness, we can still proceed to next steps because the assumptions hold enough.</p>
 </section></section><section id="courage" class="level3"><h3 class="anchored" data-anchor-id="courage">Courage</h3>
-<p>Wisdom concludes with a Population Table. Courage examines that Population Table closely, ensuring that it meets various assumptions which allow us to proceed. The Courage section always opens with a paragraph like this one, outlining the different steps, but adjusted for the fact that not all chapters feature all the steps here, especially the simpler, earlier chapters.</p>
+<p>Wisdom clarifies the question. Justice creates and examines the Population Table. The Courage section always opens with a paragraph like this one, outlining the different steps, but adjusted for the fact that not all chapters feature all the steps here, especially the simpler, earlier chapters.</p>
 <p>Courage creates the data generating mechanism. We first determine which general mathematical formula connects the outcome variable we are interested in with the other data that we have. We always give the simple math for this model, meaning the mathematical formula just including <span class="math inline">\(y\)</span> and <span class="math inline">\(x\)</span> variables.</p>
 <p>We then explore different models. We need to decide which variables to include and to estimate the values of unknown parameters. We estimate the models and then print out the model results. We do not give another version of the math, or use <code>tbl_regression()</code> yet. The goal is to explore and interpret different models.</p>
 <p>We create a final model, the data generating mechanism. We provide the math for this model, using variable names instead of <code>y</code> and <code>x</code> as we did at the start of the chapter. We present the final parameter estimates nicely, use <code>tbl_regression()</code>. We check our models for consistency with the data we have. We avoid hypothesis tests.</p>
 <p>After this opening paragraph, we have a paragraph which specifies the functional form we will be using. This is usually straight-forward because it follows directly from the type of the outcome variable: continuous implies a linear model and binary implies logistic.</p>
-<p>Series of fitted models, none of which are used to answer our question yet. Each time, we fit, print and the describe with math. Then, we explain it English what the model shows.</p>
+<p>Create a series of fitted models, none of which are used to answer our question yet. Explain it English what the model shows.</p>
 <p>“Courage centers around the creation of the data generating mechanism, i.e., our fitted model.”</p>
 <p>Use <code><a href="https://www.danieldsjoberg.com/gtsummary/reference/tbl_regression.html">gtsummary::tbl_regression()</a></code> to show a nice table of the parameter values toward the end of the Courage section.</p>
-<p>Courage section ends with a clear statement in English, in its own paragraph, describing the model. That is, what are the two sentences which a student would say at a presentation describing the model. First sentence specifies the model, including making clear the units, outcome and key covariates. (No need to use the terms “units,” “outcomes,” and so on.) The second sentence tells us about one key number, along with its associated uncertainty. With predictive models, the language almost always includes “When comparing two units (whatever those units are), one with covariate (whatever it is) value X and the other with value Y, the difference in outcome is . . .” With a causal model, you are almost always interested in the average causal effect (or treatment effect), although sometimes you provide this number for a particularly interesting/important subset of the data. Example:</p>
+<p>Courage section ends with a clear statement in English, in its own paragraph, describing the model. That is, what are the two sentences which a student would say at a presentation describing the model. First sentence specifies the model, including making clear the units, outcome and key covariates. (No need to use the terms “units,” “outcomes,” and so on.) The second sentence tells us something about the model, generally the relationship between one of the covariates and the outcome variable. In general, there is no discussion af specific numbers or their uncertainty. First, who cares? Parameter estimates are boring and irrelevant. Second, the Temperance section is where we answer the question. Example:</p>
 <p><em>We modeled <code>liberal</code>, a binary TRUE/FALSE variable, as a logistic function of income. The higher the income, the more likely the individual was to be liberal.</em></p>
 </section><section id="temperance" class="level3"><h3 class="anchored" data-anchor-id="temperance">Temperance</h3>
 <p>The Temperance section always begins with some version of the summary paragraph:</p>
 <p>“Courage gave us the data generating mechanism. Temperance guides us in the use of the DGM — or the”model” — we have created to answer the questions with which we began. We create posteriors for the quantities of interest. We should be modest in the claims we make. The posteriors we create are never the “truth.” The assumptions we made to create the model are never perfect. Yet decisions made with flawed posteriors are almost always better than decisions made without them.”</p>
 <p>The sub-sections of Temperance include: The Question, The Answer, and Humility.</p>
 <section id="the-question" class="level4"><h4 class="anchored" data-anchor-id="the-question">The Question</h4>
-<p>We go back to the question with which we started the journey. We discuss how that question has evolved, in a back-and-forth process by which we try to ensure that the data we have and the question we ask are close enough to make the process plausible,</p>
+<p>We go back to the question with which we started the journey. We discuss how that question has evolved, in a back-and-forth process by which we try to ensure that the data we have and the question we ask are close enough to make the process plausible.</p>
 </section><section id="the-answer" class="level4"><h4 class="anchored" data-anchor-id="the-answer">The Answer</h4>
 <p>We use the data generating mechanism from Courage to answer the question. This is, obviously, the core of the Temperance section.</p>
 <p>The Answer section always concludes with a one sentence summary of our final conclusion. This summary does not include any technical terms. It is meant for non-statisticians. It is something which we might say in explaining our take-away conclusion to a non-statistician. It will always feature at least one number, and our uncertainty associated with that number. Example:</p>
-<!-- DK: Add +/- mathematical symbol? -->
-<p><em>55% (+/- 2%) of the people who make more than $100,000 per year are liberal.</em></p>
+<p><em>55% (<span class="math inline">\(\pm\)</span> 2%) of the people who make more than $100,000 per year are liberal.</em></p>
 <p>or</p>
 <p><em>Of the people making $100,000 or more per year, about 55% are liberal, although the true number could be as low as 53% or as high as 57%.</em></p>
 <p>Depending on the context, you might have more than one Quantity of Interest to discuss. But there must be at least one.</p>
@@ -1509,11 +1510,6 @@ ul.task-list li input[type="checkbox"] {
 <p>The second way that our DGM might be wrong, relative to the true DGM, is that our uncertainty interval, the 4% from 53% to 57%, might be off. It might be too narrow or too wide. In reality, however, it is almost certainly too narrow, relative to the true DGM. Problems with our assumptions, which are inevitable, almost always make our confidence intervals too narrow.</p>
 <p>Last line in every chapter is always:</p>
 <p>The world is always more uncertain than our models would have us believe.</p>
-
-<!-- Key issue is the connection between the Preceptor Table and the DGM (either true or estimate). The connection is tricky! Not even sure I understand it. The DGM can be used to "fill in" all the missing elements of the Preceptor Table, but there will always be some associated randomness. Even with the true DGM, we don't know what `att_end` Joe would have had under treatment, we just have a posterior for that variable, a way to make draws. -->
-<!-- There are two (equivalent?) approaches. First, use the DGM to create one complete Preceptor Table. In that draw, Joe is a 6 for `att_end`. Then, do another draw. Joe is a 5. Do a thousand draws. You then have a thousand Preceptor Tables. Calculate the Quantity of Interest for each Preceptor Table. The 1,000 values are the posterior for your QoI.  -->
-<!-- Second, instead of creating the 1,000 Preceptor Tables, fill in each entry of the Preceptor Table with a tiny posterior. Joe does not have one value for `att_end`. He has a posterior. Then, with this "probabilistic" Preceptor Table, you can . . . too complex! -->
-<!-- Would be great to make a cool animation of this, perhaps with a simple example. Would be fun to have a similar animation for each chapter. Great summer project! -->
 
 
 </section></section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">

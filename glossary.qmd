@@ -19,7 +19,14 @@ library(gt)
 
 <!-- The model you have made by the end of Courage is almost always too complex to answer the simple question you started with, because the question rarely specifies the values of all the covariates which are included in the model. -->
 
-*THIS IS A DRAFT*
+
+<!-- Key issue is the connection between the Preceptor Table and the DGM (either true or estimate). The connection is tricky! Not even sure I understand it. The DGM can be used to "fill in" all the missing elements of the Preceptor Table, but there will always be some associated randomness. Even with the true DGM, we don't know what `att_end` Joe would have had under treatment, we just have a posterior for that variable, a way to make draws. -->
+
+<!-- There are two (equivalent?) approaches. First, use the DGM to create one complete Preceptor Table. In that draw, Joe is a 6 for `att_end`. Then, do another draw. Joe is a 5. Do a thousand draws. You then have a thousand Preceptor Tables. Calculate the Quantity of Interest for each Preceptor Table. The 1,000 values are the posterior for your QoI.  -->
+
+<!-- Second, instead of creating the 1,000 Preceptor Tables, fill in each entry of the Preceptor Table with a tiny posterior. Joe does not have one value for `att_end`. He has a posterior. Then, with this "probabilistic" Preceptor Table, you can . . . too complex! -->
+
+<!-- Would be great to make a cool animation of this, perhaps with a simple example. Would be fun to have a similar animation for each chapter. Great summer project! -->
 
 These are the key concepts from the *Primer*. You should apply them whenever you face a choice, and some data to help you make it. The world confronts us. Makes decisions we must.
 
@@ -39,7 +46,7 @@ These are the key concepts from the *Primer*. You should apply them whenever you
 
 **Wisdom** is the first [Cardinal Virtue](https://en.wikipedia.org/wiki/Cardinal_virtues) in data science. Begin with the quantity of interest. Is that QoI a causal effect or simply a forecast? Which units and outcomes does it imply? What Preceptor Table would allow you to calculate your QoI easily? Perform an exploratory data analysis (EDA) on the data you have. Is it *valid* to consider the data you have and the (theoretical) data from the Preceptor Table to have arisen out of the same population? If so, you may continue. If not, your attempt to estimate your QoI ends now.
 
-**Validity** is the consistency, or lack there of, in the columns of your dataset and the corresponding columns in your Preceptor Table. In order to consider the two datasets to be drawn from the same population, the columns from one must be have a *valid correspondence* with the columns in the other. Validity, if true (or at least reasonable), allows us to construct the *Population Table*.
+**Validity** is the consistency, or lack there of, in the columns of your dataset and the corresponding columns in your Preceptor Table. In order to consider the two datasets to be drawn from the same population, the columns from one must have a *valid correspondence* with the columns in the other. Validity, if true (or at least reasonable), allows us to construct the *Population Table*, which is the first step in Justice.
 
 **Population Table** can be constructed if the validity assumption is (mostly) true. It includes all the rows and columns from the Preceptor Table. It also includes the rows and columns from the data set. It generally has other rows as well, rows which represent unit/time combinations from other components of the population.
 
@@ -54,6 +61,8 @@ These are the key concepts from the *Primer*. You should apply them whenever you
 **Courage** is the third [Cardinal Virtue](https://en.wikipedia.org/wiki/Cardinal_virtues) in data science. Justice gave us the Population Table. Courage creates the data generating mechanism. Which general mathematical formula connects the outcome variable we are interested in with the other data that we have? Courage allows us to explore different models. We need to decide which variables to include and to estimate the values of unknown parameters. We avoid hypothesis tests. We check our models for consistency with the data we have. We select one model.
 
 **Temperance** is the fourth [Cardinal Virtue](https://en.wikipedia.org/wiki/Cardinal_virtues) in data science. Courage gave us the data generating mechanism. Temperance guides us in the use of the DGM --- or the "model" ---  we have created to answer the questions with which we began. We create posteriors for the quantities of interest. We should be modest in the claims we make. The posteriors we create are never the “truth.” The assumptions we made to create the model are never perfect. Yet decisions made with flawed posteriors are almost always better than decisions made without them.
+
+Wisdom clarifies the question. Justice gives us the Population Table. Courage creates the data generating mechanism. Temperance answers the question.
 
 
 ## Steps to Take in Every Data Science Problem
@@ -70,7 +79,7 @@ Of course, every data science problem does not start with a question. It actuall
 
 Note that the sophistication of these discussions increases as we go further into the book. Your discussion should be more sophisticated than that found in the previous chapter and less sophisticated than what comes later. 
 
-Each chapter features all the same sections and sub-sections as we use below. That is, there are three sub-sections to Wisdom, five sub-sections for Justice, and so on. 
+Each chapter features all the same sections and sub-sections as we use below. That is, there are three sub-sections to Wisdom, four sub-sections for Justice, and so on. 
 
 Once we have our question, we can start with the Cardinal Virtues. Each section begins with a one sentence summary about the component steps of the relevant virtue. These will, obviously, be highly similar from chapter to chapter. But that is OK! We want to reinforce the steps in the path over and over again.
 
@@ -139,7 +148,7 @@ If we have the Preceptor Table, with no missing data, then it is trivial to calc
 
 There is always short section devoted to exploratory data analysis. You can never look at the data too much. Each EDA will include at least one textual look at the data, usually using `summary()`, but with `skim()`, `glimpse()`, `print()` and `slice_sample()` also available. It will also include at least one graphic, almost always with the outcome variable on the y-axis and one of the covariates on the x-axis. The data set will often include columns and rows which are irrelevant to the question. Those columns and rows are removed, creating a tibble which will be used in the Courage section. The name of that tibble will often be something convenient like `ch_7`.
 
-It also makes sense to include some discussion about where this data comes from. What are the definitions of the variables? Who choose the sample? Where is the documentation. This sort of background sets the stage for discussing validity.
+It also makes sense to include some discussion about where this data comes from. What are the definitions of the variables? Who chose the sample? Where is the documentation. This sort of background sets the stage for discussing validity.
 
 #### Validity
 
@@ -155,9 +164,9 @@ The idea is that, by thinking hard about the original question and the data, we 
 
 ### Justice
 
-<!--  Just because Wisdom handed us a Population Table with X rows does not mean we need to keep all X rows, especially if creating a model which covers all rows is hard/impossible. We can just simplify the claims we are making about the world by removing some rows. But we better not remove the rows we need to answer the question we started with. -->
+<!--  Just because Wisdom points us toward a Population Table with X rows does not mean we need to keep all X rows, especially if creating a model which covers all rows is hard/impossible. We can just simplify the claims we are making about the world by removing some rows. But we better not remove the rows we need to answer the question we started with. -->
 
-"Justice concerns five topics: the Population Table, stability, representativeness, unconfoundedness and the mathematical structure of the data generating mechanism (DGM)."
+"Justice concerns four topics: the Population Table, stability, representativeness, and unconfoundedness."
 
 
 
@@ -195,11 +204,11 @@ tibble(source = c("...", "Data", "Data", "...",
   
 ```
 
-* The "Source" column highlights the the Population Table includes three categories of rows: The data, the Preceptor Table, and the rest of the population, from which both the data and the Preceptor Table are drawn. The `...` indicates rows from the population which are not included in either the data or the Preceptor Table.
+* The "Source" column highlights that the Population Table includes three categories of rows: The data, the Preceptor Table, and the rest of the population, from which both the data and the Preceptor Table are drawn. The `...` indicates rows from the population which are not included in either the data or the Preceptor Table.
 
 * The "ID" column is implicit, and generally not included. After all, it should be obvious that each row refers to a specific unit. If we don't really care about the individual units, there is no need to label them.
 
-* There should always be a column, in this case "Year," which indicates the moment in time at which the covariates were recorded. A given unit may appear in multiple rows, with each row providing the data at a different time. In this example, we will have a row for Sarah in 2012, which she was 43, and a row for Sarah in 2014, when she was 45. Note that Sarah might just be member of the population, neither in the data we have nor in the Preceptor Table we want.
+* There should always be a column, in this case "Year," which indicates the moment in time at which the covariates were recorded. A given unit may appear in multiple rows, with each row providing the data at a different time. In this example, we will have a row for Sarah in 2012, which she was 43, and a row for Sarah in 2014, when she was 45, and so on. Note that Sarah might just be member of the population, neither in the data we have nor in the Preceptor Table. Or she might be in one or the other. We are not concerned with any specific individuals.
 
 * Each row in the Population Table represents a unique Unit/Time combination.
 
@@ -210,7 +219,7 @@ tibble(source = c("...", "Data", "Data", "...",
 
 #### Stability
 
-If the assumption of stability holds, then the relationship between the columns in the Population Table is the same for three categories of rows: the data, the Preceptor Table, and the larger population from which both are drawn. Each Stability section begins with a version of this definition. We then discuss at least two examples of why stability might *not* hold in this case. These examples are almost always connected to the passage of time. Whatever the relationship between political ideology and income that might have held in 2012, when we gathered are data, might not be true either before or afterwards. Provide specific speculations about what might have changed in the world. 
+If the assumption of stability holds, then the relationship between the columns in the Population Table is the same for three categories of rows: the data, the Preceptor Table, and the larger population from which both are drawn. Each Stability section begins with a version of this definition. We then discuss at least two examples of why stability might *not* hold in this case. These examples are almost always connected to the passage of time. Whatever the relationship between political ideology and income that might have held in 2012, when we gathered our data, might not be true either before or afterwards. Provide specific speculations about what might have changed in the world. 
 
 Regardless of those concerns, we always conclude that, although the assumption of stability might not hold perfectly, the world is probably stable enough over this time period to make inference possible.
 
@@ -222,20 +231,22 @@ We mention specific examples of two potential problems. First, is our data repre
 
 Provide specific examples of how a lack of representativeness might be a problem, one large enough to affect your ability to answer the question.
 
+But, to continue the analysis, we always assume/pretend that the rows from both the data and the Preceptor Table are representative *enough* of the larger population from which both are drawn.
+
 #### Unconfoundedness
 
 If the model is predictive, then unconfoundedness is not a concern. Just mention that fact in a sentence at the end of the section on representativeness. But, if the model is causal, then we need a section devoted to this topic.
 
-As always, by restating the definition, something along the lines of "unconfoundedness means that the treatment assignment is independent of the potential outcomes, when we condition on pre-treatment covariates. A model as "confounded" if this is not true."
+As always, bstart y restating the definition, something along the lines of "Unconfoundedness means that the treatment assignment is independent of the potential outcomes, when we condition on pre-treatment covariates. A model as "confounded" if this is not true."
 
-If treatment assignment was random, then unconfoundedness guaranteed, although experienced researchers often worry about the exact process involved in such "random" assignment. If, however, treatment assignment was not random, then there will always be a concern that it is correlated with potential outcomes. Discuss at least two scenarios in which this might be a concern. But then, as usual, conclude that, although there might be some issues with confoundedness, they are probably small enough to not worry about.
+If treatment assignment was random, then unconfoundedness is guaranteed, although experienced researchers often worry about the exact process involved in such "random" assignment. If, however, treatment assignment was not random, then there will always be a concern that it is correlated with potential outcomes. Discuss at least two scenarios in which this might be a concern. But then, as usual, conclude that, although there might be some issues with confoundedness, they are probably small enough to not worry about.
 
-
+The Justice section concludes with a sentence or two about how, despite any problems with the core assumptions of stability, representativeness and unconfoundedness, we can still proceed to next steps because the assumptions hold enough.
 
 
 ### Courage
 
-Wisdom concludes with a Population Table. Courage examines that Population Table closely, ensuring that it meets various assumptions which allow us to proceed. The Courage section always opens with a paragraph like this one, outlining the different steps, but adjusted for the fact that not all chapters feature all the steps here, especially the simpler, earlier chapters.
+Wisdom clarifies the question. Justice creates and examines the Population Table. The Courage section always opens with a paragraph like this one, outlining the different steps, but adjusted for the fact that not all chapters feature all the steps here, especially the simpler, earlier chapters.
 
 Courage creates the data generating mechanism. We first determine which general mathematical formula connects the outcome variable we are interested in with the other data that we have. We always give the simple math for this model, meaning the mathematical formula just including $y$ and $x$ variables. 
 
@@ -246,13 +257,14 @@ We create a final model, the data generating mechanism. We provide the math for 
 
 After this opening paragraph, we have a paragraph which specifies the functional form we will be using. This is usually straight-forward because it follows directly from the type of the outcome variable: continuous implies a linear model and binary implies logistic. 
 
-Series of fitted models, none of which are used to answer our question yet. Each time, we fit, print and the describe with math. Then, we explain it English what the model shows.
+Create a series of fitted models, none of which are used to answer our question yet. Explain it English what the model shows.
 
 "Courage centers around the creation of the data generating mechanism, i.e., our fitted model."
 
 Use `gtsummary::tbl_regression()` to show a nice table of the parameter values toward the end of the Courage section.
 
-Courage section ends with a clear statement in English, in its own paragraph, describing the model. That is, what are the two sentences which a student would say at a presentation describing the model. First sentence specifies the model, including making clear the units, outcome and key covariates. (No need to use the terms "units," "outcomes," and so on.) The second sentence tells us about one key number, along with its associated uncertainty. With predictive models, the language almost always includes "When comparing two units (whatever those units are), one with covariate (whatever it is) value X and the other with value Y, the difference in outcome is . . . " With a causal model, you are almost always interested in the average causal effect (or treatment effect), although sometimes you provide this number for a particularly interesting/important subset of the data. Example:
+Courage section ends with a clear statement in English, in its own paragraph, describing the model. That is, what are the two sentences which a student would say at a presentation describing the model. First sentence specifies the model, including making clear the units, outcome and key covariates. (No need to use the terms "units," "outcomes," and so on.) The second sentence tells us something about the model, generally the relationship between one of the covariates and the outcome variable. In general, there is no discussion af specific numbers or their uncertainty. First, who cares? Parameter estimates are boring and irrelevant. Second, the Temperance section is where we answer the question. Example:
+
 
 *We modeled `liberal`, a binary TRUE/FALSE variable, as a logistic function of income. The higher the income, the more likely the individual was to be liberal.*  
 
@@ -266,7 +278,7 @@ The sub-sections of Temperance include: The Question, The Answer, and Humility.
 
 #### The Question
 
-We go back to the question with which we started the journey. We discuss how that question has evolved, in a back-and-forth process by which we try to ensure that the data we have and the question we ask are close enough to make the process plausible,
+We go back to the question with which we started the journey. We discuss how that question has evolved, in a back-and-forth process by which we try to ensure that the data we have and the question we ask are close enough to make the process plausible. 
 
 #### The Answer
 
@@ -274,9 +286,8 @@ We use the data generating mechanism from Courage to answer the question. This i
 
 The Answer section always concludes with a one sentence summary of our final conclusion. This summary does not include any technical terms. It is meant for non-statisticians. It is something which we might say in explaining our take-away conclusion to a non-statistician. It will always feature at least one number, and our uncertainty associated with that number. Example:
 
-<!-- DK: Add +/- mathematical symbol? -->
 
-*55% (+/- 2%) of the people who make more than $100,000 per year are liberal.*
+*55% ($\pm$ 2%) of the people who make more than $100,000 per year are liberal.*
 
 or
 
@@ -315,17 +326,4 @@ The second way that our DGM might be wrong, relative to the true DGM, is that ou
 Last line in every chapter is always:
 
 The world is always more uncertain than our models would have us believe.
-
-
-<!-- Key issue is the connection between the Preceptor Table and the DGM (either true or estimate). The connection is tricky! Not even sure I understand it. The DGM can be used to "fill in" all the missing elements of the Preceptor Table, but there will always be some associated randomness. Even with the true DGM, we don't know what `att_end` Joe would have had under treatment, we just have a posterior for that variable, a way to make draws. -->
-
-<!-- There are two (equivalent?) approaches. First, use the DGM to create one complete Preceptor Table. In that draw, Joe is a 6 for `att_end`. Then, do another draw. Joe is a 5. Do a thousand draws. You then have a thousand Preceptor Tables. Calculate the Quantity of Interest for each Preceptor Table. The 1,000 values are the posterior for your QoI.  -->
-
-<!-- Second, instead of creating the 1,000 Preceptor Tables, fill in each entry of the Preceptor Table with a tiny posterior. Joe does not have one value for `att_end`. He has a posterior. Then, with this "probabilistic" Preceptor Table, you can . . . too complex! -->
-
-<!-- Would be great to make a cool animation of this, perhaps with a simple example. Would be fun to have a similar animation for each chapter. Great summer project! -->
-
-
-
-
 

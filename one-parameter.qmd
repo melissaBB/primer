@@ -13,23 +13,14 @@ library(gtsummary)
 library(patchwork)
 ```
 
-<!-- DK: I have fixed the most egregious disagreements between our revised Cardinal Virtues process and what was here before. However, the end of this chapter is still a mess! Maybe that is OK because it is trying to connect to all the theory we had in the Probability Chapter. We are also doing a bit of CYA to explain why, for the rest of the book, we are doing things our way. Still . . . -->
-
-
 <!-- Highest priority: Did we really answer the two questions which we started with? -->
 
 <!-- The boss move would be to delete 80% of this chapter. Cut all the sampling stuff. There is nothing wrong with it, per se, but the only reason we have it is that it was part of the Modern Dive book. It is not really necessary for the core Cardinal Virtues approach of the rest of the Primer. -->
-
-<!-- Case study of polls needs to be updated to use our language of validity and so on. -->
-
-<!-- There needs to be more explanation about confidence intervals!  -->
 
 <!-- In some paragraphs we say that it is impossible to conduct a census because we don't have access to the urn, in others like this we do have access and can complete the census. Which is it? -->
 
 
 <!-- Another paragraph or two of discussion about the final posterior. How do we use it? Within what range would you offer 50/50 odds that the true percentage lies? (use quantile(0.25, 0.75). Area under the curve? Explain clearly how that 26% is calculated. What is post_dist? What does it mean? How can I use it? Maybe show it sorted? Add some code comments. -->
-
-<!-- You must understand what the standard error of $\hat{\rho}$ means. You do not need to understand why. -->
 
 <!-- Explain in a comment the reason for  fun = function(.x) 1/(2 * sqrt(.x)) in the plot. I don't know why we need the 2. We would probably use geom_function(). Maybe using geom_function with the function for a standard error will just magically work! -->
 
@@ -39,12 +30,11 @@ library(patchwork)
 {{< video https://www.youtube.com/embed/e3PJ3Du_zDc >}}
 
 
-
 *The Hunger Games* is a dystopian novel in which children are chosen via lottery to fight to the death. Primrose Everdeen is selected from the urn. Why does she have the misfortune of being selected? Or, as we data scientists say, *sampled*?
 
-<!-- DK: This paragraph could be improved to be more like other chapters. Shouldn't every introduction mention the key concepts of the book: the four Cardinal Virtues and the assumptions which link them together? -->
-
 In @sec-probability, we learned about probability, the framework for quantifying uncertainty. In this chapter, we will learn about *sampling*, the beginning of our journey toward inference. When we sample, we take some *units* from a *population*. With the data collected via sampling, we will create statistical models with just one unknown parameter. With such models, we can make inferences in order to answer questions.
+
+We always use the Cardinal Virtues. Wisdom helps us to clarify the questions with which we begin. We build the Preceptor Table which, if no data were missing, would allow us to answer the question. We check for validity. Justice creates the Population Table and examines the assumptions of stability, representativeness, and unconfoundedness. With Courage, we estimate a data generating mechanism. Temperance helps us to use that DGM to answer the question with which we began.
 
 ## Real sampling activity {#sec-sampling-activity}
 
@@ -879,6 +869,7 @@ In regards to the fifth layer of the hierarchy, we may wonder:
 
 MADs and standard deviations are, more or less, the same thing. They are both measures of the **variability** of a distribution. In most cases, they have very similar values. A *standard error* is also a standard deviation. Specifically, it is the standard deviation of the distribution of the estimates, and that distribution of estimates is, more or less, your posterior. Therefore, we can use MAD, like standard error, to describe that distribution and the variability of that distribution. 
 
+You must understand what the standard error of $\hat{\rho}$ means. You do not need to understand why. 
 
 ## Cardinal Virtues
 
@@ -959,13 +950,9 @@ Again, there are, in truth, no ID numbers. But keeping track of which beads were
 
 The last step of Wisdom is to decide whether or not we can consider the units from the Preceptor Table and the units from the data to have been drawn from the same *population*. In this case, as with many sampling scenarios, it is trivial that we may make this assumption. If all the rows from the data are also rows in the Preceptor Table, we may assume that they are drawn from the same distribution.
 
-<!-- DK: Could expand on this point, or move it to later. -->
-
 We also consider why some beads do get sampled, while others do not. This is a consequence of the *sampling mechanism*. We hope that all members of the population have the same chance of being sampled, or else our data might be biased. Almost all samples have some bias, but we must make a judgement call to see if the data we have is close enough to the data we want (i.e., the Preceptor Table) that we can consider both as coming from the same population. Our sample of 50 beads is taken from a *mixed* urn, so hopefully there is a near equal chance of selecting each bead, and our samples are representative of the population. 
 
 *Validity* involves the columns of our data set. Is the meaning of our columns consistent across the different data sources? In our urn scenario, does bead color in our sampled data and bead color in our Preceptor Table mean the same thing? The answer is yes, and validity can be assumed very easily.   
-
-<!-- DK: Don't use the word "representative" here! -->
 
 <!-- Could get into more details here, e.g., Sometimes, the Preceptor Table and the Population Table have the same number of rows. This happens when all the data are rows from the Preceptor Table. Example would be the simple case of an urn, the beads in which you know do not change color, and from which you have drawn a sample. But, what if beads can change color? Then the data from the sample 10 minutes ago has a less than certain relationship with the Preceptor Table. The same includes the color for bead 96 ten minutes ago. The Preceptor Table has one row for bead 96 now, at this moment. So, in this case, the Population Table has a row for every bead at each moment in time that we care about. At the very least, it as 1,000 rows for 10 minutes ago (when we took the sample) and 1,000 rows for now. -->
 
@@ -1373,41 +1360,11 @@ The red bars illustrate the area under a specific section of the curve, as compa
 
 See @sec-two-parameters for a thorough discussion of the use of **rstanarm**. This package will be our main tool for the rest of the *Primer*.
 
-#### Assesing uncertainty
 
-<!-- DK: Cut all this? No need to explain why some other approach is wrong. Just say that our approach is correct. -->
-
-The Cardinal Virtues may seem tedious, but we use them for good reason. In Wisdom we determined what data we need to answer our question, and in Justice we analyzed whether or not the data we have can answer our question. If we had skipped these steps, we would be at risk of creating models with "bad data" in Courage and Temperance, and of then drawing misleading conclusions. 
-
-We have successfully answered our questions using the Cardinal Virtues, but we must also realize that there are limitations to our models. Earlier we claimed there is a `r round(100 *sum(ppd_reds_in_20$total > 8)/length(ppd_reds_in_20$total))`% chance that we will draw more than 8 red beads out of a sample size of 20. However, we must be modest about our claims. Is this question about *this* particular urn, or all urns? Clearly, as our predictions are based upon the posterior from our specific urn, our conclusions can only be applied to *this particular urn*; our conclusions are not generalizable to all urns.
-
-Furthermore, how certain are we in our prediction from Temperance that `r round(100 *sum(ppd_reds_in_20$total > 8)/length(ppd_reds_in_20$total))`% of samples out of a shovel size of 20 using our urn would produce more than 8 red beads? 
-
-First let's model our situation: 
-
-$$ R_i  \sim B(\rho, n = 20) $$
-
-The total number of red beads selected in a sample of 20 beads, $R_i$, is modeled by a binomial distribution with $n = 20$ observations and an unknown probability $\rho$ of the proportion of red beads in the urn.
-
-We must realize that our `r round(100 *sum(ppd_reds_in_20$total > 8)/length(ppd_reds_in_20$total))`% estimate is based on an entire posterior. We are uncertain about the exact value of $\rho$, so `posterior_predict()` takes our uncertainty into account when creating the model. However, there is in fact some actual value for $\rho$, even if we don't know it. 
-
-If the actual value of $\rho$ was 30%, we can calculate the **correct** answer to our question using the binomial probability distribution function:  
-
-```{r}
-pbinom(q = 8, size = 20, prob = .3, lower.tail = FALSE)
-```
-
-Or maybe the actual value of $\rho$ is 40%: 
-
-```{r}
-pbinom(q = 8, size = 20, prob = .4, lower.tail = FALSE)
-```
-
-Sadly, the answer to our question could be `r round(pbinom(q = 8, size = 20, prob = .3, lower.tail = FALSE)*100)`%, `r round(pbinom(q = 8, size = 20, prob = .4, lower.tail = FALSE)*100)`%, a value in between, or even a more extreme value. We will never know the correct answer, and must settle with our best estimate of `r round(100 *sum(ppd_reds_in_20$total > 8)/length(ppd_reds_in_20$total))`% that factors in our uncertainty regarding the true value of $\rho$. Long story short, our models are never the truth. 
 
 ## Traditional practices
 
-Although the process was long, we have successfully gone through the Cardinal Virtues and answered our questions like real data scientists. In this section we will explain more traditional approaches. 
+Although the process was long, we have successfully gone through the Cardinal Virtues and answered our questions, just like real data scientists. In this section we will explain more traditional approaches. 
 
 ### Confidence intervals
 
@@ -1452,96 +1409,9 @@ Can we reject that hypothesis? Convention: if the 95% confidence interval exclud
 
 If we were testing the theory that $\rho = .45$ instead, our null hypothesis would fall within the confidence interval. **This does not mean that we accept the null hypothesis**.  Instead, we simply don't reject it.  In our scenario we only know that there is some possibility that $\rho = .45$. We're just back where we started! This is why we never test — unless your boss demands a test. **Use your judgment, make your models, summarize your knowledge of the world, and use that summary to make decisions.** 
 
-## Case study: Polls {#sec-sampling-case-study}
+<!-- ## Case study: Polls {#sec-sampling-case-study} -->
 
-<!-- DK: Delete all this? Make it just two paragraphs? Or add in the Cardinal Virtue concerns? Yes! Switch to recent poll. -->
-
-Let's now switch gears to a more realistic sampling scenario: a poll. In practice, pollsters do not take 1,000 repeated samples as we did in our virtual sampling activities, but rather take only a *single sample* that's as large as possible.
-
-On December 4, 2013, National Public Radio in the US reported on a poll of President Obama's approval rating among young Americans aged 18-29 in an article, ["Poll: Support For Obama Among Young Americans Eroding."](https://www.npr.org/sections/itsallpolitics/2013/12/04/248793753/poll-support-for-obama-among-young-americans-eroding) The poll was conducted by the Kennedy School's Institute of Politics at Harvard University. A quote from the article:
-
-> After voting for him in large numbers in 2008 and 2012, young Americans are souring on President Obama.
-> 
-> According to a new Harvard University Institute of Politics poll, just 41 percent of millennials — adults ages 18-29 — approve of Obama's job performance, his lowest-ever standing among the group and an 11-point drop from April.
-
-Let's tie elements of the real life poll in this new article with our "tactile" and "virtual" urn activity from @sec-sampling-activity and @sec-virtual-sampling using the terminology, notations, and definitions we learned in @sec-standard-errors. You'll see that our sampling activity with the urn is an idealized version of what pollsters are trying to do in real life. 
-
-First, who is the **(Study) Population** of $N$ individuals or observations of interest? 
-
-* Urn: $N$ = 1000 identically sized red and white beads
-* Obama poll: $N$ = ? young Americans aged 18-29
-
-Second, what is the **population parameter**? 
-
-* Urn: The population proportion $\rho$ of *all* the beads in the urn that are red.
-* Obama poll: The population proportion $\rho$ of *all* young Americans who approve of Obama's job performance.
-
-Third, what would a **census** look like?
-
-* Urn: Manually going over all $N$ = 1000 beads and exactly computing the population proportion $\rho$ of the beads that are red.
-* Obama poll: Locating all $N$ young Americans and asking them all if they approve of Obama's job performance. In this case, we don't even know what the population size $N$ is!
-
-Fourth, how do you perform **sampling** to obtain a sample of size $n$?
-
-* Urn: Using a shovel with $n$ slots. 
-* Obama poll: One method is to get a list of phone numbers of all young Americans and pick out $n$ phone numbers. In this poll's case, the sample size of this poll was $n = 2089$ young Americans.
-
-Fifth, what is your **point estimate (AKA sample statistic)** of the unknown population parameter?
-
-* Urn: The sample proportion $\hat{\rho}$ of the beads in the shovel that were red. 
-* Obama poll: The sample proportion $\hat{\rho}$ of young Americans in the sample that approve of Obama's job performance. In this poll's case, $\hat{\rho} = 0.41 = 41\%$, the quoted percentage in the second paragraph of the article. 
-
-Sixth, is the sampling procedure **representative**?
-
-* Urn: Are the contents of the shovel representative of the contents of the urn? Because we mixed the urn before sampling, we can feel confident that they are. 
-* Obama poll: Is the sample of $n = 2089$ young Americans representative of *all* young Americans aged 18-29? This depends on whether the sampling was random (which samples rarely are)
-
-Seventh, are the samples **generalizable** to the greater population?
-
-* Urn: Is the sample proportion $\hat{\rho}$ of the shovel's beads that are red a "good guess" of the population proportion $\rho$ of the urn's beads that are red? Given that the sample was representative, the answer is yes.
-* Obama poll: Is the sample proportion $\hat{\rho} = 0.41$ of the sample of young Americans who supported Obama a "good guess" of the population proportion $\rho$ of all young Americans who supported Obama at this time in 2013? In other words, can we confidently say that roughly 41% of *all* young Americans approved of Obama at the time of the poll? Again, this depends on whether the sampling was random.
-
-Eighth, is the sampling procedure **unbiased**? In other words, do all observations have an equal chance of being included in the sample?
-
-* Urn: Since each bead was equally sized and we mixed the urn before using the shovel, each bead had an equal chance of being included in a sample and hence the sampling was unbiased. 
-* Obama poll: Did all young Americans have an equal chance at being represented in this poll? Again, this depends on whether the sampling was random.
-
-Ninth and lastly, was the sampling done at **random**? 
-
-* Urn: As long as you mixed the urn sufficiently before sampling, your samples would be random.
-* Obama poll: Was the sample conducted at random? We can't answer this question without knowing about the *sampling methodology* used by Kennedy School's Institute of Politics at Harvard University. We'll discuss this more at the end of this section.
-
-In other words, the poll by Kennedy School's Institute of Politics at Harvard University can be thought of as *an instance* of using the shovel to sample beads from the urn. Furthermore, if another polling company conducted a similar poll of young Americans at roughly the same time, they would likely get a different estimate than 41%. This is due to *sampling variation*.
-
-Let's now revisit the sampling paradigm from @sec-terminology-and-notation:
-
-**In general**: 
-
-* If the sampling of a sample of size $n$ is done at **random**, then
-* the sample is **unbiased** and **representative** of the population of size $N$, thus
-* any result based on the sample can **generalize** to the population, thus
-* the point estimate is a **"good guess"** of the unknown population parameter, thus
-* instead of performing a census, we can **infer** about the population using sampling.
-
-**Specific to the urn:**
-
-* If we extract a sample of $n = 50$ beads at **random**, in other words, we mix all of the equally sized beads before using the shovel, then
-* the contents of the shovel are an **unbiased representation** of the contents of the urn's 1000 beads, thus
-* any result based on the shovel's beads can **generalize** to the urn, thus
-* the sample proportion $\hat{\rho}$ of the $n = 50$ beads in the shovel that are red is a **"good guess"** of the population proportion $\rho$ of the $N = 1000$ beads that are red, thus
-* instead of manually going over all 1000 beads in the urn, we can **infer** about the urn using the shovel. 
-
-**Specific to the Obama poll:**
-
-* If we had a way of contacting a **randomly** chosen sample of 2089 young Americans and polling their approval of President Obama in 2013, then
-* these 2089 young Americans would be an **unbiased** and **representative** sample of *all* young Americans in 2013, thus 
-* any results based on this sample of 2089 young Americans can **generalize** to the entire population of *all* young Americans in 2013, thus
-* the reported sample approval rating of 41% of these 2089 young Americans is a **good guess** of the true approval rating among all young Americans in 2013, thus
-* instead of performing an expensive census of all young Americans in 2013, we can **infer** about all young Americans in 2013 using polling.
-
-So as you can see, it was critical for the sample obtained by Kennedy School's Institute of Politics at Harvard University to be truly random in order to infer about *all* young Americans' opinions about Obama. Was their sample truly random? It's hard to answer such questions without knowing about the *sampling methodology* they used. 
-
-For example, what if Kennedy School's Institute of Politics at Harvard University conducted this poll using only mobile phone numbers? People without mobile phones would be left out and therefore not represented in the sample. This flaw is an example of **censoring**, the exclusion of certain datapoints due to an issue with data collection. This results in an incomplete observation and increases the prediction uncertainty of the estimand, Obama's approval rating among young Americans. Ensuring that our samples were random was easy to do in our sampling urn exercises; however, in a real life situation like the Obama poll, this is much harder to do.
+<!-- There used to be a case study from the Modern Dive textbook about Obama's popularity. It was OK! But we really should use a more modern example. And this chapter was already long enough. So I cut it. -->
 
 ## Summary
 
