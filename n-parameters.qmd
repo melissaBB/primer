@@ -11,15 +11,17 @@ library(gtsummary)
 ```
 
 
+<!-- DK: Next Texas gubernatorial election in 2026. Change all 2023 to 2026. -->
+
 *This chapter is still a DRAFT.*
 
 > It may be time to move from assuming that research has been honestly conducted and reported to assuming it to be untrustworthy until there is some evidence to the contrary. -- [Richard Smith](https://blogs.bmj.com/bmj/2021/07/05/time-to-assume-that-health-research-is-fraudulent-until-proved-otherwise/), former editor of the *British Medical Journal*.
 
 Having created models with one parameter in @sec-one-parameter, two parameters in @sec-two-parameters, three parameters in @sec-three-parameters, four parameters in @sec-four-parameters and five parameters in @sec-five-parameters, you are now ready to make the jump to $N$ parameters. 
 
-In this chapter, we will consider models with many parameters and the complexities that arise therefrom. As our models grow in complexity, we need to pay extra attention to basic assumptions like validity, stability, representativeness, and unconfoundedness. It is easy to jump right in and start interpreting! It is harder, but necessary, to ensure that our models are really answering our questions. 
+In this chapter, we will consider models with many parameters and the complexities that arise therefrom. As our models grow in complexity, we need to pay extra attention to basic assumptions like validity, stability, representativeness, and unconfoundedness. It is (too!) easy to jump right in and start interpreting. It is harder, but necessary, to ensure that our models are really answering our questions. 
 
-Imagine you are running for Governor in Texas and want to do a better job of getting your voters to vote. How can you encourage voters to go out to the polls on election day? 
+Imagine you are running for Governor in Texas and want to do a better job of getting your voters to vote. How can you encourage your voters to go out to the polls on election day? 
 
 
 ## Wisdom
@@ -40,9 +42,9 @@ Our question:
 
 *What is the causal effect on voting of different postcards on Texans of different levels of political engagement?*
 
-## Preceptor Table
+### Preceptor Table
 
-The phrasing of the question --- especially the phrase "causal effect" --- makes it obvious that we need a causal, rather than a predictive, model. The *units* of our Preceptor Table are individual voters in Texas around the time of the next election. The *outcome* is voting or not voting. The *covariates* include, at least, measures of political engagement. The *treatments* are postcards of various types. The *potential outcomes* are the involve whether or not the person voted, depending on the treatment received.
+The phrasing of the question --- especially the phrase "causal effect" --- makes it obvious that we need a causal, rather than a predictive, model. The *units* of our Preceptor Table are individual voters in Texas around the time of the next election. The *outcome* is voting or not voting. The *covariates* include, at least, measures of political engagement. The *treatments* are postcards of various types. The *potential outcomes* are involve whether or not the person voted, depending on the treatment received.
 
 Recall the definition of a Preceptor Table. It is the smallest possible table such that, if no data were missing, the calculation of all quantities of interest would be trivial. The **causal effect**, for each individual, is the difference in voting behavior under treatment versus control. Consider:
 
@@ -84,7 +86,7 @@ Comments:
 
 * Should we go back and change the Preceptor Table? No! The Preceptor Table is just a tool we use to fix ideas in our own heads. We never talk about Preceptor Tables with anyone else. Indeed, you won't ever see the words "Preceptor Table" outside of this *Primer* and related work.
 
-* Why is there only one covariate (in addition to the treatment)? Because the question only specifies that one. Any covariates mentioned in the question must be included in the Preceptor Table because, without that information for all units, we can't answer the question.
+* Why is there only one covariate (in addition to the treatment)? Because the question only specifies that one. Any covariates mentioned in the question must be included in the Preceptor Table because, without that information for all units, we can't answer the question. In any real example, we will have other covariates which we might, or might not, include in the model.
 
 
 ### EDA of `shaming`
@@ -112,13 +114,13 @@ glimpse(shaming)
 ```
 
 
-`glimpse()` gives us a look at the raw data contained within the `shaming` data set. At the very top of the output, we can see the number of rows and columns, or observations and variables respectively. We see that there are `r scales::comma(dim(shaming)[1])` observations, with each row corresponding to a unique respondent. `?shaming` provides more details about the variables.
+`glimpse()` gives us a look at the raw data contained within the `shaming` data set. At the very top of the output, we can see the number of rows and columns, or observations and variables, respectively. We see that there are `r scales::comma(dim(shaming)[1])` observations, with each row corresponding to a unique respondent. `?shaming` provides more details about the variables.
 
 Variables of particular interest to us are `sex`, `hh_size`, and `primary_06`. The variable `hh_size` tells us the size of the respondent's household, `sex` tells us the sex of the respondent, and `primary_06` tells us whether or not the respondent voted in the 2006 primary election. 
 
-There are a few things to note while exploring this data set. You may -- or may not -- have noticed that the only response to the `general_04` variable is "Yes". In their published article, the authors note that "Only registered voters who voted in November 2004 were selected for our sample."  After this, the authors found their history then sent out the mailings. Thus, anyone who did not vote in the 2004 general election is excluded, by definition.
+There are a few things to note while exploring this data set. You may -- or may not -- have noticed that the only response to the `general_04` variable is "Yes". In their published article, the authors note that "Only registered voters who voted in November 2004 were selected for our sample."  After this, the authors found their history then sent out the mailings. Thus, anyone who did not vote in the 2004 general election is excluded, by definition. Keep that fact in mind when we discuss representativeness below.
 
-The dependent variable is `primary_06`, which is a variable coded either 0 or 1 for whether or not the respondent voted in the 2006 primary election. This is the dependent variable because the authors are trying to measure the **effect** that the treatments have on voting behavior in the 2006 general election. It is also the dependent variable from our point of view since our question also deals with voting behavior.
+The dependent variable is `primary_06`, which is coded either 0 or 1 for whether or not the respondent voted in the 2006 primary election. This is the dependent variable because the authors are trying to measure the **effect** that the treatments have on voting behavior in the 2006 general election. It is also the dependent variable from our point of view since our question also deals with voting behavior.
 
 The `treatment` variable is a factor variable with 5 levels, including the control. Our focus is on those treatments, and on their causal effects, if any. Consider:
 
@@ -136,12 +138,77 @@ In the second treatment, Hawthorne, households received a mailing which told the
 
 In the third treatment, Self, the mailing includes the recent voting record of each member of the household, placing the word "Voted" next to their name if they did in fact vote in the 2004 election or a blank space next to the name if they did not. In this mailing, the households were also told, “we intend to mail an updated chart" with the voting record of the household members after the 2006 primary. By emphasizing the public nature of voting records, this type of mailing exerts more social pressure on voting than the Hawthorne treatment.
 
-The fourth treatment, Neighbors, provides the household members' voting records, as well as the voting records of those who live nearby. This mailing also told recipients, "we intend to mail an updated chart" of who voted in the 2006 election to the entire neighborhood.
+The fourth treatment, Neighbors, provides the household members' voting records, as well as the voting records of those who live nearby. This mailing also told recipients, "we intend to mail an updated chart" of who voted in the 2006 election to the entire neighborhood. Consider:
 
-<!-- DK: Do more EDA here, including calculating our measure of civic engagement. -->
+
+```{r, echo=FALSE}
+shaming |> 
+  sample_frac(0.05) |> 
+  ggplot(aes(x = treatment, y = primary_06)) +
+    geom_jitter(alpha = 0.03, height = 0.1) +
+    scale_y_continuous(breaks = c(0, 1), labels = c("No", "Yes")) +
+    labs(title = "Postcards and Voting Behavior in Michigan",
+         subtitle = "Most residents did not receive a postcard.",
+         x = "Postcard Type Sent to Voter",
+         y = "Voted in 2006 Primary Election",
+         caption = "Random sample of 5% of the data from Gerber, Green, and Larimer (2008)")
+        
+```
+
+This graphic does not tell us as much as we might like. Most residents did not receive a postcard. Those who did get a postcard had about the same chance of receiving any of the four types of postcard. Since the lower bars are darker, more people in the sample did not vote in the election than did vote. However, we can't really see, much less estimate, a causal effect with just this information.
+
+
 
 ### Validity
 
+Validity is the consistency, or lack there of, in the columns of your dataset and the corresponding columns in your Preceptor Table. In order to consider the two datasets to be drawn from the same population, the columns from one must have a *valid correspondence* with the columns in the other. Validity, if true (or at least reasonable), allows us to construct the *Population Table*, which is the first step in Justice. Consider two counter-arguments to the assumption of validity in this case.
+
+First, voting in a primary election in 2006 in Michigan is not the same thing as voting in a general election in Texas in 2023. Primary elections are less newsworthy and, usually, less competitive. Our client, the gubernatorial candidate, has already won his primary. The outcome he cares about is voting in a general elections. Treatments which might, or might not, affect participation in a primary are irrelevant. Moreover, the political culture of Texas and Michigan are very different. The meaning and importance of voting is not identical across states, nor over time.
+
+Second, our client is interested in using a measure of 
+
+Fortunately, at least for our continued use of this example, there are good reasons for making the assumption of validity.
+
+We can also construct our own measure of political engagement. Consider:
+
+
+```{r}
+shaming <- shaming |> 
+  
+  # Converting the Y/N columns to binaries with the function we made 
+  # note that primary_06 is already binary and also that we don't 
+  # need it to construct a civic engagement variable.
+  
+  mutate(p_00 = (primary_00 == "Yes"),
+         p_02 = (primary_02 == "Yes"),
+         p_04 = (primary_04 == "Yes"),
+         g_00 = (general_00 == "Yes"),
+         g_02 = (general_02 == "Yes"),
+         g_04 = (general_04 == "Yes")) |> 
+  
+  # A sum of the voting action records across the election cycle columns gives
+  # us an idea (though not weighted for when across the elections) of the voters
+  # general level of civic engagement
+  
+  mutate(civ_engage = p_00 + p_02 + p_04 + 
+                      g_00 + g_02 + g_04)
+```
+
+
+
+```{r}
+shaming |>
+  sample_frac(0.05) |> 
+  ggplot(aes(x = civ_engage, y = primary_06)) +
+    geom_jitter(alpha = 0.03, height = 0.1) +
+    scale_x_continuous(breaks = 1:6) + 
+    scale_y_continuous(breaks = c(0, 1), labels = c("No", "Yes")) +
+    labs(title = "Civic Engagement and Voting Behavior in Michigan",
+         subtitle = "Past voting predicts future voting.",
+         x = "Civic Engagement",
+         y = "Voted in 2006 Primary Election",
+         caption = "Random sample of 5% of the data from Gerber, Green, and Larimer (2008)")
+```
 
 
 
@@ -199,7 +266,7 @@ tibble(source = c("...", "...", "...",
        year = c("1990", "1995", "...",
                 "2006", "2006", "...",
                 "2010", "2012", "...",
-                "2021", "2021", "...",
+                "2023", "2023", "...",
                 "2026", "2030"),
        state = c("?", "?", "...",
                  "Michigan", "Michigan", "...",
@@ -240,7 +307,7 @@ tibble(source = c("...", "...", "...",
 
 To understand validity in regards to the Population Table, we must first recognize an inherent flaw in any experiment design: *no two units receive exactly the same treatment*.
 
-We might be thinking: well, surely two postcards are the same? But, they aren't! The postcards sent from our data were sent with information relevant to 2006 --- a different candidate, different language, different syntax. A postcard sent in 2021, even if we used the exact same language, would be encouraging a new candidate with new reform and differing policies. 
+We might be thinking: well, surely two postcards are the same? But, they aren't! The postcards sent from our data were sent with information relevant to 2006 --- a different candidate, different language, different syntax. A postcard sent in 2023, even if we used the exact same language, would be encouraging a new candidate with new reform and differing policies. 
 
 Thus, despite the fact that two units are in the same treatment --- that is, receiving a postcard --- they have very different versions of that treatment. Indeed, there are an infinite number of possible treatments. This is why it is so important to define our estimand clearly.
 
@@ -250,7 +317,7 @@ Stability means that the relationship between the columns is the same for three 
 
 With something like height, it is much easier to assume stability over a greater period of time. Changes in global height occur extremely slowly, so height being stable across a span of 20 years is reasonable to assume. Can we say the same for this example, where we are looking at voting behavior?
 
-Is data collected in 2006 on voting behavior likely to be the same in 2021? Frankly, we don't know! We aren't sure what would impact someone's response to a postcard encouraging them to vote. It is possible, for instance, that a postcard informing neighbors of voting status *would have more of an effect on voting behavior during a pandemic, when you are more closely interacting with neighbors*. 
+Is data collected in 2006 on voting behavior likely to be the same in 2023? Frankly, we don't know! We aren't sure what would impact someone's response to a postcard encouraging them to vote. It is possible, for instance, that a postcard informing neighbors of voting status *would have more of an effect on voting behavior during a pandemic, when you are more closely interacting with neighbors*. 
 
 When we are confronted with this uncertainty, we can consider making our timeframe smaller. However, we would still need to assume stability from 2006 (time of data collection) to today. Stability allows us to ignore the issue of time. 
 
@@ -258,14 +325,14 @@ When we are confronted with this uncertainty, we can consider making our timefra
 
 This is a good time to consider what it really means to accept that our data is representative of our population. With that in mind, let's break down our real, current question: 
 
-* We are running for governor in Texas in the year 2021. In this year and in the United States, we consider sending out a voting reminder postcard to citizens of voting age. Will this reminder encourage voting, and by how much?
+* We are running for governor in Texas in the year 2023. In this year and in the United States, we consider sending out a voting reminder postcard to citizens of voting age. Will this reminder encourage voting, and by how much?
 
 Now, let's break down our data from the `shaming` dataset:
 
 * The data was gathered in Michigan prior to the August 2006 primary election. The population for the experiment was 180,002 households in the state of Michigan. The data only included those who *had* voted in the 2004 general election. Therefore, it did not include non-voters. The reminders were mailed to households at random. 
 
 So, how similar are these groups? Let's start with some differences.
-* The data is from 2006. Our question is asking for answers from 2021. This is not a small gap in time. A lot changes in a decade and a half!
+* The data is from 2006. Our question is asking for answers from 2023. This is not a small gap in time. A lot changes in a decade and a half!
 * The data excludes all non-voters in the last election. Our question, which seeks to increase voting turnout *in all citizens*, would want for non-voters to be included. So, can we make any claims about those citizens? Probably not.
 * The data only includes voters from Michigan. We want to make inferences about Texas, or perhaps the United States as a whole. Is it within reason to do that?
 

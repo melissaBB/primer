@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.361">
+<meta name="generator" content="quarto-1.4.549">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>Preceptor’s Primer for Bayesian Data Science: Using the Cardinal Virtues for Inference - Getting Started</title>
 <style>
@@ -19,7 +19,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -76,7 +76,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -85,6 +91,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -95,19 +102,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./getting-started.html">Getting Started</a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./getting-started.html">Getting Started</a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
   </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Preceptor’s Primer for Bayesian Data Science: Using the Cardinal Virtues for Inference</a> 
         <div class="sidebar-tools-main">
@@ -231,7 +238,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
     </ul>
 </div>
-</nav><div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
@@ -246,7 +253,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#basic-commands" id="toc-basic-commands" class="nav-link" data-scroll-target="#basic-commands">Basic Commands</a></li>
   <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps">Next Steps</a></li>
   <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
-  </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/PPBDS/primer/edit/main/getting-started.qmd" class="toc-action">Edit this page</a></p></div></div></nav>
+  </ul><div class="toc-actions"><ul><li><a href="https://github.com/PPBDS/primer/edit/main/getting-started.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
@@ -263,14 +270,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
-</header><!-- Need to rethink how students start the process, combining this material with the tutorial.helpers Getting Started tutorial and then r4ds.tutorials Chapter 1. We would like this section to be as short as possible.  --><!-- In this chapter, we do not run set_rstudio_settings() and set_binary_only_in_r_profile() because these functions only work with an associated RStudio instance. There is no such instance when you render a qmd file, even if you render that file from within RStudio. (I think!) We do, however, run the install code for the packages. We do this in order to ensure that the code works when students try to run it, even though this is somewhat aggressive from the point of view of our co-authors. --><p><em>You can never look at the data too much.</em> – Mark Engerman</p>
+
+</header><p><em>You can never look at the data too much.</em> – Mark Engerman</p>
 <p>The world confronts us. Make decisions we must.</p>
 <section id="installing-r-and-rstudio" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="installing-r-and-rstudio">Installing R and RStudio</h3>
 <!-- Update all the images. -->
 <!-- Change the graphic so that the words are the top are: "R is like a car's engine." and "RStudio is like a car's dashboard." -->
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="getting-started/images/R_vs_RStudio_1.png" class="img-fluid" width="758"></p>
+<div>
+<figure class="figure"><p><img src="getting-started/images/R_vs_RStudio_1.png" class="img-fluid figure-img" width="758"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>We use <strong>R</strong> via <strong>RStudio</strong>. R is to RStudio as a car’s engine is to its dashboard.</p>
@@ -291,7 +302,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="getting-started/images/R_vs_RStudio.png" class="img-fluid figure-img" width="791"></p>
-<figcaption class="figure-caption">Icons of R versus RStudio on your computer.</figcaption></figure>
+<figcaption>Icons of R versus RStudio on your computer.</figcaption></figure>
 </div>
 </div>
 </div>
@@ -300,13 +311,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Open up RStudio. You should see three <em>panes</em> dividing the screen: the <em>Console pane</em>, the <em>Environment pane</em>, and the <em>Files pane</em>.</p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="getting-started/images/panes.png" class="img-fluid" width="868"></p>
+<div>
+<figure class="figure"><p><img src="getting-started/images/panes.png" class="img-fluid figure-img" width="868"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>This is your workspace. Start with the big pane on the left:</p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="getting-started/images/jobs.png" class="img-fluid" width="398"></p>
+<div>
+<figure class="figure"><p><img src="getting-started/images/jobs.png" class="img-fluid figure-img" width="398"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>There are three tabs in the Console pane. We’ll be focusing on the Console and Terminal tabs. When you first start R, the Console gives you some information about your version of R. The Console is where you can type and run R code. For example, if you type 1 + 1 and hit return, the Console returns 2.</p>
@@ -315,7 +332,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Switch to the top right of your workspace:</p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="getting-started/images/top_right_window.png" class="img-fluid" width="653"></p>
+<div>
+<figure class="figure"><p><img src="getting-started/images/top_right_window.png" class="img-fluid figure-img" width="653"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>The main two tabs we will be using are Environment and Git (which is not yet visible). The Environment tab shows you the datasets and variables you currently have loaded into R. In this case, we loaded in a dataset with 3407 rows and 5 columns and a variable <code>x</code> equal to 5. For you, the Environment should be empty. Let’s change that. Go to your Console and type:</p>
@@ -326,7 +346,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Switch to the bottom right pane:</p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="getting-started/images/bottom_right_window.png" class="img-fluid" width="653"></p>
+<div>
+<figure class="figure"><p><img src="getting-started/images/bottom_right_window.png" class="img-fluid figure-img" width="653"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>The Files tab displays your computer’s file system. When you create a project later, this tab will automatically show the contents of your project’s folder.</p>
@@ -337,7 +360,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="getting-started/images/R_vs_R_packages.png" class="img-fluid figure-img" width="648"></p>
-<figcaption class="figure-caption">R is to R packages as a new phone is to apps for that phone.</figcaption></figure>
+<figcaption>R is to R packages as a new phone is to apps for that phone.</figcaption></figure>
 </div>
 </div>
 </div>
@@ -354,7 +377,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="getting-started/images/install_vs_load.jpg" class="img-fluid figure-img" width="402"></p>
-<figcaption class="figure-caption">Installing versus loading an R package</figcaption></figure>
+<figcaption>Installing versus loading an R package</figcaption></figure>
 </div>
 </div>
 </div>
@@ -430,13 +453,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>There are many tutorials available in the <strong>r4ds.tutorials</strong> and <strong>primer.tutorials</strong> packages. In order to access these tutorials, you should run <code><a href="https://ppbds.github.io/r4ds.tutorials/">library(r4ds.tutorials)</a></code> or <code><a href="https://ppbds.github.io/primer.tutorials/">library(primer.tutorials)</a></code> in the R Console.</p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="getting-started/images/all_primer_tutorials_load.png" class="img-fluid" width="388"></p>
+<div>
+<figure class="figure"><p><img src="getting-started/images/all_primer_tutorials_load.png" class="img-fluid figure-img" width="388"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Access the tutorials via the Tutorial tab in the Environment pane in RStudio. If you don’t see any tutorials, try clicking the “Home” icon – the little house symbol with the thin red roof. You may need to restart your R session. Click on the “Session” menu and select “Restart R”.</p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="getting-started/images/starting_tutorial.gif" class="img-fluid"></p>
+<div>
+<figure class="figure"><p><img src="getting-started/images/starting_tutorial.gif" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>In order to expand the window, you can drag and enlarge the Tutorial tab inside RStudio. In order to open a pop-up window, click the “Show in New Window” icon next to the Home icon.</p>
@@ -469,8 +498,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>Messages are similar. In both cases, you should fix the underlying issue until the error/warning/message goes away.</p>
 </section><section id="next-steps" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="next-steps">Next Steps</h3>
-<p>Complete the “Getting Started” tutorial from the <strong>tutorial.helpers</strong> package. This will ensures that your RStudio settings are sensible.</p>
-<p>Previous version of this textbook included three chapters which reviewed the use of R for data science. However, most of this material is covered, more competently, in <a href="https://r4ds.hadley.nz/"><em>R for Data Science (2e)</em></a> by Hadley Wickham, Mine Çetinkaya-Rundel, and Garrett Grolemund. Go read that book now. Even better, complete the <a href="https://ppbds.github.io/r4ds.tutorials/">associated tutorials</a>.</p>
+<p>Complete the “Getting Started” tutorial from the <strong>tutorial.helpers</strong> package. This will ensures that your RStudio settings are sensible. Note that, in the Tutorial pane, tutorials are in alphabetical order by package name. So the “Getting Started” tutorial from the <strong>tutorial.helpers</strong> package will be <strong>near the bottom of the Tutorial pane</strong>.</p>
 <p>Once you have done so, or if you already know R, you can start to learn about data science.</p>
 </section><section id="summary" class="level2 unnumbered"><h2 class="unnumbered anchored" data-anchor-id="summary">Summary</h2>
 <p>You should have done the following:</p>
@@ -494,7 +522,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Let’s get started.</p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="getting-started/images/ending.gif" class="img-fluid"></p>
+<div>
+<figure class="figure"><p><img src="getting-started/images/ending.gif" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 </div>
 
@@ -578,10 +609,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -591,8 +621,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -605,6 +644,125 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -648,6 +806,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -673,6 +832,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -732,12 +917,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
-      <a href="./preamble.html" class="pagination-link">
+      <a href="./preamble.html" class="pagination-link  aria-label=" preamble="">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Preamble</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./rubin-causal-model.html" class="pagination-link">
+      <a href="./rubin-causal-model.html" class="pagination-link" aria-label="<span class='chapter-number'>1</span>&nbsp; <span class='chapter-title'>Rubin Causal Model</span>">
         <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Rubin Causal Model</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
@@ -746,4 +931,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-</body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/PPBDS/primer/edit/main/getting-started.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div></div></footer></body></html>

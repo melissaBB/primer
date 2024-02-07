@@ -1,9 +1,5 @@
 # Getting Started {.unnumbered}
 
-<!-- Need to rethink how students start the process, combining this material with the tutorial.helpers Getting Started tutorial and then r4ds.tutorials Chapter 1. We would like this section to be as short as possible.  -->
-
-<!-- In this chapter, we do not run set_rstudio_settings() and set_binary_only_in_r_profile() because these functions only work with an associated RStudio instance. There is no such instance when you render a qmd file, even if you render that file from within RStudio. (I think!) We do, however, run the install code for the packages. We do this in order to ensure that the code works when students try to run it, even though this is somewhat aggressive from the point of view of our co-authors. -->
-
 *You can never look at the data too much.* -- Mark Engerman
 
 The world confronts us. Make decisions we must.
@@ -144,7 +140,7 @@ This helps to ensure that package installation will go more smoothly.
 Let's *install* a useful package. At the Console pane within RStudio, type:
 
 ```{r}
-#| output: false
+#| eval: false
 #| code-fold: false
 install.packages("remotes")
 ```
@@ -173,7 +169,7 @@ R packages generally live in one of two places:
 After you install a package, you need to "load" it by using the `library()` command. To load the **remotes** package, run the following code in the Console. 
 
 ```{r}
-#| output: false
+#| eval: false
 #| code-fold: false
 library(remotes)
 ```
@@ -219,7 +215,7 @@ This is a different error message than the one you just saw about a package not 
 Let's install two packages that are not available from CRAN: **r4ds.tutorials** and **primer.tutorials**. Copy and paste the following to the R Console:
 
 ```{r}
-#| output: false
+#| eval: false
 #| code-fold: false
 library(remotes)
 install_github("PPBDS/r4ds.tutorials")
@@ -242,7 +238,7 @@ This gives the download more time to complete. Try `install_github("PPBDS/r4ds.t
 Next, copy and paste the following to the R Console:
 
 ```{r}
-#| output: false
+#| eval: false
 #| code-fold: false
 remotes::install_github("PPBDS/primer.tutorials")
 ```
@@ -309,9 +305,7 @@ Messages are similar. In both cases, you should fix the underlying issue until t
 
 ### Next Steps {.unnumbered}
 
-Complete the "Getting Started" tutorial from the **tutorial.helpers** package. This will ensures that your RStudio settings are sensible.
-
-Previous version of this textbook included three chapters which reviewed the use of R for data science. However, most of this material is covered, more competently, in [*R for Data Science (2e)*](https://r4ds.hadley.nz/) by Hadley Wickham, Mine Çetinkaya-Rundel, and Garrett Grolemund. Go read that book now. Even better, complete the [associated tutorials](https://ppbds.github.io/r4ds.tutorials/).
+Complete the "Getting Started" tutorial from the **tutorial.helpers** package. This will ensures that your RStudio settings are sensible. Note that, in the Tutorial pane, tutorials are in alphabetical order by package name. So the "Getting Started" tutorial from the **tutorial.helpers** package will be **near the bottom of the Tutorial pane**.
 
 Once you have done so, or if you already know R, you can start to learn about data science.
 

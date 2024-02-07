@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.361">
+<meta name="generator" content="quarto-1.4.549">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>Preceptor’s Primer for Bayesian Data Science: Using the Cardinal Virtues for Inference - 8&nbsp; N Parameters</title>
 <style>
@@ -19,7 +19,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -76,7 +76,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -85,29 +91,55 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+}</script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 </head>
 <body class="nav-sidebar floating">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./n-parameters.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">N Parameters</span></a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./n-parameters.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">N Parameters</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
   </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Preceptor’s Primer for Bayesian Data Science: Using the Cardinal Virtues for Inference</a> 
         <div class="sidebar-tools-main">
@@ -231,47 +263,47 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
     </ul>
 </div>
-</nav><div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
    
   <ul>
-<li><a href="#wisdom" id="toc-wisdom" class="nav-link active" data-scroll-target="#wisdom"><span class="header-section-number">8.1</span> Wisdom</a></li>
-  <li>
-<a href="#preceptor-table" id="toc-preceptor-table" class="nav-link" data-scroll-target="#preceptor-table"><span class="header-section-number">8.2</span> Preceptor Table</a>
+<li>
+<a href="#wisdom" id="toc-wisdom" class="nav-link active" data-scroll-target="#wisdom"><span class="header-section-number">8.1</span> Wisdom</a>
   <ul class="collapse">
-<li><a href="#eda-of-shaming" id="toc-eda-of-shaming" class="nav-link" data-scroll-target="#eda-of-shaming"><span class="header-section-number">8.2.1</span> EDA of <code>shaming</code></a></li>
-  <li><a href="#validity" id="toc-validity" class="nav-link" data-scroll-target="#validity"><span class="header-section-number">8.2.2</span> Validity</a></li>
-  <li><a href="#population" id="toc-population" class="nav-link" data-scroll-target="#population"><span class="header-section-number">8.2.3</span> Population</a></li>
+<li><a href="#preceptor-table" id="toc-preceptor-table" class="nav-link" data-scroll-target="#preceptor-table"><span class="header-section-number">8.1.1</span> Preceptor Table</a></li>
+  <li><a href="#eda-of-shaming" id="toc-eda-of-shaming" class="nav-link" data-scroll-target="#eda-of-shaming"><span class="header-section-number">8.1.2</span> EDA of <code>shaming</code></a></li>
+  <li><a href="#validity" id="toc-validity" class="nav-link" data-scroll-target="#validity"><span class="header-section-number">8.1.3</span> Validity</a></li>
+  <li><a href="#population" id="toc-population" class="nav-link" data-scroll-target="#population"><span class="header-section-number">8.1.4</span> Population</a></li>
   </ul>
 </li>
   <li>
-<a href="#justice" id="toc-justice" class="nav-link" data-scroll-target="#justice"><span class="header-section-number">8.3</span> Justice</a>
+<a href="#justice" id="toc-justice" class="nav-link" data-scroll-target="#justice"><span class="header-section-number">8.2</span> Justice</a>
   <ul class="collapse">
-<li><a href="#the-population-table" id="toc-the-population-table" class="nav-link" data-scroll-target="#the-population-table"><span class="header-section-number">8.3.1</span> The Population Table</a></li>
-  <li><a href="#validity-1" id="toc-validity-1" class="nav-link" data-scroll-target="#validity-1"><span class="header-section-number">8.3.2</span> Validity</a></li>
-  <li><a href="#stability" id="toc-stability" class="nav-link" data-scroll-target="#stability"><span class="header-section-number">8.3.3</span> Stability</a></li>
-  <li><a href="#representativeness" id="toc-representativeness" class="nav-link" data-scroll-target="#representativeness"><span class="header-section-number">8.3.4</span> Representativeness</a></li>
-  <li><a href="#functional-form" id="toc-functional-form" class="nav-link" data-scroll-target="#functional-form"><span class="header-section-number">8.3.5</span> Functional form</a></li>
+<li><a href="#the-population-table" id="toc-the-population-table" class="nav-link" data-scroll-target="#the-population-table"><span class="header-section-number">8.2.1</span> The Population Table</a></li>
+  <li><a href="#validity-1" id="toc-validity-1" class="nav-link" data-scroll-target="#validity-1"><span class="header-section-number">8.2.2</span> Validity</a></li>
+  <li><a href="#stability" id="toc-stability" class="nav-link" data-scroll-target="#stability"><span class="header-section-number">8.2.3</span> Stability</a></li>
+  <li><a href="#representativeness" id="toc-representativeness" class="nav-link" data-scroll-target="#representativeness"><span class="header-section-number">8.2.4</span> Representativeness</a></li>
+  <li><a href="#functional-form" id="toc-functional-form" class="nav-link" data-scroll-target="#functional-form"><span class="header-section-number">8.2.5</span> Functional form</a></li>
   </ul>
 </li>
   <li>
-<a href="#courage" id="toc-courage" class="nav-link" data-scroll-target="#courage"><span class="header-section-number">8.4</span> Courage</a>
+<a href="#courage" id="toc-courage" class="nav-link" data-scroll-target="#courage"><span class="header-section-number">8.3</span> Courage</a>
   <ul class="collapse">
-<li><a href="#set-up" id="toc-set-up" class="nav-link" data-scroll-target="#set-up"><span class="header-section-number">8.4.1</span> Set-up</a></li>
-  <li><a href="#primary_06-treatment-sex" id="toc-primary_06-treatment-sex" class="nav-link" data-scroll-target="#primary_06-treatment-sex"><span class="header-section-number">8.4.2</span> primary_06 ~ treatment + sex</a></li>
-  <li><a href="#primary_06-z_age-sex-treatment-voter_class-voter_classtreatment" id="toc-primary_06-z_age-sex-treatment-voter_class-voter_classtreatment" class="nav-link" data-scroll-target="#primary_06-z_age-sex-treatment-voter_class-voter_classtreatment"><span class="header-section-number">8.4.3</span> primary_06 ~ z_age + sex + treatment + voter_class + voter_class*treatment</a></li>
+<li><a href="#set-up" id="toc-set-up" class="nav-link" data-scroll-target="#set-up"><span class="header-section-number">8.3.1</span> Set-up</a></li>
+  <li><a href="#primary_06-treatment-sex" id="toc-primary_06-treatment-sex" class="nav-link" data-scroll-target="#primary_06-treatment-sex"><span class="header-section-number">8.3.2</span> primary_06 ~ treatment + sex</a></li>
+  <li><a href="#primary_06-z_age-sex-treatment-voter_class-voter_classtreatment" id="toc-primary_06-z_age-sex-treatment-voter_class-voter_classtreatment" class="nav-link" data-scroll-target="#primary_06-z_age-sex-treatment-voter_class-voter_classtreatment"><span class="header-section-number">8.3.3</span> primary_06 ~ z_age + sex + treatment + voter_class + voter_class*treatment</a></li>
   </ul>
 </li>
   <li>
-<a href="#temperance" id="toc-temperance" class="nav-link" data-scroll-target="#temperance"><span class="header-section-number">8.5</span> Temperance</a>
+<a href="#temperance" id="toc-temperance" class="nav-link" data-scroll-target="#temperance"><span class="header-section-number">8.4</span> Temperance</a>
   <ul class="collapse">
-<li><a href="#the-three-levels-of-knowledge" id="toc-the-three-levels-of-knowledge" class="nav-link" data-scroll-target="#the-three-levels-of-knowledge"><span class="header-section-number">8.5.1</span> The Three Levels of Knowledge</a></li>
+<li><a href="#the-three-levels-of-knowledge" id="toc-the-three-levels-of-knowledge" class="nav-link" data-scroll-target="#the-three-levels-of-knowledge"><span class="header-section-number">8.4.1</span> The Three Levels of Knowledge</a></li>
   </ul>
 </li>
-  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">8.6</span> Summary</a></li>
-  </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/PPBDS/primer/edit/main/n-parameters.qmd" class="toc-action">Edit this page</a></p></div></div></nav>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">8.5</span> Summary</a></li>
+  </ul><div class="toc-actions"><ul><li><a href="https://github.com/PPBDS/primer/edit/main/n-parameters.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
@@ -288,20 +320,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
-</header><p><em>This chapter is still a DRAFT.</em></p>
+
+</header><!-- DK: Next Texas gubernatorial election in 2026. Change all 2023 to 2026. --><p><em>This chapter is still a DRAFT.</em></p>
 <blockquote class="blockquote">
 <p>It may be time to move from assuming that research has been honestly conducted and reported to assuming it to be untrustworthy until there is some evidence to the contrary. – <a href="https://blogs.bmj.com/bmj/2021/07/05/time-to-assume-that-health-research-is-fraudulent-until-proved-otherwise/">Richard Smith</a>, former editor of the <em>British Medical Journal</em>.</p>
 </blockquote>
-<p>Having created models with one parameter in <a href="one-parameter.html"><span>Chapter&nbsp;3</span></a>, two parameters in <a href="two-parameters.html"><span>Chapter&nbsp;4</span></a>, three parameters in <a href="three-parameters.html"><span>Chapter&nbsp;5</span></a>, four parameters in <a href="four-parameters.html"><span>Chapter&nbsp;6</span></a> and five parameters in <a href="five-parameters.html"><span>Chapter&nbsp;7</span></a>, you are now ready to make the jump to <span class="math inline">\(N\)</span> parameters.</p>
-<p>In this chapter, we will consider models with many parameters and the complexities that arise therefrom. As our models grow in complexity, we need to pay extra attention to basic assumptions like validity, stability, representativeness, and unconfoundedness. It is easy to jump right in and start interpreting! It is harder, but necessary, to ensure that our models are really answering our questions.</p>
-<p>Imagine you are running for Governor in Texas and want to do a better job of getting your voters to vote. How can you encourage voters to go out to the polls on election day?</p>
+<p>Having created models with one parameter in <a href="one-parameter.html" class="quarto-xref"><span>Chapter 3</span></a>, two parameters in <a href="two-parameters.html" class="quarto-xref"><span>Chapter 4</span></a>, three parameters in <a href="three-parameters.html" class="quarto-xref"><span>Chapter 5</span></a>, four parameters in <a href="four-parameters.html" class="quarto-xref"><span>Chapter 6</span></a> and five parameters in <a href="five-parameters.html" class="quarto-xref"><span>Chapter 7</span></a>, you are now ready to make the jump to <span class="math inline">\(N\)</span> parameters.</p>
+<p>In this chapter, we will consider models with many parameters and the complexities that arise therefrom. As our models grow in complexity, we need to pay extra attention to basic assumptions like validity, stability, representativeness, and unconfoundedness. It is (too!) easy to jump right in and start interpreting. It is harder, but necessary, to ensure that our models are really answering our questions.</p>
+<p>Imagine you are running for Governor in Texas and want to do a better job of getting your voters to vote. How can you encourage your voters to go out to the polls on election day?</p>
 <section id="wisdom" class="level2" data-number="8.1"><h2 data-number="8.1" class="anchored" data-anchor-id="wisdom">
 <span class="header-section-number">8.1</span> Wisdom</h2>
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="other/images/Wisdom.jpg" class="img-fluid figure-img" width="1280"></p>
-<figcaption class="figure-caption">Wisdom</figcaption></figure>
+<figcaption>Wisdom</figcaption></figure>
 </div>
 </div>
 </div>
@@ -310,30 +343,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Recall our initial question: how can we encourage voters to go out to the polls on election day? We now need to translate this into a more precise question, one that we can answer with data.</p>
 <p>Our question:</p>
 <p><em>What is the causal effect on voting of different postcards on Texans of different levels of political engagement?</em></p>
-</section><section id="preceptor-table" class="level2" data-number="8.2"><h2 data-number="8.2" class="anchored" data-anchor-id="preceptor-table">
-<span class="header-section-number">8.2</span> Preceptor Table</h2>
-<p>The phrasing of the question — especially the phrase “causal effect” — makes it obvious that we need a causal, rather than a predictive, model. The <em>units</em> of our Preceptor Table are individual voters in Texas around the time of the next election. The <em>outcome</em> is voting or not voting. The <em>covariates</em> include, at least, measures of political engagement. The <em>treatments</em> are postcards of various types. The <em>potential outcomes</em> are the involve whether or not the person voted, depending on the treatment received.</p>
+<section id="preceptor-table" class="level3" data-number="8.1.1"><h3 data-number="8.1.1" class="anchored" data-anchor-id="preceptor-table">
+<span class="header-section-number">8.1.1</span> Preceptor Table</h3>
+<p>The phrasing of the question — especially the phrase “causal effect” — makes it obvious that we need a causal, rather than a predictive, model. The <em>units</em> of our Preceptor Table are individual voters in Texas around the time of the next election. The <em>outcome</em> is voting or not voting. The <em>covariates</em> include, at least, measures of political engagement. The <em>treatments</em> are postcards of various types. The <em>potential outcomes</em> are involve whether or not the person voted, depending on the treatment received.</p>
 <p>Recall the definition of a Preceptor Table. It is the smallest possible table such that, if no data were missing, the calculation of all quantities of interest would be trivial. The <strong>causal effect</strong>, for each individual, is the difference in voting behavior under treatment versus control. Consider:</p>
 <div class="cell">
 <div class="cell-output-display">
-
-<div id="zcuplwdyuv" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#zcuplwdyuv table {
+<div id="pzqgshbnez" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#pzqgshbnez table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#zcuplwdyuv thead, #zcuplwdyuv tbody, #zcuplwdyuv tfoot, #zcuplwdyuv tr, #zcuplwdyuv td, #zcuplwdyuv th {
+#pzqgshbnez thead, #pzqgshbnez tbody, #pzqgshbnez tfoot, #pzqgshbnez tr, #pzqgshbnez td, #pzqgshbnez th {
   border-style: none;
 }
 
-#zcuplwdyuv p {
+#pzqgshbnez p {
   margin: 0;
   padding: 0;
 }
 
-#zcuplwdyuv .gt_table {
+#pzqgshbnez .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -359,12 +391,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-left-color: #D3D3D3;
 }
 
-#zcuplwdyuv .gt_caption {
+#pzqgshbnez .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#zcuplwdyuv .gt_title {
+#pzqgshbnez .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -376,7 +408,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-width: 0;
 }
 
-#zcuplwdyuv .gt_subtitle {
+#pzqgshbnez .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -388,7 +420,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-top-width: 0;
 }
 
-#zcuplwdyuv .gt_heading {
+#pzqgshbnez .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -400,13 +432,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#zcuplwdyuv .gt_bottom_border {
+#pzqgshbnez .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#zcuplwdyuv .gt_col_headings {
+#pzqgshbnez .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -421,7 +453,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#zcuplwdyuv .gt_col_heading {
+#pzqgshbnez .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -441,7 +473,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   overflow-x: hidden;
 }
 
-#zcuplwdyuv .gt_column_spanner_outer {
+#pzqgshbnez .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -453,15 +485,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 4px;
 }
 
-#zcuplwdyuv .gt_column_spanner_outer:first-child {
+#pzqgshbnez .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#zcuplwdyuv .gt_column_spanner_outer:last-child {
+#pzqgshbnez .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#zcuplwdyuv .gt_column_spanner {
+#pzqgshbnez .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -473,11 +505,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   width: 100%;
 }
 
-#zcuplwdyuv .gt_spanner_row {
+#pzqgshbnez .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#zcuplwdyuv .gt_group_heading {
+#pzqgshbnez .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -503,7 +535,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   text-align: left;
 }
 
-#zcuplwdyuv .gt_empty_group_heading {
+#pzqgshbnez .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -518,15 +550,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   vertical-align: middle;
 }
 
-#zcuplwdyuv .gt_from_md > :first-child {
+#pzqgshbnez .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#zcuplwdyuv .gt_from_md > :last-child {
+#pzqgshbnez .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#zcuplwdyuv .gt_row {
+#pzqgshbnez .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -545,7 +577,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   overflow-x: hidden;
 }
 
-#zcuplwdyuv .gt_stub {
+#pzqgshbnez .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -558,7 +590,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#zcuplwdyuv .gt_stub_row_group {
+#pzqgshbnez .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -572,15 +604,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   vertical-align: top;
 }
 
-#zcuplwdyuv .gt_row_group_first td {
+#pzqgshbnez .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#zcuplwdyuv .gt_row_group_first th {
+#pzqgshbnez .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#zcuplwdyuv .gt_summary_row {
+#pzqgshbnez .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -590,16 +622,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#zcuplwdyuv .gt_first_summary_row {
+#pzqgshbnez .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#zcuplwdyuv .gt_first_summary_row.thick {
+#pzqgshbnez .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#zcuplwdyuv .gt_last_summary_row {
+#pzqgshbnez .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -609,7 +641,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#zcuplwdyuv .gt_grand_summary_row {
+#pzqgshbnez .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -619,7 +651,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#zcuplwdyuv .gt_first_grand_summary_row {
+#pzqgshbnez .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -629,7 +661,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-top-color: #D3D3D3;
 }
 
-#zcuplwdyuv .gt_last_grand_summary_row_top {
+#pzqgshbnez .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -639,11 +671,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#zcuplwdyuv .gt_striped {
+#pzqgshbnez .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#zcuplwdyuv .gt_table_body {
+#pzqgshbnez .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -652,7 +684,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#zcuplwdyuv .gt_footnotes {
+#pzqgshbnez .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -666,7 +698,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#zcuplwdyuv .gt_footnote {
+#pzqgshbnez .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -675,7 +707,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#zcuplwdyuv .gt_sourcenotes {
+#pzqgshbnez .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -689,7 +721,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#zcuplwdyuv .gt_sourcenote {
+#pzqgshbnez .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -697,206 +729,139 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#zcuplwdyuv .gt_left {
+#pzqgshbnez .gt_left {
   text-align: left;
 }
 
-#zcuplwdyuv .gt_center {
+#pzqgshbnez .gt_center {
   text-align: center;
 }
 
-#zcuplwdyuv .gt_right {
+#pzqgshbnez .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#zcuplwdyuv .gt_font_normal {
+#pzqgshbnez .gt_font_normal {
   font-weight: normal;
 }
 
-#zcuplwdyuv .gt_font_bold {
+#pzqgshbnez .gt_font_bold {
   font-weight: bold;
 }
 
-#zcuplwdyuv .gt_font_italic {
+#pzqgshbnez .gt_font_italic {
   font-style: italic;
 }
 
-#zcuplwdyuv .gt_super {
+#pzqgshbnez .gt_super {
   font-size: 65%;
 }
 
-#zcuplwdyuv .gt_footnote_marks {
+#pzqgshbnez .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#zcuplwdyuv .gt_asterisk {
+#pzqgshbnez .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#zcuplwdyuv .gt_indent_1 {
+#pzqgshbnez .gt_indent_1 {
   text-indent: 5px;
 }
 
-#zcuplwdyuv .gt_indent_2 {
+#pzqgshbnez .gt_indent_2 {
   text-indent: 10px;
 }
 
-#zcuplwdyuv .gt_indent_3 {
+#pzqgshbnez .gt_indent_3 {
   text-indent: 15px;
 }
 
-#zcuplwdyuv .gt_indent_4 {
+#pzqgshbnez .gt_indent_4 {
   text-indent: 20px;
 }
 
-#zcuplwdyuv .gt_indent_5 {
+#pzqgshbnez .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
-<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<table class="gt_table table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
 <thead>
-<tr class="gt_heading">
-<td colspan="5" class="gt_heading gt_title gt_font_normal gt_bottom_border" style="">Preceptor Table</td>
-    </tr>
-<tr class="gt_col_headings gt_spanner_row">
-<th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="2" colspan="1" style="font-size: large; text-align: left; vertical-align: middle;" scope="col" id="ID">ID</th>
-      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="2" scope="colgroup" id="Outcomes">
-        <span class="gt_column_spanner">Outcomes</span>
-      </th>
-      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="2" scope="colgroup" id="Covariates">
-        <span class="gt_column_spanner">Covariates</span>
-      </th>
-    </tr>
-<tr class="gt_col_headings">
-<th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="Voting After Control">Voting After Control</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="Voting After Treatment">Voting After Treatment</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="Treatment">Treatment</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="Engagement">Engagement</th>
-    </tr>
+<tr class="header gt_heading">
+<th colspan="5" class="gt_heading gt_title gt_font_normal gt_bottom_border">Preceptor Table</th>
+</tr>
+<tr class="odd gt_col_headings gt_spanner_row">
+<th rowspan="2" id="ID" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" style="text-align: left; font-size: large; vertical-align: middle;" scope="col">ID</th>
+<th colspan="2" id="Outcomes" class="gt_center gt_columns_top_border gt_column_spanner_outer" data-quarto-table-cell-role="th" scope="colgroup"><span class="gt_column_spanner">Outcomes</span></th>
+<th colspan="2" id="Covariates" class="gt_center gt_columns_top_border gt_column_spanner_outer" data-quarto-table-cell-role="th" scope="colgroup"><span class="gt_column_spanner">Covariates</span></th>
+</tr>
+<tr class="header gt_col_headings">
+<th id="Voting After Control" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Voting After Control</th>
+<th id="Voting After Treatment" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Voting After Treatment</th>
+<th id="Treatment" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Treatment</th>
+<th id="Engagement" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Engagement</th>
+</tr>
 </thead>
 <tbody class="gt_table_body">
-<tr>
-<td headers="ID" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div data-qmd="1"><div class="gt_from_md">
-<p>1</p>
-</div></div></td>
-<td headers="voting_after_control" class="gt_row gt_center"><div data-qmd="1"><div class="gt_from_md">
-<p>1</p>
-</div></div></td>
-<td headers="voting_after_treated" class="gt_row gt_center"><div data-qmd="1"><div class="gt_from_md">
-<p>1</p>
-</div></div></td>
-<td headers="treatment" class="gt_row gt_center"><div data-qmd="Yes"><div class="gt_from_md">
-<p>Yes</p>
-</div></div></td>
-<td headers="engagement" class="gt_row gt_center"><div data-qmd="1"><div class="gt_from_md">
-<p>1</p>
-</div></div></td>
+<tr class="odd">
+<td class="gt_row gt_left" headers="ID" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000"><p>1</p></td>
+<td class="gt_row gt_center" headers="voting_after_control"><p>1</p></td>
+<td class="gt_row gt_center" headers="voting_after_treated"><p>1</p></td>
+<td class="gt_row gt_center" headers="treatment"><p>Yes</p></td>
+<td class="gt_row gt_center" headers="engagement"><p>1</p></td>
 </tr>
-<tr>
-<td headers="ID" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div data-qmd="2"><div class="gt_from_md">
-<p>2</p>
-</div></div></td>
-<td headers="voting_after_control" class="gt_row gt_center"><div data-qmd="0"><div class="gt_from_md">
-<p>0</p>
-</div></div></td>
-<td headers="voting_after_treated" class="gt_row gt_center"><div data-qmd="1"><div class="gt_from_md">
-<p>1</p>
-</div></div></td>
-<td headers="treatment" class="gt_row gt_center"><div data-qmd="No"><div class="gt_from_md">
-<p>No</p>
-</div></div></td>
-<td headers="engagement" class="gt_row gt_center"><div data-qmd="3"><div class="gt_from_md">
-<p>3</p>
-</div></div></td>
+<tr class="even">
+<td class="gt_row gt_left" headers="ID" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000"><p>2</p></td>
+<td class="gt_row gt_center" headers="voting_after_control"><p>0</p></td>
+<td class="gt_row gt_center" headers="voting_after_treated"><p>1</p></td>
+<td class="gt_row gt_center" headers="treatment"><p>No</p></td>
+<td class="gt_row gt_center" headers="engagement"><p>3</p></td>
 </tr>
-<tr>
-<td headers="ID" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div data-qmd="..."><div class="gt_from_md">
-<p>…</p>
-</div></div></td>
-<td headers="voting_after_control" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
-<p>…</p>
-</div></div></td>
-<td headers="voting_after_treated" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
-<p>…</p>
-</div></div></td>
-<td headers="treatment" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
-<p>…</p>
-</div></div></td>
-<td headers="engagement" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
-<p>…</p>
-</div></div></td>
+<tr class="odd">
+<td class="gt_row gt_left" headers="ID" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000"><p>…</p></td>
+<td class="gt_row gt_center" headers="voting_after_control"><p>…</p></td>
+<td class="gt_row gt_center" headers="voting_after_treated"><p>…</p></td>
+<td class="gt_row gt_center" headers="treatment"><p>…</p></td>
+<td class="gt_row gt_center" headers="engagement"><p>…</p></td>
 </tr>
-<tr>
-<td headers="ID" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div data-qmd="10"><div class="gt_from_md">
-<p>10</p>
-</div></div></td>
-<td headers="voting_after_control" class="gt_row gt_center"><div data-qmd="1"><div class="gt_from_md">
-<p>1</p>
-</div></div></td>
-<td headers="voting_after_treated" class="gt_row gt_center"><div data-qmd="1"><div class="gt_from_md">
-<p>1</p>
-</div></div></td>
-<td headers="treatment" class="gt_row gt_center"><div data-qmd="Yes"><div class="gt_from_md">
-<p>Yes</p>
-</div></div></td>
-<td headers="engagement" class="gt_row gt_center"><div data-qmd="6"><div class="gt_from_md">
-<p>6</p>
-</div></div></td>
+<tr class="even">
+<td class="gt_row gt_left" headers="ID" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000"><p>10</p></td>
+<td class="gt_row gt_center" headers="voting_after_control"><p>1</p></td>
+<td class="gt_row gt_center" headers="voting_after_treated"><p>1</p></td>
+<td class="gt_row gt_center" headers="treatment"><p>Yes</p></td>
+<td class="gt_row gt_center" headers="engagement"><p>6</p></td>
 </tr>
-<tr>
-<td headers="ID" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div data-qmd="11"><div class="gt_from_md">
-<p>11</p>
-</div></div></td>
-<td headers="voting_after_control" class="gt_row gt_center"><div data-qmd="1"><div class="gt_from_md">
-<p>1</p>
-</div></div></td>
-<td headers="voting_after_treated" class="gt_row gt_center"><div data-qmd="0"><div class="gt_from_md">
-<p>0</p>
-</div></div></td>
-<td headers="treatment" class="gt_row gt_center"><div data-qmd="Yes"><div class="gt_from_md">
-<p>Yes</p>
-</div></div></td>
-<td headers="engagement" class="gt_row gt_center"><div data-qmd="2"><div class="gt_from_md">
-<p>2</p>
-</div></div></td>
+<tr class="odd">
+<td class="gt_row gt_left" headers="ID" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000"><p>11</p></td>
+<td class="gt_row gt_center" headers="voting_after_control"><p>1</p></td>
+<td class="gt_row gt_center" headers="voting_after_treated"><p>0</p></td>
+<td class="gt_row gt_center" headers="treatment"><p>Yes</p></td>
+<td class="gt_row gt_center" headers="engagement"><p>2</p></td>
 </tr>
-<tr>
-<td headers="ID" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div data-qmd="..."><div class="gt_from_md">
-<p>…</p>
-</div></div></td>
-<td headers="voting_after_control" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
-<p>…</p>
-</div></div></td>
-<td headers="voting_after_treated" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
-<p>…</p>
-</div></div></td>
-<td headers="treatment" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
-<p>…</p>
-</div></div></td>
-<td headers="engagement" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
-<p>…</p>
-</div></div></td>
+<tr class="even">
+<td class="gt_row gt_left" headers="ID" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000"><p>…</p></td>
+<td class="gt_row gt_center" headers="voting_after_control"><p>…</p></td>
+<td class="gt_row gt_center" headers="voting_after_treated"><p>…</p></td>
+<td class="gt_row gt_center" headers="treatment"><p>…</p></td>
+<td class="gt_row gt_center" headers="engagement"><p>…</p></td>
 </tr>
-<tr>
-<td headers="ID" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div data-qmd="N"><div class="gt_from_md">
-<p>N</p>
-</div></div></td>
-<td headers="voting_after_control" class="gt_row gt_center"><div data-qmd="0"><div class="gt_from_md">
-<p>0</p>
-</div></div></td>
-<td headers="voting_after_treated" class="gt_row gt_center"><div data-qmd="1"><div class="gt_from_md">
-<p>1</p>
-</div></div></td>
-<td headers="treatment" class="gt_row gt_center"><div data-qmd="No"><div class="gt_from_md">
-<p>No</p>
-</div></div></td>
-<td headers="engagement" class="gt_row gt_center"><div data-qmd="2"><div class="gt_from_md">
-<p>2</p>
-</div></div></td>
+<tr class="odd">
+<td class="gt_row gt_left" headers="ID" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000"><p>N</p></td>
+<td class="gt_row gt_center" headers="voting_after_control"><p>0</p></td>
+<td class="gt_row gt_center" headers="voting_after_treated"><p>1</p></td>
+<td class="gt_row gt_center" headers="treatment"><p>No</p></td>
+<td class="gt_row gt_center" headers="engagement"><p>2</p></td>
 </tr>
 </tbody>
 </table>
@@ -909,15 +874,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Indeed, the politician (our boss/client) running for Texas governor probably did not start out with that question. After all, his main question is “How do I win this election?” That big picture goal would lead, over and over again, to more specific questions regarding strategy, including how best to motivate his supporters to vote.</p></li>
 <li><p>The same iterative approach applies to the Preceptor Table. The above is just our first version. Once we look more closely at the data, we will discover that there are multiple treatments. In fact, we have a total of 5 potential outcomes in this example.</p></li>
 <li><p>Should we go back and change the Preceptor Table? No! The Preceptor Table is just a tool we use to fix ideas in our own heads. We never talk about Preceptor Tables with anyone else. Indeed, you won’t ever see the words “Preceptor Table” outside of this <em>Primer</em> and related work.</p></li>
-<li><p>Why is there only one covariate (in addition to the treatment)? Because the question only specifies that one. Any covariates mentioned in the question must be included in the Preceptor Table because, without that information for all units, we can’t answer the question.</p></li>
-</ul>
-<section id="eda-of-shaming" class="level3" data-number="8.2.1"><h3 data-number="8.2.1" class="anchored" data-anchor-id="eda-of-shaming">
-<span class="header-section-number">8.2.1</span> EDA of <code>shaming</code>
+<li><p>Why is there only one covariate (in addition to the treatment)? Because the question only specifies that one. Any covariates mentioned in the question must be included in the Preceptor Table because, without that information for all units, we can’t answer the question. In any real example, we will have other covariates which we might, or might not, include in the model.</p></li>
+</ul></section><section id="eda-of-shaming" class="level3" data-number="8.1.2"><h3 data-number="8.1.2" class="anchored" data-anchor-id="eda-of-shaming">
+<span class="header-section-number">8.1.2</span> EDA of <code>shaming</code>
 </h3>
 <!-- DK: Maybe load and explain the packages in the Introduction, except perhaps for the package we need for the EDA? Or maybe only load libraries, like rstanarm, when we actually need them? Should do this the same way throughout the Primer. -->
 <p>After loading the packages we need, let’s perform an EDA, starting off by running <code><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse()</a></code> on the <code>shaming</code> tibble from the <strong>primer.data</strong> package.</p>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<details class="code-fold"><summary>Show the code</summary><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">primer.data</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://mc-stan.org/rstanarm/">rstanarm</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jrnold/ggthemes">ggthemes</a></span><span class="op">)</span></span>
@@ -929,7 +893,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">shaming</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details class="code-fold"><summary>Show the code</summary><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">shaming</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output cell-output-stdout">
 <pre><code>Rows: 344,084
 Columns: 15
@@ -950,13 +914,13 @@ $ hh_general_04 &lt;dbl&gt; 0.8571429, 0.8571429, 0.8571429, 0.8571429, 0.857142
 $ neighbors     &lt;int&gt; 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, …</code></pre>
 </div>
 </div>
-<p><code><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse()</a></code> gives us a look at the raw data contained within the <code>shaming</code> data set. At the very top of the output, we can see the number of rows and columns, or observations and variables respectively. We see that there are 344,084 observations, with each row corresponding to a unique respondent. <code><a href="https://rdrr.io/pkg/primer.data/man/shaming.html">?shaming</a></code> provides more details about the variables.</p>
+<p><code><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse()</a></code> gives us a look at the raw data contained within the <code>shaming</code> data set. At the very top of the output, we can see the number of rows and columns, or observations and variables, respectively. We see that there are 344,084 observations, with each row corresponding to a unique respondent. <code><a href="https://rdrr.io/pkg/primer.data/man/shaming.html">?shaming</a></code> provides more details about the variables.</p>
 <p>Variables of particular interest to us are <code>sex</code>, <code>hh_size</code>, and <code>primary_06</code>. The variable <code>hh_size</code> tells us the size of the respondent’s household, <code>sex</code> tells us the sex of the respondent, and <code>primary_06</code> tells us whether or not the respondent voted in the 2006 primary election.</p>
-<p>There are a few things to note while exploring this data set. You may – or may not – have noticed that the only response to the <code>general_04</code> variable is “Yes”. In their published article, the authors note that “Only registered voters who voted in November 2004 were selected for our sample.” After this, the authors found their history then sent out the mailings. Thus, anyone who did not vote in the 2004 general election is excluded, by definition.</p>
-<p>The dependent variable is <code>primary_06</code>, which is a variable coded either 0 or 1 for whether or not the respondent voted in the 2006 primary election. This is the dependent variable because the authors are trying to measure the <strong>effect</strong> that the treatments have on voting behavior in the 2006 general election. It is also the dependent variable from our point of view since our question also deals with voting behavior.</p>
+<p>There are a few things to note while exploring this data set. You may – or may not – have noticed that the only response to the <code>general_04</code> variable is “Yes”. In their published article, the authors note that “Only registered voters who voted in November 2004 were selected for our sample.” After this, the authors found their history then sent out the mailings. Thus, anyone who did not vote in the 2004 general election is excluded, by definition. Keep that fact in mind when we discuss representativeness below.</p>
+<p>The dependent variable is <code>primary_06</code>, which is coded either 0 or 1 for whether or not the respondent voted in the 2006 primary election. This is the dependent variable because the authors are trying to measure the <strong>effect</strong> that the treatments have on voting behavior in the 2006 general election. It is also the dependent variable from our point of view since our question also deals with voting behavior.</p>
 <p>The <code>treatment</code> variable is a factor variable with 5 levels, including the control. Our focus is on those treatments, and on their causal effects, if any. Consider:</p>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">shaming</span> <span class="op">|&gt;</span></span>
+<details class="code-fold"><summary>Show the code</summary><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">shaming</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">treatment</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 2
@@ -973,55 +937,107 @@ $ neighbors     &lt;int&gt; 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 
 <p>The first treatment, Civic Duty, also read, “Remember your rights and responsibilities as a citizen. Remember to vote.” This message acted as a baseline for the other treatments, since it carried a message very similar to the one displayed on all the mailings.</p>
 <p>In the second treatment, Hawthorne, households received a mailing which told the voters that they were being studied and their voting behavior would be examined through public records. This adds a small amount of social pressure.</p>
 <p>In the third treatment, Self, the mailing includes the recent voting record of each member of the household, placing the word “Voted” next to their name if they did in fact vote in the 2004 election or a blank space next to the name if they did not. In this mailing, the households were also told, “we intend to mail an updated chart” with the voting record of the household members after the 2006 primary. By emphasizing the public nature of voting records, this type of mailing exerts more social pressure on voting than the Hawthorne treatment.</p>
-<p>The fourth treatment, Neighbors, provides the household members’ voting records, as well as the voting records of those who live nearby. This mailing also told recipients, “we intend to mail an updated chart” of who voted in the 2006 election to the entire neighborhood.</p>
-<!-- DK: Do more EDA here, including calculating our measure of civic engagement. -->
-</section><section id="validity" class="level3" data-number="8.2.2"><h3 data-number="8.2.2" class="anchored" data-anchor-id="validity">
-<span class="header-section-number">8.2.2</span> Validity</h3>
-</section><section id="population" class="level3" data-number="8.2.3"><h3 data-number="8.2.3" class="anchored" data-anchor-id="population">
-<span class="header-section-number">8.2.3</span> Population</h3>
+<p>The fourth treatment, Neighbors, provides the household members’ voting records, as well as the voting records of those who live nearby. This mailing also told recipients, “we intend to mail an updated chart” of who voted in the 2006 election to the entire neighborhood. Consider:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="n-parameters_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>This graphic does not tell us as much as we might like. Most residents did not receive a postcard. Those who did get a postcard had about the same chance of receiving any of the four types of postcard. Since the lower bars are darker, more people in the sample did not vote in the election than did vote. However, we can’t really see, much less estimate, a causal effect with just this information.</p>
+</section><section id="validity" class="level3" data-number="8.1.3"><h3 data-number="8.1.3" class="anchored" data-anchor-id="validity">
+<span class="header-section-number">8.1.3</span> Validity</h3>
+<p>Validity is the consistency, or lack there of, in the columns of your dataset and the corresponding columns in your Preceptor Table. In order to consider the two datasets to be drawn from the same population, the columns from one must have a <em>valid correspondence</em> with the columns in the other. Validity, if true (or at least reasonable), allows us to construct the <em>Population Table</em>, which is the first step in Justice. Consider two counter-arguments to the assumption of validity in this case.</p>
+<p>First, voting in a primary election in 2006 in Michigan is not the same thing as voting in a general election in Texas in 2023. Primary elections are less newsworthy and, usually, less competitive. Our client, the gubernatorial candidate, has already won his primary. The outcome he cares about is voting in a general elections. Treatments which might, or might not, affect participation in a primary are irrelevant. Moreover, the political culture of Texas and Michigan are very different. The meaning and importance of voting is not identical across states, nor over time.</p>
+<p>Second, our client is interested in using a measure of</p>
+<p>Fortunately, at least for our continued use of this example, there are good reasons for making the assumption of validity.</p>
+<p>We can also construct our own measure of political engagement. Consider:</p>
+<div class="cell">
+<details class="code-fold"><summary>Show the code</summary><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">shaming</span> <span class="op">&lt;-</span> <span class="va">shaming</span> <span class="op">|&gt;</span> </span>
+<span>  </span>
+<span>  <span class="co"># Converting the Y/N columns to binaries with the function we made </span></span>
+<span>  <span class="co"># note that primary_06 is already binary and also that we don't </span></span>
+<span>  <span class="co"># need it to construct a civic engagement variable.</span></span>
+<span>  </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>p_00 <span class="op">=</span> <span class="op">(</span><span class="va">primary_00</span> <span class="op">==</span> <span class="st">"Yes"</span><span class="op">)</span>,</span>
+<span>         p_02 <span class="op">=</span> <span class="op">(</span><span class="va">primary_02</span> <span class="op">==</span> <span class="st">"Yes"</span><span class="op">)</span>,</span>
+<span>         p_04 <span class="op">=</span> <span class="op">(</span><span class="va">primary_04</span> <span class="op">==</span> <span class="st">"Yes"</span><span class="op">)</span>,</span>
+<span>         g_00 <span class="op">=</span> <span class="op">(</span><span class="va">general_00</span> <span class="op">==</span> <span class="st">"Yes"</span><span class="op">)</span>,</span>
+<span>         g_02 <span class="op">=</span> <span class="op">(</span><span class="va">general_02</span> <span class="op">==</span> <span class="st">"Yes"</span><span class="op">)</span>,</span>
+<span>         g_04 <span class="op">=</span> <span class="op">(</span><span class="va">general_04</span> <span class="op">==</span> <span class="st">"Yes"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  </span>
+<span>  <span class="co"># A sum of the voting action records across the election cycle columns gives</span></span>
+<span>  <span class="co"># us an idea (though not weighted for when across the elections) of the voters</span></span>
+<span>  <span class="co"># general level of civic engagement</span></span>
+<span>  </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>civ_engage <span class="op">=</span> <span class="va">p_00</span> <span class="op">+</span> <span class="va">p_02</span> <span class="op">+</span> <span class="va">p_04</span> <span class="op">+</span> </span>
+<span>                      <span class="va">g_00</span> <span class="op">+</span> <span class="va">g_02</span> <span class="op">+</span> <span class="va">g_04</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details class="code-fold"><summary>Show the code</summary><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">shaming</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample_n.html">sample_frac</a></span><span class="op">(</span><span class="fl">0.05</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">civ_engage</span>, y <span class="op">=</span> <span class="va">primary_06</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_jitter.html">geom_jitter</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.03</span>, height <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>breaks <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>, labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"No"</span>, <span class="st">"Yes"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Civic Engagement and Voting Behavior in Michigan"</span>,</span>
+<span>         subtitle <span class="op">=</span> <span class="st">"Past voting predicts future voting."</span>,</span>
+<span>         x <span class="op">=</span> <span class="st">"Civic Engagement"</span>,</span>
+<span>         y <span class="op">=</span> <span class="st">"Voted in 2006 Primary Election"</span>,</span>
+<span>         caption <span class="op">=</span> <span class="st">"Random sample of 5% of the data from Gerber, Green, and Larimer (2008)"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="n-parameters_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="population" class="level3" data-number="8.1.4"><h3 data-number="8.1.4" class="anchored" data-anchor-id="population">
+<span class="header-section-number">8.1.4</span> Population</h3>
 <p>One of the most important components of Wisdom is the concept of the “population”. Recall the questions we asked earlier:</p>
 <p>As we have discussed before, the population <em>is not</em> the set of people, or voters, for which we have data. This is the dataset. Nor is it the set of voters about whom we would like to have data. Those are the rows in the ideal Preceptor Table. The population is the larger — potentially much larger — set of individuals which include both the data we have and the data we want. Generally, the population will be much larger than either the data we have and the data we want.</p>
 <p>In this case, we are viewing the data from the perspective of someone running for Governor this year that wants to increase voter turnout. We want to increase turnout <strong>now</strong>, not for people voting in 2006! We also may want to increase turnout in those citizens who are not registered to vote, a group that is excluded from our dataset. Is it reasonable to generate conclusions for this group? Most likely, no. However, we have limited data to work with and we have to determine how far we are willing to generalize to other groups.</p>
 <p>It is a judgment call, a matter of Wisdom, as to whether or not we may <em>assume</em> that the data we have and the data we want to have (i.e., the ideal Preceptor Table) are drawn from the same population.</p>
-
 <!-- DK: Add table with both our data and ideal Preceptor table and other data (other states, other years). That is our population. In this case, our population is all voters in all states in Gubernatorial elections from 2000 through 2030. Or whatever? Not the only possible population! Could do different years. Could do only a subset of states (big states, competitive states, continental states). Could do other election types. MF: Done, in justice. -->
 <p>Even though the original question is about “voters” in general, and does not specifically refer to specific states in which we might be interested, we will assume that the data we have for random voters is, uh, representative enough of the population we are interested in. If we did not believe that, then we should stop right now. <em>The major part of Wisdom is deciding what questions you can’t answer because of the data you just don’t have.</em></p>
-</section></section><section id="justice" class="level2" data-number="8.3"><h2 data-number="8.3" class="anchored" data-anchor-id="justice">
-<span class="header-section-number">8.3</span> Justice</h2>
+</section></section><section id="justice" class="level2" data-number="8.2"><h2 data-number="8.2" class="anchored" data-anchor-id="justice">
+<span class="header-section-number">8.2</span> Justice</h2>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="other/images/Justice.jpg" class="img-fluid figure-img" style="width:60.0%"></p>
-<figcaption class="figure-caption">Justice</figcaption></figure>
+<figure class="figure"><p><img src="other/images/Justice.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
+<figcaption>Justice</figcaption></figure>
 </div>
 </div>
 </div>
 <p>Justice includes the creation of the Population Table, followed by a discussion about the assumptions of stability, representativeness and unconfoundedness. It concludes by determining the mathematical structure of the data generating mechanism.</p>
-<section id="the-population-table" class="level3" data-number="8.3.1"><h3 data-number="8.3.1" class="anchored" data-anchor-id="the-population-table">
-<span class="header-section-number">8.3.1</span> The Population Table</h3>
+<section id="the-population-table" class="level3" data-number="8.2.1"><h3 data-number="8.2.1" class="anchored" data-anchor-id="the-population-table">
+<span class="header-section-number">8.2.1</span> The Population Table</h3>
 <p>The Population Table shows rows from three sources: the Preceptor Table, the data, and the population from which the rows in both the Preceptor Table and the data were drawn.</p>
 <p>The rows from our data have everything: the covariates and the outcomes. The covariates here will be Michigan for state and 2006 for year, since these are the pieces of information that are included in our data. Of course, we still do not have values for Treatment minus Control, since we cannot observe one subject under two conditions.</p>
 <p>The rows from the population have no data. These are subjects which fall under our desired population, but for which we have no data. As such, all rows are missing.</p>
 <div class="cell">
 <div class="cell-output-display">
-
-<div id="sxxvjkhgey" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#sxxvjkhgey table {
+<div id="rdnvrksxai" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#rdnvrksxai table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#sxxvjkhgey thead, #sxxvjkhgey tbody, #sxxvjkhgey tfoot, #sxxvjkhgey tr, #sxxvjkhgey td, #sxxvjkhgey th {
+#rdnvrksxai thead, #rdnvrksxai tbody, #rdnvrksxai tfoot, #rdnvrksxai tr, #rdnvrksxai td, #rdnvrksxai th {
   border-style: none;
 }
 
-#sxxvjkhgey p {
+#rdnvrksxai p {
   margin: 0;
   padding: 0;
 }
 
-#sxxvjkhgey .gt_table {
+#rdnvrksxai .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1047,12 +1063,12 @@ $ neighbors     &lt;int&gt; 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 
   border-left-color: #D3D3D3;
 }
 
-#sxxvjkhgey .gt_caption {
+#rdnvrksxai .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#sxxvjkhgey .gt_title {
+#rdnvrksxai .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1064,7 +1080,7 @@ $ neighbors     &lt;int&gt; 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 
   border-bottom-width: 0;
 }
 
-#sxxvjkhgey .gt_subtitle {
+#rdnvrksxai .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1076,7 +1092,7 @@ $ neighbors     &lt;int&gt; 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 
   border-top-width: 0;
 }
 
-#sxxvjkhgey .gt_heading {
+#rdnvrksxai .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1088,13 +1104,13 @@ $ neighbors     &lt;int&gt; 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 
   border-right-color: #D3D3D3;
 }
 
-#sxxvjkhgey .gt_bottom_border {
+#rdnvrksxai .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#sxxvjkhgey .gt_col_headings {
+#rdnvrksxai .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1109,7 +1125,7 @@ $ neighbors     &lt;int&gt; 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 
   border-right-color: #D3D3D3;
 }
 
-#sxxvjkhgey .gt_col_heading {
+#rdnvrksxai .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1129,7 +1145,7 @@ $ neighbors     &lt;int&gt; 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 
   overflow-x: hidden;
 }
 
-#sxxvjkhgey .gt_column_spanner_outer {
+#rdnvrksxai .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1141,15 +1157,15 @@ $ neighbors     &lt;int&gt; 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 
   padding-right: 4px;
 }
 
-#sxxvjkhgey .gt_column_spanner_outer:first-child {
+#rdnvrksxai .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#sxxvjkhgey .gt_column_spanner_outer:last-child {
+#rdnvrksxai .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#sxxvjkhgey .gt_column_spanner {
+#rdnvrksxai .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1161,11 +1177,11 @@ $ neighbors     &lt;int&gt; 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 
   width: 100%;
 }
 
-#sxxvjkhgey .gt_spanner_row {
+#rdnvrksxai .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#sxxvjkhgey .gt_group_heading {
+#rdnvrksxai .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1191,7 +1207,7 @@ $ neighbors     &lt;int&gt; 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 
   text-align: left;
 }
 
-#sxxvjkhgey .gt_empty_group_heading {
+#rdnvrksxai .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1206,15 +1222,15 @@ $ neighbors     &lt;int&gt; 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 
   vertical-align: middle;
 }
 
-#sxxvjkhgey .gt_from_md > :first-child {
+#rdnvrksxai .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#sxxvjkhgey .gt_from_md > :last-child {
+#rdnvrksxai .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#sxxvjkhgey .gt_row {
+#rdnvrksxai .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1233,7 +1249,7 @@ $ neighbors     &lt;int&gt; 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 
   overflow-x: hidden;
 }
 
-#sxxvjkhgey .gt_stub {
+#rdnvrksxai .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1246,7 +1262,7 @@ $ neighbors     &lt;int&gt; 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 
   padding-right: 5px;
 }
 
-#sxxvjkhgey .gt_stub_row_group {
+#rdnvrksxai .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1260,15 +1276,15 @@ $ neighbors     &lt;int&gt; 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 
   vertical-align: top;
 }
 
-#sxxvjkhgey .gt_row_group_first td {
+#rdnvrksxai .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#sxxvjkhgey .gt_row_group_first th {
+#rdnvrksxai .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#sxxvjkhgey .gt_summary_row {
+#rdnvrksxai .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1278,16 +1294,16 @@ $ neighbors     &lt;int&gt; 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 
   padding-right: 5px;
 }
 
-#sxxvjkhgey .gt_first_summary_row {
+#rdnvrksxai .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#sxxvjkhgey .gt_first_summary_row.thick {
+#rdnvrksxai .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#sxxvjkhgey .gt_last_summary_row {
+#rdnvrksxai .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1297,7 +1313,7 @@ $ neighbors     &lt;int&gt; 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 
   border-bottom-color: #D3D3D3;
 }
 
-#sxxvjkhgey .gt_grand_summary_row {
+#rdnvrksxai .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1307,7 +1323,7 @@ $ neighbors     &lt;int&gt; 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 
   padding-right: 5px;
 }
 
-#sxxvjkhgey .gt_first_grand_summary_row {
+#rdnvrksxai .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1317,7 +1333,7 @@ $ neighbors     &lt;int&gt; 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 
   border-top-color: #D3D3D3;
 }
 
-#sxxvjkhgey .gt_last_grand_summary_row_top {
+#rdnvrksxai .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1327,11 +1343,11 @@ $ neighbors     &lt;int&gt; 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 
   border-bottom-color: #D3D3D3;
 }
 
-#sxxvjkhgey .gt_striped {
+#rdnvrksxai .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#sxxvjkhgey .gt_table_body {
+#rdnvrksxai .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1340,7 +1356,7 @@ $ neighbors     &lt;int&gt; 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 
   border-bottom-color: #D3D3D3;
 }
 
-#sxxvjkhgey .gt_footnotes {
+#rdnvrksxai .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1354,7 +1370,7 @@ $ neighbors     &lt;int&gt; 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 
   border-right-color: #D3D3D3;
 }
 
-#sxxvjkhgey .gt_footnote {
+#rdnvrksxai .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1363,7 +1379,7 @@ $ neighbors     &lt;int&gt; 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 
   padding-right: 5px;
 }
 
-#sxxvjkhgey .gt_sourcenotes {
+#rdnvrksxai .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1377,7 +1393,7 @@ $ neighbors     &lt;int&gt; 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 
   border-right-color: #D3D3D3;
 }
 
-#sxxvjkhgey .gt_sourcenote {
+#rdnvrksxai .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1385,407 +1401,245 @@ $ neighbors     &lt;int&gt; 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 
   padding-right: 5px;
 }
 
-#sxxvjkhgey .gt_left {
+#rdnvrksxai .gt_left {
   text-align: left;
 }
 
-#sxxvjkhgey .gt_center {
+#rdnvrksxai .gt_center {
   text-align: center;
 }
 
-#sxxvjkhgey .gt_right {
+#rdnvrksxai .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#sxxvjkhgey .gt_font_normal {
+#rdnvrksxai .gt_font_normal {
   font-weight: normal;
 }
 
-#sxxvjkhgey .gt_font_bold {
+#rdnvrksxai .gt_font_bold {
   font-weight: bold;
 }
 
-#sxxvjkhgey .gt_font_italic {
+#rdnvrksxai .gt_font_italic {
   font-style: italic;
 }
 
-#sxxvjkhgey .gt_super {
+#rdnvrksxai .gt_super {
   font-size: 65%;
 }
 
-#sxxvjkhgey .gt_footnote_marks {
+#rdnvrksxai .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#sxxvjkhgey .gt_asterisk {
+#rdnvrksxai .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#sxxvjkhgey .gt_indent_1 {
+#rdnvrksxai .gt_indent_1 {
   text-indent: 5px;
 }
 
-#sxxvjkhgey .gt_indent_2 {
+#rdnvrksxai .gt_indent_2 {
   text-indent: 10px;
 }
 
-#sxxvjkhgey .gt_indent_3 {
+#rdnvrksxai .gt_indent_3 {
   text-indent: 15px;
 }
 
-#sxxvjkhgey .gt_indent_4 {
+#rdnvrksxai .gt_indent_4 {
   text-indent: 20px;
 }
 
-#sxxvjkhgey .gt_indent_5 {
+#rdnvrksxai .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
-<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<table class="gt_table table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+</colgroup>
 <thead>
-<tr class="gt_col_headings gt_spanner_row">
-<th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="2" colspan="1" style="font-size: large; text-align: left; vertical-align: middle;" scope="col" id="Source">Source</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="2" colspan="1" scope="col" id="Sex">Sex</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="2" colspan="1" scope="col" id="Year">Year</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="2" colspan="1" scope="col" id="State">State</th>
-      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="2" scope="colgroup" id="Outcomes">
-        <span class="gt_column_spanner">Outcomes</span>
-      </th>
-    </tr>
-<tr class="gt_col_headings">
-<th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="Treatment">Treatment</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="Control">Control</th>
-    </tr>
+<tr class="header gt_col_headings gt_spanner_row">
+<th rowspan="2" id="Source" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" style="text-align: left; font-size: large; vertical-align: middle;" scope="col">Source</th>
+<th rowspan="2" id="Sex" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Sex</th>
+<th rowspan="2" id="Year" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Year</th>
+<th rowspan="2" id="State" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">State</th>
+<th colspan="2" id="Outcomes" class="gt_center gt_columns_top_border gt_column_spanner_outer" data-quarto-table-cell-role="th" scope="colgroup"><span class="gt_column_spanner">Outcomes</span></th>
+</tr>
+<tr class="odd gt_col_headings">
+<th id="Treatment" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Treatment</th>
+<th id="Control" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Control</th>
+</tr>
 </thead>
 <tbody class="gt_table_body">
-<tr>
-<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div data-qmd="..."><div class="gt_from_md">
-<p>…</p>
-</div></div></td>
-<td headers="gender" class="gt_row gt_center"><div data-qmd="?"><div class="gt_from_md">
-<p>?</p>
-</div></div></td>
-<td headers="year" class="gt_row gt_center"><div data-qmd="1990"><div class="gt_from_md">
-<p>1990</p>
-</div></div></td>
-<td headers="state" class="gt_row gt_center"><div data-qmd="?"><div class="gt_from_md">
-<p>?</p>
-</div></div></td>
-<td headers="ytreat" class="gt_row gt_center"><div data-qmd="?"><div class="gt_from_md">
-<p>?</p>
-</div></div></td>
-<td headers="ycontrol" class="gt_row gt_center"><div data-qmd="?"><div class="gt_from_md">
-<p>?</p>
-</div></div></td>
+<tr class="odd">
+<td class="gt_row gt_left" headers="source" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000"><p>…</p></td>
+<td class="gt_row gt_center" headers="gender"><p>?</p></td>
+<td class="gt_row gt_center" headers="year"><p>1990</p></td>
+<td class="gt_row gt_center" headers="state"><p>?</p></td>
+<td class="gt_row gt_center" headers="ytreat"><p>?</p></td>
+<td class="gt_row gt_center" headers="ycontrol"><p>?</p></td>
 </tr>
-<tr>
-<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div data-qmd="..."><div class="gt_from_md">
-<p>…</p>
-</div></div></td>
-<td headers="gender" class="gt_row gt_center"><div data-qmd="?"><div class="gt_from_md">
-<p>?</p>
-</div></div></td>
-<td headers="year" class="gt_row gt_center"><div data-qmd="1995"><div class="gt_from_md">
-<p>1995</p>
-</div></div></td>
-<td headers="state" class="gt_row gt_center"><div data-qmd="?"><div class="gt_from_md">
-<p>?</p>
-</div></div></td>
-<td headers="ytreat" class="gt_row gt_center"><div data-qmd="?"><div class="gt_from_md">
-<p>?</p>
-</div></div></td>
-<td headers="ycontrol" class="gt_row gt_center"><div data-qmd="?"><div class="gt_from_md">
-<p>?</p>
-</div></div></td>
+<tr class="even">
+<td class="gt_row gt_left" headers="source" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000"><p>…</p></td>
+<td class="gt_row gt_center" headers="gender"><p>?</p></td>
+<td class="gt_row gt_center" headers="year"><p>1995</p></td>
+<td class="gt_row gt_center" headers="state"><p>?</p></td>
+<td class="gt_row gt_center" headers="ytreat"><p>?</p></td>
+<td class="gt_row gt_center" headers="ycontrol"><p>?</p></td>
 </tr>
-<tr>
-<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div data-qmd="..."><div class="gt_from_md">
-<p>…</p>
-</div></div></td>
-<td headers="gender" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
-<p>…</p>
-</div></div></td>
-<td headers="year" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
-<p>…</p>
-</div></div></td>
-<td headers="state" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
-<p>…</p>
-</div></div></td>
-<td headers="ytreat" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
-<p>…</p>
-</div></div></td>
-<td headers="ycontrol" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
-<p>…</p>
-</div></div></td>
+<tr class="odd">
+<td class="gt_row gt_left" headers="source" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000"><p>…</p></td>
+<td class="gt_row gt_center" headers="gender"><p>…</p></td>
+<td class="gt_row gt_center" headers="year"><p>…</p></td>
+<td class="gt_row gt_center" headers="state"><p>…</p></td>
+<td class="gt_row gt_center" headers="ytreat"><p>…</p></td>
+<td class="gt_row gt_center" headers="ycontrol"><p>…</p></td>
 </tr>
-<tr>
-<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div data-qmd="Data"><div class="gt_from_md">
-<p>Data</p>
-</div></div></td>
-<td headers="gender" class="gt_row gt_center"><div data-qmd="Male"><div class="gt_from_md">
-<p>Male</p>
-</div></div></td>
-<td headers="year" class="gt_row gt_center"><div data-qmd="2006"><div class="gt_from_md">
-<p>2006</p>
-</div></div></td>
-<td headers="state" class="gt_row gt_center"><div data-qmd="Michigan"><div class="gt_from_md">
-<p>Michigan</p>
-</div></div></td>
-<td headers="ytreat" class="gt_row gt_center"><div data-qmd="Did not vote"><div class="gt_from_md">
-<p>Did not vote</p>
-</div></div></td>
-<td headers="ycontrol" class="gt_row gt_center"><div data-qmd="?"><div class="gt_from_md">
-<p>?</p>
-</div></div></td>
+<tr class="even">
+<td class="gt_row gt_left" headers="source" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000"><p>Data</p></td>
+<td class="gt_row gt_center" headers="gender"><p>Male</p></td>
+<td class="gt_row gt_center" headers="year"><p>2006</p></td>
+<td class="gt_row gt_center" headers="state"><p>Michigan</p></td>
+<td class="gt_row gt_center" headers="ytreat"><p>Did not vote</p></td>
+<td class="gt_row gt_center" headers="ycontrol"><p>?</p></td>
 </tr>
-<tr>
-<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div data-qmd="Data"><div class="gt_from_md">
-<p>Data</p>
-</div></div></td>
-<td headers="gender" class="gt_row gt_center"><div data-qmd="Female"><div class="gt_from_md">
-<p>Female</p>
-</div></div></td>
-<td headers="year" class="gt_row gt_center"><div data-qmd="2006"><div class="gt_from_md">
-<p>2006</p>
-</div></div></td>
-<td headers="state" class="gt_row gt_center"><div data-qmd="Michigan"><div class="gt_from_md">
-<p>Michigan</p>
-</div></div></td>
-<td headers="ytreat" class="gt_row gt_center"><div data-qmd="?"><div class="gt_from_md">
-<p>?</p>
-</div></div></td>
-<td headers="ycontrol" class="gt_row gt_center"><div data-qmd="Voted"><div class="gt_from_md">
-<p>Voted</p>
-</div></div></td>
+<tr class="odd">
+<td class="gt_row gt_left" headers="source" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000"><p>Data</p></td>
+<td class="gt_row gt_center" headers="gender"><p>Female</p></td>
+<td class="gt_row gt_center" headers="year"><p>2006</p></td>
+<td class="gt_row gt_center" headers="state"><p>Michigan</p></td>
+<td class="gt_row gt_center" headers="ytreat"><p>?</p></td>
+<td class="gt_row gt_center" headers="ycontrol"><p>Voted</p></td>
 </tr>
-<tr>
-<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div data-qmd="..."><div class="gt_from_md">
-<p>…</p>
-</div></div></td>
-<td headers="gender" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
-<p>…</p>
-</div></div></td>
-<td headers="year" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
-<p>…</p>
-</div></div></td>
-<td headers="state" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
-<p>…</p>
-</div></div></td>
-<td headers="ytreat" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
-<p>…</p>
-</div></div></td>
-<td headers="ycontrol" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
-<p>…</p>
-</div></div></td>
+<tr class="even">
+<td class="gt_row gt_left" headers="source" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000"><p>…</p></td>
+<td class="gt_row gt_center" headers="gender"><p>…</p></td>
+<td class="gt_row gt_center" headers="year"><p>…</p></td>
+<td class="gt_row gt_center" headers="state"><p>…</p></td>
+<td class="gt_row gt_center" headers="ytreat"><p>…</p></td>
+<td class="gt_row gt_center" headers="ycontrol"><p>…</p></td>
 </tr>
-<tr>
-<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div data-qmd="..."><div class="gt_from_md">
-<p>…</p>
-</div></div></td>
-<td headers="gender" class="gt_row gt_center"><div data-qmd="?"><div class="gt_from_md">
-<p>?</p>
-</div></div></td>
-<td headers="year" class="gt_row gt_center"><div data-qmd="2010"><div class="gt_from_md">
-<p>2010</p>
-</div></div></td>
-<td headers="state" class="gt_row gt_center"><div data-qmd="?"><div class="gt_from_md">
-<p>?</p>
-</div></div></td>
-<td headers="ytreat" class="gt_row gt_center"><div data-qmd="?"><div class="gt_from_md">
-<p>?</p>
-</div></div></td>
-<td headers="ycontrol" class="gt_row gt_center"><div data-qmd="?"><div class="gt_from_md">
-<p>?</p>
-</div></div></td>
+<tr class="odd">
+<td class="gt_row gt_left" headers="source" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000"><p>…</p></td>
+<td class="gt_row gt_center" headers="gender"><p>?</p></td>
+<td class="gt_row gt_center" headers="year"><p>2010</p></td>
+<td class="gt_row gt_center" headers="state"><p>?</p></td>
+<td class="gt_row gt_center" headers="ytreat"><p>?</p></td>
+<td class="gt_row gt_center" headers="ycontrol"><p>?</p></td>
 </tr>
-<tr>
-<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div data-qmd="..."><div class="gt_from_md">
-<p>…</p>
-</div></div></td>
-<td headers="gender" class="gt_row gt_center"><div data-qmd="?"><div class="gt_from_md">
-<p>?</p>
-</div></div></td>
-<td headers="year" class="gt_row gt_center"><div data-qmd="2012"><div class="gt_from_md">
-<p>2012</p>
-</div></div></td>
-<td headers="state" class="gt_row gt_center"><div data-qmd="?"><div class="gt_from_md">
-<p>?</p>
-</div></div></td>
-<td headers="ytreat" class="gt_row gt_center"><div data-qmd="?"><div class="gt_from_md">
-<p>?</p>
-</div></div></td>
-<td headers="ycontrol" class="gt_row gt_center"><div data-qmd="?"><div class="gt_from_md">
-<p>?</p>
-</div></div></td>
+<tr class="even">
+<td class="gt_row gt_left" headers="source" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000"><p>…</p></td>
+<td class="gt_row gt_center" headers="gender"><p>?</p></td>
+<td class="gt_row gt_center" headers="year"><p>2012</p></td>
+<td class="gt_row gt_center" headers="state"><p>?</p></td>
+<td class="gt_row gt_center" headers="ytreat"><p>?</p></td>
+<td class="gt_row gt_center" headers="ycontrol"><p>?</p></td>
 </tr>
-<tr>
-<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div data-qmd="..."><div class="gt_from_md">
-<p>…</p>
-</div></div></td>
-<td headers="gender" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
-<p>…</p>
-</div></div></td>
-<td headers="year" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
-<p>…</p>
-</div></div></td>
-<td headers="state" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
-<p>…</p>
-</div></div></td>
-<td headers="ytreat" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
-<p>…</p>
-</div></div></td>
-<td headers="ycontrol" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
-<p>…</p>
-</div></div></td>
+<tr class="odd">
+<td class="gt_row gt_left" headers="source" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000"><p>…</p></td>
+<td class="gt_row gt_center" headers="gender"><p>…</p></td>
+<td class="gt_row gt_center" headers="year"><p>…</p></td>
+<td class="gt_row gt_center" headers="state"><p>…</p></td>
+<td class="gt_row gt_center" headers="ytreat"><p>…</p></td>
+<td class="gt_row gt_center" headers="ycontrol"><p>…</p></td>
 </tr>
-<tr>
-<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div data-qmd="Preceptor Table"><div class="gt_from_md">
-<p>Preceptor Table</p>
-</div></div></td>
-<td headers="gender" class="gt_row gt_center"><div data-qmd="Female"><div class="gt_from_md">
-<p>Female</p>
-</div></div></td>
-<td headers="year" class="gt_row gt_center"><div data-qmd="2021"><div class="gt_from_md">
-<p>2021</p>
-</div></div></td>
-<td headers="state" class="gt_row gt_center"><div data-qmd="Texas"><div class="gt_from_md">
-<p>Texas</p>
-</div></div></td>
-<td headers="ytreat" class="gt_row gt_center"><div data-qmd="?"><div class="gt_from_md">
-<p>?</p>
-</div></div></td>
-<td headers="ycontrol" class="gt_row gt_center"><div data-qmd="?"><div class="gt_from_md">
-<p>?</p>
-</div></div></td>
+<tr class="even">
+<td class="gt_row gt_left" headers="source" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000"><p>Preceptor Table</p></td>
+<td class="gt_row gt_center" headers="gender"><p>Female</p></td>
+<td class="gt_row gt_center" headers="year"><p>2023</p></td>
+<td class="gt_row gt_center" headers="state"><p>Texas</p></td>
+<td class="gt_row gt_center" headers="ytreat"><p>?</p></td>
+<td class="gt_row gt_center" headers="ycontrol"><p>?</p></td>
 </tr>
-<tr>
-<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div data-qmd="Preceptor Table"><div class="gt_from_md">
-<p>Preceptor Table</p>
-</div></div></td>
-<td headers="gender" class="gt_row gt_center"><div data-qmd="Female"><div class="gt_from_md">
-<p>Female</p>
-</div></div></td>
-<td headers="year" class="gt_row gt_center"><div data-qmd="2021"><div class="gt_from_md">
-<p>2021</p>
-</div></div></td>
-<td headers="state" class="gt_row gt_center"><div data-qmd="Texas"><div class="gt_from_md">
-<p>Texas</p>
-</div></div></td>
-<td headers="ytreat" class="gt_row gt_center"><div data-qmd="?"><div class="gt_from_md">
-<p>?</p>
-</div></div></td>
-<td headers="ycontrol" class="gt_row gt_center"><div data-qmd="?"><div class="gt_from_md">
-<p>?</p>
-</div></div></td>
+<tr class="odd">
+<td class="gt_row gt_left" headers="source" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000"><p>Preceptor Table</p></td>
+<td class="gt_row gt_center" headers="gender"><p>Female</p></td>
+<td class="gt_row gt_center" headers="year"><p>2023</p></td>
+<td class="gt_row gt_center" headers="state"><p>Texas</p></td>
+<td class="gt_row gt_center" headers="ytreat"><p>?</p></td>
+<td class="gt_row gt_center" headers="ycontrol"><p>?</p></td>
 </tr>
-<tr>
-<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div data-qmd="..."><div class="gt_from_md">
-<p>…</p>
-</div></div></td>
-<td headers="gender" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
-<p>…</p>
-</div></div></td>
-<td headers="year" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
-<p>…</p>
-</div></div></td>
-<td headers="state" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
-<p>…</p>
-</div></div></td>
-<td headers="ytreat" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
-<p>…</p>
-</div></div></td>
-<td headers="ycontrol" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
-<p>…</p>
-</div></div></td>
+<tr class="even">
+<td class="gt_row gt_left" headers="source" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000"><p>…</p></td>
+<td class="gt_row gt_center" headers="gender"><p>…</p></td>
+<td class="gt_row gt_center" headers="year"><p>…</p></td>
+<td class="gt_row gt_center" headers="state"><p>…</p></td>
+<td class="gt_row gt_center" headers="ytreat"><p>…</p></td>
+<td class="gt_row gt_center" headers="ycontrol"><p>…</p></td>
 </tr>
-<tr>
-<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div data-qmd="..."><div class="gt_from_md">
-<p>…</p>
-</div></div></td>
-<td headers="gender" class="gt_row gt_center"><div data-qmd="?"><div class="gt_from_md">
-<p>?</p>
-</div></div></td>
-<td headers="year" class="gt_row gt_center"><div data-qmd="2026"><div class="gt_from_md">
-<p>2026</p>
-</div></div></td>
-<td headers="state" class="gt_row gt_center"><div data-qmd="?"><div class="gt_from_md">
-<p>?</p>
-</div></div></td>
-<td headers="ytreat" class="gt_row gt_center"><div data-qmd="?"><div class="gt_from_md">
-<p>?</p>
-</div></div></td>
-<td headers="ycontrol" class="gt_row gt_center"><div data-qmd="?"><div class="gt_from_md">
-<p>?</p>
-</div></div></td>
+<tr class="odd">
+<td class="gt_row gt_left" headers="source" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000"><p>…</p></td>
+<td class="gt_row gt_center" headers="gender"><p>?</p></td>
+<td class="gt_row gt_center" headers="year"><p>2026</p></td>
+<td class="gt_row gt_center" headers="state"><p>?</p></td>
+<td class="gt_row gt_center" headers="ytreat"><p>?</p></td>
+<td class="gt_row gt_center" headers="ycontrol"><p>?</p></td>
 </tr>
-<tr>
-<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div data-qmd="..."><div class="gt_from_md">
-<p>…</p>
-</div></div></td>
-<td headers="gender" class="gt_row gt_center"><div data-qmd="?"><div class="gt_from_md">
-<p>?</p>
-</div></div></td>
-<td headers="year" class="gt_row gt_center"><div data-qmd="2030"><div class="gt_from_md">
-<p>2030</p>
-</div></div></td>
-<td headers="state" class="gt_row gt_center"><div data-qmd="?"><div class="gt_from_md">
-<p>?</p>
-</div></div></td>
-<td headers="ytreat" class="gt_row gt_center"><div data-qmd="?"><div class="gt_from_md">
-<p>?</p>
-</div></div></td>
-<td headers="ycontrol" class="gt_row gt_center"><div data-qmd="?"><div class="gt_from_md">
-<p>?</p>
-</div></div></td>
+<tr class="even">
+<td class="gt_row gt_left" headers="source" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000"><p>…</p></td>
+<td class="gt_row gt_center" headers="gender"><p>?</p></td>
+<td class="gt_row gt_center" headers="year"><p>2030</p></td>
+<td class="gt_row gt_center" headers="state"><p>?</p></td>
+<td class="gt_row gt_center" headers="ytreat"><p>?</p></td>
+<td class="gt_row gt_center" headers="ycontrol"><p>?</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
 </div>
-</section><section id="validity-1" class="level3" data-number="8.3.2"><h3 data-number="8.3.2" class="anchored" data-anchor-id="validity-1">
-<span class="header-section-number">8.3.2</span> Validity</h3>
+</section><section id="validity-1" class="level3" data-number="8.2.2"><h3 data-number="8.2.2" class="anchored" data-anchor-id="validity-1">
+<span class="header-section-number">8.2.2</span> Validity</h3>
 <p>To understand validity in regards to the Population Table, we must first recognize an inherent flaw in any experiment design: <em>no two units receive exactly the same treatment</em>.</p>
-<p>We might be thinking: well, surely two postcards are the same? But, they aren’t! The postcards sent from our data were sent with information relevant to 2006 — a different candidate, different language, different syntax. A postcard sent in 2021, even if we used the exact same language, would be encouraging a new candidate with new reform and differing policies.</p>
+<p>We might be thinking: well, surely two postcards are the same? But, they aren’t! The postcards sent from our data were sent with information relevant to 2006 — a different candidate, different language, different syntax. A postcard sent in 2023, even if we used the exact same language, would be encouraging a new candidate with new reform and differing policies.</p>
 <p>Thus, despite the fact that two units are in the same treatment — that is, receiving a postcard — they have very different versions of that treatment. Indeed, there are an infinite number of possible treatments. This is why it is so important to define our estimand clearly.</p>
-</section><section id="stability" class="level3" data-number="8.3.3"><h3 data-number="8.3.3" class="anchored" data-anchor-id="stability">
-<span class="header-section-number">8.3.3</span> Stability</h3>
+</section><section id="stability" class="level3" data-number="8.2.3"><h3 data-number="8.2.3" class="anchored" data-anchor-id="stability">
+<span class="header-section-number">8.2.3</span> Stability</h3>
 <p>Stability means that the relationship between the columns is the same for three categories of rows: the data, the Preceptor table, and the larger population from which both are drawn.</p>
 <p>With something like height, it is much easier to assume stability over a greater period of time. Changes in global height occur extremely slowly, so height being stable across a span of 20 years is reasonable to assume. Can we say the same for this example, where we are looking at voting behavior?</p>
-<p>Is data collected in 2006 on voting behavior likely to be the same in 2021? Frankly, we don’t know! We aren’t sure what would impact someone’s response to a postcard encouraging them to vote. It is possible, for instance, that a postcard informing neighbors of voting status <em>would have more of an effect on voting behavior during a pandemic, when you are more closely interacting with neighbors</em>.</p>
+<p>Is data collected in 2006 on voting behavior likely to be the same in 2023? Frankly, we don’t know! We aren’t sure what would impact someone’s response to a postcard encouraging them to vote. It is possible, for instance, that a postcard informing neighbors of voting status <em>would have more of an effect on voting behavior during a pandemic, when you are more closely interacting with neighbors</em>.</p>
 <p>When we are confronted with this uncertainty, we can consider making our timeframe smaller. However, we would still need to assume stability from 2006 (time of data collection) to today. Stability allows us to ignore the issue of time.</p>
-</section><section id="representativeness" class="level3" data-number="8.3.4"><h3 data-number="8.3.4" class="anchored" data-anchor-id="representativeness">
-<span class="header-section-number">8.3.4</span> Representativeness</h3>
+</section><section id="representativeness" class="level3" data-number="8.2.4"><h3 data-number="8.2.4" class="anchored" data-anchor-id="representativeness">
+<span class="header-section-number">8.2.4</span> Representativeness</h3>
 <p>This is a good time to consider what it really means to accept that our data is representative of our population. With that in mind, let’s break down our real, current question:</p>
 <ul>
-<li>We are running for governor in Texas in the year 2021. In this year and in the United States, we consider sending out a voting reminder postcard to citizens of voting age. Will this reminder encourage voting, and by how much?</li>
+<li>We are running for governor in Texas in the year 2023. In this year and in the United States, we consider sending out a voting reminder postcard to citizens of voting age. Will this reminder encourage voting, and by how much?</li>
 </ul>
 <p>Now, let’s break down our data from the <code>shaming</code> dataset:</p>
 <ul>
 <li>The data was gathered in Michigan prior to the August 2006 primary election. The population for the experiment was 180,002 households in the state of Michigan. The data only included those who <em>had</em> voted in the 2004 general election. Therefore, it did not include non-voters. The reminders were mailed to households at random.</li>
 </ul>
-<p>So, how similar are these groups? Let’s start with some differences. * The data is from 2006. Our question is asking for answers from 2021. This is not a small gap in time. A lot changes in a decade and a half! * The data excludes all non-voters in the last election. Our question, which seeks to increase voting turnout <em>in all citizens</em>, would want for non-voters to be included. So, can we make any claims about those citizens? Probably not. * The data only includes voters from Michigan. We want to make inferences about Texas, or perhaps the United States as a whole. Is it within reason to do that?</p>
+<p>So, how similar are these groups? Let’s start with some differences. * The data is from 2006. Our question is asking for answers from 2023. This is not a small gap in time. A lot changes in a decade and a half! * The data excludes all non-voters in the last election. Our question, which seeks to increase voting turnout <em>in all citizens</em>, would want for non-voters to be included. So, can we make any claims about those citizens? Probably not. * The data only includes voters from Michigan. We want to make inferences about Texas, or perhaps the United States as a whole. Is it within reason to do that?</p>
 <p>Generally: <em>if there was no chance that a certain type of person would have been in this experiment, we cannot make an assumption for that person</em>.</p>
 <p>The purpose of this section is to make us think critically about the assumptions we are making and whether those assumptions can be reasonably made. Though we will continue using this dataset in the remainder of the chapter, it is clear that we must make our predictions with caution.</p>
-</section><section id="functional-form" class="level3" data-number="8.3.5"><h3 data-number="8.3.5" class="anchored" data-anchor-id="functional-form">
-<span class="header-section-number">8.3.5</span> Functional form</h3>
+</section><section id="functional-form" class="level3" data-number="8.2.5"><h3 data-number="8.2.5" class="anchored" data-anchor-id="functional-form">
+<span class="header-section-number">8.2.5</span> Functional form</h3>
 <!-- DK: Discuss functional form. -->
-</section></section><section id="courage" class="level2" data-number="8.4"><h2 data-number="8.4" class="anchored" data-anchor-id="courage">
-<span class="header-section-number">8.4</span> Courage</h2>
+</section></section><section id="courage" class="level2" data-number="8.3"><h2 data-number="8.3" class="anchored" data-anchor-id="courage">
+<span class="header-section-number">8.3</span> Courage</h2>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="other/images/Courage.jpg" class="img-fluid figure-img" style="width:60.0%"></p>
-<figcaption class="figure-caption">Courage</figcaption></figure>
+<figure class="figure"><p><img src="other/images/Courage.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
+<figcaption>Courage</figcaption></figure>
 </div>
 </div>
 </div>
-<section id="set-up" class="level3" data-number="8.4.1"><h3 data-number="8.4.1" class="anchored" data-anchor-id="set-up">
-<span class="header-section-number">8.4.1</span> Set-up</h3>
+<section id="set-up" class="level3" data-number="8.3.1"><h3 data-number="8.3.1" class="anchored" data-anchor-id="set-up">
+<span class="header-section-number">8.3.1</span> Set-up</h3>
 <p>Now, we will create an object named <code>object_1</code> that includes a 3-level factor classifying voters by level of civic engagement.</p>
 <ul>
 <li><p>Convert all primary and general election variables <em>that are not already 1/0 binary</em> to binary format.</p></li>
@@ -1794,7 +1648,7 @@ $ neighbors     &lt;int&gt; 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 
 <li><p>Create a column called <code>z_age</code> which is the z-score for <code>age</code>.</p></li>
 </ul>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">object_1</span> <span class="op">&lt;-</span> <span class="va">shaming</span> <span class="op">|&gt;</span> </span>
+<details class="code-fold"><summary>Show the code</summary><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">object_1</span> <span class="op">&lt;-</span> <span class="va">shaming</span> <span class="op">|&gt;</span> </span>
 <span>  </span>
 <span>  <span class="co"># Converting the Y/N columns to binaries with the function we made </span></span>
 <span>  <span class="co"># note that primary_06 is already binary and also that we don't </span></span>
@@ -1837,7 +1691,7 @@ $ neighbors     &lt;int&gt; 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 
 </div>
 <p>Let’s inspect our object:</p>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">object_1</span> <span class="op">|&gt;</span> </span>
+<details class="code-fold"><summary>Show the code</summary><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">object_1</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 6
@@ -1849,8 +1703,8 @@ $ neighbors     &lt;int&gt; 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 
 </div>
 </div>
 <p>Great! Now, we will create our first model: the relationship between <code>primary_06</code>, which represents whether a citizen voted or not, against sex and treatment.</p>
-</section><section id="primary_06-treatment-sex" class="level3" data-number="8.4.2"><h3 data-number="8.4.2" class="anchored" data-anchor-id="primary_06-treatment-sex">
-<span class="header-section-number">8.4.2</span> primary_06 ~ treatment + sex</h3>
+</section><section id="primary_06-treatment-sex" class="level3" data-number="8.3.2"><h3 data-number="8.3.2" class="anchored" data-anchor-id="primary_06-treatment-sex">
+<span class="header-section-number">8.3.2</span> primary_06 ~ treatment + sex</h3>
 <p>In this section, we will look at the relationship between primary voting and treatment + sex.</p>
 <p><em>The math:</em></p>
 <p>Without variable names:</p>
@@ -1859,15 +1713,15 @@ $ neighbors     &lt;int&gt; 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 
 <p>There are two ways to formalize the model used in <code>fit_1</code>: with and without the variable names. The former is related to the concept of Justice as we acknowledge that the model is constructed via the linear sum of <code>n</code> parameters times the value for <code>n</code> variables, along with an error term. In other words, it is a linear model. The only other model we have learned this semester is a logistic model, but there are other kinds of models, each defined by the mathematics and the assumptions about the error term.</p>
 <p>The second type of formal notation, more associated with the virtue Courage, includes the actual variable names we are using. The trickiest part is the transformation of character/factor variables into indicator variables, meaning variables with 0/1 values. Because <code>treatment</code> has 5 levels, we need 4 indicator variables. The fifth level — which, by default, is the first variable alphabetically (for character variables) or the first level (for factor variables) — is incorporated in the intercept.</p>
 <p>Let’s translate the model into code.</p>
-<div class="cell" data-hash="n-parameters_cache/html/unnamed-chunk-12_4ee85014f0a2df4e19ecfca86a4dba84">
-<details><summary>Code</summary><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/rstanarm/reference/stan_glm.html">stan_glm</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">object_1</span>,</span>
+<div class="cell">
+<details class="code-fold"><summary>Show the code</summary><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/rstanarm/reference/stan_glm.html">stan_glm</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">object_1</span>,</span>
 <span>                  formula <span class="op">=</span> <span class="va">primary_06</span> <span class="op">~</span> <span class="va">treatment</span> <span class="op">+</span> <span class="va">sex</span>,</span>
 <span>                  refresh <span class="op">=</span> <span class="fl">0</span>,</span>
 <span>                  seed <span class="op">=</span> <span class="fl">987</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">fit_1</span>, digits <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details class="code-fold"><summary>Show the code</summary><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">fit_1</span>, digits <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output cell-output-stdout">
 <pre><code>stan_glm
  family:       gaussian [identity]
@@ -1894,7 +1748,7 @@ sigma 0.464  0.001
 </div>
 <p>We will now create a table that nicely formats the results of <code>fit_1</code> using the <code><a href="https://www.danieldsjoberg.com/gtsummary/reference/tbl_regression.html">tbl_regression()</a></code> function from the <strong>gtsummary</strong> package. It will also display the associated 95% confidence interval for each coefficient.</p>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://www.danieldsjoberg.com/gtsummary/reference/tbl_regression.html">tbl_regression</a></span><span class="op">(</span><span class="va">fit_1</span>, </span>
+<details class="code-fold"><summary>Show the code</summary><div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://www.danieldsjoberg.com/gtsummary/reference/tbl_regression.html">tbl_regression</a></span><span class="op">(</span><span class="va">fit_1</span>, </span>
 <span>               intercept <span class="op">=</span> <span class="cn">TRUE</span>, </span>
 <span>               estimate_fun <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://www.danieldsjoberg.com/gtsummary/reference/style_sigfig.html">style_sigfig</a></span><span class="op">(</span><span class="va">x</span>, digits <span class="op">=</span> <span class="fl">3</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  </span>
@@ -1906,24 +1760,23 @@ sigma 0.464  0.001
 <span>  <span class="fu"><a href="https://gt.rstudio.com/reference/tab_source_note.html">tab_source_note</a></span><span class="op">(</span><span class="fu"><a href="https://gt.rstudio.com/reference/md.html">md</a></span><span class="op">(</span><span class="st">"Source: Gerber, Green, and Larimer (2008)"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://gt.rstudio.com/reference/cols_label.html">cols_label</a></span><span class="op">(</span>estimate <span class="op">=</span> <span class="fu"><a href="https://gt.rstudio.com/reference/md.html">md</a></span><span class="op">(</span><span class="st">"**Parameter**"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
-
-<div id="xilomfmixr" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#xilomfmixr table {
+<div id="jpvrpzwddj" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#jpvrpzwddj table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#xilomfmixr thead, #xilomfmixr tbody, #xilomfmixr tfoot, #xilomfmixr tr, #xilomfmixr td, #xilomfmixr th {
+#jpvrpzwddj thead, #jpvrpzwddj tbody, #jpvrpzwddj tfoot, #jpvrpzwddj tr, #jpvrpzwddj td, #jpvrpzwddj th {
   border-style: none;
 }
 
-#xilomfmixr p {
+#jpvrpzwddj p {
   margin: 0;
   padding: 0;
 }
 
-#xilomfmixr .gt_table {
+#jpvrpzwddj .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1949,12 +1802,12 @@ sigma 0.464  0.001
   border-left-color: #D3D3D3;
 }
 
-#xilomfmixr .gt_caption {
+#jpvrpzwddj .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#xilomfmixr .gt_title {
+#jpvrpzwddj .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1966,7 +1819,7 @@ sigma 0.464  0.001
   border-bottom-width: 0;
 }
 
-#xilomfmixr .gt_subtitle {
+#jpvrpzwddj .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1978,7 +1831,7 @@ sigma 0.464  0.001
   border-top-width: 0;
 }
 
-#xilomfmixr .gt_heading {
+#jpvrpzwddj .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1990,13 +1843,13 @@ sigma 0.464  0.001
   border-right-color: #D3D3D3;
 }
 
-#xilomfmixr .gt_bottom_border {
+#jpvrpzwddj .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#xilomfmixr .gt_col_headings {
+#jpvrpzwddj .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2011,7 +1864,7 @@ sigma 0.464  0.001
   border-right-color: #D3D3D3;
 }
 
-#xilomfmixr .gt_col_heading {
+#jpvrpzwddj .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2031,7 +1884,7 @@ sigma 0.464  0.001
   overflow-x: hidden;
 }
 
-#xilomfmixr .gt_column_spanner_outer {
+#jpvrpzwddj .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2043,15 +1896,15 @@ sigma 0.464  0.001
   padding-right: 4px;
 }
 
-#xilomfmixr .gt_column_spanner_outer:first-child {
+#jpvrpzwddj .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#xilomfmixr .gt_column_spanner_outer:last-child {
+#jpvrpzwddj .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#xilomfmixr .gt_column_spanner {
+#jpvrpzwddj .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2063,11 +1916,11 @@ sigma 0.464  0.001
   width: 100%;
 }
 
-#xilomfmixr .gt_spanner_row {
+#jpvrpzwddj .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#xilomfmixr .gt_group_heading {
+#jpvrpzwddj .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2093,7 +1946,7 @@ sigma 0.464  0.001
   text-align: left;
 }
 
-#xilomfmixr .gt_empty_group_heading {
+#jpvrpzwddj .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2108,15 +1961,15 @@ sigma 0.464  0.001
   vertical-align: middle;
 }
 
-#xilomfmixr .gt_from_md > :first-child {
+#jpvrpzwddj .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#xilomfmixr .gt_from_md > :last-child {
+#jpvrpzwddj .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#xilomfmixr .gt_row {
+#jpvrpzwddj .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2135,7 +1988,7 @@ sigma 0.464  0.001
   overflow-x: hidden;
 }
 
-#xilomfmixr .gt_stub {
+#jpvrpzwddj .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2148,7 +2001,7 @@ sigma 0.464  0.001
   padding-right: 5px;
 }
 
-#xilomfmixr .gt_stub_row_group {
+#jpvrpzwddj .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2162,15 +2015,15 @@ sigma 0.464  0.001
   vertical-align: top;
 }
 
-#xilomfmixr .gt_row_group_first td {
+#jpvrpzwddj .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#xilomfmixr .gt_row_group_first th {
+#jpvrpzwddj .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#xilomfmixr .gt_summary_row {
+#jpvrpzwddj .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2180,16 +2033,16 @@ sigma 0.464  0.001
   padding-right: 5px;
 }
 
-#xilomfmixr .gt_first_summary_row {
+#jpvrpzwddj .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#xilomfmixr .gt_first_summary_row.thick {
+#jpvrpzwddj .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#xilomfmixr .gt_last_summary_row {
+#jpvrpzwddj .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2199,7 +2052,7 @@ sigma 0.464  0.001
   border-bottom-color: #D3D3D3;
 }
 
-#xilomfmixr .gt_grand_summary_row {
+#jpvrpzwddj .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2209,7 +2062,7 @@ sigma 0.464  0.001
   padding-right: 5px;
 }
 
-#xilomfmixr .gt_first_grand_summary_row {
+#jpvrpzwddj .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2219,7 +2072,7 @@ sigma 0.464  0.001
   border-top-color: #D3D3D3;
 }
 
-#xilomfmixr .gt_last_grand_summary_row_top {
+#jpvrpzwddj .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2229,11 +2082,11 @@ sigma 0.464  0.001
   border-bottom-color: #D3D3D3;
 }
 
-#xilomfmixr .gt_striped {
+#jpvrpzwddj .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#xilomfmixr .gt_table_body {
+#jpvrpzwddj .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2242,7 +2095,7 @@ sigma 0.464  0.001
   border-bottom-color: #D3D3D3;
 }
 
-#xilomfmixr .gt_footnotes {
+#jpvrpzwddj .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2256,7 +2109,7 @@ sigma 0.464  0.001
   border-right-color: #D3D3D3;
 }
 
-#xilomfmixr .gt_footnote {
+#jpvrpzwddj .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2265,7 +2118,7 @@ sigma 0.464  0.001
   padding-right: 5px;
 }
 
-#xilomfmixr .gt_sourcenotes {
+#jpvrpzwddj .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2279,7 +2132,7 @@ sigma 0.464  0.001
   border-right-color: #D3D3D3;
 }
 
-#xilomfmixr .gt_sourcenote {
+#jpvrpzwddj .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2287,63 +2140,63 @@ sigma 0.464  0.001
   padding-right: 5px;
 }
 
-#xilomfmixr .gt_left {
+#jpvrpzwddj .gt_left {
   text-align: left;
 }
 
-#xilomfmixr .gt_center {
+#jpvrpzwddj .gt_center {
   text-align: center;
 }
 
-#xilomfmixr .gt_right {
+#jpvrpzwddj .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#xilomfmixr .gt_font_normal {
+#jpvrpzwddj .gt_font_normal {
   font-weight: normal;
 }
 
-#xilomfmixr .gt_font_bold {
+#jpvrpzwddj .gt_font_bold {
   font-weight: bold;
 }
 
-#xilomfmixr .gt_font_italic {
+#jpvrpzwddj .gt_font_italic {
   font-style: italic;
 }
 
-#xilomfmixr .gt_super {
+#jpvrpzwddj .gt_super {
   font-size: 65%;
 }
 
-#xilomfmixr .gt_footnote_marks {
+#jpvrpzwddj .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#xilomfmixr .gt_asterisk {
+#jpvrpzwddj .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#xilomfmixr .gt_indent_1 {
+#jpvrpzwddj .gt_indent_1 {
   text-indent: 5px;
 }
 
-#xilomfmixr .gt_indent_2 {
+#jpvrpzwddj .gt_indent_2 {
   text-indent: 10px;
 }
 
-#xilomfmixr .gt_indent_3 {
+#jpvrpzwddj .gt_indent_3 {
   text-indent: 15px;
 }
 
-#xilomfmixr .gt_indent_4 {
+#jpvrpzwddj .gt_indent_4 {
   text-indent: 20px;
 }
 
-#xilomfmixr .gt_indent_5 {
+#jpvrpzwddj .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -2431,13 +2284,13 @@ sigma 0.464  0.001
 <li><p>The intercept of this model is the expected value of the probability of someone voting in the 2006 primary given that they are part of the control group and are female. In this case, we estimate that women in the control group will vote ~29.1% of the time.</p></li>
 <li><p>The coefficient for <code>sexMale</code> indicates the difference in likelihood of voting between a male and female. In other words, when comparing men and women, the 0.012 implies that men are ~1.2% more likely to vote than women. Note that, because this is a linear model with no interactions between sex and other variables, this difference applies to any male, regardless of the treatment he received. Because sex can not be manipulated (by assumption), we should not use a causal interpretation of the coefficient.</p></li>
 <li><p>The coefficients of the treatments, on the other hand, do have a causal interpretation. For a single individual, of either sex, being sent the Self postcard increases your probability of voting by 4.8%. It appears that the <code>Neighbors</code> treatment is the most effective at ~8.1% and <code>Civic Duty</code> is the least effective at ~1.8%.</p></li>
-</ul></section><section id="primary_06-z_age-sex-treatment-voter_class-voter_classtreatment" class="level3" data-number="8.4.3"><h3 data-number="8.4.3" class="anchored" data-anchor-id="primary_06-z_age-sex-treatment-voter_class-voter_classtreatment">
-<span class="header-section-number">8.4.3</span> primary_06 ~ z_age + sex + treatment + voter_class + voter_class*treatment</h3>
+</ul></section><section id="primary_06-z_age-sex-treatment-voter_class-voter_classtreatment" class="level3" data-number="8.3.3"><h3 data-number="8.3.3" class="anchored" data-anchor-id="primary_06-z_age-sex-treatment-voter_class-voter_classtreatment">
+<span class="header-section-number">8.3.3</span> primary_06 ~ z_age + sex + treatment + voter_class + voter_class*treatment</h3>
 <p>It is time to look at interactions! Create another model named <code>fit_2</code> that estimates <code>primary_06</code> as a function of <code>z_age</code>, <code>sex</code>, <code>treatment</code>, <code>voter_class</code>, and the interaction between treatment and voter classification.</p>
 <p>The math:</p>
 <p><span class="math display">\[y_{i} = \beta_{0} + \beta_{1}z\_age + \beta_{2}male_i + \beta_{3}civic\_duty_i + \\ \beta_{4}hawthorne_i + \beta_{5}self_i + \beta_{6}neighbors_i + \\ \beta_{7}Sometimes\ vote_i + \beta_{8}Always\ vote_i + \\ \beta_{9}civic\_duty_i Sometimes\ vote_i + \beta_{10}hawthorne_i Sometimes\ vote_i + \\ \beta_{11}self_i Sometimes\ vote_i + \beta_{11}neighbors_i Sometimes\ vote_i + \\ \beta_{12}civic\_duty_i Always\ vote_i + \beta_{13}hawthorne_i Always\ vote_i + \\ \beta_{14}self_i Always\ vote_i + \beta_{15}neighbors_i Always\ vote_i + \epsilon_{i}\]</span> Translate into code:</p>
-<div class="cell" data-hash="n-parameters_cache/html/unnamed-chunk-15_5db09debd7b488771e07711629f34617">
-<details><summary>Code</summary><div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/rstanarm/reference/stan_glm.html">stan_glm</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">object_1</span>,</span>
+<div class="cell">
+<details class="code-fold"><summary>Show the code</summary><div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/rstanarm/reference/stan_glm.html">stan_glm</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">object_1</span>,</span>
 <span>                  formula <span class="op">=</span> <span class="va">primary_06</span> <span class="op">~</span> <span class="va">z_age</span> <span class="op">+</span> <span class="va">sex</span> <span class="op">+</span> <span class="va">treatment</span> <span class="op">+</span> <span class="va">voter_class</span> <span class="op">+</span> </span>
 <span>                            <span class="va">treatment</span><span class="op">*</span><span class="va">voter_class</span>,</span>
 <span>                  family <span class="op">=</span> <span class="va">gaussian</span>,</span>
@@ -2446,7 +2299,7 @@ sigma 0.464  0.001
 </details>
 </div>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">fit_2</span>, digits <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details class="code-fold"><summary>Show the code</summary><div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">fit_2</span>, digits <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output cell-output-stdout">
 <pre><code>stan_glm
  family:       gaussian [identity]
@@ -2460,17 +2313,17 @@ sigma 0.464  0.001
 z_age                                          0.035  0.001
 sexMale                                        0.008  0.002
 treatmentCivic Duty                            0.010  0.007
-treatmentHawthorne                             0.007  0.007
+treatmentHawthorne                             0.008  0.006
 treatmentSelf                                  0.023  0.007
 treatmentNeighbors                             0.044  0.007
 voter_classSometimes Vote                      0.114  0.003
 voter_classAlways Vote                         0.294  0.004
-treatmentCivic Duty:voter_classSometimes Vote  0.014  0.008
+treatmentCivic Duty:voter_classSometimes Vote  0.014  0.007
 treatmentHawthorne:voter_classSometimes Vote   0.019  0.007
 treatmentSelf:voter_classSometimes Vote        0.030  0.007
 treatmentNeighbors:voter_classSometimes Vote   0.042  0.008
-treatmentCivic Duty:voter_classAlways Vote    -0.001  0.009
-treatmentHawthorne:voter_classAlways Vote      0.025  0.009
+treatmentCivic Duty:voter_classAlways Vote    -0.001  0.008
+treatmentHawthorne:voter_classAlways Vote      0.025  0.008
 treatmentSelf:voter_classAlways Vote           0.026  0.008
 treatmentNeighbors:voter_classAlways Vote      0.047  0.009
 
@@ -2485,7 +2338,7 @@ sigma 0.451  0.001
 </div>
 <p>As we did with our first model, create a regression table to observe our findings:</p>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://www.danieldsjoberg.com/gtsummary/reference/tbl_regression.html">tbl_regression</a></span><span class="op">(</span><span class="va">fit_2</span>, </span>
+<details class="code-fold"><summary>Show the code</summary><div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://www.danieldsjoberg.com/gtsummary/reference/tbl_regression.html">tbl_regression</a></span><span class="op">(</span><span class="va">fit_2</span>, </span>
 <span>               intercept <span class="op">=</span> <span class="cn">TRUE</span>, </span>
 <span>               estimate_fun <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://www.danieldsjoberg.com/gtsummary/reference/style_sigfig.html">style_sigfig</a></span><span class="op">(</span><span class="va">x</span>, digits <span class="op">=</span> <span class="fl">3</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://www.danieldsjoberg.com/gtsummary/reference/as_gt.html">as_gt</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -2494,24 +2347,23 @@ sigma 0.451  0.001
 <span>  <span class="fu"><a href="https://gt.rstudio.com/reference/tab_source_note.html">tab_source_note</a></span><span class="op">(</span><span class="fu"><a href="https://gt.rstudio.com/reference/md.html">md</a></span><span class="op">(</span><span class="st">"Source: Gerber, Green, and Larimer (2008)"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://gt.rstudio.com/reference/cols_label.html">cols_label</a></span><span class="op">(</span>estimate <span class="op">=</span> <span class="fu"><a href="https://gt.rstudio.com/reference/md.html">md</a></span><span class="op">(</span><span class="st">"**Parameter**"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
-
-<div id="gsuqwftcyt" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#gsuqwftcyt table {
+<div id="wilhpwtxoe" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#wilhpwtxoe table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#gsuqwftcyt thead, #gsuqwftcyt tbody, #gsuqwftcyt tfoot, #gsuqwftcyt tr, #gsuqwftcyt td, #gsuqwftcyt th {
+#wilhpwtxoe thead, #wilhpwtxoe tbody, #wilhpwtxoe tfoot, #wilhpwtxoe tr, #wilhpwtxoe td, #wilhpwtxoe th {
   border-style: none;
 }
 
-#gsuqwftcyt p {
+#wilhpwtxoe p {
   margin: 0;
   padding: 0;
 }
 
-#gsuqwftcyt .gt_table {
+#wilhpwtxoe .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -2537,12 +2389,12 @@ sigma 0.451  0.001
   border-left-color: #D3D3D3;
 }
 
-#gsuqwftcyt .gt_caption {
+#wilhpwtxoe .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#gsuqwftcyt .gt_title {
+#wilhpwtxoe .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2554,7 +2406,7 @@ sigma 0.451  0.001
   border-bottom-width: 0;
 }
 
-#gsuqwftcyt .gt_subtitle {
+#wilhpwtxoe .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2566,7 +2418,7 @@ sigma 0.451  0.001
   border-top-width: 0;
 }
 
-#gsuqwftcyt .gt_heading {
+#wilhpwtxoe .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2578,13 +2430,13 @@ sigma 0.451  0.001
   border-right-color: #D3D3D3;
 }
 
-#gsuqwftcyt .gt_bottom_border {
+#wilhpwtxoe .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#gsuqwftcyt .gt_col_headings {
+#wilhpwtxoe .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2599,7 +2451,7 @@ sigma 0.451  0.001
   border-right-color: #D3D3D3;
 }
 
-#gsuqwftcyt .gt_col_heading {
+#wilhpwtxoe .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2619,7 +2471,7 @@ sigma 0.451  0.001
   overflow-x: hidden;
 }
 
-#gsuqwftcyt .gt_column_spanner_outer {
+#wilhpwtxoe .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2631,15 +2483,15 @@ sigma 0.451  0.001
   padding-right: 4px;
 }
 
-#gsuqwftcyt .gt_column_spanner_outer:first-child {
+#wilhpwtxoe .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#gsuqwftcyt .gt_column_spanner_outer:last-child {
+#wilhpwtxoe .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#gsuqwftcyt .gt_column_spanner {
+#wilhpwtxoe .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2651,11 +2503,11 @@ sigma 0.451  0.001
   width: 100%;
 }
 
-#gsuqwftcyt .gt_spanner_row {
+#wilhpwtxoe .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#gsuqwftcyt .gt_group_heading {
+#wilhpwtxoe .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2681,7 +2533,7 @@ sigma 0.451  0.001
   text-align: left;
 }
 
-#gsuqwftcyt .gt_empty_group_heading {
+#wilhpwtxoe .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2696,15 +2548,15 @@ sigma 0.451  0.001
   vertical-align: middle;
 }
 
-#gsuqwftcyt .gt_from_md > :first-child {
+#wilhpwtxoe .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#gsuqwftcyt .gt_from_md > :last-child {
+#wilhpwtxoe .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#gsuqwftcyt .gt_row {
+#wilhpwtxoe .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2723,7 +2575,7 @@ sigma 0.451  0.001
   overflow-x: hidden;
 }
 
-#gsuqwftcyt .gt_stub {
+#wilhpwtxoe .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2736,7 +2588,7 @@ sigma 0.451  0.001
   padding-right: 5px;
 }
 
-#gsuqwftcyt .gt_stub_row_group {
+#wilhpwtxoe .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2750,15 +2602,15 @@ sigma 0.451  0.001
   vertical-align: top;
 }
 
-#gsuqwftcyt .gt_row_group_first td {
+#wilhpwtxoe .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#gsuqwftcyt .gt_row_group_first th {
+#wilhpwtxoe .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#gsuqwftcyt .gt_summary_row {
+#wilhpwtxoe .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2768,16 +2620,16 @@ sigma 0.451  0.001
   padding-right: 5px;
 }
 
-#gsuqwftcyt .gt_first_summary_row {
+#wilhpwtxoe .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#gsuqwftcyt .gt_first_summary_row.thick {
+#wilhpwtxoe .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#gsuqwftcyt .gt_last_summary_row {
+#wilhpwtxoe .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2787,7 +2639,7 @@ sigma 0.451  0.001
   border-bottom-color: #D3D3D3;
 }
 
-#gsuqwftcyt .gt_grand_summary_row {
+#wilhpwtxoe .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2797,7 +2649,7 @@ sigma 0.451  0.001
   padding-right: 5px;
 }
 
-#gsuqwftcyt .gt_first_grand_summary_row {
+#wilhpwtxoe .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2807,7 +2659,7 @@ sigma 0.451  0.001
   border-top-color: #D3D3D3;
 }
 
-#gsuqwftcyt .gt_last_grand_summary_row_top {
+#wilhpwtxoe .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2817,11 +2669,11 @@ sigma 0.451  0.001
   border-bottom-color: #D3D3D3;
 }
 
-#gsuqwftcyt .gt_striped {
+#wilhpwtxoe .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#gsuqwftcyt .gt_table_body {
+#wilhpwtxoe .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2830,7 +2682,7 @@ sigma 0.451  0.001
   border-bottom-color: #D3D3D3;
 }
 
-#gsuqwftcyt .gt_footnotes {
+#wilhpwtxoe .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2844,7 +2696,7 @@ sigma 0.451  0.001
   border-right-color: #D3D3D3;
 }
 
-#gsuqwftcyt .gt_footnote {
+#wilhpwtxoe .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2853,7 +2705,7 @@ sigma 0.451  0.001
   padding-right: 5px;
 }
 
-#gsuqwftcyt .gt_sourcenotes {
+#wilhpwtxoe .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2867,7 +2719,7 @@ sigma 0.451  0.001
   border-right-color: #D3D3D3;
 }
 
-#gsuqwftcyt .gt_sourcenote {
+#wilhpwtxoe .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2875,63 +2727,63 @@ sigma 0.451  0.001
   padding-right: 5px;
 }
 
-#gsuqwftcyt .gt_left {
+#wilhpwtxoe .gt_left {
   text-align: left;
 }
 
-#gsuqwftcyt .gt_center {
+#wilhpwtxoe .gt_center {
   text-align: center;
 }
 
-#gsuqwftcyt .gt_right {
+#wilhpwtxoe .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#gsuqwftcyt .gt_font_normal {
+#wilhpwtxoe .gt_font_normal {
   font-weight: normal;
 }
 
-#gsuqwftcyt .gt_font_bold {
+#wilhpwtxoe .gt_font_bold {
   font-weight: bold;
 }
 
-#gsuqwftcyt .gt_font_italic {
+#wilhpwtxoe .gt_font_italic {
   font-style: italic;
 }
 
-#gsuqwftcyt .gt_super {
+#wilhpwtxoe .gt_super {
   font-size: 65%;
 }
 
-#gsuqwftcyt .gt_footnote_marks {
+#wilhpwtxoe .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#gsuqwftcyt .gt_asterisk {
+#wilhpwtxoe .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#gsuqwftcyt .gt_indent_1 {
+#wilhpwtxoe .gt_indent_1 {
   text-indent: 5px;
 }
 
-#gsuqwftcyt .gt_indent_2 {
+#wilhpwtxoe .gt_indent_2 {
   text-indent: 10px;
 }
 
-#gsuqwftcyt .gt_indent_3 {
+#wilhpwtxoe .gt_indent_3 {
   text-indent: 15px;
 }
 
-#gsuqwftcyt .gt_indent_4 {
+#wilhpwtxoe .gt_indent_4 {
   text-indent: 20px;
 }
 
-#gsuqwftcyt .gt_indent_5 {
+#wilhpwtxoe .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -2990,12 +2842,12 @@ sigma 0.451  0.001
 <tr>
 <td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Civic Duty</td>
 <td headers="estimate" class="gt_row gt_center">0.010</td>
-<td headers="ci" class="gt_row gt_center">-0.004, 0.023</td>
+<td headers="ci" class="gt_row gt_center">-0.003, 0.023</td>
 </tr>
 <tr>
 <td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Hawthorne</td>
-<td headers="estimate" class="gt_row gt_center">0.007</td>
-<td headers="ci" class="gt_row gt_center">-0.005, 0.021</td>
+<td headers="estimate" class="gt_row gt_center">0.008</td>
+<td headers="ci" class="gt_row gt_center">-0.005, 0.020</td>
 </tr>
 <tr>
 <td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Self</td>
@@ -3035,7 +2887,7 @@ sigma 0.451  0.001
 <tr>
 <td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Civic Duty * Sometimes Vote</td>
 <td headers="estimate" class="gt_row gt_center">0.014</td>
-<td headers="ci" class="gt_row gt_center">0.000, 0.030</td>
+<td headers="ci" class="gt_row gt_center">0.000, 0.029</td>
 </tr>
 <tr>
 <td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Hawthorne * Sometimes Vote</td>
@@ -3045,12 +2897,12 @@ sigma 0.451  0.001
 <tr>
 <td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Self * Sometimes Vote</td>
 <td headers="estimate" class="gt_row gt_center">0.030</td>
-<td headers="ci" class="gt_row gt_center">0.016, 0.044</td>
+<td headers="ci" class="gt_row gt_center">0.016, 0.045</td>
 </tr>
 <tr>
 <td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Neighbors * Sometimes Vote</td>
 <td headers="estimate" class="gt_row gt_center">0.042</td>
-<td headers="ci" class="gt_row gt_center">0.028, 0.056</td>
+<td headers="ci" class="gt_row gt_center">0.027, 0.056</td>
 </tr>
 <tr>
 <td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Civic Duty * Always Vote</td>
@@ -3060,7 +2912,7 @@ sigma 0.451  0.001
 <tr>
 <td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Hawthorne * Always Vote</td>
 <td headers="estimate" class="gt_row gt_center">0.025</td>
-<td headers="ci" class="gt_row gt_center">0.008, 0.042</td>
+<td headers="ci" class="gt_row gt_center">0.009, 0.041</td>
 </tr>
 <tr>
 <td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Self * Always Vote</td>
@@ -3090,13 +2942,13 @@ sigma 0.451  0.001
 <li><p>The coefficient of z_age, 0, implies a change of ~3.5% in likelihood of voting for each increment of one standard deviation (~ 14.45 years). For example: when comparing someone 50 years old with someone 65, the latter is about 3.5% more likely to vote.</p></li>
 <li><p>Exposure to the Neighbors treatment shows a ~4.4% increase in voting likelihood for someone in the Rarely Vote category. Because of random assignment of treatment, we can interpret that coefficient as an estimate of the average treatment effect.</p></li>
 <li><p>If someone were from a different voter classification, the calculation is more complex because we need to account for the interaction term. For example, for individuals who Sometimes Vote, the treatment effect of Neighbors is 0.1%. For Always Vote Neighbors, it is 0.1%.</p></li>
-</ul></section></section><section id="temperance" class="level2" data-number="8.5"><h2 data-number="8.5" class="anchored" data-anchor-id="temperance">
-<span class="header-section-number">8.5</span> Temperance</h2>
+</ul></section></section><section id="temperance" class="level2" data-number="8.4"><h2 data-number="8.4" class="anchored" data-anchor-id="temperance">
+<span class="header-section-number">8.4</span> Temperance</h2>
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="other/images/Temperance.jpg" class="img-fluid figure-img" width="960"></p>
-<figcaption class="figure-caption">Temperance</figcaption></figure>
+<figcaption>Temperance</figcaption></figure>
 </div>
 </div>
 </div>
@@ -3107,7 +2959,7 @@ sigma 0.451  0.001
 <p><em>Important note</em>: We could look at lots of ages and both Male and Female subjects. However, that would not change our estimates of the treatment effects. The model is linear, so terms associated with <code>z_age</code> and <code>sex</code> disappear when we do the subtraction. This is one of the great advantages of linear models.</p>
 <p>To begin, we will need to create our <code>newobs</code> object.</p>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Because our model is linear, the terms associated with z_age and sex disappear</span></span>
+<details class="code-fold"><summary>Show the code</summary><div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Because our model is linear, the terms associated with z_age and sex disappear</span></span>
 <span><span class="co"># when we perform subtraction. The treatment effects calculated thereafter will</span></span>
 <span><span class="co"># not only apply to males of the z-scored age of ~ 50 years. The treatment</span></span>
 <span><span class="co"># effects apply to all participants, despite calling these inputs.</span></span>
@@ -3155,7 +3007,7 @@ sigma 0.451  0.001
 <p>Recall that, when calculating a treatment effect, we need to subtract the estimate for each category from the control group for that category. For example, if we wanted to find the treatment effect for the Always Vote Neighbors group, we would need: Always Vote Neighbors - Always Vote No Postcard.</p>
 <p>Therefore, we will use <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> twelve times, for each of the treatments and voting frequencies. After, we will <code>pivot_longer</code> in order for the treatment effects to be sensibly categorized for plotting. If any of this sounds confusing, read the code comments carefully.</p>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">plot_data</span> <span class="op">&lt;-</span> <span class="va">pe</span> <span class="op">|&gt;</span> </span>
+<details class="code-fold"><summary>Show the code</summary><div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">plot_data</span> <span class="op">&lt;-</span> <span class="va">pe</span> <span class="op">|&gt;</span> </span>
 <span>  </span>
 <span>  <span class="co"># Using our cleaned naming system, ATE calculations are simple enough. Note</span></span>
 <span>  <span class="co"># how much easier the code reads because we have taken the trouble to line up</span></span>
@@ -3195,7 +3047,7 @@ sigma 0.451  0.001
 </div>
 <p>Finally, we will plot our data! Read the code comments for explanations on aesthetic choices, as well as a helpful discussion on <code><a href="https://forcats.tidyverse.org/reference/fct_reorder.html">fct_reorder()</a></code>.</p>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">plot_data</span>  <span class="op">|&gt;</span> </span>
+<details class="code-fold"><summary>Show the code</summary><div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">plot_data</span>  <span class="op">|&gt;</span> </span>
 <span>  </span>
 <span>  <span class="co"># Reordering the y axis values allows a smoother visual interpretation - </span></span>
 <span>  <span class="co"># you can see the treatments in sequential ATE.</span></span>
@@ -3222,7 +3074,10 @@ sigma 0.451  0.001
 <span>    <span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_clean.html">theme_clean</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"bottom"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
-<p><img src="n-parameters_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure"><p><img src="n-parameters_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>This is interesting! It shows us a few valuable bits of information:</p>
@@ -3234,30 +3089,30 @@ sigma 0.451  0.001
 <p>What does this mean for us, as we consider which postcards to send? * Consider the highest yellow distribution, which is the posterior distribution for the average treatment effect of receiving the Neighbors postcard (compared to not getting a postcard) for Always Voters. The posterior is centered around 9% with a 95% confidence interval of, roughly, 8% to 10%. * Overall, the Civic Duty and Hawthorne postcards had small average treatment effects, across all three categories of voter. The causal effect on Rarely Voters was much smaller, regardless of treatment. It was also much less precisely estimated because there were many fewer Rarely Voters in the data. *The best way to increase turnover, assuming there are limits to how many postcards you can send, is to focus on Sometimes/Always voters and to use the Neighbors postcard.</p>
 <p><em>Conclusion</em>: If we had a limited number of postcards, we would send the Neighbors postcard to citizens who already demonstrate a tendency to vote.</p>
 <p>How confident are we in these findings? If we needed to convince our boss that this is the right strategy, we need to explain how confident we are in our assumptions. To do that, we must understand the three levels of knowledge in the world of posteriors.</p>
-<section id="the-three-levels-of-knowledge" class="level3" data-number="8.5.1"><h3 data-number="8.5.1" class="anchored" data-anchor-id="the-three-levels-of-knowledge">
-<span class="header-section-number">8.5.1</span> The Three Levels of Knowledge</h3>
+<section id="the-three-levels-of-knowledge" class="level3" data-number="8.4.1"><h3 data-number="8.4.1" class="anchored" data-anchor-id="the-three-levels-of-knowledge">
+<span class="header-section-number">8.4.1</span> The Three Levels of Knowledge</h3>
 <p>There exist three primary levels of knowledge possible knowledge in our scenario: the Truth (the ideal Preceptor Table), the DGM Posterior, and Our Posterior.</p>
-<section id="the-truth" class="level4" data-number="8.5.1.1"><h4 data-number="8.5.1.1" class="anchored" data-anchor-id="the-truth">
-<span class="header-section-number">8.5.1.1</span> The Truth</h4>
+<section id="the-truth" class="level4" data-number="8.4.1.1"><h4 data-number="8.4.1.1" class="anchored" data-anchor-id="the-truth">
+<span class="header-section-number">8.4.1.1</span> The Truth</h4>
 <p>If we know the Truth (with a capital “T”), then we know the ideal Preceptor Table. With that knowledge, we can <em>directly</em> answer our question precisely. We can calculate each individual’s treatment effect, and any summary measure we might be interested in, like the average treatment effect.</p>
 <p>This level of knowledge is possible only under an omniscient power, one who can see every outcome in every individual under every treatment. The Truth would show, for any given individual, their actions under control, their actions under treatment, and each little factor that impacted those decisions.</p>
 <p>The Truth represents the highest level of knowledge one can have — with it, our questions merely require algebra. There is no need to estimate a treatment effect, or the different treatment effects for different groups of people. We would not need to predict at all — we would <strong>know</strong>.</p>
-</section><section id="dgm-posterior" class="level4" data-number="8.5.1.2"><h4 data-number="8.5.1.2" class="anchored" data-anchor-id="dgm-posterior">
-<span class="header-section-number">8.5.1.2</span> DGM posterior</h4>
+</section><section id="dgm-posterior" class="level4" data-number="8.4.1.2"><h4 data-number="8.4.1.2" class="anchored" data-anchor-id="dgm-posterior">
+<span class="header-section-number">8.4.1.2</span> DGM posterior</h4>
 <p>The DGM posterior is the next level of knowledge, which lacks the omniscient quality of The Truth. This posterior is the posterior we would calculate if we had perfect knowledge of the data generating mechanism, meaning we have the correct model structure and exact parameter values. This is often falsely conflated with “Our posterior”, which is subject to error in model structure and parameter value estimations.</p>
 <p>With the DGM posterior, we could not be certain about any individual’s causal effect, because of the Fundamental Problem of Causal Inference. In other words, we can never measure any one person’s causal effect because we are unable to see a person’s resulting behavior under treatment <em>and</em> control; we only have data on one of the two conditions.</p>
 <p>What we do with the DGM posterior is the same as Our posterior — we estimate parameters based on data and predict the future with the latest and most relevant information possible. The difference is that, when we calculate posteriors for an unknown value in the DGM posterior, we expect those posteriors to be perfect.</p>
 <p>If we go to our boss with our estimates from this posterior, we would expect our 95% confidence interval to be perfectly calibrated. That is, we would expect the true value to lie within the 95% confidence interval 95% of the time. In this world, we would be surprised to see values outside of the confidence interval more than 5% of the time.</p>
-</section><section id="our-posterior" class="level4" data-number="8.5.1.3"><h4 data-number="8.5.1.3" class="anchored" data-anchor-id="our-posterior">
-<span class="header-section-number">8.5.1.3</span> Our posterior</h4>
+</section><section id="our-posterior" class="level4" data-number="8.4.1.3"><h4 data-number="8.4.1.3" class="anchored" data-anchor-id="our-posterior">
+<span class="header-section-number">8.4.1.3</span> Our posterior</h4>
 <p>Unfortunately, Our posterior possesses even less certainty! In the real world, we <em>don’t</em> have perfect knowledge of the DGM: the model structure and the exact parameter values. What does this mean?</p>
 <p>When we go to our boss, we tell them that this is our <em>best guess</em>. It is an informed estimate based on the most relevant data possible. From that data, we have created a 95% confidence interval for the treatment effect of various postcards. We estimate that the treatment effect of the Neighbors postcard to be between 8% to 10%.</p>
 <p>Does this mean we are certain that the treatment effect of Neighbors is between these values? Of course not! As we would tell our boss, it would not be shocking to find out that the actual treatment effect was less or more than our estimate.</p>
 <p>This is because a lot of the assumptions we make during the process of building a model, the processes in Wisdom, are subject to error. Perhaps our data did not match the future as well as we had hoped. Ultimately, we try to account for our uncertainty in our estimates. Even with this safeguard, we aren’t surprised if we are a bit off.</p>
 <p>For instance, would we be shocked if the treatment effect of the Neighbors postcard to be 7%? 12%? Of course not! That is only slightly off, and we know that Our posterior is subject to error. Would we be surprised if the treatment effect was found to be 20%? Yes. That is a large enough difference to suggest a real problem with our model, or some real world change that we forgot to factor into our predictions.</p>
 <p>But, what amounts to a large enough difference to be a cause for concern? In other words, how wrong do we have to be in a one-off for our boss to be suspicious? When is “bad luck” a sign of stupidity? We will delve into this question in the next section of our chapter.</p>
-</section><section id="bad-luck-or-bad-work" class="level4" data-number="8.5.1.4"><h4 data-number="8.5.1.4" class="anchored" data-anchor-id="bad-luck-or-bad-work">
-<span class="header-section-number">8.5.1.4</span> Bad luck or bad work?</h4>
+</section><section id="bad-luck-or-bad-work" class="level4" data-number="8.4.1.4"><h4 data-number="8.4.1.4" class="anchored" data-anchor-id="bad-luck-or-bad-work">
+<span class="header-section-number">8.4.1.4</span> Bad luck or bad work?</h4>
 <p>In any <em>one</em> problem, it is hard to know if we were “right,” if our posterior was similar to the DGM posterior. After all, 5% of the time the answer is outside the 95% confidence interval. But if the truth ends up very, very far away from the median of our posterior, our boss will be rightly suspicious. How many MAD SDs or standard errors away do we have to be from the truth before we are obviously a fool?</p>
 <p>There are many ways to judge a forecast. Here, we’re looking at two main things: the calibration of a forecast — that is, whether events that we said would happen 30 percent of the time actually happened about 30 percent of the time — and how our forecast compared with an unskilled estimate that relies solely on historical averages. We can answer those questions using calibration plots and skill scores, respectively. These concepts are a bit too advanced for this course, but their foundations are important to understand.</p>
 <p>Calibration plots compare what we predicted with what actually happened. Single predictions can be difficult to judge on their own, so we often want to group many predictions together in bins and plot the averages of each bin’s forecasted increase in voting against the actual increase in voting. If our forecasts are well-calibrated, then all of the bins on the calibration plot will be close to the 45 degree line; if our forecast was poorly calibrated, the bins will be further away. Our second tool, skill scores, lets us evaluate our forecasts even further, combining accuracy and an appetite for risk into a single number.</p>
@@ -3265,8 +3120,8 @@ sigma 0.451  0.001
 <p>These are the <em>technical</em> ways that we can judge our own work’s accuracy. Our boss will likely judge using other methods.</p>
 <p>For instance, if we answer many questions (by creating many posteriors for different problems) then, over time, our boss will get a sense of our actual skill, both because our median should be above and below the truth about the same proportion and because our confidence intervals should be correctly calibrated.</p>
 <p>We know, from experience, that our posteriors are often too narrow. They assume that we know the DGM when, in fact, we know that we do not. What do we do with that knowledge? First, we prepare our boss for this fact. This is the humility in Temperance. Second, we estimate <em>dozens</em> of different models and combine their posteriors. The result might very well have the same median as your correct posterior, but the confidence intervals would be much wider. These concepts are more advanced than the Primer, but they are important to consider when making predictions.</p>
-</section></section></section><section id="summary" class="level2" data-number="8.6"><h2 data-number="8.6" class="anchored" data-anchor-id="summary">
-<span class="header-section-number">8.6</span> Summary</h2>
+</section></section></section><section id="summary" class="level2" data-number="8.5"><h2 data-number="8.5" class="anchored" data-anchor-id="summary">
+<span class="header-section-number">8.5</span> Summary</h2>
 <ul>
 <li><p>Use the <code><a href="https://generics.r-lib.org/reference/tidy.html">tidy()</a></code> function from the <strong>broom.mixed</strong> package to make models with <span class="math inline">\(N\)</span> parameters easier to interpret.</p></li>
 <li><p>A function we are familiar with, <code><a href="https://mc-stan.org/rstanarm/reference/stan_glm.html">stan_glm()</a></code>, is used to create models with <span class="math inline">\(N\)</span> parameters.</p></li>
@@ -3355,10 +3210,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -3368,8 +3222,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -3382,6 +3245,125 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -3425,6 +3407,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -3450,6 +3433,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -3509,12 +3518,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
-      <a href="./five-parameters.html" class="pagination-link">
+      <a href="./five-parameters.html" class="pagination-link  aria-label=" parameters="">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Five Parameters</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./glossary.html" class="pagination-link">
+      <a href="./glossary.html" class="pagination-link" aria-label="Key Concepts">
         <span class="nav-page-text">Key Concepts</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
@@ -3523,4 +3532,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-</body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/PPBDS/primer/edit/main/n-parameters.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div></div></footer></body></html>
