@@ -37,7 +37,7 @@ If you are having trouble, just sign up for a free account on [Posit Cloud](http
 
 <!-- DK: Could text like this be in a "More Detail" box which only appears when clicked?  If you want a slower introduction, check out the short (free) book, [*Getting Used to R, RStudio, and R Markdown*](https://rbasics.netlify.com/). @usedtor2016 include screencast recordings that you can follow along and pause as you learn. -->
 
-### Using R via RStudio {.unnumbered}
+### Using R and RStudio {.unnumbered}
 
 <!-- DK: This section could be quicker if the material is covered elsewhere. -->
 
@@ -305,7 +305,7 @@ Messages are similar. In both cases, you should fix the underlying issue until t
 
 ### Next Steps {.unnumbered}
 
-Complete the "Getting Started" tutorial from the **tutorial.helpers** package. This will ensures that your RStudio settings are sensible. Note that, in the Tutorial pane, tutorials are in alphabetical order by package name. So the "Getting Started" tutorial from the **tutorial.helpers** package will be **near the bottom of the Tutorial pane**.
+Complete the "Getting Started with Tutorials" tutorial from the **tutorial.helpers** package. This will ensure that your RStudio settings are sensible. Note that, in the Tutorial pane, tutorials are in alphabetical order by package name. So the "Getting Started with Tutorials" tutorial from the **tutorial.helpers** package will be **near the bottom of the Tutorial pane**.
 
 Once you have done so, or if you already know R, you can start to learn about data science.
 
@@ -313,7 +313,7 @@ Once you have done so, or if you already know R, you can start to learn about da
 
 You should have done the following:
 
-  - Installed the *latest* versions of R and RStudio.
+  - Installed the latest versions of R and RStudio.
   
   - Installed, from CRAN, the **remotes**, **tutorial.helpers** and **tidyverse** packages:
 

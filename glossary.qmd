@@ -75,9 +75,9 @@ Start with the question. This will generally be something simple, easily express
 
 "What proportion of people who make $100,000 are liberal?"
 
-Of course, every data science problem does not start with a question. It actually starts with a decision. The world confronts us. Make decisions we must. Yet, in this introductory textbook, starting with a decision to make is too hard. So, we simplify and start with a question. But we should always at least mention the sort of decision which the answer to the question might help us to make.
+Of course, every data science problem does not start with a question. It actually starts with a *decision*. The world confronts us. Make decisions we must. Yet, in this introductory textbook, starting with a decision to make is too hard. So, we simplify and start with a question. But we should always at least mention the sort of decision which the answer to the question might help us to make.
 
-Note that the sophistication of these discussions increases as we go further into the book. Your discussion should be more sophisticated than that found in the previous chapter and less sophisticated than what comes later. 
+Note that the sophistication of these discussions increases as we go further into the book. Your discussion should be more sophisticated than the one found in the previous chapter and less sophisticated than what comes later. 
 
 Each chapter features all the same sections and sub-sections as we use below. That is, there are three sub-sections to Wisdom, four sub-sections for Justice, and so on. 
 
@@ -97,7 +97,7 @@ To create the Preceptor Table, we answer a series of questions. (Don't ask these
 
 If none of this is present, use a predictive model. If all you need to know to answer the question is the outcome under one value of the treatment, then the model is predictive. Example: What is the `att_end` for all women if they were to get the treatment? This is a predictive question, not a causal one, because we do not need to know the outcome under treatment *and* under control for any individual woman.
 
-* What is the moment in time to which the question refers? Every question refers to a moment in time, even if that moment stretches a bit. The set of adults *today* is different from the set 10 years ago, or even yesterday. We need to *refine* the original question. Assume that we are referring to July 1, 2020. We have changed the original question from: 
+* What is the moment in time to which the question refers? Every question refers to a moment in time, even if that moment stretches a bit. The set of adults *today* is different from the set 10 years ago, or even yesterday. We need to *refine* the original question. Assume that we are referring to July 1, 2020 even though, in most cases, people are interested in *now*. We have changed the original question from: 
 
 "What proportion of people who make $100,000 are liberal?" 
 
@@ -113,13 +113,13 @@ This back-and-forth between the question and the analysis is a standard part of 
 
 Our job as data scientists is not to simply answer the question we have been asked, but to help the questioner determine a question which can be answered with the data we have, a question which helps them to make the decision which they face.
 
-* What are the outcomes? (If the model is causal, then there must be at least two potential outcomes. If you can't figure them out, then the model is probably predictive.) If the model is predictive, then there is only one outcome. This paragraph does more than just name the relevant variable. It also starts the discussion about how exactly we might measure this variable. We consider both the underlying concept, "liberal," and the process by which we might operationalize the concept. Perhaps we are using a written survey with a YES/NO answer. Perhaps it is an in-person interview with a 1-7 Likert scale, in which answers of 1 or 2 are coded, by us, as "liberal." The details don't matter, but we need to discuss.
+* What are the outcomes? (If the model is causal, then there must be at least two potential outcomes. If you can't figure them out, then the model is probably predictive.) If the model is predictive, then there is only one outcome. This paragraph does more than just name the relevant variable. It also starts the discussion about how exactly we might measure this variable. We consider both the underlying concept, "liberal," and the process by which we might operationalize the concept. Perhaps we are using a written survey with a YES/NO answer. Perhaps it is an in-person interview with a 1-7 Likert scale, in which answers of 1 or 2 are coded, by us, as "liberal." The details may or may not matter, but we at least need to discuss the issue.
  
 What are the covariates? Discussing covariates in the context of the Preceptor Table is different than discussing covariates in the context of the data. Recall that the Preceptor Table is the smallest possible table, so we don't need to include every relevant variable. *We only need to discuss variables that are necessary to answer the question.* 
 
 What are the treatments, if any? (There are no "treatments" in predictive models. There are only covariates.) A treatment is a covariate which, at least in theory, we can manipulate and the manipulation of which is necessary to answer our question.
 
-With all the above, create the Preceptor Table. In this case, our Preceptor Table includes `N` rows, one for every adult in Chicago on July 1, 1982. It includes two columns: the outcome (`liberal`) and a single covariate (`income`). 
+With all the above, create the Preceptor Table. In this case, our Preceptor Table includes `N` rows, one for every adult in Chicago on July 1, 2020. It includes two columns: the outcome (`liberal`) and a single covariate (`income`). 
 
 ```{r}
 #| echo: false
@@ -142,13 +142,13 @@ tibble(ID = c("1", "2", "...", "10", "11", "...", "N"),
   tab_spanner(label = "Covariate", columns = c(income))
 ```
 
-If we have the Preceptor Table, with no missing data, then it is trivial to calculate the percentage of adults who make more than $100,000 who are liberal.
+If we have the Preceptor Table, with no missing data, then it is trivial to calculate the percentage of adults (who make more than $100,000) who are liberal.
 
 #### EDA
 
 There is always short section devoted to exploratory data analysis. You can never look at the data too much. Each EDA will include at least one textual look at the data, usually using `summary()`, but with `skim()`, `glimpse()`, `print()` and `slice_sample()` also available. It will also include at least one graphic, almost always with the outcome variable on the y-axis and one of the covariates on the x-axis. The data set will often include columns and rows which are irrelevant to the question. Those columns and rows are removed, creating a tibble which will be used in the Courage section. The name of that tibble will often be something convenient like `ch_7`.
 
-It also makes sense to include some discussion about where this data comes from. What are the definitions of the variables? Who chose the sample? Where is the documentation. This sort of background sets the stage for discussing validity.
+It also makes sense to include some discussion about where this data comes from. What are the definitions of the variables? Who chose the sample? Where is the documentation? This sort of background sets the stage for discussing validity.
 
 #### Validity
 
@@ -158,16 +158,15 @@ These section can be longer of course, depending on how many details you discuss
 
 The Wisdom section finishes with a sentence or two about the question and the data. Example:
 
-*Using data from a 2012 survey of Boston-area commuters, we seek to understand the relationship between income and political ideology in Chicago and similar cities in 2014. In particular, what percentage of individuals who make more than $100,000 per year are liberal?*
+*Using data from a 2012 survey of Boston-area commuters, we seek to understand the relationship between income and political ideology in Chicago and similar cities in 2020. In particular, what percentage of individuals who make more than $100,000 per year are liberal?*
 
 The idea is that, by thinking hard about the original question and the data, we have come up with a question which *may* be possible to answer with the data we have.
 
 ### Justice
 
-<!--  Just because Wisdom points us toward a Population Table with X rows does not mean we need to keep all X rows, especially if creating a model which covers all rows is hard/impossible. We can just simplify the claims we are making about the world by removing some rows. But we better not remove the rows we need to answer the question we started with. -->
+<!--  Just because Wisdom points us toward a Population Table with X rows does not mean we need to keep all X rows, especially if creating a model which covers all rows is hard/impossible. We can just simplify the claims we are making about the world by removing some rows. Getting rid of rows will usually necessitate an adjustment to the question we are trying to answer. Again, data science is an iterative process. -->
 
 "Justice concerns four topics: the Population Table, stability, representativeness, and unconfoundedness."
-
 
 
 #### Population Table
@@ -206,9 +205,9 @@ tibble(source = c("...", "Data", "Data", "...",
 
 * The "Source" column highlights that the Population Table includes three categories of rows: The data, the Preceptor Table, and the rest of the population, from which both the data and the Preceptor Table are drawn. The `...` indicates rows from the population which are not included in either the data or the Preceptor Table.
 
-* The "ID" column is implicit, and generally not included. After all, it should be obvious that each row refers to a specific unit. If we don't really care about the individual units, there is no need to label them.
+* The "ID" column is implicit, and often not included. After all, it should be obvious that each row refers to a specific unit. If we don't really care about the individual units, there is no need to label them.
 
-* There should always be a column, in this case "Year," which indicates the moment in time at which the covariates were recorded. A given unit may appear in multiple rows, with each row providing the data at a different time. In this example, we will have a row for Sarah in 2012, which she was 43, and a row for Sarah in 2014, when she was 45, and so on. Note that Sarah might just be member of the population, neither in the data we have nor in the Preceptor Table. Or she might be in one or the other. We are not concerned with any specific individuals.
+* There should always be a column, in this case "Year," which indicates the moment in time at which the covariates were recorded. A given unit may appear in multiple rows, with each row providing the data at a different time. In this example, we will have a row for Sarah in 2012, when she was 43, and a row for Sarah in 2020, when she was 51, and so on. Note that Sarah might just be member of the population, neither in the data we have nor in the Preceptor Table. Or she might be in one or the other. We are not concerned with any specific individuals.
 
 * Each row in the Population Table represents a unique Unit/Time combination.
 

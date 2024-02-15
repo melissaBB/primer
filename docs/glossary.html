@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.361">
+<meta name="generator" content="quarto-1.4.549">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>Preceptor’s Primer for Bayesian Data Science: Using the Cardinal Virtues for Inference - Key Concepts</title>
 <style>
@@ -42,7 +42,13 @@ ul.task-list li input[type="checkbox"] {
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -51,29 +57,55 @@ ul.task-list li input[type="checkbox"] {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+}</script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 </head>
 <body class="nav-sidebar floating">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./glossary.html">Key Concepts</a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./glossary.html">Key Concepts</a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
   </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Preceptor’s Primer for Bayesian Data Science: Using the Cardinal Virtues for Inference</a> 
         <div class="sidebar-tools-main">
@@ -197,7 +229,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
     </ul>
 </div>
-</nav><div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
@@ -213,7 +245,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#temperance" id="toc-temperance" class="nav-link" data-scroll-target="#temperance">Temperance</a></li>
   </ul>
 </li>
-  </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/PPBDS/primer/edit/main/glossary.qmd" class="toc-action">Edit this page</a></p></div></div></nav>
+  </ul><div class="toc-actions"><ul><li><a href="https://github.com/PPBDS/primer/edit/main/glossary.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
@@ -229,6 +261,7 @@ ul.task-list li input[type="checkbox"] {
     
   </div>
   
+
 
 </header><!-- Each core section finishes with a sentence summarizing what you have learned. Those sentences are combined at the end. --><!-- Given that, it is important to monitor our language. We do not believe that that changes in `election_age` "cause" changes in `lived_after`. That is obvious. But there are some words and phrases --- like "associated with" and "change by" --- which are too close to causal. (And which we are guilty of using just a few paragraphs ago!) Be wary of their use. *Always think in terms of comparisons when using a predictive model.* We can't change `election_age` for an individual candidate. We can only compare two candidates (or two groups of candidates). --><!-- If a parameter's estimated value is more than 2 or 3 MAD_SD's away from zero, we generally keep that parameter (and its associated variable) in the model. This is, probably, a variable which "matters." The main exception to this rule is a parameter whose value is so close to zero that changes in its associated variable, within the general range of that variable, can't change the value of the outcome by much. --><!-- Test paragraph in each Temperance section. Move from 5 parameter chapter. --><!-- The model you have made by the end of Courage is almost always too complex to answer the simple question you started with, because the question rarely specifies the values of all the covariates which are included in the model. --><!-- Key issue is the connection between the Preceptor Table and the DGM (either true or estimate). The connection is tricky! Not even sure I understand it. The DGM can be used to "fill in" all the missing elements of the Preceptor Table, but there will always be some associated randomness. Even with the true DGM, we don't know what `att_end` Joe would have had under treatment, we just have a posterior for that variable, a way to make draws. --><!-- There are two (equivalent?) approaches. First, use the DGM to create one complete Preceptor Table. In that draw, Joe is a 6 for `att_end`. Then, do another draw. Joe is a 5. Do a thousand draws. You then have a thousand Preceptor Tables. Calculate the Quantity of Interest for each Preceptor Table. The 1,000 values are the posterior for your QoI.  --><!-- Second, instead of creating the 1,000 Preceptor Tables, fill in each entry of the Preceptor Table with a tiny posterior. Joe does not have one value for `att_end`. He has a posterior. Then, with this "probabilistic" Preceptor Table, you can . . . too complex! --><!-- Would be great to make a cool animation of this, perhaps with a simple example. Would be fun to have a similar animation for each chapter. Great summer project! --><p>These are the key concepts from the <em>Primer</em>. You should apply them whenever you face a choice, and some data to help you make it. The world confronts us. Makes decisions we must.</p>
 <p><strong>Quantity of Interest</strong> is the number which you want to estimate. You will almost always calculate a posterior probability distribution for your Quantity of Interest since, in the real world, you will never know your QoI precisely. Most problems involve more than one QoI.</p>
@@ -253,8 +286,8 @@ ul.task-list li input[type="checkbox"] {
 <section id="question" class="level3"><h3 class="anchored" data-anchor-id="question">Question</h3>
 <p>Start with the question. This will generally be something simple, easily expressed in just a sentence, using colloquial language. Every data science problem starts with a question. Your goal is to provide an answer to the question, along with your uncertainty about that answer. The most common form for the answer is a posterior probability distribution. This PPD is either the answer itself, or the tool we use to answer the question. Example:</p>
 <p>“What proportion of people who make $100,000 are liberal?”</p>
-<p>Of course, every data science problem does not start with a question. It actually starts with a decision. The world confronts us. Make decisions we must. Yet, in this introductory textbook, starting with a decision to make is too hard. So, we simplify and start with a question. But we should always at least mention the sort of decision which the answer to the question might help us to make.</p>
-<p>Note that the sophistication of these discussions increases as we go further into the book. Your discussion should be more sophisticated than that found in the previous chapter and less sophisticated than what comes later.</p>
+<p>Of course, every data science problem does not start with a question. It actually starts with a <em>decision</em>. The world confronts us. Make decisions we must. Yet, in this introductory textbook, starting with a decision to make is too hard. So, we simplify and start with a question. But we should always at least mention the sort of decision which the answer to the question might help us to make.</p>
+<p>Note that the sophistication of these discussions increases as we go further into the book. Your discussion should be more sophisticated than the one found in the previous chapter and less sophisticated than what comes later.</p>
 <p>Each chapter features all the same sections and sub-sections as we use below. That is, there are three sub-sections to Wisdom, four sub-sections for Justice, and so on.</p>
 <p>Once we have our question, we can start with the Cardinal Virtues. Each section begins with a one sentence summary about the component steps of the relevant virtue. These will, obviously, be highly similar from chapter to chapter. But that is OK! We want to reinforce the steps in the path over and over again.</p>
 </section><section id="wisdom" class="level3"><h3 class="anchored" data-anchor-id="wisdom">Wisdom</h3>
@@ -267,7 +300,7 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 <p>If none of this is present, use a predictive model. If all you need to know to answer the question is the outcome under one value of the treatment, then the model is predictive. Example: What is the <code>att_end</code> for all women if they were to get the treatment? This is a predictive question, not a causal one, because we do not need to know the outcome under treatment <em>and</em> under control for any individual woman.</p>
 <ul>
-<li>What is the moment in time to which the question refers? Every question refers to a moment in time, even if that moment stretches a bit. The set of adults <em>today</em> is different from the set 10 years ago, or even yesterday. We need to <em>refine</em> the original question. Assume that we are referring to July 1, 2020. We have changed the original question from:</li>
+<li>What is the moment in time to which the question refers? Every question refers to a moment in time, even if that moment stretches a bit. The set of adults <em>today</em> is different from the set 10 years ago, or even yesterday. We need to <em>refine</em> the original question. Assume that we are referring to July 1, 2020 even though, in most cases, people are interested in <em>now</em>. We have changed the original question from:</li>
 </ul>
 <p>“What proportion of people who make $100,000 are liberal?”</p>
 <p>to</p>
@@ -279,31 +312,30 @@ ul.task-list li input[type="checkbox"] {
 <p>This back-and-forth between the question and the analysis is a standard part of data science. We rarely answer the exact question we started with, especially because that question is never specific enough to answer without further qualifications. Furthermore, the data we have may not allow us to answer that question, but it may be enough to answer a related question. Is that good enough for the boss/client/colleague who asked the original question? Maybe? We won’t know till we ask.</p>
 <p>Our job as data scientists is not to simply answer the question we have been asked, but to help the questioner determine a question which can be answered with the data we have, a question which helps them to make the decision which they face.</p>
 <ul>
-<li>What are the outcomes? (If the model is causal, then there must be at least two potential outcomes. If you can’t figure them out, then the model is probably predictive.) If the model is predictive, then there is only one outcome. This paragraph does more than just name the relevant variable. It also starts the discussion about how exactly we might measure this variable. We consider both the underlying concept, “liberal,” and the process by which we might operationalize the concept. Perhaps we are using a written survey with a YES/NO answer. Perhaps it is an in-person interview with a 1-7 Likert scale, in which answers of 1 or 2 are coded, by us, as “liberal.” The details don’t matter, but we need to discuss.</li>
+<li>What are the outcomes? (If the model is causal, then there must be at least two potential outcomes. If you can’t figure them out, then the model is probably predictive.) If the model is predictive, then there is only one outcome. This paragraph does more than just name the relevant variable. It also starts the discussion about how exactly we might measure this variable. We consider both the underlying concept, “liberal,” and the process by which we might operationalize the concept. Perhaps we are using a written survey with a YES/NO answer. Perhaps it is an in-person interview with a 1-7 Likert scale, in which answers of 1 or 2 are coded, by us, as “liberal.” The details may or may not matter, but we at least need to discuss the issue.</li>
 </ul>
 <p>What are the covariates? Discussing covariates in the context of the Preceptor Table is different than discussing covariates in the context of the data. Recall that the Preceptor Table is the smallest possible table, so we don’t need to include every relevant variable. <em>We only need to discuss variables that are necessary to answer the question.</em></p>
 <p>What are the treatments, if any? (There are no “treatments” in predictive models. There are only covariates.) A treatment is a covariate which, at least in theory, we can manipulate and the manipulation of which is necessary to answer our question.</p>
-<p>With all the above, create the Preceptor Table. In this case, our Preceptor Table includes <code>N</code> rows, one for every adult in Chicago on July 1, 1982. It includes two columns: the outcome (<code>liberal</code>) and a single covariate (<code>income</code>).</p>
+<p>With all the above, create the Preceptor Table. In this case, our Preceptor Table includes <code>N</code> rows, one for every adult in Chicago on July 1, 2020. It includes two columns: the outcome (<code>liberal</code>) and a single covariate (<code>income</code>).</p>
 <div class="cell">
 <div class="cell-output-display">
-
-<div id="wawfkoyjir" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#wawfkoyjir table {
+<div id="ftmsimlopl" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ftmsimlopl table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#wawfkoyjir thead, #wawfkoyjir tbody, #wawfkoyjir tfoot, #wawfkoyjir tr, #wawfkoyjir td, #wawfkoyjir th {
+#ftmsimlopl thead, #ftmsimlopl tbody, #ftmsimlopl tfoot, #ftmsimlopl tr, #ftmsimlopl td, #ftmsimlopl th {
   border-style: none;
 }
 
-#wawfkoyjir p {
+#ftmsimlopl p {
   margin: 0;
   padding: 0;
 }
 
-#wawfkoyjir .gt_table {
+#ftmsimlopl .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -329,12 +361,12 @@ ul.task-list li input[type="checkbox"] {
   border-left-color: #D3D3D3;
 }
 
-#wawfkoyjir .gt_caption {
+#ftmsimlopl .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#wawfkoyjir .gt_title {
+#ftmsimlopl .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -346,7 +378,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-width: 0;
 }
 
-#wawfkoyjir .gt_subtitle {
+#ftmsimlopl .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -358,7 +390,7 @@ ul.task-list li input[type="checkbox"] {
   border-top-width: 0;
 }
 
-#wawfkoyjir .gt_heading {
+#ftmsimlopl .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -370,13 +402,13 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#wawfkoyjir .gt_bottom_border {
+#ftmsimlopl .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#wawfkoyjir .gt_col_headings {
+#ftmsimlopl .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -391,7 +423,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#wawfkoyjir .gt_col_heading {
+#ftmsimlopl .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -411,7 +443,7 @@ ul.task-list li input[type="checkbox"] {
   overflow-x: hidden;
 }
 
-#wawfkoyjir .gt_column_spanner_outer {
+#ftmsimlopl .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -423,15 +455,15 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 4px;
 }
 
-#wawfkoyjir .gt_column_spanner_outer:first-child {
+#ftmsimlopl .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#wawfkoyjir .gt_column_spanner_outer:last-child {
+#ftmsimlopl .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#wawfkoyjir .gt_column_spanner {
+#ftmsimlopl .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -443,11 +475,11 @@ ul.task-list li input[type="checkbox"] {
   width: 100%;
 }
 
-#wawfkoyjir .gt_spanner_row {
+#ftmsimlopl .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#wawfkoyjir .gt_group_heading {
+#ftmsimlopl .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -473,7 +505,7 @@ ul.task-list li input[type="checkbox"] {
   text-align: left;
 }
 
-#wawfkoyjir .gt_empty_group_heading {
+#ftmsimlopl .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -488,15 +520,15 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 
-#wawfkoyjir .gt_from_md > :first-child {
+#ftmsimlopl .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#wawfkoyjir .gt_from_md > :last-child {
+#ftmsimlopl .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#wawfkoyjir .gt_row {
+#ftmsimlopl .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -515,7 +547,7 @@ ul.task-list li input[type="checkbox"] {
   overflow-x: hidden;
 }
 
-#wawfkoyjir .gt_stub {
+#ftmsimlopl .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -528,7 +560,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#wawfkoyjir .gt_stub_row_group {
+#ftmsimlopl .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -542,15 +574,15 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: top;
 }
 
-#wawfkoyjir .gt_row_group_first td {
+#ftmsimlopl .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#wawfkoyjir .gt_row_group_first th {
+#ftmsimlopl .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#wawfkoyjir .gt_summary_row {
+#ftmsimlopl .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -560,16 +592,16 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#wawfkoyjir .gt_first_summary_row {
+#ftmsimlopl .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#wawfkoyjir .gt_first_summary_row.thick {
+#ftmsimlopl .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#wawfkoyjir .gt_last_summary_row {
+#ftmsimlopl .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -579,7 +611,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#wawfkoyjir .gt_grand_summary_row {
+#ftmsimlopl .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -589,7 +621,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#wawfkoyjir .gt_first_grand_summary_row {
+#ftmsimlopl .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -599,7 +631,7 @@ ul.task-list li input[type="checkbox"] {
   border-top-color: #D3D3D3;
 }
 
-#wawfkoyjir .gt_last_grand_summary_row_top {
+#ftmsimlopl .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -609,11 +641,11 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#wawfkoyjir .gt_striped {
+#ftmsimlopl .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#wawfkoyjir .gt_table_body {
+#ftmsimlopl .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -622,7 +654,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#wawfkoyjir .gt_footnotes {
+#ftmsimlopl .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -636,7 +668,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#wawfkoyjir .gt_footnote {
+#ftmsimlopl .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -645,7 +677,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#wawfkoyjir .gt_sourcenotes {
+#ftmsimlopl .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -659,7 +691,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#wawfkoyjir .gt_sourcenote {
+#ftmsimlopl .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -667,204 +699,161 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#wawfkoyjir .gt_left {
+#ftmsimlopl .gt_left {
   text-align: left;
 }
 
-#wawfkoyjir .gt_center {
+#ftmsimlopl .gt_center {
   text-align: center;
 }
 
-#wawfkoyjir .gt_right {
+#ftmsimlopl .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#wawfkoyjir .gt_font_normal {
+#ftmsimlopl .gt_font_normal {
   font-weight: normal;
 }
 
-#wawfkoyjir .gt_font_bold {
+#ftmsimlopl .gt_font_bold {
   font-weight: bold;
 }
 
-#wawfkoyjir .gt_font_italic {
+#ftmsimlopl .gt_font_italic {
   font-style: italic;
 }
 
-#wawfkoyjir .gt_super {
+#ftmsimlopl .gt_super {
   font-size: 65%;
 }
 
-#wawfkoyjir .gt_footnote_marks {
+#ftmsimlopl .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#wawfkoyjir .gt_asterisk {
+#ftmsimlopl .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#wawfkoyjir .gt_indent_1 {
+#ftmsimlopl .gt_indent_1 {
   text-indent: 5px;
 }
 
-#wawfkoyjir .gt_indent_2 {
+#ftmsimlopl .gt_indent_2 {
   text-indent: 10px;
 }
 
-#wawfkoyjir .gt_indent_3 {
+#ftmsimlopl .gt_indent_3 {
   text-indent: 15px;
 }
 
-#wawfkoyjir .gt_indent_4 {
+#ftmsimlopl .gt_indent_4 {
   text-indent: 20px;
 }
 
-#wawfkoyjir .gt_indent_5 {
+#ftmsimlopl .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
-<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<table class="gt_table table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
 <thead>
-<tr class="gt_heading">
-<td colspan="3" class="gt_heading gt_title gt_font_normal gt_bottom_border" style="">Preceptor Table</td>
-    </tr>
-<tr class="gt_col_headings gt_spanner_row">
-<th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="2" colspan="1" style="font-size: large; text-align: left; vertical-align: middle;" scope="col" id="ID">ID</th>
-      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="1" scope="col" id="Outcome">
-        <span class="gt_column_spanner">Outcome</span>
-      </th>
-      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="1" scope="col" id="Covariate">
-        <span class="gt_column_spanner">Covariate</span>
-      </th>
-    </tr>
-<tr class="gt_col_headings">
-<th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="Liberal">Liberal</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="Income">Income</th>
-    </tr>
+<tr class="header gt_heading">
+<th colspan="3" class="gt_heading gt_title gt_font_normal gt_bottom_border">Preceptor Table</th>
+</tr>
+<tr class="odd gt_col_headings gt_spanner_row">
+<th rowspan="2" id="ID" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" style="text-align: left; font-size: large; vertical-align: middle;" scope="col">ID</th>
+<th id="Outcome" class="gt_center gt_columns_top_border gt_column_spanner_outer" data-quarto-table-cell-role="th" scope="col"><span class="gt_column_spanner">Outcome</span></th>
+<th id="Covariate" class="gt_center gt_columns_top_border gt_column_spanner_outer" data-quarto-table-cell-role="th" scope="col"><span class="gt_column_spanner">Covariate</span></th>
+</tr>
+<tr class="header gt_col_headings">
+<th id="Liberal" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Liberal</th>
+<th id="Income" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Income</th>
+</tr>
 </thead>
 <tbody class="gt_table_body">
-<tr>
-<td headers="ID" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div data-qmd="1"><div class="gt_from_md">
-<p>1</p>
-</div></div></td>
-<td headers="liberal" class="gt_row gt_center"><div data-qmd="0"><div class="gt_from_md">
-<p>0</p>
-</div></div></td>
-<td headers="income" class="gt_row gt_center"><div data-qmd="150000"><div class="gt_from_md">
-<p>150000</p>
-</div></div></td>
+<tr class="odd">
+<td class="gt_row gt_left" headers="ID" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000"><p>1</p></td>
+<td class="gt_row gt_center" headers="liberal"><p>0</p></td>
+<td class="gt_row gt_center" headers="income"><p>150000</p></td>
 </tr>
-<tr>
-<td headers="ID" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div data-qmd="2"><div class="gt_from_md">
-<p>2</p>
-</div></div></td>
-<td headers="liberal" class="gt_row gt_center"><div data-qmd="0"><div class="gt_from_md">
-<p>0</p>
-</div></div></td>
-<td headers="income" class="gt_row gt_center"><div data-qmd="50000"><div class="gt_from_md">
-<p>50000</p>
-</div></div></td>
+<tr class="even">
+<td class="gt_row gt_left" headers="ID" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000"><p>2</p></td>
+<td class="gt_row gt_center" headers="liberal"><p>0</p></td>
+<td class="gt_row gt_center" headers="income"><p>50000</p></td>
 </tr>
-<tr>
-<td headers="ID" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div data-qmd="..."><div class="gt_from_md">
-<p>…</p>
-</div></div></td>
-<td headers="liberal" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
-<p>…</p>
-</div></div></td>
-<td headers="income" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
-<p>…</p>
-</div></div></td>
+<tr class="odd">
+<td class="gt_row gt_left" headers="ID" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000"><p>…</p></td>
+<td class="gt_row gt_center" headers="liberal"><p>…</p></td>
+<td class="gt_row gt_center" headers="income"><p>…</p></td>
 </tr>
-<tr>
-<td headers="ID" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div data-qmd="10"><div class="gt_from_md">
-<p>10</p>
-</div></div></td>
-<td headers="liberal" class="gt_row gt_center"><div data-qmd="1"><div class="gt_from_md">
-<p>1</p>
-</div></div></td>
-<td headers="income" class="gt_row gt_center"><div data-qmd="65000"><div class="gt_from_md">
-<p>65000</p>
-</div></div></td>
+<tr class="even">
+<td class="gt_row gt_left" headers="ID" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000"><p>10</p></td>
+<td class="gt_row gt_center" headers="liberal"><p>1</p></td>
+<td class="gt_row gt_center" headers="income"><p>65000</p></td>
 </tr>
-<tr>
-<td headers="ID" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div data-qmd="11"><div class="gt_from_md">
-<p>11</p>
-</div></div></td>
-<td headers="liberal" class="gt_row gt_center"><div data-qmd="1"><div class="gt_from_md">
-<p>1</p>
-</div></div></td>
-<td headers="income" class="gt_row gt_center"><div data-qmd="35000"><div class="gt_from_md">
-<p>35000</p>
-</div></div></td>
+<tr class="odd">
+<td class="gt_row gt_left" headers="ID" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000"><p>11</p></td>
+<td class="gt_row gt_center" headers="liberal"><p>1</p></td>
+<td class="gt_row gt_center" headers="income"><p>35000</p></td>
 </tr>
-<tr>
-<td headers="ID" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div data-qmd="..."><div class="gt_from_md">
-<p>…</p>
-</div></div></td>
-<td headers="liberal" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
-<p>…</p>
-</div></div></td>
-<td headers="income" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
-<p>…</p>
-</div></div></td>
+<tr class="even">
+<td class="gt_row gt_left" headers="ID" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000"><p>…</p></td>
+<td class="gt_row gt_center" headers="liberal"><p>…</p></td>
+<td class="gt_row gt_center" headers="income"><p>…</p></td>
 </tr>
-<tr>
-<td headers="ID" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div data-qmd="N"><div class="gt_from_md">
-<p>N</p>
-</div></div></td>
-<td headers="liberal" class="gt_row gt_center"><div data-qmd="1"><div class="gt_from_md">
-<p>1</p>
-</div></div></td>
-<td headers="income" class="gt_row gt_center"><div data-qmd="78000"><div class="gt_from_md">
-<p>78000</p>
-</div></div></td>
+<tr class="odd">
+<td class="gt_row gt_left" headers="ID" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000"><p>N</p></td>
+<td class="gt_row gt_center" headers="liberal"><p>1</p></td>
+<td class="gt_row gt_center" headers="income"><p>78000</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
 </div>
-<p>If we have the Preceptor Table, with no missing data, then it is trivial to calculate the percentage of adults who make more than $100,000 who are liberal.</p>
+<p>If we have the Preceptor Table, with no missing data, then it is trivial to calculate the percentage of adults (who make more than $100,000) who are liberal.</p>
 </section><section id="eda" class="level4"><h4 class="anchored" data-anchor-id="eda">EDA</h4>
 <p>There is always short section devoted to exploratory data analysis. You can never look at the data too much. Each EDA will include at least one textual look at the data, usually using <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code>, but with <code>skim()</code>, <code>glimpse()</code>, <code><a href="https://rdrr.io/r/base/print.html">print()</a></code> and <code>slice_sample()</code> also available. It will also include at least one graphic, almost always with the outcome variable on the y-axis and one of the covariates on the x-axis. The data set will often include columns and rows which are irrelevant to the question. Those columns and rows are removed, creating a tibble which will be used in the Courage section. The name of that tibble will often be something convenient like <code>ch_7</code>.</p>
-<p>It also makes sense to include some discussion about where this data comes from. What are the definitions of the variables? Who chose the sample? Where is the documentation. This sort of background sets the stage for discussing validity.</p>
+<p>It also makes sense to include some discussion about where this data comes from. What are the definitions of the variables? Who chose the sample? Where is the documentation? This sort of background sets the stage for discussing validity.</p>
 </section><section id="validity" class="level4"><h4 class="anchored" data-anchor-id="validity">Validity</h4>
 <p>Validity discussions always have one (short) paragraph about each relevant variable (the outcome and any relevant covariates), with examples of why validity might <em>not</em> hold. Validity discussion finishes with a brief discussion along the lines of: “Despite these concerns, we will assume that validity does hold.”</p>
 <p>These section can be longer of course, depending on how many details you discussed during the EDA. The central point is that we have two (potentially!) completely difference things: the Preceptor Table and the data. <em>Just because two columns have the same name does not mean that they are the same thing.</em> Indeed, they will often be quite different! But because we control the Preceptor Table and, to a lesser extent, the original question, we can adjust those variables to be “closer” to the data that we actually have. This is another example of the iterative nature of data science. If the data is not close enough to the question, then we check with our boss/colleague/customer to see if we can modify the question in order to make the match between the data and the Preceptor Table close enough for validity to hold.</p>
 <p>The Wisdom section finishes with a sentence or two about the question and the data. Example:</p>
-<p><em>Using data from a 2012 survey of Boston-area commuters, we seek to understand the relationship between income and political ideology in Chicago and similar cities in 2014. In particular, what percentage of individuals who make more than $100,000 per year are liberal?</em></p>
+<p><em>Using data from a 2012 survey of Boston-area commuters, we seek to understand the relationship between income and political ideology in Chicago and similar cities in 2020. In particular, what percentage of individuals who make more than $100,000 per year are liberal?</em></p>
 <p>The idea is that, by thinking hard about the original question and the data, we have come up with a question which <em>may</em> be possible to answer with the data we have.</p>
 </section></section><section id="justice" class="level3"><h3 class="anchored" data-anchor-id="justice">Justice</h3>
-
-<!--  Just because Wisdom points us toward a Population Table with X rows does not mean we need to keep all X rows, especially if creating a model which covers all rows is hard/impossible. We can just simplify the claims we are making about the world by removing some rows. But we better not remove the rows we need to answer the question we started with. -->
+<!--  Just because Wisdom points us toward a Population Table with X rows does not mean we need to keep all X rows, especially if creating a model which covers all rows is hard/impossible. We can just simplify the claims we are making about the world by removing some rows. Getting rid of rows will usually necessitate an adjustment to the question we are trying to answer. Again, data science is an iterative process. -->
 <p>“Justice concerns four topics: the Population Table, stability, representativeness, and unconfoundedness.”</p>
 <section id="population-table" class="level4"><h4 class="anchored" data-anchor-id="population-table">Population Table</h4>
 <p>If validity holds, then we can create a Population Table.</p>
 <div class="cell">
 <div class="cell-output-display">
-
-<div id="icrgfropfl" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#icrgfropfl table {
+<div id="kmolxitryw" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#kmolxitryw table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#icrgfropfl thead, #icrgfropfl tbody, #icrgfropfl tfoot, #icrgfropfl tr, #icrgfropfl td, #icrgfropfl th {
+#kmolxitryw thead, #kmolxitryw tbody, #kmolxitryw tfoot, #kmolxitryw tr, #kmolxitryw td, #kmolxitryw th {
   border-style: none;
 }
 
-#icrgfropfl p {
+#kmolxitryw p {
   margin: 0;
   padding: 0;
 }
 
-#icrgfropfl .gt_table {
+#kmolxitryw .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -890,12 +879,12 @@ ul.task-list li input[type="checkbox"] {
   border-left-color: #D3D3D3;
 }
 
-#icrgfropfl .gt_caption {
+#kmolxitryw .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#icrgfropfl .gt_title {
+#kmolxitryw .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -907,7 +896,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-width: 0;
 }
 
-#icrgfropfl .gt_subtitle {
+#kmolxitryw .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -919,7 +908,7 @@ ul.task-list li input[type="checkbox"] {
   border-top-width: 0;
 }
 
-#icrgfropfl .gt_heading {
+#kmolxitryw .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -931,13 +920,13 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#icrgfropfl .gt_bottom_border {
+#kmolxitryw .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#icrgfropfl .gt_col_headings {
+#kmolxitryw .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -952,7 +941,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#icrgfropfl .gt_col_heading {
+#kmolxitryw .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -972,7 +961,7 @@ ul.task-list li input[type="checkbox"] {
   overflow-x: hidden;
 }
 
-#icrgfropfl .gt_column_spanner_outer {
+#kmolxitryw .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -984,15 +973,15 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 4px;
 }
 
-#icrgfropfl .gt_column_spanner_outer:first-child {
+#kmolxitryw .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#icrgfropfl .gt_column_spanner_outer:last-child {
+#kmolxitryw .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#icrgfropfl .gt_column_spanner {
+#kmolxitryw .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1004,11 +993,11 @@ ul.task-list li input[type="checkbox"] {
   width: 100%;
 }
 
-#icrgfropfl .gt_spanner_row {
+#kmolxitryw .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#icrgfropfl .gt_group_heading {
+#kmolxitryw .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1034,7 +1023,7 @@ ul.task-list li input[type="checkbox"] {
   text-align: left;
 }
 
-#icrgfropfl .gt_empty_group_heading {
+#kmolxitryw .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1049,15 +1038,15 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 
-#icrgfropfl .gt_from_md > :first-child {
+#kmolxitryw .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#icrgfropfl .gt_from_md > :last-child {
+#kmolxitryw .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#icrgfropfl .gt_row {
+#kmolxitryw .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1076,7 +1065,7 @@ ul.task-list li input[type="checkbox"] {
   overflow-x: hidden;
 }
 
-#icrgfropfl .gt_stub {
+#kmolxitryw .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1089,7 +1078,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#icrgfropfl .gt_stub_row_group {
+#kmolxitryw .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1103,15 +1092,15 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: top;
 }
 
-#icrgfropfl .gt_row_group_first td {
+#kmolxitryw .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#icrgfropfl .gt_row_group_first th {
+#kmolxitryw .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#icrgfropfl .gt_summary_row {
+#kmolxitryw .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1121,16 +1110,16 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#icrgfropfl .gt_first_summary_row {
+#kmolxitryw .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#icrgfropfl .gt_first_summary_row.thick {
+#kmolxitryw .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#icrgfropfl .gt_last_summary_row {
+#kmolxitryw .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1140,7 +1129,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#icrgfropfl .gt_grand_summary_row {
+#kmolxitryw .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1150,7 +1139,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#icrgfropfl .gt_first_grand_summary_row {
+#kmolxitryw .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1160,7 +1149,7 @@ ul.task-list li input[type="checkbox"] {
   border-top-color: #D3D3D3;
 }
 
-#icrgfropfl .gt_last_grand_summary_row_top {
+#kmolxitryw .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1170,11 +1159,11 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#icrgfropfl .gt_striped {
+#kmolxitryw .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#icrgfropfl .gt_table_body {
+#kmolxitryw .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1183,7 +1172,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#icrgfropfl .gt_footnotes {
+#kmolxitryw .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1197,7 +1186,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#icrgfropfl .gt_footnote {
+#kmolxitryw .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1206,7 +1195,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#icrgfropfl .gt_sourcenotes {
+#kmolxitryw .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1220,7 +1209,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#icrgfropfl .gt_sourcenote {
+#kmolxitryw .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1228,223 +1217,146 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#icrgfropfl .gt_left {
+#kmolxitryw .gt_left {
   text-align: left;
 }
 
-#icrgfropfl .gt_center {
+#kmolxitryw .gt_center {
   text-align: center;
 }
 
-#icrgfropfl .gt_right {
+#kmolxitryw .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#icrgfropfl .gt_font_normal {
+#kmolxitryw .gt_font_normal {
   font-weight: normal;
 }
 
-#icrgfropfl .gt_font_bold {
+#kmolxitryw .gt_font_bold {
   font-weight: bold;
 }
 
-#icrgfropfl .gt_font_italic {
+#kmolxitryw .gt_font_italic {
   font-style: italic;
 }
 
-#icrgfropfl .gt_super {
+#kmolxitryw .gt_super {
   font-size: 65%;
 }
 
-#icrgfropfl .gt_footnote_marks {
+#kmolxitryw .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#icrgfropfl .gt_asterisk {
+#kmolxitryw .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#icrgfropfl .gt_indent_1 {
+#kmolxitryw .gt_indent_1 {
   text-indent: 5px;
 }
 
-#icrgfropfl .gt_indent_2 {
+#kmolxitryw .gt_indent_2 {
   text-indent: 10px;
 }
 
-#icrgfropfl .gt_indent_3 {
+#kmolxitryw .gt_indent_3 {
   text-indent: 15px;
 }
 
-#icrgfropfl .gt_indent_4 {
+#kmolxitryw .gt_indent_4 {
   text-indent: 20px;
 }
 
-#icrgfropfl .gt_indent_5 {
+#kmolxitryw .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
-<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<table class="gt_table table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
 <thead>
-<tr class="gt_heading">
-<td colspan="5" class="gt_heading gt_title gt_font_normal gt_bottom_border" style="">Population Table</td>
-    </tr>
-<tr class="gt_col_headings gt_spanner_row">
-<th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="2" colspan="1" scope="col" id="Source">Source</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="2" colspan="1" scope="col" id="Year">Year</th>
-      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="1" scope="col" id="Outcome">
-        <span class="gt_column_spanner">Outcome</span>
-      </th>
-      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="2" scope="colgroup" id="Covariates">
-        <span class="gt_column_spanner">Covariates</span>
-      </th>
-    </tr>
-<tr class="gt_col_headings">
-<th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="Income">Income</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="Age">Age</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="City">City</th>
-    </tr>
+<tr class="header gt_heading">
+<th colspan="5" class="gt_heading gt_title gt_font_normal gt_bottom_border">Population Table</th>
+</tr>
+<tr class="odd gt_col_headings gt_spanner_row">
+<th rowspan="2" id="Source" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Source</th>
+<th rowspan="2" id="Year" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Year</th>
+<th id="Outcome" class="gt_center gt_columns_top_border gt_column_spanner_outer" data-quarto-table-cell-role="th" scope="col"><span class="gt_column_spanner">Outcome</span></th>
+<th colspan="2" id="Covariates" class="gt_center gt_columns_top_border gt_column_spanner_outer" data-quarto-table-cell-role="th" scope="colgroup"><span class="gt_column_spanner">Covariates</span></th>
+</tr>
+<tr class="header gt_col_headings">
+<th id="Income" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Income</th>
+<th id="Age" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Age</th>
+<th id="City" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">City</th>
+</tr>
 </thead>
 <tbody class="gt_table_body">
-<tr>
-<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div data-qmd="..."><div class="gt_from_md">
-<p>…</p>
-</div></div></td>
-<td headers="year" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
-<p>…</p>
-</div></div></td>
-<td headers="income" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
-<p>…</p>
-</div></div></td>
-<td headers="age" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
-<p>…</p>
-</div></div></td>
-<td headers="city" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
-<p>…</p>
-</div></div></td>
+<tr class="odd">
+<td class="gt_row gt_left" headers="source" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000"><p>…</p></td>
+<td class="gt_row gt_center" headers="year"><p>…</p></td>
+<td class="gt_row gt_center" headers="income"><p>…</p></td>
+<td class="gt_row gt_center" headers="age"><p>…</p></td>
+<td class="gt_row gt_center" headers="city"><p>…</p></td>
 </tr>
-<tr>
-<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div data-qmd="Data"><div class="gt_from_md">
-<p>Data</p>
-</div></div></td>
-<td headers="year" class="gt_row gt_center"><div data-qmd="2012"><div class="gt_from_md">
-<p>2012</p>
-</div></div></td>
-<td headers="income" class="gt_row gt_center"><div data-qmd="150000"><div class="gt_from_md">
-<p>150000</p>
-</div></div></td>
-<td headers="age" class="gt_row gt_center"><div data-qmd="43"><div class="gt_from_md">
-<p>43</p>
-</div></div></td>
-<td headers="city" class="gt_row gt_center"><div data-qmd="Boston"><div class="gt_from_md">
-<p>Boston</p>
-</div></div></td>
+<tr class="even">
+<td class="gt_row gt_left" headers="source" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000"><p>Data</p></td>
+<td class="gt_row gt_center" headers="year"><p>2012</p></td>
+<td class="gt_row gt_center" headers="income"><p>150000</p></td>
+<td class="gt_row gt_center" headers="age"><p>43</p></td>
+<td class="gt_row gt_center" headers="city"><p>Boston</p></td>
 </tr>
-<tr>
-<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div data-qmd="Data"><div class="gt_from_md">
-<p>Data</p>
-</div></div></td>
-<td headers="year" class="gt_row gt_center"><div data-qmd="2012"><div class="gt_from_md">
-<p>2012</p>
-</div></div></td>
-<td headers="income" class="gt_row gt_center"><div data-qmd="50000"><div class="gt_from_md">
-<p>50000</p>
-</div></div></td>
-<td headers="age" class="gt_row gt_center"><div data-qmd="52"><div class="gt_from_md">
-<p>52</p>
-</div></div></td>
-<td headers="city" class="gt_row gt_center"><div data-qmd="Boston"><div class="gt_from_md">
-<p>Boston</p>
-</div></div></td>
+<tr class="odd">
+<td class="gt_row gt_left" headers="source" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000"><p>Data</p></td>
+<td class="gt_row gt_center" headers="year"><p>2012</p></td>
+<td class="gt_row gt_center" headers="income"><p>50000</p></td>
+<td class="gt_row gt_center" headers="age"><p>52</p></td>
+<td class="gt_row gt_center" headers="city"><p>Boston</p></td>
 </tr>
-<tr>
-<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div data-qmd="..."><div class="gt_from_md">
-<p>…</p>
-</div></div></td>
-<td headers="year" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
-<p>…</p>
-</div></div></td>
-<td headers="income" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
-<p>…</p>
-</div></div></td>
-<td headers="age" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
-<p>…</p>
-</div></div></td>
-<td headers="city" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
-<p>…</p>
-</div></div></td>
+<tr class="even">
+<td class="gt_row gt_left" headers="source" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000"><p>…</p></td>
+<td class="gt_row gt_center" headers="year"><p>…</p></td>
+<td class="gt_row gt_center" headers="income"><p>…</p></td>
+<td class="gt_row gt_center" headers="age"><p>…</p></td>
+<td class="gt_row gt_center" headers="city"><p>…</p></td>
 </tr>
-<tr>
-<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div data-qmd="..."><div class="gt_from_md">
-<p>…</p>
-</div></div></td>
-<td headers="year" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
-<p>…</p>
-</div></div></td>
-<td headers="income" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
-<p>…</p>
-</div></div></td>
-<td headers="age" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
-<p>…</p>
-</div></div></td>
-<td headers="city" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
-<p>…</p>
-</div></div></td>
+<tr class="odd">
+<td class="gt_row gt_left" headers="source" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000"><p>…</p></td>
+<td class="gt_row gt_center" headers="year"><p>…</p></td>
+<td class="gt_row gt_center" headers="income"><p>…</p></td>
+<td class="gt_row gt_center" headers="age"><p>…</p></td>
+<td class="gt_row gt_center" headers="city"><p>…</p></td>
 </tr>
-<tr>
-<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div data-qmd="Preceptor Table"><div class="gt_from_md">
-<p>Preceptor Table</p>
-</div></div></td>
-<td headers="year" class="gt_row gt_center"><div data-qmd="2020"><div class="gt_from_md">
-<p>2020</p>
-</div></div></td>
-<td headers="income" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
-<p>…</p>
-</div></div></td>
-<td headers="age" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
-<p>…</p>
-</div></div></td>
-<td headers="city" class="gt_row gt_center"><div data-qmd="Chicago"><div class="gt_from_md">
-<p>Chicago</p>
-</div></div></td>
+<tr class="even">
+<td class="gt_row gt_left" headers="source" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000"><p>Preceptor Table</p></td>
+<td class="gt_row gt_center" headers="year"><p>2020</p></td>
+<td class="gt_row gt_center" headers="income"><p>…</p></td>
+<td class="gt_row gt_center" headers="age"><p>…</p></td>
+<td class="gt_row gt_center" headers="city"><p>Chicago</p></td>
 </tr>
-<tr>
-<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div data-qmd="Preceptor Table"><div class="gt_from_md">
-<p>Preceptor Table</p>
-</div></div></td>
-<td headers="year" class="gt_row gt_center"><div data-qmd="2020"><div class="gt_from_md">
-<p>2020</p>
-</div></div></td>
-<td headers="income" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
-<p>…</p>
-</div></div></td>
-<td headers="age" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
-<p>…</p>
-</div></div></td>
-<td headers="city" class="gt_row gt_center"><div data-qmd="Chicago"><div class="gt_from_md">
-<p>Chicago</p>
-</div></div></td>
+<tr class="odd">
+<td class="gt_row gt_left" headers="source" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000"><p>Preceptor Table</p></td>
+<td class="gt_row gt_center" headers="year"><p>2020</p></td>
+<td class="gt_row gt_center" headers="income"><p>…</p></td>
+<td class="gt_row gt_center" headers="age"><p>…</p></td>
+<td class="gt_row gt_center" headers="city"><p>Chicago</p></td>
 </tr>
-<tr>
-<td headers="source" class="gt_row gt_left" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000;"><div data-qmd="..."><div class="gt_from_md">
-<p>…</p>
-</div></div></td>
-<td headers="year" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
-<p>…</p>
-</div></div></td>
-<td headers="income" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
-<p>…</p>
-</div></div></td>
-<td headers="age" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
-<p>…</p>
-</div></div></td>
-<td headers="city" class="gt_row gt_center"><div data-qmd="..."><div class="gt_from_md">
-<p>…</p>
-</div></div></td>
+<tr class="even">
+<td class="gt_row gt_left" headers="source" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000000"><p>…</p></td>
+<td class="gt_row gt_center" headers="year"><p>…</p></td>
+<td class="gt_row gt_center" headers="income"><p>…</p></td>
+<td class="gt_row gt_center" headers="age"><p>…</p></td>
+<td class="gt_row gt_center" headers="city"><p>…</p></td>
 </tr>
 </tbody>
 </table>
@@ -1453,8 +1365,8 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <ul>
 <li><p>The “Source” column highlights that the Population Table includes three categories of rows: The data, the Preceptor Table, and the rest of the population, from which both the data and the Preceptor Table are drawn. The <code>...</code> indicates rows from the population which are not included in either the data or the Preceptor Table.</p></li>
-<li><p>The “ID” column is implicit, and generally not included. After all, it should be obvious that each row refers to a specific unit. If we don’t really care about the individual units, there is no need to label them.</p></li>
-<li><p>There should always be a column, in this case “Year,” which indicates the moment in time at which the covariates were recorded. A given unit may appear in multiple rows, with each row providing the data at a different time. In this example, we will have a row for Sarah in 2012, which she was 43, and a row for Sarah in 2014, when she was 45, and so on. Note that Sarah might just be member of the population, neither in the data we have nor in the Preceptor Table. Or she might be in one or the other. We are not concerned with any specific individuals.</p></li>
+<li><p>The “ID” column is implicit, and often not included. After all, it should be obvious that each row refers to a specific unit. If we don’t really care about the individual units, there is no need to label them.</p></li>
+<li><p>There should always be a column, in this case “Year,” which indicates the moment in time at which the covariates were recorded. A given unit may appear in multiple rows, with each row providing the data at a different time. In this example, we will have a row for Sarah in 2012, when she was 43, and a row for Sarah in 2020, when she was 51, and so on. Note that Sarah might just be member of the population, neither in the data we have nor in the Preceptor Table. Or she might be in one or the other. We are not concerned with any specific individuals.</p></li>
 <li><p>Each row in the Population Table represents a unique Unit/Time combination.</p></li>
 <li><p>The “Outcome” column is the variable which we are trying to understand/explain/predict. There is always an outcome column, although it will often just be labelled with the variable name, as here with “Income.”</p></li>
 <li><p>The “Covariates” are all the columns other than those already discussed.</p></li>
@@ -1591,10 +1503,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -1604,8 +1515,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -1618,6 +1538,125 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -1661,6 +1700,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -1686,6 +1726,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -1745,12 +1811,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
-      <a href="./n-parameters.html" class="pagination-link">
+      <a href="./n-parameters.html" class="pagination-link  aria-label=" parameters="">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">N Parameters</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./set-up.html" class="pagination-link">
+      <a href="./set-up.html" class="pagination-link" aria-label="Set Up for Working on The Primer">
         <span class="nav-page-text">Set Up for Working on The Primer</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
@@ -1759,4 +1825,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-</body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/PPBDS/primer/edit/main/glossary.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div></div></footer></body></html>

@@ -76,7 +76,7 @@ Have you ever wondered what the world would be like without you?
 
 {{< video https://www.youtube.com/embed/cR7p-IB6INM >}}
 
-George Bailey, a character from the movie "It's a Wonderful Life," believes that his existence has served no purpose. The movie follows George as he explores a world in which he was never born. It is clear that he had a profound impact on the lives of many people in his community. His actions mattered, more than he ever realized.
+George Bailey, the main character in "[It's a Wonderful Life](https://en.wikipedia.org/wiki/It%27s_a_Wonderful_Life)," believes that his existence has served no purpose. The movie follows George as he explores a world in which he was never born. It is clear that he had a profound impact on the lives of many people in his community. His actions mattered, more than he ever realized.
 
 By showing what the world would have been like without George, we get an idea of the *causal effect* of his life on his town and the people who live there. This chapter explains causation using the framework of *potential outcomes* and the *Rubin Causal Model* (RCM).
 
@@ -114,9 +114,9 @@ tibble(ID = c("Student 1", "Student 2", "...", "Student 47", "Student 48",
             locations = cells_column_labels())
 ```
 
-If we had a table with the height of every New College student, then statistics like the average would be easy to calculate. It would also be straightforward, using simulation, to estimate the the chances of various scenarios, as in our question.
+If we had a table with the height of every New College student, then statistics like the average would be easy to calculate. It would also be straightforward, using simulation, to estimate the the chances of various scenarios, as in our second question.
 
-Even the simplest Preceptor Table will have two columns. The first is an *ID* column which serves to label each unit. The second column is the *outcome* of interest, the variable we are trying to predict/understand/change. The rows of the Preceptor Table are the *units*, the objects on which the outcome is measured. 
+Even the simplest Preceptor Table will have two columns. The first is an *ID* column which serves to label each unit. The second column is the *outcome* of interest, the variable we are trying to predict/understand/influence. The rows of the Preceptor Table are the *units*, the objects on which the outcome is measured. 
 
 To answer questions, we need data. Consider:
 
@@ -145,7 +145,7 @@ tibble(ID = c("Student 11", "Student 32", "Student 47", "Student 68",
 
 The notion of time is important, both in our Preceptor Table and in our data. To what moment in time do the questions refer? At what moment in time was our data collected? Those two moments are almost always different. Our data comes from some point in the past, even if it was collected yesterday. Our questions usually refer to *now* or to an indeterminate moment in the future.
 
-In order to use this data to answer our questions, we need to consider the concept of *validity*. Is the data we have *valid* for answering our questions? Height might seem to make this simple, but, even here, complications can arise. For example, was height measured with shoes on or off?
+In order to use this data to answer our questions, we need to consider the concept of *validity*. Is the data we have *valid* for answering our questions? Height, as an outcome, seems to make this simple, but, even here, complications can arise. For example, was height measured with shoes on or off? Which measure do we want?
 
 
 ## Population Table
