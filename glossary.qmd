@@ -67,6 +67,7 @@ Wisdom clarifies the question. Justice gives us the Population Table. Courage cr
 
 ## Steps to Take in Every Data Science Problem
 
+
 In the spirit of transparency, here are the guidelines which we provide to colleagues updating chapters in the *Primer*. This is how we think data science ought to be taught. It is also, perhaps unsurprisingly, how we think data science ought to be done, at least at this introductory level.
 
 ### Question

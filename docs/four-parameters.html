@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.361">
+<meta name="generator" content="quarto-1.4.549">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>Preceptor’s Primer for Bayesian Data Science: Using the Cardinal Virtues for Inference - 6&nbsp; Four Parameters</title>
 <style>
@@ -19,7 +19,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -55,6 +55,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -95,7 +96,13 @@ div.csl-indent {
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -104,29 +111,55 @@ div.csl-indent {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+}</script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 </head>
 <body class="nav-sidebar floating">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./four-parameters.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Four Parameters</span></a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./four-parameters.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Four Parameters</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
   </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Preceptor’s Primer for Bayesian Data Science: Using the Cardinal Virtues for Inference</a> 
         <div class="sidebar-tools-main">
@@ -250,7 +283,7 @@ div.csl-indent {
 </li>
     </ul>
 </div>
-</nav><div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
@@ -305,7 +338,7 @@ div.csl-indent {
   </ul>
 </li>
   <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">6.7</span> Summary</a></li>
-  </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/PPBDS/primer/edit/main/four-parameters.qmd" class="toc-action">Edit this page</a></p></div></div></nav>
+  </ul><div class="toc-actions"><ul><li><a href="https://github.com/PPBDS/primer/edit/main/four-parameters.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
@@ -321,6 +354,7 @@ div.csl-indent {
     
   </div>
   
+
 
 </header><!-- Change Justice section to discuss the math of three possible models you are considering. Predictive or am I doing causal? What is the treatment effect is my question? So, must be causal. Key point: Just because you are using treatment, does not mean that you care it is causal. You may not care. You might only want prediction. So, everything really starts with your question. If you are not asking a causal question, then you don't care if a lefthand side variable has a causal interpretation. You just care if it helps you make better predictions. --><!-- Add a question to Temperance and answer it. Probably posterior_epred(). Probably a causation question. Meaning the expected causal effect for a certain sort of person. Which is also a parameter in the regression, which is a good connection to make. MF: Did not have time for this, but I can complete it this week. --><!-- Transforming the outcome variable. Give some more thoughts or advice. --><!-- Comparing within rows of the Preceptor Table versus across rows, which is all you can do without two potential outcomes. --><!-- Also, does not work in logistic. But divide by four rule.  --><p><em>Our forecasts are more uncertain that a naive use of our models would suggest.</em></p>
 <p>In our haste to make progress — to get all the way through the process of building, interpreting and using models — we have given short shrift to some of the messy details of model building and evaluation. This chapter fills in those lacunae. We will also introduce models with four parameters, including <em>parallel slopes</em> models.</p>
@@ -339,14 +373,14 @@ Do we discuss anything in the "Other transformations section" (pg. 195)? This in
 <!-- 1.3.4 and Current Matrix version is 1.3.3. Not sure what to do, besides turn -->
 <!-- it off for now. -->
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<details class="code-fold"><summary>Show the code</summary><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">primer.data</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://mc-stan.org/rstanarm/">rstanarm</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/bbolker/broom.mixed">broom.mixed</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/rstanarm/reference/stan_glm.html">stan_glm</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">income</span> <span class="op">~</span> <span class="va">age</span>, </span>
+<details class="code-fold"><summary>Show the code</summary><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/rstanarm/reference/stan_glm.html">stan_glm</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">income</span> <span class="op">~</span> <span class="va">age</span>, </span>
 <span>         data <span class="op">=</span> <span class="va">trains</span>, </span>
 <span>         refresh <span class="op">=</span> <span class="fl">0</span>,</span>
 <span>         seed <span class="op">=</span> <span class="fl">9</span><span class="op">)</span></span>
@@ -365,7 +399,7 @@ sigma 74196.8  4869.9</code></pre>
 <p>There is nothing wrong with this model. Yet the interpretation of <span class="math inline">\(\beta_0\)</span>, the intercept in the regression, is awkward. It represents the average income for people of age zero. That is useless! There are no people of zero age in our data. And, even if there were, it would be weird to think about such people taking the commuter train into Boston and filling out our survey forms.</p>
 <p>It is easy, however, to <em>transform</em> <code>age</code> into a variable which makes the intercept more meaningful. Consider a new variable, <code>c_age</code>, which is <code>age</code> minus the average age in the sample. Using this <strong>c</strong>entered version of age does not change the predictions or residuals in the model, but it does make the intercept easier to interpret.</p>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">trains_2</span> <span class="op">&lt;-</span> <span class="va">trains</span> <span class="op">|&gt;</span> </span>
+<details class="code-fold"><summary>Show the code</summary><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">trains_2</span> <span class="op">&lt;-</span> <span class="va">trains</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>c_age <span class="op">=</span> <span class="va">age</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">age</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">fit_1_c</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/rstanarm/reference/stan_glm.html">stan_glm</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">income</span> <span class="op">~</span> <span class="va">c_age</span>, </span>
@@ -389,7 +423,7 @@ sigma 74131.4  4757.5</code></pre>
 <span class="header-section-number">6.1.2</span> Scaling</h3>
 <p>Centering — changing a variable via addition/subtraction — often makes the intercept easier to interpret. Scaling — changing a variable via multiplication/division — often makes it easier to interpret coefficients. The most common scaling method is to divide the variable by its standard deviation.</p>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">trains_3</span> <span class="op">&lt;-</span> <span class="va">trains</span> <span class="op">|&gt;</span> </span>
+<details class="code-fold"><summary>Show the code</summary><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">trains_3</span> <span class="op">&lt;-</span> <span class="va">trains</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>s_age <span class="op">=</span> <span class="va">age</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">age</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">fit_1_s</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/rstanarm/reference/stan_glm.html">stan_glm</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">income</span> <span class="op">~</span> <span class="va">s_age</span>, </span>
@@ -415,7 +449,7 @@ sigma 74248.2  4930.7</code></pre>
 <span class="header-section-number">6.1.3</span> <em>z</em>-scores</h3>
 <p>The most common transformation applies both centering and scaling. The base R function <code><a href="https://rdrr.io/r/base/scale.html">scale()</a></code> subtracts the mean and divides by the standard deviation. A variable so transformed is a “<em>z</em>-score,” meaning a variable with a mean of zero and a standard deviation of one. Using <em>z</em>-scores makes interpretation easier, especially when we seek to compare the importance of different predictors.</p>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">trains_4</span> <span class="op">&lt;-</span> <span class="va">trains</span> <span class="op">|&gt;</span> </span>
+<details class="code-fold"><summary>Show the code</summary><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">trains_4</span> <span class="op">&lt;-</span> <span class="va">trains</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>z_age <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/scale.html">scale</a></span><span class="op">(</span><span class="va">age</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">fit_1_z</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/rstanarm/reference/stan_glm.html">stan_glm</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">income</span> <span class="op">~</span> <span class="va">z_age</span>, </span>
@@ -442,7 +476,7 @@ sigma 74311.6  4866.7</code></pre>
 <span class="header-section-number">6.1.4</span> Taking logs</h3>
 <p>It is often helpful to take the log of predictor variables, especially in cases in which their distribution is skewed. You should generally only take the log of variables for which all the values are strictly positive. The log of a negative number is not defined. Consider the number of registered voters (<code>rv13</code>) at each of the polling stations in <code>kenya</code>.</p>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="va">kenya</span> <span class="op">|&gt;</span> </span>
+<details class="code-fold"><summary>Show the code</summary><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="va">kenya</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">rv13</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">rv_p</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op">|&gt;</span> </span>
@@ -462,7 +496,10 @@ sigma 74311.6  4866.7</code></pre>
 <span>  <span class="fu">plot_annotation</span><span class="op">(</span>title <span class="op">=</span> <span class="st">'Registered Votes In Kenya Communities'</span>,</span>
 <span>                  subtitle <span class="op">=</span> <span class="st">"Taking logs helps us deal with outliers"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
-<p><img src="four-parameters_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure"><p><img src="four-parameters_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Most experienced data scientists would use the log of <code>rv13</code> rather than the raw value. Comments:</p>
@@ -478,14 +515,14 @@ sigma 74311.6  4866.7</code></pre>
 <span class="header-section-number">6.1.5</span> Adding transformed terms</h3>
 <p>Instead of simply transforming variables, we can add more terms which are transformed versions of a variable. Consider the relation of <code>height</code> to <code>age</code> in <code>nhanes</code>. Let’s start by dropping the missing values.</p>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">no_na_nhanes</span> <span class="op">&lt;-</span> <span class="va">nhanes</span> <span class="op">|&gt;</span> </span>
+<details class="code-fold"><summary>Show the code</summary><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">no_na_nhanes</span> <span class="op">&lt;-</span> <span class="va">nhanes</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">height</span>, <span class="va">age</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/drop_na.html">drop_na</a></span><span class="op">(</span><span class="op">)</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <p>Fit and plot a simple linear model:</p>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">nhanes_1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/rstanarm/reference/stan_glm.html">stan_glm</a></span><span class="op">(</span><span class="va">height</span> <span class="op">~</span> <span class="va">age</span>,</span>
+<details class="code-fold"><summary>Show the code</summary><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">nhanes_1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/rstanarm/reference/stan_glm.html">stan_glm</a></span><span class="op">(</span><span class="va">height</span> <span class="op">~</span> <span class="va">age</span>,</span>
 <span>                     data <span class="op">=</span> <span class="va">no_na_nhanes</span>,</span>
 <span>                     refresh <span class="op">=</span> <span class="fl">0</span>,</span>
 <span>                     seed <span class="op">=</span> <span class="fl">47</span><span class="op">)</span></span>
@@ -501,13 +538,16 @@ sigma 74311.6  4866.7</code></pre>
 <span>         y <span class="op">=</span> <span class="st">"Height (cm)"</span>,</span>
 <span>         caption <span class="op">=</span> <span class="st">"Data source: NHANES"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
-<p><img src="four-parameters_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure"><p><img src="four-parameters_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>That is not a very good model, obviously.</p>
 <p>Adding a quadratic term makes it better. (Note the need for <code><a href="https://rdrr.io/r/base/AsIs.html">I()</a></code> in creating the squared term within the <code>formula</code> argument.)</p>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">nhanes_2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/rstanarm/reference/stan_glm.html">stan_glm</a></span><span class="op">(</span><span class="va">height</span> <span class="op">~</span> <span class="va">age</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/AsIs.html">I</a></span><span class="op">(</span><span class="va">age</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span>,</span>
+<details class="code-fold"><summary>Show the code</summary><div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">nhanes_2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/rstanarm/reference/stan_glm.html">stan_glm</a></span><span class="op">(</span><span class="va">height</span> <span class="op">~</span> <span class="va">age</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/AsIs.html">I</a></span><span class="op">(</span><span class="va">age</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span>,</span>
 <span>                     data <span class="op">=</span> <span class="va">no_na_nhanes</span>,</span>
 <span>                     refresh <span class="op">=</span> <span class="fl">0</span>,</span>
 <span>                     seed <span class="op">=</span> <span class="fl">33</span><span class="op">)</span></span>
@@ -523,12 +563,15 @@ sigma 74311.6  4866.7</code></pre>
 <span>         y <span class="op">=</span> <span class="st">"Height (cm)"</span>,</span>
 <span>         caption <span class="op">=</span> <span class="st">"Data source: NHANES"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
-<p><img src="four-parameters_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure"><p><img src="four-parameters_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Still, we have not made use of our background knowledge in creating these variables. We know that people don’t get any taller after age 18 or so. Let’s create variables which capture that break.</p>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">nhanes_3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/rstanarm/reference/stan_glm.html">stan_glm</a></span><span class="op">(</span><span class="va">height</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/AsIs.html">I</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">age</span> <span class="op">&gt;</span> <span class="fl">18</span>, <span class="fl">18</span>, <span class="va">age</span><span class="op">)</span><span class="op">)</span>,</span>
+<details class="code-fold"><summary>Show the code</summary><div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">nhanes_3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/rstanarm/reference/stan_glm.html">stan_glm</a></span><span class="op">(</span><span class="va">height</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/AsIs.html">I</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">age</span> <span class="op">&gt;</span> <span class="fl">18</span>, <span class="fl">18</span>, <span class="va">age</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>                     data <span class="op">=</span> <span class="va">no_na_nhanes</span>,</span>
 <span>                     refresh <span class="op">=</span> <span class="fl">0</span>,</span>
 <span>                     seed <span class="op">=</span> <span class="fl">23</span><span class="op">)</span></span>
@@ -544,7 +587,10 @@ sigma 74311.6  4866.7</code></pre>
 <span>         y <span class="op">=</span> <span class="st">"Height (cm)"</span>,</span>
 <span>         caption <span class="op">=</span> <span class="st">"Data source: NHANES"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
-<p><img src="four-parameters_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure"><p><img src="four-parameters_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>The point is that we should not take the variables we receive as <em>given</em>. We are the captains of our souls. We transform variables as needed.</p>
@@ -591,7 +637,7 @@ sigma 74311.6  4866.7</code></pre>
 <span class="header-section-number">6.2.3</span> att_end ~ treatment + att_start</h3>
 <p>First, let’s look at a model with a left hand variable, <code>att_end</code>, and two right side variables, <code>treatment</code> and <code>att_start</code>.</p>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_1_model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/rstanarm/reference/stan_glm.html">stan_glm</a></span><span class="op">(</span><span class="va">att_end</span> <span class="op">~</span> <span class="va">treatment</span> <span class="op">+</span> <span class="va">att_start</span>, </span>
+<details class="code-fold"><summary>Show the code</summary><div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_1_model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/rstanarm/reference/stan_glm.html">stan_glm</a></span><span class="op">(</span><span class="va">att_end</span> <span class="op">~</span> <span class="va">treatment</span> <span class="op">+</span> <span class="va">att_start</span>, </span>
 <span>                    data <span class="op">=</span> <span class="va">trains</span>, </span>
 <span>                    refresh <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span>
 <span></span>
@@ -633,7 +679,7 @@ sigma 1.3    0.1
 <span class="header-section-number">6.2.4</span> income ~ age + liberal</h3>
 <p>Now, we will look at <code>income</code> as a function of <code>age</code> and <code>liberal</code>, a proxy for political party.</p>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/rstanarm/reference/stan_glm.html">stan_glm</a></span><span class="op">(</span><span class="va">income</span> <span class="op">~</span> <span class="va">age</span> <span class="op">+</span> <span class="va">liberal</span>, </span>
+<details class="code-fold"><summary>Show the code</summary><div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/rstanarm/reference/stan_glm.html">stan_glm</a></span><span class="op">(</span><span class="va">income</span> <span class="op">~</span> <span class="va">age</span> <span class="op">+</span> <span class="va">liberal</span>, </span>
 <span>                    data <span class="op">=</span> <span class="va">trains</span>, </span>
 <span>                    refresh <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span>
 <span></span>
@@ -675,7 +721,7 @@ sigma 72608.9  4881.9
 <span class="header-section-number">6.2.5</span> liberal ~ I(income/1e+05) + party</h3>
 <p>We will now look at liberal as a function of a transformed <code>income</code> and <code>party</code>. The reason we have transformed <code>income</code> here is due to the fact that, without a transformation, income makes predictions according to <em>very small income disparities</em>. This is not helpful. To enhance the significance of income, we have divided the variable by <span class="math inline">\(100000\)</span>. (Note the need for <code><a href="https://rdrr.io/r/base/AsIs.html">I()</a></code> in creating the income term within the <code>formula</code> argument.)</p>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/rstanarm/reference/stan_glm.html">stan_glm</a></span><span class="op">(</span><span class="va">liberal</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/AsIs.html">I</a></span><span class="op">(</span><span class="va">income</span><span class="op">/</span><span class="fl">1e+05</span><span class="op">)</span> <span class="op">+</span> <span class="va">party</span>, </span>
+<details class="code-fold"><summary>Show the code</summary><div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/rstanarm/reference/stan_glm.html">stan_glm</a></span><span class="op">(</span><span class="va">liberal</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/AsIs.html">I</a></span><span class="op">(</span><span class="va">income</span><span class="op">/</span><span class="fl">1e+05</span><span class="op">)</span> <span class="op">+</span> <span class="va">party</span>, </span>
 <span>                    data <span class="op">=</span> <span class="va">trains</span>, </span>
 <span>                    refresh <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span>
 <span></span>
@@ -716,7 +762,7 @@ sigma 0.5    0.0
 <p>Deciding which variables to include in a model is a subset of the larger question: How do we decide which model, out of the set of possible models, to choose?</p>
 <p>Consider two models which explain attitudes to immigration among Boston commuters.</p>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_liberal</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/rstanarm/reference/stan_glm.html">stan_glm</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">att_end</span> <span class="op">~</span> <span class="va">liberal</span>,</span>
+<details class="code-fold"><summary>Show the code</summary><div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_liberal</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/rstanarm/reference/stan_glm.html">stan_glm</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">att_end</span> <span class="op">~</span> <span class="va">liberal</span>,</span>
 <span>                  data <span class="op">=</span> <span class="va">trains</span>,</span>
 <span>                  refresh <span class="op">=</span> <span class="fl">0</span>,</span>
 <span>                  seed <span class="op">=</span> <span class="fl">42</span><span class="op">)</span></span>
@@ -733,7 +779,7 @@ sigma 2.7    0.2   </code></pre>
 </div>
 </div>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_att_start</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/rstanarm/reference/stan_glm.html">stan_glm</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">att_end</span> <span class="op">~</span> <span class="va">att_start</span>,</span>
+<details class="code-fold"><summary>Show the code</summary><div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_att_start</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/rstanarm/reference/stan_glm.html">stan_glm</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">att_end</span> <span class="op">~</span> <span class="va">att_start</span>,</span>
 <span>                  data <span class="op">=</span> <span class="va">trains</span>,</span>
 <span>                  refresh <span class="op">=</span> <span class="fl">0</span>,</span>
 <span>                  seed <span class="op">=</span> <span class="fl">85</span><span class="op">)</span></span>
@@ -755,7 +801,7 @@ sigma 1.4    0.1   </code></pre>
 <span class="header-section-number">6.3.1</span> Better models make better predictions</h3>
 <p>The most obvious criteria for comparing models is the accuracy of the predictions. For example, consider the use of <code>liberal</code> to predict <code>att_end</code>.</p>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">trains</span> <span class="op">|&gt;</span> </span>
+<details class="code-fold"><summary>Show the code</summary><div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">trains</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>pred_liberal <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/fitted.values.html">fitted</a></span><span class="op">(</span><span class="va">fit_liberal</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">pred_liberal</span>, y <span class="op">=</span> <span class="va">att_end</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_jitter.html">geom_jitter</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">0.05</span>, height <span class="op">=</span> <span class="fl">0.2</span>, alpha <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">+</span></span>
@@ -776,14 +822,17 @@ sigma 1.4    0.1   </code></pre>
 <span>         x <span class="op">=</span> <span class="st">"Predicted Attitude"</span>,</span>
 <span>         y <span class="op">=</span> <span class="st">"True Attitude"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
-<p><img src="four-parameters_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure"><p><img src="four-parameters_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <!-- DK: Could put this discussion in fig.cap. Could add some details to the plots to indicate the points that I am talking about. Should create an animation, which brings in new point, forecasts it, and then measures how wrong the model was. -->
 <p>Because there are only two possible values for <code>liberal</code> — TRUE and FALSE — there are only two predictions which this model will make: about 10 for <code>liberal == FALSE</code> and about 8 for <code>liberal == TRUE</code>. (The points in the above plot are jittered.) For some individuals, these are perfect predictions. For others, they are poor predictions. the red circles on our plot illustrate the areas where our predictions are equal to true values. As we can see, the model isn’t great at predicting attitude end. (Note the two individuals who are <code>liberal == TRUE</code>, and who the model thinks will have <code>att_end == 8</code>, but who have <code>att_end == 15</code>. The model got them both very, very wrong.)</p>
 <p>Consider our second model, using <code>att_start</code> to forecast <code>att_end</code>.</p>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">trains</span> <span class="op">|&gt;</span> </span>
+<details class="code-fold"><summary>Show the code</summary><div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">trains</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>pred_liberal <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/fitted.values.html">fitted</a></span><span class="op">(</span><span class="va">fit_att_start</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">pred_liberal</span>, y <span class="op">=</span> <span class="va">att_end</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_jitter.html">geom_jitter</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">0.05</span>, height <span class="op">=</span> <span class="fl">0.2</span>, alpha <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">+</span></span>
@@ -797,13 +846,16 @@ sigma 1.4    0.1   </code></pre>
 <span>         x <span class="op">=</span> <span class="st">"Predicted Attitude"</span>,</span>
 <span>         y <span class="op">=</span> <span class="st">"True Attitude"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
-<p><img src="four-parameters_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure"><p><img src="four-parameters_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Because <code>att_end</code> takes on 13 unique values, the model makes 13 unique predictions. Some of those predictions are perfect! But others are very wrong. The red line shows the points where our predictions match the truth. Note the individual with a predicted <code>att_end</code> of around 9 but with an actual value of <code>15</code>. That is a big miss!</p>
 <p>Rather than looking at individual cases, we need to look at the errors for all the predictions. Fortunately, a prediction error is the same thing as a residual, which is easy enough to calculate.</p>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">trains</span> <span class="op">|&gt;</span> </span>
+<details class="code-fold"><summary>Show the code</summary><div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">trains</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">att_end</span>, <span class="va">att_start</span>, <span class="va">liberal</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>pred_lib <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/fitted.values.html">fitted</a></span><span class="op">(</span><span class="va">fit_liberal</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>resid_lib <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/fitted.values.html">fitted</a></span><span class="op">(</span><span class="va">fit_liberal</span><span class="op">)</span> <span class="op">-</span> <span class="va">att_end</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
@@ -828,7 +880,7 @@ sigma 1.4    0.1   </code></pre>
 </div>
 <p>Let’s look at the square root of the average squared error.</p>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">trains</span> <span class="op">|&gt;</span> </span>
+<details class="code-fold"><summary>Show the code</summary><div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">trains</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">att_end</span>, <span class="va">att_start</span>, <span class="va">liberal</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>lib_err <span class="op">=</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/fitted.values.html">fitted</a></span><span class="op">(</span><span class="va">fit_liberal</span><span class="op">)</span> <span class="op">-</span> <span class="va">att_end</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>as_err <span class="op">=</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/fitted.values.html">fitted</a></span><span class="op">(</span><span class="va">fit_att_start</span><span class="op">)</span> <span class="op">-</span> <span class="va">att_end</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
@@ -850,13 +902,19 @@ sigma 1.4    0.1   </code></pre>
 <p>One of the biggest dangers in data science is <em>overfitting</em>, using a model with too many parameters which fits the data we have too well and, therefore, works poorly on data we have yet to see. Consider a simple example with 10 data points.</p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="four-parameters_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure"><p><img src="four-parameters_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>What happens when we fit a model with one predictor?</p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="four-parameters_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure"><p><img src="four-parameters_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>That is a reasonable model. It does not fit the data particularly well, but we certainly believe that higher values of <code>x</code> are associated with higher values of <code>y</code>. A linear fit is not unreasonable.</p>
@@ -864,13 +922,16 @@ sigma 1.4    0.1   </code></pre>
 <p>But we can also use some of the lessons from above and try a quadratic fit by adding <span class="math inline">\(x^2\)</span> as a predictor.</p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="four-parameters_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure"><p><img src="four-parameters_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Is this a better model? Maybe?</p>
 <p>But why stop at adding <span class="math inline">\(x^2\)</span> to the regression? Why not add <span class="math inline">\(x^3\)</span>, <span class="math inline">\(x^4\)</span> and all the way to <span class="math inline">\(x^9\)</span>? When we do so, the fit is much better.</p>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">nine_pred</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">y</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/stats/poly.html">poly</a></span><span class="op">(</span><span class="va">x</span>, <span class="fl">9</span><span class="op">)</span>,</span>
+<details class="code-fold"><summary>Show the code</summary><div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">nine_pred</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">y</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/stats/poly.html">poly</a></span><span class="op">(</span><span class="va">x</span>, <span class="fl">9</span><span class="op">)</span>,</span>
 <span>                       data <span class="op">=</span> <span class="va">ovrftng</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">newdata</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">10</span>, by <span class="op">=</span> <span class="fl">0.01</span><span class="op">)</span>,</span>
@@ -886,7 +947,10 @@ sigma 1.4    0.1   </code></pre>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">10</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">10</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
-<p><img src="four-parameters_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure"><p><img src="four-parameters_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p><em>If the only criteria we cared about was how well the model predicts using the data on which the parameters were estimated, then a model with more parameters will always be better.</em> But that is not what truly matters. What matters is how well the model works on data which was not used to create the model.</p>
@@ -915,7 +979,7 @@ sigma 1.4    0.1   </code></pre>
 <p>To perform leave-one-out(LOO) cross validation, we will be using the function <code><a href="https://mc-stan.org/loo/reference/loo.html">loo()</a></code> from an R package. This is how we will determine which model is superior for our purposes.</p>
 <p>First, we will refamiliarize ourselves with our first model, <code>fit_liberal</code>.</p>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_liberal</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details class="code-fold"><summary>Show the code</summary><div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_liberal</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output cell-output-stdout">
 <pre><code>stan_glm
  family:       gaussian [identity]
@@ -938,7 +1002,7 @@ sigma 2.7    0.2
 </div>
 <p>Now, we will perform <code><a href="https://mc-stan.org/loo/reference/loo.html">loo()</a></code> on our model and look at the results.</p>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">loo_liberal</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/loo/reference/loo.html">loo</a></span><span class="op">(</span><span class="va">fit_liberal</span><span class="op">)</span></span>
+<details class="code-fold"><summary>Show the code</summary><div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">loo_liberal</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/loo/reference/loo.html">loo</a></span><span class="op">(</span><span class="va">fit_liberal</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">loo_liberal</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output cell-output-stdout">
@@ -972,7 +1036,7 @@ See help('pareto-k-diagnostic') for details.</code></pre>
 <!-- DK: Untrue! Hint: the higher value will be the the value closest to 0, as the results for `elpd_loo()` are negative.  -->
 <p>Let’s turn our attention to our second model. To begin, let’s observe the qualities of <code>fit_att_start</code> once again.</p>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_att_start</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details class="code-fold"><summary>Show the code</summary><div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_att_start</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output cell-output-stdout">
 <pre><code>stan_glm
  family:       gaussian [identity]
@@ -995,7 +1059,7 @@ sigma 1.4    0.1
 </div>
 <p>Great! Now, let’s perform <code><a href="https://mc-stan.org/loo/reference/loo.html">loo()</a></code> on this model.</p>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb38"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">loo_att_start</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/loo/reference/loo.html">loo</a></span><span class="op">(</span><span class="va">fit_att_start</span><span class="op">)</span> </span>
+<details class="code-fold"><summary>Show the code</summary><div class="sourceCode" id="cb38"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">loo_att_start</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/loo/reference/loo.html">loo</a></span><span class="op">(</span><span class="va">fit_att_start</span><span class="op">)</span> </span>
 <span></span>
 <span><span class="va">loo_att_start</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output cell-output-stdout">
@@ -1020,7 +1084,7 @@ See help('pareto-k-diagnostic') for details.</code></pre>
 </h3>
 <p>To compare the two models directly, we can use the function <code>loo_compare</code> with our two <code>loo</code> objects created above. This will calculate the difference in <code>elpd_loo()</code> between our models for us, making our job easier:</p>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb40"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://mc-stan.org/loo/reference/loo_compare.html">loo_compare</a></span><span class="op">(</span><span class="va">loo_att_start</span>, <span class="va">loo_liberal</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details class="code-fold"><summary>Show the code</summary><div class="sourceCode" id="cb40"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://mc-stan.org/loo/reference/loo_compare.html">loo_compare</a></span><span class="op">(</span><span class="va">loo_att_start</span>, <span class="va">loo_liberal</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output cell-output-stdout">
 <pre><code>              elpd_diff se_diff
 fit_att_start   0.0       0.0  
@@ -1049,20 +1113,23 @@ fit_liberal   -77.7      12.0  </code></pre>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="other/images/Wisdom.jpg" class="img-fluid figure-img" width="1280"></p>
-<figcaption class="figure-caption">Wisdom</figcaption></figure>
+<figcaption>Wisdom</figcaption></figure>
 </div>
 </div>
 </div>
 <p>Before making a model which seeks to explain <code>att_end</code>, we should plot it and the variables we think are connected to it:</p>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb42"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">trains</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">att_start</span>, y <span class="op">=</span> <span class="va">att_end</span>, color <span class="op">=</span> <span class="va">liberal</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<details class="code-fold"><summary>Show the code</summary><div class="sourceCode" id="cb42"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">trains</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">att_start</span>, y <span class="op">=</span> <span class="va">att_end</span>, color <span class="op">=</span> <span class="va">liberal</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Attitude End Compared with Attitude Start and Liberal"</span>,</span>
 <span>       x <span class="op">=</span> <span class="st">"Attitude at Start of Study"</span>,</span>
 <span>       y <span class="op">=</span> <span class="st">"Attitude at End of Study"</span>,</span>
 <span>       color <span class="op">=</span> <span class="st">"Liberal?"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
-<p><img src="four-parameters_files/figure-html/unnamed-chunk-32-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure"><p><img src="four-parameters_files/figure-html/unnamed-chunk-32-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Is that data believable? Maybe? One could imagine that <code>att_end</code> would be predicted fairly well by <code>att_start</code>. This makes sense for most of our data points, which show not much difference between the attitudes. But what about the great disparities in attitude shown for the individual with a starting attitude of 9 and an ending attitude around 15? In a real data science project, this would require further investigation. For now, we ignore the issue and blithely press on.</p>
@@ -1081,7 +1148,7 @@ fit_liberal   -77.7      12.0  </code></pre>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="other/images/Justice.jpg" class="img-fluid figure-img" width="960"></p>
-<figcaption class="figure-caption">Justice</figcaption></figure>
+<figcaption>Justice</figcaption></figure>
 </div>
 </div>
 </div>
@@ -1105,13 +1172,13 @@ fit_liberal   -77.7      12.0  </code></pre>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="other/images/Courage.jpg" class="img-fluid figure-img" width="1024"></p>
-<figcaption class="figure-caption">Courage</figcaption></figure>
+<figcaption>Courage</figcaption></figure>
 </div>
 </div>
 </div>
 <p>The use of <code>stan_glm</code> is the same as usual. Using <code>stan_glm</code>, we will create our model, <code>fit_1</code>.</p>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb43"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/rstanarm/reference/stan_glm.html">stan_glm</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">att_end</span> <span class="op">~</span> <span class="va">liberal</span> <span class="op">+</span> <span class="va">att_start</span>,</span>
+<details class="code-fold"><summary>Show the code</summary><div class="sourceCode" id="cb43"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/rstanarm/reference/stan_glm.html">stan_glm</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">att_end</span> <span class="op">~</span> <span class="va">liberal</span> <span class="op">+</span> <span class="va">att_start</span>,</span>
 <span>                  data <span class="op">=</span> <span class="va">trains</span>,</span>
 <span>                  refresh <span class="op">=</span> <span class="fl">0</span>,</span>
 <span>                  seed <span class="op">=</span> <span class="fl">42</span><span class="op">)</span></span>
@@ -1141,7 +1208,7 @@ sigma 1.4    0.1
 <p>To remind ourselves, recall that the <code>(Intercept)</code> here is representing the <code>att_end</code> value for cases where <code>liberal = FALSE</code> and <code>treatment does not equal Control</code>. The next row, <code>liberalTRUE</code> gives a median value which represents the <em>offset</em> in the prediction compared with the <code>(Intercept)</code>. In other words, the true intercept for cases where <code>liberal = TRUE</code> is represented by <span class="math inline">\((Intercept) + liberalTRUE\)</span>. The value of <code>treatmentControl</code> is the offset in <code>att_end</code> for those in the Control group.</p>
 <p>To find our intercepts, we will need to tidy our regression using the <code><a href="https://generics.r-lib.org/reference/tidy.html">tidy()</a></code> function from the <strong>broom.mixed</strong> package. We tidy our data and extract values to create a parallel slopes model. The parallel slopes model allows us to visualize multi-variate Bayesian modeling (i.e.&nbsp;modeling with more than one explanatory variable). That is a complicated way of saying that we will visualize the fitted model created above in a way that allows us to see the intercepts and slopes for two different groups, <code>liberalTRUE</code> and <code>liberalFALSE</code>:</p>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb45"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># First, we will tidy the data from our model and select the term and estimate.</span></span>
+<details class="code-fold"><summary>Show the code</summary><div class="sourceCode" id="cb45"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># First, we will tidy the data from our model and select the term and estimate.</span></span>
 <span><span class="co"># This allows us to create our regression lines more easily.</span></span>
 <span></span>
 <span><span class="va">tidy</span> <span class="op">&lt;-</span> <span class="va">fit_1</span> <span class="op">|&gt;</span> </span>
@@ -1157,7 +1224,7 @@ sigma 1.4    0.1
 2 liberalTRUE   -0.300
 3 att_start      0.799</code></pre>
 </div>
-<details><summary>Code</summary><div class="sourceCode" id="cb47"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Extract and name the columns of our tidy object. By calling tidy$estimate[1],</span></span>
+<details class="code-fold"><summary>Show the code</summary><div class="sourceCode" id="cb47"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Extract and name the columns of our tidy object. By calling tidy$estimate[1],</span></span>
 <span><span class="co"># we are telling R to extract the first value from the estimate column in our</span></span>
 <span><span class="co"># tidy object.</span></span>
 <span></span>
@@ -1168,7 +1235,7 @@ sigma 1.4    0.1
 </div>
 <p>Now, we can define the following terms—- <code>liberal_false_intercept</code> and <code>liberal_false_att_slope</code>; and <code>liberal_true_intercept</code> and <code>liberal_true_att_slope</code>:</p>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb48"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Recall that the (Intercept) shows us the estimate for the case where liberal =</span></span>
+<details class="code-fold"><summary>Show the code</summary><div class="sourceCode" id="cb48"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Recall that the (Intercept) shows us the estimate for the case where liberal =</span></span>
 <span><span class="co"># FALSE. We want to extract the liberal_false_intercept to indicate where the</span></span>
 <span><span class="co"># intercept in our visualization should be. The slope for this case, and for the</span></span>
 <span><span class="co"># liberal = TRUE case, is att_start.</span></span>
@@ -1186,7 +1253,7 @@ sigma 1.4    0.1
 </div>
 <p>All we’ve done here is extracted the values for our intercepts and slopes, and named them to be separated into two groups. This allows us to create a <code>geom_abline</code> object that takes a unique slope and intercept value, so we can separate the <code>liberalTRUE</code> and <code>liberalFALSE</code> observations.</p>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb49"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># From the dataset trains, use att_start for the x-axis and att_end for</span></span>
+<details class="code-fold"><summary>Show the code</summary><div class="sourceCode" id="cb49"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># From the dataset trains, use att_start for the x-axis and att_end for</span></span>
 <span><span class="co"># the y-axis with color as liberal. This will split our data into two color</span></span>
 <span><span class="co"># coordinates (one for liberal = TRUE and one for liberal = FALSE)</span></span>
 <span></span>
@@ -1227,14 +1294,17 @@ sigma 1.4    0.1
 ℹ Please use `linewidth` instead.</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="four-parameters_files/figure-html/unnamed-chunk-38-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure"><p><img src="four-parameters_files/figure-html/unnamed-chunk-38-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>This is our parallel slopes model. What we have done, essentially, is created a unique line for <code>liberalTRUE</code> and <code>liberalFALSE</code> to observe the differences in the groups as related to attitude start and attitude end.</p>
 <p>As we can see, commuters who are <em>not</em> liberal tend to start with slightly higher values for <code>att_start</code>. Commuters who <em>are</em> liberal tend to have lower starting values for <code>att_start</code>.</p>
 <p>Now, what if we want to look at another model? To judge whether we can have a superior model? Let’s create another object, using <code>stan_glm</code>, that looks at <code>att_end</code> as a function of <code>treatment</code> and <code>att_start</code>.</p>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb51"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/rstanarm/reference/stan_glm.html">stan_glm</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">att_end</span> <span class="op">~</span> <span class="va">treatment</span> <span class="op">+</span> <span class="va">att_start</span>,</span>
+<details class="code-fold"><summary>Show the code</summary><div class="sourceCode" id="cb51"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/rstanarm/reference/stan_glm.html">stan_glm</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">att_end</span> <span class="op">~</span> <span class="va">treatment</span> <span class="op">+</span> <span class="va">att_start</span>,</span>
 <span>                  data <span class="op">=</span> <span class="va">trains</span>,</span>
 <span>                  refresh <span class="op">=</span> <span class="fl">0</span>,</span>
 <span>                  seed <span class="op">=</span> <span class="fl">56</span><span class="op">)</span></span>
@@ -1271,7 +1341,7 @@ sigma 1.3    0.1
 <!-- DK: A causal model is one in which, at least in theory, one of the righthand side variables could have been manipulated, and when you care about estimating causal effects. If someone just needs to forecast or predict something that, almost always, she is not asking a causal question, so she does not care if the righthand side variables could be manipulated. Is the sunset beautiful if no one is looking at it? Is the model causal if I just want to predict? -->
 <p>To see how these models compare in performance, we will perform leave-one-out (LOO) cross validation again.</p>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb53"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">L1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/loo/reference/loo.html">loo</a></span><span class="op">(</span><span class="va">fit_1</span><span class="op">)</span></span>
+<details class="code-fold"><summary>Show the code</summary><div class="sourceCode" id="cb53"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">L1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/loo/reference/loo.html">loo</a></span><span class="op">(</span><span class="va">fit_1</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">L1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output cell-output-stdout">
@@ -1298,7 +1368,7 @@ See help('pareto-k-diagnostic') for details.</code></pre>
 </div>
 <p>Perform <code><a href="https://mc-stan.org/loo/reference/loo.html">loo()</a></code> on our second model:</p>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb55"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">L2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/loo/reference/loo.html">loo</a></span><span class="op">(</span><span class="va">fit_2</span><span class="op">)</span></span>
+<details class="code-fold"><summary>Show the code</summary><div class="sourceCode" id="cb55"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">L2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/loo/reference/loo.html">loo</a></span><span class="op">(</span><span class="va">fit_2</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">L2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output cell-output-stdout">
@@ -1325,7 +1395,7 @@ See help('pareto-k-diagnostic') for details.</code></pre>
 </div>
 <p>Recall that the relevant data is the data from <code>elpd_loo</code>. The estimates for <code>elpd_loo</code> vary quite a bit. Recall that the superior model will have a value of <code>elpd_loo()</code> that is closer to 0. The standard error (SE) for these models also differs some. To compare these directly, we will use <code>loo_compare</code>.</p>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb57"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://mc-stan.org/loo/reference/loo_compare.html">loo_compare</a></span><span class="op">(</span><span class="va">L1</span>, <span class="va">L2</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details class="code-fold"><summary>Show the code</summary><div class="sourceCode" id="cb57"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://mc-stan.org/loo/reference/loo_compare.html">loo_compare</a></span><span class="op">(</span><span class="va">L1</span>, <span class="va">L2</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output cell-output-stdout">
 <pre><code>      elpd_diff se_diff
 fit_2  0.0       0.0   
@@ -1349,7 +1419,7 @@ fit_1 -7.0       3.8   </code></pre>
 <p><em>Remember</em>: - We can transform variables – through centering, scaling, taking logs, etc. – to make them more sensible. Consider using a transformation if the intercept is awkward. For instance, if the intercept for <code>age</code> represents the estimate for people of age zero, we might consider transforming <code>age</code> to be easier to interpret. - When selecting variables to include in our model, follow this rule: keep it if the variable has a large and well-estimated coefficient. This means that the 95% confidence interval excludes zero. Speaking roughly, removing a variable with a large coefficient meaningfully changes the predictions of the model. - When we compare <em>across unit</em>, meaning comparing Joe and George, we are not looking at a causal relationship. <em>Within unit</em> discussions, where we are comparing Joe under treatment versus Joe under control, are causal. This means that within unit interpretation is only possible in causal models, where we are studying <strong>one unit</strong> under <strong>two conditions</strong>. - When we talk about two potential outcomes, we are discussing the same person or unit under two conditions.</p>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
 <div id="ref-roas" class="csl-entry" role="listitem">
 Gelman, Andrew, Jennifer Hill, and Aki Vehtari. 2020. <em>Regression and Other Stories</em>. Analytical Methods for Social Research. Cambridge University Press. <a href="https://doi.org/10.1017/9781139161879">https://doi.org/10.1017/9781139161879</a>.
 </div>
@@ -1433,10 +1503,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -1446,8 +1515,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -1460,6 +1538,125 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -1503,6 +1700,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -1528,6 +1726,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -1587,12 +1811,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
-      <a href="./three-parameters.html" class="pagination-link">
+      <a href="./three-parameters.html" class="pagination-link  aria-label=" parameters="">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Three Parameters</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./five-parameters.html" class="pagination-link">
+      <a href="./five-parameters.html" class="pagination-link" aria-label="<span class='chapter-number'>7</span>&nbsp; <span class='chapter-title'>Five Parameters</span>">
         <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Five Parameters</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
@@ -1601,4 +1825,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-</body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/PPBDS/primer/edit/main/four-parameters.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div></div></footer></body></html>

@@ -1,11 +1,5 @@
 # Five Parameters {#sec-five-parameters}
 
-<!-- DK: Only do pp() once, on the last model. DONE-->
-
-<!-- DK: Add "The more data we have, the more narrow the posteriors which we create." DONE-->
-
-<!-- DK: Highlight the fact that we have complete data for some, but not all, the rows in the Preceptor Table, like the height example in Chapter 1. Would not be true if the question was about candidates in the future. In that case, no data in Preceptor Table. DONE-->
-
 *This chapter is still a DRAFT.*
 
 Last chapter, we studied four parameters: models in which we studied multiple right-hand side variables at once. The next step in our model building education is to learn about *interactions*. The effect of a treatment relative to a control is almost never uniform. The effect might be bigger in women than in men, smaller in the rich relative to the poor. The technical term for such effects is "heterogeneous," which is just Ph.D.'ese for "different." With enough data, all effects are heterogeneous. Causal effects, at least in the social science, always vary across units. To model this reality, we rely on interactions, on allowing the effect size to differ. The same applies for predictive models. The relationship between our outcome variable $y$ and a predictor variable $x$ is rarely constant. The relationship varies based on the values of other variables. To take account of interactions, we need models with at least 5 parameters.
