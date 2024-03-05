@@ -1,5 +1,7 @@
 # Priorities
 
+We need a "test" paragraph in each Temperance section.
+
 
 ## Melissa
 
