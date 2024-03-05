@@ -9,8 +9,6 @@ library(tidyverse)
 library(gt)
 ```
 
-<!-- DK: Do we build the final paragraph section by section, so that the Courage section, for example, includes the key sentence from the Wisdom and Justice sections, even though that this a repeat? Yes? -->
-
 <!-- Given that, it is important to monitor our language. We do not believe that changes in `election_age` "cause" changes in `lived_after`. That is obvious. But there are some words and phrases --- like "associated with" and "change by" --- which are too close to causal. Be wary of their use. *Always think in terms of comparisons when using a predictive model.* We can't change `election_age` for an individual candidate. We can only compare two candidates (or two groups of candidates). -->
 
 <!-- Key issue is the connection between the Preceptor Table and the DGM (either true or estimate). The connection is tricky! Not even sure I understand it. The DGM can be used to "fill in" all the missing elements of the Preceptor Table, but there will always be some associated randomness. Even with the true DGM, we don't know what `att_end` Joe would have had under treatment, we just have a posterior for that variable, a way to make draws. -->
@@ -314,7 +312,7 @@ Depending on the context, you might have more than one Quantity of Interest to d
 
 #### Humility
 
-DK: What are the sections here?
+<!-- DK: What are the sections here? -->
 
 
 Temperance guides us in the use of the DGM to answer the questions with which we began.
