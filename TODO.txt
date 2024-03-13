@@ -1,5 +1,7 @@
 # Priorities
 
+We need a new structure to the entire book, sadly. The Probability and Rubin Causal Model chapters are good and should stay where they are. But the affectation of having the rest of the chapters be one parameter, two parameters and so on does not really work. Instead, we should just have 6 chapters, each of which takes us down the same path of the four Cardinal Virtues, each time with increasing complexity on all possible dimensions. It is true that the number of parameters will increase as we go along, but it is highly unlikely that this the best rate of increase is one parameter per chapter. In fact, we need to go much more quickly, adding much more complex models, much earlier. We might find it useful to use the TidyModels framework from the very start.
+
 
 ## Melissa
 

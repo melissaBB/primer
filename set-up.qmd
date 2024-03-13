@@ -41,7 +41,7 @@ If the first part --- Git config --- seems messed up, execute (with your informa
 
 ```{r, eval = FALSE}
 #| code-fold: false
-use_git_config(user.name = "David Kane", user.email = "dave.kane@gmail.com")
+use_git_config(user.name = "davidkane9", user.email = "dave.kane@gmail.com")
 ```
 
 If the second part seems messed up, try:

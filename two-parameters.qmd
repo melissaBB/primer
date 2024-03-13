@@ -120,6 +120,7 @@ This table would extend all the way until person 4 billion-and-something. If we 
 In our quest to find suitable data, consider the `nhanes` dataset from the National Health and Nutrition Examination Survey conducted from 2009 to 2011 by the Centers for Disease Control and Prevention. 
 
 ```{r}
+#| code-fold: false
 #| warning: false
 library(tidyverse)
 library(primer.data)
@@ -130,6 +131,7 @@ glimpse(nhanes)
 `nhanes` includes `r ncol(nhanes)` variables, including physical attributes like weight and height. Let's restrict our attention to three variables: `age`, `gender` and `height`. 
 
 ```{r}
+#| code-fold: false
 nhanes |> 
   select(age, gender, height)
 ```
@@ -137,6 +139,7 @@ nhanes |>
 Examine a random sample:
 
 ```{r}
+#| code-fold: false
 nhanes |> 
   select(age, gender, height) |> 
   slice_sample(n = 5)
@@ -146,6 +149,7 @@ We think of both `age` and `height` as numbers. And they are numbers! But R dist
 
 
 ```{r}
+#| code-fold: false
 nhanes |> 
   select(age, gender, height) |> 
   glimpse()
@@ -158,6 +162,7 @@ Be on the lookout for anything suspicious. Are there any NA's in your data? What
 In addition to `glimpse()`, we can run `skim()`, from the **skimr** package, to calculate summary statistics. 
 
 ```{r}
+#| code-fold: false
 nhanes |> 
   select(age, gender, height) |> 
   skim()
@@ -166,6 +171,7 @@ nhanes |>
 Interesting! There are `r sum(is.na(nhanes$height))` missing values of height in our subset of data. Just using `glimpse()` does not show us that.  Let's filter out the NA's using `drop_na()`. This will delete the rows in which the value of any variable is missing. Because we want to examine height in men (not boys, nor females), let's limit our data to only include adult males. 
 
 ```{r}
+#| code-fold: false
 ch4 <- nhanes |> 
   filter(gender == "Male", age >= 18) |> 
   select(height) |> 
@@ -265,7 +271,7 @@ Justice emphasizes a few key concepts:
 
 The Population Table shows rows from three sources: the **Preceptor Table**, the **actual data**, and the **population** (outside of the data).
 
-Our **Preceptor Table** rows contain the information that we would *want* to know in order to answer our questions. These rows contain entries for our covariates (sex and year) but they do not contain any outcome results (height). We are trying to answer questions about the male population in 2021, so our sex entries for these rows will read "Male" and our year entries of these rows will read "2021". 
+Our **Preceptor Table** rows contain the information that we would *want* to know in order to answer our questions. These rows contain entries for our covariates (sex and year) but they do not contain any outcome results (height). We are trying to answer questions about the male population in 2024, so our sex entries for these rows will read "Male" and our year entries of these rows will read "2024". 
 
 Our **actual data** rows contain the information that we *do* know. These rows contain entries for both our covariates *and* the outcomes. In this case, the actual data comes from a study conducted on males in 2009-2011, so our sex entries for these rows will read "Male" and our year entries of these rows will either read "2009", "2010", or "2011".
 
@@ -281,7 +287,7 @@ tibble(source = c("Preceptor Table", "Preceptor Table", "...",
        gender = c("Male", "Male", "...",
                   "Male", "Male", "Male", "...",
                   "?", "?", "?"),
-       year = c("2021", "2021", "...",
+       year = c("2024", "2024", "...",
                 "2009", "2011", "2010", "...",
                 "?", "?", "?"),
        height = c("?", "?", "...",
