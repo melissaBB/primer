@@ -506,4 +506,16 @@ In general, we travel back-and-forth between *distribution as a thing* and *dist
 
 
 
+### Which Modeling Package Should We Use?
 
+* I really want to switch to using tidymodels since it is the core supported way of creating models in R. The sooner students start to learn it the better. The problem is that, although one can use rstanarm and brms as "engines" in tidymodels, the resulting fitted objects lack the cool Bayesian stuff, like posterior_predict(), which is one of the whole points of using Bayesian models in the first place.
+
+* I could just use rstanarm all the way through, as I do now.
+
+* I could switch to brms all the way through. The big advantage to this choice is that it provides for multinomial modeling, which would be very nice. I am tired of just having either linear or logistic. My major concern is Windows users being required to compile C++ code. I am also concerned about how long it sometimes takes.
+
+* I had hoped that the bayesian package would solve all my problems, since it promises to allow use within a tiydmodel pipeline along with "bindings" to Bayesian packages like rstanarm and brms. But it does not seem to be under active development and its current set of methods of objects with classes like c("_brmsfit", "model_fit") leaves much to be desired.
+
+* One possibility is to just use tidymodels and assert that it produces, more or less, the same answer as a Bayesian approach. And, when it doesn't, set engine to "rstanarm" or "brms" to get the right answer. The annoyance with that is that there are no easy accessor functions like posterior_predict() or posterior_epred() to work with. Perhaps the predict() method is more or less the same thing as the posterior_epred() (is it?), but that is not enough. We really want the full posterior_predict(). We don't want to have to add our own by combining predict() with a sample vector from residuals() in some hacky way, and I am not even sure that this works with categorical dependent variables.
+
+* Keep an eye on bayesplot for posterior predictive check plots. Key function is pp_check(). We almost certainly want to use this.
