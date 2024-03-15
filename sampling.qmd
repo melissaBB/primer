@@ -14,8 +14,6 @@ library(patchwork)
 ```
 
 
-<!-- In some paragraphs we say that it is impossible to conduct a census because we don't have access to the urn, in others like this we do have access and can complete the census. Which is it? -->
-
 <!-- Explain in a comment the reason for  fun = function(.x) 1/(2 * sqrt(.x)) in the plot. I don't know why we need the 2. We would probably use geom_function(). Maybe using geom_function with the function for a standard error will just magically work! -->
 
 
@@ -705,7 +703,7 @@ First, a **population** is the set of relevant units. The population's size is u
 
 Second, a **population parameter** is a numerical summary quantity about the population that is unknown, but you wish you knew. For example, when this quantity is the mean, the population parameter of interest is the *population mean*. This is mathematically denoted with the Greek letter $\mu$ pronounced "mu." In our earlier sampling from the urn activity, however, since we were interested in the *proportion* of the urn's beads that were red, the population parameter is the *population proportion*, denoted with $\rho$. 
 
-Third, a **census** is an exhaustive enumeration or counting of all $N$ units in the population in order to compute the population parameter's value *exactly*. In our sampling activity, this would correspond to counting the number of beads out of $N = 1000$ that are red and computing the *population proportion* $\rho$ that are red *exactly*. When the number $N$ of individuals or observations in our population is large as was the case with our urn, a census can be quite expensive in terms of time, energy, and money. A census is impossible for any populations which includes the future, like our blood pressure next year or candidates for governor in 2040. There is a *truth* but we could not, even in theory, calculate it.
+Third, a **census** is an exhaustive enumeration or counting of all $N$ units in the population in order to compute the population parameter's value *exactly*. In our sampling activity, this would correspond to counting the number of red beads out of the $N$ total in the urn and then computing the red *population proportion*, $\rho$, *exactly*. When the number $N$ of individuals or observations in our population is large as was the case with our urn, a census can be quite expensive in terms of time, energy, and money. A census is impossible for any populations which includes the future, like our blood pressure next year or candidates for governor in 2050. There is a *truth* but we could not, even in theory, calculate it.
 
 Fourth, **sampling** is the act of collecting a sample from the population when we can not, or do not want to, perform a census. The sample size is lower case $n$, as opposed to upper case $N$ for the population's size. Typically the sample size $n$ is much smaller than the population size $N$. In our sampling activities, we used shovels with varying slots to extract samples of size $n$ = 1 through $n$ = 100. 
 
@@ -1027,171 +1025,12 @@ The *sampling mechanism* is the technical term for the process by which some bea
 knitr::include_graphics("other/images/Courage.jpg")
 ```
 
-Justice verifies the Population Table. Courage creates a mathematical model which connects the outcome variable to the covariates, if any. Then, using code, we create a fitted model, including posterior probability distributions for all the unknown parameters.
-
-<!-- DK: Should the model here be Bernoulli or Binomial. Or discuss both? -->
+Justice verifies the Population Table. Courage creates a mathematical model which connects the outcome variable to the covariates, if any. 
 
 The *data generating mechanism*, or DGM, is a mathematical formula which mimics the process by which the data comes to us. The DGM for sampling scenarios with only two possible values is called *Bernoulli* and is often denoted as: 
 
 $$ red_i  \sim Bernoulli(\rho) $$
 Each bead $i$ which we sample can be either red or white. It is convenient to define the model in terms of whether or not the bead was red. If bead $i$ is red, the value drawn is `1`, which is the standard way of representing `TRUE`. In other words, $red_i = 1$ means that bead $i$ was red. Similarly, a white bead is indicated with `0`, meaning that it is `FALSE` that the bead was red. $\rho$ is the only parameter in a Bernoulli model. It is the probability that a `1`, instead of a `0`, is drawn. That is, $\rho$ is the probability of a red bead.
-
-We typical estimate the unknown parameter $\rho$ from the Bernoulli model by using a logistic regression:
-
-$$
-\rho = \frac{e^{\beta_0}}{1 + e^{\beta_0}}
-$$
-There are generally two parts for a statistical model: *family* and *link function*. The family is the probability distribution which generates the randomness in our data. The link function is the mathematical formula which *links* our data to the unknown parameters in the probability distribution. We will be reviewing these concepts over and over again in the rest of the *Primer*, so don't worry if things are a little unclear right now.
-
-<!-- DK: Is the above correct? -->
-
-#### Models
-
-Load the [**brms**](https://paul-buerkner.github.io/brms/) package:
-
-```{r}
-#| message: false
-library(brms)
-```
-
-The **brms** package provides a user-friendly interface to work with the statistical language [Stan](https://mc-stan.org/), the leading tool for Bayesian model building.
-
-We create a tibble to hold the results of our sampling exercise. We have the variable named `red` with possible values `1`, meaning that the bead samples was red and `0`, meaning that the bead was white. 
-
- <!-- DK: I tried to have this be a character variable named bead with values red and white. But I could not get brms to give me predictions which were red and white. So, I figure that, if we can only get 0/1 predictions, we should give it 0/1 input data. Still need to explore this. How does brms handle multinomial models? -->
-
-```{r}
-shovel_data <- tibble(
-  red = c(rep(1, 17), 
-          rep(0, 33)))
-
-slice_sample(shovel_data, n = 10)
-```
-
-The key function in the **brms** package is `brm()`. 
-
-<!-- DK: How do you get rid of all the output? Specify seed? -->
-
-```{r}
-fit_1 <- brm(formula = red ~ 1,
-             data = shovel_data,
-             family = bernoulli(link = "logit"))
-```
-
-Notes:
-
-* `brm()` produces a great deal of output, as you can see above. This is useful if there is some sort of problem. But, most of the time, we don't care. So we supress the output in the rest of the *Primer*.
-
-* We almost always assign the result of call `brm()` to an object, as here. By convention, the name of that object begins with "fit" because it is a **fit**ted model object. This model was created quickly but larger models take longer. So, we assign the result to an object so we don't need to recreate it.
-
-* The first argument to `brm()` is `formula`. This is provided using the R formula syntax in which the dependent variable, `red` is separated from the independent variables by a tilde: `~`. This is the standard approach in almost all R model estimating functions. In this case, the only independent variable is a constant, which is represented with a `1`.
-
-* The second argument to `brm()` is `data`, which is a tibble containing the data used to estimate the model parameters. The variables specified in the `formula` must match the variables in the tibble.
-
-* The third argument to `brm()` is `family`, which specifies the mathematical structure of the model we are estimating, often including a `link` function. In this case, the family is Bernoulli 
-
-
-
-
-
-A logistic regression is the most common approach to models in which the dependent variable, the result we are trying to model, takes on only two possible values. 
-
-
-```{r}
-logistic_reg() |> 
-  set_engine("stan")
-```
-
-The default engine for `logistic_regression()` would be `"glm"`, the logistic function in the built-in **stats** package. Be we are estimating an explicitly Bayesian model, we set the statistical engine to the Stan, via the **rstanarm** package.
-
-We use the `fit()` function to, uh, "fit" the model.
-
-<!-- DK: Go through the math? -->
-
-```{r}
-library(tidymodels)
-library(rstanarm)
-
-shovel_data <- tibble(
-  bead = factor(c(rep("red", 17), 
-                  rep("white", 33)),
-                levels = c("white", "red")))
-
-logistic_reg() |> 
-  set_engine("stan") |> 
-  fit(bead ~ 1, data = shovel_data)
-```
-
-The output repeats the model set up. We are assuming a binomial model (another term for which is "logit"). The dependent variable is `bead`. The are no independent variables other than a constant, which is represented as `1`. There are 50 observations in our data. There is only one predictor, which is the constant.
-
-The Intercept, which is the same thing as the constant, which is the same thing as `1` in the model formula is the same thing as $\beta_0$ from the logistic model above. In other words, the best estimate for $\rho$ is:
-
-$$
-\begin{eqnarray}
-\rho &=& \frac{e^{\beta_0}}{1 + e^{\beta_0}}\
-\rho &=& \frac{e^{-0.7}}{1 + e^{-0.7}}\
-\rho &\approx& 0.33
-\end{eqnarray}
-$$
-<!-- DK: maybe replace the above with. But it doesn't work -->
-
-<!-- $$ -->
-<!-- \begin{aligned} -->
-<!-- \rho &= \frac{e^{\beta_0}}{1 + e^{\beta_0}}\ -->
-<!-- \rho &= \frac{e^{-0.7}}{1 + e^{-0.7}}\ -->
-<!-- \rho &\approx 0.33 -->
-<!-- \end{aligned} -->
-<!-- $$ -->
-
-<!-- Maybe we need amsmath package? -->
-
-
-But there is significant uncertainty associated with this estimate, as indicated by the `MAD_SD` of 0.3. (`MAD_SD` is similar to standard error.)
-
-The best way to see this uncertainty is to look at posterior predictive draws from our fitted model.
-
-```{r}
-logistic_reg() |> 
-  set_engine("stan") |> 
-  fit(bead ~ 1, data = shovel_data) |> 
-  augment(new_data = tibble(.rows = 100))
-```
-
-
-```{r}
-library(bayesian)
-library(tibble)
-
-# Create simple data
-
-shovel_data <- tibble(
-  bead = factor(c(rep("red", 17), 
-                  rep("white", 33)),
-                levels = c("white", "red")))
-
-# Fitting the model works fine
-
-fit_obj <- bayesian(mode = "classification", 
-         family = bernoulli(link = "logit")) |> 
-  fit(bead ~ 1, data = shovel_data)
-
-# predict() does not work. I suspect that this has something to do with the fact
-# that this is a model which only uses the intercept.
-
-fit_obj |> 
-  predict(new_data = shovel_data[1:5,])
-```
-
-```{r}
-fit_obj |> 
-  predict(new_data = shovel_data[1:5,])
-```
-
-
-
-#### Bayesian framework
-
-<!-- DK: Too abstract? Too long? -->
 
 We are Bayesian statisticians who make Bayesian models. This means that we make specific assumptions and consider data to be fixed and parameters to be variable. One of the most important distinctions is that in Bayesian data science, **we don't know the values of our parameters**. 
 
@@ -1201,9 +1040,9 @@ We Bayesians consider our observed data to be fixed. We don't consider alternate
 
 It is essential to understand the joint distribution and the posterior, two concepts Bayesians use to solve problems. We will provide quick a quick review here, including statistical notation that may be helpful to some. 
 
-**The joint distribution**, $p(y|\theta)$, models the outcome $y$ given one or more unknown parameter(s), $\theta$. The equation illustrates exact same concept we addressed while discussing the distinctions of Bayesian science: because our parameters are variable, we have to create separate distributions for each potential value. Combining all these distributions together creates a joint distribution that is 3 dimensional when plotted. 
+**The joint distribution**, $p(y | \theta)$, models the outcome $y$ given one or more unknown parameter(s), $\theta$. The equation illustrates exact same concept we addressed while discussing the distinctions of Bayesian science: because our parameters are variable, we have to create separate distributions for each potential value. Combining all these distributions together creates a joint distribution that is 3 dimensional when plotted. 
 
-**The posterior**, $p(\theta|y)$, is the probability distribution of our parameter(s) $\theta$, created using data $y$ that updates our beliefs. We have referenced the posterior many times before, and this definition does not change its meaning. 
+**The posterior**, $p(\theta | y)$, is the probability distribution of our parameter(s) $\theta$, created using data $y$ that updates our beliefs. We have referenced the posterior many times before, and this definition does not change its meaning. 
 
 In our urn scenario, obtaining the posterior involves first creating many binomial distributions for each possible population proportion. This is the joint distribution, and it is a 3 dimensional model. We then select the distribution that corresponds with our data: 17 red beads are sampled. We can represent the posterior with the following:
 
@@ -1211,144 +1050,57 @@ $$\text{Prob}(\text{models} | \text{data} = 17)$$
 
 This is equivalent to taking a 2 dimensional slice of the 3 dimensional model. We are left with a probability distribution for our parameter, $\rho$. 
 
-#### `stan_glm()`
+In this chapter, we will neither calculate that posterior "by hand," as we did in @sec-probability. Nor will we use an R package to do so, as in @sec-models. Instead, we will create a rough posterior using simple calculations with our data.
 
-Given a data set to use and a mathematical formula to work with, the next step is to write some code. We will use the **rstanarm** package, which provides a user friendly interface to work with the statistical language Stan. 
-
-**rstanarm** and Stan are appealing because they are powerful. Functions such as `stan_glm()` can do everything we did by hand in @sec-probability in a few lines of code. Because we will use a professional statistical library, the objects we make will become more complex. In this Chapter, we provide the steps for answering our questions. @sec-two-parameters will provide a more detailed explanation of the objects we will make. *To be clear, you do not need to fully understand this section or how this code works. This is an introduction, not a formal lesson.*
-
+### Temperance
 
 ```{r}
-#| message: false
-#| code-fold: false
-library(rstanarm)
-
-fit_1 <- stan_glm(formula = red ~ 1, 
-                  data = tibble(red = c(rep(1, 17), 
-                                        rep(0, 33))),
-                  family = binomial,
-                  refresh = 0,
-                  seed = 10) 
+#| echo: false
+knitr::include_graphics("other/images/Temperance.jpg")
 ```
 
+Courage allowed us to assume a simple Bernoulli model and to calculate an estimate and its associated standard error.
 
-Recall that we assumed a binomial model for the data generating mechanism.  In `stan_glm()` we denote this with `family = binomial`. In addition to the type of the distribution, we also need to analyze the outcome and predictor variables involved. The outcome is the quantity we are measuring, in this case the total number of red beads in our sample.  Because we have no predictors, we use the argument `formula = red ~ 1`, which means that we only model the outcome based on the unknown proportion of red beads in the urn, $\rho$. 
+The two most important parts of any distribution are, first, its center and, second, its spread. We need reasonable estimates for the center and the spread of the posterior for $\rho$.
 
-We pass in data in a binomial format: the 1's represent the number of successes (red beads drawn), and the 0's represent the number of failures (white beads drawn). As such, we pass a tibble with 17 red beads and 33 white beads into `data`. 
+First, the percentage of red beads in the sample, $17/50 = 0.34%, is a good estimate for the center of the posterior. Throughout this section, we are leaving formalism behind. We have not proved that the sample provides a good estimate of the mean of the posterior but common sense suggests that it does. 
 
-We use `refresh = 0` to suppress the behavior of printing to the console, and `seed = 10` so that we get the same output every time we run the code. The resulting model is:
-
-```{r}
-fit_1
-```
-
-We will learn the meaning of this output in @sec-two-parameters. Once we have the `fit_1` object, it is easy to answer two sorts of questions: the posterior probability distribution for $\rho$ and predictions for new draws from the urn. The key functions are `posterior_epred()` for the former and `posterior_predict()` for the latter.
- 
-Let's create our posterior for $\rho$ by using `posterior_epred()`:
-
-```{r}
-#| code-fold: false
-ppd_for_p <- posterior_epred(fit_1, 
-                newdata = tibble(.rows = 1)) |> 
-  as_tibble() |>
-  rename(p = `1`)
-  
-# posterior_epred() will unhelpfully name the column of our tibble to "1". We
-# have two options: either refer to the column name as `1`, or rename the column
-# to make it less confusing. We will rename the column to "p" in this chapter, but you
-# will oftentimes see `1` in later chapters.
-
-ppd_for_p
-```
-
-Plot the result:   
-
-```{r}
-ppd_for_p |> 
-  ggplot(aes(x = p)) +
-    geom_histogram(aes(y = after_stat(count/sum(count))),
-                   bins = 50) + 
-    labs(title = "Posterior Probability Distribution",
-         subtitle = "Distribution is centered at .34",
-         x = "Proportion p of Red Beads in Urn",
-         y = "Probability") + 
-  
-    scale_x_continuous(labels = scales::number_format()) +
-    scale_y_continuous(labels = scales::percent_format()) +
-    theme_classic()
-```
-
-We have successfully created the posterior distribution and can finally answer the question we started the chapter with: 
-
-> If we get 17 red beads in a random sample of size 50 taken from a mixed urn, what proportion $\rho$ of the beads in the urn are red?
-
-Look to the posterior probability distribution we have created. We can see that the bulk of the area under the posterior occurs approximately when $\rho$ is between .28 and .42, so the answer to our question is that it is likely that 28% to 42% of the beads in the urn are red. Is that specific range the truth? No! We are just eye-balling the distribution, giving a rough sense of the likely value of $\rho$. Any range that is large enough to acknowledge the uncertainty we have regarding the exact value of $\rho$ is acceptable. 
-
-Although the most likely probability (the highest bar on the histogram) occurs when $\rho$ is around .34, The answer is not a single number. Our posterior distribution is just that: a distribution. Using our data, we have many different results for the proportion of red beads in the entire urn. Certain proportions, like the extremes close to 0% or 100%, are essentially impossible due to our sample value being 34%. On the other hand, we could have just as easily sampled 16 or 18 beads from the urn, and sample proportions such as 32% and 36% are very plausible.
-
-This means that, while we can provide a range of possibilities (and we can estimate which of those possibilities occur most frequently), we can never say that we know the total number of red beads with certainty.  We know that there is the most chance that $\rho$ is between .28 and about .42, some chance that $\rho$ is between .15 and .24 or between .42 and .56, and almost no chance that $\rho$ is below .15 or above .56. With the posterior we can visualize all of these probabilities at once. 
-
-Another important question remains: 
-
-> Why are there 4,000 rows in the stan_glm() tibble?
-
-By default, `stan_glm()` will sample from the posterior in 2 sets of 2,000 iterations. If needed we can change the default number of iterations using the `iter` argument, but there are few reasons to do so. Some of us may still want to know why we sample from the posterior in the first place. Why not use the entire posterior? The answer is that the posterior is a theoretical beast, which makes it difficult to work with. 
-
-For example, what if we wanted to know the probability that $\rho$ is between .3 and .4? To answer this using the pure posterior, we would need to calculate the area under the distribution from when $.3 < \rho < .4$. This is more difficult then it seems, as the posterior is a distribution, so it has no individual observations to work with as it's continuous! 
-
-Instead, we can work with draws from the posterior. With enough draws we create a close approximation of the posterior which models the counts of our observations. This is an *approximation*; it is not exactly the posterior, but close enough for our purposes. We can easily convert our posterior distribution into a **posterior probability distribution**, by making the area under the graph sum to 1. The posterior probability distribution is often used as a visual aid, as percentages are more easy to conceptualize than raw numbers. One way to convert a posterior distribution into a probability distribution is to group by each value of $\rho$ and turn the counts into probabilities: 
-
-```{r}
-#| code-fold: false
-ppd_for_p |>
-  round(digits = 2) |>
-  summarize(prob = n()/nrow(ppd_for_p),
-            .by = p) |>
-  arrange(desc(prob))
-```
-
-We can also accomplish a similar effect by passing `aes(y = after_stat(count/sum(count))` into `geom_histogram()` when plotting.  Oftentimes, like in answering the probability that $\rho$ is between .3 and .4,  we can work with the posterior distribution to the very end. Just divide the number of draws that meet our condition (are between .3 and .4), by the total number of draws.   
-
-```{r}
-sum(ppd_for_p$p > .3 & ppd_for_p$p < .4)/nrow(ppd_for_p)
-```
-
-There is approximately a 54% chance that $\rho$ is between .3 and .4. Give me enough draws from the posterior and I can show you the world!
-
-
-
-
-
-## Traditional practices
-
-Although the process was long, we have successfully gone through the Cardinal Virtues and answered our questions, just like real data scientists. In this section we will explain more traditional approaches. 
-
-### Confidence intervals
-
-Let's go back to our first question:
-
-> If we get 17 red beads in a random sample of size 50 taken from a mixed urn, what proportion $\rho$ of the beads in the urn are red?
-
-If we had decided to, we could have answered this question using confidence intervals and statistics. First calculate the standard error:
+Second, calculate the standard error:
 
 $$  SE = \frac{\sigma\text{ of data}}{\sqrt{\text{sample size}}} = \frac{.4785}{\sqrt{50}} \approx .067$$
 
-We calculate the numerator by taking the standard deviation of a dataset with 50 observation, where 1's represent red beads and 0's represent white beads: 
-
-```{r}
-#| code-fold: false
-sd(c(rep(1, 17), rep(0, 33)))
-```
+The $\sigma$ of the data might seem to be a strange concept. What data do we have, besides 17 red beads and 33 white beads? The answer is that this is the data, and t is most sensibily represented as a vector of length 50, with 17 1's and 33 0's.  The standard deviation of `sd(c(rep(0, 17), rep(1, 33)))` is `r sd(c(rep(0, 17), rep(1, 33)))`.
 
 You can then use the standard error to create a 95% confidence interval:
 
 $$  CI = \bar{x} \hspace{.1cm} \pm 2SE = .34 \hspace{.1cm} \pm .134$$
 
-With 95% confidence, the proportion of red beads in the urn is between 21% and 47%. 
+With 95% confidence, the proportion of red beads in the urn is between 21% and 47%.
 
-This is correct, but quite difficult to conceptualize. If our boss needs a quick answer, by all means we can use a confidence interval to save us from doing all the work we did earlier! However, **we must be careful with confidence intervals.** If we had chosen to answer the first question using them, we would be unable to answer any questions in Temperance. The confidence interval gives us a general range of our uncertainty, but to answer a question that requires knowledge about the value of a parameter, the confidence interval does us very little good. As data scientists we create the posterior distribution to quantify our uncertainty and answer all our questions. 
+Knowing that the standard error is the standard deviation of the posterior (and that the posterior is approximately normal) allows us to create a graphic.
 
-### Hypothesis tests
+```{r}
+tibble(obs = rnorm(1000000, mean = 0.34, sd = 0.067)) |> 
+  ggplot(aes(x = obs)) +
+    geom_density(aes(y = after_stat(count/sum(count))))  +
+    labs(title = expression(paste("Posterior Distribution for  ", rho)),
+         subtitle = "There is a 95% chance for a value between 21% and 47%.",
+         x = expression(paste("Proportion, ", rho, ", of Red Beads in Urn")),
+         y = "Probability") +
+    scale_x_continuous(labels = scales::percent_format()) +
+    scale_y_continuous(labels = scales::percent_format()) +
+    theme_classic()
+```
+
+**This is not precisely accurate.** The full machinery of a proper Bayesian analysis would generate a (very) slightly different answer. To get that correct answer, we could either do everything by hand, as in @sec-probability, or use an R package, as in @sec-models. However, the purpose of this chapter is to develop your intuition. Generating a 95% confidence interval using two times the standard error along with a normality assumption is good enough. 
+
+More important than the subtle issue
+
+
+<!-- DK: Something about frequentist versus Bayesian interpretations. -->
+
+
+#### Hypothesis tests
 
 Statisticians also use hypothesis tests to quickly **try** to answer questions. Our view on hypothesis tests is that: 
 
@@ -1380,7 +1132,7 @@ We journey from reality, to our predictions, to the standard error of our predic
 This journey shows how our beliefs about the truth develop through our work. We begin with $\rho$; $\rho$ is the truth, the true but unknown value we are estimating. $\hat{\rho}$ is our estimate for $\rho$. There can be millions and millions of $\hat{\rho}$'s. Next, we must estimate the standard error of our estimates (our $\hat{\rho}$'s) to account for the uncertainty of our predictions. Finally, we create a posterior probability distribution for $\rho$. This distribution is used to answer any questions about $\rho$. 
 
 
-### Other highlights
+Other highlights:
 
 - Standard error is just a fancy term for your uncertainty about something you don't know. Standard error $\approx$ our (uncertain) beliefs.
 
