@@ -13,18 +13,10 @@ library(gtsummary)
 library(patchwork)
 ```
 
-<!-- Highest priority: Did we really answer the two questions which we started with? -->
-
-<!-- The boss move would be to delete 80% of this chapter. Cut all the sampling stuff. There is nothing wrong with it, per se, but the only reason we have it is that it was part of the Modern Dive book. It is not really necessary for the core Cardinal Virtues approach of the rest of the Primer. -->
 
 <!-- In some paragraphs we say that it is impossible to conduct a census because we don't have access to the urn, in others like this we do have access and can complete the census. Which is it? -->
 
-
-<!-- Another paragraph or two of discussion about the final posterior. How do we use it? Within what range would you offer 50/50 odds that the true percentage lies? (use quantile(0.25, 0.75). Area under the curve? Explain clearly how that 26% is calculated. What is post_dist? What does it mean? How can I use it? Maybe show it sorted? Add some code comments. -->
-
 <!-- Explain in a comment the reason for  fun = function(.x) 1/(2 * sqrt(.x)) in the plot. I don't know why we need the 2. We would probably use geom_function(). Maybe using geom_function with the function for a standard error will just magically work! -->
-
-<!-- Make a 15 second video, put it on YouTube. "We don't estimate parameters because we care about parameters. Parameters are imaginary! Like unicorns! [Put finger on forehead and imitate unicorn.] We estimate parameters to build Data Generating Mechanisms. And with a DGM, you can move the world!" -->
 
 
 {{< video https://www.youtube.com/embed/e3PJ3Du_zDc >}}
@@ -46,14 +38,9 @@ The urn below has a certain number of red and a certain number of white beads al
 knitr::include_graphics("one-parameter/images/sampling_bowl_1.jpg")
 ```
 
-One way to answer this question would be to perform an exhaustive count: remove each bead individually, count the number of red beads, count the number of white beads, and divide the number of red beads by the total number of beads. Call that ratio $\rho$, the proportion of red beads in the urn. However, this would be a long and tedious process. Therefore, we will use sampling! Consider two questions:
-
-*If we get 17 red beads in a random sample of size 50 taken from a mixed urn, what proportion $\rho$ of the beads in the urn are red?*
-
-*What is the probability, using that same urn, that we will draw more than 8 red beads if we use a shovel of size 20?*
+One way to answer this question would be to perform an exhaustive count: remove each bead individually, count the number of red beads, count the number of white beads, and divide the number of red beads by the total number of beads. Call that ratio $\rho$, the proportion of red beads in the urn. However, this would be a long and tedious process. Therefore, we will use sampling! 
 
 To begin this chapter, we will look at a real sampling activity: the urn.  Then, we will simulate the urn example using R code. This will help us to understand the *standard error* and the ways in which uncertainty factors into our predictions. We then attempt to estimate a single parameter, the proportion of red beads in the urn. 
-
 Use the **tidyverse** package.
 
 ```{r}
@@ -873,13 +860,7 @@ You must understand what the standard error of $\hat{\rho}$ means. You do not ne
 
 ## Cardinal Virtues
 
-Recall the questions we asked at the beginning of this Chapter: 
-
-> If we get 17 red beads in a random sample of size 50 taken from a mixed urn, what proportion $\rho$ of the beads in the urn are red?
-
-> What is the probability, using the same urn, that we will draw more than 8 red beads if we use a shovel of size 20?
-
-Use the Cardinal Virtues to guide your thinking. 
+Recall that we began this chapter by asking about $\rho$, the proportion of red beads in the urn. Use the Cardinal Virtues to guide your thinking. 
 
 ### Wisdom
 
@@ -915,7 +896,7 @@ Note that the beads do not have ID numbers printed on them. The numbering is arb
 
 There is only one outcome column, "Color," because this is not a causal model, for which we need to have (at least) two potential outcomes. Predictive models require only one outcome.
 
-If we know the color of every bead, then calculating the proportion of beads which are red, $\rho$, is simple algebra. Once we know $\rho$ we can simulate the answers to other questions.
+If we know the color of every bead, then calculating the proportion of beads which are red, $\rho$, is simple algebra. 
 
 #### EDA
 
@@ -1024,8 +1005,6 @@ We must acknowledge that the sample from the urn could have been taken at any ti
 
 Finally, Population Tables have an *outcome*. Sometimes there will be multiple outcome columns, as in the case of casual models in which we need the values for two or more potential outcomes so that we can calculate a causal effect. 
 
-
-
 #### Assumptions
 
 <!-- DK: Make these three separate sections, even if each is only a paragraph or two.  -->
@@ -1039,7 +1018,6 @@ Now that we have created our Population Table, we can analyze the key assumption
 The *sampling mechanism* is the technical term for the process by which some beads were sampled and some were not. We hope that all members of the population have the same chance of being sampled, or else our data might be unrepresentative of the larger population. Another term for this would be having a "biased" sample. Almost all samples have some bias, but we must make a judgement call to see if the data we have is close enough to the data we want (i.e., the Preceptor Table) that we can consider both as coming from the same population. Our sample of 50 beads is taken from a *mixed* urn, so hopefully there is a near equal chance of selecting each bead, and our samples are representative of the population. 
 
 *Unconfoundedness* involves the potential correlation between treatment assignment and the outcome. It is only a concern for causal models. Since this is a predictive model, we do not have to worry about unconfoundedness. There is no "treatment" which might be confounded with anything.
-
 
 
 ### Courage
@@ -1338,173 +1316,6 @@ sum(ppd_for_p$p > .3 & ppd_for_p$p < .4)/nrow(ppd_for_p)
 There is approximately a 54% chance that $\rho$ is between .3 and .4. Give me enough draws from the posterior and I can show you the world!
 
 
-### Temperance
-
-```{r}
-#| echo: false
-knitr::include_graphics("other/images/Temperance.jpg")
-```
-
-With the fitted model object `fit_1`, we can answer our questions.
-
-Recall the second question we started with:
-
-> What is the probability, using the same urn, that we will draw more than 8 red beads if we use a shovel of size 20?
-
-#### Using the posterior
-
-Whenever someone asks you a question, you need to decide what posterior probability distribution would make it easy for you to answer that question. In this case, if we know the posterior probability distribution for the number of red beads in a shovel of size 20, then a question about the likelihood of drawing more than 8 (or any other value) is easy to answer.
-
-The posterior probability distribution for a probability is a tricky thing. It is much easier just to estimate the posterior probability distribution for the outcome --- number of red beads out of 20 --- and then work with that distribution in order to answer probability-type questions.
-
-To predict these future unknown samples, we use `posterior_predict()`. We pass the posterior created using `stan_glm()` as the first argument, and because we want to estimate the number of red draws with a shovel size of 20, we use pass a tibble with 20 rows into `newdata`.  
-
-```{r}
-#| code-fold: false
-posterior_predict(fit_1, 
-                  newdata = tibble(.rows = 20)) |> 
-  as_tibble()
-```
-
-Each of our 4,000 rows represent one instance of us predicting a future sample from the urn, and each column represents the color bead in a shovel slot. We will create a new column called `total`, using `rowwise()` with `c_across()` to calculate the total number of red beads drawn in the sample. Finally, we will graph the resulting distribution.  
-
-```{r}
-ppd_reds_in_20 <- posterior_predict(fit_1, 
-                  newdata = tibble(.rows = 20)) |> 
-  as_tibble() |> 
-  rowwise() |> 
-  mutate(total = sum(c_across(`1`:`20`))) |> 
-  select(total)
-
-
-ppd_reds_in_20   |> 
-  ggplot(aes(x = total)) +
-    geom_histogram(aes(y = after_stat(count/sum(count))),
-                   bins = 50) +
-    labs(title = "Posterior Probability Distribution",
-         subtitle = "Number of red beads in 20-slot shovel",
-         x = "Number of Red Beads",
-         y = "Probability") +  
-    scale_x_continuous(labels = scales::number_format(accuracy = 1)) +
-    scale_y_continuous(labels = scales::percent_format(accuracy = 1)) +
-    theme_classic()
-```
-
-We have successfully created the posterior probability distribution for the number of red beads drawn in a shovel of size 20. But before we answer our question, some of us may be wondering why we made our predictions using `posterior_predict()` instead of `posterior_epred()`. Let's examine what happens if we use `posterior_epred()` instead.
-
-```{r}
-#| fig.cap: Using posterior_epred()
-
-post_epred <- posterior_epred(fit_1, 
-                  newdata = tibble(.rows = 20)) |> 
-  as_tibble() |> 
-  rowwise() |> 
-  mutate(total = sum(c_across(`1`:`20`))) |> 
-  select(total)
-
-post_epred  |> 
-  ggplot(aes(x = total)) +
-    geom_histogram(aes(y = after_stat(count/sum(count))),
-                   bins = 50) +
-    labs(title = "Posterior probability distribution using posterior_epred()",
-         subtitle = "In our scenario, using posterior_epred() is incorrect",
-         x = "Number of red beads",
-         y = "Probability") + 
-    scale_x_continuous(labels = scales::number_format(accuracy = 1)) +
-    scale_y_continuous(labels = scales::percent_format(accuracy = 1)) +
-    theme_classic()
-```
-
-
-What happened? `posterior_epred()` shows the distribution of the **entire population**, which is continuous. The expected predictions can be fractional, because `posterior_epred()` returns draws from the posterior (which can be fractional) contingent on some covariate. In our scenario we have no covariates from which to create expected predictions, so `posterior_epred()` just returns the posterior, but re-scaled to between 0 and 20 beads instead of between 0 and 1 as before. The shape of the distributions are identical: 
-
-```{r}
-post_epred |> 
-  ggplot(aes(x = total)) +
-    geom_histogram(aes(y = after_stat(count/sum(count))),
-                   bins = 50) + 
-  labs(x = "Number of red beads sampled out of 20",
-       y = "Probability") + 
-  ppd_for_p  |>
-  ggplot(aes(x = p)) + 
-  geom_histogram(aes(y = after_stat(count/sum(count))),
-                   bins = 50) +
-  labs(x = "Proportion red in urn",
-       y = "Probability") + 
-  plot_annotation(title = expression(paste("Expected prediction for sample of size 20 on left, posterior distribution for ", rho, " on right.")),
-                  subtitle = "The two distributions have an identical shape.")
-```
-
-On the other hand, `posterior_predict()` models the posterior distribution for future **individuals**. In our scenario, we model the binomial distribution of a discrete random variable. The bars only appear at real numbers between 1 and 16, because we are predicting the probability of individual samples. We cannot draw fractions of beads in our sample. Using `posterior_predict()` essentially replicates the DGM, taking many virtual draws from our urn and summarizing all the results. 
-
-In summary, use `posterior_predict()` when to predict the outcome of individual(s) in the future, and use `posterior_epred()` to model the probability across the entire population using the posterior. To answer our question, we want to know the probability of outcomes using a single shovel of size 20. We should use `posterior_predict()` to model taking individual samples many times, and we can then analyze the probabilities. If this is confusing do not fret! We will have plenty of practice with these 2 functions for the remainder of this *Primer*. 
-
-Now let's attempt to actually answer our question: 
-
-> What is the probability, using the same urn, that we will draw more than 8 red beads if we use a shovel of size 20?
-
-Because `posterior_predict()` takes predictive draws for us, we can simply count the number of draws that have more than 8 red beads, and divide by the total number of draws. 
-
-```{r}
-# Same code as earlier, included as a refresher. 
-
-ppd_reds_in_20 <- posterior_predict(fit_1, 
-                  newdata = tibble(.rows = 20)) |> 
-  as_tibble() |> 
-  rowwise() |> 
-  mutate(total = sum(c_across(`1`:`20`))) |> 
-  select(total)
-
-# Calculating the probability
-
-sum(ppd_reds_in_20$total > 8)/length(ppd_reds_in_20$total)
-```
-
-**There is approximately a `r round(100 *sum(ppd_reds_in_20$total > 8)/length(ppd_reds_in_20$total))`% chance that we will draw more than 8 red beads out of a sample size of 20.**
-
-To visualize this probability graphically, we will reuse our posterior, and add a new column called `above_eight` that is `TRUE` if `total > 8`. 
-
-```{r}
-ppd_reds_in_20 <- posterior_predict(fit_1, 
-                    newdata = tibble(.rows = 20)) |> 
-  as_tibble() |> 
-  rowwise() |> 
-  mutate(total = sum(c_across(`1`:`20`))) |>
-  select(total) |>
-  mutate(above_eight = ifelse(total > 8, TRUE, FALSE))
-
-ppd_reds_in_20
-```
-
-We can then can set the fill of our histogram to when `above_eight == TRUE` to visualize the probability of drawing more than 8 red beads. 
-
-```{r}
-ppd_reds_in_20   |> 
-  
-  # Set fill as above_eight. 
-  
-  ggplot(aes(x = total, fill = above_eight)) +
-    geom_histogram(aes(y = after_stat(count/sum(count))),
-                   bins = 50) +
-  
-  # Scale_fill_manual()  is calling grey for the first color and red for the
-  # second color. This is going to highlight the portion of the curve that we
-  # want to highlight in red.
-
-  scale_fill_manual(values = c('grey50', 'red')) +
-    labs(title = "Posterior Probability Distribution",
-         subtitle = "Number of red beads in 20-slot shovel",
-         x = "Number of Red Beads",
-         y = "Probability",
-         fill = "More than 8 Red Beads Drawn?") +  
-    scale_x_continuous(labels = scales::number_format(accuracy = 1)) +
-    scale_y_continuous(labels = scales::percent_format(accuracy = 1)) +
-    theme_classic()
-```
-
-The red bars illustrate the area under a specific section of the curve, as compared to the *entire* area under the curve. *Each question requires looking at a new area under the curve.* When someones asks you a question, they are doing two things. First, they are providing instructions as to the posterior your should create. Here, the results with a shovel of 20 slots. Second, they are asking a question about the area under the curve in a specific region. Here, the region where the number of red beads is greater than 8 is highlighted in red. Therefore, the area below the curve that **is red** is how we get our estimate. 
-
-See @sec-two-parameters for a thorough discussion of the use of **rstanarm**. This package will be our main tool for the rest of the *Primer*.
 
 
 
@@ -1555,15 +1366,12 @@ Can we reject that hypothesis? Convention: if the 95% confidence interval exclud
 
 If we were testing the theory that $\rho = .45$ instead, our null hypothesis would fall within the confidence interval. **This does not mean that we accept the null hypothesis**.  Instead, we simply don't reject it.  In our scenario we only know that there is some possibility that $\rho = .45$. We're just back where we started! This is why we never test — unless your boss demands a test. **Use your judgment, make your models, summarize your knowledge of the world, and use that summary to make decisions.** 
 
-<!-- ## Case study: Polls {#sec-sampling-case-study} -->
-
-<!-- There used to be a case study from the Modern Dive textbook about Obama's popularity. It was OK! But we really should use a more modern example. And this chapter was already long enough. So I cut it. -->
 
 ## Summary
 
-In this chapter, we performed both tactile and virtual sampling exercises to make inferences about an unknown parameter: the proportion of red beads. We also presented a case study of sampling in real life with polls. In each case, we used the sample proportion $\hat{\rho}$ to estimate the true proportion $\rho$. However, we are not just limited to scenarios related to proportions. We can use sampling to estimate other unknown quantities.
+In this chapter, we performed both tactile and virtual sampling exercises to make inferences about an unknown parameter $\rho$: the proportion of red beads in the urn. We used the sample proportion $\hat{\rho}$ to estimate the true proportion $\rho$. 
 
-There is a truth! There is a true value for $\rho$ which we do not know. We want to create a posterior probability distribution which summarizes our knowledge. We care about the posterior probability distribution of $\rho$. The center of that distribution is around the mean or median of the proportion in your sample. The sd (or mad) of that posterior is the standard deviation divided by the square root of our sample size. Note that this is the same thing as the standard deviation of the repeated samples.
+There is a truth! There is a true value for $\rho$ which we do not know. We want to create a posterior probability distribution which summarizes our knowledge. We care about the posterior probability distribution of $\rho$. The center of that distribution is around the mean or median of the proportion in your sample. The standard deviation of that posterior is the standard deviation of the sample divided by the square root of our sample size. Note that this is the same thing as the standard deviation of the repeated samples.
 
 We journey from reality, to our predictions, to the standard error of our predictions, to the posterior probability distribution for $\rho$. This is our sequence:
 
@@ -1578,13 +1386,11 @@ This journey shows how our beliefs about the truth develop through our work. We 
 
 - Larger sample sizes $\implies$ lower standard errors $\implies$ more accurate estimates.   
 
-- If we could only know two pieces of information from our data, we would need a measure of the **center** of the distribution (like mean or median) and a measure of the **variability** of the distribution (like sd or MAD). 
+<!-- DK: Cut next point? -->
+
+- If we could only know two pieces of information from our data, we would need a measure of the **center** of the distribution (like mean or median) and a measure of the **variability** of the distribution (like standard deviation or median absolute deviation). 
 
 - The standard error refers to the standard deviation of a sample statistic (also known as a "point estimate"), such as the mean or median. Therefore, the "standard error of the mean" refers to the standard deviation of the distribution of sample means taken from a population. 
-
-- `stan_glm()` can create a joint distribution and then estimate the posterior probability distribution, conditional on the data which was passed in to the data argument. This is a much easier way to create the posterior distribution, and will be explored in more detail in @sec-two-parameters. 
-
-- We use the posterior distribution to answer our questions. 
 
 As we continue our journey, recall the case of Primrose Everdeen and what she represents: no matter how realistic our model is, our predictions are **never certain**.  
 
