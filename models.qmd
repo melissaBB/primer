@@ -33,23 +33,23 @@ library(tidyverse)
 ```
 
 
-## Cardinal Virtues
-
 In @sec-sampling, we estimated the proportion, $\rho$, of red beans in an urn. In the real world, of course, we never mess with urns. But we are often interested in unknown proportions. For example, what proportion of US citizens support specific political candidates. Imagine that it is March 15, 2024 and we want to know $\rho$, the percentage of people who will vote for President Joe Biden in the 2024 presidential election. **How many beads are for Biden?**
 
 
 Use the Cardinal Virtues to guide your thinking. 
 
-### Wisdom
+## Wisdom
 
 ```{r}
 #| echo: false
 knitr::include_graphics("other/images/Wisdom.jpg")
 ```
 
-Wisdom requires the creation of a Preceptor Table, an examination of our data, and a determination, using the concept of "validity," as to whether or not we can (reasonably!) assume that the two come from the same *population*.
+Wisdom requires the creation of a Preceptor Table, an examination of our data, and a determination, using the concept of "validity," as to whether or not we can (reasonably!) assume that the two come from the same *population*. We begin with a question:
 
-#### Preceptor Table
+> What are the odds, if we just look at two voters, both will have voted for Biden?
+
+### Preceptor Table
 
 A Preceptor Table is a table with rows and columns, such that, if no data is missing, we can easily answer our questions. 
 
@@ -76,7 +76,11 @@ The outcome in the Preceptor Table is the status, TRUE or FALSE, represented as 
 
 There are no covariates or treatments to consider, so the Preceptor Table only has outcome (and ID) columns. There is only one outcome and so the model is predictive, not causal. A causal model requires (at least two) potential outcomes, each the result of a different treatment.
 
-#### EDA
+Once we have all the information in the Preceptor Table, it is easy to create a cpomputer simulation which, for example, draws 1,000 pairs of voters at random from the table, checks to see if they both voted for Biden, and then report the percentage of the 1,000 which meet this criteria. 
+
+<!-- DK: Keep in mind all the assumptions built into this! -->
+
+### EDA
 
 The data we have come from a [YouGov](https://today.yougov.com/) poll ([pdf](https://github.com/PPBDS/primer/blob/master/sources/you-gov-2024-03-12.pdf)) of 1,559 US adult citizens, conducted March 10 - 12, 2024.  There are many questions in the poll. For the purpose of answering our question, the most relevant one is:
 
@@ -108,12 +112,12 @@ There are key differences between our data table and our Preceptor Table, despit
 * The variable labels differ. "Voted for Biden" is not the same thing as "Would Vote for Biden." Indeed, the two columns represent very different things. 
 
 
-#### Validity
+### Validity
 
 The last step of Wisdom is to decide whether or not we can consider the units from the Preceptor Table and the units from the data to have been drawn from the same *population*. 
 *Validity* involves the columns of our data set. Is the meaning of our columns consistent across the different data sources?  Or, rather, are they consistent enough to allow us to "stack" them on top of one another in order to construct the Population Table? Although there are some legitimate concerns, as discussed above, the validity assumption is close enough to true for us to proceed. 
 
-### Justice
+## Justice
 
 ```{r}
 #| echo: false
@@ -122,7 +126,7 @@ knitr::include_graphics("other/images/Justice.jpg")
 
 Justice examines the assumptions of stability, representativeness, and unconfoundedness with regard to the Population Table.
 
-#### Population Table
+### Population Table
 
 We use *The Population Table* to acknowledge the wider source from which we could have collected our data. It includes rows from three sources: the data for units we want to have (the Preceptor Table), the data for units which we have (our actual data), and the data for units we do not care about (the rest of the population, not included in the data or in the Preceptor Table). Consider:
 
@@ -176,24 +180,24 @@ A Population Table will usually have several types of columns: id, time, covaria
 
 Now that we have created our Population Table, we can analyze the key assumptions of stability, representativeness and unconfoundedness.  
 
-#### Stability
+### Stability
 
 *Stability* involves time. Is the model --- meaning both the mathematical formula and the value of the parameters --- stable over time? 
 
-#### Representativeness
+### Representativeness
 
 *Representativeness* involves the data rows, specifically the rows for which we *have data* versus the rows for which we *might have had data*. Are the rows that we do have data for representative of the rows for which we do not have data? 
 
 
 The *sampling mechanism* is the technical term for the process by which some people were sampled and some were not. We hope that all members of the population have the same chance of being sampled, or else our data might be unrepresentative of the larger population. Another term for this would be having a "biased" sample. Almost all samples have some bias, but we must make a judgement call to see if the data we have is close enough to the data we want (i.e., the Preceptor Table) that we can consider both as coming from the same population. 
 
-#### Unconfoundedness
+### Unconfoundedness
 
 *Unconfoundedness* involves the possible correlation between treatment assignment and the potential outcomes. It is only a concern for causal models. Since this is a predictive model, we do not have to worry about unconfoundedness. There is no "treatment" which might be confounded with anything.
 
 
 
-### Courage
+## Courage
 
 ```{r}
 #| echo: false
@@ -251,7 +255,7 @@ There are generally two parts for a statistical model: *family* and *link functi
 
 <!-- DK: Is the above correct? Could we explain it better? Maybe use multiple link functions in this chapter? -->
 
-#### Models
+### Models
 
 Load the [**brms**](https://paul-buerkner.github.io/brms/) package:
 
@@ -262,7 +266,7 @@ library(brms)
 
 The **brms** package provides a user-friendly interface to work with the statistical language [Stan](https://mc-stan.org/), the leading tool for Bayesian model building.
 
-##### Gaussian
+#### Gaussian
 
 The key function in the **brms** package is `brm()`. 
 
@@ -399,7 +403,7 @@ As the graphic makes clear, we have a serious problem. The data, meaning the var
 Sadly, most usage of `pp_check()` does not produce such a clear cut conclusion. We need to decide if $y$ and $y_rep$ are "close enough" that our model can be used as if it were true.
 
 
-##### Bernoulli
+#### Bernoulli
 
 We have discovered that our initial assumption about the correct mathematical formula for the data generating mechanism was mistaken. Instead of a gaussion (or Normal) probability model, we should use a Bernoulli model. We must modify our call to `brm()` as follows:
 
@@ -510,310 +514,115 @@ We now have our data generating mechansim:
 
 $$ biden_i  \sim Bernoulli(\rho = 0.42) $$
 
-<!-- tidy() produces ugly stuff here, so maybe don't introduce it now. -->
-
-#### Bayesian framework
-
-<!-- DK: Too abstract? Too long? -->
-
-We are Bayesian statisticians who make Bayesian models. This means that we make specific assumptions and consider data to be fixed and parameters to be variable. One of the most important distinctions is that in Bayesian data science, **we don't know the values of our parameters**. 
-
-Some non-Bayesian frameworks are concerned with the probability distribution of our observed data, but do not care much about the probability distribution for $\rho$ and assume it to be fixed. If $\rho$ is fixed, the equation above becomes one simple binomial distribution. Think of this as a standard 2 dimensional plot. 
-
-We Bayesians consider our observed data to be fixed. We don't consider alternate realities where our observed data is different due to sampling variation. Instead, we are concerned with the probability distribution of our parameter. In our urn scenario, $\rho$ is variable, so we have to create a separate binomial distribution for each possible value of $\rho$. Think of this as a 3 dimensional joint distribution, as we created in @sec-n-models.
-
-It is essential to understand the joint distribution and the posterior, two concepts Bayesians use to solve problems. We will provide quick a quick review here, including statistical notation that may be helpful to some. 
-
-**The joint distribution**, $p(y|\theta)$, models the outcome $y$ given one or more unknown parameter(s), $\theta$. The equation illustrates exact same concept we addressed while discussing the distinctions of Bayesian science: because our parameters are variable, we have to create separate distributions for each potential value. Combining all these distributions together creates a joint distribution that is 3 dimensional when plotted. 
-
-**The posterior**, $p(\theta|y)$, is the probability distribution of our parameter(s) $\theta$, created using data $y$ that updates our beliefs. We have referenced the posterior many times before, and this definition does not change its meaning. 
-
-In our urn scenario, obtaining the posterior involves first creating many binomial distributions for each possible population proportion. This is the joint distribution, and it is a 3 dimensional model. We then select the distribution that corresponds with our data: 17 red beads are sampled. We can represent the posterior with the following:
-
-$$\text{Prob}(\text{models} | \text{data} = 17)$$
-
-This is equivalent to taking a 2 dimensional slice of the 3 dimensional model. We are left with a probability distribution for our parameter, $\rho$. 
-
-#### `stan_glm()`
-
-Given a data set to use and a mathematical formula to work with, the next step is to write some code. We will use the **rstanarm** package, which provides a user friendly interface to work with the statistical language Stan. 
-
-**rstanarm** and Stan are appealing because they are powerful. Functions such as `stan_glm()` can do everything we did by hand in @sec-probability in a few lines of code. Because we will use a professional statistical library, the objects we make will become more complex. In this Chapter, we provide the steps for answering our questions. @sec-two-parameters will provide a more detailed explanation of the objects we will make. *To be clear, you do not need to fully understand this section or how this code works. This is an introduction, not a formal lesson.*
+<!-- broom.mixed::tidy(fit_2) produces ugly stuff here, so maybe don't introduce it now. -->
 
 
-```{r}
-#| message: false
-#| code-fold: false
-library(rstanarm)
-
-fit_1 <- stan_glm(formula = red ~ 1, 
-                  data = tibble(red = c(rep(1, 17), 
-                                        rep(0, 33))),
-                  family = binomial,
-                  refresh = 0,
-                  seed = 10) 
-```
-
-
-Recall that we assumed a binomial model for the data generating mechanism.  In `stan_glm()` we denote this with `family = binomial`. In addition to the type of the distribution, we also need to analyze the outcome and predictor variables involved. The outcome is the quantity we are measuring, in this case the total number of red beads in our sample.  Because we have no predictors, we use the argument `formula = red ~ 1`, which means that we only model the outcome based on the unknown proportion of red beads in the urn, $\rho$. 
-
-We pass in data in a binomial format: the 1's represent the number of successes (red beads drawn), and the 0's represent the number of failures (white beads drawn). As such, we pass a tibble with 17 red beads and 33 white beads into `data`. 
-
-We use `refresh = 0` to suppress the behavior of printing to the console, and `seed = 10` so that we get the same output every time we run the code. The resulting model is:
-
-```{r}
-fit_1
-```
-
-We will learn the meaning of this output in @sec-two-parameters. Once we have the `fit_1` object, it is easy to answer two sorts of questions: the posterior probability distribution for $\rho$ and predictions for new draws from the urn. The key functions are `posterior_epred()` for the former and `posterior_predict()` for the latter.
- 
-Let's create our posterior for $\rho$ by using `posterior_epred()`:
-
-```{r}
-#| code-fold: false
-ppd_for_p <- posterior_epred(fit_1, 
-                newdata = tibble(.rows = 1)) |> 
-  as_tibble() |>
-  rename(p = `1`)
-  
-# posterior_epred() will unhelpfully name the column of our tibble to "1". We
-# have two options: either refer to the column name as `1`, or rename the column
-# to make it less confusing. We will rename the column to "p" in this chapter, but you
-# will oftentimes see `1` in later chapters.
-
-ppd_for_p
-```
-
-Plot the result:   
-
-```{r}
-ppd_for_p |> 
-  ggplot(aes(x = p)) +
-    geom_histogram(aes(y = after_stat(count/sum(count))),
-                   bins = 50) + 
-    labs(title = "Posterior Probability Distribution",
-         subtitle = "Distribution is centered at .34",
-         x = "Proportion p of Red Beads in Urn",
-         y = "Probability") + 
-  
-    scale_x_continuous(labels = scales::number_format()) +
-    scale_y_continuous(labels = scales::percent_format()) +
-    theme_classic()
-```
-
-We have successfully created the posterior distribution and can finally answer the question we started the chapter with: 
-
-> If we get 17 red beads in a random sample of size 50 taken from a mixed urn, what proportion $\rho$ of the beads in the urn are red?
-
-Look to the posterior probability distribution we have created. We can see that the bulk of the area under the posterior occurs approximately when $\rho$ is between .28 and .42, so the answer to our question is that it is likely that 28% to 42% of the beads in the urn are red. Is that specific range the truth? No! We are just eye-balling the distribution, giving a rough sense of the likely value of $\rho$. Any range that is large enough to acknowledge the uncertainty we have regarding the exact value of $\rho$ is acceptable. 
-
-Although the most likely probability (the highest bar on the histogram) occurs when $\rho$ is around .34, The answer is not a single number. Our posterior distribution is just that: a distribution. Using our data, we have many different results for the proportion of red beads in the entire urn. Certain proportions, like the extremes close to 0% or 100%, are essentially impossible due to our sample value being 34%. On the other hand, we could have just as easily sampled 16 or 18 beads from the urn, and sample proportions such as 32% and 36% are very plausible.
-
-This means that, while we can provide a range of possibilities (and we can estimate which of those possibilities occur most frequently), we can never say that we know the total number of red beads with certainty.  We know that there is the most chance that $\rho$ is between .28 and about .42, some chance that $\rho$ is between .15 and .24 or between .42 and .56, and almost no chance that $\rho$ is below .15 or above .56. With the posterior we can visualize all of these probabilities at once. 
-
-Another important question remains: 
-
-> Why are there 4,000 rows in the stan_glm() tibble?
-
-By default, `stan_glm()` will sample from the posterior in 2 sets of 2,000 iterations. If needed we can change the default number of iterations using the `iter` argument, but there are few reasons to do so. Some of us may still want to know why we sample from the posterior in the first place. Why not use the entire posterior? The answer is that the posterior is a theoretical beast, which makes it difficult to work with. 
-
-For example, what if we wanted to know the probability that $\rho$ is between .3 and .4? To answer this using the pure posterior, we would need to calculate the area under the distribution from when $.3 < \rho < .4$. This is more difficult then it seems, as the posterior is a distribution, so it has no individual observations to work with as it's continuous! 
-
-Instead, we can work with draws from the posterior. With enough draws we create a close approximation of the posterior which models the counts of our observations. This is an *approximation*; it is not exactly the posterior, but close enough for our purposes. We can easily convert our posterior distribution into a **posterior probability distribution**, by making the area under the graph sum to 1. The posterior probability distribution is often used as a visual aid, as percentages are more easy to conceptualize than raw numbers. One way to convert a posterior distribution into a probability distribution is to group by each value of $\rho$ and turn the counts into probabilities: 
-
-```{r}
-#| code-fold: false
-ppd_for_p |>
-  round(digits = 2) |>
-  summarize(prob = n()/nrow(ppd_for_p),
-            .by = p) |>
-  arrange(desc(prob))
-```
-
-We can also accomplish a similar effect by passing `aes(y = after_stat(count/sum(count))` into `geom_histogram()` when plotting.  Oftentimes, like in answering the probability that $\rho$ is between .3 and .4,  we can work with the posterior distribution to the very end. Just divide the number of draws that meet our condition (are between .3 and .4), by the total number of draws.   
-
-```{r}
-sum(ppd_for_p$p > .3 & ppd_for_p$p < .4)/nrow(ppd_for_p)
-```
-
-There is approximately a 54% chance that $\rho$ is between .3 and .4. Give me enough draws from the posterior and I can show you the world!
-
-
-### Temperance
+## Temperance
 
 ```{r}
 #| echo: false
 knitr::include_graphics("other/images/Temperance.jpg")
 ```
 
-With the fitted model object `fit_1`, we can answer our questions.
+Courage produced the data generating mechanism. Temperance guides us in the use of the DGM --- or the "model" ---  we have created to answer the questions with which we began. We create posteriors for the quantities of interest. We should be modest in the claims we make. The posteriors we create are never the “truth.” The assumptions we made to create the model are never perfect. Yet decisions made with flawed posteriors are almost always better than decisions made without them.
 
-Recall the second question we started with:
+### The Question
 
-> What is the probability, using the same urn, that we will draw more than 8 red beads if we use a shovel of size 20?
+Recall the question with which we began:
 
-#### Using the posterior
+> What are the odds, if we just look at two voters, both will have voted for Biden?
 
-Whenever someone asks you a question, you need to decide what posterior probability distribution would make it easy for you to answer that question. In this case, if we know the posterior probability distribution for the number of red beads in a shovel of size 20, then a question about the likelihood of drawing more than 8 (or any other value) is easy to answer.
+### The Answer
 
-The posterior probability distribution for a probability is a tricky thing. It is much easier just to estimate the posterior probability distribution for the outcome --- number of red beads out of 20 --- and then work with that distribution in order to answer probability-type questions.
+Because the model is a simple Bernoulli, we can actually calculate this by hand. The probability of two Biden supporters is simply the probability that the first person supports Biden, which is 0.42, times the probability that the second person supports Biden, which is also 0.42. $0.42^2 \approx 0.176$. 
 
-To predict these future unknown samples, we use `posterior_predict()`. We pass the posterior created using `stan_glm()` as the first argument, and because we want to estimate the number of red draws with a shovel size of 20, we use pass a tibble with 20 rows into `newdata`.  
+Let's use `fit_2` to answer this question with the help of `add_predicted_draws()`. Instead of having just one row in `newdata`, we now have two rows, one for each person for whom we need a posterior.
 
 ```{r}
 #| code-fold: false
-posterior_predict(fit_1, 
-                  newdata = tibble(.rows = 20)) |> 
-  as_tibble()
+
+fit_2 |> 
+  add_predicted_draws(newdata = tibble(.rows = 2))
 ```
 
-Each of our 4,000 rows represent one instance of us predicting a future sample from the urn, and each column represents the color bead in a shovel slot. We will create a new column called `total`, using `rowwise()` with `c_across()` to calculate the total number of red beads drawn in the sample. Finally, we will graph the resulting distribution.  
+Note that there are 8,000 rows in the resulting tibble, not 4,000 as we saw before. There will be 4,000 rows for each row in `newdata` because the default for **brms** functions is to provide 4,000 draws from each posterior requested and then to "stack" them on top of each other. Here, we are asking for two posteriors, one for each person, so there are 8,000 rows.
+
+<!-- DK: Is there an argument which will cause add_predicted_draws() to return the wide tibble? Maybe spread draws? Show that also? -->
+
+Let's make two changes to this code. First, we will add a `seed` argument to `add_predicted_draws()`. One problem with any sample of random draws from a posterior distribution is that it is, by definition, *random*. We get different values each time we run it. This is sometimes annoying, as when you are writing a textbook with discussions of the exact output. Give the `seed` argument any value and any function in **brms** will produce the same answers each time. Second, let's just keep the variables we actually need. 
+
+<!-- DK: ?add_predicted_draws suggests that seed does nothing when ndraws is NULL, as it is by default. But testing shows it does matter! -->
 
 ```{r}
-ppd_reds_in_20 <- posterior_predict(fit_1, 
-                  newdata = tibble(.rows = 20)) |> 
-  as_tibble() |> 
-  rowwise() |> 
-  mutate(total = sum(c_across(`1`:`20`))) |> 
-  select(total)
+#| code-fold: false
 
-
-ppd_reds_in_20   |> 
-  ggplot(aes(x = total)) +
-    geom_histogram(aes(y = after_stat(count/sum(count))),
-                   bins = 50) +
-    labs(title = "Posterior Probability Distribution",
-         subtitle = "Number of red beads in 20-slot shovel",
-         x = "Number of Red Beads",
-         y = "Probability") +  
-    scale_x_continuous(labels = scales::number_format(accuracy = 1)) +
-    scale_y_continuous(labels = scales::percent_format(accuracy = 1)) +
-    theme_classic()
+fit_2 |> 
+  add_predicted_draws(newdata = tibble(.rows = 2), seed = 10) |> 
+  select(.row, .draw, .prediction)
 ```
 
-We have successfully created the posterior probability distribution for the number of red beads drawn in a shovel of size 20. But before we answer our question, some of us may be wondering why we made our predictions using `posterior_predict()` instead of `posterior_epred()`. Let's examine what happens if we use `posterior_epred()` instead.
+
+It is useful to reshape the resulting tibble so that, for each draw of the 4,000, the results from both people are on the same row.
+
+<!-- DK: It seems that it would be such a common need, to add_x and then pivot_wider() that there should be some built in way to do so? -->
 
 ```{r}
-#| fig.cap: Using posterior_epred()
+#| code-fold: false
 
-post_epred <- posterior_epred(fit_1, 
-                  newdata = tibble(.rows = 20)) |> 
-  as_tibble() |> 
-  rowwise() |> 
-  mutate(total = sum(c_across(`1`:`20`))) |> 
-  select(total)
-
-post_epred  |> 
-  ggplot(aes(x = total)) +
-    geom_histogram(aes(y = after_stat(count/sum(count))),
-                   bins = 50) +
-    labs(title = "Posterior probability distribution using posterior_epred()",
-         subtitle = "In our scenario, using posterior_epred() is incorrect",
-         x = "Number of red beads",
-         y = "Probability") + 
-    scale_x_continuous(labels = scales::number_format(accuracy = 1)) +
-    scale_y_continuous(labels = scales::percent_format(accuracy = 1)) +
-    theme_classic()
+fit_2 |> 
+  add_predicted_draws(newdata = tibble(.rows = 2)) |> 
+  select(.row, .draw, .prediction) |> 
+  pivot_wider(values_from = .prediction, names_from = .row)
 ```
 
+We are back to a tibble of 4,000 rows, meaning that each row is a draw from an underlying posterior. But, in this case, we have the draws from two posteriors, one for each person, placed side-by-side. In the first "draw," person 1 and person 2 both do not support Biden. In the third draw, person 1 does not support Biden but person 2 does. Only in draw 4 do we see the case we are looking for, with both people supporting Biden. Let's identify all the rows where this is `TRUE`.
 
-What happened? `posterior_epred()` shows the distribution of the **entire population**, which is continuous. The expected predictions can be fractional, because `posterior_epred()` returns draws from the posterior (which can be fractional) contingent on some covariate. In our scenario we have no covariates from which to create expected predictions, so `posterior_epred()` just returns the posterior, but re-scaled to between 0 and 20 beads instead of between 0 and 1 as before. The shape of the distributions are identical: 
 
 ```{r}
-post_epred |> 
-  ggplot(aes(x = total)) +
-    geom_histogram(aes(y = after_stat(count/sum(count))),
-                   bins = 50) + 
-  labs(x = "Number of red beads sampled out of 20",
-       y = "Probability") + 
-  ppd_for_p  |>
-  ggplot(aes(x = p)) + 
-  geom_histogram(aes(y = after_stat(count/sum(count))),
-                   bins = 50) +
-  labs(x = "Proportion red in urn",
-       y = "Probability") + 
-  plot_annotation(title = expression(paste("Expected prediction for sample of size 20 on left, posterior distribution for ", rho, " on right.")),
-                  subtitle = "The two distributions have an identical shape.")
+#| code-fold: false
+
+fit_2 |> 
+  add_predicted_draws(newdata = tibble(.rows = 2), seed = 10) |> 
+  select(.row, .draw, .prediction) |> 
+  pivot_wider(values_from = .prediction, names_from = .row) |> 
+  mutate(both = if_else(`1` & `2`, TRUE, FALSE)) 
 ```
 
-On the other hand, `posterior_predict()` models the posterior distribution for future **individuals**. In our scenario, we model the binomial distribution of a discrete random variable. The bars only appear at real numbers between 1 and 16, because we are predicting the probability of individual samples. We cannot draw fractions of beads in our sample. Using `posterior_predict()` essentially replicates the DGM, taking many virtual draws from our urn and summarizing all the results. 
-
-In summary, use `posterior_predict()` when to predict the outcome of individual(s) in the future, and use `posterior_epred()` to model the probability across the entire population using the posterior. To answer our question, we want to know the probability of outcomes using a single shovel of size 20. We should use `posterior_predict()` to model taking individual samples many times, and we can then analyze the probabilities. If this is confusing do not fret! We will have plenty of practice with these 2 functions for the remainder of this *Primer*. 
-
-Now let's attempt to actually answer our question: 
-
-> What is the probability, using the same urn, that we will draw more than 8 red beads if we use a shovel of size 20?
-
-Because `posterior_predict()` takes predictive draws for us, we can simply count the number of draws that have more than 8 red beads, and divide by the total number of draws. 
+You should be familiar with both `mutate()` and `if_else()`. The code looks ugly because the two key columns of the tibble are named `1` and `2`. Variable names which begin with numbers are "non-standard" in a tibble. In order to refer to them in `if_else()`, we need to surround them with backticks, as we have above. Calculating the percentage is now just a single call to `summarize()`.
 
 ```{r}
-# Same code as earlier, included as a refresher. 
+#| code-fold: false
 
-ppd_reds_in_20 <- posterior_predict(fit_1, 
-                  newdata = tibble(.rows = 20)) |> 
-  as_tibble() |> 
-  rowwise() |> 
-  mutate(total = sum(c_across(`1`:`20`))) |> 
-  select(total)
-
-# Calculating the probability
-
-sum(ppd_reds_in_20$total > 8)/length(ppd_reds_in_20$total)
+fit_2 |> 
+  add_predicted_draws(newdata = tibble(.rows = 2), seed = 10) |> 
+  select(.row, .draw, .prediction) |> 
+  pivot_wider(values_from = .prediction, names_from = .row) |> 
+  mutate(both = if_else(`1` & `2`, TRUE, FALSE)) |> 
+  summarize(odds = mean(both))
 ```
 
-**There is approximately a `r round(100 *sum(ppd_reds_in_20$total > 8)/length(ppd_reds_in_20$total))`% chance that we will draw more than 8 red beads out of a sample size of 20.**
-
-To visualize this probability graphically, we will reuse our posterior, and add a new column called `above_eight` that is `TRUE` if `total > 8`. 
-
-```{r}
-ppd_reds_in_20 <- posterior_predict(fit_1, 
-                    newdata = tibble(.rows = 20)) |> 
-  as_tibble() |> 
-  rowwise() |> 
-  mutate(total = sum(c_across(`1`:`20`))) |>
-  select(total) |>
-  mutate(above_eight = ifelse(total > 8, TRUE, FALSE))
-
-ppd_reds_in_20
-```
-
-We can then can set the fill of our histogram to when `above_eight == TRUE` to visualize the probability of drawing more than 8 red beads. 
-
-```{r}
-ppd_reds_in_20   |> 
-  
-  # Set fill as above_eight. 
-  
-  ggplot(aes(x = total, fill = above_eight)) +
-    geom_histogram(aes(y = after_stat(count/sum(count))),
-                   bins = 50) +
-  
-  # Scale_fill_manual()  is calling grey for the first color and red for the
-  # second color. This is going to highlight the portion of the curve that we
-  # want to highlight in red.
-
-  scale_fill_manual(values = c('grey50', 'red')) +
-    labs(title = "Posterior Probability Distribution",
-         subtitle = "Number of red beads in 20-slot shovel",
-         x = "Number of Red Beads",
-         y = "Probability",
-         fill = "More than 8 Red Beads Drawn?") +  
-    scale_x_continuous(labels = scales::number_format(accuracy = 1)) +
-    scale_y_continuous(labels = scales::percent_format(accuracy = 1)) +
-    theme_classic()
-```
-
-The red bars illustrate the area under a specific section of the curve, as compared to the *entire* area under the curve. *Each question requires looking at a new area under the curve.* When someones asks you a question, they are doing two things. First, they are providing instructions as to the posterior your should create. Here, the results with a shovel of 20 slots. Second, they are asking a question about the area under the curve in a specific region. Here, the region where the number of red beads is greater than 8 is highlighted in red. Therefore, the area below the curve that **is red** is how we get our estimate. 
+Recall that `mean()` coerces `TRUE`/`FALSE` into `1`/`0`, thus allowing us to easily confirm that the percentage of groups of two people who both voted for Biden is about 17%. The result does not match our by hand calculation exactly because of the intrinsically random nature of sampling. 
 
 
+<!-- DK: Is that right? How could we get more draws? Looks like you need to change the iter argument to 20,000 in the call to brm(). But, just by chance (! I think), when I did this, the answer produced with seed = 10 was still 0.173. Investigate this some other time. -->
+
+
+*Using data from a March 2024 YouGov survey of adult US citizens, we sought understand President Biden's popularity. In particular, what are the chances that two random voters who we meet in November 2024 will both have voted for Biden? Biden's popularity might change significantly over the course of the election. Based on the survey, we modeled the probability of someone voting for Biden as 42%, conditional on them voting. Given that, there is a 17% chance that any two voters both voted for Biden. However, this conclusion assumes that the two voters were chosen at random from the entire population, an assumption which is almost certainly false in practice.*
+
+<!-- DK: Isn't there some elegant way of getting some uncertainty around that 17% number? Presumably, you take a draw from a draw form rho and then take 4,000 samples, calculate the percentage, and then do the same again. Or is this already what happens behind the scenes? That is, the 17% figure is averaged over the posterior for rho? -->
+
+
+### Humility
+
+*We can never know the truth.*
 
 
 
 ## Summary
 
-In this chapter, we performed both tactile and virtual sampling exercises to make inferences about an unknown parameter: the proportion of red beads. We also presented a case study of sampling in real life with polls. In each case, we used the sample proportion $\hat{\rho}$ to estimate the true proportion $\rho$. However, we are not just limited to scenarios related to proportions. We can use sampling to estimate other unknown quantities.
+In this chapter we learned about the core packages for performing Bayesian analysis: **brms** and **tidybayes**. There are other packages for accomplishing these tasks, most famously **rstanarm**, but these are the two we will use in this *Primer*.
 
-There is a truth! There is a true value for $\rho$ which we do not know. We want to create a posterior probability distribution which summarizes our knowledge. We care about the posterior probability distribution of $\rho$. The center of that distribution is around the mean or median of the proportion in your sample. The sd (or mad) of that posterior is the standard deviation divided by the square root of our sample size. Note that this is the same thing as the standard deviation of the repeated samples.
+There is a truth! There is a true value for $\rho$, the proportion of Biden voters, which we do not know. We want to create a posterior probability distribution which summarizes our knowledge. We care about the posterior probability distribution of $\rho$. The center of that distribution is around the mean (or median) proportion in your sample. The standard distribution of that posterior is, roughly, the standard deviation of the data divided by the square root of our sample size. 
 
 We journey from reality, to our predictions, to the standard error of our predictions, to the posterior probability distribution for $\rho$. This is our sequence:
 
