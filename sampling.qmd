@@ -33,7 +33,7 @@ The urn below has a certain number of red and a certain number of white beads al
 ```{r}
 #| echo: false
 #| fig.cap: An urn with red and white beads.
-knitr::include_graphics("one-parameter/images/sampling_bowl_1.jpg")
+knitr::include_graphics("sampling/images/sampling_bowl_1.jpg")
 ```
 
 One way to answer this question would be to perform an exhaustive count: remove each bead individually, count the number of red beads, count the number of white beads, and divide the number of red beads by the total number of beads. Call that ratio $\rho$, the proportion of red beads in the urn. However, this would be a long and tedious process. Therefore, we will use sampling! 
@@ -54,14 +54,14 @@ Instead of performing an exhaustive count, let's insert a shovel into the urn an
 ```{r}
 #| echo: false
 #| fig.cap: Inserting a shovel into the urn.
-knitr::include_graphics("one-parameter/images/sampling_bowl_2.jpg")
+knitr::include_graphics("sampling/images/sampling_bowl_2.jpg")
 ```
 
 
 ```{r}
 #| echo: false
 #| fig.cap: Removing 50 beads from the urn.
-knitr::include_graphics("one-parameter/images/sampling_bowl_3_cropped.jpg")
+knitr::include_graphics("sampling/images/sampling_bowl_3_cropped.jpg")
 ```
 
 Observe that 17 of the 50 sampled beads are red and thus $17/50 = 0.34 = 34\%$ of the shovel's beads are red. We can view the proportion of beads that are red in this shovel as a guess of the proportion of beads that are red in the entire urn. While not as exact as doing an exhaustive count of all the beads in the urn, our guess of 34% took much less time and energy to make. 
@@ -88,7 +88,7 @@ Each of our 33 groups of friends make note of their proportion of red beads from
 ```{r}
 #| echo: false
 #| fig.cap: Constructing a histogram of proportions.
-knitr::include_graphics("one-parameter/images/tactile_3_a.jpg")
+knitr::include_graphics("sampling/images/tactile_3_a.jpg")
 ```
 
 Histograms allow us to visualize the *distribution* of a numerical variable. In particular, where the center of the values falls and how the values vary. A partially completed histogram of the first 10 out of 33 groups of friends' results can be seen in the figure below.
@@ -96,7 +96,7 @@ Histograms allow us to visualize the *distribution* of a numerical variable. In 
 ```{r}
 #| echo: false
 #| fig.cap: Hand-drawn histogram of first 10 out of 33 proportions.
-knitr::include_graphics("one-parameter/images/tactile_3_c.jpg")
+knitr::include_graphics("sampling/images/tactile_3_c.jpg")
 ```
 
 Observe the following details in the histogram:
@@ -369,7 +369,7 @@ This visualization allows us to see how our results differed between our tactile
 ```{r}
 #| echo: false
 #| fig.cap: So much sampling, so little time.
-knitr::include_graphics("one-parameter/images/sample_bernie.png")
+knitr::include_graphics("sampling/images/sample_bernie.png")
 ```
 
 Although we took 33 samples from the urn in the previous section, we should never do that again! The advantage of modern technology is that we can use virtual simulation as many times as we choose, so we have no restrictions on resources. No longer are the days where we have to recruit our friends to tirelessly sample from the physical urn. We are now data scientists! 33 samples are useless to us. Instead, we use our simulations hundreds or thousands of times to create mathematical models that we can combine with our knowledge to answer our questions. In this section we'll examine the effects of sampling from the urn 1,000 times. 
@@ -410,7 +410,7 @@ Now that we have a good understanding of virtual sampling, we can apply our know
 ```{r}
 #| echo: false
 #| fig.cap: What happens if we use different sized shovels to sample?
-knitr::include_graphics("one-parameter/images/three_shovels.png")
+knitr::include_graphics("sampling/images/three_shovels.png")
 ```
 
 Instead of just one shovel, imagine we have three choices of shovels to extract a sample of beads with: shovels of size 25, 50, and 100. Using our newly developed tools for virtual sampling, let's unpack the effect of having different sample sizes. Start by creating a tibble with 1,000 rows, each row representing an instance of us sampling from the urn with our chosen shovel size. Then, compute the resulting 1,000 replicates of proportion red. Finally, plot the distribution using a histogram. 
@@ -583,7 +583,7 @@ As the sample size increases, the sample to sample variation decreases, and our 
 ```{r}
 #| echo: false
 #| fig.cap: Variance appears everywhere in data science.
-knitr::include_graphics("one-parameter/images/variance_everywhere_meme.jpeg")
+knitr::include_graphics("sampling/images/variance_everywhere_meme.jpeg")
 ```
 
 Let's take a step back from all the variance. The reality is that our code needs to be better optimized, as it is bad practice to make a separate tibble for each sample size. To make comparisons easier, let's attempt to put all 3 shovel sizes in the same tibble using mapping. 
@@ -667,7 +667,7 @@ The red line here represents an important statistical concept: standard error (S
 #| echo: false
 #| fig.cap: 'To any poets and philosophers confused about this: don''t worry! It won''t
 #|   be on a problem set.'
-knitr::include_graphics("one-parameter/images/meme_math.png")
+knitr::include_graphics("sampling/images/meme_math.png")
 ```
 
 This is the power of running many analyses at once using map functions and list columns: before, we could tell that the standard deviation was decreasing as the shovel size increased, but when only looking at shovel sizes of 25, 50, and 100, it wasn't clear *how quickly* it was decreasing.
@@ -678,7 +678,7 @@ This is the power of running many analyses at once using map functions and list 
 #| echo: false
 #| fig.cap: Standard errors are just the way old people talk about confidence intervals.
 #| fig.align: center
-knitr::include_graphics("one-parameter/images/old_man_SE.png")
+knitr::include_graphics("sampling/images/old_man_SE.png")
 ```
 
 *Standard errors (SE) quantify the effect of sampling variation on our estimates.* In other words, they quantify how much we can expect the calculated proportions of a shovel's beads that are red *to vary* from one sample to another sample to another sample, and so on. As a general rule, as sample size increases, the standard error decreases.
@@ -694,7 +694,7 @@ If this sounds confusing, don't worry! It is. Before we can explain this in more
 ```{r}
 #| echo: false
 #| fig.cap: Let Yoda's wisdom dull the pain of this terminology section.
-knitr::include_graphics("one-parameter/images/yoda.png")
+knitr::include_graphics("sampling/images/yoda.png")
 ```
 
 All of the concepts underlying this terminology, notation, and definitions tie directly to the concepts underlying our tactile and virtual sampling activities. It will simply take time and practice to master them. 
@@ -724,7 +724,7 @@ Ninth, a sampling procedure is *random* if we sample randomly from the populatio
 #| fig.align: center
 #| fig.cap: Fear not if you look like Spongebob after reading this section. We will re-cap
 #|   right now!
-knitr::include_graphics("one-parameter/images/cant_breathe_sponge.png")
+knitr::include_graphics("sampling/images/cant_breathe_sponge.png")
 ```
 
 
@@ -837,7 +837,7 @@ To really drive home our point: standard error is just a fancy term for your unc
 #| fig.cap: If you are wondering how much you need to know, follow this helpful guide
 #|   of the information we have learned this chapter!
 #| fig.align: center
-knitr::include_graphics("one-parameter/images/final_preceptor.png")
+knitr::include_graphics("sampling/images/final_preceptor.png")
 ```
 
 This hierarchy represents the knowledge we need to understand standard error (SE). At the bottom, we have math. It's the foundation for our understanding, but it doesn't need to be what we take away from this lesson. As we go up, we simplify the topic. The top of the pyramid are the basic levels of understanding that will help you to remember in the future. 
@@ -1148,7 +1148,7 @@ As we continue our journey, recall the case of Primrose Everdeen and what she re
 
 ```{r}
 #| echo: false
-knitr::include_graphics("one-parameter/images/posterior_effie.png")
+knitr::include_graphics("sampling/images/posterior_effie.png")
 ```
 
 

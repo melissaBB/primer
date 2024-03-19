@@ -1,5 +1,17 @@
 # Priorities
 
+
+Split One Parameter chapter into two parts: Sampling and Modeling. The Sampling chapter is everything except brms model. It also adds back in the polling example from Modern Dive. This allows it to review the Cardinal Virtues, albeit perhaps without making any well-defined predictions, or perhaps doing so just with a simple standard error calculation. It might also calculate the posterior by hand, although maybe not. It points out that some questions are easy to answer but that, without posterior predict distributions, other questions are harder. 
+
+Need to remove all rstanarm usages.
+
+Can't rebuild to clean up two-parameters and any tidy files still remaining.
+
+
+In the short term, we could leave the two parameter and later chapters alone. They all still work, even though we are moving away from this naming scheme and/or structure.
+
+Replace rstanarm with brms. Main motivation is the much greater variety of models which brms handles. Also, I think that brms is much faster. Biggest concern is problems which brms might have on Windows. Need to find a student to test that out as soon as possible.
+
 We need a new structure to the entire book, sadly. The Probability and Rubin Causal Model chapters are good and should stay where they are. But the affectation of having the rest of the chapters be one parameter, two parameters and so on does not really work. Instead, we should just have 6 chapters, each of which takes us down the same path of the four Cardinal Virtues, each time with increasing complexity on all possible dimensions. It is true that the number of parameters will increase as we go along, but it is highly unlikely that this the best rate of increase is one parameter per chapter. In fact, we need to go much more quickly, adding much more complex models, much earlier. We might find it useful to use the TidyModels framework from the very start.
 
 

@@ -22,7 +22,7 @@ library(patchwork)
 
 <!-- Whenever we have a predictive model, use language like "when comparing." Avoid even the hint of a causal claim. -->
 
-Models have parameters. In @sec-one-parameter we created models with a single parameter $p$, the proportion of red beads in an urn. In @sec-two-parameters, we used models with two parameters: $\mu$ (the average height in the population, generically known as a model "intercept") and $\sigma$ (the variation in height in the population). Here --- can you guess where this is going? --- we will build models with three parameters: $\sigma$ (which serves the same role throughout the book) and two "coefficients." In models which relate a continuous predictor to the outcome, those two parameters will be labeled $\beta_0$ and $\beta_1$. In models which estimate two averages, the parameters will be $\beta_1$ and $\beta_2$. All this notation is confusing, not least because different academic fields use inconsistent schemes. Follow the Cardinal Virtues and tackle your problem step by step.
+Models have parameters. In @sec-sampling we created a model with a single parameter $\rho$, the proportion of red beads in an urn. In @sec-two-parameters, we used models with two parameters: $\mu$ (the average height in the population, generically known as a model "intercept") and $\sigma$ (the variation in height in the population). Here --- can you guess where this is going? --- we will build models with three parameters: $\sigma$ (which serves the same role throughout the book) and two "coefficients." In models which relate a continuous predictor to the outcome, those two parameters will be labeled $\beta_0$ and $\beta_1$. In models which estimate two averages, the parameters will be $\beta_1$ and $\beta_2$. All this notation is confusing, not least because different academic fields use inconsistent schemes. Follow the Cardinal Virtues and tackle your problem step by step.
 
 Perhaps more importantly, a focus on parameters is less relevant now than it was decades ago, when computational limitations made answering our actual questions harder. *Parameters are imaginary.* They don't exist. They, in general, are not the answer to an real world question. They are tools, along with the models of which they are a part, we use to answer questions.
 
@@ -383,7 +383,7 @@ Comments:
 
 -   Democrats seem slightly older than Republicans. That was true in the sample and so, almost (but not quite!) by definition, it will be true in our the posterior probability distributions. We can see this through the `partyRepublican` that is negative.
 
--   Our estimate for the average age of Democrats in the population is much more precise than that for Republicans because we have five times as many Democrats as Republicans in our sample. A central lesson from @sec-one-parameter is that the more data you have related to a parameter, the narrower your posterior distribution will be.
+-   Our estimate for the average age of Democrats in the population is much more precise than that for Republicans because we have five times as many Democrats as Republicans in our sample. The more data you have related to a parameter, the narrower your posterior distribution will be.
 
 -   The phrase "in the population" is doing a great deal of work because we have not said what, precisely, we mean by the "population." Is it the set of people on those commuter platforms on those days in 2012 when the experiment was done? Is it the set of people on all platforms, including ones never visited? Is it the set of all Boston commuters? All Massachusetts residents? All US residents? Does it include people today, or can we only draw inferences for 2012? We should explore these questions in every model we create.
 
@@ -1435,7 +1435,7 @@ Having fit the model, we can look at a printed summary. Note the use of the `dig
 print(fit_4, digits = 6)
 ```
 
-Fitted models tell us about the posterior distributions for the parameters in the formula which defines the model we have estimated. *We are assuming that the model is true.* And, as discussed in @sec-one-parameter, that assumption is always false! Our model is never a perfectly accurate representation of reality. But, if it were perfect, then the posterior distributions which we have created for $\beta_0$, $\beta_1$, and so on would be perfect as well.
+Fitted models tell us about the posterior distributions for the parameters in the formula which defines the model we have estimated. *We are assuming that the model is true.* Yet that assumption is always false! Our model is never a perfectly accurate representation of reality. But, if it were perfect, then the posterior distributions which we have created for $\beta_0$, $\beta_1$, and so on would be perfect as well.
 
 When working with a linear model, we will often interpret the meaning of the parameters, as we have already done in the first three sections of this chapter. Such interpretations are much harder with logistic models because the math is much less convenient. So, we won't even bother to try to understand the meaning of these parameters. However, we can note that $\beta_1$ is negative, suggesting that people with higher incomes are less likely to be liberal.
 

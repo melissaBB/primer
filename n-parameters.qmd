@@ -11,17 +11,17 @@ library(gtsummary)
 ```
 
 
-<!-- DK: Next Texas gubernatorial election in 2026. Change all 2023 to 2026. -->
-
 *This chapter is still a DRAFT.*
 
 > It may be time to move from assuming that research has been honestly conducted and reported to assuming it to be untrustworthy until there is some evidence to the contrary. -- [Richard Smith](https://blogs.bmj.com/bmj/2021/07/05/time-to-assume-that-health-research-is-fraudulent-until-proved-otherwise/), former editor of the *British Medical Journal*.
 
-Having created models with one parameter in @sec-one-parameter, two parameters in @sec-two-parameters, three parameters in @sec-three-parameters, four parameters in @sec-four-parameters and five parameters in @sec-five-parameters, you are now ready to make the jump to $N$ parameters. 
+Having created models with one parameter in @sec-models, two parameters in @sec-two-parameters, three parameters in @sec-three-parameters, four parameters in @sec-four-parameters and five parameters in @sec-five-parameters, you are now ready to make the jump to $N$ parameters. 
 
 In this chapter, we will consider models with many parameters and the complexities that arise therefrom. As our models grow in complexity, we need to pay extra attention to basic assumptions like validity, stability, representativeness, and unconfoundedness. It is (too!) easy to jump right in and start interpreting. It is harder, but necessary, to ensure that our models are really answering our questions. 
 
-Imagine you are running for Governor in Texas and want to do a better job of getting your voters to vote. How can you encourage your voters to go out to the polls on election day? 
+Imagine you are a Republican running for Governor in Texas. You need to allocate your campaign spending intelligently. For example, you want to do a better job of getting your voters to vote. 
+
+*How can you encourage politically engaged voters to go out to the polls on election day?* 
 
 
 ## Wisdom
@@ -32,19 +32,17 @@ Imagine you are running for Governor in Texas and want to do a better job of get
 knitr::include_graphics("other/images/Wisdom.jpg")
 ```
 
-As you research ways to increase voting, you come across a large-scale experiment showing the effect of sending out a voting reminder that "shames" citizens who do not vote. You are considering sending out a "shaming" voting reminder yourself. 
+As you research ways to increase voting, you come across a large-scale experiment showing the effect of sending out a voting reminder that "shames" citizens who do not vote. Perhaps you should pay to send out a shaming voting postcard. 
 
 We will be looking at the `shaming` tibble from the **primer.data** package, sourced from "Social Pressure and Voter Turnout: Evidence from a Large-Scale Field Experiment" ([pdf](/github.com/PPBDS/primer.data/blob/master/inst/papers/shaming.pdf)) by Gerber, Green, and Larimer (2008). You can, and should, familiarize yourself with the data by typing `?shaming`. 
 
 Recall our initial question: how can we encourage voters to go out to the polls on election day? We now need to translate this into a more precise question, one that we can answer with data. 
 
-Our question:
-
-*What is the causal effect on voting of different postcards on Texans of different levels of political engagement?*
+*What is the causal effect of postcards on voting?*
 
 ### Preceptor Table
 
-The phrasing of the question --- especially the phrase "causal effect" --- makes it obvious that we need a causal, rather than a predictive, model. The *units* of our Preceptor Table are individual voters in Texas around the time of the next election. The *outcome* is voting or not voting. The *covariates* include, at least, measures of political engagement. The *treatments* are postcards of various types. The *potential outcomes* are involve whether or not the person voted, depending on the treatment received.
+The phrasing of the question --- especially the phrase "causal effect" --- makes it obvious that we need a causal, rather than a predictive, model. The *units* of our Preceptor Table are individual voters in Texas around the time of the next election. (Already we can see that the question is still not precise enough.) The *outcome* is voting or not voting. The *covariates* include, at least, measures of political engagement. The *treatments* are postcards of various types. The *potential outcomes* involve whether or not the person voted, depending on the treatment received.
 
 Recall the definition of a Preceptor Table. It is the smallest possible table such that, if no data were missing, the calculation of all quantities of interest would be trivial. The **causal effect**, for each individual, is the difference in voting behavior under treatment versus control. Consider:
 
@@ -86,7 +84,17 @@ Comments:
 
 * Should we go back and change the Preceptor Table? No! The Preceptor Table is just a tool we use to fix ideas in our own heads. We never talk about Preceptor Tables with anyone else. Indeed, you won't ever see the words "Preceptor Table" outside of this *Primer* and related work.
 
-* Why is there only one covariate (in addition to the treatment)? Because the question only specifies that one. Any covariates mentioned in the question must be included in the Preceptor Table because, without that information for all units, we can't answer the question. In any real example, we will have other covariates which we might, or might not, include in the model.
+* Why is there only one covariate (in addition to the treatment)? Because the question only specifies that one. Any covariates mentioned in the question must be included in the Preceptor Table because, without that information for all units, we can't answer the question. In any real example, we will have other covariates which we might, or might not, include in the model. 
+
+* The outcomes in a Preceptor Table refer to a moment in time. In this case, the outcome occurs on Election Day in 2026. The covariates and treatments must be measured before the outcome, otherwise they can't be modeled as correlated with the outcome.
+
+* We can update our question:
+
+*What is the causal effect of postcards on voting in the 2026 Texas gubernatorial election? Do those effects vary by political engagement?*
+
+As usual, our question becomes most more and less precise simultaneously. It is more precise in that we only care about a very specific moment in space and time: the election for governor in Texas in 2026. It is less precise in that we are almost always interested in different aspects of the problem, mainly because of the decisions we must make. 
+
+In this case, we might not have enough money to send postcards to every voter. Maybe we should focus in politically engaged voters. Maybe we should focus on other subsets. We should probably only send postcards to voters who are Republican or are likely to vote Republican, unless, that is, some postcards actually decrease someone's proposensity to vote. The real world is full of complexity.
 
 
 ### EDA of `shaming`
@@ -163,7 +171,7 @@ This graphic does not tell us as much as we might like. Most residents did not r
 
 Validity is the consistency, or lack there of, in the columns of your dataset and the corresponding columns in your Preceptor Table. In order to consider the two datasets to be drawn from the same population, the columns from one must have a *valid correspondence* with the columns in the other. Validity, if true (or at least reasonable), allows us to construct the *Population Table*, which is the first step in Justice. Consider two counter-arguments to the assumption of validity in this case.
 
-First, voting in a primary election in 2006 in Michigan is not the same thing as voting in a general election in Texas in 2023. Primary elections are less newsworthy and, usually, less competitive. Our client, the gubernatorial candidate, has already won his primary. The outcome he cares about is voting in a general elections. Treatments which might, or might not, affect participation in a primary are irrelevant. Moreover, the political culture of Texas and Michigan are very different. The meaning and importance of voting is not identical across states, nor over time.
+First, voting in a primary election in 2006 in Michigan is not the same thing as voting in a general election in Texas in 2026. Primary elections are less newsworthy and, usually, less competitive. Our client, the gubernatorial candidate, has already won his primary. The outcome he cares about is voting in a general elections. Treatments which might, or might not, affect participation in a primary are irrelevant. Moreover, the political culture of Texas and Michigan are very different. The meaning and importance of voting is not identical across states, nor over time.
 
 Second, our client is interested in using a measure of 
 
@@ -266,8 +274,8 @@ tibble(source = c("...", "...", "...",
        year = c("1990", "1995", "...",
                 "2006", "2006", "...",
                 "2010", "2012", "...",
-                "2023", "2023", "...",
-                "2026", "2030"),
+                "2026", "2026", "...",
+                "2046", "2050"),
        state = c("?", "?", "...",
                  "Michigan", "Michigan", "...",
                  "?", "?", "...",
@@ -307,7 +315,7 @@ tibble(source = c("...", "...", "...",
 
 To understand validity in regards to the Population Table, we must first recognize an inherent flaw in any experiment design: *no two units receive exactly the same treatment*.
 
-We might be thinking: well, surely two postcards are the same? But, they aren't! The postcards sent from our data were sent with information relevant to 2006 --- a different candidate, different language, different syntax. A postcard sent in 2023, even if we used the exact same language, would be encouraging a new candidate with new reform and differing policies. 
+We might be thinking: well, surely two postcards are the same? But, they aren't! The postcards sent from our data were sent with information relevant to 2006 --- a different candidate, different language, different syntax. A postcard sent in 2026, even if we used the exact same language, would be encouraging a new candidate with new reform and differing policies. 
 
 Thus, despite the fact that two units are in the same treatment --- that is, receiving a postcard --- they have very different versions of that treatment. Indeed, there are an infinite number of possible treatments. This is why it is so important to define our estimand clearly.
 
@@ -317,7 +325,7 @@ Stability means that the relationship between the columns is the same for three 
 
 With something like height, it is much easier to assume stability over a greater period of time. Changes in global height occur extremely slowly, so height being stable across a span of 20 years is reasonable to assume. Can we say the same for this example, where we are looking at voting behavior?
 
-Is data collected in 2006 on voting behavior likely to be the same in 2023? Frankly, we don't know! We aren't sure what would impact someone's response to a postcard encouraging them to vote. It is possible, for instance, that a postcard informing neighbors of voting status *would have more of an effect on voting behavior during a pandemic, when you are more closely interacting with neighbors*. 
+Is data collected in 2006 on voting behavior likely to be the same in 2026? Frankly, we don't know! We aren't sure what would impact someone's response to a postcard encouraging them to vote. It is possible, for instance, that a postcard informing neighbors of voting status *would have more of an effect on voting behavior during a pandemic, when you are more closely interacting with neighbors*. 
 
 When we are confronted with this uncertainty, we can consider making our timeframe smaller. However, we would still need to assume stability from 2006 (time of data collection) to today. Stability allows us to ignore the issue of time. 
 
@@ -325,14 +333,14 @@ When we are confronted with this uncertainty, we can consider making our timefra
 
 This is a good time to consider what it really means to accept that our data is representative of our population. With that in mind, let's break down our real, current question: 
 
-* We are running for governor in Texas in the year 2023. In this year and in the United States, we consider sending out a voting reminder postcard to citizens of voting age. Will this reminder encourage voting, and by how much?
+* We are running for governor in Texas in the year 2026. In this year and in the United States, we consider sending out a voting reminder postcard to citizens of voting age. Will this reminder encourage voting, and by how much?
 
 Now, let's break down our data from the `shaming` dataset:
 
 * The data was gathered in Michigan prior to the August 2006 primary election. The population for the experiment was 180,002 households in the state of Michigan. The data only included those who *had* voted in the 2004 general election. Therefore, it did not include non-voters. The reminders were mailed to households at random. 
 
 So, how similar are these groups? Let's start with some differences.
-* The data is from 2006. Our question is asking for answers from 2023. This is not a small gap in time. A lot changes in a decade and a half!
+* The data is from 2006. Our question is asking for answers from 2026. This is not a small gap in time. A lot changes in a decade and a half!
 * The data excludes all non-voters in the last election. Our question, which seeks to increase voting turnout *in all citizens*, would want for non-voters to be included. So, can we make any claims about those citizens? Probably not.
 * The data only includes voters from Michigan. We want to make inferences about Texas, or perhaps the United States as a whole. Is it within reason to do that?
 

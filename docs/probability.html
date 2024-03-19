@@ -80,7 +80,7 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./one-parameter.html" rel="next">
+<link href="./sampling.html" rel="next">
 <link href="./rubin-causal-model.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -223,38 +223,44 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./one-parameter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">One Parameter</span></span></a>
+  <a href="./sampling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Sampling</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./models.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Models</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./two-parameters.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Two Parameters</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Two Parameters</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./three-parameters.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Three Parameters</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Three Parameters</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./four-parameters.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Four Parameters</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Four Parameters</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./five-parameters.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Five Parameters</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Five Parameters</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./n-parameters.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">N Parameters</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">N Parameters</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -316,8 +322,7 @@ window.Quarto = {
 <a href="#working-with-probability-distributions" id="toc-working-with-probability-distributions" class="nav-link" data-scroll-target="#working-with-probability-distributions"><span class="header-section-number">2.7</span> Working with probability distributions</a>
   <ul class="collapse">
 <li><a href="#random-variables" id="toc-random-variables" class="nav-link" data-scroll-target="#random-variables"><span class="header-section-number">2.7.1</span> Random variables</a></li>
-  <li><a href="#rbinom" id="toc-rbinom" class="nav-link" data-scroll-target="#rbinom"><span class="header-section-number">2.7.2</span> <code>rbinom()</code></a></li>
-  <li><a href="#summary-statistics" id="toc-summary-statistics" class="nav-link" data-scroll-target="#summary-statistics"><span class="header-section-number">2.7.3</span> Summary statistics</a></li>
+  <li><a href="#summary-statistics" id="toc-summary-statistics" class="nav-link" data-scroll-target="#summary-statistics"><span class="header-section-number">2.7.2</span> Summary statistics</a></li>
   </ul>
 </li>
   <li>
@@ -389,23 +394,23 @@ window.Quarto = {
 <p>There are other ways of storing the data in this vector. Instead of reporting every observation, we could record the number of times each value appears or the percentage of the total which this number accounts for.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="bnrziagmku" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#bnrziagmku table {
+<div id="diewyzqkjj" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#diewyzqkjj table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#bnrziagmku thead, #bnrziagmku tbody, #bnrziagmku tfoot, #bnrziagmku tr, #bnrziagmku td, #bnrziagmku th {
+#diewyzqkjj thead, #diewyzqkjj tbody, #diewyzqkjj tfoot, #diewyzqkjj tr, #diewyzqkjj td, #diewyzqkjj th {
   border-style: none;
 }
 
-#bnrziagmku p {
+#diewyzqkjj p {
   margin: 0;
   padding: 0;
 }
 
-#bnrziagmku .gt_table {
+#diewyzqkjj .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -431,12 +436,12 @@ window.Quarto = {
   border-left-color: #D3D3D3;
 }
 
-#bnrziagmku .gt_caption {
+#diewyzqkjj .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#bnrziagmku .gt_title {
+#diewyzqkjj .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -448,7 +453,7 @@ window.Quarto = {
   border-bottom-width: 0;
 }
 
-#bnrziagmku .gt_subtitle {
+#diewyzqkjj .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -460,7 +465,7 @@ window.Quarto = {
   border-top-width: 0;
 }
 
-#bnrziagmku .gt_heading {
+#diewyzqkjj .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -472,13 +477,13 @@ window.Quarto = {
   border-right-color: #D3D3D3;
 }
 
-#bnrziagmku .gt_bottom_border {
+#diewyzqkjj .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#bnrziagmku .gt_col_headings {
+#diewyzqkjj .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -493,7 +498,7 @@ window.Quarto = {
   border-right-color: #D3D3D3;
 }
 
-#bnrziagmku .gt_col_heading {
+#diewyzqkjj .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -513,7 +518,7 @@ window.Quarto = {
   overflow-x: hidden;
 }
 
-#bnrziagmku .gt_column_spanner_outer {
+#diewyzqkjj .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -525,15 +530,15 @@ window.Quarto = {
   padding-right: 4px;
 }
 
-#bnrziagmku .gt_column_spanner_outer:first-child {
+#diewyzqkjj .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#bnrziagmku .gt_column_spanner_outer:last-child {
+#diewyzqkjj .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#bnrziagmku .gt_column_spanner {
+#diewyzqkjj .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -545,11 +550,11 @@ window.Quarto = {
   width: 100%;
 }
 
-#bnrziagmku .gt_spanner_row {
+#diewyzqkjj .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#bnrziagmku .gt_group_heading {
+#diewyzqkjj .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -575,7 +580,7 @@ window.Quarto = {
   text-align: left;
 }
 
-#bnrziagmku .gt_empty_group_heading {
+#diewyzqkjj .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -590,15 +595,15 @@ window.Quarto = {
   vertical-align: middle;
 }
 
-#bnrziagmku .gt_from_md > :first-child {
+#diewyzqkjj .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#bnrziagmku .gt_from_md > :last-child {
+#diewyzqkjj .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#bnrziagmku .gt_row {
+#diewyzqkjj .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -617,7 +622,7 @@ window.Quarto = {
   overflow-x: hidden;
 }
 
-#bnrziagmku .gt_stub {
+#diewyzqkjj .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -630,7 +635,7 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#bnrziagmku .gt_stub_row_group {
+#diewyzqkjj .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -644,15 +649,15 @@ window.Quarto = {
   vertical-align: top;
 }
 
-#bnrziagmku .gt_row_group_first td {
+#diewyzqkjj .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#bnrziagmku .gt_row_group_first th {
+#diewyzqkjj .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#bnrziagmku .gt_summary_row {
+#diewyzqkjj .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -662,16 +667,16 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#bnrziagmku .gt_first_summary_row {
+#diewyzqkjj .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#bnrziagmku .gt_first_summary_row.thick {
+#diewyzqkjj .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#bnrziagmku .gt_last_summary_row {
+#diewyzqkjj .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -681,7 +686,7 @@ window.Quarto = {
   border-bottom-color: #D3D3D3;
 }
 
-#bnrziagmku .gt_grand_summary_row {
+#diewyzqkjj .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -691,7 +696,7 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#bnrziagmku .gt_first_grand_summary_row {
+#diewyzqkjj .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -701,7 +706,7 @@ window.Quarto = {
   border-top-color: #D3D3D3;
 }
 
-#bnrziagmku .gt_last_grand_summary_row_top {
+#diewyzqkjj .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -711,11 +716,11 @@ window.Quarto = {
   border-bottom-color: #D3D3D3;
 }
 
-#bnrziagmku .gt_striped {
+#diewyzqkjj .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#bnrziagmku .gt_table_body {
+#diewyzqkjj .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -724,7 +729,7 @@ window.Quarto = {
   border-bottom-color: #D3D3D3;
 }
 
-#bnrziagmku .gt_footnotes {
+#diewyzqkjj .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -738,7 +743,7 @@ window.Quarto = {
   border-right-color: #D3D3D3;
 }
 
-#bnrziagmku .gt_footnote {
+#diewyzqkjj .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -747,7 +752,7 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#bnrziagmku .gt_sourcenotes {
+#diewyzqkjj .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -761,7 +766,7 @@ window.Quarto = {
   border-right-color: #D3D3D3;
 }
 
-#bnrziagmku .gt_sourcenote {
+#diewyzqkjj .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -769,63 +774,63 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#bnrziagmku .gt_left {
+#diewyzqkjj .gt_left {
   text-align: left;
 }
 
-#bnrziagmku .gt_center {
+#diewyzqkjj .gt_center {
   text-align: center;
 }
 
-#bnrziagmku .gt_right {
+#diewyzqkjj .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#bnrziagmku .gt_font_normal {
+#diewyzqkjj .gt_font_normal {
   font-weight: normal;
 }
 
-#bnrziagmku .gt_font_bold {
+#diewyzqkjj .gt_font_bold {
   font-weight: bold;
 }
 
-#bnrziagmku .gt_font_italic {
+#diewyzqkjj .gt_font_italic {
   font-style: italic;
 }
 
-#bnrziagmku .gt_super {
+#diewyzqkjj .gt_super {
   font-size: 65%;
 }
 
-#bnrziagmku .gt_footnote_marks {
+#diewyzqkjj .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#bnrziagmku .gt_asterisk {
+#diewyzqkjj .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#bnrziagmku .gt_indent_1 {
+#diewyzqkjj .gt_indent_1 {
   text-indent: 5px;
 }
 
-#bnrziagmku .gt_indent_2 {
+#diewyzqkjj .gt_indent_2 {
   text-indent: 10px;
 }
 
-#bnrziagmku .gt_indent_3 {
+#diewyzqkjj .gt_indent_3 {
   text-indent: 15px;
 }
 
-#bnrziagmku .gt_indent_4 {
+#diewyzqkjj .gt_indent_4 {
   text-indent: 20px;
 }
 
-#bnrziagmku .gt_indent_5 {
+#diewyzqkjj .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -2485,9 +2490,9 @@ window.Quarto = {
 <p>Mathematically, we would notate:</p>
 <p><span class="math display">\[y_i \sim U(4, 6)\]</span></p>
 <p>This means that the each value for <span class="math inline">\(y\)</span> is drawn from a uniform distribution between four and six.</p>
-</section></section><section id="rbinom" class="level3" data-number="2.7.2"><h3 data-number="2.7.2" class="anchored" data-anchor-id="rbinom">
-<span class="header-section-number">2.7.2</span> <code>rbinom()</code>
-</h3>
+</section><section id="rbinom" class="level4" data-number="2.7.1.3"><h4 data-number="2.7.1.3" class="anchored" data-anchor-id="rbinom">
+<span class="header-section-number">2.7.1.3</span> <code>rbinom()</code>
+</h4>
 <p>Consider binomial distribution, the case in which the probability of some Boolean variable (for instance success or failure) is calculated for repeated, independent trials. One common example would be the probability of flipping a coin and landing on heads. The function <code><a href="https://rdrr.io/r/stats/Binomial.html">rbinom()</a></code> allows us to draw from a binomial distribution. This function takes three arguments, <code>n</code>, <code>size</code>, and <code>prob</code>.</p>
 <p><em><code>n</code> is the number of values we seek to draw. </em><code>size</code> is the number of trials for each <code>n</code>. *<code>prob</code> is the probability of success on each trial.</p>
 <p>Suppose we wanted to flip a fair coin one time, and let landing on heads represent success.</p>
@@ -2555,8 +2560,8 @@ window.Quarto = {
 </div>
 </div>
 </div>
-<section id="sec-normal" class="level4" data-number="2.7.2.1"><h4 data-number="2.7.2.1" class="anchored" data-anchor-id="sec-normal">
-<span class="header-section-number">2.7.2.1</span> <code>rnorm()</code>
+</section><section id="sec-normal" class="level4" data-number="2.7.1.4"><h4 data-number="2.7.1.4" class="anchored" data-anchor-id="sec-normal">
+<span class="header-section-number">2.7.1.4</span> <code>rnorm()</code>
 </h4>
 <p>The most important distribution is the <em>normal distribution</em>. Mathematics:</p>
 <p><span class="math display">\[y_i \sim N(\mu, \sigma^2)\]</span></p>
@@ -2597,8 +2602,8 @@ window.Quarto = {
 </div>
 </div>
 </div>
-</section></section><section id="summary-statistics" class="level3" data-number="2.7.3"><h3 data-number="2.7.3" class="anchored" data-anchor-id="summary-statistics">
-<span class="header-section-number">2.7.3</span> Summary statistics</h3>
+</section></section><section id="summary-statistics" class="level3" data-number="2.7.2"><h3 data-number="2.7.2" class="anchored" data-anchor-id="summary-statistics">
+<span class="header-section-number">2.7.2</span> Summary statistics</h3>
 <p>A probability distribution is not always easy to work with. It is a complex object. And, in many contexts, we don’t really care about all that complexity. So, instead of providing the full probability distribution, we often just use a summary measure, a number or two or three which captures those aspects of the entire distribution which are relevant to the matter at hand. Let’s explore these issues using the 538 posterior probability distribution, as of August 13, 2020, for the number of electoral votes which will be won by Joe Biden. Here is a tibble with 1,000,000 draws from that distribution:</p>
 <div class="cell">
 <details class="code-fold"><summary>Show the code</summary><div class="sourceCode" id="cb66"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">draws</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -3237,8 +3242,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./one-parameter.html" class="pagination-link" aria-label="<span class='chapter-number'>3</span>&nbsp; <span class='chapter-title'>One Parameter</span>">
-        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">One Parameter</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./sampling.html" class="pagination-link" aria-label="<span class='chapter-number'>3</span>&nbsp; <span class='chapter-title'>Sampling</span>">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Sampling</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

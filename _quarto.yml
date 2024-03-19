@@ -33,7 +33,8 @@ book:
     - getting-started.qmd
     - rubin-causal-model.qmd
     - probability.qmd
-    - one-parameter.qmd
+    - sampling.qmd
+    - models.qmd
     - two-parameters.qmd
     - three-parameters.qmd
     - four-parameters.qmd

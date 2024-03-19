@@ -28,11 +28,11 @@ Even then, however, the relative likelihood of different models is not that impo
 
 The reason for making models is not, primarily, that making models is fun -- although it is! The reason is that the world confronts us. Make decisions we must. We must decide between options X or Y. We must choose from actions A, B and C. Confronted by a choice, we need to make a model of the world to help us choose wisely.
 
-The real world is complex. Any substantive decision problem includes a great deal of complexity and requires even more context. We do not have the time to get into that level of detail now. So, we simplify. We are going to create a model of height for adult men. We will then use that model to answer four questions:
+The real world is complex. Any substantive decision problem includes a great deal of complexity and requires even more context. We do not have the time to get into that level of detail now. So, we simplify. We are going to create a model of height for adult men. We will then use that model to answer three questions:
 
-* What is the average height of men?
+<!-- * What is the average height of men? -->
 
-<!-- DK: Is that a good question? I guess to answer it, you would come up with a model, then fill in the Preceptor Table with 100 million rows. Take the average. Do that 1,000 times. That is your posterior. Even if that makes sense, it can't really be done. Perhaps a better question: What is the average height of 1,000 men? -->
+<!-- DK: Is that a good question? I guess to answer it, you would come up with a model, then fill in the Preceptor Table with 100 million rows. Take the average. Do that 1,000 times. That is your posterior. Even if that makes sense, it can't really be done. Perhaps a better question: What is the average height of 1,000 men? Also, we essentially answer that question when we look at the posterior of rho. So, for all those reasons, I delete it for now. If we add it back, need to change "three" to "four" in the sections below and above. -->
 
 * What is the probability that the next man we meet will be taller than 180 centimeters?
 
@@ -40,7 +40,7 @@ The real world is complex. Any substantive decision problem includes a great dea
 
 * What is our posterior probability distribution for the height of the 3rd tallest man out of the next 100 we meet?
 
-The hope for this chapter is that, by answering these four questions, we'll gain a better and more thorough understanding of how professionals do data science.
+The hope for this chapter is that, by answering these three questions, we'll gain a better and more thorough understanding of how professionals do data science.
 
 ```{r}
 #| echo: false
@@ -331,7 +331,7 @@ This is the simplest model we can construct. Note:
 
 * $\sigma$ is an estimate for the standard deviation of the errors,  i.e., variability in height after accounting for the mean.
 
-#### Models
+### Models
 
 Let's estimate a simple version of the model. First, we need to load the **brms** and **tidybayes** packages.
 
@@ -367,77 +367,73 @@ Note:
 fit_1
 ```
 
+Note:
 
+* We will be looking at this print out many times in the rest of the *Primer*. You will get used to it. The header information about Family, Links and so on just confirms what we already know. Still, you want to check this to make sure you did not make a mistake in the call to `brm()`.
 
+* The key parameter is the "Intercept," which is the same thing as $\mu$ in the mathematical description of the model and the same thing as `1` when we set `formula = height ~ 1`. In other words, we are speaking three languages here: English ("Intercept"), math (\$mu$), and code (`height ~ 1`). But all three languages are referring to the same underlying concept.
 
-
-
-Running `tidy()` on the fitted model object provides more detail.
+* The "Estimate" of 175.87 makes sense. After all, the simple mean of the `height` in the data is:
 
 ```{r}
 #| code-fold: false
-tidy(fit_obj)
+mean(ch4$height)
 ```
 
-
-
-
-
-We see the output for the two parameters of the model: "(Intercept)" and "sigma". This can be confusing! Recall that the thing we care most about is $\mu$, the average height in the population. If we had the Preceptor Table --- with a row for every adult male in the population we care about and no missing data --- $\mu$ would be trivial to calculate, and with no uncertainty. But only we know that we named that parameter $\mu$. All that R sees is the `1` in the formula. In most fields of statistics, this constant term is called the "intercept." So, now we have three things --- $\mu$ (from the math), `1` (from the code), and "(Intercept)" (from the output) --- all of which refer to the exact same concept. This will not be the last time that terminology will be confusing.
-
-At this point, `stan_glm()` --- or rather the `print()` method for objects created with `stan_glm()` --- has a problem. We have full posteriors for both $\mu$ and $\sigma$. But this is a simple printed summary. We can't show the entire distribution. So, what are the best few numbers to provide? There is no right answer to this question! Here, the choice is to provide the "Median" of the posterior and the "MAD_SD". 
-
-* Anytime you have a distribution, whether posterior probability or otherwise, the most important single number associated with it is some measure of its *location*. Where is the data? The two most common choices for this measure are the mean and median. We use the median here because posterior distributions can often be quite skewed, making the mean a less stable measure.
-
-* The second most important number for summarizing a distribution concerns its *spread*. How far is the data spread around its center? The most common measure used for this is the standard deviation. MAD SD, the scaled median absolute deviation, is another. If the variable has a normal distribution, then the standard deviation and the MAD SD will be very similar. But the MAD SD is much more robust to outliers, which is why it is used here. (Note that MAD SD is the same measure as what we have referred to as *mad* up till now. The measure is calculated with the `mad()` command in R. Terminology is confusing, as usual.)
-
-
-We can also change the number of digits shown:
+* The estimated error ("Est.Error") also makes sense. This is the standard error and can be calculated by hand as the standard deviation of the data divided by the squart root of the number of observations:
 
 ```{r}
-print(fit_obj, detail = FALSE, digits = 1)
+#| code-fold: false
+sd(ch4$height) / sqrt(3658)
 ```
 
-<!-- DK: Are we sure that coef() and sigma() give us the median values? Please investigate. -->
+* The end points of the confidence intervals are simply the estimate $\pm$ two times the standard error. 
 
-Now that we understand the meaning of Median and MAD_SD in the above display, we can interpret the actual numbers. The median of the intercept, `r round(coef(fit_obj), 1)`, is the median of our posterior distribution for $\mu$, the average height of all men in the population. The median of sigma, `r round(sigma(fit_obj), 1)`, is the median of our posterior distribution for the true $\sigma$, which can be roughly understood as the variability in the height of men, once we account for our estimate of $\mu$.
+* We don't really care about the values associated with sigma, which has no physical meaning. Parameters like this are often referred to as "nuisance" parameters because, although they are necessary to constructing the fitted model, we don't really care about them outside that context. The Intercept, on the other hand, is the mean of our posterior distribution for the unknown parameter $\mu$, the average height of an adult male.
 
+<!-- DK: Run tidy(fit_1)? -->
+
+Consider the posterior distribution of $\mu$.
 
 ```{r}
-#| echo: false
-## DK: Seems like there ought to be a better way of doing this. Aren't there
-## ways for pulling at the median and mad_sd directly, rather than calculating
-## them ourselves? Please investigate.
+#| code-fold: false
 
-median_fit <- fit_obj |> 
-  as_tibble() |> 
-  pull(`(Intercept)`) |> 
-  median()
-
-mad_sd <- fit_obj |> 
-  as_tibble() |> 
-  pull(`(Intercept)`) |> 
-  mad()
+fit_1 |> 
+  add_epred_draws(newdata = tibble(.rows = 1)) |> 
+  ggplot(aes(x = .epred)) + 
+    geom_histogram(aes(y = after_stat(count/sum(count))),
+                   bins = 50) + 
+    labs(title = expression(paste("Posterior Probability Distribution of ", mu)),
+         subtitle = "Distribution is centered at 175.9 cm",
+         x = expression(paste("Mean, ", mu, ", height of adult men")),
+         y = "Probability") + 
+  
+    scale_x_continuous(labels = scales::number_format()) +
+    scale_y_continuous(labels = scales::percent_format()) +
+    theme_classic()
 ```
 
+This is almost exactly the same code as we used in @sec-modeling. It is the same code which we will use in the future.
 
-The MAD SD for each parameter is a measure of the variability of our posterior distributions for that parameter. How spread out are they? Speaking roughly, 95% of the mass of a posterior probability distribution is located within +/- 2 MAD SDs from the median. For example, we would be about 95% confident that the true value of $\mu$ is somewhere between `r round(median_fit - 2 * mad_sd, 1)` and `r round(median_fit + 2 * mad_sd, 1)`. 
+### Data Generating Mechanism
 
-<!-- *Pictures speak where math mumbles.* -->
+We modeled `height`, a continuous variable measured in centimeters, as a linear function of a constant term. The average adult male height in the US was around 176 cm. Mathematically:
 
-<!-- DK: Add tbl_regression from gtsummary -->
+$$ height_i =  176 + \epsilon_i $$
 
-<!-- Add posterior predictive checks using, perhaps, https://mc-stan.org/rstanarm/reference/pp_check.stanreg.html -->
-
-
-<!-- ### Testing -->
+with $\epsilon_i \sim N(0, 0.75^2)$.
 
 
-<!-- Discuss testing for the first time. Give simple example of how people test. Explain how people test. Null hypothesis, is that the average height of men is 173 cm. Alternative hypothesis is that it is not. Can I reject my null hypothesis, because 173 is more than two standard errors away from the mean of the data? REad the Open Intro explanation about what a hypothesis test is. Takes Courage to Not Test! Tetsing is stupid. -->
+### Tests
 
-<!-- Maybe do it by hand. The mean of the data is X. The standard deviation is Y. The standard error Z. Is H_0 more than two standard errors away from X. If it is, we reject. If it is not, we don't.  -->
+Before excepting `fit_1` as our data generating mechanism, we should perform a posterior predictive check.
 
-<!-- One paragraph about why that is stupid. Mainly, it throws away too much information. It is not interesting. It does not help us answer any of the "real" questions we started with.  -->
+```{r}
+brms::pp_check(fit_1)
+```
+
+Note how similar our actual data, $y$, is to the 10 versions of the replicated data, $y_rep$. They are close enough that we are happy to use `fit_1`. However, the match is not perfect! The actual data is slightly more "peaked" and also features some weird bumps in the tails, especially around 200 cm. It would be possible, but not easy, to modify our model to match the actual data more closely. For now, we will just accept `fit_1` as our data generating mechanism.
+
 
 
 ## Temperance
@@ -449,57 +445,13 @@ knitr::include_graphics("other/images/Temperance.jpg")
 ```
 
 
-We have a model. What can we do with it? Let's answer the four questions with which we started.
+We have a data generating mechanism, a "model," to use the simpler term. What can we do with it? Let's answer the four questions with which we started.
 
 ### Question 1
 
-* What is the average height of men?
-
-If we had the Preceptor Table, one with a row for every man alive, and with their actual height, we could calculate this number easily. Just take the average of those 3 billion or so rows! Alas, in our actual Preceptor Table, the vast majority of heights are missing. Question marks make simple algebra impossible. So, as with any unknown number, we need to estimate a posterior probability distribution. Objects created by `stan_glm()` make this easy to do.
-
-```{r}
-newobs <- tibble(.rows = 1)
-
-pe <- posterior_epred(object = fit_obj,
-                      newdata = newobs) |> 
-        as_tibble()
-
-pe
-```
-
-We will use `posterior_epred()` many times. The two key arguments are `object`, the fitted model object returned by `stan_glm()`, and `newdata`, which is the tibble which contains the covariate values associated with the unit (or units) for which we want to make a forecast. (In this case, `newdata` can be any tibble because an intercept-only model does not make use of covariates. We don't really need a variable named `constant`, but including it does no harm.) The `epred` in `posterior_epred()` stands for **e**xpected **pred**iction. In other words, if we pick a random adult male what do we "expect" his height to be. We also call this the *expected value*.
-
-<!-- DK: Tell the story about "mathematical hope." Maybe give more details on what the tibble is doing. Once new version comes out, replace with tibble(.rows = 1). -->
-
-We use `as_tibble()` to convert the matrix which is returned by `posterior_epred()`. We have a tibble with 1 column and 4,000 rows. The column, unhelpfully named `1`, is 4,000 draws from the posterior probability distribution for the expected height of a random male. Recall from earlier chapters how a posterior probability distribution and the draws from a posterior probability distribution are, more or less, the same thing. Or, rather, a posterior probability distribution, its ownself, is hard to work with. Draws from that distribution, on the other hand, are easy to manipulate. We use draws to answer our questions. 
-
-Converting these 4,000 draws into a posterior probability distribution is straightforward.
-
-```{r}
-pe |> 
-  ggplot(aes(x = `1`)) +
-    geom_histogram(aes(y = after_stat(count/sum(count))),
-                   bins = 100) +
-    labs(title = "Posterior for Average Adult Male Height",
-         subtitle = "Note that the plot is very similar to the one created with the parameters",
-         x = expression(mu),
-         y = "Probability",
-         caption = "Data source: NHANES") + 
-    scale_x_continuous(labels = scales::number_format(accuracy = 1)) +
-    scale_y_continuous(labels = scales::percent_format(accuracy = 1)) +
-    theme_classic()
-```
-
-<!-- DK: Remove mu above. -->
-
-The rest of the *Primer* will be filled with graphics like this one. You will make dozens of them yourself. The fundamental structure for doing algebra is the real number. The fundamental structure for data science is the posterior probability distribution. You need to be able to create and interpret them.
-
-
-### Question 2
-
 * What is the probability that the next adult male we meet will be taller than 180 centimeters?
 
-There are two fundamentally different kinds of unknowns which we care about: *expected values* (as in the previous question) and *predicted values*. With the former, we are not interested in any specific individual. The individual value is irrelevant. With predicted values, we care, not about the average, but about this specific person. With the former, we use `posterior_epred()`. With the latter, the relevant function is `posterior_predict()`. Both functions return draws from a posterior probability distribution, but the unknown number which underlies the posterior is very different.
+There are two fundamentally different kinds of unknowns which we care about: *expected values* and *predicted values*. With the former, we are not interested in any specific individual. The individual value is irrelevant. With predicted values, we care, not about the average, but about this specific person. With the former, we use `add_epred_draws()`. With the latter, the relevant function is `add_predicted_draws()`. Both functions return draws from a posterior probability distribution, but the unknown number which underlies the posterior are very different.
 
 Recall the mathematics:
 
@@ -509,26 +461,24 @@ $$ y_i =  \mu + \epsilon_i $$
 With expected values or averages, we can ignore the $\epsilon_i$ term in this formula. The expected value of $\epsilon_i$ is zero since, by assumption, $\epsilon_i \sim N(0, \sigma^2)$. However, we can't ignore $\epsilon_i$ when predicting the height for a single individual.
 
 ```{r}
-newobs <- tibble(.rows = 1)
-
-pp <- posterior_predict(object = fit_obj,
-                        newdata = newobs) |> 
-        as_tibble()
-
-pp
+#| code-fold: false
+fit_1 |> 
+  add_predicted_draws(newdata = tibble(.rows = 1))
 ```
 
 
 As before, it is straightforward to turn draws from the posterior probability distribution into a graphic:
 
 ```{r}
-pp |> 
-  ggplot(aes(x = `1`)) +
+#| code-fold: false
+fit_1 |> 
+  add_predicted_draws(newdata = tibble(.rows = 1)) |> 
+  ggplot(aes(x = .prediction)) +
     geom_histogram(aes(y = after_stat(count/sum(count))),
                    bins = 100) +
     labs(title = "Posterior for Height of Random Male",
          subtitle = "Uncertainty for a single individual is much greater than for the expected value",
-         x = expression(mu),
+         x = "Height (cm)",
          y = "Probability",
          caption = "Data source: NHANES") + 
     scale_x_continuous(labels = scales::number_format()) +
@@ -539,63 +489,54 @@ pp |>
 Note:
 
 * The posterior for an individual is much wider than the posterior for the expected value.  
-
 * Eyeballing, seems like there is a 1 out of 3 chance that the next man we meet, or any randomly chosen man, is taller than 180 cm.
 
 * We can calculate the exact probability by manipulating the tibble of draws directly.
 
 ```{r}
-sum(pp$`1` > 180)/length(pp$`1`)
+#| code-fold: false
+fit_1 |> 
+  add_predicted_draws(newdata = tibble(.rows = 1)) |> 
+  mutate(tall = if_else(.prediction > 180, TRUE, FALSE)) |> 
+  summarize(odds = mean(tall))
 ```
 
 If 30% or so of the draws from the posterior probability distribution are greater than 180 cm, then there is about a 30% chance that the next individual will be taller than 180 cm.
 
 Again, the key conceptual difficulty is the population. The problem we actually have involves walking around London, or wherever, today. The data we have involve America in 2010. Those are not the same things! But they are not totally different. Knowing whether the data we have is "close enough" to the problem we want to solve is at the heart of Wisdom. Yet that was the decision we made at the start of the process, the decision to create a model in the first place. Now that we have created a model, we look to the virtue of Temperance for guidance in using that model. The data we have is never a perfect match for the world we face. We need to temper our confidence and act with humility. Our forecasts will never be as good as a naive use of the model might suggest. Reality will surprise us. We need to take the model's claims with a family-sized portion of salt.
 
-<!-- DK: More on temperance and the many ways that we should be less confident. Move material from Chapters 3 and 5 here? -->
-
-### Question 3
-
-<!-- DK: Discuss how each row of pp is like a random draw from the scenario of 4 new men. So, we can look at each row without considering any other row. Makes simulation studies much easier. -->
+### Question 2
 
 * What is the probability that, among the next 4 men we meet, the tallest is at least 10 cm taller than the shortest?
 
-Bayesian models are beautiful because, via the magic of simulation, we can answer (almost!) any question. Because the question is about four random individuals, we need `posterior_predict()` to give us four sets of draws from four identical posterior probability distributions. Start with a new `newobs`:
+Bayesian models are beautiful because, via the magic of simulation, we can answer (almost!) any question. Because the question is about four random individuals, we need `add_predicted_draws()` to give us four sets of draws from four identical posterior probability distributions. All we need to do is to change 1 to 4 in our previous code and then widen the data. If you need to predict X individuals, then you need a tibble with X rows, regardless of whether or not those rows are otherwise identical.
 
 ```{r}
-newobs <- tibble(.rows = 4)
-
-newobs
+#| code-fold: false
+fit_1 |> 
+  add_predicted_draws(newdata = tibble(.rows = 4)) |>
+  select(.row, .draw, .prediction) |> 
+  pivot_wider(values_from = .prediction, names_from = .row)
 ```
 
-If you need to predict X individuals, then you need a tibble with X rows, regardless of whether or not those rows are otherwise identical.
+Again, we have the subtle issue. In the same way that light is both a wave and a particle, these columns are both posteriors and draws from those posteriors, when considered row by row. In each row, we are running an experiment in which we meet 4 men. We measure their heights, we determine if the tallest is more than 10 centimeters taller than the shortest. We then do the same thing is row 2, row 3 and so on. The functions `row_wise()` and `c_across()` make this (mostly) simple.
+
 
 ```{r}
-pp <- posterior_predict(object = fit_obj,
-                        newdata = newobs) |> 
-        as_tibble() 
+#| code-fold: false
+draws <- fit_1 |> 
+  add_predicted_draws(newdata = tibble(.rows = 4)) |>
+  select(.row, .draw, .prediction) |> 
+  pivot_wider(values_from = .prediction, names_from = .row) |> 
+  rowwise() %>%
+  mutate(diff = max(c_across(`1`:`4`)) - min(c_across(`1`:`4`)))
 
-pp
+draws
 ```
+
+Unfortunately, this code can take a while to run, so we save the results in a permanent tibble named `draws`. This will be a common approach, just as we have saved the fitted model object as `fit_1`, or whatever, rather than recreating it each time.
 
 The next step is to calculate the number of interest. We can not, directly, draw the height of the tallest or shortest out of 4 random men. However, having drawn 4 random men, we can calculate those numbers, and the difference between them.
-
-```{r}
-# First part of the code is the same as we did above.
-
-pp <- posterior_predict(object = fit_obj,
-                        newdata = newobs) |> 
-        as_tibble() |> 
-  
-        # Second part of the code requires some trickery.
-  
-        rowwise() |> 
-        mutate(tallest = max(c_across())) |> 
-        mutate(shortest = min(c_across())) |> 
-        mutate(diff = tallest - shortest) 
-        
-pp        
-```
 
 These steps serve as a template for much of the analysis we do later. It is often very hard to create a model *directly* of the thing we want to know. There is no *easy* way to create a model which estimates this height difference *directly*. It is easy, however, to create a model which allows for random draws. 
 
@@ -605,7 +546,8 @@ Once we have random draws from the posterior distribution we care about, graphin
 
 
 ```{r}
-pp |> 
+draws %>%
+  mutate(diff = max(c_across(`1`:`4`)) - min(c_across(`1`:`4`))) |> 
   ggplot(aes(x = diff)) +
     geom_histogram(aes(y = after_stat(count/sum(count))),
                    bins = 100) +
@@ -619,14 +561,14 @@ pp |>
     scale_y_continuous(labels = scales::percent_format()) 
 ```
 
-There is about an `r round(100 * sum(pp$diff > 10) / length(pp$diff))`% chance that, when meeting 4 random men, the tallest will be at least 10 cm taller than the shortest. Exact calculation:
+There is about an `r round(100 * sum(draws$diff > 10) / length(draws$diff))`% chance that, when meeting 4 random men, the tallest will be at least 10 cm taller than the shortest. Exact calculation:
 
 ```{r}
-sum(pp$diff > 10) / length(pp$diff)
+#| code-fold: false
+sum(draws$diff > 10) / length(draws$diff)
 ```
 
-
-<!-- DK: Discuss all the reasons why this might not be true. Show how to give the exact answer. -->
+<!-- DK: I am concerned that we are not providing uncertainty estimates when we answer these questions. The best answer is 77%. Fine. But how much uncertainty is there in this estimate? This strikes me as a hard question! -->
 
 ### Question 4
 
@@ -635,31 +577,44 @@ sum(pp$diff > 10) / length(pp$diff)
 The same approach will work for almost any question.
 
 ```{r}
-newobs <- tibble(.rows =  100)
-
-pp <- posterior_predict(object = fit_obj,
-                        newdata = newobs) |> 
-  as_tibble() |> 
-  rowwise() |> 
-  mutate(third_tallest = sort(c_across(), 
-                              decreasing = TRUE)[3])
+#| code-fold: false
+fit_1 |> 
+  add_predicted_draws(newdata = tibble(.rows = 100)) |>
+  select(.row, .draw, .prediction) |> 
+  pivot_wider(values_from = .prediction, names_from = .row)
 ```
 
-Explore the `pp` object. It has `r ncol(pp)` columns: one hundred for the 100 individual heights and one column for the 3rd tallest among them. Having done the hard work, plotting is easy:
+Again, we have 100 (identical) posteriors, each representing the height of a random adult male. Each column is a posterior. (In later models, the columns will represent different posteriors, but we keep things simple for now.) Each row can then be viewed as an experiment. Instead of just meeting one random man, however, we meet 100. Draws from a posterior are the same thing as one random unit from the underlying population.
+
+The magic of `rowwise()`and `c_across()` allows us to easily determine the height of the tallest man out of 100.
+
 
 ```{r}
-pp |> 
+#| code-fold: false
+draws <- fit_1 |> 
+  add_predicted_draws(newdata = tibble(.rows = 100)) |>
+  select(.row, .draw, .prediction) |> 
+  pivot_wider(values_from = .prediction, names_from = .row) |> 
+  rowwise() %>%
+  mutate(third_tallest = sort(c_across(`1`:`100`))[98])
+```
+
+
+```{r}
+draws |> 
   ggplot(aes(x = third_tallest, y = after_stat(count / sum(count)))) +
     geom_histogram(bins = 100) +
     labs(title = "Posterior for Height of 3rd Tallest Man from Next 100",
          subtitle = "Should we have more or less certainty about behavior in the tails?",
-         x = expression(mu),
+         x = "Height (cm)",
          y = "Probability",
          caption = "Data source: NHANES") + 
     scale_x_continuous(labels = scales::number_format()) +
     scale_y_continuous(labels = scales::percent_format(accuracy = 1)) 
     
 ```
+
+
 
 ### Three Levels of Knowledge
 
@@ -673,7 +628,7 @@ If we know the Truth (with a capital “T”), then we know the Preceptor Table.
 
 This level of knowledge is possible only under an omniscient power, one who can see every outcome in every individual under every treatment. The Truth would show, for any given individual, their actions under control, their actions under treatment, and each little factor that impacted those decisions.
 
-The Truth represents the highest level of knowledge one can have — with it, our questions merely require algebra. There is no need to estimate a treatment effect, or the different treatment effects for different groups of people. We would not need to predict at all — we would know.
+The Truth represents the highest level of knowledge one can have — with it, our questions merely require algebra or, at worst, simulation. There is no need to estimate a treatment effect, or the different treatment effects for different groups of people. We would not need to predict at all — we would know.
 
 #### DGM posterior
 
@@ -701,7 +656,7 @@ This is because a lot of the assumptions we make during the process of building 
 
 <!-- DK: Discuss meaning of "Posterior" in all plot titles. Show the key code examples. -->
 
-The next five chapters will follow the same process we have just completed here. We start with a decision we have to make. With luck, we will have some data to guide us. (Without data, even the best data scientist will struggle to make progress.) *Wisdom* asks us: "Is the data we have close enough to the decision we face to make using that data helpful?" Often times, the answer is "No." 
+The rest of the *Primer* will follow the same process we have just completed here. We start with a decision we have to make. With luck, we will have some data to guide us. (Without data, even the best data scientist will struggle to make progress.) *Wisdom* asks us: "Is the data we have close enough to the decision we face to make using that data helpful?" Often times, the answer is "No." 
 
 Once we start to build the model, *Justice* will guide us. Is the model descriptive or causal? What is the mathematical relationship between the dependent variable we are trying to explain and the independent variables we can use to explain it? What assumptions are we making about distribution of the error term?
 

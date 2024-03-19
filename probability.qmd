@@ -1842,7 +1842,7 @@ $$y_i \sim U(4, 6)$$
 
 This means that the each value for $y$ is drawn from a uniform distribution between four and six.
 
-### `rbinom()`
+#### `rbinom()`
 
 Consider binomial distribution, the case in which the probability of some Boolean variable (for instance success or failure) is calculated for repeated, independent trials. One common example would be the probability of flipping a coin and landing on heads. The function `rbinom()` allows us to draw from a binomial distribution. This function takes three arguments, `n`, `size`, and `prob`. 
 
