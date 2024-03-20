@@ -239,7 +239,7 @@ Overall, however, the assumption of validity seems reasonable. Our data and The 
 knitr::include_graphics("other/images/Justice.jpg")
 ```
 
-**Justice** concerns five topics: Population Table, stability, representativeness, unconfoundedness and the mathematical structure of the data generating mechanism (DGM). After inspecting our data and deciding that it is “close enough” to our questions to be useful, we move on to Justice.
+**Justice** concerns 3 topics: Population Table, stability, representativeness, and unconfoundedness. After inspecting our data and deciding that it is “close enough” to our questions to be useful, we move on to Justice.
 
 ### Population Table
 
