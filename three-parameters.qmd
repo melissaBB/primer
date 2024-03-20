@@ -10,11 +10,11 @@ library(gtsummary)
 library(patchwork)
 ```
 
+<!-- Is the chapter too long? Should I just have a single question for each section? Should I cut out one of the sections entirely? -->
+
+<!-- Standardize years. Data is from 2012. Questions are about 2024. -->
+
 <!-- Remove sampling & assignment mechanism -->
-
-<!-- In the Validity section, always discuss how we need to refine the question further in order to answer it, because variables do not come out of this air. -->
-
-<!-- For all gtsummary tables we need to edit the tables to include specifics  -->
 
 <!-- Come up with common ways in which a lack of representativeness causes problems. This is a list of things that we can check each time when we are interrogating a data science problem. Key issue is the correlation, if anything, between the "assignment mechanism" or "sampling mechanism" and other variables. Discuss sampling mechanism in all cases except att_end ~ treatment. For that, use "assignment mechanism." -->
 
@@ -22,23 +22,24 @@ library(patchwork)
 
 <!-- Whenever we have a predictive model, use language like "when comparing." Avoid even the hint of a causal claim. -->
 
-Models have parameters. In @sec-sampling we created a model with a single parameter $\rho$, the proportion of red beads in an urn. In @sec-two-parameters, we used models with two parameters: $\mu$ (the average height in the population, generically known as a model "intercept") and $\sigma$ (the variation in height in the population). Here --- can you guess where this is going? --- we will build models with three parameters: $\sigma$ (which serves the same role throughout the book) and two "coefficients." In models which relate a continuous predictor to the outcome, those two parameters will be labeled $\beta_0$ and $\beta_1$. In models which estimate two averages, the parameters will be $\beta_1$ and $\beta_2$. All this notation is confusing, not least because different academic fields use inconsistent schemes. Follow the Cardinal Virtues and tackle your problem step by step.
+Models have parameters. In @sec-sampling we created a model with a single parameter $\rho$, the proportion of red beads in an urn. In @sec-two-parameters, we used models with two parameters: $\mu$ (the average height in the population, generically known as a model "intercept") and $\sigma$ (the variation in height in the population). Here --- can you guess where this is going? --- we will build models with three parameters: $\sigma$ (which serves the same role throughout the book) and two "coefficients." In models which relate a predictor to the outcome, those two parameters will be labeled $\beta_0$ and $\beta_1$. All this notation is confusing, not least because different academic fields use inconsistent schemes. Follow the Cardinal Virtues and tackle your problem step by step.
 
-Perhaps more importantly, a focus on parameters is less relevant now than it was decades ago, when computational limitations made answering our actual questions harder. *Parameters are imaginary.* They don't exist. They, in general, are not the answer to an real world question. They are tools, along with the models of which they are a part, we use to answer questions.
+Perhaps more importantly, a focus on parameters is less relevant now than it was decades ago, when computational limitations made answering our actual questions harder. *Parameters are imaginary.* They don't exist. They, in general, are not the answer to a real world question. They are tools, along with the models of which they are a part, we use to answer questions.
 
 Packages:
 
 ```{r}
 #| message: false
-#| warning: false
+#| code-fold: false
 library(primer.data)
-library(rstanarm)
 library(tidyverse)
+library(brms)
+library(tidybayes)
 ```
 
-We are concerned with these three packages because we are exploring the `trains` dataset which exists within the **primer.data** package. We use the **rstanarm** package to explore models and the approach of `posterior_predict()`. Finally, we use the **tidyverse** package to conduct all of our graphs and functions.
+We are concerned with these three packages because we are exploring the `trains` dataset which exists within the **primer.data** package. We use the **brms** package to build Bayesian models. ("brms" stands for **B**ayesian **r**egression **m**odel**s**.) The **tidybayes** packages makes working the fitted models easierr. As usual, we use the **tidyverse** package.
 
-In this chapter, we are going to ask a series of questions involving train commuters' ages, party affiliations, incomes, and political ideology, as well as the causal effect of exposure to Spanish-speakers on their attitude toward immigration. These questions will pertain to all train commuters in the US today.
+In this chapter, we are going to ask a series of questions involving train commuters' ages, party affiliations, incomes, and political ideology, as well as the causal effect of exposure to Spanish-speakers on their attitude toward immigration. These questions will pertain to all train commuters in the US today. For a refresher on this data, refer to @sec-rubin-causal-model.
 
 ## age \~ party
 
@@ -48,7 +49,7 @@ We want to build a model and then use that model to make claims about the world.
 
 *In a group of three Democrats and three Republicans, what will the age difference be between the oldest Democrat and the youngest Republican?*
 
-We can answer these and similar questions by creating a model that uses party affiliation to predict age. Let's follow the four Cardinal Virtue: Wisdom, Justice, Courage and Temperance.
+We can answer these and similar questions by creating a model that uses party affiliation to predict age. Let's follow the four Cardinal Virtues: Wisdom, Justice, Courage and Temperance.
 
 ### Wisdom
 
@@ -63,17 +64,17 @@ Wisdom begins with considering the questions we desire to answer and the data se
 
 First, do we need a **causal** or **predictive** model? In our question above we have a predictive model as we only have one outcome which is the person's age based on our predictor which is the person's party.
 
-Second, what is the outcome? A person's age will be the **outcome**. Note that the outcome is not necessarily the same concept mentioned in the questions. For example, the outcome column is not "probability that a person is over 50" even though that is one of the questions we need to answer. The questions, however, leave unclear details. Where train stations are these people at? Which country? Also, at what moment in time is this experiment taking place? In order to dive deeper into these questions we need to engage in a conversation with the person that is asking us these questions. When this occurs, we need to discuss and dive deeper into the questions that have been asked to understand what the true question is at hand. For the questions that we have at hand we will be talking about all the adults in July 1, 2012 at the location of Chicago, Illinois. 
+Second, what is the outcome? A person's age will be the **outcome**. Note that the outcome is not necessarily the same concept mentioned in the questions. For example, the outcome column is not "probability that a person is over 50" even though that is one of the questions we need to answer. The questions, however, leave unclear details. Where ar these train stations? Which country? Also, at what moment in time is this experiment taking place? In order to dive deeper into these questions we need to engage in a conversation with the person that is asking us these questions. For the questions that we have at hand we will be talking about train stations Chicago, Illinois today. 
 
 Third, what are the **units**? Our units for this scenario would be individuals because the questions are about the attributes of unique people at the station.
 
 Fourth, what are the **covariates**? In our case, a person's party will be the only covariate because it is another factor that plays to the person's age and identity. The Preceptor Table must include any covariates mentioned in the question.
 
-Fifth, do we have a **treatment**? No. We will be using a predictive model as discussed above and treatments will only apply to situations with causal models. A treatment is just a covariate which we can, at least in theory, manipulate, thereby creating other potential outcomes.
+Fifth, do we have a **treatment**? No. We will be using a predictive model as discussed above. A *treatment* is a covariate which we have (or could) have manipulated, thereby generating more than one potential outcome.
 
 Let's look at our refined question to create our Preceptor Table:
 
-*What is the probability that, if a Democrat shows up at the train station in Chicago, Illinois in 2012, he will be over 50 years old?*
+*What is the probability that, if a Democrat shows up at a train station in Chicago, Illinois today, he will be over 50 years old?*
 
 Our Preceptor Table:
 
@@ -99,20 +100,24 @@ tibble(ID = c("1", "2", "...", "10", "11", "...", "N"),
   tab_spanner(label = "Covariate", columns = c(party))
 ```
 
-Recall: a Preceptor Table is smallest possible table with rows and columns such that, if there is no missing data, all our questions are easy to answer. To answer questions --- like "What is the probability that, if a Democrat shows up at the train station, he will be over 50 years old?" --- we need a row for every individual at the station.
+Recall: a Preceptor Table is smallest possible table with rows and columns such that, if there is no missing data, all our questions are easy to answer. To answer questions --- like "What is the probability that, if a Democrat shows up at the train station, he will be over 50 years old?" --- we need a row for every individual at the station. Since we don't know the total number of people at train stations in Chicago today, we use the symbol $N$.
 
-#### Always Explore Your Data
+<!-- DK: Make the the N in the tibble the same as $N$, if easy. -->
+
+#### EDA
 
 Recall the discussion from @sec-rubin-causal-model. @enos2014 randomly placed Spanish-speaking confederates on nine train platforms around Boston, Massachusetts. The data that we want to analyze consists of the age and party of each individual on these train platforms based on our variables in our Preceptor Table. These reactions were measured through changes in answers to three survey questions.
 
 ```{r}
+#| code-fold: false
 trains |>
   select(age, party)
 ```
 
-As specified in the Preceptor Table we only care about `age` is the age of the respondent and `party` is their political party affiliation. `party` can be shown to have two possibilities: Democrat and Republican.
+As specified in the Preceptor Table, we only care about `age`, the age of the respondent, and `party`, their political party affiliation. `party` has two values: `Democrat` and `Republican`.
 
 ```{r}
+#| code-fold: false
 trains |>
   select(age, party) |>
   summary()
@@ -121,6 +126,7 @@ trains |>
 The range of values for `age` seems reasonable. Perhaps children were explicitly excluded from the study. Or perhaps there were no children at the train station on those days.
 
 ```{r}
+#| code-fold: false
 trains |> 
   count(party)
 ```
@@ -152,9 +158,9 @@ Democrats seem slightly older than Republicans. Our estimate for the average age
 
 Do the columns in the Preceptor Table mean the same thing as the columns in the data? That is the heart of validity. Just because we use the same words --- `age` and `party` --- in both tables does not prove that they are, in fact, the same things.
 
-Validity is the assumption which allows us to consider the Preceptor Table and our data to have been drawn from the same population. There is no **truth** here. The data is real enough, but we created the Preceptor Table. Whether or not there is a population from which we can assume both the data and the Preceptor Table might have been drawn is not a TRUE/FALSE question, we can't use the data to make inferences about the Preceptor Table. 
+Validity is the assumption which allows us to consider the Preceptor Table and our data to have been drawn from the same population. There is no **truth** here. The data is real enough, but we created the Preceptor Table. Whether or not there is a population from which we can assume both the data and the Preceptor Table might have been drawn is not a TRUE/FALSE question. 
 
-Now the **assumption of validity** may not hold due to the possibility of what our terms mean. For example, what it means to be a "Republican" might be very different in Massachusetts (meaning in our data) than what it means in the rest of the United States (meaning the Preceptor Table). Just slapping the two data sources together does not solve that problem. Similarly, `age` in the data is measured from a survey. People make mistakes. They even lie. In our Preceptor Table, we want the column `age` to be each person's actual age.
+Now the **assumption of validity** may not hold due to the possibility of what our terms mean. For example, what it means to be a "Republican" might be very different in Massachusetts (meaning in our data) than what it means in Chicago (meaning the Preceptor Table). Just slapping the two tables together does not solve that problem. Similarly, `age` in the data is measured from a survey. People make mistakes. They even lie. In our Preceptor Table, we want the column `age` to be each person's actual age. It is unclear how we will identify/check the age and party affiliation of people in Chicago today.
 
 If `party` or `age` are too different between the Preceptor Table and our data, then the assumption of validity fails. We can't consider both sources to have been drawn from the same population.
 
@@ -168,7 +174,7 @@ Overall, however, the assumption of validity seems reasonable. `age` and `party`
 knitr::include_graphics("other/images/Justice.jpg")
 ```
 
-Justice concerns five topics: Population Table, stability, representativeness, unconfoundedness and the mathematical structure of the data generating mechanism (DGM).
+Justice concerns four topics --- the Population Table and three associated assumptions: stability, representativeness, and unconfoundedness.
 
 #### Population Table
 
@@ -181,11 +187,11 @@ tibble(source = c("...", "Data", "Data", "...",
        city = c("...", "Boston, MA", "Boston, MA", "...", 
                 "...", "Chicago, IL", "Chicago, IL", "..."),
        year = c("...", "2012", "2012", "...", 
-                "...", "2023", "2023", "..."),
+                "...", "2024", "2024", "..."),
        age = c("...", "43", "52", "...", 
-               "...", "...", "...", "..."),
+               "...", "21", "63", "..."),
        party = c("...", "Democrat", "Republican", "...", 
-                 "...", "...", "...", "...")) |>
+                 "...", "Republican", "Democrat", "...")) |>
   
   gt() |>
   tab_header(title = "Population Table") |> 
@@ -205,21 +211,23 @@ tibble(source = c("...", "Data", "Data", "...",
   tab_spanner(label = "Covariates", columns = c(party, year, city))
 ```
 
-Our year within the Population table is an example of the moment in time.
+A Population Table almost always includes units outside of the range of the data and of the Preceptor Table. In this case, the population probably includes people at train stations in Los Angeles and New York. (Why wouldn't it?) It probably does not include people in Nigeria or Indonesia. After all, what does "Republican" even mean in those countries? The population also extends further in time than either the data or the Preceptor Table. Surely what was true in 2021 in Boston was also true in 2011. Any model which works in Chicago in 2024 probably also works for the next few years which follow.
 
-Our Preceptor Table rows are chronologically ordered. The "other" rows are our greater population for which we are making assumptions --- this is why the year at the start is earlier than our data and the year at the end is later than our Preceptor Table. This shows the more expansive population about which we are making inferences.
+None of these details need to be specified exactly. After all, our question is about Chicago today. It is just important to understand **the concept of a "population," as a collection of unit/time combinations**.
 
 #### Stability
 
-**Stability** means that the relationship between the columns is the same for three categories of rows: the data, the Preceptor table, and the larger population from which both are drawn. With something like height, it is much easier to assume stability over a greater period of time. Changes in global height occur extremely slowly, so height being stable across a span of 20 years is reasonable to assume. With something like political ideology, it is much harder to make the assertion that data collected in 2010 would be stable to data collected in 2030. When we are confronted with this uncertainty, we can consider making our time frame smaller. However, we would still need to assume stability from 2014 (time of data collection) to today. Stability allows us to ignore the issue of time.
+*Stability* means that the relationship between the columns is the same for three categories of rows: the data, the Preceptor table, and the larger population from which both are drawn. With something like height, it is much easier to assume stability over a longer period of time. Changes in global height occur extremely slowly, so height being stable across a span of 20 years is reasonable to assume. With something like political ideology, it is much harder to make the assertion that data collected in 2010 would be comparable to data collected in 2030. When we are confronted with this uncertainty, we can consider making our time frame smaller. However, we would still need to assume stability from 2012 (time of data collection) to today. Stability allows us to ignore the issue of time.
 
 #### Representativeness
 
-**Representativeness** has to do with how well our sample represents the larger population we are interested in generalizing to. We might run into two potential problems: Is our data representative of the population? Is our Preceptor Table representative of the population? When we look at the data being representative of the population, let's dive deeper and take a look at a few questions at hand. Does the train experiment allow us to calculate a predictive effect for people who commute by cars? Oftentimes the way that people commute change the way that we can interpret their attitude regarding party. Can we calculate the predictive effect for people in Boston? When we deal with representativeness we deal with two primary concerns: the generic concern and the variable concern. The generic concern deals with our situation at hand and whether we can believe that our data and Preceptor Table is representative of the broader population that it is drawn from. Before we generalize to broader populations we have to consider if our experimental estimates are applicable beyond our experiment. Generally: *if there was no chance that a certain type of person would have been in this experiment, we cannot make an assumption for that person*. Our second level of concern deals with the variable concern which in this case deals with an individual's age and party. Out of our sample, we aren't able to contain all of the ages of individuals within the broader population. For example: we don't have the age less than 20 which does not represent a large amount of our broader population. When we deal with party we see a similar result. We are only dealing with Democrat and Republican as our two main factors, however, that is not representative of our entire broader population. There are multiple parties within the nation and limiting our data to two, condenses the parties that we have - ultimately undermining representativeness within the situation.
+*Representativeness* has to do with how well our sample represents the larger population to which we are interested in generalizing. We might run into two potential problems: Is our data representative of the population? Is our Preceptor Table representative of the population? 
+
+<!-- DK: Flesh out. -->
 
 #### Unconfoundedness
 
-**Unconfoundedness** means that the treatment assignment is independent of the potential outcomes, when we condition on pre-treatment covariates. However, with our scenario, we have a predictive model and this assumption is only relevant for causal models.
+*Unconfoundedness* means that the treatment assignment is independent of the potential outcomes, when we condition on pre-treatment covariates. In this case, we have a predictive model and so don't need to worry that age is "confounded" with party.
 
 ### Courage
 
@@ -229,53 +237,41 @@ Our Preceptor Table rows are chronologically ordered. The "other" rows are our g
 knitr::include_graphics("other/images/Courage.jpg")
 ```
 
-Courage centers around the creation of the data generating mechanism, i.e., our fitted model.
+Justice gave us the Population Table. Courage selects the data generating mechanism. We first specify the mathematical formula which connects the outcome variable we are interested in with the other data that we have. We explore different models. We need to decide which variables to include and to estimate the values of unknown parameters. We check our models for consistency with the data we have. We avoid hypothesis tests. We select one model.
 
-#### Mathematics
+Since our outcome, age, is a continuous variable, a linear model with Gaussian error terms makes sense. Mathematics:
 
-The type of outcome variable is the most important issue in determining the mathematical structure of the **data generating mechanism**. Since our outcome is a (mostly) continuous variable, a linear structure is the most reasonable. If the outcome variable had been binary --- only two options --- we would use a logistic model. 
 
-Let's interpret **courage** with a look at the mathematics:
+$$ y_i = \beta_0  + \beta_1 x_i + \epsilon_i$$
 
-$$ age_i = \beta_0  + \beta_1 democratic_i + \epsilon_i$$
+where \n $$x_i \in \{0,1\}$$ \n $$\epsilon_i \sim N(0, \sigma^2)$$
 
-where \n $$democrat_i \in \{0,1\}$$ \n $$\epsilon_i \sim N(0, \sigma^2)$$
+We always begin by using generic variables, $y$ and $x$'s, when specifying the model structure. The correct structure is almost always driven by the distribution of the outcome variable. Note:
 
-Don't panic dear poets and philosophers, the whole thing is easier than it looks. This will follow the form above in which the outcome is the result of what is in our model and not in our model.
+  * The small $i$'s are an index to individual observations. It is equivalent to the "ID" column in our Preceptor Table. The outcome for person $i$ is explained by the modeled and non-modeled factors for person $i$.
 
-Let's dive deeper into the data generating mechanism at hand. On the left-hand side we have the outcome, $y$, which is the variable to be explained. In our case, this is the age of an individual in the population. The right-hand side contains two parts: that which is contained within the model, and that which isn't.
+  * The model is a claim about how the world works, not just for the 115 individuals for which we have data but for the all the people in the population for which we seek to draw inferences.
 
-As important as our mathematics is, we need to take a look at the parameters that we have at hand. Looking at our parameters allows us to create fitted model by combining the mathematics and the interpretations of the parameters. $\beta_0$ is the difference between the the average age of Republicans and that of Democrats. $\beta_1$ is the average age of Democrats. As shown in our model, $\beta_0$ and $\beta_1$ are two terms that allow us to make our model. The second part in the right-hand side, $\epsilon$ ("epsilon"), represents the unexplained part of the outcome and is called the error term. In other words, $\sigma$ is what plays a role with age that is not factored into our model. We assume that this error follows a normal distribution with an expected value of 0 (meaning it is 0 on average) and it is simply the difference between the outcome and our model predictions. Therefore, we have three main parameters: $\beta_0$, $\beta_1$, and $\sigma$ that we will discuss within this section. 
+ * Although terminology differs across academic fields, the most common term to describe a model like this is a "regression." We are "regressing" `age` on `party` in order to see if they are associated with each other. The formula above is a "regression formula", and the model is a "regression model." This terminology would also apply to our model of `height` in @sec-two-parameters.
 
-Some things we want to note about our model:
+ * The model in @sec-two-parameters is sometimes called "intercept-only" because the only (interesting) parameter is the intercept. This model has two non-nuisance parameters: $\beta_0$ and $\beta_1$. 
 
--   The small $i$'s are an index to number the observations. It is equivalent to the "ID" column in our Preceptor Table and simply states that the outcome for person $i$ is explained by the modeled and non-modeled factors for person $i$.
+#### Models
 
--   The model is a claim about how the world works, not just for the 115 individuals for which we have data but for the all the people in the population for which we seek to draw inferences.
-
--   Although terminology differs across academic fields, the most common term to describe a model like this is a "regression." We are "regressing" `age` on `party` in order to see if they are associated with each other. The formula above is a "regression formula", and the model is a "regression model." This terminology would also apply to our model of `height` in @sec-two-parameters.
-
--   The model in @sec-two-parameters is sometimes called "intercept-only" because the only (interesting) parameter is the intercept.
-
-#### Fitted Model
-
-With the help of **Courage** we can translate this math into code.
-
-To get posterior distributions for our three parameters, we will again use `stan_glm()`, just as we did in @sec-two-parameters.
+Translate this math into code:
 
 ```{r}
-fit_1 <- stan_glm(age ~ party, 
-                  data = trains, 
-                  family = gaussian,
-                  seed = 17,
-                  refresh = 0)
+#| code-fold: false
+fit_1 <- brm(formula = age ~ party,
+             data = trains,
+             family = gaussian())
 ```
 
--   The variable before the tilde, `age`, is our outcome.
+ * The variable before the tilde, `age`, is our outcome.
 
--   The only explanatory variable is `party`. This variable has only two values, 'Democrat' and 'Republican'.
+ * The only explanatory variable is `party`. This variable has only two values, 'Democrat' and 'Republican'.
 
--   Recall that our model is linear. Since we are using a linear model, the `family` we use will be `gaussian`.
+ * Recall that our model is linear. Since we are using a linear model, the `family` we use will be `gaussian()`. Since `gaussian()` is the defaul value for `family` in `brm()`, we don't need this line. But always indicating the `family` is probably good practice.
 
 The resulting output:
 
@@ -283,11 +279,25 @@ The resulting output:
 fit_1
 ```
 
-The key concept is the idea of a "population." From which larger population is the data we have being (conceptually) drawn? If we were only interested in the age of individuals in our data set, we would have no need for inference. *We know everyone's ages already.* We only need tools like `stan_glm()` if we seek to understand individuals not in our data.
+Much of the output is the same as we have seen in previous chapters. Still, you should always check the Family, Links, Formula, and Data sections to confirm that they are correct. 
 
-The intercept, 42.6 estimates the age of Democrats. The median suggests that the average age that is represented by the age is roughly 42.6 with a confidence of about 1.2 (which is good). We want to have a MAD_SD that is smaller because that represents that the median will be more accurate when predicted. The `partyRepublican` estimate which is -1.5 means that on average they would be 1.5 years younger than the median age for the Democrats. However, in this case the difference between the average age of Democrats and Republicans is less accurate when compared to the intercept above. The MAD_SD of `partyRepublican` is higher at 3.0 which means that there is more room for error to occur.
+The posterior distributions for $\beto_0$ and $\beta_1$ from our mathematical structure above are specified in the "Intercept" and "partyRepublican" lines.
+
+Behind the scenes, `brm()`, and other R modeling functions, need to modify categorical variables like `party` before they can be used in a regression. The default approach for variables with two values is to create a new variable which has a value of 0 if the observation matches the first value and 1 if it matches the second. The order of the levels of the variable is determined alphabetically if the variable is character, as `party` is in `trains`.
+
+<!-- DK: Introduce tidy()? That requires **broom.mixed**. I don't like using so many packages. Could also move directly to gtsummary::tbl_regression(). Need to figure out how I want students to present regression summaries. -->
+
+In other words, `partyRepublican` is a 0/1 variable which is 0 in the value of `party` for that observation is "Democrat" and 1 if it is "Republican." This 0/1 structure is just like the $biden$ variable from @sec-models.  
+
+
+The intercept, 42.6 estimates the age of Democrats. The median suggests that the average age that is represented by the age is roughly 42.6 with a standard error of about 1.2.  The `partyRepublican` estimate which is -1.5 means that on average Republicans would be 1.5 years younger than Democrats. However, there is a great deal of uncertainty. The 95% confidence interval for the posterior distribution of $\beta_1$, which is the average age difference between Republicans and Democrats, is -7.3 to 4.6. We don't really know if the difference is positive or negative! 
 
 When we are creating our fitted model we need to consider the type of model we are creating. Any model with the age as its dependent variable will be predictive, not causal, for the reason that nothing, other than time, can change your age. You are X years old. It would not matter if you changed your party registration from Democrat to Republican or vice versa. Your age is your age. The underlying model which connects age with party is less important than the brute statistical fact that there is a connection. *Predictive models care nothing about causality.*
+
+#### Data Generating Mechanism
+
+#### Tests
+
 
 #### Model Checks
 
@@ -372,6 +382,10 @@ Let's take a deeper look at the graphs that we have above. Our graph in the dark
 
 Recall the Preceptor Table and the units from the beginning. We are concerned with three main ideas from the Preceptor Table: our units (individuals with unique attributes at the train station), our outcome (individual's age), our covariates (the party membership of each individual). With the help of the data generating mechanism that we have created from our fitted model we can fill in the missing values to the Preceptor Table. We use the data generating mechanism as the last step of **courage** as it allows us to analyze and view our fitted model's data.
 
+$$ age_i = \beta_0  + \beta_1 democratic_i + \epsilon_i$$
+
+where \n $$democrat_i \in \{0,1\}$$ \n $$\epsilon_i \sim N(0, \sigma^2)$$
+
 Let's view all of our fitted data through a pleasing table:
 
 ```{r}
@@ -398,6 +412,17 @@ In summary: we model the age of individuals at a train station as a linear funct
 #| fig.cap: Temperance
 knitr::include_graphics("other/images/Temperance.jpg")
 ```
+
+Courage produced the data generating mechanism. Temperance guides us in the use of the DGM --- or the "model" ---  we have created to answer the questions with which we began. We create posteriors for the quantities of interest. We should be modest in the claims we make. The posteriors we create are never the “truth.” The assumptions we made to create the model are never perfect. Yet decisions made with flawed posteriors are almost always better than decisions made without them.
+
+#### The Question
+
+
+
+#### The Answer
+
+
+#### Humility
 
 **Courage** gave us the data generating mechanism. **Temperance** guides us in the use of the DGM to answer the questions we began with.
 
@@ -516,7 +541,7 @@ We need to maintain humility when we are making our inferences and decisions. St
 
 ## att_end \~ treatment
 
-Above, we created a predictive model: with someone's party affiliation, we can make a better guess as to what their age is than we could have in the absence of information about their party. There was nothing causal about that model. Changing someone's party registration can not change their age. In this example, we build a causal model. Consider these two questions:
+Above, we created a predictive model: with someone's party affiliation, we can make a better guess as to what their age is than we could have in the absence of information about their party. There was nothing causal about that model. Changing someone's party registration can not change their age. In this example, we build a causal model. Consider two questions:
 
 *What is the average treatment effect, of exposing people to Spanish-speakers, on their attitudes toward immigration?*
 
@@ -535,13 +560,13 @@ Wisdom requires the creation of a Preceptor Table, an examination of our data, a
 
 #### Preceptor Table
 
-First, do we need a **causal** or **predictive** model? In this case, the model is clearly causal, so our Preceptor Table will have two columns for the potential outcomes. If all you need to know to answer the question is the outcome under one value of the treatment, then the model is predictive. Example: What is the attitude for all women if they were to get the treatment? Here we a question that implies a comparison, *for a single individual unit*, between two states of the world, when where they get treatment and one where they do not get treatment.
+*Causal or predictive model*: In this case, the model is clearly causal, so our Preceptor Table will have two columns for the potential outcomes. If all you need to know to answer the question is the outcome under one value of the treatment, then the model is predictive. 
 
-Second, what is the outcome? A person's attitude toward immigration is the **outcome**. When we take a look at the questions we discover a flaw exists. The individual that asked this question did not tell us where or when we are looking at these questions. It is important to understand where and when that we are answering these questions because otherwise our data could be not accurately applied to the whole country, nation, or specific state. Therefore, by diving deeper within these questions we are able to accurately answer our question with the population that it refers to. For the questions that we have at hand we will be talking about all the adults in July 1, 2012 at the location of Chicago, Illinois which will allow us to answer the questions more accurately. 
+*Outcome*: A person's attitude toward immigration is the **outcome**. When we take a look at the questions we discover a flaw exists. The individual that asked this question did not tell us where or when we are looking at these questions. It is important to understand where and when that we are answering these questions because otherwise our data could be not accurately applied to the whole country, nation, or specific state. Therefore, by diving deeper within these questions we are able to accurately answer our question with the population that it refers to. For the questions that we have at hand we will be talking about all the adults in July 1, 2012 at the location of Chicago, Illinois which will allow us to answer the questions more accurately. 
 
-Third, what are the **units**? Our units for this scenario would be individuals because the questions are about the attributes of unique people at the station.
+*Units*: Our units for this scenario would be individuals because the questions are about the attributes of unique people at the station.
 
-Fourth, do we have a **treatment**? Yes. In any causal model, there is at least one covariate which is defined as the "treatment," something which we can manipulate so that some units receive one version and other units get a different version. A "treatment" is just a covariate in which we *can* manipulate and *need* to manipulate, at least in theory, to answer the question. In this case, the treatment is exposure to Spanish-speakers. Units can either be exposed, i.e., they receive the "treatment," or they can not be exposed, i.e., they receive the "control." 
+*Treatment* In any causal model, there is at least one covariate which is defined as the "treatment," something which we can manipulate so that some units receive one version and other units get a different version. A "treatment" is just a covariate which we *could* manipulate, at least in theory. In this case, the treatment is exposure to Spanish-speakers. Units can either be exposed, i.e., they receive the "treatment," or they can not be exposed, i.e., they receive the "control." 
 
 Let's look at our refined question to create our Preceptor Table:
 
@@ -573,9 +598,11 @@ tibble(ID = c("1", "2", "...", "10", "11", "...", "N"),
   tab_spanner(label = "Covariate", columns = c(treatment))
 ```
 
+<!-- DK: Make the explanation of the stars a footnote. -->
+
 Note: the values that have a star next to them symbolize the possible values that may exist if they were "control" instead of "treated" or vice versa.
 
-Recall: a Preceptor Table is the smallest possible table with rows and columns such that, if there is no missing data, all our questions are easy to answer. To answer questions --- like "What is the average treatment effect, of exposing people to Spanish-speakers, on their attitudes toward immigration? and What is the largest causal effect which still has a 1 in 10 chance of occurring?" --- we need a row for every individual.
+A Preceptor Table is the smallest possible table with rows and columns such that, if there is no missing data, all our questions are easy to answer. To answer questions --- like "What is the average treatment effect, of exposing people to Spanish-speakers, on their attitudes toward immigration?" or "What is the largest causal effect which still has a 1 in 10 chance of occurring?" --- we need a row for every individual.
 
 #### Exploratory Data Analysis
 
@@ -603,7 +630,7 @@ trains |>
   ggplot(aes(x = att_end, fill = treatment)) +
     geom_bar(aes(y = after_stat(count/sum(count))),
                    position = "dodge") +
-    labs(title = "Expected Attitude Toward Immigration",
+    labs(title = "Ending Attitude Toward Immigration",
          subtitle = "Treated Individuals Are More Conservative",
          x = "Attitude",
          y = "Probability",
@@ -616,9 +643,9 @@ We can never know the true average attitude of all treated in the population. Bu
 
 #### Validity
 
-Now the **assumption of validity** may not hold due to the possibility of when our data was collected. For example if the data was collected in the morning for our Preceptor Table the people that are interviewed may be more grumpy when going to work. Compared to the possibility of our other data being collected at night when the people are more relaxed coming back from work to go home.
+Now the *assumption of validity* may not hold due to the possibility of when our data was collected. For example if the data was collected in the morning for our Preceptor Table the people that are interviewed may be more grumpy when going to work. Compared to the possibility of our other data being collected at night when the people are more relaxed coming back from work to go home.
 
-Another case where the **assumption of validity** may not hold because the variables may be too different from each other within the data and the Preceptor Table as the columns are not similar enough between each other. One possible reason we may consider is that the Preceptor Table is all the people in Chicago in 2023. However, the data we have involves train commuters in the Boston area in 2012.
+Another case where the *assumption of validity* may not hold because the variables may be too different from each other within the data and the Preceptor Table as the columns are not similar enough between each other. One possible reason we may consider is that the Preceptor Table is all the people in Chicago in 2024. However, the data we have involves train commuters in the Boston area in 2012.
 
 While the assumption can prove validity to be wrong, overall, the assumption of validity seems reasonable enough. `att_end` and `treatment` are similar enough between to the underlying concepts in the Preceptor Table and the data that we can "stack" them on top of each other. We can assume that both are drawn from the same population.
 
@@ -630,7 +657,7 @@ While the assumption can prove validity to be wrong, overall, the assumption of 
 knitr::include_graphics("other/images/Justice.jpg")
 ```
 
-The five concerns of Justice in a data science project remain the same: Population Table, stability, representativeness, unconfoundedness and the mathematical structure of the data generating mechanism (DGM).
+The four concerns of Justice remain the same: Population Table, stability, representativeness, and unconfoundedness.
 
 #### Population Table
 
@@ -647,7 +674,7 @@ tibble(source = c("...", "Data", "Data", "...",
        city = c("...", "Boston, MA", "Boston, MA", "...", 
                 "...", "Chicago, IL", "Chicago, IL", "..."),
        year = c("...", "2012", "2012", "...", 
-                "...", "2023", "2023", "..."),
+                "...", "2024", "2024", "..."),
        treatment = c("...", "No", "Yes", "...", 
                      "...", "...", "...", "...")) |>
   
@@ -678,7 +705,7 @@ Our **actual data** rows contain the information that we *do* know. These rows c
 
 #### Stability
 
-Consider the **stability** of our model for the relationship between `att_end` and `treatment` between 2012 and 2023. Is this relationship from 2012, four years before Donald Trump's election as president, still the same? While we might not know for sure, we have to consider this in order to continue and make assumptions with our data. For our purposes, we will consider the relationship to be stable. Even though we know that there may have been some changes, we will consider the model to be the same in both years.
+Consider the **stability** of our model for the relationship between `att_end` and `treatment` between 2012 and 2024. Is this relationship from 2012, four years before Donald Trump's election as president, still the same? While we might not know for sure, we have to consider this in order to continue and make assumptions with our data. For our purposes, we will consider the relationship to be stable. Even though we know that there may have been some changes, we will consider the model to be the same in both years.
 
 #### Representativeness
 
@@ -698,13 +725,13 @@ Once we have the mathematical structure of the model, we use Courage to create a
 
 The math for this model is exactly the same as the math for the predictive model in the first part of this chapter, although we change the notation a bit for clarity.
 
-$$ attitude_i = \beta_1 + \beta_2 control_i + \epsilon_i$$
+$$ attitude_i = \beta_0 + \beta_1 control_i + \epsilon_i$$
 
 where \n $$control_i \in \{0,1\}$$ \n $$\epsilon_i \sim N(0, \sigma^2)$$
 
 Nothing has changed, except for the meaning of the data items and the interpretations of the parameters. Let's take a look at the parameters of the situation which plays a role alongside the mathematics to create the fitted model.
 
-On the left-hand side we still have the outcome, $y$, however in this case, this is a person's attitude toward immigration after the experiment is complete. $y$ takes on integer values between 3 and 15 inclusive. On the right-hand side, the part contained in the model will consist of the terms $\beta_1$ and $\beta_2$. These two terms stand for the intercept and the control and as before, each term consists of a parameter and a data point. $\beta_1$ is the average attitude toward immigration for treated individuals. $\beta_2$ is the difference between the attitude toward immigration for treated individuals --- those exposed to Spanish-speakers --- and the average attitude toward immigration for control individuals --- those not exposed to Spanish-speakers. These are both our parameters. The $x$'s are our explanatory variables and take the values 1 or 0. In other words, these are binary variables and are mutually exclusive.The last part, $\epsilon$ ("epsilon"), represents the part that is not explained by our model and is called the error term. It is simply the difference between the outcome and our model predictions. In our particular case, this includes all factors that have an influence on someone's attitude toward immigration but are not explained by treatment status. We assume that this error follows a normal distribution with an expected value of 0.
+On the left-hand side we still have the outcome, $y$, however in this case, this is a person's attitude toward immigration after the experiment is complete. $y$ takes on integer values between 3 and 15 inclusive. On the right-hand side, the part contained in the model will consist of the terms $\beta_0$ and $\beta_1$. These two terms stand for the intercept and the control and as before, each term consists of a parameter and a data point. $\beta_0$ is the average attitude toward immigration for treated individuals. $\beta_1$ is the difference between the attitude toward immigration for treated individuals --- those exposed to Spanish-speakers --- and the average attitude toward immigration for control individuals --- those not exposed to Spanish-speakers. These are both our parameters. The $x$'s are our explanatory variables and take the values 1 or 0. In other words, these are binary variables and are mutually exclusive.The last part, $\epsilon$ ("epsilon"), represents the part that is not explained by our model and is called the error term. It is simply the difference between the outcome and our model predictions. In our particular case, this includes all factors that have an influence on someone's attitude toward immigration but are not explained by treatment status. We assume that this error follows a normal distribution with an expected value of 0.
 
 -   Note that the formula applies to everyone in the population, not just the 115 people for whom we have data. The index $i$ does not just go from 1 through 115. It goes from 1 through $N$, where $N$ is the number of individuals in the population. Conceptually, everyone has an `att_end` under treatment and under control.
 
@@ -783,7 +810,7 @@ gtsummary::tbl_regression(fit_2, intercept = TRUE) %>%
   bold_labels()
 ```
 
-`(Intercept)` corresponds to 10.0 which is $\beta_1$. As always, R has, behind the scenes, estimated the entire posterior probability distribution for $\beta_1$. But the basic print method for these objects can't show the entire distribution, so it gives us summary numbers: the median and the MAD SD. Speaking roughly, we would expect about 95% of the values in the posterior to be within two MAD SD's of the median. In other words, we are 95% confident that the true, but unknowable, average attitude toward immigration among the Treated in the population to be between 9.2 and 10.8. `treatmentControl` corresponds to $\beta_2$. The `treatmentControl` estimate is -1.5 attitudes younger as the difference between "control" and "treated" has been shown to be younger regarding attitudes for the median values.
+`(Intercept)` corresponds to 10.0 which is $\beta_0$. As always, R has, behind the scenes, estimated the entire posterior probability distribution for $\beta_0$. But the basic print method for these objects can't show the entire distribution, so it gives us summary numbers: the median and the MAD SD. Speaking roughly, we would expect about 95% of the values in the posterior to be within two MAD SD's of the median. In other words, we are 95% confident that the true, but unknowable, average attitude toward immigration among the Treated in the population to be between 9.2 and 10.8. `treatmentControl` corresponds to $\beta_1$. The `treatmentControl` estimate is -1.5 attitudes younger as the difference between "control" and "treated" has been shown to be younger regarding attitudes for the median values.
 
 Up until now, we have used the Bayesian interpretation of "confidence interval." This is also the intuitive meaning which, outside of academia, is almost universal. There is a truth out there. We don't know, and sometimes can't know, the truth. A confidence interval, and its associated confidence level, tells us how likely the truth is to lie within a specific range. If your boss asks you for a confidence interval, she almost certainly is using this interpretation.
 
@@ -801,9 +828,20 @@ knitr::include_graphics("other/images/Temperance.jpg")
 
 **Courage** gave us the fitted model. With **Temperance** we can create posteriors of the quantities of interest. We should be modest in the claims we make.
 
+#### The Question
+
 Recall the first question with which we began this section:
 
 -   What is the average treatment effect, of exposing people to Spanish-speakers, on their attitudes toward immigration?
+
+#### The Answer
+
+
+#### Humility
+
+
+
+
 
 We can use `posterior_epred()` to answer this question. Create a tibble and use it as we have done before:
 
@@ -886,8 +924,6 @@ We need to maintain humility when we are making our inferences and decisions. St
 
 ## income \~ age
 
-<!-- Need to fix the years. Data is from 2012, so question ought to be about 2020. -->
-
 So far, we have only created models in which the predictor variable is discrete, with two possible values. `party` is either "Democrat" or "Republican". `treatment` is either "Treated" or "Control". Often times, however, the predictor variable will be continuous. We can answer these and similar questions by creating a model that uses party affiliation to predict age. Let's follow the four Cardinal Virtue: Wisdom, Justice, Courage and Temperance. Fortunately, the exact same approach works in this case. Consider:
 
 *What would you expect the income to be for a 40-year old?*
@@ -943,7 +979,7 @@ tibble(ID = c("1", "2", "...", "10", "11", "...", "N"),
 
 Recall: a Preceptor Table is table with rows and columns such that, if there is no missing data, all our questions are easy to answer. To answer questions — like “What would you expect the income to be for a 40-year old?” — we need a row for every individual at the station.
 
-When we take a look at the questions we discover a flaw exists. The individual that asked this question did not tell us where or when we are looking at these questions. Do we need to look at the year 2022, 2020, 2018? Do we need to look in Florida, Connecticut, Maryland? It is vital to understand where and when that we are answering these questions because otherwise our data could be not accurately applied to the whole country, nation, or specific state. Therefore, by diving deeper within these questions we are able to accurately answer our question with the population that it refers to. For the questions that we have at hand we will be using the year 2023 and the location of Chicago, Illinois which will allow us to answer the questions more accurately. 
+When we take a look at the questions we discover a flaw exists. The individual that asked this question did not tell us where or when we are looking at these questions. Do we need to look at the year 2022, 2020, 2018? Do we need to look in Florida, Connecticut, Maryland? It is vital to understand where and when that we are answering these questions because otherwise our data could be not accurately applied to the whole country, nation, or specific state. Therefore, by diving deeper within these questions we are able to accurately answer our question with the population that it refers to. For the questions that we have at hand we will be using the year 2024 and the location of Chicago, Illinois which will allow us to answer the questions more accurately. 
 
 #### Data Analysis
 
@@ -1009,7 +1045,7 @@ tibble(source = c("...", "Data", "Data", "...",
        city = c("...", "Boston, MA", "Boston, MA", "...", 
                 "...", "Wilmington, DE", "Atlanta, GA", "..."),
        year = c("...", "2012", "2012", "...", 
-                "...", "2023", "2023", "..."),
+                "...", "2024", "2024", "..."),
        age = c("...", "43", "52", "...", 
                "...", "...", "...", "...")) |>
   
@@ -1177,6 +1213,14 @@ In summary: we model the income of individuals at a train station as a linear fu
 #| fig.cap: Temperance
 knitr::include_graphics("other/images/Temperance.jpg")
 ```
+
+#### The Question
+
+
+#### The Answer
+
+
+#### Humility
 
 **Courage** gave us the fitted model. With **Temperance** the posteriors we create are never the “truth.” The assumptions we made to create the model are never perfect.
 
@@ -1353,7 +1397,7 @@ tibble(source = c("...", "Data", "Data", "...",
        city = c("...", "Boston, MA", "Boston, MA", "...", 
                 "...", "Chicago, IL", "Chicago, IL", "..."),
        year = c("...", "2012", "2012", "...", 
-                "...", "2023", "2023", "..."),
+                "...", "2024", "2024", "..."),
        income = c("...", "150000", "50000", "...",
                  "...", "...", "...", "...")) |>
   gt() |>
@@ -1379,11 +1423,11 @@ Note: the values that have a star next to them symbolize the possible values tha
 
 Our year within the Population table is an example of the moment in time.
 
-Look at the **validity** of the `liberal` variable. This column has the values "Liberal" and "Not Liberal" to convey the political ideology of the train commuters. We must determine if the column `liberal`, and therefore the meaning of being liberal, is the same in Boston in 2012 as in the US in 2023. If we can determine these to be the same, then we can assume validity, and in this case, because the core beliefs of being liberal have not changed very much between 2012 and 2023, we can determine that the data is valid.
+Look at the **validity** of the `liberal` variable. This column has the values "Liberal" and "Not Liberal" to convey the political ideology of the train commuters. We must determine if the column `liberal`, and therefore the meaning of being liberal, is the same in Boston in 2012 as in the US in 2024. If we can determine these to be the same, then we can assume validity, and in this case, because the core beliefs of being liberal have not changed very much between 2012 and 2024, we can determine that the data is valid.
 
 #### Stability
 
-Let's look at **stability** with the relationship between `liberal` and `income` and determine whether or not we believe that this relationship has changed between 2012 and 2023. With our knowledge of the world, do we have any reason to believe that this has changed? What if between 2012 and 2023, income increased for those who are liberal? Well, then our model for the the relationship between `income` and `liberal` would have changed over the years, and therefore so would the model. However, since with our knowledge of the world we have no reason to believe that something of the sorts happened to affect this relationship, we can consider our model to be stable.
+Let's look at **stability** with the relationship between `liberal` and `income` and determine whether or not we believe that this relationship has changed between 2012 and 2024. With our knowledge of the world, do we have any reason to believe that this has changed? What if between 2012 and 2024, income increased for those who are liberal? Well, then our model for the the relationship between `income` and `liberal` would have changed over the years, and therefore so would the model. However, since with our knowledge of the world we have no reason to believe that something of the sorts happened to affect this relationship, we can consider our model to be stable.
 
 #### Representativeness
 
@@ -1473,6 +1517,15 @@ In summary: we model the income of individuals at a train station as a linear fu
 #| fig.cap: Temperance
 knitr::include_graphics("other/images/Temperance.jpg")
 ```
+
+#### The Question
+
+
+#### The Answer
+
+
+#### Humility
+
 
 **Courage** gave us the fitted model. With **Temperance** the decisions made with flawed posteriors are almost always better than decisions made without them.
 
