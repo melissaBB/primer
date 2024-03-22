@@ -10,15 +10,9 @@ library(gtsummary)
 library(patchwork)
 ```
 
-<!-- Is the chapter too long? Should I just have a single question for each section? Should I cut out one of the sections entirely? -->
-
 <!-- Standardize years. Data is from 2012. Questions are about 2024. -->
 
-<!-- Remove sampling & assignment mechanism -->
-
 <!-- Come up with common ways in which a lack of representativeness causes problems. This is a list of things that we can check each time when we are interrogating a data science problem. Key issue is the correlation, if anything, between the "assignment mechanism" or "sampling mechanism" and other variables. Discuss sampling mechanism in all cases except att_end ~ treatment. For that, use "assignment mechanism." -->
-
-<!-- Make residual plots consistent in this chapter! Also, we should ensure that the width of 10 units is the same in each plot. Or does that already happen? Want the intuition that, the more predictive the model, the smaller the remaining variation in the residuals.  -->
 
 <!-- Whenever we have a predictive model, use language like "when comparing." Avoid even the hint of a causal claim. -->
 

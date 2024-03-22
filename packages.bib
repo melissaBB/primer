@@ -7,12 +7,13 @@
   url = {https://www.R-project.org/},
 }
 
-@Manual{R-broom.mixed,
-  title = {broom.mixed: Tidying Methods for Mixed Models},
-  author = {Ben Bolker and David Robinson},
-  year = {2022},
-  note = {R package version 0.2.9.4},
-  url = {https://github.com/bbolker/broom.mixed},
+@Manual{R-brms,
+  title = {brms: Bayesian Regression Models using Stan},
+  author = {Paul-Christian Bürkner},
+  year = {2023},
+  note = {R package version 2.20.4, 
+https://discourse.mc-stan.org/},
+  url = {https://github.com/paul-buerkner/brms},
 }
 
 @Manual{R-dplyr,
@@ -32,15 +33,6 @@ https://github.com/tidyverse/forcats},
   url = {https://forcats.tidyverse.org/},
 }
 
-@Manual{R-ggdist,
-  title = {ggdist: Visualizations of Distributions and Uncertainty},
-  author = {Matthew Kay},
-  year = {2023},
-  note = {R package version 3.3.1, 
-https://github.com/mjskay/ggdist/},
-  url = {https://mjskay.github.io/ggdist/},
-}
-
 @Manual{R-ggplot2,
   title = {ggplot2: Create Elegant Data Visualisations Using the Grammar of Graphics},
   author = {Hadley Wickham and Winston Chang and Lionel Henry and Thomas Lin Pedersen and Kohske Takahashi and Claus Wilke and Kara Woo and Hiroaki Yutani and Dewey Dunnington},
@@ -48,14 +40,6 @@ https://github.com/mjskay/ggdist/},
   note = {R package version 3.4.4, 
 https://github.com/tidyverse/ggplot2},
   url = {https://ggplot2.tidyverse.org},
-}
-
-@Manual{R-ggthemes,
-  title = {ggthemes: Extra Themes, Scales and Geoms for ggplot2},
-  author = {Jeffrey B. Arnold},
-  year = {2023},
-  note = {R package version 5.0.0},
-  url = {https://github.com/jrnold/ggthemes},
 }
 
 @Manual{R-gt,
@@ -75,15 +59,6 @@ https://www.danieldsjoberg.com/gtsummary/},
   url = {https://github.com/ddsjoberg/gtsummary},
 }
 
-@Manual{R-janitor,
-  title = {janitor: Simple Tools for Examining and Cleaning Dirty Data},
-  author = {Sam Firke},
-  year = {2023},
-  note = {R package version 2.2.0, 
-https://sfirke.github.io/janitor/},
-  url = {https://github.com/sfirke/janitor},
-}
-
 @Manual{R-lubridate,
   title = {lubridate: Make Dealing with Dates a Little Easier},
   author = {Vitalie Spinu and Garrett Grolemund and Hadley Wickham},
@@ -91,6 +66,15 @@ https://sfirke.github.io/janitor/},
   note = {R package version 1.9.3, 
 https://github.com/tidyverse/lubridate},
   url = {https://lubridate.tidyverse.org},
+}
+
+@Manual{R-patchwork,
+  title = {patchwork: The Composer of Plots},
+  author = {Thomas Lin Pedersen},
+  year = {2024},
+  note = {R package version 1.2.0, 
+https://github.com/thomasp85/patchwork},
+  url = {https://patchwork.data-imaginist.com},
 }
 
 
@@ -119,14 +103,6 @@ https://dirk.eddelbuettel.com/code/rcpp.html},
   url = {https://readr.tidyverse.org},
 }
 
-@Manual{R-rstanarm,
-  title = {rstanarm: Bayesian Applied Regression Modeling via Stan},
-  author = {Jonah Gabry and Ben Goodrich},
-  year = {2024},
-  note = {R package version 2.32.1},
-  url = {https://mc-stan.org/rstanarm/},
-}
-
 @Manual{R-stringr,
   title = {stringr: Simple, Consistent Wrappers for Common String Operations},
   author = {Hadley Wickham},
@@ -142,6 +118,15 @@ https://github.com/tidyverse/stringr},
   year = {2023},
   note = {R package version 3.2.1},
   url = {https://tibble.tidyverse.org/},
+}
+
+@Manual{R-tidybayes,
+  title = {tidybayes: Tidy Data and Geoms for Bayesian Models},
+  author = {Matthew Kay},
+  year = {2023},
+  note = {R package version 3.0.6, 
+https://github.com/mjskay/tidybayes/},
+  url = {https://mjskay.github.io/tidybayes/},
 }
 
 @Manual{R-tidyr,
@@ -161,13 +146,40 @@ https://github.com/tidyverse/tidyverse},
   url = {https://tidyverse.tidyverse.org},
 }
 
-@Article{ggdist2024,
-  author = {Matthew Kay},
-  title = {{ggdist}: Visualizations of Distributions and Uncertainty in the Grammar of Graphics},
-  journal = {IEEE Transactions on Visualization and Computer Graphics},
-  year = {2024},
-  pages = {1--11},
-  doi = {10.1109/TVCG.2023.3327195},
+@Article{brms2017,
+  title = {{brms}: An {R} Package for {Bayesian} Multilevel Models Using {Stan}},
+  author = {Paul-Christian Bürkner},
+  journal = {Journal of Statistical Software},
+  year = {2017},
+  volume = {80},
+  number = {1},
+  pages = {1--28},
+  doi = {10.18637/jss.v080.i01},
+  encoding = {UTF-8},
+}
+
+@Article{brms2018,
+  title = {Advanced {Bayesian} Multilevel Modeling with the {R} Package {brms}},
+  author = {Paul-Christian Bürkner},
+  journal = {The R Journal},
+  year = {2018},
+  volume = {10},
+  number = {1},
+  pages = {395--411},
+  doi = {10.32614/RJ-2018-017},
+  encoding = {UTF-8},
+}
+
+@Article{brms2021,
+  title = {Bayesian Item Response Modeling in {R} with {brms} and {Stan}},
+  author = {Paul-Christian Bürkner},
+  journal = {Journal of Statistical Software},
+  year = {2021},
+  volume = {100},
+  number = {5},
+  pages = {1--54},
+  doi = {10.18637/jss.v100.i05},
+  encoding = {UTF-8},
 }
 
 @Book{ggplot22016,
@@ -238,14 +250,6 @@ https://github.com/tidyverse/tidyverse},
   number = {1},
   pages = {28-36},
   doi = {10.1080/00031305.2017.1375990},
-}
-
-@Misc{rstanarm2018,
-  title = {Joint longitudinal and time-to-event models via {Stan}.},
-  author = {SL Brilleman and MJ Crowther and M Moreno-Betancur and J {Buros Novik} and R Wolfe},
-  note = {StanCon 2018. 10-12 Jan 2018. Pacific Grove, CA, USA.},
-  url = {https://github.com/stan-dev/stancon_talks/},
-  year = {2018},
 }
 
 @Article{tidyverse2019,

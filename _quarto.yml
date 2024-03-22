@@ -36,10 +36,10 @@ book:
     - sampling.qmd
     - models.qmd
     - two-parameters.qmd
-    - three-parameters.qmd
-    - four-parameters.qmd
-    - five-parameters.qmd
-    - n-parameters.qmd
+    - three-parameters-causal.qmd
+    # - four-parameters.qmd
+    # - five-parameters.qmd
+    # - n-parameters.qmd
     - key-concepts.qmd
     - set-up.qmd
     - style-guide.qmd 

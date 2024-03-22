@@ -1,11 +1,25 @@
 # Priorities
 
 
-Split One Parameter chapter into two parts: Sampling and Modeling. The Sampling chapter is everything except brms model. It also adds back in the polling example from Modern Dive. This allows it to review the Cardinal Virtues, albeit perhaps without making any well-defined predictions, or perhaps doing so just with a simple standard error calculation. It might also calculate the posterior by hand, although maybe not. It points out that some questions are easy to answer but that, without posterior predict distributions, other questions are harder. 
+Could have an addendum at the end of some/all chapters which would cover other random stuff, allowing all later chapters to just focus on the cardinal virtues. Or could begin each chapter with new stuff which is then applied in the chapter. Or could have non-cardinal virtue chapters which cover that material. Lots of options!
+
+Instead of fit_1 everywhere, should use like fit_att_end or fit_income?
+
+Call the true DGM Preceptor's DGM, as a counterpart to the Preceptor Table.
+
+Could we roll our own pp_check? I would prefer more control of the resulting plots. How hard would it be? Maybe just one call to add_predictive_draws() with ndraws set to 10?
+
+Replace rstanarm with brms everywhere.
 
 Need to remove all rstanarm usages.
 
-Can't rebuild to clean up two-parameters and any tidy files still remaining.
+Are questions bolded, italicized, indented or more than one of these things?
+
+Change sampling.qmd to samples.qmd?
+
+Split up 3 parameters into four chapters.
+
+Introduce tidy()? That requires **broom.mixed**. I don't like using so many packages. Could also move directly to gtsummary::tbl_regression(). Need to figure out how I want students to present regression summaries, and then teach them how to do so.
 
 
 In the short term, we could leave the two parameter and later chapters alone. They all still work, even though we are moving away from this naming scheme and/or structure.

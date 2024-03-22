@@ -75,7 +75,7 @@ Once we have our question, we can start with the Cardinal Virtues. Each section 
 
 ### Wisdom
 
- > Wisdom requires the creation of a Preceptor Table, an examination of our data, and a determination, using the concept of validity, as to whether or not we can (reasonably!) assume that the two come from the same population.
+> Wisdom requires the creation of a Preceptor Table, an examination of our data, and a determination, using the concept of validity, as to whether or not we can (reasonably!) assume that the two come from the same population.
 
 #### Preceptor Table
 
@@ -288,13 +288,13 @@ We check our models for consistency with the data we have using posterior predic
 
 > Courage produced the data generating mechanism. Temperance guides us in the use of the DGM --- or the "model" ---  we have created to answer the questions with which we began. We create posteriors for the quantities of interest. We should be modest in the claims we make. The posteriors we create are never the “truth.” The assumptions we made to create the model are never perfect. Yet decisions made with flawed posteriors are almost always better than decisions made without them.
 
-The sub-sections of Temperance include: The Question, The Answer, and Humility.
+The two sub-sections of Temperance are: Questions and Answers, and Humility.
 
-#### The Question
+#### Questions and Answers
 
-We go back to the question with which we started the journey. We discuss how that question has evolved, in a back-and-forth process by which we try to ensure that the data we have and the question we ask are close enough to make the process plausible. 
+We go back to the question with which we started the journey. We discuss how that question has evolved, in a back-and-forth process by which we try to ensure that the data we have and the question we ask are close enough to make the process plausible.
 
-#### The Answer
+We revist the Preceptor Table. (We might or might not reprint it, perhaps modified based on the back-and-forth research process.) We emphasize that the DGM allows us to fill in missing outcomes in the Preceptor Table, thereby allowing us to answer our questions. 
 
 We use the data generating mechanism from Courage to answer the question. This is, obviously, the core of the Temperance section.
 
@@ -306,14 +306,21 @@ or
 
 > *Of the people making $100,000 or more per year, about 55% are liberal, although the true number could be as low as 53% or as high as 57%.*
 
-Depending on the context, you might have more than one Quantity of Interest to discuss. But there must be at least one. You are no ready to provide the entire concluding paragraph.
+Some cases, like these, feature numbers which have a natural interpretation. We know what percentages are. But, often, the key numbers require some more discussion. For example: 
+
+> *The causal effect of hearing Spanish-speakers is a more conservative attitude toward immigration, a change of about 1.5 ($\pm$ 0.5) on a 15 point scale.*
+
+This is correct, as far as it goes, but we have no idea if 1.5 is a "big" or "small" change. We need some perspective>
+
+> *The causal effect of hearing Spanish-speakers is a more conservative attitude toward immigration, a change of about 1.5 ($\pm$ 0.5) on a 15 point scale. For perspective, the difference between Democrats and Republicans on that same scale is about 2.1.*
+
+Depending on the context, you might have more than one Quantity of Interest to discuss. But there must be at least one. You are now ready to provide the entire concluding paragraph.
 
 > *Using data from a 2012 survey of Boston-area commuters, we seek to understand the relationship between income and political ideology in Chicago and similar cities in 2020. In particular, what percentage of individuals who make more than $100,000 per year are liberal? The relationship between income and ideology may have changed over that eight year period. We modeled `liberal`, a binary TRUE/FALSE variable, as a logistic function of income. Individuals with higher income were more likely to be liberal. Of the people making $100,000 or more per year, about 55% are liberal, although the true number could be as low as 53% or as high as 57%.*
 
+The final result of data science project is a paragraph like this one. We begin with a question and some data. We produce a paragraph. 
+
 #### Humility
-
-<!-- DK: What are the sections here? -->
-
 
 Temperance guides us in the use of the DGM to answer the questions with which we began.
 
