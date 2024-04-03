@@ -42,17 +42,27 @@ Recall the most important aspects of Wisdom: the Preceptor Table, the EDA (explo
 
 The **Preceptor Table** is the smallest possible table of data with rows and columns such that, if there is no missing data, then it is easy to estimate the quantities of interest.
 
-To create our Preceptor Table, we need to ask ourselves a couple of questions based on our questions above.
+To create our Preceptor Table, we need to ask ourselves a couple of questions:
 
-First, do we need a **causal** or **predictive** model? In our question above we have a predictive model as we only have one outcome which is a gubernatorial candidate's longevity.
+**1) causal vs. predictive model**
 
-Second, what is the outcome? A person's longevity after the election will be the **outcome**. The questions, however, leave unclear details. For example, what time period does the Preceptor Table cover? In order to dive deeper into these questions we need to engage in a conversation with the person that is asking us these questions.
+In our question above we have a **predictive model** as we only have one outcome which is a gubernatorial candidate's longevity.
 
-Third, what are the **units**? Our units for this scenario would be gubernatorial candidates because the questions are about the life expectancy of unique candidates. Here, we want to discuss all gubernatorial candidates from 2000 through 2023 in the United States. However, another question arises: are we looking for the average of all gubernatorial candidates? Are we looking specifically into the average of all female gubernatorial candidates? Or male gubernatorial candidates? In our situation, it is important to refine the question because that allows us to accurately respond to the question at hand.
+**2) What is the moment in time to which the question refers?**
 
-Fourth, what are the **covariates**? In our case, a person's sex will be a covariate as it is another factor that plays to the individual's age and identity. The Preceptor Table must include any covariates mentioned in the question.
+**3) Units**
 
-Fifth, do we have a **treatment**? No. We will be using a predictive model as discussed above and treatments will only apply to situations with causal models. A treatment is just a covariate which we can, at least in theory, manipulate, thereby creating other potential outcomes.
+Our units for this scenario would be gubernatorial candidates because the questions are about the life expectancy of unique candidates. Here, we want to discuss all gubernatorial candidates from 2000 through 2023 in the United States. 
+However, another question arises: are we looking for the average of all gubernatorial candidates? Are we looking specifically into the average of all female gubernatorial candidates? Or male gubernatorial candidates? In our situation, it is important to refine the question because that allows us to accurately respond to the question at hand.
+
+**4) Outcome**
+A person's longevity after the election will be the **outcome**. 
+
+**5) Covariates**
+In our case, a person's **sex** will be a covariate as it is another factor that plays to the individual's age and identity. The Preceptor Table must include any covariates mentioned in the question.
+
+**6) Treatment** 
+No. We will be using a predictive model as discussed above and treatments will only apply to situations with causal models. A treatment is just a covariate which we can, at least in theory, manipulate, thereby creating other potential outcomes.
 
 Our refined question:
 
@@ -101,7 +111,11 @@ The **primer.data** package includes the `governors` data set which features dem
 glimpse(governors)
 ```
 
+Recall that we use `summary()`, `skim()`, `glimpse()`, `print()` and `slice_sample()` to take a look at the data. We also aim to include at least one graphic (outcome variable on the y-axis and one of the covariates on the x-axis). 
+
 <!-- Should we restrict the data to one observation per person? A subtle issue. Maybe raise this in the Summary? -->
+
+The data set will often include columns and rows which are irrelevant to the question. Those columns and rows are removed, creating a tibble which will be used in the Courage section. The name of that tibble will often be something convenient like `ch_7`.
 
 There are `r ncol(governors)` variables and `r scales::comma(nrow(governors))` observations. In this Chapter, we will only be looking at the variables `last_name`, `year`, `state`, `sex`, `lived_after`, and `election_age`.
 
@@ -216,6 +230,7 @@ For these candidates, then, our estimate for longevity will be inaccurate. We al
 The mission of this exploration is to ensure validity as much as possible --- that is, to equate our columns when they are not equated themselves. In this case, because we cannot fix the issues with data collection, we accept that our estimates may be slightly skewed. 
 
 Overall, however, the assumption of validity seems reasonable. Our data and The Preceptor Table can "stack" on top of each other. We will assume that both are drawn from the same population.
+
 
 ## Justice 
 
