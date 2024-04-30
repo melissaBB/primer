@@ -226,7 +226,7 @@ But, to continue the analysis, we always assume/pretend that the rows from both 
 
 If the model is predictive, then unconfoundedness is not a concern. Just mention that fact in a sentence at the end of the section on representativeness. But, if the model is causal, then we need a section devoted to this topic.
 
-As always, bstart y restating the definition, something along the lines of "Unconfoundedness means that the treatment assignment is independent of the potential outcomes, when we condition on pre-treatment covariates. A model as "confounded" if this is not true."
+As always, start by restating the definition, something along the lines of "Unconfoundedness means that the treatment assignment is independent of the potential outcomes, when we condition on pre-treatment covariates. A model as "confounded" if this is not true."
 
 If treatment assignment was random, then unconfoundedness is guaranteed, although experienced researchers often worry about the exact process involved in such "random" assignment. If, however, treatment assignment was not random, then there will always be a concern that it is correlated with potential outcomes. Discuss at least two scenarios in which this might be a concern. But then, as usual, conclude that, although there might be some issues with confoundedness, they are probably small enough to not worry about.
 
